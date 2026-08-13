@@ -1,0 +1,12 @@
+{
+  "name": "roadbook",
+  "private": true,
+  "type": "module",
+  "description": "Road book di viaggio pubblicati come Artifact",
+  "scripts": {
+    "verify": "node tools/verify.mjs"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.49.0"
+  }
+}

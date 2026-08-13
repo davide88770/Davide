@@ -5,15 +5,28 @@ costruiti come dashboard HTML pubblicate come Artifact su claude.ai.
 
 Rispondi e scrivi i deliverable **in italiano**.
 
+## Struttura del repo
+
+```
+viaggi/<anno-mese-slug>/roadbook.html   sorgente dell'Artifact
+viaggi/<anno-mese-slug>/README.md       sintesi, vincoli veri, storico versioni
+tools/verify.mjs                        verifica di rendering obbligatoria
+out/                                    screenshot e PDF generati (non versionato)
+```
+
 ## Riferimento
 
 Il primo road book prodotto è *Alpi, Soča & Quarnero* (Slovenia e Croazia,
-6–15 settembre 2026):
+6–15 settembre 2026): `viaggi/2026-09-alpi-soca-quarnero/`, pubblicato su
 <https://claude.ai/code/artifact/fac61cfd-bb6d-466a-97fc-e508a9785d8c>
 
 È lo standard da eguagliare e superare: struttura, densità di informazione,
-tono, impaginazione. Leggilo con WebFetch prima di partire con una nuova
-destinazione — non per copiarlo, ma per sapere da dove si riparte.
+tono, impaginazione. **Leggi il sorgente nel repo** prima di partire con una
+nuova destinazione — non per copiarlo, ma per sapere da dove si riparte.
+
+Per aggiornare un road book esistente, modifica il file nel repo e ripubblica
+passando il suo `url`: il sorgente versionato e l'Artifact pubblicato devono
+restare allineati.
 
 ## Livello atteso
 
@@ -66,11 +79,16 @@ qualcosa di veloce, lo dirà lui.
 
 ## Verifica prima di consegnare (obbligatoria)
 
-Non consegnare senza aver **renderizzato davvero** la pagina. Chromium è
-preinstallato in `/opt/pw-browsers/chromium-1194/chrome-linux/chrome`; usa
-`playwright-core` (installalo nello scratchpad, non nel repo).
+Non consegnare senza aver **renderizzato davvero** la pagina:
 
-Controlla come minimo:
+```sh
+npm install
+npm run verify viaggi/<cartella>/roadbook.html
+```
+
+Lo script fa i controlli da 1 a 3 e il 4, ed esce con codice diverso da zero se
+qualcosa non va. I controlli 5 e 6 restano da fare a mano quando i dati
+cambiano. Controlla come minimo:
 
 1. Nessun errore in console e nessun `pageerror`.
 2. Resa in **chiaro** e in **scuro**.

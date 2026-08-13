@@ -1,0 +1,1047 @@
+<title>Alpi, Soča & Quarnero — Road Trip Slovenia e Croazia, 6–15 settembre 2026</title>
+
+<style>
+:root{
+  --bg:#E9EDEA; --surface:#F7F9F6; --surface-2:#FFFFFF; --sunk:#E0E7E2;
+  --ink:#14262A; --ink-2:#4C6462; --ink-3:#75908C;
+  --line:#C9D5CF; --line-strong:#A9BCB5;
+  --accent:#0C6B72; --accent-2:#0A555B; --accent-soft:#D6E8E7;
+  --signal:#9E5C0B; --signal-soft:#F3E4CE;
+  --good:#2F6B44; --good-soft:#D9EADD;
+  --alert:#933122; --alert-soft:#F3DCD7;
+  --sea:#C6DCDE; --land:#DFE7E0; --isle:#D2DED7;
+  --shadow:0 1px 2px rgba(20,38,42,.06),0 8px 24px -12px rgba(20,38,42,.22);
+  --display:Bahnschrift,"DIN Alternate","Avenir Next Condensed","Franklin Gothic Medium","Arial Narrow",system-ui,sans-serif;
+  --body:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+  --ui:"Segoe UI Variable Text","Segoe UI",-apple-system,system-ui,sans-serif;
+  --mono:"Cascadia Mono",Consolas,"SF Mono",ui-monospace,monospace;
+  --r:10px;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#091316; --surface:#0F1E22; --surface-2:#142A2E; --sunk:#0C191C;
+    --ink:#DEE9E6; --ink-2:#94ADAA; --ink-3:#6E8A87;
+    --line:#22383D; --line-strong:#2F4A50;
+    --accent:#54CBD1; --accent-2:#7FDCE0; --accent-soft:#10353A;
+    --signal:#E3AD55; --signal-soft:#33290F;
+    --good:#71C58A; --good-soft:#122C1C;
+    --alert:#E88B7C; --alert-soft:#331914;
+    --sea:#0D2429; --land:#122229; --isle:#163034;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px -14px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#091316; --surface:#0F1E22; --surface-2:#142A2E; --sunk:#0C191C;
+  --ink:#DEE9E6; --ink-2:#94ADAA; --ink-3:#6E8A87;
+  --line:#22383D; --line-strong:#2F4A50;
+  --accent:#54CBD1; --accent-2:#7FDCE0; --accent-soft:#10353A;
+  --signal:#E3AD55; --signal-soft:#33290F;
+  --good:#71C58A; --good-soft:#122C1C;
+  --alert:#E88B7C; --alert-soft:#331914;
+  --sea:#0D2429; --land:#122229; --isle:#163034;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px -14px rgba(0,0,0,.7);
+}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--ui);font-size:15.5px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+
+.mast{border-bottom:1px solid var(--line);
+  background:
+    repeating-linear-gradient(90deg,transparent 0 39px,color-mix(in srgb,var(--line) 55%,transparent) 39px 40px),
+    repeating-linear-gradient(0deg,transparent 0 39px,color-mix(in srgb,var(--line) 55%,transparent) 39px 40px),
+    var(--surface);}
+.mast .wrap{padding-top:34px;padding-bottom:26px}
+.eyebrow{font-family:var(--display);font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:600}
+h1{font-family:var(--display);font-weight:700;letter-spacing:.01em;font-size:clamp(34px,6.2vw,60px);line-height:.98;margin:10px 0 6px;text-wrap:balance}
+h1 em{font-style:normal;color:var(--accent)}
+.subtitle{font-family:var(--body);font-size:clamp(16px,2.2vw,19px);color:var(--ink-2);margin:0;max-width:64ch}
+.keyfacts{display:grid;grid-template-columns:repeat(auto-fit,minmax(128px,1fr));gap:1px;margin-top:26px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.kf{background:var(--surface);padding:12px 14px}
+.kf b{display:block;font-family:var(--display);font-size:27px;line-height:1.1;font-variant-numeric:tabular-nums}
+.kf span{font-family:var(--display);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+
+nav{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--surface) 92%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;gap:2px;overflow-x:auto;padding-top:0;padding-bottom:0;scrollbar-width:thin}
+nav a{flex:0 0 auto;padding:11px 13px;text-decoration:none;color:var(--ink-2);font-family:var(--display);font-size:14px;letter-spacing:.08em;text-transform:uppercase;border-bottom:2px solid transparent;white-space:nowrap}
+nav a:hover{color:var(--ink)}
+nav a.on{color:var(--accent);border-bottom-color:var(--accent)}
+nav a:focus-visible{outline:2px solid var(--accent);outline-offset:-3px;border-radius:4px}
+
+section{padding:52px 0 8px;scroll-margin-top:56px}
+.sechead{display:flex;align-items:baseline;gap:14px;margin-bottom:20px;flex-wrap:wrap}
+h2{font-family:var(--display);font-weight:700;font-size:clamp(25px,3.6vw,34px);letter-spacing:.02em;margin:0;text-transform:uppercase}
+.sechead p{margin:0;color:var(--ink-2);font-family:var(--body);font-size:16px;max-width:58ch}
+h3{font-family:var(--display);font-size:19px;letter-spacing:.05em;text-transform:uppercase;margin:0 0 10px}
+h4{font-family:var(--display);font-size:14.5px;letter-spacing:.13em;text-transform:uppercase;margin:0 0 8px;color:var(--ink-3)}
+p{margin:0 0 12px}
+.prose{font-family:var(--body);font-size:16.5px;line-height:1.62;max-width:66ch}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;box-shadow:var(--shadow)}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+
+.chip{display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:999px;font-family:var(--display);font-size:12px;letter-spacing:.1em;text-transform:uppercase;background:var(--sunk);color:var(--ink-2);border:1px solid var(--line)}
+.chip.acc{background:var(--accent-soft);color:var(--accent);border-color:transparent}
+.chip.sig{background:var(--signal-soft);color:var(--signal);border-color:transparent}
+.chip.good{background:var(--good-soft);color:var(--good);border-color:transparent}
+.chip.alert{background:var(--alert-soft);color:var(--alert);border-color:transparent}
+
+.note{border-left:3px solid var(--accent);background:var(--accent-soft);padding:11px 14px;border-radius:0 8px 8px 0}
+.note.sig{border-color:var(--signal);background:var(--signal-soft)}
+.note.alert{border-color:var(--alert);background:var(--alert-soft)}
+.note.good{border-color:var(--good);background:var(--good-soft)}
+.note p:last-child{margin:0}
+.note strong{font-family:var(--display);letter-spacing:.06em;text-transform:uppercase;font-size:13.5px}
+
+a.link{color:var(--accent);text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--accent) 40%,transparent)}
+a.link:hover{border-bottom-color:var(--accent)}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:.93em}
+
+.mapbox{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:10px;box-shadow:var(--shadow)}
+.mapbox svg{display:block;width:100%;height:auto}
+.maplegend{display:flex;gap:18px;flex-wrap:wrap;margin-top:10px;padding:0 8px 4px;font-family:var(--display);font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.maplegend i{display:inline-block;width:22px;height:0;border-top-width:3px;border-top-style:solid;vertical-align:middle;margin-right:6px}
+.stopdot{cursor:pointer}
+.stopdot:hover circle.hit{fill:color-mix(in srgb,var(--accent) 25%,transparent)}
+
+.pills{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 22px}
+.pill{display:flex;flex-direction:column;align-items:center;gap:1px;text-decoration:none;padding:7px 11px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink-2);min-width:64px}
+.pill:hover{border-color:var(--accent);color:var(--accent)}
+.pill b{font-family:var(--display);font-size:16px;letter-spacing:.04em}
+.pill span{font-family:var(--display);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+
+.day{display:grid;grid-template-columns:120px 1fr;gap:0;margin-bottom:20px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);scroll-margin-top:64px}
+.rail{background:var(--sunk);border-right:1px solid var(--line);padding:16px 14px;display:flex;flex-direction:column;gap:12px}
+.rail .num{font-family:var(--display);font-size:44px;line-height:.85;font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums}
+.rail .lab{font-family:var(--display);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3)}
+.rail dl{margin:0;display:flex;flex-direction:column;gap:9px}
+.rail dt{font-family:var(--display);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3)}
+.rail dd{margin:0;font-family:var(--display);font-size:17px;font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.daybody{padding:16px 20px 18px;min-width:0}
+.dayhead{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap;margin-bottom:4px}
+.dayhead .date{font-family:var(--display);font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3)}
+.dayhead h3{font-size:23px;margin:2px 0 0;letter-spacing:.02em;text-transform:none}
+.route{font-family:var(--mono);font-size:12.5px;color:var(--ink-2);background:var(--sunk);border:1px solid var(--line);border-radius:7px;padding:8px 11px;margin:12px 0;overflow-x:auto;white-space:nowrap}
+.daycols{display:grid;grid-template-columns:minmax(260px,1.15fr) minmax(220px,.85fr);gap:22px;margin-top:14px}
+
+ol.tl{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+ol.tl li{display:grid;grid-template-columns:56px 1fr;gap:12px;padding:0 0 11px;position:relative}
+ol.tl li::before{content:"";position:absolute;left:62px;top:16px;bottom:-4px;width:1px;background:var(--line)}
+ol.tl li:last-child::before{display:none}
+ol.tl time{font-family:var(--mono);font-size:12.5px;color:var(--accent);padding-top:2px;font-variant-numeric:tabular-nums}
+ol.tl .ev{position:relative;padding-left:16px}
+ol.tl .ev::before{content:"";position:absolute;left:-5.5px;top:7px;width:9px;height:9px;border-radius:50%;background:var(--surface);border:2px solid var(--accent)}
+ol.tl .ev b{font-weight:600}
+ol.tl .ev small{display:block;color:var(--ink-2);font-size:13.5px;line-height:1.45}
+
+.menu{margin:16px 0 2px;border:1px solid var(--line);border-radius:var(--r);background:var(--sunk);padding:14px 15px 15px}
+.menuhead{margin-bottom:12px}
+.menuhead h4{margin:0 0 3px;color:var(--accent)}
+.menuhead p{margin:0;font-family:var(--body);font-size:14.5px;line-height:1.5;color:var(--ink-2);max-width:70ch}
+.opts{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(215px,1fr))}
+.opt{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:11px 13px 12px}
+.opt>b{display:block;font-family:var(--display);font-size:17px;letter-spacing:.03em;margin:7px 0 5px;color:var(--ink)}
+.opt p{margin:0;font-size:13.5px;line-height:1.5;color:var(--ink-2)}
+.opt p b{font-weight:600;color:var(--ink)}
+
+ul.tick{list-style:none;margin:0 0 14px;padding:0;display:flex;flex-direction:column;gap:6px}
+ul.tick li{position:relative;padding-left:17px;font-size:14.5px;line-height:1.5}
+ul.tick li::before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;background:var(--accent);border-radius:1px;transform:rotate(45deg)}
+.side .blk{margin-bottom:15px}
+.side .blk:last-child{margin-bottom:0}
+
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:14.5px}
+th,td{text-align:left;padding:9px 13px;border-bottom:1px solid var(--line)}
+thead th{font-family:var(--display);font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);background:var(--sunk);position:sticky;top:0}
+tbody tr:last-child td{border-bottom:none}
+td.num,th.num{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:13.5px}
+tfoot td{font-family:var(--display);font-size:16px;letter-spacing:.04em;background:var(--sunk);border-top:2px solid var(--line-strong)}
+.bar{position:relative;display:block;height:7px;border-radius:3px;background:var(--accent);min-width:3px}
+.barcell{width:30%;min-width:110px}
+.barwrap{background:var(--sunk);border-radius:3px;overflow:hidden}
+
+.cl{display:flex;flex-direction:column;gap:3px}
+.cl label{display:flex;gap:10px;align-items:flex-start;padding:5px 7px;border-radius:6px;cursor:pointer;font-size:14.5px}
+.cl label:hover{background:var(--sunk)}
+.cl input{margin:3px 0 0;width:16px;height:16px;accent-color:var(--accent);flex:0 0 auto}
+.cl input:checked + span{color:var(--ink-3);text-decoration:line-through}
+.clhead{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px}
+.count{font-family:var(--mono);font-size:12.5px;color:var(--ink-3)}
+button.reset{font-family:var(--display);font-size:12px;letter-spacing:.1em;text-transform:uppercase;background:none;border:1px solid var(--line);color:var(--ink-2);border-radius:7px;padding:5px 10px;cursor:pointer}
+button.reset:hover{border-color:var(--accent);color:var(--accent)}
+
+.phr{width:100%;min-width:420px}
+.phr td:first-child{font-family:var(--body);color:var(--ink-2)}
+.phr td.sl,.phr td.hr{font-family:var(--display);font-size:16px;letter-spacing:.02em}
+.phr td.sl{color:var(--accent)}
+.phr td.hr{color:var(--signal)}
+
+footer{border-top:1px solid var(--line);margin-top:56px;padding:24px 0 40px;color:var(--ink-3);font-size:13.5px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+@media (max-width:720px){
+  .day{grid-template-columns:1fr}
+  .rail{flex-direction:row;align-items:center;flex-wrap:wrap;gap:18px;border-right:none;border-bottom:1px solid var(--line);padding:12px 16px}
+  .rail dl{flex-direction:row;gap:18px}
+  .daycols{grid-template-columns:1fr;gap:16px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ---------- stampa / export PDF ---------- */
+@page{margin:14mm 12mm}
+@media print{
+  :root{
+    --bg:#FFFFFF; --surface:#FFFFFF; --surface-2:#FFFFFF; --sunk:#F1F4F1;
+    --ink:#111C1F; --ink-2:#3E5654; --ink-3:#63807C;
+    --line:#BCCAC4; --line-strong:#94A9A2;
+    --accent:#0A5A61; --accent-soft:#E4F0EF;
+    --signal:#8A4F09; --signal-soft:#F8EEDD;
+    --good:#255938; --good-soft:#E5F1E8;
+    --alert:#7E2A1D; --alert-soft:#F8E6E1;
+    --sea:#E3EDEE; --land:#F4F7F4; --isle:#E8EEEA;
+    --shadow:none;
+  }
+  body{background:#fff;font-size:10.5pt;line-height:1.42}
+  .wrap{max-width:none;padding:0}
+  nav,.pills,button.reset,.maplegend{display:none!important}
+  .mast{border-bottom:1.5pt solid var(--line-strong)}
+  .mast .wrap{padding-top:0;padding-bottom:10pt}
+  h1{font-size:30pt}
+  .subtitle{font-size:11pt}
+  section{padding:14pt 0 4pt;break-inside:auto}
+  h2{font-size:16pt;break-after:avoid}
+  .sechead{break-after:avoid}
+  .card,.day,.tablewrap,.note{box-shadow:none!important;break-inside:avoid}
+  .day:has(.menu){break-inside:auto}
+  .menu{break-inside:avoid;padding:8pt 9pt}
+  .opts{grid-template-columns:1fr 1fr;gap:7pt}
+  .opt{break-inside:avoid}
+  .opt p{font-size:8.5pt}
+  .day{border:1pt solid var(--line-strong);margin-bottom:10pt}
+  .rail{background:var(--sunk)}
+  .rail .num{font-size:26pt}
+  .daycols{grid-template-columns:1.15fr .85fr;gap:14pt}
+  .route{white-space:normal;overflow:visible;font-size:8.5pt}
+  .tablewrap{overflow:visible}
+  table{min-width:0;font-size:9pt}
+  thead th{position:static}
+  .mapbox{border:1pt solid var(--line-strong);break-inside:avoid}
+  #map{max-height:150mm}
+  a.link{border-bottom:none;color:var(--accent)}
+  a[target="_blank"]::after{content:" ↗";font-size:.8em}
+  .cl label{padding:2pt 0}
+  .cl input{-webkit-appearance:none;appearance:none;width:9pt;height:9pt;border:1pt solid var(--ink-3);border-radius:2pt}
+  footer{margin-top:14pt;padding:8pt 0 0}
+  #checklist,#frasario,#sos{break-before:page}
+}
+</style>
+
+<header class="mast">
+  <div class="wrap">
+    <div class="eyebrow">Versione a finale aperto · 6 → 15 settembre 2026</div>
+    <h1>Alpi, Soča<br><em>&amp; Quarnero</em></h1>
+    <p class="subtitle">Tre notti sotto il Triglav, una a Plitvice per entrare all'alba, <b>quattro sull'isola di Cres</b>, una last-minute sulla costa. Quattro basi in dieci giorni, e gli ultimi tre giorni deliberatamente aperti: il 13 settembre si decide la mattina, il 14 si sceglie dove finire, il 15 si sceglie cosa infilare nel rientro.</p>
+    <div class="keyfacts">
+      <div class="kf"><b>10</b><span>Giorni</span></div>
+      <div class="kf"><b>9</b><span>Notti</span></div>
+      <div class="kf"><b>4</b><span>Basi</span></div>
+      <div class="kf"><b>2.215</b><span>km totali</span></div>
+      <div class="kf"><b>30h30</b><span>Ore di guida</span></div>
+      <div class="kf"><b>2</b><span>Traghetti</span></div>
+      <div class="kf"><b>3</b><span>Paesi</span></div>
+    </div>
+  </div>
+</header>
+
+<nav id="nav">
+  <div class="wrap">
+    <a href="#sintesi">Sintesi</a>
+    <a href="#mappa">Mappa</a>
+    <a href="#itinerario">Itinerario</a>
+    <a href="#distanze">Distanze</a>
+    <a href="#traghetti">Traghetti</a>
+    <a href="#prenotazioni">Prenotazioni</a>
+    <a href="#budget">Budget</a>
+    <a href="#guida">Guida pratica</a>
+    <a href="#varianti">Varianti</a>
+    <a href="#checklist">Checklist</a>
+    <a href="#frasario">Frasario</a>
+    <a href="#sos">SOS</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<section id="sintesi">
+  <div class="sechead">
+    <h2>Le cinque ottimizzazioni</h2>
+    <p>Cosa cambia rispetto al RoadBook, e perché ogni modifica fa risparmiare chilometri invece di aggiungerne.</p>
+  </div>
+  <div class="grid g4" style="margin-bottom:18px">
+    <div class="card">
+      <div class="chip good">−65 km · −1 base</div>
+      <h3 style="margin-top:10px">Quarta notte a Cres</h3>
+      <p class="prose" style="font-size:15px">Il 13 settembre non si smonta più. L'isola tiene una giornata intera in più — la sola del viaggio che si decide la mattina stessa — e tutta l'Istria si fa il 14, in una traversata sola. Un cambio di base in meno e una valigia ferma per quattro notti.</p>
+    </div>
+    <div class="card">
+      <div class="chip good">+10 km</div>
+      <h3 style="margin-top:10px">Postojna il giorno 1</h3>
+      <p class="prose" style="font-size:15px">Predjama e le Grotte sono <em>esattamente</em> sulla linea Trieste–Lubiana–Bled. Inserirli nel primo giorno costa dieci chilometri di deviazione e aggiunge il registro carsico che mancava.</p>
+    </div>
+    <div class="card">
+      <div class="chip good">−150 km</div>
+      <h3 style="margin-top:10px">Niente Mangart</h3>
+      <p class="prose" style="font-size:15px">Il giorno 4 del RoadBook andava 110 km a nord-ovest per poi tornare indietro e farne 350 a sud-est. Sostituito con <b>Lubiana</b>, che è sulla strada per Plitvice. Mangart resta come estensione facoltativa del giorno 3.</p>
+    </div>
+    <div class="card">
+      <div class="chip good">gratis</div>
+      <h3 style="margin-top:10px">Rastoke sulla rotta</h3>
+      <p class="prose" style="font-size:15px">Arrivando a Plitvice da Zagabria e Karlovac si passa <em>dentro</em> Slunj. Il villaggio dei mulini entra nell'itinerario a costo zero, come sosta prima del check-in.</p>
+    </div>
+    <div class="card">
+      <div class="chip good">−16 €</div>
+      <h3 style="margin-top:10px">Vignetta da 7 giorni</h3>
+      <p class="prose" style="font-size:15px">Usi l'autostrada slovena solo nei giorni 1 e 4. Al rientro passi dal corridoio costiero H5/H6, <b>gratuito dal 2026</b>: la settimanale da 16 € basta, la mensile da 32 € no.</p>
+    </div>
+  </div>
+
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Notte</th><th>Data</th><th>Base</th><th>Perché</th><th>Zona</th></tr></thead>
+      <tbody>
+        <tr><td class="num">1–3</td><td>6–8 set</td><td><b>Bohinj</b> 🇸🇮</td><td>Dentro il Triglav NP. Più quieto, più economico e più autentico di Bled</td><td>Ribčev Laz o Stara Fužina</td></tr>
+        <tr><td class="num">4</td><td>9 set</td><td><b>Plitvice</b> 🇭🇷</td><td>Dormire al parco è ciò che rende possibile l'ingresso alle 7:00</td><td>Jezerce, Mukinje o Rakovica</td></tr>
+        <tr><td class="num">5–8</td><td>10–13 set</td><td><b>Cres</b> 🇭🇷</td><td>Quattro notti, valigia ferma. Il 13 resta libero: è il cuore lento del viaggio</td><td>Cres città, centro storico</td></tr>
+        <tr><td class="num">9</td><td>14 set</td><td><b>A scelta</b> 🇸🇮🇭🇷</td><td>Una sola notte dopo l'isola. <b>Pirano</b> se vuoi il rientro corto, <b>Rovigno</b> se vuoi la città più bella, <b>Abbazia</b> se la bora chiude Porozina</td><td>Si decide prenotando, non in strada</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="mappa">
+  <div class="sechead">
+    <h2>La rotta</h2>
+    <p>Mappa schematica su coordinate reali. Tocca un punto per saltare alla tappa.</p>
+  </div>
+  <div class="mapbox">
+    <svg id="map" viewBox="0 0 1000 628" role="img" aria-label="Mappa del percorso da Castelnovo ne' Monti alle Alpi Giulie, Plitvice, l'isola di Cres e l'Istria"></svg>
+    <div class="maplegend">
+      <span><i style="border-color:var(--accent)"></i>Andata (giorni 1–5)</span>
+      <span><i style="border-color:var(--signal);border-top-style:dashed"></i>Rientro (giorni 9–10)</span>
+      <span><i style="border-color:var(--signal);border-top-style:dotted;opacity:.65"></i>Finali alternativi</span>
+      <span><i style="border-color:var(--good);border-top-style:dotted"></i>Traghetto</span>
+      <span><i style="border-color:var(--ink-3);border-top-style:dotted"></i>Escursioni in giornata</span>
+    </div>
+  </div>
+</section>
+
+<section id="itinerario">
+  <div class="sechead">
+    <h2>Giorno per giorno</h2>
+    <p>Orari con soste, parcheggio e code già dentro. Il tramonto va da 19:47 (6 set) a 19:26 (15 set). Gli ultimi tre giorni hanno un <b>menù di scelta</b> al posto di un programma fisso: il 13 si decide a colazione, il 14 si decide prenotando, il 15 si decide in strada.</p>
+  </div>
+  <div class="pills" id="pills"></div>
+  <div id="days"></div>
+</section>
+
+<section id="distanze">
+  <div class="sechead">
+    <h2>Quadro chilometrico</h2>
+    <p>Distanze stradali reali, tempi di sola guida. Aggiungi il 15–20% per soste e carburante. I giorni 8, 9 e 10 sono a scelta: qui sotto c'è il valore di riferimento, gli scarti sono indicati.</p>
+  </div>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>#</th><th>Data</th><th>Tratta</th><th class="num">km</th><th class="num">Guida</th><th class="barcell">Carico</th><th class="num">Progr.</th></tr></thead>
+      <tbody>
+        <tr><td class="num">01</td><td>Dom 6</td><td>Castelnovo n.M. → Postojna → Bohinj</td><td class="num">555</td><td class="num">6h00</td><td class="barcell"><span class="barwrap" style="display:block"><span class="bar" style="width:100%"></span></span></td><td class="num">555</td></tr>
+        <tr><td class="num">02</td><td>Lun 7</td><td>Mostnica · Vogel · Savica</td><td class="num">30</td><td class="num">0h45</td><td class="barcell"><span class="barwrap" style="display:block"><span class="bar" style="width:5%"></span></span></td><td class="num">585</td></tr>
+        <tr><td class="num">03</td><td>Mar 8</td><td>Vršič · Soča · Kozjak · Kobarid</td><td class="num">215</td><td class="num">4h30</td><td class="barcell"><span class="barwrap" style="display:block"><span class="bar" style="width:39%"></span></span></td><td class="num">800</td></tr>
+        <tr><td class="num">04</td><td>Mer 9</td><td>Bohinj → Lubiana → Rastoke → Plitvice</td><td class="num">325</td><td class="num">4h00</td><td class="barcell"><span class="barwrap" style="display:block"><span class="bar" style="width:59%"></span></span></td><td class="num">1.125</td></tr>
+        <tr><td class="num">05</td><td>Gio 10</td><td>Plitvice → Brestova ⇢ Cres</td><td class="num">250</td><td class="num">3h10</td><td class="barcell"><span class="barwrap" style="display:block"><span class="bar" style="width:45%"></span></span></td><td class="num">1.375</td></tr>
+        <tr><td class="num">06</td><td>Ven 11</td><td>Lubenice · Sveti Ivan · Valun</td><td class="num">50</td><td class="num">1h15</td><td class="barcell"><span class="barwrap" style="display:block"><span class="bar" style="width:9%"></span></span></td><td class="num">1.425</td></tr>
+        <tr><td class="num">07</td><td>Sab 12</td><td>Beli · grifoni · baie</td><td class="num">70</td><td class="num">1h30</td><td class="barcell"><span class="barwrap" style="display:block"><span class="bar" style="width:13%"></span></span></td><td class="num">1.495</td></tr>
+        <tr><td class="num">08</td><td>Dom 13</td><td>Cres, giornata aperta <span class="chip" style="font-size:10px;padding:1px 6px">0–120 km</span></td><td class="num">60</td><td class="num">1h30</td><td class="barcell"><span class="barwrap" style="display:block"><span class="bar" style="width:11%"></span></span></td><td class="num">1.555</td></tr>
+        <tr><td class="num">09</td><td>Lun 14</td><td>Cres ⇢ Brestova → Motovun → finale</td><td class="num">180</td><td class="num">3h00</td><td class="barcell"><span class="barwrap" style="display:block"><span class="bar" style="width:32%"></span></span></td><td class="num">1.735</td></tr>
+        <tr><td class="num">10</td><td>Mar 15</td><td>Pirano → Trieste → Castelnovo n.M.</td><td class="num">480</td><td class="num">4h50</td><td class="barcell"><span class="barwrap" style="display:block"><span class="bar" style="width:86%"></span></span></td><td class="num">2.215</td></tr>
+      </tbody>
+      <tfoot><tr><td colspan="3">Totale</td><td class="num">2.215</td><td class="num">30h30</td><td></td><td class="num">Ø 222/g</td></tr></tfoot>
+    </table>
+  </div>
+  <div class="grid g3" style="margin-top:16px">
+    <div class="card"><h4>Come è bilanciato</h4><p style="font-size:14.5px;margin:0">Una sola giornata sopra le cinque ore: la prima, tutta in autostrada e senza visite dopo l'arrivo. <b>Quattro giorni su dieci</b> stanno sotto le due ore di guida, e tre di questi sono di fila (11, 12, 13 settembre).</p></div>
+    <div class="card"><h4>Gli scarti possibili</h4><p style="font-size:14.5px;margin:0">Il <b>13</b> va da 0 km (giorno zero) a 120 (Lošinj). Il <b>15</b> è 480 km partendo da Pirano, <b>600</b> da Rovigno, <b>620</b> da Pola, <b>570</b> da Abbazia. Il totale del viaggio oscilla quindi tra <b>2.155 e 2.475 km</b>: nessuna scelta lo fa esplodere.</p></div>
+    <div class="card"><h4>Rispetto alla prima versione</h4><p style="font-size:14.5px;margin:0"><b>590 km e 4 basi in meno</b> (2.215 contro 2.805, 4 basi contro 8). Fuori restano Zara, Krka e Spalato: con questo ritmo la Dalmazia non ci sta, ed è la rinuncia che regge tutto il resto.</p></div>
+  </div>
+</section>
+
+<section id="traghetti">
+  <div class="sechead">
+    <h2>I due traghetti</h2>
+    <p>Linea 334 di Jadrolinija, la più frequente del Quarnaro. Non si prenota: si sale in ordine di arrivo.</p>
+  </div>
+  <div class="grid g2">
+    <div class="card">
+      <h3>Brestova ⇢ Porozina · Giovedì 10</h3>
+      <ul class="tick">
+        <li><b>Traversata:</b> 5,2 km, <b>20 minuti</b>.</li>
+        <li><b>Frequenza:</b> circa ogni ora e mezza, dalle 05:30 in poi, con corse fino a tarda sera in alta stagione.</li>
+        <li><b>Arrivo consigliato:</b> 16:00 per l'imbarco delle 16:30 — 30–45 minuti di margine.</li>
+        <li><b>Non si prenota.</b> Nessun sistema di booking sulle linee locali: conta solo l'ordine di arrivo al piazzale.</li>
+        <li><b>Carburante:</b> fai il pieno prima di imbarcarti. Su Cres i distributori sono pochi.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Porozina ⇢ Brestova · Lunedì 14</h3>
+      <ul class="tick">
+        <li>Stessa linea in senso inverso, quattro giorni dopo. Partenza da Cres città alle <b>09:00</b> per l'imbarco delle <b>10:15</b>: di lunedì mattina il piazzale è vuoto, ma il margine serve lo stesso.</li>
+        <li><b>Tariffe:</b> passeggero <b>4,40 €</b>. Per l'auto la tariffa va verificata su <a class="link" href="https://www.jadrolinija.hr/en" target="_blank" rel="noopener">jadrolinija.hr</a> — metti a budget circa 25–30 € a traversata per auto più due passeggeri.</li>
+        <li><b>Pagamento:</b> biglietteria al piazzale, carta accettata.</li>
+      </ul>
+    </div>
+    <div class="card note sig" style="grid-column:1/-1">
+      <p><strong>Se si alza la bora</strong> La Brestova–Porozina può essere sospesa con vento forte. L'alternativa che non chiude quasi mai: <b>Merag ⇢ Valbiska → ponte di Veglia</b>, canale più riparato, e Merag è a 12 km da Cres. Vale in entrambi i sensi: all'andata (giorno 5) ti fa entrare sull'isola da est, al ritorno (giorno 14) ti porta dritto ad Abbazia — che è infatti il piano bora del finale. Controlla lo stato delle linee su <a class="link" href="https://hak.hr" target="_blank" rel="noopener">hak.hr</a> o sull'app Jadrolinija la sera prima.</p>
+    </div>
+  </div>
+</section>
+
+<section id="prenotazioni">
+  <div class="sechead">
+    <h2>Da prenotare, in quest'ordine</h2>
+    <p>Solo due voci hanno disponibilità davvero limitata. Il resto di questo itinerario si compra sul posto — è uno dei suoi vantaggi.</p>
+  </div>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Priorità</th><th>Cosa</th><th>Dove</th><th class="num">Costo/pers.</th><th>Nota</th></tr></thead>
+      <tbody>
+        <tr><td><span class="chip alert">Subito</span></td><td><b>Plitvice</b>, slot orario</td><td class="mono">np-plitvicka-jezera.hr</td><td class="num">40 €</td><td>Giovedì 10/9, <b>07:00, Ingresso 2</b>. Cap di 300 persone/ora: è la prenotazione che decide la riuscita del viaggio.</td></tr>
+        <tr><td><span class="chip alert">Subito</span></td><td><b>Alloggi</b>, 9 notti</td><td>Booking / diretto</td><td class="num">—</td><td><b>Bohinj ×3 · Plitvice ×1 · Cres ×4 · finale ×1.</b> Quattro strutture in tutto. Plitvice e Cres sono i primi a esaurirsi; sulle quattro notti a Cres chiedi lo sconto, quasi tutti lo fanno dalla terza in poi.</td></tr>
+        <tr><td><span class="chip sig">Entro 7 gg</span></td><td><b>La base del 14</b>: Pirano, Rovigno, Pola o Abbazia</td><td>Booking / diretto</td><td class="num">—</td><td>È l'unica scelta degli ultimi giorni che <b>non</b> si può rimandare: decidila prenotando. Pirano tiene il rientro a 480 km, Rovigno lo porta a 600. Vedi il menù del giorno 9.</td></tr>
+        <tr><td><span class="chip sig">Entro 7 gg</span></td><td><b>Postojna + Predjama</b></td><td class="mono">postojnska-jama.eu</td><td class="num">40,30 €</td><td>Combinata, 10% meno dei biglietti separati. Slot grotta <b>13:00 di domenica 6/9</b>: l'orario è vincolante.</td></tr>
+        <tr><td><span class="chip acc">Prima di partire</span></td><td><b>e-vinjeta Slovenia</b>, 7 giorni</td><td class="mono">evinjeta.dars.si</td><td class="num">16 € / auto</td><td>Attivala dal 6/9 (valida fino al 12/9). Serve targa e classe di pedaggio. Niente adesivo: è legata alla targa.</td></tr>
+        <tr><td><span class="chip good">In loco</span></td><td>Mostnica, Vogel, Savica</td><td>Alla cassa</td><td class="num">4 / 33 / 8 €</td><td>Nessuna prenotazione, nessuno slot. Vogel include parcheggio e seggiovia.</td></tr>
+        <tr><td><span class="chip good">In loco</span></td><td>Kozjak, Museo di Caporetto</td><td>Alla cassa</td><td class="num">5 / 8 €</td><td>Il biglietto di Kozjak dà diritto allo sconto sul museo.</td></tr>
+        <tr><td><span class="chip good">In loco</span></td><td>Traghetti, Rastoke, campanili</td><td>Al piazzale / cassa</td><td class="num">—</td><td>Le linee locali Jadrolinija non accettano prenotazioni auto.</td></tr>
+        <tr><td><span class="chip good">Il giorno stesso</span></td><td><b>La giornata del 13</b> su Cres</td><td>A colazione</td><td class="num">0–130 €</td><td>Lošinj, barca, cammino o niente: nessuna delle quattro si prenota. Solo il noleggio barca conviene chiederlo la sera prima al porto, e il ponte girevole di Osor ha orari fissi — verificali se scegli Lošinj.</td></tr>
+        <tr><td><span class="chip">Facoltativo</span></td><td>Cena dell'ultima sera e a Kobarid</td><td>Telefono</td><td class="num">—</td><td>Hiša Franko si prenota con mesi d'anticipo; le altre bastano il giorno prima.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="budget">
+  <div class="sechead">
+    <h2>Budget</h2>
+    <p>Stima per <b>due persone</b>, un'auto a benzina, standard medio: hotel 3–4 stelle o appartamenti, un pasto al ristorante al giorno.</p>
+  </div>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Voce</th><th>Dettaglio</th><th class="num">Minimo</th><th class="num">Comodo</th></tr></thead>
+      <tbody>
+        <tr><td><b>Carburante</b></td><td>2.215 km, ~6,5 l/100 km, ~1,75 €/l</td><td class="num">245 €</td><td class="num">300 €</td></tr>
+        <tr><td><b>Pedaggi Italia</b></td><td>A1+A22+A4 andata e ritorno</td><td class="num">75 €</td><td class="num">85 €</td></tr>
+        <tr><td><b>Vignetta Slovenia</b></td><td>e-vinjeta 7 giorni (6→12 set)</td><td class="num">16 €</td><td class="num">16 €</td></tr>
+        <tr><td><b>Pedaggi Croazia</b></td><td>Zagabria–Karlovac, Plitvice–Fiume</td><td class="num">30 €</td><td class="num">40 €</td></tr>
+        <tr><td><b>Traghetti</b></td><td>2 traversate, auto + 2 passeggeri</td><td class="num">55 €</td><td class="num">75 €</td></tr>
+        <tr><td><b>Parcheggi e garage</b></td><td>Lubiana, Stara Fužina, Plitvice, Cres, base finale</td><td class="num">60 €</td><td class="num">90 €</td></tr>
+        <tr><td><b>Ingressi fissi</b> (×2)</td><td>Plitvice 80, Postojna+Predjama 81, Vogel 66, Mostnica 8, Savica 16, Kozjak 10, museo Kobarid 16, funicolare Lubiana 20, Rastoke 16, Beli 16</td><td class="num">330 €</td><td class="num">330 €</td></tr>
+        <tr><td><b>Ingressi a scelta</b> (×2)</td><td>Giornata del 13: 0 se giorno zero, ~130 se noleggi la barca. Finale: mura Pirano + Sicciole 18, oppure Sant'Eufemia 10, oppure Arena di Pola 20</td><td class="num">15 €</td><td class="num">140 €</td></tr>
+        <tr><td><b>Alloggi</b></td><td>9 notti in doppia, <b>4 strutture</b> (Cres ×4 a tariffa scontata)</td><td class="num">900 €</td><td class="num">1.320 €</td></tr>
+        <tr><td><b>Cibo</b></td><td>10 giorni, colazione + pranzo leggero + cena</td><td class="num">550 €</td><td class="num">850 €</td></tr>
+        <tr><td><b>Extra</b></td><td>Tartufo, sale di Sicciole, souvenir, imprevisti</td><td class="num">120 €</td><td class="num">250 €</td></tr>
+      </tbody>
+      <tfoot><tr><td colspan="2">Totale per due</td><td class="num">2.396 €</td><td class="num">3.496 €</td></tr></tfoot>
+    </table>
+  </div>
+  <div class="grid g3" style="margin-top:16px">
+    <div class="card"><h4>Dove si risparmia</h4><p style="font-size:14.5px;margin:0">Gli alloggi: <i>sobe</i> e <i>apartmani</i> privati costano il 30–40% meno degli hotel, e su Cres e a Plitvice sono la scelta normale, non un ripiego. <b>Le quattro notti di fila a Cres sono la leva più forte</b>: quasi tutti scontano dalla terza, e una struttura sola invece di due toglie anche una tassa di soggiorno e un cambio di lenzuola pagato.</p></div>
+    <div class="card"><h4>Dove non tagliare</h4><p style="font-size:14.5px;margin:0">Il garage dell'ultima notte, qualunque base tu scelga: Fornače a Pirano, Valdibora a Rovigno. Cercare posto costa un'ora di vacanza e spesso una multa — sono i 15–20 € meglio spesi del viaggio, e per una notte sola non ha senso risparmiarli.</p></div>
+    <div class="card"><h4>La voce sorpresa</h4><p style="font-size:14.5px;margin:0">La funivia del Vogel: 66 € in due per venti minuti di salita. Se la giornata non è limpida, saltala — non è il caso di pagarla per stare dentro una nuvola.</p></div>
+  </div>
+</section>
+
+<section id="guida">
+  <div class="sechead">
+    <h2>Guida pratica</h2>
+    <p>Auto, documenti, soldi, meteo. Da leggere una volta prima di partire.</p>
+  </div>
+  <div class="grid g2">
+    <div class="card">
+      <h3>L'auto</h3>
+      <ul class="tick">
+        <li><b>Slovenia:</b> vignetta obbligatoria su autostrade e superstrade, multa da <b>300 a 800 €</b>. In questo itinerario ti serve solo nei giorni 1 e 4.</li>
+        <li><b>Corridoio costiero gratuito:</b> dal 2026 le superstrade H5 (Capodistria–Dragogna) e H6 (Capodistria–Rabuiese) sono libere per i veicoli fino a 3,5 t. È esattamente il percorso dei giorni 9 e 10 <em>se scegli Pirano</em>; con gli altri finali rientri in Italia da Trieste comunque senza vignetta.</li>
+        <li><b>Croazia:</b> nessuna vignetta, si ritira il ticket e si paga all'uscita, contanti o carta. In settembre <b>niente maggiorazione estiva</b> del 10%.</li>
+        <li><b>Fari accesi:</b> obbligatori <b>tutto l'anno anche di giorno in Slovenia</b>. In Croazia solo da fine ottobre a fine marzo.</li>
+        <li><b>Alcol:</b> 0,5 g/l in entrambi, ma <b>0,0</b> sotto i 24 anni in Croazia e sotto i 21 o neopatentati in Slovenia. Controlli frequenti.</li>
+        <li><b>Dotazioni:</b> giubbotto catarifrangente <em>nell'abitacolo</em> e triangolo ovunque; in Croazia anche kit di primo soccorso e lampadine di scorta.</li>
+        <li><b>Strade di montagna:</b> Vršič è stretto, lastricato e con 50 tornanti. Marce basse in discesa, non i freni. Se noleggi, verifica la copertura per i due paesi.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Documenti, soldi, telefono</h3>
+      <ul class="tick">
+        <li><b>Documenti:</b> carta d'identità valida per l'espatrio o passaporto, patente, libretto, assicurazione. Slovenia e Croazia sono in Schengen: nessun controllo sistematico, ma la polizia può fermarti.</li>
+        <li><b>Carta verde:</b> non serve, entrambi paesi UE.</li>
+        <li><b>Moneta: euro in tutti e due.</b> La Croazia lo ha adottato nel 2023, la kuna non esiste più.</li>
+        <li><b>Contanti:</b> 100–150 € per parcheggi, traghetti, konobe di campagna e la cassa della Mostnica.</li>
+        <li><b>Telefono:</b> roaming UE incluso, tariffa italiana, nessuna SIM locale.</li>
+        <li><b>Sanità:</b> porta la <b>Tessera Sanitaria–TEAM</b> (retro azzurro): copre le cure pubbliche urgenti.</li>
+        <li><b>Offline:</b> scarica le mappe di Slovenia e Croazia. A Plitvice, sul Vršič, sul Velebit e nell'interno di Cres il segnale sparisce.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Meteo e mare a settembre</h3>
+      <div class="tablewrap" style="box-shadow:none;border:none">
+        <table style="min-width:0">
+          <thead><tr><th>Zona</th><th class="num">Giorno</th><th class="num">Notte</th><th class="num">Acqua</th></tr></thead>
+          <tbody>
+            <tr><td>Bohinj</td><td class="num">19–23°</td><td class="num">8–11°</td><td class="num">19–20°</td></tr>
+            <tr><td>Vršič (1.611 m)</td><td class="num">10–15°</td><td class="num">3–6°</td><td class="num">—</td></tr>
+            <tr><td>Valle della Soča</td><td class="num">21–25°</td><td class="num">11–14°</td><td class="num">14° (fiume)</td></tr>
+            <tr><td>Plitvice</td><td class="num">19–23°</td><td class="num">8–11°</td><td class="num">—</td></tr>
+            <tr><td>Cres / Quarnaro</td><td class="num">24–27°</td><td class="num">17–19°</td><td class="num">23–24°</td></tr>
+            <tr><td>Istria / Pirano</td><td class="num">24–27°</td><td class="num">16–18°</td><td class="num">23–24°</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:14.5px;margin:12px 0 0;color:var(--ink-2)">Settembre è la finestra migliore: mare ancora caldo, folla dimezzata, prezzi in calo. I rischi reali sono i temporali pomeridiani sulle Giulie e la <b>bora</b> sul Quarnaro, che può fermare i traghetti. Sul Vršič e al Vogel porta uno strato in più: a 1.600 m ci sono dieci gradi meno che sul lago.</p>
+    </div>
+    <div class="card">
+      <h3>Parcheggi</h3>
+      <ul class="tick">
+        <li><b>Lubiana:</b> garage Kongresni trg o NUK II, ~2–3 €/h. Centro pedonale, non avvicinarti in auto.</li>
+        <li><b>Stara Fužina (Mostnica):</b> ~3 €/h ai margini del paese. C'è un secondo parcheggio più in alto lungo la strada a pedaggio, più caro.</li>
+        <li><b>Vogel:</b> parcheggio incluso nel biglietto della funivia.</li>
+        <li><b>Plitvice:</b> parcheggi ufficiali agli ingressi 1 e 2, ~2 €/h, <b>non</b> inclusi nel biglietto.</li>
+        <li><b>Cres:</b> parcheggio sul porto a pagamento in stagione; molti alloggi nel borgo ne hanno uno riservato — con quattro notti conviene davvero chiederlo prima di prenotare.</li>
+        <li><b>Lošinj</b> (se scegli quella giornata): Mali Lošinj ha parcheggi a pagamento intorno alla piazza, Veli Lošinj è piccolo e si lascia l'auto all'ingresso.</li>
+        <li><b>Rovigno:</b> parcheggio Valdibora, a nord della città vecchia.</li>
+        <li><b>Pirano:</b> garage Fornače all'ingresso + navetta gratuita. Le auto in città non entrano.</li>
+        <li><b>Abbazia:</b> parcheggi lungo la statale sopra il centro; il Lungomare è tutto pedonale.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="varianti">
+  <div class="sechead">
+    <h2>Varianti &amp; piano B</h2>
+    <p>Come deformare l'itinerario senza romperlo, e cosa fare se il tempo gira.</p>
+  </div>
+  <div class="grid g2">
+    <div class="card">
+      <div class="chip acc">Variante A</div>
+      <h3 style="margin-top:10px">Più alta montagna</h3>
+      <p style="font-size:14.5px">Aggiungi il <b>Mangart</b> al giorno 3, da Bovec: pedaggio ambientale 10 €, +50 km e +1h30, e sei sul punto più alto raggiungibile in auto in Slovenia. Il prezzo è il Museo di Caporetto, che salta. Verifica sempre l'apertura su <a class="link" href="https://www.tnp.si" target="_blank" rel="noopener">tnp.si</a>: la strada chiude col maltempo e i posti auto in cima sono contati.</p>
+    </div>
+    <div class="card">
+      <div class="chip sig">Variante B</div>
+      <h3 style="margin-top:10px">Tornare indietro: Istria su due notti</h3>
+      <p style="font-size:14.5px">Se l'Istria in una giornata sola vi sembra poca: rinunciate alla <b>quarta notte a Cres</b> e tornate allo schema precedente — si smonta dall'isola la mattina del 13, <b>Rovigno il 13</b> (con l'alba del 14, che è la cosa migliore di quella città) e <b>Pirano il 14</b>, con Parenzo e l'Eufrasiana per strada. Costa 65 km, un cambio di base e la giornata libera. È il rovescio esatto di questa versione: sceglietelo se preferite vedere di più al riposo.</p>
+    </div>
+    <div class="card">
+      <div class="chip good">Variante C</div>
+      <h3 style="margin-top:10px">Niente Istria del tutto</h3>
+      <p style="font-size:14.5px">Il 14 uscite dall'isola da <b>Merag ⇢ Valbiska</b> e il ponte di Veglia invece che da Porozina: ultima notte ad <b>Abbazia</b>, Lungomare asburgico e ville, e il 15 si rientra da Fiume e Trieste. Sono 570 km l'ultimo giorno. Perdete Motovun, il tartufo e Pirano; guadagnate un finale che <b>non dipende da nessun traghetto</b> — che con la bora non è un dettaglio.</p>
+    </div>
+    <div class="card">
+      <div class="chip">Piano B pioggia</div>
+      <h3 style="margin-top:10px">Se il tempo gira</h3>
+      <ul class="tick">
+        <li><b>Giulie:</b> inverti il giorno 2 col giorno 3 — la valle della Soča regge la pioggia molto meglio dell'alta quota, e sul Vršič la nebbia cancella tutto.</li>
+        <li><b>Al posto di Postojna:</b> le <b>Grotte di San Canziano</b> (Škocjan), UNESCO, un canyon sotterraneo con un ponte a 45 metri sul vuoto. Più selvagge, meno turistiche, e a mezz'ora da Postojna.</li>
+        <li><b>Plitvice sotto la pioggia:</b> cascate più potenti e metà della gente. Con l'impermeabile giusto è quasi un vantaggio — è l'unica cosa che <em>non</em> va rimandata.</li>
+        <li><b>Cres, il 13:</b> è la giornata più elastica del viaggio, perché non è prenotata niente. Se piove: il museo archeologico di Osor, le konobe dell'interno, il Centro di Beli che è coperto — o semplicemente il giorno zero, che sotto la pioggia diventa la scelta ovvia.</li>
+        <li><b>Istria:</b> cantine, la Basilica Eufrasiana a Parenzo, il museo del tartufo. E i borghi collinari sotto la pioggia sono bellissimi e vuoti.</li>
+        <li><b>Il finale:</b> con brutto tempo Pirano regge meglio di Rovigno — è più piccola, più coperta, e le saline si guardano anche da lontano.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="checklist">
+  <div class="sechead">
+    <h2>Checklist</h2>
+    <p>Le spunte restano salvate su questo dispositivo.</p>
+  </div>
+  <div class="grid g3" id="clists"></div>
+</section>
+
+<section id="frasario">
+  <div class="sechead">
+    <h2>Frasario</h2>
+    <p>Sloveno e croato sono lingue sorelle. A Pirano e in Istria l'italiano è lingua ufficiale e si parla davvero.</p>
+  </div>
+  <div class="tablewrap">
+    <table class="phr">
+      <thead><tr><th>Italiano</th><th>Sloveno 🇸🇮</th><th>Croato 🇭🇷</th></tr></thead>
+      <tbody>
+        <tr><td>Buongiorno</td><td class="sl">Dober dan</td><td class="hr">Dobar dan</td></tr>
+        <tr><td>Ciao (informale)</td><td class="sl">Živjo</td><td class="hr">Bok</td></tr>
+        <tr><td>Grazie</td><td class="sl">Hvala</td><td class="hr">Hvala</td></tr>
+        <tr><td>Per favore / prego</td><td class="sl">Prosim</td><td class="hr">Molim</td></tr>
+        <tr><td>Scusi</td><td class="sl">Oprostite</td><td class="hr">Oprostite</td></tr>
+        <tr><td>Arrivederci</td><td class="sl">Nasvidenje</td><td class="hr">Doviđenja</td></tr>
+        <tr><td>Sì / No</td><td class="sl">Ja / Ne</td><td class="hr">Da / Ne</td></tr>
+        <tr><td>Quanto costa?</td><td class="sl">Koliko stane?</td><td class="hr">Koliko košta?</td></tr>
+        <tr><td>Il conto, per favore</td><td class="sl">Račun, prosim</td><td class="hr">Račun, molim</td></tr>
+        <tr><td>Parla inglese?</td><td class="sl">Govorite angleško?</td><td class="hr">Govorite li engleski?</td></tr>
+        <tr><td>Non capisco</td><td class="sl">Ne razumem</td><td class="hr">Ne razumijem</td></tr>
+        <tr><td>Dov'è il bagno?</td><td class="sl">Kje je stranišče?</td><td class="hr">Gdje je toalet?</td></tr>
+        <tr><td>Una birra, per favore</td><td class="sl">Eno pivo, prosim</td><td class="hr">Jedno pivo, molim</td></tr>
+        <tr><td>Un caffè</td><td class="sl">Ena kava</td><td class="hr">Jedna kava</td></tr>
+        <tr><td>Pesce / carne</td><td class="sl">Riba / meso</td><td class="hr">Riba / meso</td></tr>
+        <tr><td>Sentiero / cascata</td><td class="sl">Pot / slap</td><td class="hr">Staza / slap</td></tr>
+        <tr><td>Traghetto</td><td class="sl">Trajekt</td><td class="hr">Trajekt</td></tr>
+        <tr><td>Uscita / ingresso</td><td class="sl">Izhod / vhod</td><td class="hr">Izlaz / ulaz</td></tr>
+        <tr><td>Salute! (brindisi)</td><td class="sl">Na zdravje!</td><td class="hr">Živjeli!</td></tr>
+        <tr><td>Aiuto</td><td class="sl">Na pomoč</td><td class="hr">Upomoć</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note" style="margin-top:16px">
+    <p><strong>Pronuncia</strong> <span class="mono">č</span> = c di <i>cena</i> · <span class="mono">ć</span> = c più dolce · <span class="mono">š</span> = sc di <i>scena</i> · <span class="mono">ž</span> = j francese di <i>jour</i> · <span class="mono">j</span> = i · <span class="mono">c</span> = z di <i>zucchero</i> · <span class="mono">đ</span> = g di <i>gelo</i>. Quindi <i>Vršič</i> si legge «Vershìc», <i>Bohinj</i> «Bòhin», <i>Rovinj</i> «Ròvin», <i>Cres</i> «Zres».</p>
+  </div>
+</section>
+
+<section id="sos">
+  <div class="sechead">
+    <h2>Numeri utili</h2>
+    <p>Il 112 funziona in tutta l'Unione Europea, gratis, anche senza credito e senza SIM.</p>
+  </div>
+  <div class="grid g3">
+    <div class="card">
+      <h4>Emergenza unica</h4>
+      <p style="font-family:var(--display);font-size:42px;line-height:1;margin:4px 0 8px;color:var(--alert)">112</p>
+      <p style="font-size:14.5px;margin:0;color:var(--ink-2)">Italia, Slovenia, Croazia. Vale per ambulanza, vigili del fuoco, <b>soccorso alpino</b> e soccorso in mare. Operatori in inglese, spesso in italiano sulla costa.</p>
+    </div>
+    <div class="card">
+      <h4>Soccorso stradale</h4>
+      <p style="font-family:var(--display);font-size:42px;line-height:1;margin:4px 0 8px;color:var(--signal)">1987</p>
+      <p style="font-size:14.5px;margin:0;color:var(--ink-2)">Stesso numero in entrambi i paesi: <b>AMZS</b> in Slovenia, <b>HAK</b> in Croazia. Dall'estero anteponi il prefisso (+386 / +385). HAK dà anche lo stato dei traghetti e delle chiusure per bora.</p>
+    </div>
+    <div class="card">
+      <h4>Polizia</h4>
+      <p style="font-family:var(--display);font-size:30px;line-height:1.1;margin:4px 0 8px">🇸🇮 113 &nbsp;·&nbsp; 🇭🇷 192</p>
+      <p style="font-size:14.5px;margin:0;color:var(--ink-2)">In Croazia anche: vigili del fuoco 193, ambulanza 194, soccorso in mare 195.</p>
+    </div>
+    <div class="card">
+      <h4>Assistenza consolare</h4>
+      <p style="font-size:14.5px;margin:0;color:var(--ink-2)">Ambasciate d'Italia a Lubiana e Zagabria, consolato a Fiume. Recapiti aggiornati e schede paese su <a class="link" href="https://www.viaggiaresicuri.it" target="_blank" rel="noopener">viaggiaresicuri.it</a>; conviene registrare il viaggio su <b>Dove Siamo Nel Mondo</b> prima di partire.</p>
+    </div>
+    <div class="card">
+      <h4>Salute</h4>
+      <p style="font-size:14.5px;margin:0;color:var(--ink-2)">Tessera Sanitaria–TEAM per le cure pubbliche urgenti. Farmacia: <i>lekarna</i> in sloveno, <i>ljekarna</i> in croato, con turno notturno in ogni città. Su Cres la farmacia è solo a Cres città.</p>
+    </div>
+    <div class="card">
+      <h4>Siti ufficiali</h4>
+      <p style="font-size:14.5px;margin:0;color:var(--ink-2)">
+        <a class="link" href="https://evinjeta.dars.si" target="_blank" rel="noopener">evinjeta.dars.si</a> · vignetta<br>
+        <a class="link" href="https://np-plitvicka-jezera.hr" target="_blank" rel="noopener">np-plitvicka-jezera.hr</a> · Plitvice<br>
+        <a class="link" href="https://www.postojnska-jama.eu" target="_blank" rel="noopener">postojnska-jama.eu</a> · Postojna<br>
+        <a class="link" href="https://www.jadrolinija.hr/en" target="_blank" rel="noopener">jadrolinija.hr</a> · traghetti<br>
+        <a class="link" href="https://www.tnp.si" target="_blank" rel="noopener">tnp.si</a> · Parco del Triglav e Mangart<br>
+        <a class="link" href="https://hak.hr" target="_blank" rel="noopener">hak.hr</a> · traffico e traghetti in Croazia
+      </p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Alpi, Soča &amp; Quarnero · 6–15 settembre 2026 · 2.215 km · 4 basi · 4 notti a Cres</span>
+    <span>Tariffe verificate ad agosto 2026 sui siti ufficiali.</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const B={lonMin:9.8,latMax:46.9};
+  const kx=147.05, ky=209.4;
+  const P=([lon,lat])=>[ (lon-B.lonMin)*kx, (B.latMax-lat)*ky ];
+  const path=pts=>pts.map((p,i)=>(i?'L':'M')+P(p).map(v=>v.toFixed(1)).join(' ')).join(' ');
+  const SVG='http://www.w3.org/2000/svg';
+  const el=(n,a)=>{const e=document.createElementNS(SVG,n);for(const k in a)e.setAttribute(k,a[k]);return e;};
+  const map=document.getElementById('map');
+
+  const coast=[[14.10,43.30],[13.90,43.42],[13.51,43.62],[13.20,43.75],[12.90,43.92],[12.57,44.06],[12.40,44.25],
+   [12.25,44.42],[12.28,44.70],[12.32,44.95],[12.28,45.10],[12.42,45.28],[12.34,45.44],[12.60,45.55],[12.90,45.62],
+   [13.10,45.68],[13.40,45.72],[13.58,45.78],[13.75,45.72],[13.77,45.65],[13.73,45.55],[13.62,45.52],[13.57,45.53],
+   [13.50,45.45],[13.58,45.35],[13.57,45.28],[13.60,45.20],[13.63,45.08],[13.66,44.95],[13.85,44.87],[13.90,44.79],
+   [14.03,44.98],[14.12,45.09],[14.20,45.20],[14.31,45.34],[14.44,45.33],[14.58,45.30],[14.70,45.22],[14.90,44.99],
+   [15.06,44.75],[15.20,44.60],[15.44,44.29],[15.47,44.22],[15.30,44.16],[15.23,44.12],[15.35,44.03],[15.45,43.94],
+   [15.70,43.83],[15.89,43.73],[15.92,43.59],[16.10,43.52],[16.25,43.51],[16.44,43.51],[16.69,43.44],[17.02,43.29]];
+  const land=coast.concat([[17.70,43.28],[17.70,46.95],[9.75,46.95],[9.75,43.30]]);
+
+  map.appendChild(el('rect',{x:0,y:0,width:1000,height:628,fill:'var(--sea)'}));
+  map.appendChild(el('path',{d:path(land)+' Z',fill:'var(--land)',stroke:'var(--line-strong)','stroke-width':1.1,'stroke-linejoin':'round'}));
+
+  [[14.60,45.05,.16,.22,0],[14.42,44.85,.08,.36,10],[14.76,44.75,.06,.13,30],[15.05,44.45,.06,.30,35],[14.95,44.02,.06,.24,40]]
+  .forEach(([lon,lat,rx,ry,rot])=>{
+    const [x,y]=P([lon,lat]);
+    map.appendChild(el('ellipse',{cx:x.toFixed(1),cy:y.toFixed(1),rx:(rx*kx).toFixed(1),ry:(ry*ky).toFixed(1),
+      transform:'rotate('+rot+' '+x.toFixed(1)+' '+y.toFixed(1)+')',fill:'var(--isle)',stroke:'var(--line-strong)','stroke-width':.8}));
+  });
+
+  [['ITALIA',11.15,45.85,0],['SLOVENIJA',14.95,46.60,0],['HRVATSKA',16.05,45.30,0],['ADRIATICO',14.30,44.30,-40]]
+  .forEach(([t,lon,lat,rot])=>{
+    const [x,y]=P([lon,lat]);
+    const n=el('text',{x:x.toFixed(1),y:y.toFixed(1),fill:'var(--ink-3)','font-family':'var(--display)','font-size':15,
+      'letter-spacing':'4','text-anchor':'middle',opacity:.6,transform:'rotate('+rot+' '+x.toFixed(1)+' '+y.toFixed(1)+')'});
+    n.textContent=t;map.appendChild(n);
+  });
+
+  const legs=[
+   {k:'out',p:[[10.40,44.43],[10.93,44.65],[10.99,45.44],[11.55,45.55],[12.83,45.78],[13.78,45.65],[13.87,45.71],[14.20,45.78],[14.13,45.82],[14.20,45.78],[14.51,46.06],[14.36,46.24],[14.11,46.37],[13.88,46.28]]},
+   {k:'exc',p:[[13.88,46.28],[13.90,46.31],[13.83,46.27],[13.88,46.28]]},
+   {k:'exc',p:[[13.88,46.28],[14.11,46.37],[14.06,46.44],[13.79,46.48],[13.75,46.43],[13.72,46.36],[13.55,46.34],[13.58,46.25],[13.74,46.14],[13.96,46.19],[13.88,46.28]]},
+   {k:'out',p:[[13.88,46.28],[14.11,46.37],[14.36,46.24],[14.51,46.06],[15.17,45.80],[15.69,45.85],[15.98,45.81],[15.55,45.49],[15.58,45.11],[15.62,44.87]]},
+   {k:'out',p:[[15.62,44.87],[15.24,44.87],[14.80,45.40],[14.44,45.33],[14.31,45.34],[14.23,45.15]]},
+   {k:'sea',p:[[14.23,45.15],[14.30,45.13]]},
+   {k:'out',p:[[14.30,45.13],[14.38,45.05],[14.41,44.96]]},
+   {k:'exc',p:[[14.41,44.96],[14.34,44.90],[14.30,44.87],[14.36,44.92],[14.41,44.96],[14.36,45.06],[14.41,44.96]]},
+   {k:'exc',p:[[14.41,44.96],[14.39,44.80],[14.39,44.69],[14.44,44.60],[14.47,44.53],[14.39,44.69],[14.41,44.96]]},
+   {k:'back',p:[[14.41,44.96],[14.38,45.05],[14.30,45.13]]},
+   {k:'back',p:[[14.23,45.15],[14.12,45.09],[13.94,45.24],[13.83,45.34]]},
+   {k:'back',p:[[13.83,45.34],[13.66,45.41],[13.60,45.47],[13.57,45.53]]},
+   {k:'alt',p:[[13.83,45.34],[13.72,45.28],[13.64,45.08]]},
+   {k:'alt',p:[[13.64,45.08],[13.60,45.23],[13.55,45.40],[13.57,45.53]]},
+   {k:'alt',p:[[14.41,44.96],[14.53,44.99],[14.53,45.05],[14.58,45.14],[14.57,45.26],[14.44,45.33],[14.31,45.34]]},
+   {k:'back',p:[[13.57,45.53],[13.73,45.55],[13.78,45.65],[13.40,45.72],[12.83,45.78],[11.55,45.55],[10.99,45.44],[10.93,44.65],[10.40,44.43]]}
+  ];
+  const style={out:{stroke:'var(--accent)','stroke-width':3.4,opacity:.95},
+               back:{stroke:'var(--signal)','stroke-width':3,'stroke-dasharray':'9 6',opacity:.9},
+               sea:{stroke:'var(--good)','stroke-width':3.5,'stroke-dasharray':'1 6',opacity:1},
+               alt:{stroke:'var(--signal)','stroke-width':2,'stroke-dasharray':'2 6',opacity:.65},
+               exc:{stroke:'var(--ink-3)','stroke-width':2,'stroke-dasharray':'2 5',opacity:.8}};
+  legs.forEach(l=>map.appendChild(el('path',Object.assign({d:path(l.p),fill:'none','stroke-linecap':'round','stroke-linejoin':'round'},style[l.k]))));
+
+  const stops=[
+   {n:'Castelnovo',lon:10.40,lat:44.43,d:1,a:'start',dx:9,dy:14},
+   {n:'Trieste',lon:13.78,lat:45.65,d:10,a:'middle',dx:0,dy:-11,s:1},
+   {n:'Postojna',lon:14.20,lat:45.78,d:1,a:'start',dx:10,dy:-4},
+   {n:'Bohinj',lon:13.88,lat:46.28,d:2,a:'end',dx:-10,dy:-4},
+   {n:'Vršič',lon:13.75,lat:46.43,d:3,a:'middle',dx:0,dy:-11,s:1},
+   {n:'Kobarid',lon:13.58,lat:46.25,d:3,a:'end',dx:-9,dy:4,s:1},
+   {n:'Lubiana',lon:14.51,lat:46.06,d:4,a:'start',dx:10,dy:5},
+   {n:'Rastoke',lon:15.58,lat:45.11,d:4,a:'start',dx:10,dy:-3,s:1},
+   {n:'Plitvice',lon:15.62,lat:44.87,d:5,a:'start',dx:10,dy:8},
+   {n:'Brestova',lon:14.23,lat:45.15,d:5,a:'end',dx:-9,dy:-4,s:1},
+   {n:'Cres',lon:14.41,lat:44.96,d:6,a:'start',dx:10,dy:5},
+   {n:'Lubenice',lon:14.30,lat:44.87,d:6,a:'end',dx:-9,dy:6,s:1},
+   {n:'Beli',lon:14.36,lat:45.06,d:7,a:'end',dx:-9,dy:-3,s:1},
+   {n:'Osor',lon:14.39,lat:44.69,d:8,a:'start',dx:9,dy:4,s:1},
+   {n:'Lošinj',lon:14.47,lat:44.53,d:8,a:'start',dx:9,dy:4,s:1},
+   {n:'Motovun',lon:13.83,lat:45.34,d:9,a:'start',dx:10,dy:2},
+   {n:'Pirano',lon:13.57,lat:45.53,d:9,a:'end',dx:-10,dy:-4},
+   {n:'Rovigno',lon:13.64,lat:45.08,d:9,a:'end',dx:-10,dy:4,s:1},
+   {n:'Abbazia',lon:14.31,lat:45.34,d:9,a:'start',dx:8,dy:-6,s:1}
+  ];
+  stops.forEach(st=>{
+    const [x,y]=P([st.lon,st.lat]);
+    const g=el('g',{class:'stopdot',role:'link',tabindex:'0','aria-label':st.n});
+    g.appendChild(el('circle',{class:'hit',cx:x,cy:y,r:15,fill:'transparent'}));
+    g.appendChild(el('circle',{cx:x,cy:y,r:st.s?3.4:6,fill:st.s?'var(--ink-3)':'var(--surface)',
+      stroke:st.s?'var(--ink-3)':'var(--accent)','stroke-width':st.s?1:3}));
+    const t=el('text',{x:(x+st.dx).toFixed(1),y:(y+st.dy).toFixed(1),'text-anchor':st.a,
+      'font-family':'var(--display)','font-size':st.s?13:15.5,'letter-spacing':'.6',
+      fill:st.s?'var(--ink-3)':'var(--ink)','paint-order':'stroke',stroke:'var(--land)','stroke-width':3.5,'stroke-linejoin':'round'});
+    t.textContent=st.n;g.appendChild(t);
+    const ti=el('title');ti.textContent=st.n+' — tappa '+st.d;g.appendChild(ti);
+    const go=()=>{const d=document.getElementById('day'+st.d);if(d)d.scrollIntoView({behavior:'smooth',block:'start'});};
+    g.addEventListener('click',go);
+    g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go();}});
+    map.appendChild(g);
+  });
+})();
+
+const DAYS=[
+{n:1,date:"Domenica 6 settembre",short:"Dom 6",title:"Castelnovo ne' Monti → Predjama → Postojna → Bohinj",km:555,h:"6h00",type:"Trasferimento + Carso",border:"IT → SI",
+ route:"Castelnovo n.M. › A1 Modena › A22 Verona › A4 › Trieste/Fernetti › A1 Postojna › Predjama › Lubiana › Bled › Bohinj",
+ gm:"https://www.google.com/maps/dir/Castelnovo+ne'+Monti/Trieste/Predjama+Castle/Postojna+Cave/Bohinj",
+ tl:[["06:00","Partenza","Pieno fatto la sera prima. Domenica i mezzi pesanti non circolano in Italia e Slovenia: è il giorno migliore dell'anno per fare la A4."],
+     ["08:15","Caffè","Area di servizio zona Verona–Vicenza."],
+     ["10:45","Arrivo a Postojna","395 km. Il valico di Fernetti e poi la A1 slovena: da qui in avanti si guida poco."],
+     ["11:00","Castello di Predjama","10 km di deviazione, l'unico scarto della giornata. Incastrato in una parete di roccia da 800 anni, con le gallerie naturali alle spalle. Un'ora con audioguida."],
+     ["12:15","Pranzo a Postojna",""],
+     ["13:00","Grotte di Postojna","Slot prenotato. 3,5 km in trenino elettrico più il percorso a piedi: 1h30. Dentro ci sono 10 °C fissi — serve una felpa vera, non un golfino. Cerca il proteo, l'anfibio cieco che vive fino a cent'anni."],
+     ["14:45","Partenza per Bohinj","148 km via Lubiana e Bled, 1h45."],
+     ["16:30","Arrivo a Bohinj, check-in",""],
+     ["17:30","Primo giro sul lago","Ribčev Laz: il ponte di pietra, la chiesa di San Giovanni Battista con gli affreschi trecenteschi, il lungolago. Due ore in piano."],
+     ["19:30","Cena","Trota del lago, funghi, selvaggina. Tramonto alle 19:47."]],
+ see:["Predjama dal basso a metà mattina, quando la roccia è ancora in ombra e il castello no","Il proteo di Postojna, che i contadini credevano un cucciolo di drago","Bohinj all'imbrunire: è dentro il Parco del Triglav, il silenzio è un'altra cosa rispetto a Bled"],
+ sleep:"<b>Bohinj, 3 notti.</b> Ribčev Laz per essere sul lago, Stara Fužina per stare a due passi dall'imbocco della Mostnica. Riferimenti: Hotel Bohinj, Bohinj ECO Hotel, Hotel Jezero, o un apartma privato.",
+ eat:"Cucina alpina slovena: <i>ričet</i>, trota, formaggio di Bohinj. <b>Gostilna Rupa</b> a Srednja vas è il posto giusto per la prima sera.",
+ tip:{k:"sig",t:"<strong>L'unico vincolo orario del giorno</strong> Prenota lo slot delle Grotte per le <em>13:00</em>: arrivando alle 10:45 hai due ore di margine su un trasferimento di 395 km. Non prendere uno slot mattutino."}},
+
+{n:2,date:"Lunedì 7 settembre",short:"Lun 7",title:"Bohinj: Mostnica, Vogel e Savica",km:30,h:"0h45",type:"Escursioni",border:"—",
+ route:"Ribčev Laz › Stara Fužina (Mostnica, valle di Voje) › Ukanc (Vogel) › Savica › Ribčev Laz",
+ gm:"https://www.google.com/maps/dir/Ribčev+Laz/Stara+Fužina/Ukanc/Slap+Savica/Ribčev+Laz",
+ tl:[["08:00","Gola della Mostnica","Da Stara Fužina, parcheggio ~3 €/h. Ingresso 4 € a testa in alta stagione, si paga all'imbocco e <b>non serve prenotare</b>: è il grande vantaggio rispetto a Vintgar. Sul sentiero si incontra subito il Ponte del Diavolo."],
+     ["09:00","Fino alla valle di Voje","Prosegui oltre la gola: prati, pareti, e la cascata di Voje da 21 metri. Andata e ritorno 2h30, dislivello modesto."],
+     ["12:00","Pranzo",""],
+     ["13:30","Funivia del Vogel","Da Ukanc. 33 € andata e ritorno, parcheggio e seggiovia per Orlova Glava inclusi. Si sale a 1.535 m e si apre il fronte del Triglav con il lago sotto: è il panorama migliore delle Giulie senza camminare."],
+     ["16:30","Cascata Savica","A due passi da Ukanc. Cinquecento gradini in mezz'ora, la cascata esce a A dalla parete. Un'ora in tutto."],
+     ["18:00","Bagno nel lago","L'acqua a settembre è sui 19–20 °C. La spiaggia di Ukanc è la più tranquilla."],
+     ["19:45","Tramonto a Ribčev Laz","Il punto classico è dal ponte, con la chiesa in primo piano."],
+     ["20:30","Cena",""]],
+ see:["La Mostnica scava marmitte e forme tonde nella roccia: una si chiama «l'elefante»","Il Vogel a metà pomeriggio, quando le nuvole di giornata si sono già alzate","La chiesa di San Giovanni Battista: campanile romanico, affreschi del Trecento"],
+ sleep:"Seconda notte a Bohinj. Valigia ferma.",
+ eat:"Pranzo al rifugio in cima al Vogel se la giornata è limpida, altrimenti <b>Gostilna Mihovc</b> a Stara Fužina.",
+ tip:{k:"good",t:"<strong>Perché Mostnica e non Vintgar</strong> Stessa acqua verde, stesse passerelle, ma 4 € invece di 15, nessuno slot obbligatorio, nessuna navetta e un decimo delle persone. E puoi proseguire nella valle di Voje, cosa che a Vintgar non esiste."}},
+
+{n:3,date:"Martedì 8 settembre",short:"Mar 8",title:"Il giro della Soča: Vršič, Trenta, Bovec, Kozjak",km:215,h:"4h30",type:"Alta montagna",border:"—",
+ route:"Bohinj › Bled › Jesenice › Kranjska Gora › Passo Vršič › Trenta › Bovec › Kobarid › Most na Soči › Petrovo Brdo › Bohinj",
+ gm:"https://www.google.com/maps/dir/Bohinj/Kranjska+Gora/Vršič+Pass/Izvir+Soče/Bovec/Slap+Kozjak/Kobarid/Bohinj",
+ tl:[["06:45","Partenza","Presto sul serio: il pieno va fatto la sera prima. Da Bohinj al passo ci sono 78 km e un'ora e mezza, non quaranta minuti."],
+     ["08:15","Passo Vršič","Cinquanta tornanti numerati, quelli del versante nord lastricati in pietra. Alla curva 8 la Cappella Russa, costruita dai prigionieri che morirono in una valanga nel 1916 mentre costruivano questa strada."],
+     ["09:30","Sorgente della Soča","Da Trenta. Quaranta minuti andata e ritorno, l'ultimo tratto su cavo d'acciaio: la sorgente esce da una grotta in una pozza di un colore che non sembra vero."],
+     ["11:00","Valle della Soča","Le <i>Velika korita</i>, le grandi gole vicino a Soča, e poi Bovec. Soste brevi e frequenti: il fiume si vede dalla strada per venti chilometri."],
+     ["12:45","Cascata Kozjak","Da Kamp Koren, vicino a Kobarid. 5 € a testa, aperta fino al 31 ottobre. Venticinque minuti a piedi e si entra in una camera di roccia con la cascata al centro. Vale il viaggio da sola."],
+     ["14:30","Kobarid","Pranzo. Poi il Museo di Caporetto, uno dei musei di guerra meglio fatti d'Europa — e chi ha il biglietto di Kozjak ha lo sconto."],
+     ["17:00","Rientro per Petrovo Brdo","75 km via Most na Soči e Podbrdo: strada stretta e bellissima che chiude l'anello senza rifare il Vršič."],
+     ["18:45","Bohinj","Ultima sera in montagna."]],
+ see:["La Cappella Russa: un piccolo edificio di legno in mezzo al bosco, e la storia peggiore di questa strada","Il colore della Soča — smeraldo lattiginoso, dovuto alla farina di roccia calcarea","Kozjak: la cascata è dentro una grotta aperta, la luce ci entra da una fessura"],
+ sleep:"Terza e ultima notte a Bohinj.",
+ eat:"A Kobarid: <b>Kotlar</b> o <b>Topli Val</b> per il pesce di fiume e di mare. <b>Hiša Franko</b> di Ana Roš è a due passi, ma si prenota con mesi di anticipo.",
+ tip:{k:"acc",t:"<strong>Estensione Mangart</strong> Da Bovec: Predel, poi la strada a pedaggio ambientale da 10 € fino alla sella a 2.055 m, il punto più alto raggiungibile in auto in Slovenia. Aggiunge ~50 km e 1h30. Prendila solo se rinunci al Museo di Caporetto, e controlla prima l'apertura su tnp.si — vietata ai camper, parcheggio limitato."}},
+
+{n:4,date:"Mercoledì 9 settembre",short:"Mer 9",title:"Bohinj → Lubiana → Rastoke → Plitvice",km:325,h:"4h00",type:"Città + trasferimento",border:"SI → HR",
+ route:"Bohinj › Bled › Kranj › Lubiana › Novo Mesto › Obrežje (confine) › Zagabria › Karlovac › Slunj-Rastoke › Plitvice",
+ gm:"https://www.google.com/maps/dir/Bohinj/Ljubljana/Rastoke,+Slunj/Plitvice+Lakes+National+Park",
+ tl:[["07:30","Partenza da Bohinj","95 km, 1h20. Check-out fatto."],
+     ["09:00","Lubiana, garage","Kongresni trg o NUK II. Il centro è pedonale: si lascia l'auto e non la si tocca più."],
+     ["09:20","Il centro di Plečnik","Mercato Centrale sotto il colonnato, Triplice Ponte, piazza Prešeren, Ponte dei Draghi. La città è un unico progetto urbano firmato da un solo architetto, e si vede."],
+     ["10:45","Funicolare e castello","Sali per la torre panoramica: si vede la conca fino alle Alpi che hai appena lasciato."],
+     ["12:00","Pranzo","<b>Ribca</b> sotto il portico del mercato per il pesce fritto, o <b>Klobasarna</b> per la kranjska klobasa in piedi."],
+     ["13:00","Partenza per la Croazia","230 km. Confine di Obrežje/Bregana, poi la tangenziale di Zagabria e Karlovac."],
+     ["15:15","Rastoke (Slunj)","<b>È sulla strada, non è una deviazione.</b> Villaggio di mulini costruito sulle cascate della Slunjčica dove si getta nella Korana. Un'ora, ingresso ~8 €: una Plitvice in miniatura, ma abitata."],
+     ["16:45","Plitvice, check-in","Jezerce, Mukinje o Rakovica."],
+     ["18:30","Cena presto e preparazione","Domani si esce alle 6:40. Scarica <b>offline</b> il voucher con lo slot: al parco il segnale è debole."]],
+ see:["Il drago sul ponte, simbolo di Lubiana","Il mercato coperto di Plečnik lungo la Ljubljanica, uno dei più belli d'Europa","Rastoke: mulini ad acqua ancora incastrati dentro le cascate"],
+ sleep:"<b>Plitvice, 1 notte.</b> Dormire al parco è l'unica ragione di questa tappa: permette l'ingresso alle 7:00. Riferimenti: Hotel Jezero, Hotel Degenija, o una delle molte <i>sobe</i> private a Mukinje.",
+ eat:"Cucina continentale: agnello allo spiedo, trota della Korana, <i>štrukli</i>. Le konobe lungo la D1 sono tutte oneste.",
+ tip:{k:"alert",t:"<strong>Il biglietto è il punto critico</strong> Plitvice contingenta gli ingressi a 300 persone l'ora per entrata. Anche di giovedì, in alta stagione, gli slot delle 7:00 si esauriscono con settimane d'anticipo. Prenota <em>subito</em> su np-plitvicka-jezera.hr: slot 07:00, Ingresso 2."}},
+
+{n:5,date:"Giovedì 10 settembre",short:"Gio 10",title:"Plitvice all'alba → traghetto → Cres",km:250,h:"3h10",type:"Parco + isola",border:"—",
+ route:"Plitvice (Ingresso 2) › Otočac › A1/A6 › Fiume › Opatija › costa est dell'Istria › Brestova ⇢ traghetto ⇢ Porozina › Cres",
+ gm:"https://www.google.com/maps/dir/Plitvice+Lakes+National+Park/Brestova/Porozina/Cres",
+ tl:[["06:15","Sveglia e colazione",""],
+     ["06:45","All'Ingresso 2",""],
+     ["07:00","Dentro","Le prime due ore sono le uniche in cui le passerelle sono libere e l'acqua ha la luce radente. Non è retorica: alle 10:00 il parco è un'altra cosa."],
+     ["07:15","Programma C","Navetta ST2 › discesa a piedi tra i <b>Laghi Superiori</b> › traghetto elettrico sul Kozjak › <b>Laghi Inferiori</b> e il canyon › il <b>Veliki slap</b> da 78 metri › risalita all'Ingresso 1 › navetta ST1. Quattro-cinque ore, navette e battelli inclusi nel biglietto."],
+     ["12:00","Uscita e pranzo veloce","Esci alle 12: è quello che rende sostenibile il pomeriggio."],
+     ["13:00","Partenza per il traghetto","220 km, 2h50 via Otočac, la A1 sotto il Velebit, Fiume e poi la costa orientale dell'Istria — strada stretta e panoramica."],
+     ["16:00","Brestova","Arriva con 30–45 minuti di margine: sulla linea 334 non si prenota, si sale in ordine d'arrivo. Fai il pieno prima."],
+     ["16:30","Traversata","Venti minuti. Scendi dall'auto e mettiti a poppa: si vede tutto il Quarnaro."],
+     ["17:00","Porozina → Cres","35 km e 45 minuti di tornanti sopra il mare. Guida piano, la strada lo merita."],
+     ["18:00","Arrivo a Cres, check-in",""],
+     ["20:00","Cena sul porto","Pesce del giorno, calamari, scampi del Quarnaro."]],
+ see:["I Laghi Superiori nella prima ora, senza nessuno davanti né dietro","Il travertino di Plitvice è vivo: le barriere che formano le cascate crescono di circa un centimetro l'anno","L'arrivo a Cres dal mare, con il paese veneziano che si apre in fondo alla baia"],
+ sleep:"<b>Cres, 4 notti.</b> Centro storico, con le facciate veneziane sul mandracchio. Quattro notti nello stesso posto sono la spina dorsale di questo itinerario: si disfa la valigia una volta sola. Riferimenti: The Isolano (Autograph Collection), Rooms Mario, Apartments Piazzetta, o una casa privata nel borgo.",
+ eat:"Cres è isola di agnello oltre che di pesce: il <i>creska janjetina</i>, allevato su pascoli di salvia e salmastro, ha un sapore che non si trova altrove.",
+ tip:{k:"sig",t:"<strong>Piano B per il traghetto</strong> Se la bora sospende la Brestova–Porozina, l'isola resta raggiungibile via il <b>ponte di Veglia</b>: Krk › Valbiska ⇢ Merag, e Merag è a soli 12 km da Cres. Tienilo in tasca: il ponte non chiude mai per vento leggero e il canale è più riparato."}},
+
+{n:6,date:"Venerdì 11 settembre",short:"Ven 11",title:"Cres ovest: Lubenice, Sveti Ivan e Valun",km:50,h:"1h15",type:"Isola",border:"—",
+ route:"Cres › Lubenice › (discesa a Sveti Ivan) › Valun › Cres",
+ gm:"https://www.google.com/maps/dir/Cres/Lubenice/Valun/Cres",
+ tl:[["09:00","Partenza per Lubenice","21 km, 30 minuti di strada interna tra muretti a secco e pecore."],
+     ["09:30","Lubenice","Venticinque abitanti su uno sperone a 378 metri a picco sul mare, abitato da oltre quattromila anni. La chiesa gotica ha un'acustica tale che d'estate ci fanno i concerti."],
+     ["10:30","Discesa a Sveti Ivan","Quaranta-cinquanta minuti di sentiero ripido fino a una delle spiagge più belle dell'Adriatico — e altrettanti in salita al ritorno. <b>Scarpe chiuse, due litri d'acqua a testa, cappello.</b> In alternativa: taxi boat da Valun o da Cres, molto più comodo."],
+     ["13:00","Valun","Borgo di pescatori in fondo a una baia. Pranzo sul molo e la <i>Valunska ploča</i> nella chiesa: una lapide dell'XI secolo scritta in glagolitico e in latino."],
+     ["15:00","Bagno","La spiaggia di ciottoli bianchi di Valun, o il sentiero pianeggiante che parte dal porticciolo verso Beach Raca."],
+     ["17:30","Rientro a Cres","Passeggiata nel borgo veneziano: la loggia, la torre dell'orologio, il mandracchio."],
+     ["19:35","Tramonto sul porto",""],
+     ["20:30","Cena",""]],
+ see:["Lubenice all'ora di pranzo, quando il vento si alza e sotto si vede tutto il canale fino a Lošinj","La tavola glagolitica di Valun: uno dei documenti più antichi in lingua croata","Il mandracchio di Cres, un porto interno chiuso da un arco di case"],
+ sleep:"Seconda notte a Cres.",
+ eat:"<b>Konoba Bukaleta</b> a Loznati per l'agnello, o le trattorie sul porto di Cres per il pesce.",
+ tip:{k:"acc",t:"<strong>La discesa a Sveti Ivan è vera</strong> Non è una passeggiata: è un sentiero sassoso, esposto, senz'ombra. Se sono le 11 passate e fa caldo, prendi il taxi boat e goditi la spiaggia invece di conquistarla."}},
+
+{n:7,date:"Sabato 12 settembre",short:"Sab 12",title:"Cres selvaggia: Beli, i grifoni e le baie",km:70,h:"1h30",type:"Isola",border:"—",
+ route:"Cres › Beli › Merag / Plaža Kruščica › Cres",
+ gm:"https://www.google.com/maps/dir/Cres/Beli,+Croatia/Merag/Cres",
+ tl:[["09:30","Partenza per Beli","31 km, 40 minuti verso nord, attraversando l'interno boscoso dell'isola."],
+     ["10:15","Beli e i grifoni","Il Centro visite Caput Insulae. Il grifone è il simbolo di Cres: 2,6 metri di apertura alare, nidifica sulle falesie a picco dell'isola, e qui c'è il centro di recupero per i giovani esemplari che finiscono in mare al primo volo."],
+     ["11:30","Sentieri eco e labirinti di pietra","Percorsi brevi e segnati intorno a Beli, con i labirinti in pietra a secco costruiti negli anni Novanta."],
+     ["12:30","Spiaggia di Beli","Ciottoli, acqua profonda, quasi nessuno. Pranzo alla trattoria del paese."],
+     ["15:00","Plaža Kruščica","Dal villaggio di Merag, 15–20 minuti di sentiero nel bosco: ciottoli e ghiaia bianca, mare aperto. Alternativa più impegnativa: <b>Mali Bok</b>, caletta isolata con discesa ripida — scarpe da ginnastica obbligatorie."],
+     ["18:00","Rientro a Cres",""],
+     ["19:30","Sera sul mandracchio","Aperitivo, cena lunga. Nessuna fretta: domani non si smonta."]],
+ see:["I grifoni in volo sopra le falesie: si vedono anche dalla strada tra Beli e Merag","L'interno di Cres: pascoli, muretti a secco, e il lago di Vrana, un bacino d'acqua dolce sotto il livello del mare","Le stelle: sull'isola l'inquinamento luminoso è quasi nullo"],
+ sleep:"Terza notte a Cres. Ne resta ancora una.",
+ eat:"Cena di pesce sul porto. Prova il <i>surlice</i>, la pasta fatta a mano tipica del Quarnaro, col sugo d'agnello.",
+ tip:{k:"acc",t:"<strong>I grifoni si guardano al mattino</strong> Verso le 10–11 le termiche si alzano e gli uccelli con loro: è quando li vedi planare sopra le falesie senza un colpo d'ala. Nel primo pomeriggio, col caldo, spariscono. Se domani vuoi Lošinj, stasera è il momento di decidere: si parte presto."}},
+
+{n:8,date:"Domenica 13 settembre",short:"Dom 13",title:"Cres, giornata aperta",km:60,h:"1h30",type:"Isola · a scelta",border:"—",
+ route:"Cres › a scelta: Osor e Lošinj · il mare dal mare · Vrana e Mali Bok · niente del tutto › Cres",
+ gm:"https://www.google.com/maps/dir/Cres/Osor/Mali+Lošinj/Cres",
+ menu:{h:"Quattro modi di usare la giornata",
+  s:"Si sceglie a colazione, guardando il cielo e il mare. Nessuna delle quattro va prenotata, e nessuna cambia dove dormi stasera.",
+  o:[{tag:"Isola in più",k:"sig",t:"Osor e Lošinj",d:"120 km e 2h30 di guida. <b>Osor</b>: il canale scavato dai Romani che separa le due isole, e il ponte girevole che si apre a orari fissi — controlla l'orario prima di partire o resti fermo. Poi <b>Veli Lošinj</b>, porticciolo veneziano e Blue World, il centro per i delfini dell'Adriatico, e <b>Mali Lošinj</b>, che ha la piazza più grande della Dalmazia. È la giornata più piena e l'opposto del riposo."},
+    {tag:"Barca",k:"acc",t:"Il mare visto dal mare",d:"Taxi boat da Cres o da Valun, oppure una barca a noleggio senza patente (sotto i 15 CV non serve, 70–130 € la mezza giornata). Sveti Ivan raggiunta dall'acqua invece che con quel sentiero, le grotte della costa ovest, le baie che da terra non esistono. È la cosa che a Cres si può fare e quasi altrove no."},
+    {tag:"Cammino",k:"good",t:"Vrana, Orlec e Mali Bok",d:"40 km e tre ore di cammino spezzate in tre pezzi. Il <b>lago di Vrana</b> dal belvedere: acqua dolce, fondo sotto il livello del mare, e disseta tutta l'isola. Poi <b>Orlec</b> e le falesie dei grifoni, e la discesa a <b>Mali Bok</b>, caletta bianca con discesa ripida — scarpe chiuse. Pranzo in konoba nell'interno, dove costa la metà che sul porto."},
+    {tag:"Riposo",k:"",t:"Giorno zero",d:"Non si prende l'auto. Mercato la mattina, il bagno alla spiaggia del paese, un libro all'ombra, la siesta vera, aperitivo lungo sul mandracchio. Detto senza ironia: è il motivo per cui questa notte in più esiste, e su dieci giorni di guida è la scelta che vi ricorderete."}]},
+ tl:[["08:30","Colazione sul porto","Alle otto il mandracchio è ancora dei pescatori. Si decide qui, non ieri sera."],
+     ["09:30","Si parte — o non si parte","Osor e Lošinj vogliono partire adesso; la barca si prende tra le 9 e le 10; il resto può aspettare mezzogiorno."],
+     ["13:00","Pranzo","Sul porto, in konoba nell'interno, o in una baia con quello che ti sei portato."],
+     ["16:00","Bagno","L'acqua del Quarnaro a metà settembre è ancora sui 23 °C, più calda dell'aria al mattino. È il mese migliore dell'anno per farlo."],
+     ["19:31","Tramonto","Dal molo, o da Lubenice se sei rimasto a ovest: è il balcone più alto dell'isola."],
+     ["20:30","Ultima cena sull'isola","Stasera sì che è l'ultima. Agnello di Cres se non l'hai ancora provato, altrimenti pesce e basta."]],
+ see:["Il ponte girevole di Osor che si apre e lascia passare le barche in un canale largo undici metri","Cres e Lošinj sono una sola isola tagliata in due dai Romani per accorciare la rotta: il taglio è ancora lì","Il cielo notturno: sull'isola l'inquinamento luminoso è quasi nullo e a metà settembre non c'è foschia"],
+ sleep:"<b>Quarta e ultima notte a Cres.</b> Stessa struttura dal 10: quattro notti nello stesso posto sono anche la voce che fa risparmiare di più, e quasi tutte le strutture applicano uno sconto dalla terza in poi. Chiedilo prenotando, non all'arrivo.",
+ eat:"Se hai scelto Lošinj: <b>Bora Bar</b> a Veli Lošinj o le trattorie del porto di Mali Lošinj. Se sei rimasto: <b>Konoba Bukaleta</b> a Loznati per l'agnello, o il pesce sul mandracchio di Cres.",
+ tip:{k:"good",t:"<strong>Perché questa giornata è vuota apposta</strong> Nella versione precedente il 13 si smontava alle 8:30 per arrivare a Rovigno alle 16:15: mezza giornata buttata tra traghetto e statali. Tenendola sull'isola guadagni un giorno pieno e togli un cambio di base. Il prezzo è che l'Istria diventa una giornata sola, domani — e che Rovigno all'alba, se la vuoi, va comprata dormendoci."}},
+
+{n:9,date:"Lunedì 14 settembre",short:"Lun 14",title:"Cres → traghetto → Istria → il finale che scegli",km:180,h:"3h00",type:"Traghetto + Istria",border:"HR → SI (se Pirano)",
+ route:"Cres › Porozina ⇢ traghetto ⇢ Brestova › Labin › Pazin › Motovun › a scelta: Pirano | Rovigno | Pola",
+ gm:"https://www.google.com/maps/dir/Cres/Porozina/Brestova/Motovun/Piran",
+ menu:{h:"Dove finisce il viaggio",
+  s:"Questa è l'unica scelta che va fatta prima, quando prenoti l'ultima notte — non in strada. Fino a Motovun però la giornata è identica in tutti i casi: se cambi idea, cambi solo il pomeriggio.",
+  o:[{tag:"Consigliata",k:"good",t:"Pirano 🇸🇮",d:"+85 km da Motovun via Buje e il confine di Dragogna, poi corridoio <b>H5 gratuito</b>. Auto al garage Fornače alle 16:30 e da lì tutto a piedi: mura veneziane (2 €, la vista più bella dell'alto Adriatico), San Giorgio, le <b>saline di Sicciole</b> col sale raccolto a mano come nel Trecento, tramonto a Punta. <b>Domani il rientro è di 480 km e 4h50</b>: è il finale che costa meno fatica."},
+    {tag:"La più bella",k:"acc",t:"Rovigno 🇭🇷",d:"+55 km da Motovun, arrivo alle 15:30. Grisia e i vicoli degli artisti, Sant'Eufemia col campanile copia di San Marco (5 €), tramonto dal molo davanti alle isole — e soprattutto <b>Rovigno all'alba</b> domattina, che è davvero la cosa migliore della città. Prezzo: il rientro diventa <b>600 km e 5h45</b>, e va iniziato entro le 8."},
+    {tag:"Variante romana",k:"sig",t:"Pola 🇭🇷",d:"+95 km da Motovun. L'<b>Arena</b> è tra le sei più grandi al mondo e l'unica con le torri laterali intatte; poi il Tempio di Augusto e l'Arco dei Sergi, tutti a piedi in due ore. Si dorme a Pola o si risale a Rovigno per la notte. Il rientro sale a <b>620 km</b>: è la scelta più cara in chilometri, ma è l'unica cosa davvero romana del viaggio."},
+    {tag:"Piano bora",k:"alert",t:"Abbazia 🇭🇷",d:"Se la bora chiude Porozina non si discute: esci dall'isola da <b>Merag ⇢ Valbiska</b>, canale riparato, poi il ponte di Veglia e la costiera. Ti fermi ad <b>Abbazia</b>: Lungomare asburgico di 12 km, ville e giardini, la Vienna sul mare dell'Ottocento. Niente Istria, ma il rientro è di 570 km e non dipende da nessun traghetto."}]},
+ tl:[["08:00","Colazione e check-out","Quattro notti nello stesso posto: si smonta con calma, ma non troppa."],
+     ["09:00","Partenza per Porozina","35 km, 45 minuti di tornanti sopra il mare, stavolta al contrario."],
+     ["09:45","Al piazzale di Porozina","Trenta minuti di margine. Non si prenota: si sale in ordine d'arrivo."],
+     ["10:15","Traversata","Venti minuti. Ultimo sguardo al Quarnaro da poppa."],
+     ["10:45","Sbarco a Brestova","Si entra in Istria dalla porta di servizio, quella orientale. Labin resta sopra la strada, poi si taglia nell'interno."],
+     ["12:30","Motovun","70 km. In cima a un cono di collina sopra la valle del Quieto. Il giro completo delle mura è dieci minuti e vale un panorama a 360°; sulla porta c'è ancora il leone di San Marco."],
+     ["13:00","Pranzo al tartufo","Capitale del tartufo bianco d'Istria, e settembre apre la stagione. <b>Konoba Mondo</b> a Motovun, piccola e ottima; <b>Zigante</b> a Livade se vuoi il tempio."],
+     ["14:45","Qui la strada si divide","Pirano a nord-ovest, Rovigno a sud-ovest, Pola a sud. Verso nord vale la pena infilare <b>Grožnjan</b>, il borgo degli artisti, o <b>Hum</b>, il paese più piccolo del mondo con trenta abitanti."],
+     ["16:30","Check-in e città","Un pomeriggio pieno, comunque tu abbia scelto."],
+     ["19:29","Tramonto","Punta a Pirano, il molo a Rovigno, il Lungomare ad Abbazia."],
+     ["20:30","Ultima cena all'estero","A Pirano: <b>Fritolin pri Cantini</b>, si ordina al banco ed è ottimo. A Rovigno: <b>Konoba Kantinon</b> per il pesce, <b>Male Madlene</b> per i piccoli piatti."]],
+ see:["Motovun dal basso, all'imbocco della valle: è l'immagine simbolo dell'Istria","Settembre in Istria è vendemmia — molte cantine sono aperte e in attività, e si entra senza appuntamento","Se finisci a Pirano: è veneziana nell'impianto e bilingue per statuto, l'italiano è lingua ufficiale e si parla davvero"],
+ sleep:"<b>Ultima notte, una sola, base a scelta.</b> <b>Pirano</b> dentro le mura con l'auto già al garage Fornače (Hotel Piran sul mare, Art Hotel Tartini in piazza, Max Piran) · <b>Rovigno</b> città vecchia a scale o Monte Mulini con parcheggio (Hotel Adriatic, Casa Garzotto, Hotel Lone) · <b>Abbazia</b> sul Lungomare (Hotel Milenij, Amadria Park). Prenotane una sola e prenotala presto.",
+ eat:"È la giornata gastronomicamente più forte del viaggio: tartufo a pranzo, pesce a cena. Vino: Malvasia istriana bianca o Teran rosso. E se finisci a Pirano, il sale di Sicciole è il souvenir migliore che porti a casa.",
+ tip:{k:"good",t:"<strong>Qui la vignetta non serve più</strong> Se scegli Pirano: da Dragogna in poi, e domani da Pirano a Rabuiese, si viaggia solo su H5/H6 e strade locali, <em>gratuite dal 2026</em>. È il motivo per cui la vignetta settimanale da 16 €, valida 6–12 settembre, basta per tutto il viaggio anche se torni il 15."}},
+
+{n:10,date:"Martedì 15 settembre",short:"Mar 15",title:"Rientro, con una sosta a scelta",km:480,h:"4h50",type:"Rientro",border:"SI → IT",
+ route:"Pirano › Capodistria › H5/H6 (gratuiti) › Rabuiese › Trieste › A4 › A22 › A1 › Castelnovo ne' Monti",
+ gm:"https://www.google.com/maps/dir/Piran/Trieste/Verona/Castelnovo+ne'+Monti",
+ menu:{h:"Cosa infilare nel rientro",
+  s:"Si sceglie in strada, secondo l'ora e la voglia. Ognuna sta dentro la giornata: la prima è quasi obbligata, l'ultima è legittima quanto le altre.",
+  o:[{tag:"30–60 min",k:"good",t:"Trieste",d:"È sulla strada e non si paga in tempo. <b>Miramare</b>: il parco sul mare è gratuito e da solo vale la sosta, il castello 10 €. Oppure piazza Unità d'Italia e mezz'ora al <b>Caffè San Marco</b> o al <b>Tommaseo</b>. Se hai fame vera, un <i>buffet</i> triestino: maiale bollito, cren, birra — è una cosa che esiste solo qui."},
+    {tag:"+1h",k:"acc",t:"Aquileia e Palmanova",d:"Poco fuori dalla A4, uscita Palmanova. La basilica di <b>Aquileia</b> ha il più grande mosaico pavimentale paleocristiano d'Occidente, 760 m² del IV secolo su cui si cammina passerella sopra. <b>Palmanova</b> è una fortezza veneziana a stella con nove punte: dal satellite è un fiore, da dentro è una piazza enorme e sei strade. Insieme costano un'ora e mezza."},
+    {tag:"Pranzo",k:"sig",t:"Laguna: Marano o Grado",d:"Venti minuti fuori rotta dalla A4. <b>Marano Lagunare</b> è un borgo di pescatori vero, con i casoni di canna nella laguna; <b>Grado</b> ha il centro storico bizantino e più scelta. È il modo migliore di far durare il viaggio un'ora in più invece di finirlo in autogrill."},
+    {tag:"Niente soste",k:"",t:"Dritti a casa",d:"Da Pirano sono 480 km e 4h50 di sola guida: partendo alle 8:30, con una sosta sola, si è a Castelnovo per le 15:00 e il pomeriggio è ancora vostro per disfare le valigie. Da Rovigno sono 600 km e 5h45, e allora conviene partire alle 8. Dopo dieci giorni, tornare presto non è una sconfitta."}]},
+ tl:[["08:30","Partenza","Da Pirano: corridoio costiero H5/H6 gratuito fino al valico di Rabuiese. Da Rovigno: Umago e Dragogna, e metti in conto un'ora in più su tutto."],
+     ["09:00","Ultimo pieno prima del confine","A Capodistria. Il carburante costa mediamente 15–25 centesimi al litro in meno che in Italia: fare il pieno qui vale una cena."],
+     ["09:30","La sosta che hai scelto","Trieste è la più comoda perché è già sul percorso. Aquileia e la laguna vanno decise all'altezza di Monfalcone."],
+     ["11:00","A4","Si guida."],
+     ["13:00","Pranzo","Portogruaro o area di servizio dopo Padova, se non hai già mangiato in laguna."],
+     ["14:30","A4 → A22 → A1","Occhio ai cantieri sul tratto Venezia–Verona, il collo di bottiglia storico. Se il traffico è fermo, l'alternativa è uscire a Verona Sud e riprendere l'A22 più giù."],
+     ["17:00","Arrivo a Castelnovo ne' Monti","2.215 km, dieci giorni, quattro basi, due traghetti, tre paesi."]],
+ see:["Miramare: il castello che Massimiliano d'Asburgo fece costruire e non riuscì mai davvero ad abitare","I mosaici di Aquileia, che per mille anni sono stati sotto il pavimento di un'altra chiesa","L'ultimo caffè triestino, che è già mezza Mitteleuropa"],
+ sleep:"—",
+ eat:"Trieste ha i <i>buffet</i>: carne di maiale bollita, cren, birra. È una cosa sola sua ed è il modo giusto di salutare il viaggio.",
+ tip:{k:"sig",t:"<strong>Se sei partito da Rovigno</strong> Sono 120 km e un'ora in più, tutti prima di Trieste. Parti alle 8 e scegli una sosta sola, non due: il resto della giornata è identico, ma il margine che avevi a Pirano qui non c'è."}}
+];
+
+(function(){
+  const days=document.getElementById('days'), pills=document.getElementById('pills');
+  const maxKm=Math.max.apply(null,DAYS.map(function(d){return d.km}));
+  DAYS.forEach(function(d){
+    const a=document.createElement('a');
+    a.className='pill';a.href='#day'+d.n;
+    a.innerHTML='<b>'+String(d.n).padStart(2,'0')+'</b><span>'+d.short+'</span>';
+    pills.appendChild(a);
+
+    const art=document.createElement('article');
+    art.className='day';art.id='day'+d.n;
+    art.innerHTML=
+      '<div class="rail">'+
+        '<div><div class="lab">Tappa</div><div class="num">'+String(d.n).padStart(2,'0')+'</div></div>'+
+        '<dl>'+
+          '<div><dt>Distanza</dt><dd>'+d.km+' km</dd></div>'+
+          '<div><dt>Guida</dt><dd>'+d.h+'</dd></div>'+
+          '<div><dt>Confini</dt><dd style="font-size:14px">'+d.border+'</dd></div>'+
+        '</dl>'+
+        '<div class="barwrap" style="height:6px"><span class="bar" style="width:'+Math.round(d.km/maxKm*100)+'%"></span></div>'+
+      '</div>'+
+      '<div class="daybody">'+
+        '<div class="dayhead"><div><div class="date">'+d.date+'</div><h3>'+d.title+'</h3></div>'+
+        '<span class="chip acc">'+d.type+'</span></div>'+
+        '<div class="route">'+d.route+'</div>'+
+        '<a class="link" href="'+d.gm+'" target="_blank" rel="noopener" style="font-family:var(--display);font-size:13.5px;letter-spacing:.1em;text-transform:uppercase">Apri la rotta in Google Maps ↗</a>'+
+        (d.menu?'<div class="menu"><div class="menuhead"><h4>'+d.menu.h+'</h4><p>'+d.menu.s+'</p></div><div class="opts">'+
+          d.menu.o.map(function(o){return '<div class="opt"><span class="chip '+(o.k||'')+'">'+o.tag+'</span><b>'+o.t+'</b><p>'+o.d+'</p></div>'}).join('')+
+        '</div></div>':'')+
+        '<div class="daycols">'+
+          '<div><h4>Programma</h4><ol class="tl">'+
+            d.tl.map(function(t){return '<li><time>'+t[0]+'</time><div class="ev"><b>'+t[1]+'</b>'+(t[2]?'<small>'+t[2]+'</small>':'')+'</div></li>'}).join('')+
+          '</ol></div>'+
+          '<div class="side">'+
+            '<div class="blk"><h4>Da non perdere</h4><ul class="tick">'+d.see.map(function(s){return '<li>'+s+'</li>'}).join('')+'</ul></div>'+
+            '<div class="blk"><h4>Dove dormire</h4><p style="font-size:14.5px;margin:0">'+d.sleep+'</p></div>'+
+            '<div class="blk"><h4>A tavola</h4><p style="font-size:14.5px;margin:0">'+d.eat+'</p></div>'+
+            '<div class="blk note '+d.tip.k+'"><p style="font-size:14.5px">'+d.tip.t+'</p></div>'+
+          '</div>'+
+        '</div>'+
+      '</div>';
+    days.appendChild(art);
+  });
+})();
+
+(function(){
+  const LISTS=[
+   {t:"Documenti e prenotazioni",i:["Carta d'identità valida per l'espatrio o passaporto","Patente, libretto, certificato assicurativo","Tessera Sanitaria–TEAM (retro azzurro)","Voucher Plitvice 07:00 Ingresso 2, scaricato OFFLINE","Voucher Postojna + Predjama, slot 13:00 del 6/9","e-vinjeta 7 giorni attivata sulla targa","Conferme dei 4 alloggi (9 notti), offline","Base dell'ultima notte scelta e prenotata (Pirano / Rovigno / Pola / Abbazia)","Mappe Google di Slovenia e Croazia scaricate","App Jadrolinija installata","Orari del ponte girevole di Osor, se pensate a Lošinj","100–150 € in contanti"]},
+   {t:"Auto",i:["Controllo gomme, pressione e freni (c'è il Vršič)","Giubbotto catarifrangente nell'abitacolo","Triangolo","Kit di primo soccorso (obbligatorio in Croazia)","Set lampadine di scorta","Supporto e caricatore per telefono","Telo parasole","Sacchetto rifiuti e salviette","Ruotino o kit riparazione forature"]},
+   {t:"In valigia",i:["Scarpe da trekking (Mostnica, Kozjak, Plitvice, discesa a Sveti Ivan)","Sandali o scarpette da scoglio","Pile o felpa pesante: 10 °C nelle grotte, meno sul Vršič","Giacca antipioggia leggera","Costume e telo in microfibra","Cappello e occhiali da sole","Crema solare alta","Zaino piccolo + 2 borracce (per Sveti Ivan servono davvero)","Bastoncini da trekking se li usi","Un abito decente per l'ultima cena","Un libro vero, per il giorno zero a Cres","Power bank","Repellente antizanzare (Bohinj e Plitvice)","Binocolo per i grifoni di Beli","Farmaci personali, antidolorifico, cerotti"]}
+  ];
+  const box=document.getElementById('clists');
+  const KEY='alpisocaquarnero2026';
+  let saved={};try{saved=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){saved={}}
+  const save=function(){try{localStorage.setItem(KEY,JSON.stringify(saved))}catch(e){}};
+
+  LISTS.forEach(function(L,li){
+    const card=document.createElement('div');card.className='card';
+    const head=document.createElement('div');head.className='clhead';
+    head.innerHTML='<h3 style="margin:0;font-size:17px">'+L.t+'</h3><span class="count"></span>';
+    card.appendChild(head);
+    const list=document.createElement('div');list.className='cl';
+    const upd=function(){
+      const n=L.i.filter(function(_,ii){return saved[li+'-'+ii]}).length;
+      head.querySelector('.count').textContent=n+'/'+L.i.length;
+    };
+    L.i.forEach(function(txt,ii){
+      const id=li+'-'+ii;
+      const lab=document.createElement('label');
+      const cb=document.createElement('input');cb.type='checkbox';cb.checked=!!saved[id];
+      const sp=document.createElement('span');sp.textContent=txt;
+      cb.addEventListener('change',function(){saved[id]=cb.checked;save();upd();});
+      lab.appendChild(cb);lab.appendChild(sp);list.appendChild(lab);
+    });
+    card.appendChild(list);
+    const btn=document.createElement('button');btn.className='reset';btn.type='button';btn.textContent='Azzera';
+    btn.style.marginTop='10px';
+    btn.addEventListener('click',function(){
+      L.i.forEach(function(_,ii){delete saved[li+'-'+ii]});save();
+      list.querySelectorAll('input').forEach(function(c){c.checked=false});upd();
+    });
+    card.appendChild(btn);
+    box.appendChild(card);upd();
+  });
+})();
+
+(function(){
+  const links=[].slice.call(document.querySelectorAll('#nav a'));
+  const secs=links.map(function(a){return document.querySelector(a.getAttribute('href'))}).filter(Boolean);
+  const obs=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(!e.isIntersecting)return;
+      links.forEach(function(l){l.classList.toggle('on',l.getAttribute('href')==='#'+e.target.id)});
+    });
+  },{rootMargin:'-56px 0px -70% 0px',threshold:0});
+  secs.forEach(function(s){obs.observe(s)});
+})();
+</script>
+
