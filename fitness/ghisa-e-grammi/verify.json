@@ -1,0 +1,14 @@
+{
+  "giroTab": ["#tab-oggi", "#tab-workout", "#tab-dieta", "#tab-progressi", "#tab-piano"],
+  "tabFinale": "#tab-workout",
+  "eventoStampa": "beforeprint",
+  "conta": {
+    "tab": ".tab",
+    "esercizi": ".exc",
+    "serie": ".setrow",
+    "campi": "input[data-k]",
+    "card": ".card",
+    "chip": ".chip"
+  },
+  "richiesti": ["tab", "esercizi", "serie", "card"]
+}

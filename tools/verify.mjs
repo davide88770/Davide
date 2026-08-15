@@ -35,6 +35,17 @@ const name = path.basename(path.dirname(path.resolve(src)));
 const out = path.resolve('out', name);
 fs.mkdirSync(out, { recursive: true });
 
+// Configurazione opzionale accanto al sorgente: se manca si applicano i
+// valori del road book, così i documenti gia' versionati non cambiano.
+const cfgPath = path.join(path.dirname(path.resolve(src)), 'verify.json');
+const cfg = fs.existsSync(cfgPath) ? JSON.parse(fs.readFileSync(cfgPath, 'utf8')) : {
+  conta: {
+    giornate: '.day', tappe: 'ol.tl li', menu: '.menu', opzioni: '.opt',
+    fermate: '.stopdot', tratte: '#map path', tabelle: 'table', link: 'a[href^="http"]',
+  },
+  richiesti: ['giornate'],
+};
+
 // Il sorgente è il *contenuto* dell'Artifact: niente doctype, html, head, body.
 // Qui lo avvolgiamo nello stesso scheletro che la piattaforma aggiunge in
 // pubblicazione, per verificarlo nelle condizioni reali.
@@ -76,17 +87,19 @@ for (const v of VIEWS) {
   await page.goto(url, { waitUntil: 'load' });
   await page.waitForTimeout(400);
 
-  const stats = await page.evaluate(() => {
+  // Applicazione a schede: si passa da tutte, cosi' ogni vista viene davvero
+  // eseguita e un errore in una sola di esse non sfugge.
+  for (const sel of (cfg.giroTab ?? [])) {
+    await page.click(sel);
+    await page.waitForTimeout(160);
+  }
+  if (cfg.tabFinale) { await page.click(cfg.tabFinale); await page.waitForTimeout(220); }
+
+  const stats = await page.evaluate((conta) => {
     const n = sel => document.querySelectorAll(sel).length;
-    return {
-      giornate: n('.day'),
-      tappe: n('ol.tl li'),
-      menu: n('.menu'),
-      opzioni: n('.opt'),
-      fermate: n('.stopdot'),
-      tratte: n('#map path'),
-      tabelle: n('table'),
-      link: n('a[href^="http"]'),
+    const o = {};
+    for (const [k, sel] of Object.entries(conta)) o[k] = n(sel);
+    return Object.assign(o, {
       overflowX: document.documentElement.scrollWidth
         > document.documentElement.clientWidth,
       // elementi che sbordano lateralmente senza un contenitore scrollabile
@@ -104,14 +117,16 @@ for (const v of VIEWS) {
           + (el.className && typeof el.className === 'string'
             ? '.' + el.className.trim().split(/\s+/).join('.') : ''))
         .slice(0, 5),
-    };
-  });
+    });
+  }, cfg.conta);
 
   if (stats.overflowX) problems.push(`[${v.label}] la pagina scrolla in orizzontale`);
   if (stats.sbordano.length) {
     problems.push(`[${v.label}] elementi che sbordano: ${stats.sbordano.join(', ')}`);
   }
-  if (stats.giornate === 0) problems.push(`[${v.label}] nessuna giornata generata`);
+  for (const k of (cfg.richiesti ?? [])) {
+    if (!stats[k]) problems.push(`[${v.label}] nessun elemento per "${k}"`);
+  }
 
   const { overflowX, sbordano, ...counts } = stats;
   if (baseline === null) baseline = counts;
@@ -129,6 +144,13 @@ for (const v of VIEWS) {
 // PDF di stampa
 const page = await browser.newPage();
 await page.goto(url, { waitUntil: 'load' });
+if (cfg.tabFinale) { await page.click(cfg.tabFinale); await page.waitForTimeout(220); }
+// Si scatena l'evento vero del browser, così si verifica la preparazione
+// alla stampa della pagina e non una scorciatoia dello script.
+if (cfg.eventoStampa) {
+  await page.evaluate(ev => window.dispatchEvent(new Event(ev)), cfg.eventoStampa);
+  await page.waitForTimeout(120);
+}
 await page.emulateMedia({ media: 'print' });
 await page.waitForTimeout(300);
 const pdfPath = path.join(out, `${name}.pdf`);
