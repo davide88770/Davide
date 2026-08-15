@@ -555,10 +555,19 @@ const GRUPPI = {
   petto:'Petto', dorso:'Dorso', spalle:'Spalle', bicipiti:'Bicipiti', tricipiti:'Tricipiti',
   quad:'Quadricipiti', femorali:'Femorali', gluteo:'Gluteo', polpacci:'Polpacci', core:'Core'
 };
-/* Volume settimanale di riferimento, dal piano (pag. 20 e 24) */
+/* Volume settimanale — SOLO i gruppi per cui il piano dichiara un target.
+   Il piano ne dà due letture: la colonna TARGET (pag. 24) e il range più
+   stretto per i punti deboli (pag. 20). Sono riportate entrambe, insieme alle
+   serie attese su 4 e su 5 giorni di allenamento. Per petto, dorso, polpacci e
+   core il piano non fissa un target: si mostra il conteggio e basta. */
 const VOL_TARGET = {
   bicipiti:[10,20], tricipiti:[10,20], quad:[10,20], femorali:[10,20],
-  gluteo:[10,16], spalle:[12,20], petto:[6,12], dorso:[8,14], polpacci:[4,10], core:[2,8]
+  gluteo:[10,16], spalle:[12,20]
+};
+const VOL_PIANO = {
+  bicipiti:{ atteso:[15,19], punti:[16,20] }, tricipiti:{ atteso:[12,15], punti:[13,16] },
+  quad:{ atteso:[10,13], punti:[11,14] },     femorali:{ atteso:[12,15], punti:[12,15] },
+  gluteo:{ atteso:[8,12] },                   spalle:{ atteso:[16,19], punti:[16,20] }
 };
 
 /* e(nome, gruppo, serie, rep, intensità, recupero_sec, extra) */
@@ -981,7 +990,8 @@ recomp_dom:[
 const DIETE = {
   cut:{ allen13:{l:'Allenamento · sett. 1-3',t:{k:2250,p:210,c:198,f:63},m:'cut13_allen'},
         allen:{l:'Allenamento · sett. 4-9',t:{k:2350,p:210,c:215,f:65},m:'cut49_allen'},
-        riposo:{l:'Riposo',t:{k:2150,p:210,c:162,f:66},m:'cut_riposo'} },
+        riposo13:{l:'Riposo · sett. 1-3',t:{k:2050,p:210,c:145,f:66},m:'cut_riposo'},
+        riposo:{l:'Riposo · sett. 4-9',t:{k:2150,p:210,c:162,f:66},m:'cut_riposo'} },
   transizione:{ allen:{l:'Allenamento',t:{k:2650,p:190,c:300,f:72},m:'trans_allen'},
         riposo:{l:'Riposo',t:{k:2450,p:190,c:260,f:72},m:'trans_riposo'} },
   accumulo:{ pesante:{l:'Push / Legs',t:{k:2950,p:200,c:360,f:75},m:'acc_pesante'},
@@ -1038,6 +1048,141 @@ const INTEGRATORI = [
   ['Zinco (se carente)','15-25 mg/die','Lontano dai pasti, sera']
 ];
 
+/* ── PROTOCOLLI E RIFERIMENTO ───────────────────────────────────────────── */
+/* Legenda delle tecniche (pag. 2 del piano workout). Le sigle che compaiono
+   nella colonna INTENSITÀ sono cliccabili e aprono queste definizioni. */
+const TECNICHE = {
+  'Ced. tecnico':['Cedimento tecnico','Ultima ripetizione ancora pulita. La successiva è impossibile o viene brutta. Non è il cedimento assoluto.'],
+  'Rest-pause':['Rest-pause','Al cedimento → posa il peso → 12-15 secondi (3 respiri) → stesso peso, altre 3-5 ripetizioni → stop. Una sola estensione.'],
+  'Drop set':['Drop set','Al cedimento → togli il 20-25% in 3-5 secondi → cedimento immediato → stop. Un solo drop.'],
+  'Myo-reps':['Myo-reps','Al cedimento → 3-5 respiri → 4-5 ripetizioni per 3-5 cluster. Solo sull’isolamento.'],
+  'F→V':['Forza poi volume','Prima 2×5-6 al cedimento tecnico puro col carico massimo, poi 3×8-10 con rest-pause a −15% di peso. La forza recluta più unità motorie e amplifica il volume che segue.'],
+  'Widowmaker':['Widowmaker','Una serie da 20 ripetizioni con un peso da 10-12. Su sissy squat, laterali, curl, leg curl. Mai sui compound. Ultima serie della sessione, 5 minuti di pausa prima.'],
+  'Doppia progressione':['Doppia progressione','Arrivi al top del range → la settimana dopo +2,5 kg. Esempio: range 8-10, chiudi 10, sali.'],
+  'Superset':['Superset','Zero recupero tra l’esercizio A e il B. Dopo aver completato entrambi, 90 secondi, poi si ripete.'],
+  'Pump':['Pump / RIR 4','Peso al 30-40% del normale. Conta solo la sensazione muscolare, mai il trapezio. Non si salta.'],
+  'Controllo':['Controllo','Esecuzione lenta e controllata, respirazione ritmica. Nessuna fretta, nessun cedimento.']
+};
+/* Mobilità pre-sessione, 10 minuti obbligatori (pag. 34) */
+const MOBILITA = {
+  push:['Band pull-apart 2×20','Rotazioni spalla 2×15','Wall slide 2×10','Panca progressiva 3 serie (40-60-80%)'],
+  pull:['Cat-cow vertebrale 2×10','Dislocazioni bastone 2×10','Face pull leggero 1×20','Trazioni leggere 2×5'],
+  legs:['Hip hinge corpo libero 2×10','Squat goblet mobilità 2×10','Hip flexor stretch 2×8 per lato','Hack squat progressivo 3 serie'],
+  upper:['Band pull-apart 2×15','Wall slide 2×10','Rotazioni spalla 2×15','Panca inclinata leggera 2×8']
+};
+const MOB_DI = { cut_push:'push', tr_push:'push', pu_push:'push', cut_pull:'pull', tr_pull:'pull', pu_pull:'pull',
+  cut_legs:'legs', tr_legs:'legs', pu_legs:'legs', pu_legs2:'legs', pu_upper:'upper', cut_sab:'upper', tr_sab:'upper' };
+/* Stretching post-sessione, 8 minuti obbligatori (pag. 36-37) */
+const STRETCHING = [
+  ['Petto','Braccio appoggiato al muro a 90°, corpo ruotato lontano, 2 lati','30" × 2',['push']],
+  ['Spalle posteriori','Braccio incrociato al petto, spinta con l’altro braccio, 2 lati','30" × 2',['push','pull']],
+  ['Schiena e dorsali','Appeso alla sbarra rilassato, braccia tese, decompressione','30" × 2',['pull']],
+  ['Bicipite','Braccio esteso dietro, palmo verso il basso, spalla abbassata, 2 lati','20" × 2',['pull']],
+  ['Tricipite','Braccio piegato dietro la testa, spinta del gomito con l’altra mano','20" × 2',['push']],
+  ['Quadricipite','In piedi, tallone al gluteo, anca spinta avanti, 2 lati','30" × 2',['legs','upper']],
+  ['Femorali','Seduto, gambe tese, busto avanti con schiena piatta, senza rimbalzo','30" × 2',['legs']],
+  ['Flessori dell’anca','Affondo profondo, ginocchio posteriore a terra, anca avanti, 2 lati','30" × 2',['legs']],
+  ['Soleo e achille','In piedi, piede sulla parete, tallone a terra, ginocchio flesso','20" × 2',['legs']]
+];
+/* Sissy squat — progressione tecnica per l’ernia (pag. 4-5) */
+const SISSY = [
+  ['Sett. 1-2','50% del range, fermati a metà discesa','Zero, solo peso corporeo','Tensione nella coscia, nessun dolore al ginocchio'],
+  ['Sett. 3-4','75% del range, avvicinati molto alla posizione completa','Zero o massimo 2,5 kg','Bruciore nella coscia, ancora nessun dolore'],
+  ['Sett. 5-6','Range completo, talloni sollevati, corpo inclinato al massimo','2,5-5 kg, poi progressione normale','Bruciore intenso nella fase eccentrica'],
+  ['Sett. 7+','Range completo, peso in modo sistematico','+2,5 kg quando conquisti il top del range','Retto femorale in massimo allungamento']
+];
+const SISSY_STOP = 'Dolore acuto al tendine rotuleo o al ginocchio: torna al range precedente e restaci 2 settimane.';
+/* Peak week — carbo-loading nelle settimane P3 e P5 (pag. 4 workout, pag. 20 dieta) */
+const PEAKWEEK = [
+  ['3 giorni prima (lunedì)','+50 g carbo · +200 kcal','50 g di riso extra a pranzo, o 1 banana in più + 30 g di avena','Inizia la carica del glicogeno nelle 72 ore precedenti'],
+  ['2 giorni prima (martedì)','+50 g carbo · +200 kcal','Stessa strategia. Non modificare grassi e proteine','Glicogeno muscolare a piena capacità'],
+  ['Giorno prima (mercoledì)','+30 g carbo · +120 kcal','30 g di riso a pranzo, evita le fibre alte (gonfiore)','Mantenimento, digestione leggera'],
+  ['Giorno della sessione peak','+60 g carbo a colazione · +240 kcal','90 g di pane di segale, o +60 g di avena, o 1 banana + 40 g di avena','Carburante immediato per il cedimento tecnico'],
+  ['Giorno dopo','Torna ai macro normali','Nessuna modifica','Reset metabolico per il blocco successivo']
+];
+/* KPI settimanali (pag. 35) */
+const KPI = [
+  ['Peso corporeo','Media 7 giorni, a digiuno ogni mattina',{cut:'−0,4/0,6 kg',accumulo:'+0,3/0,4 kg',intensificazione:'+0,3/0,4 kg',peak:'+0,3/0,5 kg',recomp:'−0,3/0,5 kg',transizione:'stabile'}],
+  ['Forza compound','Serie × rep esatte, confronto settimanale',{cut:'stabile',accumulo:'+ ogni 2-3 sett.',intensificazione:'+ ogni 1-2 sett.',peak:'+ ogni 1-2 sett.',recomp:'stabile o +',transizione:'stabile'}],
+  ['Curl bilanciere forza','Annota le 2×5-6 ogni Pull',{cut:'stabile',accumulo:'+ ogni 2-3 sett.',intensificazione:'+ ogni 1-2 sett.',peak:'+ ogni 1-2 sett.',recomp:'stabile',transizione:'stabile'}],
+  ['Sissy squat','Carico progressivo annotato',{cut:'leggero',accumulo:'moderato',intensificazione:'alto',peak:'alto',recomp:'alto mantenuto',transizione:'leggero'}],
+  ['Foto mensile','Stessa luce, stessa ora, stessa distanza',{cut:'grasso −',accumulo:'massa +',intensificazione:'massa +',peak:'massa massima',recomp:'definizione +',transizione:'invariata'}],
+  ['Ernia inguinale','Dolore o pressione durante il training',{cut:'assente',accumulo:'assente',intensificazione:'assente',peak:'assente',recomp:'assente, stop se presente',transizione:'assente'}]
+];
+/* Checklist della domenica mattina (pag. 27-28 del piano alimentare) */
+const CHECKLIST = [
+  ['Peso medio settimana','Somma dei 7 giorni diviso 7','Cut −0,4/0,6 kg · Bulk +0,3/0,4 kg','Fermo in cut: aggiungi passi. Troppo veloce: +100 kcal. Bulk che ingrassa: −100 kcal.'],
+  ['Forza compound','Confronto col tracker della settimana prima','Stabile o in crescita','Calo su 2+ compound per 2 settimane: verifica sonno e calorie, anticipa il deload.'],
+  ['Qualità del sonno','Voto 1-10 al risveglio, media 7 giorni','7 o più','Sotto 6 per 5+ giorni: anticipa il deload, +100 kcal, gestisci lo stress.'],
+  ['Motivazione e umore','Voto 1-10','7 o più','Sotto 5 per 5+ giorni: overreaching, deload passivo di 5-7 giorni.'],
+  ['Libido','Invariata o normale','Normale','Riduzione per 7+ giorni: verifica i grassi nella dieta, esame del sangue.'],
+  ['Dolori articolari','Presenza o assenza','Assenti o minimi','Persistenti su 2+ articolazioni: non allenarsi sul dolore, fisioterapista dopo 7 giorni.'],
+  ['Ernia inguinale','Dolore o pressione durante il training','Assente','Qualsiasi sintomo: stop immediato all’esercizio, visita medica prima di riprendere.']
+];
+/* Plateau di forza (pag. 37) */
+const PLATEAU = [
+  ['Rest-pause extra sulla forza','Nella serie di forza aggiungi una mini-estensione: al cedimento, 12 secondi, altre 2-3 ripetizioni collo stesso peso. Non cambiare il carico. Due settimane, poi prova +1,25 kg.'],
+  ['Cluster set 4+4+4','Invece di 5-6 ripetizioni continue: 4 rep, 10 secondi, 4 rep, 10 secondi, 4 rep. Stesso peso del plateau. Recluta unità motorie che il cedimento normale non raggiunge. Tre settimane.'],
+  ['Variante temporanea','Sostituisci l’esercizio bloccato per 3-4 settimane: panca → panca inclinata con manubri pesante; curl → curl manubri supino su panca inclinata; hack squat → pressa pesante piede basso. Poi torni all’originale, spesso sbloccato.'],
+  ['Deload anticipato','Se il plateau dura 4+ settimane, anticipa il deload anche se non è programmato. Il sistema nervoso è saturo: 7 giorni a RIR 3-4 con −40% di volume lo desensibilizzano.'],
+  ['Densità nutrizionale','Un plateau che non risponde a niente ha spesso origine nutrizionale. Stai davvero raggiungendo le proteine? Dormi 7,5+ ore per 5+ notti a settimana? Se una delle due è no, la causa è quella.']
+];
+const DELOAD_TIPI = [
+  ['Deload attivo — il default','Stesso split, stessa frequenza, stesso carico, −40% di serie totali: da 3 serie a 2 sui compound, 1 sull’isolamento. RIR 3-4 su tutto, 7 giorni. Ogni 6-8 settimane, programmato.'],
+  ['Deload passivo','Riposo completo dai pesi per 5-7 giorni: camminate, bici leggera, mobilità. Quando: dolori acuti su 2+ articolazioni insieme, overreaching severo, malattia, sonno sotto 6 ore per 5+ giorni.'],
+  ['Come riconoscere il passivo','Forza calante + sonno disturbato + motivazione assente + dolori articolari persistenti + libido ridotta. Se 4 su 5 sono presenti insieme: deload passivo obbligatorio.'],
+  ['Nutrizione nel deload','Attivo: stessi macro dei giorni di allenamento normali, non ridurre perché alleni meno. Passivo: −15% calorie totali, proteine invariate a 200-210 g, riduci i carboidrati in proporzione, grassi invariati.']
+];
+/* Progressione attesa (pag. 35) */
+const ATTESA = [
+  ['Panca piana','80-90 kg','stabile','90-95 kg','97-103 kg','97-103 kg','+10-18 kg'],
+  ['Military press','baseline','stabile','+8 kg','+12 kg','+12 kg','+12 kg'],
+  ['Trazioni zavorate','85 kg','85 kg','90 kg','98 kg','98 kg','+13 kg'],
+  ['Curl forza 2×5-6','baseline','stabile','+3 kg','+6 kg','+7,5 kg','+7,5 kg'],
+  ['Hack squat','~100 kg','~100 kg','105 kg','115 kg','115 kg','+15 kg'],
+  ['Sissy squat','corpo libero','leggero','moderato','alto','alto mantenuto','progressione'],
+  ['Leg curl','baseline','stabile','+4 kg','+8 kg','+10 kg','+10 kg'],
+  ['Alzate laterali','baseline','stabile','+2 kg','+4 kg','+4 kg','+4 kg'],
+  ['Peso e BF','86 kg ~16%','81-82 kg ~12%','84-85 kg ~14%','87-88 kg ~15%','82-83 kg ~10-11%','−4 kg di grasso netto']
+];
+/* Principi nutrizionali (pag. 2 del piano alimentare) */
+const PRINCIPI = [
+  ['Proteine 2,3-2,5 g/kg','Mai sotto 200 g al giorno in nessuna fase. In cut 210 g per preservare la massa in deficit, in bulk 200-215 g. Minimo 30-40 g per pasto per massimizzare la sintesi.'],
+  ['Carboidrati — timing','Concentrali prima e dopo l’allenamento: la colazione è il pre-workout, il pranzo è il post. Nei giorni di riposo in cut e recomp, cena sotto i 20 g di carbo. Mai eliminare i carboidrati del mattino: servono al sistema nervoso.'],
+  ['Grassi — mai sotto 62 g','Il colesterolo è il precursore diretto del testosterone: sotto i 60 g al giorno cala in modo misurabile. Fonti: EVO, avocado, uova intere, salmone, noci. La feta va bene come aggiunta, non come fonte principale.'],
+  ['Velocità di perdita','0,4-0,6 kg a settimana sulla media dei 7 giorni. Sotto 0,3: aggiungi 2.000 passi al giorno, poi un’uscita in bici, prima di tagliare le calorie. Sopra 0,7: aggiungi 100 kcal a pranzo, stai perdendo muscolo.'],
+  ['Velocità di crescita','0,3-0,4 kg a settimana in bulk lean. Sopra 0,5 per 2+ settimane: −100 kcal. Fermo per 2+ settimane: +100 kcal solo nei giorni di allenamento. Un surplus aggressivo produce grasso, non muscolo.'],
+  ['Feta — uso corretto','40 g = 6 g proteine, 8 g grassi, 1 g carbo. Proteina di supporto, mai principale. Massimo 40-50 g per pasto, massimo 2-3 volte a settimana per il sodio, sempre insieme a una fonte magra.'],
+  ['Se l’orario cambia','Allenamento al mattino: colazione pre, pranzo post. Al pomeriggio: pranzo leggero pre, cena abbondante post. Alla sera: mangi normalmente e la cena è il post-workout. I macro totali non cambiano mai, cambia la distribuzione.']
+];
+/* Ricette pratiche (pag. 28-29) */
+const RICETTE = [
+  ['Colazione base cut','70 g pane di segale tostato · 80 g avocado schiacciato con sale e limone · 2 uova + 2 albumi strapazzati','490 kcal · 30P · 38C · 22F','Ogni giorno in cut, è il pre-workout principale'],
+  ['Colazione con feta','70 g pane di segale · 60 g avocado · 2 uova + 1 albume · 30 g feta sbriciolata sopra','510 kcal · 32P · 36C · 26F','Massimo 3 volte a settimana, variante di gusto'],
+  ['Colazione bulk Push/Legs','90 g pane di segale · 80 g avocado · 3 uova + 2 albumi · 1 banana + 15 g burro d’arachidi','790 kcal · 52P · 85C · 28F','Lunedì e giovedì in bulk, carbo per la sessione pesante'],
+  ['Uova e feta in padella','3 uova intere · 40 g feta sbriciolata · 100 g spinaci freschi · 8 g EVO · pepe nero','380 kcal · 32P · 4C · 26F','Cena di riposo in cut e recomp: zero carbo, grassi alti'],
+  ['Bowl proteica alla feta','250 g ricotta magra · 40 g feta · cetriolo · pomodoro · erbe · 6 g EVO','340 kcal · 30P · 8C · 20F','Spuntino, zero cottura, si prepara in anticipo'],
+  ['Merluzzo con feta al forno','220 g merluzzo · 30 g feta sopra · 200 g zucchine · pomodori · 8 g EVO · origano','380 kcal · 46P · 8C · 16F','Pranzo o cena, variante gustosa al pollo'],
+  ['Frittata proteica alla feta','3 uova + 3 albumi · 40 g feta · 150 g peperoni · 150 g zucchine · 6 g EVO','380 kcal · 42P · 10C · 18F','Si prepara la domenica per 2-3 giorni'],
+  ['Insalata mediterranea','200 g pollo grigliato · 40 g feta · pomodorini · cetriolo · 10 g olive · origano · 8 g EVO','380 kcal · 46P · 8C · 18F','Pranzo dei giorni di riposo, zero cottura e zero carbo']
+];
+/* Recupero e salute (pag. 34, 38) */
+const RECUPERO = [
+  ['Sonno — priorità assoluta','7,5-8 ore, sveglia a orario fisso 7 giorni su 7, camera a 17-19°C, zero schermi nei 60 minuti prima. Sotto le 7 ore: cortisolo +21%, testosterone −10-15%, sintesi proteica −18%. Il GH notturno nelle prime 2 ore è il principale anabolizzante naturale.'],
+  ['Bici zona 2 — 125-140 bpm','Zero impatto articolare, zero stress sull’ernia, carburante grassi e non glicogeno. Cut: 2-3 uscite da 30-35 min nei giorni di riposo. Accumulo, intensificazione e peak: 1 uscita da 30 min a settimana. Recomp: 2-3 uscite da 35-40 min. Se il peso stagna per 2 settimane, aggiungi un’uscita prima di tagliare il cibo.'],
+  ['NEAT','8.000-10.000 passi al giorno, tutti i giorni. È la leva che si muove prima delle calorie.'],
+  ['Esame del sangue annuale','Testosterone totale e libero · SHBG · Vitamina D (25-OH) · Zinco · Ferro e ferritina · Emocromo · Glicemia e insulina basale · Cortisolo mattutino · PSA dai 40 anni. Testosterone sotto 400 ng/dL con sonno e nutrizione a posto: endocrinologo.']
+];
+/* Imprevisti (pag. 38 workout, pag. 29 dieta) */
+const IMPREVISTI = [
+  ['1-2 pasti liberi a settimana','Non compromettono nulla se il resto è solido. Gestiscili togliendo 30 g di riso nei 2 pasti precedenti. Un pasto libero sposta la media settimanale di massimo 0,1 kg.'],
+  ['Cena al ristorante','Pesce grigliato o pollo, verdure, insalata, olio. Evita pasta, pizza e fritto se sei in cut o nella settimana della foto. Vino secco: massimo 1-2 bicchieri. Evita la birra.'],
+  ['Settimana caotica','Non saltare: riduci a 2 sessioni, Push + Legs oppure Pull + Upper. Dimezza l’isolamento e tieni i compound principali. Una sessione ridotta vale sempre più di zero. Nutrizione: proteine e grassi invariati, carboidrati −30%.'],
+  ['Alcol','Massimo 2 bicchieri di vino secco o spirits, massimo 2 volte a settimana, in qualsiasi fase. Inibisce la sintesi proteica del 20%: evitalo del tutto nelle 48 ore dopo Push o Legs.'],
+  ['Malattia o infortunio','Stop al training. Proteine a 200 g al giorno, calorie −15-20%. Riprendi col 70% dei carichi la prima settimana dopo la guarigione, senza eccezioni.'],
+  ['Domenica variabile','±300 kcal la domenica sono irrilevanti sulla media dei 7 giorni. Goditela senza ossessione: si regola sempre sulla media, mai sul dato singolo.']
+];
+
 /* ═══════════════════════════════════════════════════════════════════════════
    MOTORE — stato, calcoli, utilità
    ═══════════════════════════════════════════════════════════════════════════ */
@@ -1060,7 +1205,7 @@ const settimanaDi = s => { const d = dalISO(s); const g = (d.getDay()+6)%7; d.se
 
 const nuovoStato = () => ({ v:1,
   ui:{ tema:null, tab:'oggi', sett:'base', faseManuale:null, esercizio:null, periodo:56 },
-  sess:{}, pasti:{}, corpo:[], meta:{ backup:null, mod:Date.now() } });
+  sess:{}, pasti:{}, corpo:[], check:{}, meta:{ backup:null, mod:Date.now() } });
 
 let S = nuovoStato();
 let TIMER = null;
@@ -1415,6 +1560,15 @@ function renderWorkout(){
   const st = statoOggi(d);
 
   const corpo = s.ex.map((ex,i) => cardEsercizio(ex, i, d, f, tipo)).join('');
+  const mob = MOBILITA[MOB_DI[s.id]] || [];
+  const mk = MOB_DI[s.id];
+  /* La tabella dello stretching (pag. 36-37) assegna all’Upper il solo
+     quadricipite, pur essendo una seduta di petto, schiena, spalle e braccia:
+     si aggiungono gli allungamenti di Push e Pull, marcati come deduzione. */
+  const str = STRETCHING.map(x => ({ m:x[0], c:x[1], d:x[2],
+      diretto: x[3].includes(mk),
+      dedotto: mk === 'upper' && !x[3].includes('upper') && (x[3].includes('push') || x[3].includes('pull')) }))
+    .filter(x => x.diretto || x.dedotto);
   const gruppi = {};
   s.ex.forEach((ex,i) => { gruppi[ex.g] = (gruppi[ex.g]||0) + serieDi(ex,tipo); });
 
@@ -1442,7 +1596,26 @@ function renderWorkout(){
     ${tipo==='peak' ? `<div class="sug"><b>Widowmaker</b>Una sola serie da 20 rep con un peso da 10-12, su un isolamento sicuro (sissy squat, laterali, curl, leg curl). Ultima serie della sessione, mai sui compound.</div>` : ''}
   </div>
 
+  <details class="card exc" id="cardMob">
+    <summary><div class="idx" style="font-size:11px;letter-spacing:.06em">10′</div>
+      <div class="nm"><b>Mobilità pre-sessione</b><span>Obbligatoria · ${mob.length} esercizi prima di toccare i carichi</span></div>
+      <div class="caret">${ICO.chevron}</div></summary>
+    <div class="body"><ul style="margin:12px 0 0;padding-left:20px" class="small">
+      ${mob.map(x => `<li style="margin-bottom:5px">${esc(x)}</li>`).join('')}</ul></div>
+  </details>
+
   <div class="stack-s">${corpo}</div>
+
+  <details class="card exc noprint">
+    <summary><div class="idx" style="font-size:11px;letter-spacing:.06em">8′</div>
+      <div class="nm"><b>Stretching post-sessione</b><span>Non è opzionale: a 38 anni tendini e fasce si adattano molto più lentamente dei muscoli</span></div>
+      <div class="caret">${ICO.chevron}</div></summary>
+    <div class="body"><div class="tblwrap" style="margin-top:10px"><table class="tbl"><tbody>
+      ${str.map(x => `<tr><td><b>${esc(x.m)}</b>${x.dedotto?' <span class="chip line" style="font-size:9.5px">dedotto</span>':''}<br><span class="tiny muted">${esc(x.c)}</span></td><td class="n">${esc(x.d)}</td></tr>`).join('')}
+    </tbody></table></div>
+    ${str.some(x => x.dedotto) ? `<p class="tiny muted" style="margin:10px 0 0">Il piano assegna all’Upper il solo quadricipite. Gli altri sono dedotti dai muscoli che alleni oggi, non sono scritti nel documento.</p>` : ''}
+    </div>
+  </details>
 
   <div class="card pad noprint">
     <label class="fld"><span>Note della sessione</span>
@@ -1503,6 +1676,10 @@ function cardEsercizio(ex, i, d, f, tipo){
     <summary>${testa}</summary>
     <div class="body">
       ${tag ? `<div class="row wrapf" style="padding:11px 0 2px">${tag}</div>` : ''}
+      ${tecnicheDi(ex.i).length ? `<div class="row wrapf" style="padding:8px 0 2px">
+        ${tecnicheDi(ex.i).map(k => `<button class="chip line" data-tec="${esc(k)}" style="cursor:pointer">${ICO.info} ${esc(TECNICHE[k][0])}</button>`).join('')}
+      </div>` : ''}
+      ${/sissy/i.test(ex.n) ? `<button class="chip line" data-sissy="1" style="cursor:pointer;margin-top:6px">${ICO.info} Progressione del range</button>` : ''}
       <div class="sethead"><span>Serie</span><span>Carico</span><span>${ex.tempo?'Secondi':'Rep'}</span><span>RIR</span><span></span></div>
       ${setRighe}
       ${dp ? striscia(dp, kgAttuale) : ''}
@@ -1517,6 +1694,8 @@ function cardEsercizio(ex, i, d, f, tipo){
       ${ex.note ? `<p class="small muted" style="margin:8px 0 0">${esc(ex.note)}</p>` : ''}
     </div></details>`;
 }
+
+const tecnicheDi = txt => Object.keys(TECNICHE).filter(k => String(txt||'').includes(k));
 
 function striscia(dp, kg){
   if(!dp.lista.length) return '';
@@ -1606,6 +1785,30 @@ function renderDieta(){
     </div>
   </div>
 
+  ${fase.id==='peak' ? `<div class="card">
+    <div class="hd"><h2>Peak week — carbo-loading</h2><span class="chip warn sp">Settimane P3 e P5</span></div>
+    <div class="bd">
+      <p class="small muted" style="margin:0 0 10px">Nei 3 giorni prima della sessione più pesante — di norma il Legs del giovedì.</p>
+      <div class="tblwrap"><table class="tbl"><thead><tr><th>Quando</th><th>Carbo</th><th>Cosa aggiungere</th></tr></thead><tbody>
+      ${PEAKWEEK.map(([a,b,c,e]) => `<tr><td><b>${esc(a)}</b><br><span class="tiny muted">${esc(e)}</span></td><td class="n">${esc(b)}</td><td style="text-align:left" class="tiny">${esc(c)}</td></tr>`).join('')}
+      </tbody></table></div></div></div>` : ''}
+
+  <div class="card">
+    <div class="hd"><h2>Ricette pronte</h2></div>
+    <div class="bd tblwrap"><table class="tbl"><tbody>
+      ${RICETTE.map(([n,i,m,q]) => `<tr><td><b>${esc(n)}</b><br><span class="tiny muted">${esc(i)}</span><br><span class="tiny" style="color:var(--accent-text)">${esc(q)}</span></td>
+        <td class="tiny mono" style="white-space:nowrap">${esc(m)}</td></tr>`).join('')}
+    </tbody></table></div>
+  </div>
+
+  <div class="card">
+    <div class="hd"><h2>Principi</h2></div>
+    <div class="bd stack-s">
+      ${PRINCIPI.map(([t,c]) => `<div><b style="font-family:var(--display);font-size:12px;letter-spacing:.1em;text-transform:uppercase">${esc(t)}</b>
+        <p class="small muted" style="margin:3px 0 0">${esc(c)}</p></div>`).join('')}
+    </div>
+  </div>
+
   <div class="card">
     <div class="hd"><h2>Sostituzioni equivalenti</h2></div>
     <div class="bd stack">
@@ -1681,17 +1884,27 @@ function renderProgressi(){
   <div class="card">
     <div class="hd"><h2>Serie per gruppo</h2><span class="chip line sp">${giorni >= 400 ? 'tutto' : 'ultimi '+giorni+'g'}</span></div>
     <div class="bd">
-      ${Object.keys(GRUPPI).filter(g => VOL_TARGET[g]).map(g => {
-        const n = v.per[g]||0, [lo,hi] = VOL_TARGET[g];
+      ${Object.keys(GRUPPI).map(g => {
+        const n = v.per[g]||0;
         const sett = giorni >= 400 ? n : n/(giorni/7);
-        const dentro = sett >= lo && sett <= hi;
+        const t = VOL_TARGET[g];
+        if(!t) return `<div class="vbar"><span class="g">${GRUPPI[g]}</span>
+          <div class="tr"><div class="fl" style="width:${clamp(sett/20,0,1)*100}%;background:var(--ink-4)"></div></div>
+          <span class="n">${nf(sett,1)}</span></div>`;
+        const [lo,hi] = t, dentro = sett >= lo && sett <= hi;
         return `<div class="vbar">
           <span class="g">${GRUPPI[g]}</span>
           <div class="tr"><div class="fl" style="width:${clamp(sett/hi,0,1)*100}%;background:${dentro?'var(--good)':'var(--accent)'}"></div>
             <span class="tg" style="left:${clamp(lo/hi,0,1)*100}%"></span></div>
           <span class="n">${nf(sett,1)}</span></div>`;
       }).join('')}
-      <p class="tiny muted" style="margin:10px 0 0">Serie effettive per settimana, contro il target del piano. La tacca è il minimo, la barra piena il massimo. Verde = dentro il range.</p>
+      <p class="tiny muted" style="margin:10px 0 0">Serie effettive per settimana. La tacca è il minimo del target, la barra piena il massimo; verde = dentro il range. Per petto, dorso, polpacci e core (in grigio) il piano <b>non fissa un target</b>: c’è solo il conteggio.</p>
+      <div class="tblwrap" style="margin-top:12px"><table class="tbl">
+        <thead><tr><th>Gruppo</th><th>Atteso 4 gg</th><th>Atteso 5 gg</th><th>Punti deboli</th></tr></thead><tbody>
+        ${Object.entries(VOL_PIANO).map(([g,x]) => `<tr><td>${GRUPPI[g]}</td><td class="n">${x.atteso[0]}</td><td class="n">${x.atteso[1]}</td>
+          <td class="n">${x.punti?x.punti[0]+'-'+x.punti[1]:'—'}</td></tr>`).join('')}
+      </tbody></table></div>
+      <p class="tiny muted" style="margin:8px 0 0">Il piano dà due letture del volume: la colonna “target” (pag. 24) e un range più stretto per i punti deboli (pag. 20). Sono riportate entrambe.</p>
     </div>
   </div>
 
@@ -1780,6 +1993,9 @@ function grafBarre(punti, o){
 function renderPiano(){
   const d = S.ui.data, f = faseDi(d);
   const backup = S.meta.backup;
+  const wk = settimanaDi(d);
+  const chk = S.check[wk] || {};
+  const att = Object.values(chk).filter(x => x === 'att').length;
   const giorniDa = backup ? Math.floor((Date.now()-backup)/86400000) : null;
   const sett = [1,2,3,4,5,6,0].map(g => {
     const sid = f.giorni[g], s = sid ? SESS[sid] : null;
@@ -1800,10 +2016,10 @@ function renderPiano(){
           <option value="">Automatica dalla data (${esc(faseDi(d).nome)})</option>
           ${FASI.map(x => `<option value="${x.id}" ${S.ui.faseManuale===x.id?'selected':''}>Fase ${x.n} — ${esc(x.nome)}</option>`).join('')}
         </select></label>
-      <div class="stats">
-        <div class="stat"><b class="num">${f.n}</b><span>Fase</span></div>
-        <div class="stat"><b class="num">${esc(f.durata.split(' ')[0])}</b><span>Settimane</span></div>
-        <div class="stat"><b class="num" style="font-size:17px">${esc(f.split)}</b><span>Split</span></div>
+      <div class="row wrapf">
+        <span class="chip acc">Fase ${f.n} di 6</span>
+        <span class="chip">${esc(f.durata)}</span>
+        <span class="chip">${esc(f.split)}</span>
       </div>
       <p class="small muted" style="margin:0">${esc(f.periodo)} · ${esc(f.obiettivo)}</p>
     </div>
@@ -1824,6 +2040,57 @@ function renderPiano(){
     <p class="small" style="margin:0"><b>Conservativi:</b> hack squat, RDL, pressa, affondi bulgari. Progressione più lenta del normale — è normale e necessario.</p>
     <p class="small" style="margin:0"><b>Eliminati:</b> stacco classico pesante, squat libero pesante, plank isometrico (sostituito dal dead bug).</p>
     <p class="small" style="margin:0"><b>Attrezzatura:</b> fascia inguinale elastica durante il training. Non la cintura da powerlifting.</p>
+  </div></div>
+
+  <div class="card">
+    <div class="hd"><h2>Checklist della domenica</h2><span class="chip ${att>=3?'crit':'line'} sp">${att} in attenzione</span></div>
+    <div class="bd stack-s">
+      <p class="small muted" style="margin:0">A digiuno, domenica mattina, prima di iniziare la settimana. È il sistema con cui si decide se continuare, adattare o anticipare il deload.</p>
+      ${att>=3 ? `<div class="backup">${ICO.alert}<span><b>Regola 3 su 7:</b> ${att} parametri sono in attenzione nella stessa settimana. Anticipa il deload, indipendentemente da dove sei nel mesociclo. Il deload anticipato costa 7 giorni, l’overreaching ne costa 28-42.</span></div>` : ''}
+      ${CHECKLIST.map(([n,come,ok,azione],i) => {
+        const st = chk[i];
+        return `<div class="edrow" style="align-items:flex-start">
+          <div class="tx"><b>${esc(n)}</b><span>${esc(come)}</span>
+            <span class="tiny" style="color:${st==='att'?'var(--crit-text)':'var(--ink-3)'};display:block;margin-top:3px">${st==='att'?esc(azione):'Soglia ok: '+esc(ok)}</span></div>
+          <div class="seg" style="flex:0 0 auto">
+            <button data-chk="${i}:ok" aria-pressed="${st==='ok'}">Ok</button>
+            <button data-chk="${i}:att" aria-pressed="${st==='att'}">Attenz.</button>
+          </div></div>`;
+      }).join('')}
+    </div>
+  </div>
+
+  <div class="card"><div class="hd"><h2>KPI settimanali</h2><span class="chip line sp">${esc(f.nome)}</span></div>
+    <div class="bd tblwrap"><table class="tbl"><thead><tr><th>Parametro</th><th>Come</th><th>Atteso ora</th></tr></thead><tbody>
+    ${KPI.map(([n,come,per]) => `<tr><td><b>${esc(n)}</b></td><td class="tiny" style="text-align:left">${esc(come)}</td>
+      <td class="n">${esc(per[f.id]||'—')}</td></tr>`).join('')}
+    </tbody></table></div></div>
+
+  <div class="card"><div class="hd"><h2>Progressione attesa</h2><span class="chip line sp">ago 25 → set 26</span></div>
+    <div class="bd tblwrap"><table class="tbl">
+      <thead><tr><th>Esercizio</th><th>Agosto 25</th><th>Fine cut</th><th>Fine acc.</th><th>Fine peak</th><th>Fine recomp</th><th>Delta</th></tr></thead><tbody>
+      ${ATTESA.map(r => `<tr><td><b>${esc(r[0])}</b></td>${r.slice(1).map((c,i) => `<td class="n" ${i===5?'style="color:var(--accent-text)"':''}>${esc(c)}</td>`).join('')}</tr>`).join('')}
+    </tbody></table></div></div>
+
+  <div class="card"><div class="hd"><h2>Se la forza si blocca</h2></div><div class="bd stack-s">
+    <p class="small muted" style="margin:0">Carico fermo da 3+ settimane senza segnali di overreaching (sonno ok, motivazione ok, articolazioni ok): uno di questi, prima di pensare a cambiare esercizio.</p>
+    ${PLATEAU.map(([t,c]) => `<div><b style="font-family:var(--display);font-size:12px;letter-spacing:.1em;text-transform:uppercase">${esc(t)}</b>
+      <p class="small muted" style="margin:3px 0 0">${esc(c)}</p></div>`).join('')}
+  </div></div>
+
+  <div class="card"><div class="hd"><h2>Deload</h2></div><div class="bd stack-s">
+    ${DELOAD_TIPI.map(([t,c]) => `<div><b style="font-family:var(--display);font-size:12px;letter-spacing:.1em;text-transform:uppercase">${esc(t)}</b>
+      <p class="small muted" style="margin:3px 0 0">${esc(c)}</p></div>`).join('')}
+  </div></div>
+
+  <div class="card"><div class="hd"><h2>Recupero e salute</h2></div><div class="bd stack-s">
+    ${RECUPERO.map(([t,c]) => `<div><b style="font-family:var(--display);font-size:12px;letter-spacing:.1em;text-transform:uppercase">${esc(t)}</b>
+      <p class="small muted" style="margin:3px 0 0">${esc(c)}</p></div>`).join('')}
+  </div></div>
+
+  <div class="card"><div class="hd"><h2>Imprevisti</h2></div><div class="bd stack-s">
+    ${IMPREVISTI.map(([t,c]) => `<div><b style="font-family:var(--display);font-size:12px;letter-spacing:.1em;text-transform:uppercase">${esc(t)}</b>
+      <p class="small muted" style="margin:3px 0 0">${esc(c)}</p></div>`).join('')}
   </div></div>
 
   <div class="card"><div class="hd"><h2>Integratori</h2></div><div class="bd tblwrap">
@@ -1872,6 +2139,9 @@ function fondi(r){
   }
   for(const [d,x] of Object.entries(r.pasti||{})){
     const l = S.pasti[d]; if(!l || (x.mod||0) > (l.mod||0)){ S.pasti[d] = x; n++; }
+  }
+  for(const [w,x] of Object.entries(r.check||{})){
+    const l = S.check[w]; if(!l || (x.mod||0) > (l.mod||0)){ S.check[w] = x; n++; }
   }
   const m = new Map(S.corpo.map(x => [x.d,x]));
   for(const x of (r.corpo||[])){ const l = m.get(x.d); if(!l || (x.mod||0) > (l.mod||0)){ m.set(x.d,x); n++; } }
@@ -1929,7 +2199,7 @@ addEventListener('afterprint', () => { riaperti.forEach(x => { x.open = false; }
 
 document.addEventListener('toggle', ev => {
   const dt = ev.target;
-  if(dt.classList && dt.classList.contains('exc')){
+  if(dt.classList && dt.classList.contains('exc') && dt.dataset.ex !== undefined){
     const i = +dt.dataset.ex;
     dt.open ? APERTI.add(i) : APERTI.delete(i);
   }
@@ -1970,6 +2240,31 @@ document.addEventListener('click', ev => {
   }
 
   const rc = el('[data-rec]'); if(rc){ avviaTimer(+rc.dataset.rec, 'Recupero'); return; }
+
+  const tc = el('[data-tec]');
+  if(tc){
+    const k = tc.dataset.tec, [tit,txt] = TECNICHE[k];
+    apriSheet(tit, `<p class="small" style="margin:0">${esc(txt)}</p>
+      <p class="tiny muted" style="margin:14px 0 0">Dalla legenda del piano, pagina 2.</p>`);
+    return;
+  }
+  if(el('[data-sissy]')){
+    apriSheet('Sissy squat — progressione del range', `
+      <div class="backup" style="margin-bottom:12px">${ICO.alert}<span>${esc(SISSY_STOP)}</span></div>
+      <div class="tblwrap"><table class="tbl"><thead><tr><th>Quando</th><th>Range</th><th>Peso</th></tr></thead><tbody>
+      ${SISSY.map(([a,b,c,e]) => `<tr><td><b>${esc(a)}</b><br><span class="tiny muted">${esc(e)}</span></td>
+        <td style="text-align:left" class="tiny">${esc(b)}</td><td style="text-align:left" class="tiny">${esc(c)}</td></tr>`).join('')}
+      </tbody></table></div>`);
+    return;
+  }
+  const ck = el('[data-chk]');
+  if(ck){
+    const [i,val] = ck.dataset.chk.split(':');
+    const wk = settimanaDi(S.ui.data);
+    if(!S.check[wk]) S.check[wk] = {};
+    S.check[wk][i] = S.check[wk][i] === val ? null : val;
+    S.check[wk].mod = Date.now(); salva(); renderPiano(); return;
+  }
 
   const pa = el('[data-pasto]');
   if(pa){ const L = pastoLog(S.ui.data), i = pa.dataset.pasto; L.ok[i] = !L.ok[i]; L.mod = Date.now(); salva(); renderDieta(); return; }
