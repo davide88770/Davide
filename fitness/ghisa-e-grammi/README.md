@@ -108,8 +108,10 @@ I due documenti non tornano fra loro su tre livelli, e i tre errori si sommano:
 L'app risolve il problema invece di mostrarlo. A ogni apertura ricalcola le
 grammature perché il totale della giornata colpisca il target di pag. 3:
 
+- **Base di pesatura: crudo**, come pesa Davide. È indicata accanto a ogni
+  quantità nell'app (crudo, secca, cotti, lesse, sgocciolato).
 - **Fonte dei valori**: la tabella "Fonti alimentari complete" del piano
-  (pag. 26-27), niente banche dati esterne.
+  (pag. 26-27), verificata voce per voce e corretta dove sbagliava — vedi sotto.
 - **Leve, in ordine**: carboidrati, grassi, proteine magre. Salmone, manzo e
   ricotta si muovono solo quando i grassi sfondano da soli, perché portano
   grassi e proteine insieme. Uova, feta, verdure e caffè restano fermi.
@@ -120,8 +122,13 @@ grammature perché il totale della giornata colpisca il target di pag. 3:
   unità intere per uova e gallette.
 - **Calorie**: ricalcolate dai macro a 4/4/9. Quelle scritte nel piano restano
   affiancate come confronto.
-- **Risultato**: scarto massimo **1,4 g** su un macronutriente, su tutte e 18 le
-  tipologie di giornata. Verificato eseguendo il risolutore dentro l'app.
+- **Risultato**: scarto massimo **2,6 g** su un macronutriente (23 kcal), su tutte
+  e 18 le tipologie di giornata. Quattordici chiudono sotto 1,5 g. Verificato
+  eseguendo il risolutore dentro l'app, non a tavolino.
+- **Il limite vero**: nella giornata *peak pesante* restano 2,6 g di grassi oltre
+  il target anche con salmone, manzo, ricotta, uova, frutta secca e olio già al
+  minimo — quel menù porta più grassi di quanti il target ne consenta. L'app lo
+  dice e suggerisce lo scambio che chiude il conto (salmone → merluzzo).
 
 Cambiando un alimento (pollo → salmone, riso → patate) l'app propone la
 grammatura equivalente sul macro dominante e **poi ribilancia l'intera
@@ -135,14 +142,31 @@ dichiara i grassi e la sua aritmetica torna con grassi = 0 per quelle voci: si
 mantiene quella convenzione. Le verdure non sono tabellate: si assumono 1,5 g di
 carboidrati per 100 g.
 
-### Da chiarire col coach
+### Verifica della tabella del piano
 
-La tabella dà **riso basmati 130 g cotto = 54 g di carboidrati** (41,5 per 100 g)
-e **riso integrale 100 g cotto = 38 g**, ma **riso bianco 200 g cotto = 56 g**
-(28 per 100 g). Tre convenzioni diverse per tre risi: il valore del riso bianco
-è quello del riso cotto, gli altri due no. L'app usa i numeri del piano così come
-sono e segnala la contraddizione dentro la sezione Dieta. Se la risposta è che il
-riso va pesato da crudo, le grammature dei primi due vanno riviste.
+Le 31 voci sono state confrontate coi valori reali misurando lo scarto **sulla
+porzione tipica**, non in percentuale — altrimenti differenze irrilevanti su
+alimenti leggeri sembrano gravi. Soglia: 2 g su un macronutriente.
+
+**Sedici voci corrette, tenute come le scrive il piano**: manzo 5%, uova, yogurt
+greco, fiocchi di latte, feta, whey, tonno, merluzzo, bresaola, patate, legumi,
+banana, mela, frutti di bosco, miele, olio EVO, avocado.
+
+**Quindici corrette perché sbagliate**:
+
+| Voce | Problema | Correzione |
+|---|---|---|
+| Riso basmati, bianco, integrale | dati su peso cotto, con tre convenzioni diverse fra loro; Davide pesa a crudo | 78, 80 e 74 g di carbo per 100 g da crudo, e grammature del menù convertite |
+| Avena, quinoa, pasta integrale | grassi non dichiarati; la pasta aveva le proteine basse di un terzo | +7, +6 e +2,5 g di grassi per 100 g; pasta a 13 g di proteine |
+| Noci, mandorle, burro d'arachidi | contati come soli grassi | +15, +21 e +25 g di proteine per 100 g |
+| Ricotta | grassi dimezzati | da 4 a 8 g per 100 g |
+| Salmone | grassi sottostimati | da 10 a 12 g per 100 g |
+| Pollo, tacchino, sgombro, pane di segale | scarti fra 2 e 4 g sulla porzione | allineati |
+
+I tre risi erano il problema più grave: sul basmati la tabella dava 41,5 g di
+carboidrati per 100 g, che non è né il valore da crudo (78) né quello da cotto
+(28). Pesando a crudo con quel numero si sarebbero mangiati circa **45 g di
+carboidrati in meno al giorno**.
 
 ## Copertura dei documenti
 
@@ -163,6 +187,12 @@ al testo dei sorgenti. Le pagine 6, 13, 18, 25, 32 del workout e 4, 8, 11, 15,
 
 ## Storico
 
+- **v5** — tabella verificata e riportata su peso crudo. Confrontate le 31 voci
+  coi valori reali sulla porzione tipica: 16 confermate, 15 corrette, i tre risi
+  convertiti da cotto a crudo (erano il problema più grave: −45 g di carboidrati
+  al giorno). Limiti per alimento perché le porzioni restino piatti veri, leva
+  sulle uova e sulle proteine grasse quando i grassi sfondano. Scarto massimo
+  2,6 g su un macro, su 18 giornate.
 - **v4** — grammature risolte. I pasti diventano alimenti con quantità
   ricalcolate perché ogni giornata colpisca il target di fase (scarto massimo
   1,4 g su un macro, su 18 tipologie di giornata), scambio di ogni alimento con

@@ -343,6 +343,7 @@ label.fld>span{font-family:var(--display);font-size:11px;letter-spacing:.14em;te
 .cibo{display:grid;grid-template-columns:82px 1fr auto;gap:10px;align-items:center;padding:10px 14px;background:var(--surface);text-align:left;width:100%;min-height:44px}
 .cibo:hover{background:var(--surface-2)}
 .cibo .q{font-family:var(--display);font-size:15.5px;font-variant-numeric:tabular-nums;text-align:right;color:var(--ink);white-space:nowrap}
+.cibo .w{font-family:var(--display);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4);margin-left:5px}
 .cibo .nm2{font-size:14.5px;color:var(--ink-2);overflow:hidden;text-overflow:ellipsis}
 .cibo .sw2{font-family:var(--display);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4)}
 .cibo:hover .sw2,.cibo.mod .sw2{color:var(--accent-text)}
@@ -857,8 +858,16 @@ const INTENSITA = {
 };
 
 /* ── ALIMENTAZIONE ──────────────────────────────────────────────────────── */
-/* Composizione dei pasti in alimenti e grammi, e valori nutrizionali presi
-   dalla tabella "Fonti alimentari complete" del piano (pag. 26-27).
+/* Composizione dei pasti in alimenti e grammi. I valori nutrizionali partono
+   dalla tabella "Fonti alimentari complete" del piano (pag. 26-27) e sono stati
+   verificati voce per voce sulla porzione tipica. Corretti i 15 alimenti che
+   se ne discostavano di piu' di 2 g su un macronutriente; gli altri 16 sono
+   tenuti come li scrive il piano.
+   Tutto e' su base CRUDO, come pesa Davide: i tre risi del piano erano
+   espressi su peso cotto e sono stati riportati a crudo, alimento e
+   grammature del menu'. w = base di pesatura, mostrata accanto a ogni
+   quantita'. lo/hi = quanto ogni alimento puo' scostarsi dalla porzione del
+   menu' senza diventare un piatto irreale.
    Le grammature mostrate nell'app NON sono quelle del menu': sono ricalcolate
    dal risolutore perche' il totale della giornata colpisca il target di fase.
    Serviva: i menu' del piano, sommati con la sua stessa tabella, restavano
@@ -869,159 +878,159 @@ const INTENSITA = {
    aritmetica, che torna con grassi = 0 per quelle voci. Le verdure non sono
    tabellate: si assumono 1,5 g di carboidrati per 100 g. */
 const ALIMENTI = {
-  pollo:{n:'pollo',p:0.21000,c:0.00000,f:0.02000,r:'pL',s:5},
-  tacchino:{n:'tacchino',p:0.22000,c:0.00000,f:0.01500,r:'pL',s:5},
-  merluzzo:{n:'merluzzo o nasello',p:0.19000,c:0.00000,f:0.01000,r:'pL',s:5},
-  salmone:{n:'salmone',p:0.20000,c:0.00000,f:0.10000,r:'pG',s:5},
-  sgombro:{n:'sgombro in scatola',p:0.18333,c:0.00000,f:0.08333,r:'pG',s:5},
-  tonno:{n:'tonno naturale',p:0.27500,c:0.00000,f:0.01250,r:'pL',s:5},
-  manzo5:{n:'manzo macinato 5%',p:0.21000,c:0.00000,f:0.05000,r:'pG',s:5},
-  bresaola:{n:'bresaola',p:0.31667,c:0.00000,f:0.01667,r:'pL',s:5},
-  uovo:{n:'uova',p:7.00000,c:0.00000,f:5.00000,r:'x',s:1,u:'pz'},
-  albume:{n:'albume',p:0.10000,c:0.00000,f:0.00000,r:'pL',s:5,u:'ml'},
-  yogurt_greco:{n:'yogurt greco 0%',p:0.10000,c:0.04000,f:0.00000,r:'x',s:10},
-  fiocchi_latte:{n:'fiocchi di latte 0%',p:0.10800,c:0.01600,f:0.00400,r:'pL',s:10},
-  ricotta:{n:'ricotta magra',p:0.10000,c:0.02000,f:0.04000,r:'pG',s:10},
-  feta:{n:'feta',p:0.15000,c:0.02500,f:0.20000,r:'x',s:5},
-  whey:{n:'whey isolate',p:0.88000,c:0.08000,f:0.04000,r:'pL',s:5},
-  riso_basmati:{n:'riso basmati',p:0.02308,c:0.41538,f:0.00000,r:'c',s:5},
-  riso_bianco:{n:'riso bianco',p:0.01500,c:0.28000,f:0.00000,r:'c',s:5},
-  riso_integrale:{n:'riso integrale',p:0.03000,c:0.38000,f:0.00000,r:'c',s:5},
-  patate:{n:'patate lesse',p:0.02000,c:0.17333,f:0.00000,r:'c',s:5},
-  avena:{n:'avena',p:0.12000,c:0.60000,f:0.00000,r:'c',s:5},
-  pane_segale:{n:'pane di segale',p:0.08571,c:0.52857,f:0.00000,r:'c',s:5},
-  pasta_integrale:{n:'pasta integrale',p:0.08750,c:0.70000,f:0.00000,r:'c',s:5},
-  quinoa:{n:'quinoa',p:0.13750,c:0.62500,f:0.00000,r:'c',s:5},
-  legumi:{n:'legumi',p:0.06250,c:0.16250,f:0.00000,r:'c',s:5},
-  banana:{n:'banana',p:0.00833,c:0.22500,f:0.00000,r:'c',s:5},
-  mela:{n:'mela',p:0.00000,c:0.12667,f:0.00000,r:'c',s:5},
-  frutti_bosco:{n:'frutti di bosco',p:0.01250,c:0.10000,f:0.00000,r:'c',s:5},
-  gallette:{n:'gallette di riso',p:0.50000,c:7.50000,f:0.00000,r:'c',s:1,u:'pz'},
-  miele:{n:'miele',p:0.00000,c:0.80000,f:0.00000,r:'c',s:5},
-  evo:{n:'olio EVO',p:0.00000,c:0.00000,f:1.00000,r:'f',s:1},
-  avocado:{n:'avocado',p:0.00000,c:0.00000,f:0.15000,r:'f',s:5},
-  noci:{n:'noci',p:0.00000,c:0.00000,f:0.65000,r:'f',s:1},
-  mandorle:{n:'mandorle',p:0.00000,c:0.00000,f:0.53333,r:'f',s:1},
-  burro_arachidi:{n:'burro d’arachidi',p:0.00000,c:0.00000,f:0.53333,r:'f',s:1},
-  verdure:{n:'verdure',p:0.00200,c:0.01500,f:0.00100,r:'x',s:5},
-  caffe:{n:'caffè',p:0.00000,c:0.00000,f:0.00000,r:'x',s:1},
+  pollo:{n:'pollo',p:0.23000,c:0.00000,f:0.01500,r:'pL',s:5,lo:0.6,hi:2.4,w:'crudo'},
+  tacchino:{n:'tacchino',p:0.24000,c:0.00000,f:0.01000,r:'pL',s:5,lo:0.6,hi:2.4,w:'crudo'},
+  merluzzo:{n:'merluzzo o nasello',p:0.19000,c:0.00000,f:0.01000,r:'pL',s:5,lo:0.6,hi:2.4,w:'crudo'},
+  salmone:{n:'salmone',p:0.20000,c:0.00000,f:0.12000,r:'pG',s:5,lo:0.4,hi:1.25,w:'crudo'},
+  sgombro:{n:'sgombro in scatola',p:0.21000,c:0.00000,f:0.09000,r:'pG',s:5,lo:0.4,hi:1.25,w:'sgocciolato'},
+  tonno:{n:'tonno naturale',p:0.27500,c:0.00000,f:0.01250,r:'pL',s:5,lo:0.6,hi:2.2,w:'sgocciolato'},
+  manzo5:{n:'manzo macinato 5%',p:0.21000,c:0.00000,f:0.05000,r:'pG',s:5,lo:0.4,hi:1.25,w:'crudo'},
+  bresaola:{n:'bresaola',p:0.31667,c:0.00000,f:0.01667,r:'pL',s:5,lo:0.6,hi:2.2},
+  uovo:{n:'uova',p:7.00000,c:0.00000,f:5.00000,r:'pG',s:1,lo:0.6,hi:1.2,u:'pz'},
+  albume:{n:'albume',p:0.10000,c:0.00000,f:0.00000,r:'pL',s:5,lo:0.6,hi:5.0,u:'ml'},
+  yogurt_greco:{n:'yogurt greco 0%',p:0.10000,c:0.04000,f:0.00000,r:'x',s:10,lo:1,hi:1},
+  fiocchi_latte:{n:'fiocchi di latte 0%',p:0.10800,c:0.01600,f:0.00400,r:'pL',s:10,lo:0.6,hi:2.2},
+  ricotta:{n:'ricotta magra',p:0.10000,c:0.03500,f:0.08000,r:'pG',s:10,lo:0.4,hi:1.25},
+  feta:{n:'feta',p:0.15000,c:0.02500,f:0.20000,r:'x',s:5,lo:1,hi:1},
+  whey:{n:'whey isolate',p:0.88000,c:0.08000,f:0.04000,r:'pL',s:5,lo:0.6,hi:3.0},
+  riso_basmati:{n:'riso basmati',p:0.08100,c:0.78000,f:0.00600,r:'c',s:5,lo:0.4,hi:4.0,w:'crudo'},
+  riso_bianco:{n:'riso bianco',p:0.07000,c:0.80000,f:0.00600,r:'c',s:5,lo:0.4,hi:4.0,w:'crudo'},
+  riso_integrale:{n:'riso integrale',p:0.07900,c:0.74000,f:0.02800,r:'c',s:5,lo:0.4,hi:4.0,w:'crudo'},
+  patate:{n:'patate',p:0.02000,c:0.17333,f:0.00000,r:'c',s:5,lo:0.5,hi:4.0,w:'lesse'},
+  avena:{n:'avena',p:0.13000,c:0.66000,f:0.07000,r:'c',s:5,lo:0.5,hi:4.0,w:'secca'},
+  pane_segale:{n:'pane di segale',p:0.08000,c:0.50000,f:0.01500,r:'c',s:5,lo:0.5,hi:3.0},
+  pasta_integrale:{n:'pasta integrale',p:0.08750,c:0.70000,f:0.00000,r:'c',s:5,lo:0.5,hi:4.0,w:'secca'},
+  quinoa:{n:'quinoa',p:0.14000,c:0.64000,f:0.06000,r:'c',s:5,lo:0.5,hi:4.0,w:'secca'},
+  legumi:{n:'legumi misti',p:0.06250,c:0.16250,f:0.00000,r:'c',s:5,lo:0.8,hi:1.6,w:'cotti'},
+  banana:{n:'banana',p:0.00833,c:0.22500,f:0.00000,r:'c',s:5,lo:0.8,hi:1.4},
+  mela:{n:'mela',p:0.00000,c:0.12667,f:0.00000,r:'c',s:5,lo:0.8,hi:1.4},
+  frutti_bosco:{n:'frutti di bosco',p:0.01250,c:0.10000,f:0.00000,r:'c',s:5,lo:0.8,hi:1.6},
+  gallette:{n:'gallette di riso',p:0.50000,c:7.50000,f:0.00000,r:'c',s:1,lo:0.5,hi:2.5,u:'pz'},
+  miele:{n:'miele',p:0.00000,c:0.80000,f:0.00000,r:'c',s:5,lo:0.6,hi:1.8},
+  evo:{n:'olio EVO',p:0.00000,c:0.00000,f:1.00000,r:'f',s:1,lo:0.55,hi:2.5},
+  avocado:{n:'avocado',p:0.00000,c:0.00000,f:0.15000,r:'f',s:5,lo:0.7,hi:1.5},
+  noci:{n:'noci',p:0.15000,c:0.04000,f:0.65000,r:'f',s:1,lo:0.4,hi:1.6},
+  mandorle:{n:'mandorle',p:0.21000,c:0.04000,f:0.50000,r:'f',s:1,lo:0.4,hi:1.6},
+  burro_arachidi:{n:'burro d’arachidi',p:0.25000,c:0.12000,f:0.50000,r:'f',s:1,lo:0.4,hi:1.6},
+  verdure:{n:'verdure',p:0.00200,c:0.01500,f:0.00100,r:'x',s:5,lo:1,hi:1},
+  caffe:{n:'caffè',p:0.00000,c:0.00000,f:0.00000,r:'x',s:1,lo:1,hi:1},
 };
 const PASTI = {
  cut13_allen:[
   {h:'07:30',n:"Colazione — pre-workout",i:[['pane_segale',70],['avocado',80],['uovo',2],['albume',66],['caffe',1]],alt:[['yogurt_greco',180],['avena',45],['whey',15],['caffe',1]]},
   {h:'10:20',n:"Snack pre-workout",i:[['whey',25],['banana',120]]},
-  {h:'12:30',n:"Pranzo post-workout",i:[['riso_basmati',120],['pollo',200],['verdure',300],['evo',8]]},
+  {h:'12:30',n:"Pranzo post-workout",i:[['riso_basmati',45],['pollo',200],['verdure',300],['evo',8]]},
   {h:'16:30',n:"Spuntino",i:[['fiocchi_latte',250],['mela',80],['noci',15]]},
   {h:'20:00',n:"Cena",i:[['pollo',250],['verdure',300],['evo',12]]},
  ],
  cut49_allen:[
   {h:'07:30',n:"Colazione — pre-workout",i:[['pane_segale',70],['avocado',80],['uovo',2],['albume',66],['frutti_bosco',80],['caffe',1]],alt:[['yogurt_greco',200],['avena',50],['whey',20],['caffe',1]]},
   {h:'10:20',n:"Snack pre-workout",i:[['whey',25],['banana',120]]},
-  {h:'12:30',n:"Pranzo post-workout",i:[['riso_basmati',130],['pollo',210],['verdure',300],['evo',8]],tip:"Il pranzo post-workout e il pasto principale: e qui che sfrutti la finestra anabolica."},
+  {h:'12:30',n:"Pranzo post-workout",i:[['riso_basmati',45],['pollo',210],['verdure',300],['evo',8]],tip:"Il pranzo post-workout e il pasto principale: e qui che sfrutti la finestra anabolica."},
   {h:'16:30',n:"Spuntino",i:[['fiocchi_latte',250],['mela',100],['noci',20]]},
   {h:'20:00',n:"Cena",i:[['pollo',260],['verdure',300],['evo',14]]},
  ],
  cut13_riposo:[
   {h:'07:30',n:"Colazione",i:[['pane_segale',70],['avocado',80],['uovo',2],['albume',33],['caffe',1]],alt:[['yogurt_greco',180],['avena',40],['whey',15],['caffe',1]]},
-  {h:'12:30',n:"Pranzo",i:[['riso_integrale',90],['pollo',210],['verdure',300],['evo',8]]},
+  {h:'12:30',n:"Pranzo",i:[['riso_integrale',30],['pollo',210],['verdure',300],['evo',8]]},
   {h:'16:30',n:"Spuntino",i:[['fiocchi_latte',250],['mela',80],['mandorle',15]]},
   {h:'20:00',n:"Cena riposo — carbo sotto i 20 g",i:[['salmone',280],['verdure',350],['evo',18]],nocarb:1,alt:[['uovo',3],['feta',50],['avocado',100],['verdure',300],['evo',8]],tip:"Carbo sotto i 20 g e grassi alti: picco di GH notturno e lipolisi sul grasso addominale basso. Carote cotte, piselli, mais e patate vietati la sera di riposo."},
  ],
  cut49_riposo:[
   {h:'07:30',n:"Colazione",i:[['pane_segale',70],['avocado',80],['uovo',2],['albume',33],['caffe',1]],alt:[['yogurt_greco',180],['avena',40],['whey',15],['caffe',1]]},
-  {h:'12:30',n:"Pranzo",i:[['riso_integrale',90],['pollo',210],['verdure',300],['evo',8]]},
+  {h:'12:30',n:"Pranzo",i:[['riso_integrale',30],['pollo',210],['verdure',300],['evo',8]]},
   {h:'16:30',n:"Spuntino",i:[['fiocchi_latte',250],['mela',80],['mandorle',15]]},
   {h:'20:00',n:"Cena riposo — carbo sotto i 20 g",i:[['salmone',280],['verdure',350],['evo',18]],nocarb:1,alt:[['uovo',3],['feta',50],['avocado',100],['verdure',300],['evo',8]],tip:"Carbo sotto i 20 g e grassi alti: picco di GH notturno e lipolisi sul grasso addominale basso."},
  ],
  trans_allen:[
   {h:'07:30',n:"Colazione abbondante",i:[['pane_segale',70],['avocado',80],['uovo',2],['albume',66],['mela',150],['caffe',1]],alt:[['yogurt_greco',200],['avena',60],['whey',15],['banana',120],['caffe',1]]},
   {h:'10:20',n:"Snack pre-workout",i:[['yogurt_greco',200],['mela',150]]},
-  {h:'12:30',n:"Pranzo post-workout",i:[['riso_basmati',150],['pollo',210],['verdure',300],['evo',10]]},
+  {h:'12:30',n:"Pranzo post-workout",i:[['riso_basmati',55],['pollo',210],['verdure',300],['evo',10]]},
   {h:'16:30',n:"Spuntino",i:[['fiocchi_latte',250],['miele',30],['noci',20]]},
-  {h:'20:00',n:"Cena",i:[['merluzzo',260],['riso_integrale',100],['verdure',300],['evo',10]]},
+  {h:'20:00',n:"Cena",i:[['merluzzo',260],['riso_integrale',35],['verdure',300],['evo',10]]},
  ],
  trans_riposo:[
   {h:'07:30',n:"Colazione",i:[['pane_segale',70],['avocado',80],['uovo',2],['albume',33],['caffe',1]],alt:[['yogurt_greco',200],['avena',50],['mela',150],['caffe',1]]},
-  {h:'12:30',n:"Pranzo",i:[['riso_integrale',120],['pollo',210],['verdure',300],['evo',8]]},
+  {h:'12:30',n:"Pranzo",i:[['riso_integrale',40],['pollo',210],['verdure',300],['evo',8]]},
   {h:'16:30',n:"Spuntino",i:[['fiocchi_latte',250],['mela',100],['mandorle',15]]},
   {h:'20:00',n:"Cena",i:[['salmone',260],['verdure',300],['evo',15],['legumi',80]]},
  ],
  acc_pesante:[
   {h:'07:30',n:"Colazione Push/Legs",i:[['uovo',3],['albume',66],['pane_segale',90],['burro_arachidi',15],['banana',120],['caffe',1]],alt:[['yogurt_greco',200],['avena',80],['whey',25],['banana',120],['miele',15],['caffe',1]],tip:"Colazione dei giorni pesanti: piu carbo, glicogeno pieno per i compound."},
   {h:'10:20',n:"Snack pre-workout",i:[['whey',25],['banana',120]]},
-  {h:'12:30',n:"Pranzo post-workout",i:[['riso_bianco',200],['manzo5',300],['verdure',300],['evo',10]],tip:"Riso bianco post-workout: piu rapido dell integrale, massimizza la risintesi del glicogeno."},
+  {h:'12:30',n:"Pranzo post-workout",i:[['riso_bianco',70],['manzo5',300],['verdure',300],['evo',10]],tip:"Riso bianco post-workout: piu rapido dell integrale, massimizza la risintesi del glicogeno."},
   {h:'16:30',n:"Spuntino",i:[['ricotta',250],['miele',30],['noci',30],['mela',150]]},
-  {h:'20:00',n:"Cena",i:[['salmone',300],['riso_integrale',120],['verdure',300],['evo',10]]},
+  {h:'20:00',n:"Cena",i:[['salmone',300],['riso_integrale',40],['verdure',300],['evo',10]]},
  ],
  acc_medio:[
   {h:'07:30',n:"Colazione abbondante",i:[['pane_segale',70],['avocado',80],['uovo',3],['albume',33],['mela',150],['caffe',1]],alt:[['yogurt_greco',200],['avena',70],['whey',25],['banana',120],['miele',10],['caffe',1]]},
   {h:'10:20',n:"Snack pre-workout",i:[['whey',25],['banana',120]]},
-  {h:'12:30',n:"Pranzo post-workout",i:[['riso_basmati',170],['pollo',270],['verdure',300],['evo',10]]},
+  {h:'12:30',n:"Pranzo post-workout",i:[['riso_basmati',60],['pollo',270],['verdure',300],['evo',10]]},
   {h:'16:30',n:"Spuntino",i:[['fiocchi_latte',250],['mela',100],['noci',20]]},
-  {h:'20:00',n:"Cena",i:[['salmone',300],['riso_integrale',120],['verdure',300],['evo',10]]},
+  {h:'20:00',n:"Cena",i:[['salmone',300],['riso_integrale',40],['verdure',300],['evo',10]]},
  ],
  acc_riposo:[
   {h:'07:30',n:"Colazione",i:[['pane_segale',70],['avocado',80],['uovo',2],['caffe',1]],alt:[['yogurt_greco',200],['avena',50],['whey',15],['frutti_bosco',80],['caffe',1]]},
-  {h:'12:30',n:"Pranzo",i:[['riso_integrale',130],['pollo',250],['verdure',300],['evo',8]]},
+  {h:'12:30',n:"Pranzo",i:[['riso_integrale',45],['pollo',250],['verdure',300],['evo',8]]},
   {h:'16:30',n:"Spuntino",i:[['fiocchi_latte',250],['mela',100],['mandorle',20]]},
   {h:'20:00',n:"Cena",i:[['salmone',300],['verdure',350],['evo',15],['legumi',80]]},
  ],
  int_pesante:[
   {h:'07:30',n:"Colazione Push/Legs",i:[['uovo',3],['albume',66],['pane_segale',100],['burro_arachidi',20],['banana',120],['caffe',1]],alt:[['yogurt_greco',220],['avena',90],['whey',25],['banana',120],['miele',20],['caffe',1]]},
   {h:'10:20',n:"Snack pre-workout",i:[['whey',25],['banana',120]]},
-  {h:'12:30',n:"Pranzo post-workout",i:[['riso_bianco',210],['manzo5',320],['verdure',300],['evo',10]]},
+  {h:'12:30',n:"Pranzo post-workout",i:[['riso_bianco',75],['manzo5',320],['verdure',300],['evo',10]]},
   {h:'16:30',n:"Spuntino",i:[['ricotta',260],['miele',35],['noci',30],['mela',150]]},
-  {h:'20:00',n:"Cena",i:[['salmone',320],['riso_integrale',120],['verdure',300],['evo',10]]},
+  {h:'20:00',n:"Cena",i:[['salmone',320],['riso_integrale',40],['verdure',300],['evo',10]]},
  ],
  int_medio:[
   {h:'07:30',n:"Colazione",i:[['pane_segale',70],['avocado',80],['uovo',3],['albume',66],['mela',150],['caffe',1]],alt:[['yogurt_greco',200],['avena',75],['whey',25],['banana',120],['miele',15],['caffe',1]]},
   {h:'10:20',n:"Snack pre-workout",i:[['whey',25],['banana',120]]},
-  {h:'12:30',n:"Pranzo",i:[['riso_basmati',180],['pollo',280],['verdure',300],['evo',10]]},
+  {h:'12:30',n:"Pranzo",i:[['riso_basmati',65],['pollo',280],['verdure',300],['evo',10]]},
   {h:'16:30',n:"Spuntino",i:[['fiocchi_latte',260],['mela',100],['noci',20]]},
-  {h:'20:00',n:"Cena",i:[['salmone',310],['riso_integrale',130],['verdure',300],['evo',10]]},
+  {h:'20:00',n:"Cena",i:[['salmone',310],['riso_integrale',45],['verdure',300],['evo',10]]},
  ],
  int_riposo:[
   {h:'07:30',n:"Colazione",i:[['pane_segale',70],['avocado',80],['uovo',3],['albume',66],['mela',150],['caffe',1]],alt:[['yogurt_greco',200],['avena',75],['whey',25],['banana',120],['miele',15],['caffe',1]]},
-  {h:'12:30',n:"Pranzo",i:[['riso_basmati',130],['pollo',280],['verdure',300],['evo',10]]},
+  {h:'12:30',n:"Pranzo",i:[['riso_basmati',45],['pollo',280],['verdure',300],['evo',10]]},
   {h:'16:30',n:"Spuntino",i:[['fiocchi_latte',260],['mela',100],['noci',20]]},
   {h:'20:00',n:"Cena",i:[['salmone',310],['legumi',80],['verdure',300],['evo',10]]},
  ],
  peak_pesante:[
   {h:'07:30',n:"Colazione peak Push/Legs",i:[['uovo',3],['albume',66],['pane_segale',110],['burro_arachidi',20],['banana',120],['caffe',1]],alt:[['yogurt_greco',220],['avena',95],['whey',25],['banana',120],['miele',20],['caffe',1]]},
   {h:'10:20',n:"Snack pre-workout",i:[['whey',25],['banana',120],['avena',30]]},
-  {h:'12:30',n:"Pranzo post-workout",i:[['riso_bianco',220],['manzo5',330],['verdure',300],['evo',10]]},
+  {h:'12:30',n:"Pranzo post-workout",i:[['riso_bianco',80],['manzo5',330],['verdure',300],['evo',10]]},
   {h:'16:30',n:"Spuntino",i:[['ricotta',270],['miele',35],['noci',35],['mela',150]]},
-  {h:'20:00',n:"Cena",i:[['salmone',330],['riso_integrale',130],['verdure',300],['evo',10]]},
+  {h:'20:00',n:"Cena",i:[['salmone',330],['riso_integrale',45],['verdure',300],['evo',10]]},
  ],
  peak_medio:[
   {h:'07:30',n:"Colazione",i:[['pane_segale',70],['avocado',80],['uovo',3],['albume',66],['mela',150],['caffe',1]],alt:[['yogurt_greco',200],['avena',80],['whey',25],['banana',120],['miele',15],['caffe',1]]},
   {h:'10:20',n:"Snack pre-workout",i:[['whey',25],['banana',120]]},
-  {h:'12:30',n:"Pranzo",i:[['riso_basmati',190],['pollo',290],['verdure',300],['evo',10]]},
+  {h:'12:30',n:"Pranzo",i:[['riso_basmati',70],['pollo',290],['verdure',300],['evo',10]]},
   {h:'16:30',n:"Spuntino",i:[['fiocchi_latte',270],['mela',100],['noci',25]]},
-  {h:'20:00',n:"Cena",i:[['salmone',330],['riso_integrale',130],['verdure',300],['evo',10]]},
+  {h:'20:00',n:"Cena",i:[['salmone',330],['riso_integrale',45],['verdure',300],['evo',10]]},
  ],
  peak_riposo:[
   {h:'07:30',n:"Colazione",i:[['pane_segale',70],['avocado',80],['uovo',3],['albume',66],['mela',150],['caffe',1]],alt:[['yogurt_greco',200],['avena',80],['whey',25],['banana',120],['miele',15],['caffe',1]]},
-  {h:'12:30',n:"Pranzo",i:[['riso_basmati',140],['pollo',290],['verdure',300],['evo',10]]},
+  {h:'12:30',n:"Pranzo",i:[['riso_basmati',50],['pollo',290],['verdure',300],['evo',10]]},
   {h:'16:30',n:"Spuntino",i:[['fiocchi_latte',270],['mela',100],['noci',25]]},
   {h:'20:00',n:"Cena",i:[['salmone',330],['legumi',100],['verdure',300],['evo',10]]},
  ],
  recomp_allen:[
   {h:'07:30',n:"Colazione — pre-workout",i:[['pane_segale',70],['avocado',80],['uovo',2],['albume',66],['mela',150],['caffe',1]],alt:[['yogurt_greco',200],['avena',50],['whey',20],['banana',120],['caffe',1]]},
   {h:'10:20',n:"Snack pre-workout",i:[['whey',25],['mela',150]]},
-  {h:'12:30',n:"Pranzo post-workout",i:[['riso_basmati',130],['pollo',220],['verdure',300],['evo',8]],tip:"Mantieni i carichi del peak: il pranzo post-workout deve sostenere la performance."},
+  {h:'12:30',n:"Pranzo post-workout",i:[['riso_basmati',45],['pollo',220],['verdure',300],['evo',8]],tip:"Mantieni i carichi del peak: il pranzo post-workout deve sostenere la performance."},
   {h:'16:30',n:"Spuntino",i:[['fiocchi_latte',250],['mela',80],['noci',15]]},
   {h:'20:00',n:"Cena",i:[['pollo',270],['verdure',300],['evo',14],['legumi',80]]},
  ],
  recomp_riposo:[
   {h:'07:30',n:"Colazione",i:[['pane_segale',70],['avocado',80],['uovo',2],['albume',33],['caffe',1]],alt:[['yogurt_greco',200],['avena',40],['whey',15],['frutti_bosco',80],['caffe',1]]},
-  {h:'12:30',n:"Pranzo leggero",i:[['riso_integrale',80],['pollo',220],['verdure',300],['evo',8]]},
+  {h:'12:30',n:"Pranzo leggero",i:[['riso_integrale',30],['pollo',220],['verdure',300],['evo',8]]},
   {h:'16:30',n:"Spuntino",i:[['fiocchi_latte',250],['mela',80],['mandorle',10]]},
   {h:'20:00',n:"Cena riposo — carbo sotto i 20 g",i:[['salmone',280],['verdure',350],['evo',20]],nocarb:1,alt:[['uovo',3],['feta',50],['avocado',100],['verdure',300],['evo',8]],tip:"Carbo sotto i 20 g e grassi alti: picco di GH notturno e lipolisi sul grasso residuo."},
  ],
  recomp_dom:[
   {h:'07:30',n:"Colazione",i:[['pane_segale',70],['avocado',80],['uovo',2],['albume',66],['mela',150],['caffe',1]],alt:[['yogurt_greco',200],['avena',50],['whey',20],['banana',120],['caffe',1]]},
-  {h:'12:30',n:"Pranzo",i:[['riso_basmati',120],['pollo',240],['verdure',300],['evo',8]]},
+  {h:'12:30',n:"Pranzo",i:[['riso_basmati',45],['pollo',240],['verdure',300],['evo',8]]},
   {h:'16:30',n:"Spuntino",i:[['fiocchi_latte',250],['mela',100],['mandorle',15]]},
   {h:'20:00',n:"Cena",i:[['salmone',270],['verdure',300],['evo',12],['legumi',80]]},
  ],
@@ -1402,7 +1411,7 @@ function suggerimento(ex, nome, dOggi){
    grassi — e, solo se i grassi sfondano da soli, ritocca le proteine grasse
    (salmone, manzo, ricotta), che portano grassi e proteine insieme.
    Restano ferme uova, feta, verdure e caffè. */
-const LIM = { c:[0.45,2.6], pL:[0.6,2.2], f:[0.30,1.8], pG:[0.55,1.20] };
+const bordi = a => { const x = ALIMENTI[a]; return [x.lo ?? 1, x.hi ?? 1]; };
 
 function equivalente(vecchio, g, nuovo){
   const A = ALIMENTI[vecchio], B = ALIMENTI[nuovo];
@@ -1433,8 +1442,9 @@ function risolvi(lista, target, L){
   const quota = (r,k) => { let v=0;
     chiavi.forEach((m,mi) => m.forEach((a,ii) => { if(ALIMENTI[a].r === r) v += ALIMENTI[a][k]*g[mi][ii]; }));
     return v; };
-  const scala = (r,k) => { const [lo,hi] = LIM[r];
+  const scala = (r,k) => {
     chiavi.forEach((m,mi) => m.forEach((a,ii) => { if(ALIMENTI[a].r !== r) return;
+      const [lo,hi] = bordi(a);
       g[mi][ii] = Math.min(Math.max(g[mi][ii]*k, base[mi][ii][1]*lo), base[mi][ii][1]*hi); })); };
 
   for(let n = 0; n < 240; n++){
@@ -1461,8 +1471,9 @@ function risolvi(lista, target, L){
         if(!best || passo > best.passo) best = { mi, ii, passo, s:x.s };
       }));
       if(!best) break;
+      const a = chiavi[best.mi][best.ii], [lo,hi] = bordi(a), b = base[best.mi][best.ii][1];
       const nuovo = g[best.mi][best.ii] + (d > 0 ? best.s : -best.s);
-      if(nuovo < best.s) break;
+      if(nuovo < Math.max(best.s, b*lo) || nuovo > b*hi) break;
       g[best.mi][best.ii] = nuovo;
     }
   }
@@ -1473,6 +1484,7 @@ const macroDi = items => { let p=0,c=0,f=0;
   return { p, c, f, k: 4*p + 4*c + 9*f }; };
 const grammi = (a,g) => { const u = ALIMENTI[a].u;
   return u === 'pz' ? `${nf(g)}` : `${nf(g)}${u ? ' '+u : ' g'}`; };
+const pesata = a => ALIMENTI[a].w ? ` <span class="w">${ALIMENTI[a].w}</span>` : '';
 
 function tipoPastoDi(d){
   const f = faseDi(d);
@@ -1917,13 +1929,14 @@ function renderDieta(){
   const { fatto, piano } = totaliDieta(d), t = cfg.t;
   const originale = lista.reduce((a,m) => { const x = macroDi(m.i);
     return { k:a.k+x.k, p:a.p+x.p, c:a.c+x.c, f:a.f+x.f }; }, {k:0,p:0,c:0,f:0});
+  const residuo = Math.max(Math.abs(piano.p-t.p), Math.abs(piano.c-t.c), Math.abs(piano.f-t.f));
 
   const pasti = lista.map((m,i) => {
     const on = !!L.ok[i], items = voci[i], mm = macroDi(items), variante = !!L.alt[i];
     const righe = items.filter(([a]) => a !== 'caffe').map(([a,g],j) => {
       const cambiato = !!(L.sub && L.sub[i+':'+j]);
       return `<button class="cibo ${cambiato?'mod':''}" data-sw="${i}:${j}" aria-label="Cambia ${esc(ALIMENTI[a].n)}">
-        <span class="q">${grammi(a,g)}</span><span class="nm2">${esc(ALIMENTI[a].n)}</span>
+        <span class="q">${grammi(a,g)}</span><span class="nm2">${esc(ALIMENTI[a].n)}${pesata(a)}</span>
         <span class="sw2">${cambiato?'cambiato':'cambia'}</span></button>`;
     }).join('');
     return `<div class="meal">
@@ -1976,7 +1989,7 @@ function renderDieta(){
   </div>
 
   <div class="card">
-    <div class="hd"><h3>Grammature ricalcolate</h3><span class="chip good sp">${ICO.check} sul target</span></div>
+    <div class="hd"><h3>Grammature ricalcolate</h3><span class="chip ${residuo>1.5?'warn':'good'} sp">${residuo>1.5?ICO.alert+' quasi':ICO.check+' sul target'}</span></div>
     <div class="bd">
       <p class="small muted" style="margin:0 0 12px">I menù del piano, sommati con la sua stessa tabella delle fonti, restavano
         sotto il target. Le quantità qui sopra sono state risolte perché il totale della giornata lo colpisca esattamente.</p>
@@ -1993,9 +2006,34 @@ function renderDieta(){
         Il piano ne scrive ${nf(t.kp)}: ${Math.abs(t.k-t.kp)} kcal di differenza, dovuti ai suoi arrotondamenti. Il vincolo che determina quanto mangi sono i macro.</p>
       <p class="tiny muted" style="margin:8px 0 0">Leve usate, in ordine: carboidrati, grassi, proteine magre. Salmone, manzo e ricotta si
         muovono solo se i grassi sfondano da soli. Uova, feta e verdure restano ferme. Arrotondamento a 5 g (10 g per latticini, 1 g per oli e frutta secca).</p>
-      <div class="backup" style="margin-top:12px">${ICO.alert}<span><b>Da chiarire col coach:</b> la tabella del piano dà riso basmati 130 g cotto = 54 g di carboidrati
-        (41,5 per 100 g) e riso integrale 100 g cotto = 38 g, mentre per il riso bianco dà 200 g cotto = 56 g (28 per 100 g). Tre convenzioni diverse per tre risi.
-        L'app usa i numeri del piano così come sono. Se la risposta è che il riso va pesato da crudo, le grammature dei primi due vanno riviste.</span></div>
+      ${residuo > 1.5 ? `<div class="backup" style="margin-top:12px">${ICO.alert}<span><b>Questa giornata non chiude esatta:</b>
+        restano ${nf(piano.f - t.f, 1)} g di grassi oltre il target. Il menù di oggi porta più grassi di quanti ne consenta il target anche con
+        salmone, manzo, ricotta, uova, frutta secca e olio già al minimo. Proteine e carboidrati sono comunque esatti.
+        Se vuoi chiuderla al grammo, cambia il salmone della cena con merluzzo.</span></div>` : ''}
+      <details class="subwrap" style="margin-top:12px">
+        <summary style="padding-left:0">Verifica della tabella del piano</summary>
+        <div style="padding:4px 0 0">
+          <p class="small" style="margin:0 0 8px">Tutte le quantità sono su <b>peso crudo</b>, come pesi tu. È indicato accanto a ogni alimento.</p>
+          <p class="small muted" style="margin:0 0 8px">Ho confrontato le 31 voci della tabella del piano coi valori reali, misurando lo scarto
+            <b>sulla porzione tipica</b>, non in percentuale. Sedici voci sono risultate corrette e sono rimaste come le scrive il piano
+            (manzo, uova, yogurt, fiocchi, feta, whey, tonno, merluzzo, bresaola, patate, legumi, banana, mela, frutti di bosco, miele, olio, avocado).
+            Quindici si discostavano di più di 2 g su un macronutriente e sono state corrette:</p>
+          <div class="tblwrap"><table class="tbl"><tbody>
+            <tr><td><b>Riso basmati, bianco, integrale</b><br><span class="tiny muted">il piano li dava su peso cotto, con tre convenzioni diverse fra loro</span></td>
+              <td class="tiny" style="text-align:right">78, 80 e 74 g di carbo per 100 g <b>da crudo</b></td></tr>
+            <tr><td><b>Avena, quinoa, pasta integrale</b><br><span class="tiny muted">il piano non dichiarava i grassi, e la pasta aveva le proteine basse di un terzo</span></td>
+              <td class="tiny" style="text-align:right">+7, +6 e +2,5 g di grassi per 100 g</td></tr>
+            <tr><td><b>Noci, mandorle, burro d’arachidi</b><br><span class="tiny muted">contati come solo grassi, ma portano parecchie proteine</span></td>
+              <td class="tiny" style="text-align:right">+15, +21 e +25 g di proteine per 100 g</td></tr>
+            <tr><td><b>Ricotta</b><br><span class="tiny muted">i grassi erano dimezzati</span></td>
+              <td class="tiny" style="text-align:right">da 4 a 8 g per 100 g</td></tr>
+            <tr><td><b>Salmone</b><br><span class="tiny muted">grassi sottostimati</span></td>
+              <td class="tiny" style="text-align:right">da 10 a 12 g per 100 g</td></tr>
+            <tr><td><b>Pollo, tacchino, sgombro, pane di segale</b></td>
+              <td class="tiny" style="text-align:right">correzioni fra 2 e 4 g sulla porzione</td></tr>
+          </tbody></table></div>
+        </div>
+      </details>
     </div>
   </div>
 
