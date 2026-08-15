@@ -5,6 +5,7 @@ di Davide: **Piano Master FINAL — Coach Level** (38 pagine, workout) e **Piano
 Alimentare Master** (29 pagine). Copre l'intero ciclo **agosto 2025 → settembre
 2026**, sei fasi.
 
+**Artifact:** <https://claude.ai/code/artifact/2c08979c-1b31-4f71-89c9-15375daa20d8>
 **Sorgente:** [`app.html`](app.html) · **Verifica:** `npm run verify fitness/ghisa-e-grammi/app.html`
 
 ## Cosa fa
