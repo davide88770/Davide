@@ -13,7 +13,7 @@ Alimentare Master** (29 pagine). Copre l'intero ciclo **agosto 2025 → settembr
 | Sezione | Contenuto |
 |---|---|
 | **Oggi** | Fase e tipo di settimana in corso, sessione del giorno, anelli dei macro, peso |
-| **Allenamento** | Serie da compilare (kg × rep × RIR), cronometro di recupero, suggerimento di carico, dischi del bilanciere, tecnica ed ernia per esercizio |
+| **Allenamento** | Serie da compilare (kg × rep × RIR), cronometro di recupero, suggerimento di carico, dischi del bilanciere, tecnica ed ernia per esercizio, superset raggruppati, serie extra e Widowmaker, seduta spostabile su qualunque giorno |
 | **Dieta** | Pasti da spuntare, sostituzioni equivalenti, fuori piano, somma pasti contro target |
 | **Progressi** | 1RM stimato per esercizio, serie per gruppo contro target, tonnellaggio settimanale, peso con media a 7 giorni, record |
 | **Piano** | Le sei fasi, settimana tipo, checklist della domenica, KPI, progressione attesa, protocolli anti-plateau, deload, ernia, recupero, imprevisti, integratori, backup |
@@ -75,6 +75,24 @@ scritta anche dentro l'app, in fondo alla sezione Piano):
   ("riduci il riso a 130 g", "togli il riso serale"). L'app usa quel menù e
   mostra i TIP.
 
+## Scelte fatte pensando alla palestra
+
+- **Cronometro ancorato all'orologio**, non a un contatore che scende: con lo
+  schermo spento iOS congela gli intervalli e un timer a decremento tornerebbe
+  indietro. Alla riapertura si riallinea da solo.
+- **Schermo tenuto acceso** durante il recupero (Screen Wake Lock), rilasciato
+  quando chiudi la sessione. Se il browser lo nega, l'app continua uguale.
+- **Serie oltre il piano**: drop set, rest-pause allungato e Widowmaker hanno
+  bisogno di una riga in più. Il pulsante `+ Serie` la aggiunge, `− Serie` la
+  toglie (e si rifiuta di cancellarne una già confermata). Nelle settimane peak
+  compare `+ Widowmaker`, che aggiunge una riga marcata **WM** con 20 rep
+  precompilate.
+- **Superset raggruppati** in un unico blocco con l'avvertenza "zero recupero
+  tra i due, 90 s dopo la coppia", invece di due esercizi scollegati.
+- **Seduta spostabile**: in un giorno di riposo c'è "Allenati lo stesso", in un
+  giorno di allenamento "Cambia seduta". Quando la seduta non è quella prevista
+  l'app lo scrive.
+
 ## Copertura dei documenti
 
 Controllo automatico sulle 34 sezioni dei due PDF: tutte rappresentate. Gli 84
@@ -94,6 +112,10 @@ al testo dei sorgenti. Le pagine 6, 13, 18, 25, 32 del workout e 4, 8, 11, 15,
 
 ## Storico
 
+- **v3** — passata sul comportamento reale in palestra: cronometro ancorato
+  all'orologio (a schermo spento sbagliava), schermo tenuto acceso, serie extra
+  e Widowmaker registrabili, superset raggruppati (la classe `.ssgroup` era
+  codice morto), seduta spostabile su qualunque giorno, girovita fra le misure.
 - **v2** — audit contro i sorgenti. Corretti due errori: i target di volume di
   petto, dorso, polpacci e core erano **inventati** (il piano non li fissa) e
   mancava il giorno di riposo del cut settimane 1-3 (2.050 kcal). Aggiunto il

@@ -657,7 +657,7 @@ SESS.cut_sab = { id:'cut_sab', nome:'Accessorio', gg:'Sabato', durata:35, opz:1,
   e('Curl manubri alternati','bicipiti',3,'10–12','+ Drop set',105,{p:1,
     cue:'Supinazione totale in cima · gomiti fermi · eccentrica 3 sec'}),
   e('Curl hammer manubri','bicipiti',2,'12','RIR 2',90,{cue:'Presa neutra · alternato · gomiti fermi'}),
-  e('Tricipite overhead pulley','tricipiti',3,'12–15','+ Rest-pause',105,{p:1,
+  e('Tricipite overhead pulley','tricipiti',3,'12–15','+ Rest-pause · Superset',0,{p:1,ss:'A',
     cue:'Gomiti fermi sopra la testa · stretch massimo'}),
   e('Tricipite push-down — presa inversa','tricipiti',2,'12–15','Superset',90,{ss:'A',
     cue:'Gomiti fermi ai fianchi · contrazione massima in basso',note:'In superset con l’overhead.'})
@@ -1232,7 +1232,14 @@ function faseDi(d){
   for(const f of FASI){ if(d >= f.da && d <= f.a) return f; }
   return d < FASI[0].da ? FASI[0] : FASI[FASI.length-1];
 }
-const sessioneDi = (d,f) => { const id = f.giorni[dalISO(d).getDay()]; return id ? SESS[id] : null; };
+function sessioneDi(d,f){
+  const L = S.sess[d];
+  if(L && L.manuale && SESS[L.sid]) return SESS[L.sid];   // seduta spostata a mano
+  const id = f.giorni[dalISO(d).getDay()];
+  return id ? SESS[id] : null;
+}
+const sedutePossibili = f => [1,2,3,4,5,6,0].map(g => f.giorni[g])
+  .filter((id,i,a) => id && a.indexOf(id) === i).map(id => SESS[id]);
 function tipoSettDi(d){
   const f = faseDi(d);
   const t = (S.sess[d] && S.sess[d].tipo) || S.ui.sett;
@@ -1252,12 +1259,14 @@ const isWM  = (ex,tipo) => !!(ex.wm && tipo === 'peak');
 function log(d){
   if(!S.sess[d]){
     const f = faseDi(d), s = sessioneDi(d,f);
-    S.sess[d] = { sid: s ? s.id : null, tipo: tipoSettDi(d), set:{}, nota:'', mod:Date.now() };
+    S.sess[d] = { sid: s ? s.id : null, tipo: tipoSettDi(d), set:{}, piu:{}, nota:'', mod:Date.now() };
   }
   return S.sess[d];
 }
 function serieLog(d, i, n){
   const L = log(d);
+  if(!L.piu) L.piu = {};
+  n += (L.piu[i] || 0);
   if(!L.set[i]) L.set[i] = [];
   while(L.set[i].length < n) L.set[i].push({ kg:'', rep:'', ok:false });
   if(L.set[i].length > n) L.set[i] = L.set[i].slice(0, Math.max(n, L.set[i].filter(x => x.ok).length));
@@ -1398,23 +1407,35 @@ function applicaTema(){
 }
 
 /* ── cronometro di recupero ─────────────────────────────────────────────── */
+/* Ancorato all'orologio, non a un contatore che scende: con lo schermo spento
+   iOS congela gli intervalli e un timer a decremento tornerebbe indietro. */
+let WAKE = null;
+async function tieniAcceso(){
+  try{ if(!WAKE && navigator.wakeLock) WAKE = await navigator.wakeLock.request('screen'); }
+  catch(err){ /* negato o non disponibile: si continua senza */ }
+}
+function lasciaSpegnere(){ if(WAKE){ try{ WAKE.release(); }catch(err){} WAKE = null; } }
+
 function avviaTimer(sec, etichetta){
   fermaTimer();
-  const barra = $('#timerbar'), tot = sec; let restano = sec;
-  barra.hidden = false; $('#timerL').textContent = etichetta || 'Recupero';
+  let tot = sec, scadenza = Date.now() + sec*1000;
+  $('#timerbar').hidden = false; $('#timerL').textContent = etichetta || 'Recupero';
   const disegna = () => {
-    const m = Math.floor(restano/60), s = restano%60;
-    $('#timerT').textContent = `${m}:${String(s).padStart(2,'0')}`;
+    const restano = Math.max(0, Math.round((scadenza - Date.now())/1000));
+    $('#timerT').textContent = `${Math.floor(restano/60)}:${String(restano%60).padStart(2,'0')}`;
     $('#timerRing').setAttribute('stroke-dashoffset', String(97.4 * (1 - restano/tot)));
+    return restano;
   };
-  disegna();
-  TIMER = { id:setInterval(() => {
-    restano--;
-    if(restano <= 0){ fermaTimer(); toast('Recupero finito — vai con la serie'); return; }
-    disegna();
-  },1000), add:() => { restano += 30; disegna(); } };
+  disegna(); tieniAcceso();
+  TIMER = { disegna,
+    id: setInterval(() => { if(disegna() <= 0){ fermaTimer(); toast('Recupero finito — vai con la serie'); } }, 500),
+    add: () => { scadenza += 30000; tot += 30; disegna(); } };
 }
 function fermaTimer(){ if(TIMER){ clearInterval(TIMER.id); TIMER = null; } $('#timerbar').hidden = true; }
+document.addEventListener('visibilitychange', () => {
+  if(document.visibilityState !== 'visible') return;
+  if(TIMER){ TIMER.disegna(); tieniAcceso(); }   // riaggancia lo schermo al rientro
+});
 $('#timerStop').onclick = fermaTimer;
 $('#timerAdd').onclick  = () => TIMER && TIMER.add();
 
@@ -1441,7 +1462,7 @@ function statoOggi(d){
   const s = SESS[L.sid]; if(!s) return { fatte:0, totali:0 };
   let fatte = 0, totali = 0;
   s.ex.forEach((ex,i) => {
-    totali += serieDi(ex, L.tipo || 'base');
+    totali += serieDi(ex, L.tipo || 'base') + ((L.piu||{})[i] || 0);
     fatte  += (L.set[i]||[]).filter(r => r.ok).length;
   });
   return { fatte, totali };
@@ -1505,9 +1526,11 @@ function renderOggi(){
             <input type="number" inputmode="decimal" step="0.1" id="pesoIn" placeholder="${peso?nf(peso.peso,1):'86,0'}" value="${(S.corpo.find(x=>x.d===d)||{}).peso ?? ''}"></label>
           <label class="fld"><span>BF stimato (%)</span>
             <input type="number" inputmode="decimal" step="0.1" id="bfIn" value="${(S.corpo.find(x=>x.d===d)||{}).bf ?? ''}"></label>
+          <label class="fld"><span>Girovita (cm)</span>
+            <input type="number" inputmode="decimal" step="0.5" id="vitaIn" value="${(S.corpo.find(x=>x.d===d)||{}).vita ?? ''}"></label>
         </div>
         <button class="btn solid" id="salvaPeso">Registra</button>
-        <p class="tiny muted" style="margin:0">A digiuno, appena sveglio. Il piano si regola sulla <b>media dei 7 giorni</b>, mai sul dato singolo.</p>
+        <p class="tiny muted" style="margin:0">A digiuno, appena sveglio. Il piano si regola sulla <b>media dei 7 giorni</b>, mai sul dato singolo: fluttua di 1-2 kg per acqua e glicogeno. Foto mensile con stessa luce, stessa ora, stessa distanza.</p>
       </div>
     </div>
   </div>
@@ -1551,15 +1574,29 @@ function renderWorkout(){
   const box = $('#view-workout');
   if(!s){
     box.innerHTML = `<div class="card"><div class="empty">${ICO.info}
-      <p><b>${esc(dataLunga(d))}</b> è un giorno di riposo in ${esc(f.split)}.</p>
-      <button class="btn" data-giorno="1">Vai al giorno dopo</button></div></div>`;
+      <p><b>${esc(dataLunga(d))}</b> è un giorno di riposo in ${esc(f.split)}. Bici zona 2 e mobilità.</p>
+      <div class="row wrapf" style="justify-content:center">
+        <button class="btn solid" data-scegli="1">Allenati lo stesso</button>
+        <button class="btn ghost" data-giorno="1">Vai al giorno dopo</button>
+      </div></div></div>`;
     return;
   }
   const L = log(d);
   L.sid = s.id; L.tipo = tipo;
   const st = statoOggi(d);
 
-  const corpo = s.ex.map((ex,i) => cardEsercizio(ex, i, d, f, tipo)).join('');
+  const blocchi = [];
+  s.ex.forEach((ex,i) => {
+    const ult = blocchi[blocchi.length-1];
+    if(ex.ss && ult && ult.ss === ex.ss) ult.items.push([ex,i]);
+    else blocchi.push({ ss:ex.ss, items:[[ex,i]] });
+  });
+  const corpo = blocchi.map(b => {
+    const dentro = b.items.map(([ex,i]) => cardEsercizio(ex, i, d, f, tipo)).join('');
+    return (b.ss && b.items.length > 1)
+      ? `<div class="ssgroup"><div class="lbl">Superset ${esc(b.ss)} · zero recupero tra i due, 90 s dopo la coppia</div>${dentro}</div>`
+      : dentro;
+  }).join('');
   const mob = MOBILITA[MOB_DI[s.id]] || [];
   const mk = MOB_DI[s.id];
   /* La tabella dello stretching (pag. 36-37) assegna all’Upper il solo
@@ -1590,7 +1627,9 @@ function renderWorkout(){
         ${f.settimane.map(t => `<button data-sett="${t}" aria-pressed="${t===tipo}">${TIPI_SETT[t]}</button>`).join('')}
       </div>
       <span class="chip line">${st.fatte}/${st.totali} serie</span>
+      <button class="btn sm ghost" data-scegli="1">Cambia seduta</button>
     </div>
+    ${(S.sess[d]||{}).manuale ? `<p class="tiny" style="margin:9px 0 0;color:var(--accent-text)">Seduta scelta a mano: il piano per oggi prevedeva ${esc((SESS[f.giorni[dalISO(d).getDay()]]||{}).nome || 'riposo')}.</p>` : ''}
     <p class="small muted" style="margin:11px 0 0">${esc(INTENSITA[f.id][tipo] || '')}</p>
     ${tipo==='deload' ? `<div class="sug" style="border-color:var(--warn);background:var(--warn-soft);color:var(--warn-text)"><b>Deload</b>Stesso carico, −40% di serie, stessa frequenza, 7 giorni. Mai saltarlo.</div>` : ''}
     ${tipo==='peak' ? `<div class="sug"><b>Widowmaker</b>Una sola serie da 20 rep con un peso da 10-12, su un isolamento sicuro (sissy squat, laterali, curl, leg curl). Ultima serie della sessione, mai sui compound.</div>` : ''}
@@ -1636,7 +1675,8 @@ function renderWorkout(){
 }
 
 function cardEsercizio(ex, i, d, f, tipo){
-  const n = serieDi(ex,tipo), righe = serieLog(d,i,n);
+  const base = serieDi(ex,tipo), extra = (log(d).piu||{})[i] || 0;
+  const n = base + extra, righe = serieLog(d,i,base);
   const fatte = righe.filter(r => r.ok).length;
   const sug = suggerimento(ex, ex.n, d);
   const ult = ultimaVolta(ex.n, d);
@@ -1662,7 +1702,7 @@ function cardEsercizio(ex, i, d, f, tipo){
 
   const setRighe = righe.map((r,j) => `
     <div class="setrow ${r.ok?'ok':''}">
-      <span class="sn">${j+1}</span>
+      <span class="sn">${r.wm ? 'WM' : j+1}</span>
       <input type="number" inputmode="decimal" step="0.5" placeholder="kg" aria-label="Serie ${j+1}, carico in kg"
              data-i="${i}" data-s="${j}" data-k="kg" value="${r.kg}">
       <input type="number" inputmode="numeric" step="1" placeholder="${ex.tempo?'sec':'rep'}" aria-label="Serie ${j+1}, ripetizioni"
@@ -1683,10 +1723,14 @@ function cardEsercizio(ex, i, d, f, tipo){
       <div class="sethead"><span>Serie</span><span>Carico</span><span>${ex.tempo?'Secondi':'Rep'}</span><span>RIR</span><span></span></div>
       ${setRighe}
       ${dp ? striscia(dp, kgAttuale) : ''}
-      <div class="row wrapf" style="margin-top:11px">
-        <button class="btn sm" data-rec="${ex.rec||90}">Recupero ${ex.rec>=60?Math.round(ex.rec/60)+' min':(ex.rec||90)+'s'}</button>
+      <div class="row wrapf noprint" style="margin-top:11px">
+        ${ex.rec ? `<button class="btn sm" data-rec="${ex.rec}">Recupero ${ex.rec>=60?Math.round(ex.rec/60)+' min':ex.rec+'s'}</button>` : ''}
+        <button class="btn sm ghost" data-piu="${i}:1">${ICO.piu} Serie</button>
+        ${extra>0 ? `<button class="btn sm ghost" data-piu="${i}:-1">− Serie</button>` : ''}
+        ${isWM(ex,tipo) ? `<button class="btn sm ghost" data-wm="${i}" style="color:var(--warn-text)">+ Widowmaker</button>` : ''}
         ${best.rm>0 ? `<span class="pr">${ICO.trofeo} 1RM ${nf(best.rm,1)} kg</span>` : ''}
       </div>
+      ${extra>0 ? `<p class="tiny muted" style="margin:6px 0 0">${extra} serie oltre il piano: drop set, rest-pause allungato o Widowmaker.</p>` : ''}
       ${ult ? `<div class="lastnote"><b>Ultima volta ${dataCorta(ult.d)}</b>
         <span class="mono">${ult.righe.map(r => `${nf(r.kg,1)}×${r.rep}`).join('  ·  ')}</span></div>` : ''}
       ${sug ? `<div class="sug"><b>${sug.su?'Sali di carico':'Progressione'}</b>${esc(sug.testo)}</div>` : ''}
@@ -2241,6 +2285,51 @@ document.addEventListener('click', ev => {
 
   const rc = el('[data-rec]'); if(rc){ avviaTimer(+rc.dataset.rec, 'Recupero'); return; }
 
+  const pu = el('[data-piu]');
+  if(pu){
+    const [i,dl] = pu.dataset.piu.split(':').map(Number);
+    const L = log(S.ui.data); if(!L.piu) L.piu = {};
+    const ora = L.piu[i]||0;
+    if(dl < 0){
+      const righe = L.set[i]||[];
+      if(righe.length && righe[righe.length-1].ok){ toast('Quella serie è già confermata: annullala prima.'); return; }
+      L.piu[i] = Math.max(0, ora-1); righe.pop();
+    } else L.piu[i] = ora + 1;
+    L.mod = Date.now(); salva(); renderWorkout(); return;
+  }
+  const wm = el('[data-wm]');
+  if(wm){
+    const i = +wm.dataset.wm, L = log(S.ui.data); if(!L.piu) L.piu = {};
+    L.piu[i] = (L.piu[i]||0) + 1;
+    if(!L.set[i]) L.set[i] = [];
+    L.set[i].push({ kg:'', rep:'20', rir:'0', ok:false, wm:true });
+    L.mod = Date.now(); salva(); renderWorkout();
+    toast('Widowmaker: 20 rep con un peso da 10-12, ultima serie della sessione.');
+    return;
+  }
+  if(el('[data-scegli]')){
+    const f = faseDi(S.ui.data), prevista = f.giorni[dalISO(S.ui.data).getDay()];
+    apriSheet('Quale seduta?', `<div class="ed">
+      ${sedutePossibili(f).map(x => `<button class="edrow" data-sed="${x.id}" style="width:100%;text-align:left;cursor:pointer">
+        <div class="tx"><b>${esc(x.nome)}${x.id===prevista?' · prevista oggi':''}</b>
+          <span>${x.gg} · ${x.ex.length} esercizi · ~${x.durata} min</span></div></button>`).join('')}
+      ${prevista ? `<button class="btn ghost wide" data-sed="">Torna alla seduta prevista</button>` : ''}
+    </div>`, sh => {
+      sh.querySelectorAll('[data-sed]').forEach(b => b.onclick = () => {
+        const id = b.dataset.sed, L = log(S.ui.data);
+        if(!id){
+          L.manuale = false;
+          const vuota = !Object.values(L.set||{}).some(r => r.some(x => x.ok));
+          if(vuota && !sessioneDi(S.ui.data, faseDi(S.ui.data))) delete S.sess[S.ui.data];
+        }
+        else if(L.sid !== id){ L.sid = id; L.manuale = true; L.set = {}; L.piu = {}; }
+        else L.manuale = true;
+        L.mod = Date.now(); APERTI.clear(); salva(); chiudiSheet(); vai('workout');
+      });
+    });
+    return;
+  }
+
   const tc = el('[data-tec]');
   if(tc){
     const k = tc.dataset.tec, [tit,txt] = TECNICHE[k];
@@ -2307,7 +2396,7 @@ document.addEventListener('click', ev => {
     const p = +$('#pesoIn').value, bf = +$('#bfIn').value;
     if(!p){ toast('Scrivi il peso in kg'); return; }
     const d = S.ui.data, i = S.corpo.findIndex(x => x.d === d);
-    const rec = { d, peso:p, bf:bf||null, mod:Date.now() };
+    const rec = { d, peso:p, bf:bf||null, vita:+$('#vitaIn').value||null, mod:Date.now() };
     if(i >= 0) S.corpo[i] = rec; else S.corpo.push(rec);
     S.corpo.sort((a,b) => a.d < b.d ? -1 : 1);
     salva(); toast('Peso registrato'); render(); return;
@@ -2317,7 +2406,7 @@ document.addEventListener('click', ev => {
     const L = log(S.ui.data); L.fine = Date.now(); L.mod = Date.now(); salva();
     const st = statoOggi(S.ui.data);
     toast(st.fatte >= st.totali ? 'Sessione completa. Stretching 8 min.' : `Chiusa a ${st.fatte} serie su ${st.totali}.`);
-    fermaTimer(); return;
+    fermaTimer(); lasciaSpegnere(); return;
   }
   if(el('#stampaSess')){ window.print(); return; }
 
