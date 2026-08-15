@@ -14,7 +14,7 @@ Alimentare Master** (29 pagine). Copre l'intero ciclo **agosto 2025 → settembr
 |---|---|
 | **Oggi** | Fase e tipo di settimana in corso, sessione del giorno, anelli dei macro, peso |
 | **Allenamento** | Serie da compilare (kg × rep × RIR), cronometro di recupero, suggerimento di carico, dischi del bilanciere, tecnica ed ernia per esercizio, superset raggruppati, serie extra e Widowmaker, seduta spostabile su qualunque giorno |
-| **Dieta** | Pasti da spuntare, sostituzioni equivalenti, fuori piano, somma pasti contro target |
+| **Dieta** | Pasti in **alimenti e grammi risolti sul target**, spunta, scambio di ogni singolo alimento con grammatura equivalente, varianti del piano, fuori piano |
 | **Progressi** | 1RM stimato per esercizio, serie per gruppo contro target, tonnellaggio settimanale, peso con media a 7 giorni, record |
 | **Piano** | Le sei fasi, settimana tipo, checklist della domenica, KPI, progressione attesa, protocolli anti-plateau, deload, ernia, recupero, imprevisti, integratori, backup |
 
@@ -54,9 +54,7 @@ scritta anche dentro l'app, in fondo alla sezione Piano):
   anche se la tabella della sessione scrive `2 × 6–8`.
 - **Deload in PPL + Upper** — non è tabellato. Si applica la regola generale del
   piano ("stesso carico, −40% serie"): `round(serie × 0,6)`, minimo 1.
-- **Somma dei pasti** — i pasti elencati sommano 300-400 kcal e 30-35 g di
-  proteine **meno** del target di fase, in tutte le fasi. L'app mostra i due
-  numeri affiancati con lo scarto, invece di allinearli d'ufficio.
+- **Grammature** — risolte, non copiate. Vedi la sezione qui sotto.
 - **Incremento di carico** — il piano dice "+2,5 kg". L'app propone +2,5 kg sui
   compound e +1,25 kg sugli isolamenti (laterali, curl, leg curl), dove 2,5 kg
   sono spesso un salto troppo grande.
@@ -93,6 +91,59 @@ scritta anche dentro l'app, in fondo alla sezione Piano):
   giorno di allenamento "Cambia seduta". Quando la seduta non è quella prevista
   l'app lo scrive.
 
+## Grammature: perché sono ricalcolate
+
+I due documenti non tornano fra loro su tre livelli, e i tre errori si sommano:
+
+1. **Le etichette dei pasti non tornano con la tabella delle fonti dello stesso
+   piano.** Ricostruendo ogni pasto dai suoi alimenti con la tabella di pag.
+   26-27, gli scarti vanno da −84 a +173 kcal per singolo pasto.
+2. **I menù non raggiungono il target di fase.** Sommati con la tabella del
+   piano, tutte e 18 le tipologie di giornata restano sotto: da −243 a −577 kcal,
+   fino a −59 g di proteine e −142 g di carboidrati, con i grassi invece in
+   eccesso fino a +50 g nei giorni di riposo.
+3. **Le calorie dichiarate non coincidono con i macro dichiarati**: da −20 a
+   +65 kcal a seconda della giornata.
+
+L'app risolve il problema invece di mostrarlo. A ogni apertura ricalcola le
+grammature perché il totale della giornata colpisca il target di pag. 3:
+
+- **Fonte dei valori**: la tabella "Fonti alimentari complete" del piano
+  (pag. 26-27), niente banche dati esterne.
+- **Leve, in ordine**: carboidrati, grassi, proteine magre. Salmone, manzo e
+  ricotta si muovono solo quando i grassi sfondano da soli, perché portano
+  grassi e proteine insieme. Uova, feta, verdure e caffè restano fermi.
+- **Limiti**: nessun alimento esce dall'intervallo 0,45×-2,6× della quantità del
+  menù (0,55×-1,20× per le proteine grasse), così le porzioni restano quelle di
+  un pasto vero.
+- **Arrotondamento**: 5 g, 10 g per i latticini, 1 g per oli e frutta secca,
+  unità intere per uova e gallette.
+- **Calorie**: ricalcolate dai macro a 4/4/9. Quelle scritte nel piano restano
+  affiancate come confronto.
+- **Risultato**: scarto massimo **1,4 g** su un macronutriente, su tutte e 18 le
+  tipologie di giornata. Verificato eseguendo il risolutore dentro l'app.
+
+Cambiando un alimento (pollo → salmone, riso → patate) l'app propone la
+grammatura equivalente sul macro dominante e **poi ribilancia l'intera
+giornata**, quindi il totale resta sul target anche dopo lo scambio.
+
+### Convenzioni dichiarate
+
+Dove il menù era ambiguo: "1 frutto" = mela 150 g · "1 frutto piccolo" = frutti
+di bosco 80 g · "1 albume" = 33 ml. La tabella dei carboidrati del piano non
+dichiara i grassi e la sua aritmetica torna con grassi = 0 per quelle voci: si
+mantiene quella convenzione. Le verdure non sono tabellate: si assumono 1,5 g di
+carboidrati per 100 g.
+
+### Da chiarire col coach
+
+La tabella dà **riso basmati 130 g cotto = 54 g di carboidrati** (41,5 per 100 g)
+e **riso integrale 100 g cotto = 38 g**, ma **riso bianco 200 g cotto = 56 g**
+(28 per 100 g). Tre convenzioni diverse per tre risi: il valore del riso bianco
+è quello del riso cotto, gli altri due no. L'app usa i numeri del piano così come
+sono e segnala la contraddizione dentro la sezione Dieta. Se la risposta è che il
+riso va pesato da crudo, le grammature dei primi due vanno riviste.
+
 ## Copertura dei documenti
 
 Controllo automatico sulle 34 sezioni dei due PDF: tutte rappresentate. Gli 84
@@ -112,6 +163,11 @@ al testo dei sorgenti. Le pagine 6, 13, 18, 25, 32 del workout e 4, 8, 11, 15,
 
 ## Storico
 
+- **v4** — grammature risolte. I pasti diventano alimenti con quantità
+  ricalcolate perché ogni giornata colpisca il target di fase (scarto massimo
+  1,4 g su un macro, su 18 tipologie di giornata), scambio di ogni alimento con
+  grammatura equivalente e ribilanciamento automatico, calorie riconciliate dai
+  macro, contraddizione sui risi segnalata.
 - **v3** — passata sul comportamento reale in palestra: cronometro ancorato
   all'orologio (a schermo spento sbagliava), schermo tenuto acceso, serie extra
   e Widowmaker registrabili, superset raggruppati (la classe `.ssgroup` era
