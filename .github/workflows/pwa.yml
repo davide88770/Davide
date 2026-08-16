@@ -1,14 +1,12 @@
 name: Pubblica la PWA
 
-# Ogni push sul ramo principale ricostruisce la versione installabile
-# dell'app a partire dal sorgente dell'Artifact e la pubblica su GitHub Pages.
-# Da abilitare una volta sola: Settings → Pages → Source: GitHub Actions.
+# Ricostruisce la versione installabile dell'app dal sorgente dell'Artifact e
+# la pubblica sul ramo gh-pages, da cui GitHub Pages serve il sito.
+# Nessuna impostazione da toccare: Pages si e' attivato con la creazione del
+# ramo, e questo workflow si limita ad aggiornarne il contenuto.
 
 on:
   push:
-    # Il ramo predefinito del repo e' quello della prima sessione: Pages
-    # pubblica solo da li'. 'main' e' elencato per il giorno in cui il
-    # predefinito cambiera'.
     branches: [claude/artifact-code-session-g1s37q, main]
     paths:
       - 'fitness/ghisa-e-grammi/app.html'
@@ -18,37 +16,52 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
-  group: pages
+  group: pubblica-pwa
   cancel-in-progress: true
 
 jobs:
-  build:
+  pubblica:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
+
       - name: Costruisci la PWA
         run: node tools/build-pwa.mjs
-      - uses: actions/configure-pages@v5
-        with:
-          # attiva Pages al primo giro, senza passare dalle impostazioni
-          enablement: true
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: pwa
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
-    steps:
-      - id: deploy
-        uses: actions/deploy-pages@v4
+
+      - name: Controlla che sia una pagina sensata
+        run: |
+          test -s pwa/index.html
+          test -s pwa/manifest.webmanifest
+          test -s pwa/sw.js
+          grep -q 'Ghisa' pwa/index.html
+          grep -q 'serviceWorker' pwa/index.html
+          echo "index.html $(wc -c < pwa/index.html) byte"
+
+      - name: Aggiorna il ramo gh-pages
+        run: |
+          touch pwa/.nojekyll
+          cd pwa
+          git init -q
+          git checkout -qb gh-pages
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -q -m "Pubblica la versione installabile
+
+          Generato da tools/build-pwa.mjs a partire da
+          fitness/ghisa-e-grammi/app.html, commit ${GITHUB_SHA}.
+          Non modificare a mano: si rigenera a ogni push."
+          git push -q --force \
+            "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Dove sta
+        run: echo "https://${GITHUB_REPOSITORY_OWNER}.github.io/${GITHUB_REPOSITORY#*/}/" >> $GITHUB_STEP_SUMMARY
