@@ -2,9 +2,11 @@
   "name": "roadbook",
   "private": true,
   "type": "module",
-  "description": "Road book di viaggio pubblicati come Artifact",
+  "description": "Road book di viaggio e app di allenamento pubblicati come Artifact",
   "scripts": {
-    "verify": "node tools/verify.mjs"
+    "verify": "node tools/verify.mjs",
+    "build:pwa": "node tools/build-pwa.mjs",
+    "build:icone": "node tools/build-icone.mjs"
   },
   "devDependencies": {
     "playwright-core": "^1.49.0"

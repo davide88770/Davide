@@ -10,9 +10,19 @@ Rispondi e scrivi i deliverable **in italiano**.
 ```
 viaggi/<anno-mese-slug>/roadbook.html   sorgente dell'Artifact
 viaggi/<anno-mese-slug>/README.md       sintesi, vincoli veri, storico versioni
+fitness/<slug>/app.html                 sorgente dell'Artifact
+fitness/<slug>/README.md                sintesi, scelte di trascrizione, storico
+fitness/<slug>/verify.json              selettori e giro delle viste per la verifica
 tools/verify.mjs                        verifica di rendering obbligatoria
 out/                                    screenshot e PDF generati (non versionato)
 ```
+
+Il repo è nato per i road book. Da agosto 2026 ospita anche **app di
+allenamento e alimentazione** (`fitness/`): stesso standard tecnico — HTML
+autonomo, due temi, CSS di stampa, verifica di rendering — ma sono strumenti da
+usare tutti i giorni, non documenti da leggere. Lì contano l'inserimento veloce
+da telefono, i totali ricalcolati a ogni tocco e l'onestà su cosa i piani di
+partenza non dicono.
 
 ## Riferimento
 
