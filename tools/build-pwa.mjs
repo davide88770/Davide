@@ -85,21 +85,31 @@ function costruisci(id) {
   // Il guscio installato usa i token dell'app che lo ospita, con un ripiego
   // per ogni nome che quella app potrebbe non definire.
   const coda = `
-<div class="agg" id="agg" hidden role="status">
-  <span>Nuova versione pronta</span>
-  <button class="btn sm" id="aggOra">Ricarica</button>
+<div class="agg" id="agg" hidden role="status" aria-live="polite">
+  <span class="agg-t">Nuova versione</span>
+  <button type="button" class="agg-b" id="aggOra">Aggiorna</button>
+  <button type="button" class="agg-x" id="aggNo" aria-label="Non ora">&times;</button>
 </div>
 <style>
-.agg{position:fixed;left:50%;transform:translateX(-50%);z-index:90;
-  bottom:calc(var(--tab-h,60px) + 22px + env(safe-area-inset-bottom));
-  display:flex;align-items:center;gap:12px;padding:9px 12px 9px 17px;border-radius:999px;
+/* Avviso di aggiornamento: compare solo quando c'è davvero una versione
+   nuova, sta sopra la barra delle schede e si può chiudere. Colori presi dai
+   token dell'app che lo ospita, con ripiego per quelli che potrebbe non avere. */
+.agg{position:fixed;left:12px;right:12px;z-index:90;
+  bottom:calc(var(--tab-h,60px) + 14px + env(safe-area-inset-bottom));
+  display:flex;align-items:center;gap:8px;padding:9px 9px 9px 16px;border-radius:15px;
   background:var(--solid,var(--ink));color:var(--on-solid,var(--surface));
-  box-shadow:var(--shadow-2,var(--shadow));font-size:14px}
-/* background esplicito: senza, il bottone eredita la superficie chiara
-   dell'app e il testo chiaro del banner scuro ci sparisce sopra. */
-.agg .btn{background:none;border-color:color-mix(in srgb,var(--on-solid,var(--surface)) 35%,transparent);
-  color:var(--on-solid,var(--surface))}
-@media (min-width:900px){.agg{bottom:26px}}
+  box-shadow:var(--shadow-2,var(--shadow));font-size:14.5px;line-height:1.3;
+  animation:agg-su .3s cubic-bezier(.2,.9,.3,1)}
+@keyframes agg-su{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.agg-t{flex:1;min-width:0}
+.agg-b{flex:0 0 auto;min-height:38px;padding:0 16px;border:0;border-radius:10px;cursor:pointer;
+  background:var(--on-solid,var(--surface));color:var(--solid,var(--ink));
+  font-family:var(--display);font-size:13px;letter-spacing:.09em;text-transform:uppercase;font-weight:700}
+.agg-x{flex:0 0 auto;width:34px;height:38px;border:0;background:none;cursor:pointer;
+  color:var(--on-solid,var(--surface));opacity:.6;font-size:21px;line-height:1;padding:0}
+.agg-x:hover{opacity:1}
+@media (prefers-reduced-motion:reduce){.agg{animation:none}}
+@media (min-width:900px){.agg{left:auto;right:24px;max-width:430px;bottom:24px}}
 .installa{margin:0 0 16px;display:flex;gap:11px;align-items:flex-start;padding:13px 15px;
   border-radius:var(--r,12px);background:var(--accent-soft);color:var(--accent-text,var(--accent));
   font-size:13.5px;line-height:1.45}
@@ -112,24 +122,48 @@ function costruisci(id) {
 (function(){
   "use strict";
   // ── service worker: la pagina si apre anche senza campo ──
+  function avvisa(nuovo){
+    var box = document.getElementById('agg');
+    if (!box || !box.hidden) return;
+    box.hidden = false;
+    document.getElementById('aggOra').onclick = function(){
+      nuovo.postMessage('attiva');
+      nuovo.addEventListener('statechange', function(){
+        if (nuovo.state === 'activated') location.reload();
+      });
+    };
+    document.getElementById('aggNo').onclick = function(){ box.hidden = true; };
+  }
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function(){
       navigator.serviceWorker.register('sw.js').then(function(reg){
-        reg.addEventListener('updatefound', function(){
-          var nuovo = reg.installing;
-          if (!nuovo) return;
-          nuovo.addEventListener('statechange', function(){
-            if (nuovo.state === 'installed' && navigator.serviceWorker.controller) {
-              var box = document.getElementById('agg');
-              box.hidden = false;
-              document.getElementById('aggOra').onclick = function(){
-                nuovo.postMessage('attiva');
-                nuovo.addEventListener('statechange', function(){
-                  if (nuovo.state === 'activated') location.reload();
-                });
-              };
-            }
-          });
+        // Il browser fa il suo controllo di aggiornamento gia' al caricamento,
+        // quindi quando arriviamo qui la copia nuova puo' essere gia' in
+        // installazione o gia' in attesa: se guardassimo solo 'updatefound'
+        // ce la perderemmo. Vanno coperti tutti e tre gli stati.
+        var guarda = function(sw){
+          if (!sw) return;
+          // reg.active e' nullo solo alla PRIMA installazione: li' non c'e'
+          // niente da aggiornare e l'avviso non deve comparire. Guardare
+          // navigator.serviceWorker.controller non basterebbe, perche' il
+          // service worker dell'app alla radice ha scope su tutto il dominio
+          // e controlla gia' questa pagina prima che la sua si registri.
+          var controlla = function(){ if (sw.state === 'installed' && reg.active) avvisa(sw); };
+          if (sw.state === 'installed') controlla();
+          else sw.addEventListener('statechange', controlla);
+        };
+        guarda(reg.waiting);
+        guarda(reg.installing);
+        reg.addEventListener('updatefound', function(){ guarda(reg.installing); });
+
+        // Con una sola scheda aperta l'aggiornamento si attiva da solo alla
+        // riapertura: l'avviso serve quando l'app resta aperta per ore, che e'
+        // il caso normale in viaggio. Si controlla al ritorno in primo piano,
+        // e solo se c'e' rete.
+        document.addEventListener('visibilitychange', function(){
+          if (document.visibilityState === 'visible' && navigator.onLine !== false) {
+            reg.update().catch(function(){});
+          }
         });
       }).catch(function(){ /* senza service worker l'app funziona lo stesso */ });
     });

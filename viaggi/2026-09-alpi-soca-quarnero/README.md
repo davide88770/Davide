@@ -124,6 +124,34 @@ codice:
 L'icona è una rosa dei venti a trentadue tacche nella palette del road book,
 con il nord in teal: `pwa/viaggio/icone/icona.svg`.
 
+`npm run prova:pwa` mette alla prova tutto questo per davvero: serve le due
+app da un server locale, le installa, stacca la rete, verifica che si riaprano
+entrambe con le scelte salvate, e controlla che l'avviso di aggiornamento
+compaia **solo** quando c'è una versione nuova.
+
+### L'avviso «Nuova versione» compariva a sproposito
+
+Alla prima apertura di `/viaggio/` su un telefono che aveva già aperto l'app
+alla radice, spuntava il banner di aggiornamento senza motivo. La causa è la
+stessa convivenza: il service worker della radice ha scope su tutto il
+dominio, quindi `navigator.serviceWorker.controller` era **già** valorizzato
+prima che quello del viaggio si registrasse, e il codice lo scambiava per un
+aggiornamento in corso. La guardia giusta è `registration.active`, che è nullo
+solo alla prima installazione.
+
+Correggendolo è emerso il rovescio: con una scheda sola l'aggiornamento si
+attiva da solo alla riapertura, quindi il banner non compariva mai. Serve
+davvero solo quando l'app resta aperta per ore — il caso normale in viaggio —
+e per quello ora c'è un controllo al ritorno in primo piano, solo con rete.
+
+### Icone disegnate, non glifi
+
+La barra delle schede e i titoli di «Pratico» usavano simboli da font
+(`⛴ ⚠ ✚ ☼ ◉ ⚑`). Su iOS buona parte di quei caratteri viene resa come **emoji
+a colori**: pesi e colori diversi in una barra che dovrebbe essere monocroma.
+Ora le cinque icone sono SVG disegnati con lo stesso tratto, i titoli di
+sezione non hanno più icona, e il segno di apertura è un chevron in CSS.
+
 ### Numeri, ricalcolati a codice
 
 Il totale non è più una tabella scritta a mano: si calcola sommando le

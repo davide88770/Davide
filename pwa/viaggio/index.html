@@ -111,8 +111,11 @@ main{padding:14px 14px calc(var(--tab-h) + 30px + env(safe-area-inset-bottom));
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
   font-family:var(--display);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
   padding:0 2px;position:relative}
-.tab i{font-style:normal;font-size:19px;line-height:1}
+.tab svg{width:23px;height:23px;display:block;fill:none;stroke:currentColor;stroke-width:1.7;
+  stroke-linecap:round;stroke-linejoin:round}
+.tab svg .f{fill:currentColor;stroke:none}
 .tab[aria-selected="true"]{color:var(--accent)}
+.tab[aria-selected="true"] svg{stroke-width:2}
 .tab[aria-selected="true"]::before{content:"";position:absolute;top:0;left:22%;right:22%;
   height:2.5px;border-radius:0 0 3px 3px;background:var(--accent)}
 .tab:focus-visible{outline:2px solid var(--accent);outline-offset:-4px;border-radius:8px}
@@ -177,13 +180,15 @@ a.link{color:var(--accent);text-decoration:none;border-bottom:1px solid color-mi
 .hero .date{font-family:var(--display);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
 .hero h2{font-size:22px;margin:5px 0 8px;text-transform:none;letter-spacing:.01em;line-height:1.15}
 .countdown{display:flex;align-items:baseline;gap:9px;margin:2px 0 6px}
-.countdown b{font-size:52px;color:var(--accent);font-family:var(--display);font-variant-numeric:tabular-nums;line-height:.9}
-.countdown span{font-family:var(--display);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+.countdown b{font-size:46px;color:var(--accent);font-family:var(--display);font-variant-numeric:tabular-nums;line-height:.9}
+.countdown span{font-family:var(--display);font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-3);white-space:nowrap}
 
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);
   border-top:1px solid var(--line)}
 .stats .s{background:var(--surface);padding:9px 8px;text-align:center}
 .stats .s b{display:block;font-family:var(--display);font-size:19px;line-height:1.15;font-variant-numeric:tabular-nums}
+.stats .s b.sm{font-size:16px;letter-spacing:.02em}
 .stats .s span{font-family:var(--display);font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3)}
 
 .hour{display:flex;gap:12px;align-items:flex-start;background:var(--accent-soft);
@@ -295,15 +300,32 @@ tbody tr:last-child td{border-bottom:0}
 /* ── pratico ────────────────────────────────────────────────────────────── */
 details.sec{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
   box-shadow:var(--shadow);margin-bottom:10px;overflow:hidden}
-details.sec > summary{list-style:none;cursor:pointer;padding:14px;display:flex;align-items:center;gap:10px;
-  font-family:var(--display);font-size:15px;letter-spacing:.06em;text-transform:uppercase}
+details.sec > summary{list-style:none;cursor:pointer;padding:15px 14px;display:flex;align-items:center;gap:10px;
+  font-family:var(--display);font-size:15px;letter-spacing:.06em;text-transform:uppercase;min-height:52px}
 details.sec > summary::-webkit-details-marker{display:none}
-details.sec > summary i{font-style:normal;font-size:18px;line-height:1}
-details.sec > summary .sp{flex:1}
-details.sec > summary::after{content:"＋";color:var(--ink-3);font-size:15px}
-details.sec[open] > summary::after{content:"−"}
+details.sec > summary .sp{flex:1;min-width:0}
+/* Il segno di apertura è disegnato, non un glifo: i simboli matematici
+   cambiano larghezza da un sistema all'altro e ballano fra + e −. */
+details.sec > summary::after{content:"";flex:0 0 auto;width:11px;height:11px;
+  border-right:2px solid var(--ink-3);border-bottom:2px solid var(--ink-3);
+  transform:rotate(45deg) translate(-2px,-2px);transition:transform .18s ease}
+details.sec[open] > summary::after{transform:rotate(225deg) translate(-2px,-2px)}
+@media (prefers-reduced-motion:reduce){details.sec > summary::after{transition:none}}
 .secbody{padding:0 14px 15px;border-top:1px solid var(--line);padding-top:13px}
 
+/* Budget: a 390 px una tabella a tre colonne manda a capo ogni dettaglio,
+   quindi la voce e la cifra stanno sulla prima riga e la spiegazione sotto. */
+.bud{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--surface)}
+.bhead{display:flex;justify-content:space-between;gap:10px;padding:8px 13px;background:var(--sunk);
+  font-family:var(--display);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+.brow{display:grid;grid-template-columns:1fr auto;gap:2px 12px;padding:10px 13px;border-top:1px solid var(--line)}
+.brow .bn{font-weight:600}
+.brow .bv{font-family:var(--display);font-size:15px;font-variant-numeric:tabular-nums;white-space:nowrap;
+  text-align:right;align-self:start}
+.brow .bd{grid-column:1/-1;color:var(--ink-2);font-size:13px;line-height:1.4}
+.brow.tot{background:var(--sunk);border-top:2px solid var(--line-strong)}
+.brow.tot .bn{font-family:var(--display);letter-spacing:.06em;text-transform:uppercase;font-size:14px;align-self:center}
+.brow.tot .bv{font-size:18px;color:var(--accent)}
 .search{width:100%;min-height:44px;border:1px solid var(--line);border-radius:10px;
   background:var(--surface-2);color:var(--ink);font:inherit;padding:0 13px;margin-bottom:10px}
 .search:focus{outline:2px solid var(--accent);outline-offset:-1px}
@@ -328,7 +350,7 @@ tr[hidden]{display:none}
 label.ck{display:flex;gap:11px;align-items:flex-start;padding:9px 2px;border-top:1px solid var(--line);
   cursor:pointer;font-size:14.5px;line-height:1.4}
 label.ck:first-of-type{border-top:0}
-label.ck input{flex:0 0 auto;width:21px;height:21px;margin:1px 0 0;accent-color:var(--accent)}
+label.ck input{flex:0 0 auto;width:24px;height:24px;margin:0;accent-color:var(--accent)}
 label.ck input:checked + span{color:var(--ink-3);text-decoration:line-through}
 .prog{height:5px;background:var(--sunk);border-radius:3px;overflow:hidden;margin-bottom:4px}
 .prog i{display:block;height:100%;background:var(--good);border-radius:3px}
@@ -340,7 +362,9 @@ label.ck input:checked + span{color:var(--ink-3);text-decoration:line-through}
 .modal .box{background:var(--surface);border-radius:16px;padding:26px 22px;max-width:420px;width:100%;
   text-align:center;box-shadow:var(--shadow)}
 .modal .it{font-family:var(--display);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
-.modal .l{font-family:var(--display);font-size:32px;line-height:1.2;margin-top:14px}
+.modal .mrow{display:flex;gap:11px;align-items:baseline;justify-content:center;margin-top:15px}
+.modal .mfl{font-size:17px;line-height:1}
+.modal .l{font-family:var(--display);font-size:32px;line-height:1.2;text-wrap:balance}
 .modal .l.sl{color:var(--accent)}
 .modal .l.hr{color:var(--signal)}
 .modal .f{font-family:var(--display);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
@@ -368,7 +392,7 @@ label.ck input:checked + span{color:var(--ink-3);text-decoration:line-through}
      quello che è davvero piccolo. */
   .card,details.day,details.sec,.hero,.tablewrap,.dbody,.secbody{box-shadow:none;
     break-inside:auto;border-color:#bbb;margin-bottom:8px}
-  .mapbox,.note,.sos a,.hour,tr{break-inside:avoid}
+  .mapbox,.note,.sos a,.hour,tr,.brow{break-inside:avoid}
   details.day > summary,details.sec > summary{cursor:auto;break-after:avoid;break-inside:avoid}
   details.sec > summary::after{display:none}
   h4,h3{break-after:avoid}
@@ -406,19 +430,26 @@ label.ck input:checked + span{color:var(--ink-3);text-decoration:line-through}
   dove il campo sparisce — Plitvice, Vršič, Velebit, interno di Cres — tieni a portata il PDF scaricato.</p>
 </main>
 
+<!-- Icone disegnate, non glifi di font: su iOS meta' dei simboli geometrici e
+     dei pittogrammi viene resa come emoji a colori, e la barra si sfascia. -->
 <nav class="tabs" role="tablist" aria-label="Sezioni">
-  <button class="tab" role="tab" id="tab-oggi"    aria-selected="true"  data-view="oggi"><i>◉</i>Oggi</button>
-  <button class="tab" role="tab" id="tab-giorni"  aria-selected="false" data-view="giorni"><i>≡</i>Giorni</button>
-  <button class="tab" role="tab" id="tab-mappa"   aria-selected="false" data-view="mappa"><i>◈</i>Mappa</button>
-  <button class="tab" role="tab" id="tab-pratico" aria-selected="false" data-view="pratico"><i>⚑</i>Pratico</button>
-  <button class="tab" role="tab" id="tab-valigia" aria-selected="false" data-view="valigia"><i>◍</i>Valigia</button>
+  <button class="tab" role="tab" id="tab-oggi" aria-selected="true" data-view="oggi">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.1"/><path d="M12 2.4v2.1M12 19.5v2.1M2.4 12h2.1M19.5 12h2.1M5.2 5.2l1.5 1.5M17.3 17.3l1.5 1.5M18.8 5.2l-1.5 1.5M6.7 17.3l-1.5 1.5"/></svg>Oggi</button>
+  <button class="tab" role="tab" id="tab-giorni" aria-selected="false" data-view="giorni">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="4.8" cy="6.4" r="1.5" class="f"/><circle cx="4.8" cy="12" r="1.5" class="f"/><circle cx="4.8" cy="17.6" r="1.5" class="f"/><path d="M9.6 6.4h9.6M9.6 12h9.6M9.6 17.6h9.6"/></svg>Giorni</button>
+  <button class="tab" role="tab" id="tab-mappa" aria-selected="false" data-view="mappa">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4.2 3.7 6.3v13.5L9 17.7l6 2.1 5.3-2.1V4.2L15 6.3z"/><path d="M9 4.2v13.5M15 6.3v13.5"/></svg>Mappa</button>
+  <button class="tab" role="tab" id="tab-pratico" aria-selected="false" data-view="pratico">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6.8C10.4 5.3 8.3 4.7 4.8 4.7v13.1c3.5 0 5.6.6 7.2 2.1 1.6-1.5 3.7-2.1 7.2-2.1V4.7c-3.5 0-5.6.6-7.2 2.1z"/><path d="M12 6.8v13.1"/></svg>Pratico</button>
+  <button class="tab" role="tab" id="tab-valigia" aria-selected="false" data-view="valigia">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.2" y="7.5" width="17.6" height="12.3" rx="2.3"/><path d="M8.7 7.5V5.4c0-.9.7-1.6 1.6-1.6h3.4c.9 0 1.6.7 1.6 1.6v2.1M3.2 13.3h17.6"/></svg>Valigia</button>
 </nav>
 
 <div class="modal" id="modal" hidden>
   <div class="box">
     <div class="it" id="m-it"></div>
-    <div class="l sl" id="m-sl"></div>
-    <div class="l hr" id="m-hr"></div>
+    <div class="mrow"><span class="mfl">🇸🇮</span><span class="l sl" id="m-sl"></span></div>
+    <div class="mrow"><span class="mfl">🇭🇷</span><span class="l hr" id="m-hr"></span></div>
     <div class="f">Tocca per chiudere</div>
   </div>
 </div>
@@ -750,7 +781,9 @@ const scelte =()=>['d8','d9','d10'].filter(k=>choices[k]).length;
 function budget(){
   const km=totKm(), rows=[];
   const cmin=Math.round(km*CARB.lmin/100*CARB.pmin), cmax=Math.round(km*CARB.lmax/100*CARB.pmax);
-  rows.push(['<b>Carburante</b>',nkm(km)+' km · '+CARB.lmin+'–'+CARB.lmax+' l/100 km · 1,75–1,80 €/l',cmin,cmax]);
+  const dec=n=>String(n).replace('.',',');
+  rows.push(['<b>Carburante</b>',nkm(km)+' km · '+dec(CARB.lmin)+'–'+dec(CARB.lmax)+' l/100 km · '
+    +dec(CARB.pmin)+'–'+dec(CARB.pmax.toFixed(2))+' €/l',cmin,cmax]);
   const tr=choices.d9?FINALE[choices.d9].tr:[55,75];
   BUDGET.forEach(r=>{
     rows.push(['<b>'+r[0]+'</b>',r[1],r[2],r[3]]);
@@ -789,7 +822,7 @@ function renderOggi(){
   let head='';
   if(st.stato==='prima'&&vista===0){
     const aperte=LISTS[0].i.filter((_,ii)=>!ticks['0-'+ii]).length;
-    head='<div class="countdown"><b>'+st.mancano+'</b><span>giorni<br>alla partenza</span></div>'
+    head='<div class="countdown"><b>'+st.mancano+'</b><span>giorni alla partenza</span></div>'
       +'<p style="font-size:14.5px;color:var(--ink-2);margin:0 0 4px">Si parte '+DAYS[0].date.toLowerCase()
       +' alle 06:00. Restano <b>'+aperte+'</b> voci aperte fra documenti e prenotazioni.</p>';
   } else if(st.stato==='dopo'&&vista===9){
@@ -815,7 +848,7 @@ function renderOggi(){
     +'<div class="band"><span class="lab">'+(reale?'Oggi · tappa':'Tappa')+' '+d.n+' di 10</span>'
       +'<span class="nav"><button type="button" id="prevd" aria-label="Giorno precedente"'+(vista===0?' disabled':'')+'>‹</button>'
       +'<button type="button" id="nextd" aria-label="Giorno successivo"'+(vista===9?' disabled':'')+'>›</button></span></div>'
-    +'<div class="in"><div class="date">'+d.date+' · tramonto '+d.sun+'</div>'
+    +'<div class="in"><div class="date">'+d.date+'</div>'
       +'<h2>'+d.title+'</h2>'+head
       +'<div class="btnrow" style="margin-top:11px">'
         +'<a class="btn pri" href="'+d.gm+'" target="_blank" rel="noopener">Rotta in Maps ↗</a>'
@@ -824,7 +857,7 @@ function renderOggi(){
       +'<div class="s"><b>'+nkm(dayKm(d))+'</b><span>km oggi</span></div>'
       +'<div class="s"><b>'+hm(dayMin(d))+'</b><span>guida</span></div>'
       +'<div class="s"><b>'+d.sun+'</b><span>tramonto</span></div>'
-      +'<div class="s"><b>'+(d.border==='—'?'—':d.border.split(' ')[2]||d.border)+'</b><span>confine</span></div>'
+      +'<div class="s"><b class="sm">'+d.border.split(' (')[0].replace(/\s*→\s*/,'→')+'</b><span>confine</span></div>'
     +'</div></div>'
 
    +'<div class="hour"><div class="t">'+d.key.t+'</div><div class="x"><b>L\'ora che conta</b><p>'+d.key.w+'</p></div></div>'
@@ -1112,9 +1145,11 @@ function renderMapInfo(){
 /* ── PRATICO ────────────────────────────────────────────────────────────── */
 function renderPratico(){
   const b=budget();
-  const bud='<div class="tablewrap"><table><thead><tr><th>Voce</th><th class="num">Min</th><th class="num">Comodo</th></tr></thead><tbody>'
-    +b.rows.map(r=>'<tr><td>'+r[0]+'<br><small>'+r[1]+'</small></td><td class="num">'+nkm(r[2])+' €</td><td class="num">'+nkm(r[3])+' €</td></tr>').join('')
-    +'</tbody><tfoot><tr><td>Totale per due</td><td class="num">'+nkm(b.tot[0])+' €</td><td class="num">'+nkm(b.tot[1])+' €</td></tr></tfoot></table></div>';
+  const eur=(a,c)=>a===c?nkm(a)+' €':nkm(a)+'–'+nkm(c)+' €';
+  const bud='<div class="bud"><div class="bhead"><span>Voce</span><span>Minimo – comodo</span></div>'
+    +b.rows.map(r=>'<div class="brow"><span class="bn">'+r[0]+'</span><span class="bv">'+eur(r[2],r[3])+'</span>'
+      +'<small class="bd">'+r[1]+'</small></div>').join('')
+    +'<div class="brow tot"><span class="bn">Totale per due</span><span class="bv">'+eur(b.tot[0],b.tot[1])+'</span></div></div>';
 
   const km=totKm();
   const prenot='<div class="tablewrap"><table><thead><tr><th>Quando</th><th>Cosa</th><th class="num">Costo</th></tr></thead><tbody>'
@@ -1147,16 +1182,16 @@ function renderPratico(){
     +'<p style="font-size:14px;margin-bottom:0"><b>Salute:</b> Tessera Sanitaria–TEAM per le cure pubbliche urgenti. '
     +'Farmacia: <i>lekarna</i> in sloveno, <i>ljekarna</i> in croato. Su Cres la farmacia è solo a Cres città.</p>';
 
-  const sec=(id,ico,tit,body,open)=>'<details class="sec"'+(open?' open':'')+' id="sec-'+id+'">'
-    +'<summary><i>'+ico+'</i><span class="sp">'+tit+'</span></summary><div class="secbody">'+body+'</div></details>';
+  const sec=(id,tit,body,open)=>'<details class="sec"'+(open?' open':'')+' id="sec-'+id+'">'
+    +'<summary><span class="sp">'+tit+'</span></summary><div class="secbody">'+body+'</div></details>';
 
   $('#view-pratico').innerHTML=
     '<div class="vhead"><h2>Pratico</h2><p class="lede">Quello che serve sapere mentre sei in strada. '
     +'Budget e chilometri si ricalcolano da soli sulle scelte che hai fatto: qui sotto ci sono i numeri veri, non l\'intervallo.</p></div>'
-    +sec('budget','€','Budget per due · '+nkm(b.tot[0])+'–'+nkm(b.tot[1])+' €',
+    +sec('budget','Budget per due · '+nkm(b.tot[0])+'–'+nkm(b.tot[1])+' €',
       '<p style="font-size:14px;color:var(--ink-2)">Auto a benzina, standard medio, un pasto al ristorante al giorno. '
       +'Il carburante è calcolato sui '+nkm(km)+' km effettivi di questa configurazione, non su una stima fissa.</p>'+bud,true)
-    +sec('traghetti','⛴','I due traghetti · linea 334',
+    +sec('traghetti','I due traghetti · linea 334',
       '<p><b>Brestova ⇢ Porozina · giovedì 10, imbarco 16:30.</b> 5,2 km, 20 minuti. Frequenza circa ogni ora e mezza dalle 05:30. '
       +'Arriva alle 16:00: <b>non si prenota</b>, conta solo l\'ordine di arrivo al piazzale. Fai il pieno prima, su Cres i distributori sono pochi.</p>'
       +'<p><b>Porozina ⇢ Brestova · lunedì 14, imbarco 10:15.</b> Partenza da Cres città alle 09:00. '
@@ -1164,8 +1199,8 @@ function renderPratico(){
       +'<div class="note sig"><strong>Se si alza la bora</strong>La Brestova–Porozina può essere sospesa. L\'alternativa che non chiude quasi mai: '
       +'<b>Merag ⇢ Valbiska → ponte di Veglia</b>, canale più riparato, e Merag è a 12 km da Cres. Al ritorno ti porta dritto ad Abbazia — '
       +'che è infatti il piano bora del finale. Controlla la sera prima su <a class="link" href="https://hak.hr" target="_blank" rel="noopener">hak.hr</a>.</div>')
-    +sec('prenot','◱','Da prenotare, in quest\'ordine',prenot)
-    +sec('auto','⛟','L\'auto, i documenti, i soldi',
+    +sec('prenot','Da prenotare, in quest\'ordine',prenot)
+    +sec('auto','L\'auto, i documenti, i soldi',
       '<ul class="tick">'
       +'<li><b>Slovenia:</b> vignetta obbligatoria su autostrade e superstrade, multa da 300 a 800 €. Ti serve solo nei giorni 1 e 4.</li>'
       +'<li><b>Corridoio costiero gratuito:</b> dal 2026 le superstrade H5 e H6 sono libere fino a 3,5 t. È il percorso dei giorni 9 e 10 se scegli Pirano.</li>'
@@ -1176,7 +1211,7 @@ function renderPratico(){
       +'<li><b>Vršič:</b> stretto, lastricato, 50 tornanti. Marce basse in discesa, non i freni.</li>'
       +'<li><b>Moneta:</b> euro in entrambi. 100–150 € in contanti per parcheggi, traghetti e konobe di campagna.</li>'
       +'<li><b>Offline:</b> scarica le mappe. A Plitvice, sul Vršič, sul Velebit e nell\'interno di Cres il segnale sparisce.</li></ul>')
-    +sec('parch','P','Parcheggi, uno per base',
+    +sec('parch','Parcheggi, uno per base',
       '<ul class="tick">'
       +'<li><b>Lubiana:</b> garage Kongresni trg o NUK II, ~2–3 €/h. Centro pedonale.</li>'
       +'<li><b>Stara Fužina:</b> ~3 €/h ai margini del paese.</li>'
@@ -1184,18 +1219,18 @@ function renderPratico(){
       +'<li><b>Plitvice:</b> agli ingressi 1 e 2, ~2 €/h, non inclusi nel biglietto.</li>'
       +'<li><b>Cres:</b> sul porto a pagamento in stagione; con quattro notti chiedi il posto riservato prima di prenotare.</li>'
       +'<li><b>Rovigno:</b> Valdibora, a nord della città vecchia. <b>Pirano:</b> garage Fornače + navetta gratuita. <b>Abbazia:</b> lungo la statale sopra il centro.</li></ul>')
-    +sec('meteo','☼','Meteo e mare a settembre',meteo
+    +sec('meteo','Meteo e mare a settembre',meteo
       +'<p style="font-size:14px;margin-top:10px">I rischi reali sono i temporali pomeridiani sulle Giulie e la <b>bora</b> sul Quarnaro. '
       +'Sul Vršič e al Vogel porta uno strato in più: a 1.600 m ci sono dieci gradi meno che sul lago.</p>')
-    +sec('piani','⚠','Piani B, se il tempo gira',
+    +sec('piani','Piani B, se il tempo gira',
       '<ul class="tick">'
       +'<li><b>Giulie:</b> inverti il giorno 2 col giorno 3 — la valle della Soča regge la pioggia molto meglio dell\'alta quota.</li>'
       +'<li><b>Al posto di Postojna:</b> le Grotte di San Canziano (Škocjan), UNESCO, a mezz\'ora.</li>'
       +'<li><b>Plitvice sotto la pioggia:</b> cascate più potenti e metà della gente. È l\'unica cosa che non va rimandata.</li>'
       +'<li><b>Cres il 13:</b> la giornata più elastica, non è prenotato niente. Se piove: Osor, le konobe dell\'interno, il Centro di Beli, o il giorno zero.</li>'
       +'<li><b>Il finale:</b> con brutto tempo Pirano regge meglio di Rovigno — più piccola, più coperta.</li></ul>')
-    +sec('frasario','⌨','Frasario',phr)
-    +sec('sos','✚','Numeri utili',sos);
+    +sec('frasario','Frasario',phr)
+    +sec('sos','Numeri utili',sos);
 
   const q=$('#phrq');
   if(q) q.addEventListener('input',()=>{
@@ -1313,21 +1348,31 @@ addEventListener('afterprint',()=>{
 })();
 </script>
 
-<div class="agg" id="agg" hidden role="status">
-  <span>Nuova versione pronta</span>
-  <button class="btn sm" id="aggOra">Ricarica</button>
+<div class="agg" id="agg" hidden role="status" aria-live="polite">
+  <span class="agg-t">Nuova versione</span>
+  <button type="button" class="agg-b" id="aggOra">Aggiorna</button>
+  <button type="button" class="agg-x" id="aggNo" aria-label="Non ora">&times;</button>
 </div>
 <style>
-.agg{position:fixed;left:50%;transform:translateX(-50%);z-index:90;
-  bottom:calc(var(--tab-h,60px) + 22px + env(safe-area-inset-bottom));
-  display:flex;align-items:center;gap:12px;padding:9px 12px 9px 17px;border-radius:999px;
+/* Avviso di aggiornamento: compare solo quando c'è davvero una versione
+   nuova, sta sopra la barra delle schede e si può chiudere. Colori presi dai
+   token dell'app che lo ospita, con ripiego per quelli che potrebbe non avere. */
+.agg{position:fixed;left:12px;right:12px;z-index:90;
+  bottom:calc(var(--tab-h,60px) + 14px + env(safe-area-inset-bottom));
+  display:flex;align-items:center;gap:8px;padding:9px 9px 9px 16px;border-radius:15px;
   background:var(--solid,var(--ink));color:var(--on-solid,var(--surface));
-  box-shadow:var(--shadow-2,var(--shadow));font-size:14px}
-/* background esplicito: senza, il bottone eredita la superficie chiara
-   dell'app e il testo chiaro del banner scuro ci sparisce sopra. */
-.agg .btn{background:none;border-color:color-mix(in srgb,var(--on-solid,var(--surface)) 35%,transparent);
-  color:var(--on-solid,var(--surface))}
-@media (min-width:900px){.agg{bottom:26px}}
+  box-shadow:var(--shadow-2,var(--shadow));font-size:14.5px;line-height:1.3;
+  animation:agg-su .3s cubic-bezier(.2,.9,.3,1)}
+@keyframes agg-su{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.agg-t{flex:1;min-width:0}
+.agg-b{flex:0 0 auto;min-height:38px;padding:0 16px;border:0;border-radius:10px;cursor:pointer;
+  background:var(--on-solid,var(--surface));color:var(--solid,var(--ink));
+  font-family:var(--display);font-size:13px;letter-spacing:.09em;text-transform:uppercase;font-weight:700}
+.agg-x{flex:0 0 auto;width:34px;height:38px;border:0;background:none;cursor:pointer;
+  color:var(--on-solid,var(--surface));opacity:.6;font-size:21px;line-height:1;padding:0}
+.agg-x:hover{opacity:1}
+@media (prefers-reduced-motion:reduce){.agg{animation:none}}
+@media (min-width:900px){.agg{left:auto;right:24px;max-width:430px;bottom:24px}}
 .installa{margin:0 0 16px;display:flex;gap:11px;align-items:flex-start;padding:13px 15px;
   border-radius:var(--r,12px);background:var(--accent-soft);color:var(--accent-text,var(--accent));
   font-size:13.5px;line-height:1.45}
@@ -1340,24 +1385,48 @@ addEventListener('afterprint',()=>{
 (function(){
   "use strict";
   // ── service worker: la pagina si apre anche senza campo ──
+  function avvisa(nuovo){
+    var box = document.getElementById('agg');
+    if (!box || !box.hidden) return;
+    box.hidden = false;
+    document.getElementById('aggOra').onclick = function(){
+      nuovo.postMessage('attiva');
+      nuovo.addEventListener('statechange', function(){
+        if (nuovo.state === 'activated') location.reload();
+      });
+    };
+    document.getElementById('aggNo').onclick = function(){ box.hidden = true; };
+  }
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function(){
       navigator.serviceWorker.register('sw.js').then(function(reg){
-        reg.addEventListener('updatefound', function(){
-          var nuovo = reg.installing;
-          if (!nuovo) return;
-          nuovo.addEventListener('statechange', function(){
-            if (nuovo.state === 'installed' && navigator.serviceWorker.controller) {
-              var box = document.getElementById('agg');
-              box.hidden = false;
-              document.getElementById('aggOra').onclick = function(){
-                nuovo.postMessage('attiva');
-                nuovo.addEventListener('statechange', function(){
-                  if (nuovo.state === 'activated') location.reload();
-                });
-              };
-            }
-          });
+        // Il browser fa il suo controllo di aggiornamento gia' al caricamento,
+        // quindi quando arriviamo qui la copia nuova puo' essere gia' in
+        // installazione o gia' in attesa: se guardassimo solo 'updatefound'
+        // ce la perderemmo. Vanno coperti tutti e tre gli stati.
+        var guarda = function(sw){
+          if (!sw) return;
+          // reg.active e' nullo solo alla PRIMA installazione: li' non c'e'
+          // niente da aggiornare e l'avviso non deve comparire. Guardare
+          // navigator.serviceWorker.controller non basterebbe, perche' il
+          // service worker dell'app alla radice ha scope su tutto il dominio
+          // e controlla gia' questa pagina prima che la sua si registri.
+          var controlla = function(){ if (sw.state === 'installed' && reg.active) avvisa(sw); };
+          if (sw.state === 'installed') controlla();
+          else sw.addEventListener('statechange', controlla);
+        };
+        guarda(reg.waiting);
+        guarda(reg.installing);
+        reg.addEventListener('updatefound', function(){ guarda(reg.installing); });
+
+        // Con una sola scheda aperta l'aggiornamento si attiva da solo alla
+        // riapertura: l'avviso serve quando l'app resta aperta per ore, che e'
+        // il caso normale in viaggio. Si controlla al ritorno in primo piano,
+        // e solo se c'e' rete.
+        document.addEventListener('visibilitychange', function(){
+          if (document.visibilityState === 'visible' && navigator.onLine !== false) {
+            reg.update().catch(function(){});
+          }
         });
       }).catch(function(){ /* senza service worker l'app funziona lo stesso */ });
     });
