@@ -6,8 +6,10 @@ Castelnovo ne' Monti.
 **Artifact:** <https://claude.ai/code/artifact/fac61cfd-bb6d-466a-97fc-e508a9785d8c>
 **Sorgente:** [`roadbook.html`](roadbook.html)
 
-Accanto al road book c'è ora l'**app da viaggio**: [`app-mobile.html`](app-mobile.html),
-la stessa materia ma da tenere in mano mentre si guida. Vedi
+Accanto al road book c'è ora l'**app da viaggio**, la stessa materia ma da
+tenere in mano mentre si guida:
+<https://claude.ai/code/artifact/6d313e18-d2ba-46e7-b92b-777728ae408b>
+(sorgente [`app-mobile.html`](app-mobile.html)). Vedi
 [In viaggio: l'app](#in-viaggio-lapp) più sotto.
 
 ## In sintesi

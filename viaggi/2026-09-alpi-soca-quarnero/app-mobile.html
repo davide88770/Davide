@@ -1,4 +1,4 @@
-<title>Alpi, Soča &amp; Quarnero — in viaggio</title>
+<title>Alpi, Soča &amp; Quarnero in viaggio</title>
 
 <style>
 /* ══════════════════════════════════════════════════════════════════════════
@@ -57,6 +57,9 @@
 }
 
 *{box-sizing:border-box}
+:where(button,a,summary,input,[tabindex]):focus-visible{outline:2px solid var(--accent);
+  outline-offset:2px;border-radius:8px}
+@media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--ui);
   font-size:15.5px;line-height:1.5;-webkit-font-smoothing:antialiased;
   -webkit-text-size-adjust:100%;overflow-x:hidden}
@@ -892,10 +895,11 @@ function renderTot(){
     +(f?f:(n?n+'/3 scelte':'0/3 scelte'))+'</span></div>';
 }
 
+const dolce=()=>matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth';
 function apriGiorno(n){
   mostra('giorni');
   const el=document.getElementById('day'+n);
-  if(el){el.open=true;setTimeout(()=>el.scrollIntoView({behavior:'smooth',block:'start'}),40);}
+  if(el){el.open=true;setTimeout(()=>el.scrollIntoView({behavior:dolce(),block:'start'}),40);}
 }
 
 /* ── MAPPA ──────────────────────────────────────────────────────────────── */
