@@ -15,8 +15,15 @@ Alimentare Master** (29 pagine). Copre l'intero ciclo **agosto 2025 → settembr
 | **Oggi** | Fase e tipo di settimana in corso, sessione del giorno, anelli dei macro, peso |
 | **Allenamento** | Serie da compilare (kg × rep × RIR), cronometro di recupero, suggerimento di carico, dischi del bilanciere, tecnica ed ernia per esercizio, superset raggruppati, serie extra e Widowmaker, seduta spostabile su qualunque giorno |
 | **Dieta** | Pasti in **alimenti e grammi risolti sul target**, spunta, scambio di ogni singolo alimento con grammatura equivalente, varianti del piano, fuori piano |
-| **Progressi** | 1RM stimato per esercizio, serie per gruppo contro target, tonnellaggio settimanale, peso con media a 7 giorni, record |
+| **Progressi** | **Media dei 7 giorni** (peso, variazione settimanale contro l'attesa della fase, calorie e macro effettivi, aderenza), 1RM stimato, serie per gruppo contro target, tonnellaggio, peso, record |
 | **Piano** | Le sei fasi, settimana tipo, checklist della domenica, KPI, progressione attesa, protocolli anti-plateau, deload, ernia, recupero, imprevisti, integratori, backup |
+
+La **media dei 7 giorni** è la prima cosa che vedi nei Progressi, perché è la
+regola con cui il piano decide tutto: confronta la variazione settimanale del
+peso con l'attesa della fase e scrive l'azione da fare (più passi, ±100 kcal,
+non toccare niente). La **lista della spesa** somma gli alimenti dei sette giorni
+successivi con le grammature già risolte. Gli scambi rispettano i **tetti di
+frequenza** del piano: tonno e feta massimo 3 volte a settimana, salmone 2-3.
 
 Ogni sessione si apre con la **mobilità 10 min** della seduta giusta e si chiude
 con lo **stretching 8 min**; le sigle di intensità (rest-pause, drop set,
@@ -187,6 +194,9 @@ al testo dei sorgenti. Le pagine 6, 13, 18, 25, 32 del workout e 4, 8, 11, 15,
 
 ## Storico
 
+- **v6** — media dei 7 giorni con l'azione della fase, aderenza ai pasti, tetti
+  di frequenza settimanale sugli scambi, lista della spesa dalle grammature
+  risolte.
 - **v5** — tabella verificata e riportata su peso crudo. Confrontate le 31 voci
   coi valori reali sulla porzione tipica: 16 confermate, 15 corrette, i tre risi
   convertiti da cotto a crudo (erano il problema più grave: −45 g di carboidrati

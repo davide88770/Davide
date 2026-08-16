@@ -1198,6 +1198,19 @@ const KPI = [
   ['Foto mensile','Stessa luce, stessa ora, stessa distanza',{cut:'grasso −',accumulo:'massa +',intensificazione:'massa +',peak:'massa massima',recomp:'definizione +',transizione:'invariata'}],
   ['Ernia inguinale','Dolore o pressione durante il training',{cut:'assente',accumulo:'assente',intensificazione:'assente',peak:'assente',recomp:'assente, stop se presente',transizione:'assente'}]
 ];
+/* Variazione di peso attesa a settimana, dalla tabella KPI (pag. 35).
+   Il piano decide sempre sulla media dei 7 giorni, mai sul dato singolo. */
+const ATTESO_PESO = {
+  cut:[-0.6,-0.4], transizione:[-0.1,0.4], accumulo:[0.3,0.4],
+  intensificazione:[0.3,0.4], peak:[0.3,0.5], recomp:[-0.5,-0.3]
+};
+/* Tetti di frequenza settimanale scritti nel piano alimentare */
+const FREQ_MAX = {
+  tonno:[3,'massimo 2-3 scatolette a settimana, per il mercurio'],
+  feta:[3,'massimo 2-3 volte a settimana, per il sodio'],
+  salmone:[3,'2-3 volte a settimana']
+};
+
 /* Checklist della domenica mattina (pag. 27-28 del piano alimentare) */
 const CHECKLIST = [
   ['Peso medio settimana','Somma dei 7 giorni diviso 7','Cut −0,4/0,6 kg · Bulk +0,3/0,4 kg','Fermo in cut: aggiungi passi. Troppo veloce: +100 kcal. Bulk che ingrassa: −100 kcal.'],
@@ -1514,6 +1527,63 @@ function totaliDieta(d){
   });
   for(const x of (L.extra||[])){ t.k += +x.k||0; t.p += +x.p||0; t.c += +x.c||0; t.f += +x.f||0; }
   return { fatto:t, piano };
+}
+
+/* ── medie dei 7 giorni — la regola con cui il piano decide ─────────────── */
+function media7(fineISO, giorni=7){
+  let n = 0; const t = { k:0,p:0,c:0,f:0 };
+  let spuntati = 0, previsti = 0;
+  for(let i = 0; i < giorni; i++){
+    const d = piuGiorni(fineISO,-i), L = S.pasti[d];
+    const { lista } = pastiDi(d);
+    previsti += lista.length;
+    if(!L) continue;
+    const fatti = Object.values(L.ok||{}).filter(Boolean).length;
+    spuntati += fatti;
+    if(!fatti && !(L.extra||[]).length) continue;
+    const x = totaliDieta(d).fatto;
+    t.k += x.k; t.p += x.p; t.c += x.c; t.f += x.f; n++;
+  }
+  return { n, media: n ? { k:t.k/n, p:t.p/n, c:t.c/n, f:t.f/n } : null,
+           aderenza: previsti ? spuntati/previsti : 0, spuntati, previsti };
+}
+function mediaPeso(fineISO, giorni=7){
+  const v = S.corpo.filter(x => x.peso && x.d <= fineISO && x.d > piuGiorni(fineISO,-giorni));
+  return v.length ? { m: v.reduce((a,b) => a+ +b.peso, 0)/v.length, n:v.length } : null;
+}
+function andamentoPeso(d){
+  const a = mediaPeso(d), b = mediaPeso(piuGiorni(d,-7));
+  if(!a || !b) return null;
+  return { ora:a.m, prima:b.m, delta:a.m-b.m, n:a.n, nPrima:b.n };
+}
+/* Quante volte un alimento compare nei 7 giorni che finiscono oggi */
+function frequenza7(alimento, fineISO){
+  let n = 0;
+  for(let i = 0; i < 7; i++){
+    const d = piuGiorni(fineISO,-i);
+    const { voci } = pastiDi(d);
+    if(voci.some(items => items.some(([a]) => a === alimento))) n++;
+  }
+  return n;
+}
+/* Lista della spesa: somma degli alimenti sui prossimi 7 giorni */
+function spesa(daISO, giorni=7){
+  const somma = {};
+  for(let i = 0; i < giorni; i++){
+    const { voci } = pastiDi(piuGiorni(daISO,i));
+    for(const items of voci) for(const [a,g] of items){
+      if(a === 'caffe') continue;
+      somma[a] = (somma[a]||0) + g;
+    }
+  }
+  const gruppi = { Proteine:[], Carboidrati:[], Grassi:[], Verdura:[] };
+  for(const [a,g] of Object.entries(somma)){
+    const x = ALIMENTI[a];
+    const fam = a === 'verdure' ? 'Verdura' : (famigliaDi(a) === 'c' ? 'Carboidrati' : (famigliaDi(a) === 'f' ? 'Grassi' : 'Proteine'));
+    gruppi[fam].push([a, g]);
+  }
+  for(const k of Object.keys(gruppi)) gruppi[k].sort((a,b) => b[1]-a[1]);
+  return gruppi;
 }
 
 /* ── volume ─────────────────────────────────────────────────────────────── */
@@ -1984,6 +2054,11 @@ function renderDieta(){
   </div>
 
   <div class="card">
+    <div class="hd"><h2>Spesa della settimana</h2><button class="btn sm sp" id="listaSpesa">Apri</button></div>
+    <div class="bd"><p class="small muted" style="margin:0">Somma degli alimenti dei prossimi 7 giorni, con le grammature risolte. Le quantità sono già quelle da comprare.</p></div>
+  </div>
+
+  <div class="card">
     <div class="hd"><h2>Fuori piano</h2><button class="btn sm sp" id="addExtra">${ICO.piu} Aggiungi</button></div>
     ${extra || `<div class="bd"><p class="small muted" style="margin:0">Niente fuori piano oggi. Un pasto libero a settimana sposta la media di massimo 0,1 kg — registralo qui e vai avanti.</p></div>`}
   </div>
@@ -2088,14 +2163,14 @@ function renderProgressi(){
   const sel = S.ui.esercizio && nomi.includes(S.ui.esercizio) ? S.ui.esercizio : nomi[0];
   const v = serieSettimana(d, giorni);
 
-  if(!nomi.length){
+  if(!nomi.length && !S.corpo.length && !Object.keys(S.pasti).length){
     $('#view-progressi').innerHTML = `<div class="card"><div class="empty">${ICO.info}
       <p>Ancora nessuna serie registrata. Appena chiudi il primo allenamento qui compaiono 1RM stimato, tonnellaggio, volume per gruppo e andamento del peso.</p>
       <button class="btn solid" data-vai="workout">Vai all’allenamento</button></div></div>`;
     return;
   }
 
-  const punti1RM = storico(sel).map(g => ({
+  const punti1RM = (sel ? storico(sel) : []).map(g => ({
     x:g.d, y: Math.max(...g.righe.map(r => epley(r.kg,r.rep)))
   }));
   const tonnSett = [];
@@ -2105,7 +2180,7 @@ function renderProgressi(){
     tonnSett.push({ x:fine, y:w.tonn/1000, lab:dataCorta(piuGiorni(fine,-6)) });
   }
   const pesi = [...S.corpo].filter(x => x.peso).sort((a,b) => a.d < b.d ? -1 : 1).map(x => ({ x:x.d, y:+x.peso }));
-  const best = miglioreDi(sel);
+  const best = sel ? miglioreDi(sel) : { rm:0, kg:0, quando:null };
 
   $('#view-progressi').innerHTML = `
   <div class="hero noprint">
@@ -2116,7 +2191,49 @@ function renderProgressi(){
     </div>
   </div>
 
-  <div class="card">
+  ${(() => {
+    const m7 = media7(d), ap = andamentoPeso(d), att = ATTESO_PESO[faseDi(d).id];
+    const tg = pastiDi(d).cfg.t;
+    const inRange = ap && ap.delta >= att[0] - 0.05 && ap.delta <= att[1] + 0.05;
+    const azione = !ap ? '' : (ap.delta > att[1]
+      ? (faseDi(d).id === 'cut' || faseDi(d).id === 'recomp'
+          ? 'Stai perdendo troppo poco: aggiungi 2.000 passi al giorno, poi un’uscita in bici. Taglia le calorie solo dopo.'
+          : 'Stai salendo troppo in fretta: −100 kcal, il surplus in eccesso diventa grasso.')
+      : ap.delta < att[0]
+      ? (faseDi(d).id === 'cut' || faseDi(d).id === 'recomp'
+          ? 'Stai scendendo troppo in fretta: +100 kcal a pranzo, stai perdendo massa muscolare.'
+          : 'Sei fermo: +100 kcal, ma solo nei giorni di allenamento.')
+      : 'Sei nel range della fase. Non toccare niente.');
+    return `<div class="card">
+      <div class="hd"><h2>Media dei 7 giorni</h2><span class="chip line sp">la regola del piano</span></div>
+      <div class="bd stack">
+        ${ap ? `<div>
+          <div class="stats q4">
+            <div class="stat"><b class="num">${nf(ap.ora,1)}<small>kg</small></b><span>Media ora</span></div>
+            <div class="stat"><b class="num" style="color:${inRange?'var(--good-text)':'var(--warn-text)'}">${ap.delta>0?'+':''}${nf(ap.delta,2)}</b><span>kg / settimana</span></div>
+            <div class="stat"><b class="num" style="font-size:17px">${nf(att[0],1)} / ${nf(att[1],1)}</b><span>Atteso nella fase</span></div>
+            <div class="stat"><b class="num">${ap.n}<small>/7</small></b><span>Pesate</span></div>
+          </div>
+          <p class="small ${inRange?'muted':''}" style="margin:11px 0 0;${inRange?'':'color:var(--warn-text)'}">${esc(azione)}</p>
+        </div>` : `<p class="small muted" style="margin:0">Registra il peso per almeno due settimane e qui compare la variazione settimanale confrontata con l’attesa della fase.</p>`}
+        <hr class="sep">
+        ${m7.media ? `<div>
+          <div class="stats q4">
+            <div class="stat"><b class="num">${nf(m7.media.k)}</b><span>kcal medie</span></div>
+            <div class="stat"><b class="num">${nf(m7.media.p)}<small>/${tg.p}</small></b><span>Proteine</span></div>
+            <div class="stat"><b class="num">${nf(m7.media.c)}<small>/${tg.c}</small></b><span>Carboidrati</span></div>
+            <div class="stat"><b class="num">${nf(m7.media.f)}<small>/${tg.f}</small></b><span>Grassi</span></div>
+          </div>
+          <div class="vbar" style="margin-top:11px"><span class="g">Aderenza</span>
+            <div class="tr"><div class="fl" style="width:${(m7.aderenza*100).toFixed(0)}%;background:${m7.aderenza>=0.85?'var(--good)':'var(--accent)'}"></div></div>
+            <span class="n">${nf(m7.aderenza*100)}%</span></div>
+          <p class="tiny muted" style="margin:8px 0 0">${m7.spuntati} pasti spuntati su ${m7.previsti} previsti negli ultimi 7 giorni. Le medie contano solo i ${m7.n} giorni in cui hai registrato qualcosa.</p>
+        </div>` : `<p class="small muted" style="margin:0">Spunta i pasti per qualche giorno e qui compaiono le medie a 7 giorni di calorie e macro, con l’aderenza.</p>`}
+      </div>
+    </div>`;
+  })()}
+
+  ${!nomi.length ? '' : `<div class="card">
     <div class="hd"><h2>Forza — 1RM stimato</h2></div>
     <div class="bd">
       <label class="fld" style="margin-bottom:12px"><span>Esercizio</span>
@@ -2131,7 +2248,7 @@ function renderProgressi(){
       </div>
       <p class="tiny muted" style="margin:10px 0 0">1RM stimato con la formula di Epley (<span class="mono">kg × (1 + rep/30)</span>). È una stima: sopra le 10 ripetizioni sovrastima.</p>
     </div>
-  </div>
+  </div>`}
 
   <div class="card">
     <div class="hd"><h2>Serie per gruppo</h2><span class="chip line sp">${giorni >= 400 ? 'tutto' : 'ultimi '+giorni+'g'}</span></div>
@@ -2587,9 +2704,14 @@ document.addEventListener('click', ev => {
         ${SCAMBI[fam].map(a => {
           const g = a === attuale ? gAtt : equivalente(attuale, gAtt, a);
           const x = ALIMENTI[a], mm = { p:x.p*g, c:x.c*g, f:x.f*g };
+          const cap = FREQ_MAX[a];
+          const usi = cap ? frequenza7(a, d) : 0;
+          const troppo = cap && usi >= cap[0];
           return `<button class="edrow" data-scambia="${i}:${j}:${a}" style="width:100%;text-align:left;cursor:pointer${a===attuale?';border-color:var(--accent)':''}">
             <div class="tx"><b>${esc(x.n)}${a===attuale?' · in uso':''}</b>
-              <span class="mono">${grammi(a,g)} · ${nf(mm.p)}P ${nf(mm.c)}C ${nf(mm.f)}F</span></div></button>`;
+              <span class="mono">${grammi(a,g)}${x.w?' '+x.w:''} · ${nf(mm.p)}P ${nf(mm.c)}C ${nf(mm.f)}F</span>
+              ${cap ? `<span class="tiny" style="color:${troppo?'var(--crit-text)':'var(--ink-3)'}">${usi} volte negli ultimi 7 giorni · ${esc(cap[1])}</span>` : ''}</div>
+            ${troppo ? `<span class="chip crit">limite</span>` : ''}</button>`;
         }).join('')}
         ${orig && orig[0] !== attuale ? `<button class="btn ghost wide" data-scambia="${i}:${j}:">Torna a ${esc(ALIMENTI[orig[0]].n)}</button>` : ''}
       </div>`);
@@ -2605,6 +2727,22 @@ document.addEventListener('click', ev => {
   const dx = el('[data-delextra]');
   if(dx){ const L = pastoLog(S.ui.data); L.extra.splice(+dx.dataset.delextra,1); L.mod = Date.now(); salva(); renderDieta(); return; }
 
+  if(el('#listaSpesa')){
+    const g = spesa(S.ui.data), da = dataCorta(S.ui.data), a = dataCorta(piuGiorni(S.ui.data,6));
+    apriSheet(`Spesa · ${da} – ${a}`, `
+      <p class="tiny muted" style="margin:0 0 14px">Sette giorni, con le giornate alimentari che il piano prevede in quelle date.
+        I pesi sono quelli da bilancia: crudo per carne, pesce e cereali.</p>
+      ${Object.entries(g).filter(([,v]) => v.length).map(([sez,voci]) => `
+        <h4 style="font-family:var(--display);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);margin:14px 0 6px">${sez}</h4>
+        <div class="tblwrap"><table class="tbl"><tbody>
+          ${voci.map(([a2,tot]) => { const x = ALIMENTI[a2];
+            const q = x.u === 'pz' ? `${nf(Math.ceil(tot))} pz`
+                    : tot >= 1000 ? `${nf(tot/1000,2)} kg` : `${nf(Math.round(tot/5)*5)}${x.u ? ' '+x.u : ' g'}`;
+            return `<tr><td>${esc(x.n)}${x.w?` <span class="tiny muted">${x.w}</span>`:''}</td><td class="n">${q}</td></tr>`;
+          }).join('')}
+        </tbody></table></div>`).join('')}`);
+    return;
+  }
   if(el('#addExtra')){
     apriSheet('Fuori piano', `
       <div class="stack">
