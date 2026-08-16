@@ -5,6 +5,7 @@ di Davide: **Piano Master FINAL — Coach Level** (38 pagine, workout) e **Piano
 Alimentare Master** (29 pagine). Copre l'intero ciclo **agosto 2025 → settembre
 2026**, sei fasi.
 
+**App installabile:** <https://davide88770.github.io/Davide/>
 **Artifact:** <https://claude.ai/code/artifact/2c08979c-1b31-4f71-89c9-15375daa20d8>
 **Sorgente:** [`app.html`](app.html) · **Verifica:** `npm run verify fitness/ghisa-e-grammi/app.html`
 
@@ -109,9 +110,9 @@ npm run build:pwa      # rigenera pwa/ dal sorgente
 npm run build:icone    # rigenera i PNG dai due SVG in pwa/icone/
 ```
 
-Pubblicazione: il workflow `.github/workflows/pwa.yml` ricostruisce e pubblica su
-GitHub Pages a ogni push su `main`. Da abilitare una volta sola in
-**Settings → Pages → Source: GitHub Actions**.
+Pubblicazione: già attiva su <https://davide88770.github.io/Davide/>. Il workflow
+`.github/workflows/pwa.yml` ricostruisce e aggiorna il ramo `gh-pages` a ogni
+push sul ramo predefinito — niente impostazioni da toccare.
 
 Cosa cambia rispetto all'Artifact aperto in Safari:
 
