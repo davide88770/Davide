@@ -1,0 +1,35 @@
+{
+  "name": "Alpi, Soča & Quarnero",
+  "short_name": "Alpi & Soča",
+  "description": "Road trip in Slovenia e Croazia, 6–15 settembre 2026: la tappa di oggi, le tre scelte che ricalcolano chilometri e budget, mappa, frasario e valigia.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#091316",
+  "theme_color": "#091316",
+  "lang": "it",
+  "categories": [
+    "travel",
+    "navigation",
+    "lifestyle"
+  ],
+  "icons": [
+    {
+      "src": "icone/icona-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icone/icona-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "icone/icona-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

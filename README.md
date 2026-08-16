@@ -6,9 +6,15 @@ della pagina e le sue note.
 
 ## Viaggi
 
-| Viaggio | Date | Artifact |
-|---|---|---|
-| [Alpi, Soča & Quarnero](viaggi/2026-09-alpi-soca-quarnero/) — Slovenia e Croazia | 6–15 set 2026 | [apri](https://claude.ai/code/artifact/fac61cfd-bb6d-466a-97fc-e508a9785d8c) |
+| Viaggio | Date | Road book | In viaggio |
+|---|---|---|---|
+| [Alpi, Soča & Quarnero](viaggi/2026-09-alpi-soca-quarnero/) — Slovenia e Croazia | 6–15 set 2026 | [Artifact](https://claude.ai/code/artifact/fac61cfd-bb6d-466a-97fc-e508a9785d8c) | [app installabile](https://davide88770.github.io/Davide/viaggio/) · [Artifact](https://claude.ai/code/artifact/6d313e18-d2ba-46e7-b92b-777728ae408b) |
+
+Ogni viaggio ha due deliverable: il **road book**, il documento che si legge
+prima di partire, e l'**app da viaggio**, la stessa materia riorganizzata per
+il telefono — schede sotto il pollice, la tappa di oggi in apertura, le scelte
+che ricalcolano i totali, e il funzionamento **senza campo** una volta
+installata.
 
 ## Com'è fatto un road book
 
@@ -32,6 +38,32 @@ Dentro ci sono, tipicamente:
 - tema **chiaro e scuro**, e un **CSS di stampa** che rende la pagina un PDF A4
   presentabile.
 
+## Versioni installabili
+
+Gli Artifact girano dentro claude.ai e non possono registrare un service
+worker: per avere l'icona sulla Home e l'apertura senza rete c'è la PWA,
+generata dagli stessi sorgenti e pubblicata su GitHub Pages dal ramo
+`gh-pages`.
+
+| App | Sorgente | Indirizzo |
+|---|---|---|
+| Ghisa & Grammi | `fitness/ghisa-e-grammi/app.html` | <https://davide88770.github.io/Davide/> |
+| Alpi, Soča & Quarnero | `viaggi/2026-09-alpi-soca-quarnero/app-mobile.html` | <https://davide88770.github.io/Davide/viaggio/> |
+
+```sh
+node tools/build-pwa.mjs             # tutte
+node tools/build-pwa.mjs viaggio     # una sola
+node tools/build-icone.mjs           # rigenera i PNG dagli SVG
+```
+
+Le app vivono sullo stesso dominio, quindi ogni service worker serve solo il
+proprio indice e ripulisce solo le cache col proprio prefisso: senza queste
+due regole quella alla radice, che ha scope sull'intero sito, si mangia il
+guscio offline dell'altra. Il workflow controlla che le regole ci siano, e
+`npm run prova:pwa` le mette alla prova sul serio — serve le due app da un
+server locale, le installa, stacca la rete e verifica che si riaprano
+entrambe con le scelte salvate ancora al loro posto.
+
 ## Verifica
 
 Prima di pubblicare, sempre:
@@ -40,6 +72,10 @@ Prima di pubblicare, sempre:
 npm install
 npm run verify viaggi/<cartella>/roadbook.html
 ```
+
+La configurazione dei controlli si mette accanto al sorgente: prima si cerca
+`<nome>.verify.json`, poi `verify.json` di cartella, e in mancanza valgono i
+valori del road book. Screenshot e PDF finiscono in `out/<cartella>/<nome>/`.
 
 Lo script apre la pagina in Chromium e controlla errori JS, resa in tema chiaro
 e scuro, resa a 390 px senza sbordature, coerenza dei conteggi fra i tre

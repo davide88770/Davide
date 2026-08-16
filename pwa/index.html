@@ -2938,20 +2938,27 @@ vai(S.ui.tab && ['oggi','workout','dieta','progressi','piano'].includes(S.ui.tab
 </div>
 <style>
 .agg{position:fixed;left:50%;transform:translateX(-50%);z-index:90;
-  bottom:calc(var(--tab-h) + 22px + env(safe-area-inset-bottom));
+  bottom:calc(var(--tab-h,60px) + 22px + env(safe-area-inset-bottom));
   display:flex;align-items:center;gap:12px;padding:9px 12px 9px 17px;border-radius:999px;
-  background:var(--solid);color:var(--on-solid);box-shadow:var(--shadow-2);font-size:14px}
-.agg .btn{border-color:color-mix(in srgb,var(--on-solid) 35%,transparent);color:var(--on-solid)}
+  background:var(--solid,var(--ink));color:var(--on-solid,var(--surface));
+  box-shadow:var(--shadow-2,var(--shadow));font-size:14px}
+/* background esplicito: senza, il bottone eredita la superficie chiara
+   dell'app e il testo chiaro del banner scuro ci sparisce sopra. */
+.agg .btn{background:none;border-color:color-mix(in srgb,var(--on-solid,var(--surface)) 35%,transparent);
+  color:var(--on-solid,var(--surface))}
 @media (min-width:900px){.agg{bottom:26px}}
 .installa{margin:0 0 16px;display:flex;gap:11px;align-items:flex-start;padding:13px 15px;
-  border-radius:var(--r);background:var(--accent-soft);color:var(--accent-text);font-size:13.5px;line-height:1.45}
+  border-radius:var(--r,12px);background:var(--accent-soft);color:var(--accent-text,var(--accent));
+  font-size:13.5px;line-height:1.45}
 .installa b{display:block;font-family:var(--display);font-size:12px;letter-spacing:.1em;text-transform:uppercase}
-.installa button{margin-left:auto;color:inherit;opacity:.7;font-size:20px;line-height:1;padding:0 4px}
+.installa button{margin-left:auto;background:none;border:0;color:inherit;opacity:.7;
+  font-size:20px;line-height:1;padding:0 4px;cursor:pointer}
+@media print{.agg,.installa{display:none !important}}
 </style>
 <script>
 (function(){
   "use strict";
-  // ── service worker: la pagina funziona anche senza campo, in palestra ──
+  // ── service worker: la pagina si apre anche senza campo ──
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function(){
       navigator.serviceWorker.register('sw.js').then(function(reg){
@@ -2985,8 +2992,7 @@ vai(S.ui.tab && ['oggi','workout','dieta','progressi','piano'].includes(S.ui.tab
       var el = document.createElement('div');
       el.className = 'installa';
       el.innerHTML = '<div><b>Mettila sulla schermata Home</b>'
-        + 'Tocca Condividi in fondo a Safari, poi "Aggiungi a Home". Si apre a schermo intero, '
-        + 'funziona senza campo e i dati non vengono più cancellati dopo una settimana.</div>'
+        + 'Tocca Condividi in fondo a Safari, poi "Aggiungi a Home". Si apre a schermo intero, funziona senza campo e i dati non vengono più cancellati dopo una settimana.</div>'
         + '<button aria-label="Ho capito">&times;</button>';
       el.querySelector('button').onclick = function(){
         localStorage.setItem('gg.installa.visto', '1');

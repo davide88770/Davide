@@ -1,5 +1,22 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Alpi, Soča &amp; Quarnero in viaggio</title>
-
+<meta name="description" content="Road trip in Slovenia e Croazia, 6–15 settembre 2026: la tappa di oggi, le tre scelte che ricalcolano chilometri e budget, mappa, frasario e valigia.">
+<meta name="theme-color" content="#E9EDEA" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#091316" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Alpi &amp; Soča">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icone/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icone/icona-192.png">
+<style>:root{color-scheme:light dark}*{box-sizing:border-box}body{margin:0}img{max-width:100%}</style>
+</head>
+<body>
 <style>
 /* ══════════════════════════════════════════════════════════════════════════
    ALPI, SOČA & QUARNERO — app da viaggio
@@ -1295,3 +1312,77 @@ addEventListener('afterprint',()=>{
   }catch(e){}
 })();
 </script>
+
+<div class="agg" id="agg" hidden role="status">
+  <span>Nuova versione pronta</span>
+  <button class="btn sm" id="aggOra">Ricarica</button>
+</div>
+<style>
+.agg{position:fixed;left:50%;transform:translateX(-50%);z-index:90;
+  bottom:calc(var(--tab-h,60px) + 22px + env(safe-area-inset-bottom));
+  display:flex;align-items:center;gap:12px;padding:9px 12px 9px 17px;border-radius:999px;
+  background:var(--solid,var(--ink));color:var(--on-solid,var(--surface));
+  box-shadow:var(--shadow-2,var(--shadow));font-size:14px}
+/* background esplicito: senza, il bottone eredita la superficie chiara
+   dell'app e il testo chiaro del banner scuro ci sparisce sopra. */
+.agg .btn{background:none;border-color:color-mix(in srgb,var(--on-solid,var(--surface)) 35%,transparent);
+  color:var(--on-solid,var(--surface))}
+@media (min-width:900px){.agg{bottom:26px}}
+.installa{margin:0 0 16px;display:flex;gap:11px;align-items:flex-start;padding:13px 15px;
+  border-radius:var(--r,12px);background:var(--accent-soft);color:var(--accent-text,var(--accent));
+  font-size:13.5px;line-height:1.45}
+.installa b{display:block;font-family:var(--display);font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.installa button{margin-left:auto;background:none;border:0;color:inherit;opacity:.7;
+  font-size:20px;line-height:1;padding:0 4px;cursor:pointer}
+@media print{.agg,.installa{display:none !important}}
+</style>
+<script>
+(function(){
+  "use strict";
+  // ── service worker: la pagina si apre anche senza campo ──
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function(){
+      navigator.serviceWorker.register('sw.js').then(function(reg){
+        reg.addEventListener('updatefound', function(){
+          var nuovo = reg.installing;
+          if (!nuovo) return;
+          nuovo.addEventListener('statechange', function(){
+            if (nuovo.state === 'installed' && navigator.serviceWorker.controller) {
+              var box = document.getElementById('agg');
+              box.hidden = false;
+              document.getElementById('aggOra').onclick = function(){
+                nuovo.postMessage('attiva');
+                nuovo.addEventListener('statechange', function(){
+                  if (nuovo.state === 'activated') location.reload();
+                });
+              };
+            }
+          });
+        });
+      }).catch(function(){ /* senza service worker l'app funziona lo stesso */ });
+    });
+  }
+  // ── suggerimento d'installazione, solo su iPhone e solo se non installata ──
+  var standalone = window.matchMedia('(display-mode: standalone)').matches
+                || window.navigator.standalone === true;
+  var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+  if (!standalone && iOS && !localStorage.getItem('asq.installa.visto')) {
+    window.addEventListener('load', function(){
+      var main = document.querySelector('main');
+      if (!main) return;
+      var el = document.createElement('div');
+      el.className = 'installa';
+      el.innerHTML = '<div><b>Mettila sulla schermata Home</b>'
+        + 'Tocca Condividi in fondo a Safari, poi "Aggiungi a Home". Si apre a schermo intero e <b>funziona senza campo</b> — a Plitvice alle 7:00, sul Vršič e nell\'interno di Cres, dove il segnale non c\'è.</div>'
+        + '<button aria-label="Ho capito">&times;</button>';
+      el.querySelector('button').onclick = function(){
+        localStorage.setItem('asq.installa.visto', '1');
+        el.remove();
+      };
+      main.insertBefore(el, main.firstChild);
+    });
+  }
+})();
+</script>
+</body>
+</html>

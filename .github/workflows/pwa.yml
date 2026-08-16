@@ -1,17 +1,26 @@
-name: Pubblica la PWA
+name: Pubblica le PWA
 
-# Ricostruisce la versione installabile dell'app dal sorgente dell'Artifact e
-# la pubblica sul ramo gh-pages, da cui GitHub Pages serve il sito.
+# Ricostruisce le versioni installabili delle app dai sorgenti degli Artifact e
+# le pubblica sul ramo gh-pages, da cui GitHub Pages serve il sito.
 # Nessuna impostazione da toccare: Pages si e' attivato con la creazione del
 # ramo, e questo workflow si limita ad aggiornarne il contenuto.
+#
+# La cartella pwa/ diventa la radice del sito, quindi:
+#   pwa/          -> /            Ghisa & Grammi
+#   pwa/viaggio/  -> /viaggio/    Alpi, Soca & Quarnero
 
 on:
   push:
-    branches: [claude/artifact-code-session-g1s37q, main]
+    branches:
+      - claude/artifact-code-session-g1s37q
+      - claude/alpi-soca-quarnero-mobile-8xceuf
+      - main
     paths:
       - 'fitness/ghisa-e-grammi/app.html'
-      - 'pwa/icone/**'
+      - 'viaggi/2026-09-alpi-soca-quarnero/app-mobile.html'
+      - 'pwa/**/icone/**'
       - 'tools/build-pwa.mjs'
+      - 'tools/build-icone.mjs'
       - '.github/workflows/pwa.yml'
   workflow_dispatch:
 
@@ -32,17 +41,29 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Costruisci la PWA
+      - name: Costruisci le PWA
         run: node tools/build-pwa.mjs
 
-      - name: Controlla che sia una pagina sensata
+      - name: Controlla che siano pagine sensate
         run: |
-          test -s pwa/index.html
-          test -s pwa/manifest.webmanifest
-          test -s pwa/sw.js
+          for d in pwa pwa/viaggio; do
+            test -s "$d/index.html"
+            test -s "$d/manifest.webmanifest"
+            test -s "$d/sw.js"
+            grep -q 'serviceWorker' "$d/index.html"
+            test -s "$d/icone/icona-192.png"
+            test -s "$d/icone/icona-512.png"
+            test -s "$d/icone/icona-maskable-512.png"
+            echo "$d/index.html $(wc -c < "$d/index.html") byte"
+          done
           grep -q 'Ghisa' pwa/index.html
-          grep -q 'serviceWorker' pwa/index.html
-          echo "index.html $(wc -c < pwa/index.html) byte"
+          grep -q 'Quarnero' pwa/viaggio/index.html
+          # Ogni service worker deve ripulire solo le proprie cache e servire
+          # solo il proprio indice: sotto lo stesso dominio vivono due app.
+          grep -q "startsWith('ghisa-e-grammi-')" pwa/sw.js
+          grep -q "startsWith('viaggio-')" pwa/viaggio/sw.js
+          grep -q 'mio(url.pathname)' pwa/sw.js
+          grep -q 'mio(url.pathname)' pwa/viaggio/sw.js
 
       - name: Aggiorna il ramo gh-pages
         run: |
@@ -53,15 +74,19 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
-          git commit -q -m "Pubblica la versione installabile
+          git commit -q -m "Pubblica le versioni installabili
 
           Generato da tools/build-pwa.mjs a partire da
-          fitness/ghisa-e-grammi/app.html, commit ${GITHUB_SHA}.
+          fitness/ghisa-e-grammi/app.html e
+          viaggi/2026-09-alpi-soca-quarnero/app-mobile.html, commit ${GITHUB_SHA}.
           Non modificare a mano: si rigenera a ogni push."
           git push -q --force \
             "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" gh-pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Dove sta
-        run: echo "https://${GITHUB_REPOSITORY_OWNER}.github.io/${GITHUB_REPOSITORY#*/}/" >> $GITHUB_STEP_SUMMARY
+      - name: Dove stanno
+        run: |
+          sito="https://${GITHUB_REPOSITORY_OWNER}.github.io/${GITHUB_REPOSITORY#*/}"
+          echo "Ghisa & Grammi: $sito/"          >> $GITHUB_STEP_SUMMARY
+          echo "Alpi, Soca & Quarnero: $sito/viaggio/" >> $GITHUB_STEP_SUMMARY

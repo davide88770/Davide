@@ -6,11 +6,12 @@ Castelnovo ne' Monti.
 **Artifact:** <https://claude.ai/code/artifact/fac61cfd-bb6d-466a-97fc-e508a9785d8c>
 **Sorgente:** [`roadbook.html`](roadbook.html)
 
-Accanto al road book c'è ora l'**app da viaggio**, la stessa materia ma da
-tenere in mano mentre si guida:
-<https://claude.ai/code/artifact/6d313e18-d2ba-46e7-b92b-777728ae408b>
-(sorgente [`app-mobile.html`](app-mobile.html)). Vedi
-[In viaggio: l'app](#in-viaggio-lapp) più sotto.
+Accanto al road book c'è l'**app da viaggio**, la stessa materia ma da tenere
+in mano mentre si guida. Vedi [In viaggio: l'app](#in-viaggio-lapp) più sotto.
+
+**App installabile:** <https://davide88770.github.io/Davide/viaggio/>
+**Artifact:** <https://claude.ai/code/artifact/6d313e18-d2ba-46e7-b92b-777728ae408b>
+**Sorgente:** [`app-mobile.html`](app-mobile.html) · **Verifica:** `npm run verify viaggi/2026-09-alpi-soca-quarnero/app-mobile.html`
 
 ## In sintesi
 
@@ -85,6 +86,43 @@ Cosa fa che il documento non fa:
 - **Stampa**: il PDF esce come libretto da cruscotto, 24 pagine A4 — mappa,
   dieci giornate, pratico, e le tre checklist con le caselle da barrare a
   penna. La scheda «Oggi» in stampa è soppressa perché duplica una giornata.
+- **Riprende dove eri**: ricorda l'ultima scheda aperta e la posizione dello
+  scorrimento di ognuna. Un giorno nuovo però riapre su «Oggi», che è il
+  motivo per cui quella scheda esiste.
+- **Dice quando sei senza campo**, con una spia in alto: l'app si apre lo
+  stesso, ma gli orari che leggi sono quelli scritti, non quelli di adesso.
+
+### Installabile, e offline sul serio
+
+`https://davide88770.github.io/Davide/viaggio/` — icona sulla schermata Home,
+schermo intero, e si **apre senza rete**. È la differenza che conta su questo
+itinerario: il road book stesso avverte che il segnale sparisce a Plitvice,
+sul Vršič, sul Velebit e nell'interno di Cres, che sono esattamente i posti in
+cui la vorresti aprire. Sull'Artifact questo non è possibile — gira in un
+iframe su claude.ai e non può registrare un service worker.
+
+Si costruisce dal sorgente, che resta l'unica fonte di verità:
+
+```sh
+node tools/build-icone.mjs pwa/viaggio/icone   # solo se cambia l'icona
+node tools/build-pwa.mjs viaggio               # oppure senza argomenti, tutte
+```
+
+Il ramo `gh-pages` serve l'intera cartella `pwa/`, quindi l'app fitness sta
+alla radice e questa in `/viaggio/`. Convivere sullo stesso dominio ha due
+trappole, tutte e due trovate eseguendo la prova offline e non leggendo il
+codice:
+
+- il service worker alla radice ha **scope su tutto il sito** e intercettava
+  anche le navigazioni verso `/viaggio/`, salvandosi quella pagina come
+  proprio guscio offline. Ora ogni service worker tratta solo il proprio
+  indice;
+- l'`activate` cancellava **tutte** le cache dell'origine per ripulire le
+  versioni vecchie, quindi ogni aggiornamento di un'app azzerava l'offline
+  dell'altra. Ora ognuno cancella solo le cache col proprio prefisso.
+
+L'icona è una rosa dei venti a trentadue tacche nella palette del road book,
+con il nord in teal: `pwa/viaggio/icone/icona.svg`.
 
 ### Numeri, ricalcolati a codice
 
