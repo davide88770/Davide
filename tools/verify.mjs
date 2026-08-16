@@ -31,14 +31,21 @@ if (!fs.existsSync(CHROME)) {
   process.exit(2);
 }
 
-const name = path.basename(path.dirname(path.resolve(src)));
-const out = path.resolve('out', name);
+const dir = path.dirname(path.resolve(src));
+const stem = path.basename(src).replace(/\.html$/i, '');
+const name = path.basename(dir);
+// Una cartella può contenere più sorgenti (il road book e la sua app da
+// viaggio): ognuno ha la propria sottocartella di output.
+const out = path.resolve('out', name, stem);
 fs.mkdirSync(out, { recursive: true });
 
-// Configurazione opzionale accanto al sorgente: se manca si applicano i
-// valori del road book, così i documenti gia' versionati non cambiano.
-const cfgPath = path.join(path.dirname(path.resolve(src)), 'verify.json');
-const cfg = fs.existsSync(cfgPath) ? JSON.parse(fs.readFileSync(cfgPath, 'utf8')) : {
+// Configurazione opzionale accanto al sorgente. Si cerca prima quella
+// specifica del file (<nome>.verify.json), poi quella di cartella; se manca
+// si applicano i valori del road book, così i documenti gia' versionati non
+// cambiano.
+const cfgPath = [path.join(dir, stem + '.verify.json'), path.join(dir, 'verify.json')]
+  .find(p => fs.existsSync(p));
+const cfg = cfgPath ? JSON.parse(fs.readFileSync(cfgPath, 'utf8')) : {
   conta: {
     giornate: '.day', tappe: 'ol.tl li', menu: '.menu', opzioni: '.opt',
     fermate: '.stopdot', tratte: '#map path', tabelle: 'table', link: 'a[href^="http"]',
@@ -153,7 +160,7 @@ if (cfg.eventoStampa) {
 }
 await page.emulateMedia({ media: 'print' });
 await page.waitForTimeout(300);
-const pdfPath = path.join(out, `${name}.pdf`);
+const pdfPath = path.join(out, `${stem}.pdf`);
 await page.pdf({ path: pdfPath, format: 'A4', printBackground: true });
 await page.close();
 await browser.close();
