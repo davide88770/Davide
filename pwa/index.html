@@ -1,5 +1,22 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Ghisa &amp; Grammi</title>
-
+<meta name="description" content="Allenamento e alimentazione, giorno per giorno: carichi, progressioni, protocolli e pasti in grammi risolti sul target della fase.">
+<meta name="theme-color" content="#EAEDEC" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0B0F12" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Ghisa &amp; Grammi">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icone/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icone/icona-192.png">
+<style>:root{color-scheme:light dark}*{box-sizing:border-box}body{margin:0}img{max-width:100%}</style>
+</head>
+<body>
 <style>
 /* ══════════════════════════════════════════════════════════════════════════
    GHISA & GRAMMI — token di progetto
@@ -2914,3 +2931,71 @@ applicaTema();
 matchMedia('(prefers-color-scheme:dark)').addEventListener('change', applicaTema);
 vai(S.ui.tab && ['oggi','workout','dieta','progressi','piano'].includes(S.ui.tab) ? S.ui.tab : 'oggi');
 </script>
+
+<div class="agg" id="agg" hidden role="status">
+  <span>Nuova versione pronta</span>
+  <button class="btn sm" id="aggOra">Ricarica</button>
+</div>
+<style>
+.agg{position:fixed;left:50%;transform:translateX(-50%);z-index:90;
+  bottom:calc(var(--tab-h) + 22px + env(safe-area-inset-bottom));
+  display:flex;align-items:center;gap:12px;padding:9px 12px 9px 17px;border-radius:999px;
+  background:var(--solid);color:var(--on-solid);box-shadow:var(--shadow-2);font-size:14px}
+.agg .btn{border-color:color-mix(in srgb,var(--on-solid) 35%,transparent);color:var(--on-solid)}
+@media (min-width:900px){.agg{bottom:26px}}
+.installa{margin:0 0 16px;display:flex;gap:11px;align-items:flex-start;padding:13px 15px;
+  border-radius:var(--r);background:var(--accent-soft);color:var(--accent-text);font-size:13.5px;line-height:1.45}
+.installa b{display:block;font-family:var(--display);font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.installa button{margin-left:auto;color:inherit;opacity:.7;font-size:20px;line-height:1;padding:0 4px}
+</style>
+<script>
+(function(){
+  "use strict";
+  // ── service worker: la pagina funziona anche senza campo, in palestra ──
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function(){
+      navigator.serviceWorker.register('sw.js').then(function(reg){
+        reg.addEventListener('updatefound', function(){
+          var nuovo = reg.installing;
+          if (!nuovo) return;
+          nuovo.addEventListener('statechange', function(){
+            if (nuovo.state === 'installed' && navigator.serviceWorker.controller) {
+              var box = document.getElementById('agg');
+              box.hidden = false;
+              document.getElementById('aggOra').onclick = function(){
+                nuovo.postMessage('attiva');
+                nuovo.addEventListener('statechange', function(){
+                  if (nuovo.state === 'activated') location.reload();
+                });
+              };
+            }
+          });
+        });
+      }).catch(function(){ /* senza service worker l'app funziona lo stesso */ });
+    });
+  }
+  // ── suggerimento d'installazione, solo su iPhone e solo se non installata ──
+  var standalone = window.matchMedia('(display-mode: standalone)').matches
+                || window.navigator.standalone === true;
+  var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+  if (!standalone && iOS && !localStorage.getItem('gg.installa.visto')) {
+    window.addEventListener('load', function(){
+      var main = document.querySelector('main');
+      if (!main) return;
+      var el = document.createElement('div');
+      el.className = 'installa';
+      el.innerHTML = '<div><b>Mettila sulla schermata Home</b>'
+        + 'Tocca Condividi in fondo a Safari, poi "Aggiungi a Home". Si apre a schermo intero, '
+        + 'funziona senza campo e i dati non vengono più cancellati dopo una settimana.</div>'
+        + '<button aria-label="Ho capito">&times;</button>';
+      el.querySelector('button').onclick = function(){
+        localStorage.setItem('gg.installa.visto', '1');
+        el.remove();
+      };
+      main.insertBefore(el, main.firstChild);
+    });
+  }
+})();
+</script>
+</body>
+</html>

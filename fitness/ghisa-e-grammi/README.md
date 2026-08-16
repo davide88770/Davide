@@ -98,6 +98,38 @@ scritta anche dentro l'app, in fondo alla sezione Piano):
   giorno di allenamento "Cambia seduta". Quando la seduta non è quella prevista
   l'app lo scrive.
 
+## Versione installabile (PWA)
+
+Lo stesso sorgente diventa un'app che si installa sulla schermata Home
+dell'iPhone. `tools/build-pwa.mjs` genera `pwa/` dall'Artifact — che resta
+l'unica fonte di verità — aggiungendo manifest, service worker e icone.
+
+```sh
+npm run build:pwa      # rigenera pwa/ dal sorgente
+npm run build:icone    # rigenera i PNG dai due SVG in pwa/icone/
+```
+
+Pubblicazione: il workflow `.github/workflows/pwa.yml` ricostruisce e pubblica su
+GitHub Pages a ogni push su `main`. Da abilitare una volta sola in
+**Settings → Pages → Source: GitHub Actions**.
+
+Cosa cambia rispetto all'Artifact aperto in Safari:
+
+- **I dati non vengono più cancellati.** La regola dei 7 giorni vale per Safari;
+  le web app aggiunte alla Home hanno un contatore proprio, che si azzera a ogni
+  apertura.
+- **Funziona senza campo.** Il service worker tiene in cache tutta la pagina:
+  provato staccando la rete e ricaricando, l'app si apre e risolve i pasti.
+- **Si apre a schermo intero**, con icona propria e barra di stato integrata.
+- **Si aggiorna da sola**: quando c'è una versione nuova compare "Nuova versione
+  pronta" con il tasto per ricaricare.
+- Al primo avvio su iPhone, se non è ancora installata, spiega come farlo.
+
+Resta fuori dalla portata del web, e servirebbe un'app nativa: il timer di
+recupero come Live Activity sulla schermata di blocco, l'integrazione con Salute
+e i widget. Anche il feedback aptico alla conferma di una serie è predisposto ma
+su iOS non è ancora disponibile al web: funziona su Android.
+
 ## Grammature: perché sono ricalcolate
 
 I due documenti non tornano fra loro su tre livelli, e i tre errori si sommano:
@@ -194,6 +226,11 @@ al testo dei sorgenti. Le pagine 6, 13, 18, 25, 32 del workout e 4, 8, 11, 15,
 
 ## Storico
 
+- **v7** — versione installabile. Manifest, service worker con funzionamento
+  offline verificato, icone disegnate, avviso d'installazione su iPhone,
+  aggiornamento in-app e pubblicazione automatica su GitHub Pages. Rifiniture
+  native: titolo che si raccoglie nella barra scorrendo, risposta al tocco su
+  schede, spunte e righe alimento.
 - **v6** — media dei 7 giorni con l'azione della fase, aderenza ai pasti, tetti
   di frequenza settimanale sugli scambi, lista della spesa dalle grammature
   risolte.
