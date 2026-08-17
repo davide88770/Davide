@@ -83,8 +83,9 @@ scritta anche dentro l'app, in fondo alla sezione Piano):
 
 ## Programmazione: originale e rivista
 
-L'app contiene due programmazioni per le fasi con split PPL + Upper, con un
-interruttore in **Piano → Programmazione**. Cut e transizione restano invariati.
+L'app contiene due programmazioni, con un interruttore in **Piano →
+Programmazione**. Copre tutte le fasi: PPL + Upper (3-8) e PPL 3× (cut e
+transizione).
 
 Il vincolo che decide tutto è il budget: 17-22 serie per seduta, 53-62 minuti,
 cioè **77 serie a settimana su 4 giorni e 95 su 5**. Non si aggiunge volume, si
@@ -119,8 +120,45 @@ bicipite in allungamento, molto meno carico sul gomito. Range dei compound da
 sull'isolamento. Il **Legs 2 non è più opzionale**: senza, quadricipiti e gluteo
 restano a 8 e 3 serie.
 
+Nel **cut** (PPL 3×, stesso budget di 55-58 serie): petto da **2 a 5** serie —
+due a settimana sono sotto la manutenzione — dorso da 4 a 6, femorali da 5 a 7 e
+da 1× a 2× di frequenza. Le serie arrivano da tricipiti (11→7) e bicipiti
+(12→10). Su un PPL a 3 giorni petto, dorso e gambe restano necessariamente a
+frequenza 1×: è la natura dello split, non un difetto correggibile.
+
 Lo storico dei carichi è legato al nome dell'esercizio, quindi cambiando
 programmazione tutto quello che è già registrato continua a valere.
+
+## Nutrizione: originale e rivista
+
+Interruttore in **Dieta**. A calorie identiche:
+
+- **Proteine da 200-215 g a 190**, cioè 2,2 g/kg. Sopra i 2,0-2,2 non c'è
+  vantaggio dimostrato, nemmeno in deficit. Le calorie liberate vanno sui
+  carboidrati: in pratica 60-70 g di pollo in meno per pasto.
+- **Via la cena senza carboidrati** nei giorni di riposo. Il razionale del piano
+  — carbo sotto i 20 g e grassi alti per il picco di GH e la lipolisi sul grasso
+  addominale basso — non è supportato: a pari calorie e macro non cambia la
+  perdita di grasso, e la perdita localizzata non si indirizza con la
+  composizione dei pasti.
+
+## Orario di allenamento
+
+Selettore in **Piano**: mattina, pomeriggio o sera. Sposta gli orari dei pasti,
+marca il pasto pre e post-workout, e porta il carico di carboidrati sul pasto
+dopo l'allenamento. Il piano lo prescriveva a pag. 2 ma non lo applicava. I
+macro totali non cambiano: allenandosi la sera, i carboidrati della colazione
+passano da 112 a 20 g e quelli della cena da 25 a 116.
+
+## Fasi 7 e 8: dopo settembre 2026
+
+Il piano finiva a settembre senza rispondere a "e poi?". Aggiunte due fasi:
+
+- **Ripristino** (ottobre, 4 settimane) — calorie riportate a mantenimento con
+  +100-150 kcal a settimana, carichi e volume invariati, RIR 1-2. Il peso sale
+  di 1-2 kg: è acqua e glicogeno dopo mesi di deficit.
+- **Costruzione lean** (novembre → febbraio) — surplus contenuto, +0,25/0,35 kg
+  a settimana. Con 10-11% di grasso è la condizione migliore per costruire.
 
 ## Scelte fatte pensando alla palestra
 
@@ -268,6 +306,11 @@ al testo dei sorgenti. Le pagine 6, 13, 18, 25, 32 del workout e 4, 8, 11, 15,
 
 ## Storico
 
+- **v10** — chiusi i cinque punti aperti. Nutrizione rivista attivabile
+  (proteine 2,2 g/kg, cena del riposo con carboidrati), selettore dell'orario di
+  allenamento con redistribuzione dei carboidrati, revisione anche del cut,
+  e le fasi 7 e 8 per il dopo-settembre. 138 combinazioni di nutrizione, orario
+  e giornata verificate: scarto massimo 2,9 g su un macronutriente.
 - **v9** — corretti gli incrementi di carico. Due bug: "curl su panca inclinata"
   prendeva +2,5 kg per la parola "panca" e il sissy squat per la parola "squat".
   Ma il difetto era a monte: +1,25 kg non è realizzabile con nessun attrezzo, e
