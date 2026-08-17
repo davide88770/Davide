@@ -37,6 +37,18 @@ La sessione e il tipo di giornata alimentare si ricavano dalla data: lo split
 cambia da solo passando da PPL 3× (cut, transizione) a PPL + Upper (dalle fase 3
 in poi). La fase si può forzare a mano dalla sezione Piano.
 
+## Come vengono registrati i carichi
+
+Carico e ripetizioni si salvano **mentre li scrivi**. La spunta verde fa partire
+il cronometro di recupero e segna l'avanzamento della seduta, ma non è
+necessaria per conservare i dati.
+
+Non è sempre stato così: fino alla v11 lo storico, i suggerimenti, i record, il
+volume e i grafici contavano **solo** le serie confermate col tasto. Chi
+compilava i campi senza toccare la spunta non si ritrovava niente da una
+settimana all'altra, anche se i numeri erano regolarmente salvati nel giorno.
+Una serie ora conta se è confermata **oppure** se ha carico e ripetizioni.
+
 ## Dati e sincronizzazione
 
 Non esiste uno storage condiviso dichiarabile da un Artifact per questo account
@@ -306,6 +318,13 @@ al testo dei sorgenti. Le pagine 6, 13, 18, 25, 32 del workout e 4, 8, 11, 15,
 
 ## Storico
 
+- **v11** — due bug di memoria. Storico, suggerimenti, record, volume e grafici
+  contavano solo le serie confermate col tasto: chi scriveva i valori senza
+  spuntare non si ritrovava niente da una settimana all'altra. E la fusione
+  dello stato salvato era superficiale, quindi ogni impostazione aggiunta dopo
+  (programmazione, nutrizione, orario) restava invisibile a chi usava già l'app.
+  In più: la seduta di un giorno già compilato non viene più riscritta cambiando
+  programmazione, e riducendo il tipo di settimana non si perdono righe con dati.
 - **v10** — chiusi i cinque punti aperti. Nutrizione rivista attivabile
   (proteine 2,2 g/kg, cena del riposo con carboidrati), selettore dell'orario di
   allenamento con redistribuzione dei carboidrati, revisione anche del cut,
