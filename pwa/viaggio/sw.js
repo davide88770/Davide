@@ -36,8 +36,11 @@ self.addEventListener('fetch', ev => {
   if (req.method !== 'GET' || url.origin !== location.origin) return;
   if (req.mode === 'navigate') {
     if (!mio(url.pathname)) return;
+    // cache:'reload' salta la cache HTTP del browser: GitHub Pages serve con
+    // max-age=600, e senza questo per dieci minuti si continuerebbe a vedere
+    // la pagina vecchia anche con la versione nuova gia' pubblicata.
     ev.respondWith(
-      fetch(req).then(r => {
+      fetch(url.href, { cache: 'reload', credentials: 'same-origin' }).then(r => {
         const copia = r.clone();
         caches.open(CACHE).then(c => c.put('./index.html', copia));
         return r;

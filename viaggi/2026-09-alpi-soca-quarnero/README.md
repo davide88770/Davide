@@ -146,8 +146,25 @@ la versione nuova prende il posto della vecchia da sola, e il contenuto
 aggiornato si vede alla riapertura. Chi usa l'app non deve dare permessi a
 nessuno.
 
-Resta un `registration.update()` al ritorno in primo piano, solo con rete, così
-la versione nuova è già pronta per la volta dopo.
+Tolto il banner restava però un buco: **l'app installata riprende la pagina
+già aperta**, senza nessuna navigazione, quindi il contenuto vecchio poteva
+restare in vista anche con la versione nuova già attiva. Ora la pagina si
+ricarica da sola appena il service worker nuovo prende il controllo
+(`controllerchange`), e solo quando a cambiare è la versione dello *stesso*
+service worker — alla prima apertura il controller passa da quello della
+radice a questo, e lì ricaricare sarebbe solo un lampeggio inutile.
+
+Due dettagli che completano il quadro:
+
+- la navigazione usa `fetch(url, {cache:'reload'})`. GitHub Pages serve con
+  `max-age=600`: senza saltare la cache HTTP del browser si continuerebbe a
+  vedere la pagina vecchia per dieci minuti dopo la pubblicazione;
+- in fondo alla pagina c'è l'**impronta della versione** (`versione 574aef…`),
+  così si sa sempre quale build si sta guardando invece di indovinarlo.
+
+La prova del repo gira su un server con le stesse intestazioni di GitHub
+Pages e riproduce esattamente questo caso: app aperta e ferma sulla versione
+vecchia, pubblicazione della nuova, e nessuno che navighi o confermi niente.
 
 ### Icone disegnate, non glifi
 

@@ -103,10 +103,28 @@ function costruisci(id) {
   // un file unico senza pezzi caricati a parte. La versione nuova entra da
   // sola alla riapertura, e chi usa l'app non deve dare permessi a nessuno.
   if ('serviceWorker' in navigator) {
+    // Quando l'app installata riprende una pagina gia' aperta non c'e' nessuna
+    // navigazione, quindi il contenuto vecchio resterebbe li' anche con la
+    // versione nuova gia' attiva. Qui la pagina si ricarica da sola appena il
+    // service worker nuovo prende il controllo.
+    var primo = navigator.serviceWorker.controller && navigator.serviceWorker.controller.scriptURL;
+    var giaFatto = false;
+    navigator.serviceWorker.addEventListener('controllerchange', function(){
+      var ora = navigator.serviceWorker.controller && navigator.serviceWorker.controller.scriptURL;
+      // Ricarica solo se a cambiare e' la versione dello STESSO service
+      // worker. Alla prima apertura il controller passa da niente (o da
+      // quello dell'app alla radice, che ha scope su tutto il dominio) a
+      // questo: li' la pagina e' gia' quella giusta e ricaricare e' solo un
+      // lampeggio inutile.
+      if (giaFatto || !primo || ora !== primo) { primo = ora; return; }
+      giaFatto = true;
+      location.reload();
+    });
     window.addEventListener('load', function(){
       navigator.serviceWorker.register('sw.js').then(function(reg){
-        // Scarica la versione nuova quando l'app torna in primo piano, cosi'
-        // alla riapertura successiva e' gia' pronta. Solo con rete.
+        // Cerca la versione nuova quando l'app torna in primo piano: e' il
+        // momento in cui una pagina rimasta aperta per ore va aggiornata.
+        // Solo con rete.
         document.addEventListener('visibilitychange', function(){
           if (document.visibilityState === 'visible' && navigator.onLine !== false) {
             reg.update().catch(function(){});
@@ -115,6 +133,15 @@ function costruisci(id) {
       }).catch(function(){ /* senza service worker l'app funziona lo stesso */ });
     });
   }
+  // Impronta della versione, per sapere sempre cosa si sta guardando
+  window.addEventListener('load', function(){
+    var f = document.querySelector('.foot');
+    if (!f) return;
+    var s = document.createElement('span');
+    s.style.cssText = 'display:block;margin-top:6px;opacity:.65;font-variant-numeric:tabular-nums';
+    s.textContent = 'versione ${versione}';
+    f.appendChild(s);
+  });
   // ── suggerimento d'installazione, solo su iPhone e solo se non installata ──
   var standalone = window.matchMedia('(display-mode: standalone)').matches
                 || window.navigator.standalone === true;
@@ -201,8 +228,11 @@ self.addEventListener('fetch', ev => {
   if (req.method !== 'GET' || url.origin !== location.origin) return;
   if (req.mode === 'navigate') {
     if (!mio(url.pathname)) return;
+    // cache:'reload' salta la cache HTTP del browser: GitHub Pages serve con
+    // max-age=600, e senza questo per dieci minuti si continuerebbe a vedere
+    // la pagina vecchia anche con la versione nuova gia' pubblicata.
     ev.respondWith(
-      fetch(req).then(r => {
+      fetch(url.href, { cache: 'reload', credentials: 'same-origin' }).then(r => {
         const copia = r.clone();
         caches.open(CACHE).then(c => c.put('./index.html', copia));
         return r;

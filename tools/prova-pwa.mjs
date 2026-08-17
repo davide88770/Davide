@@ -19,8 +19,10 @@ const server = http.createServer((req, res) => {
   if (p.endsWith('/')) p += 'index.html';
   const f = path.join('pwa', p);
   if (!fs.existsSync(f) || fs.statSync(f).isDirectory()) { res.writeHead(404); return res.end('no'); }
+  // Le stesse intestazioni di GitHub Pages: e' la cache HTTP che fa vedere
+  // la pagina vecchia dopo una pubblicazione, quindi la prova deve averla.
   res.writeHead(200, { 'content-type': TIPI[path.extname(f)] ?? 'application/octet-stream',
-    'cache-control': 'no-store' });
+    'cache-control': 'max-age=600' });
   res.end(fs.readFileSync(f));
 });
 await new Promise(r => server.listen(0, r));
@@ -89,25 +91,42 @@ controlla((await p.evaluate(() => document.getElementById('totbar').textContent)
   'la scelta salvata si ritrova dopo il riavvio');
 await ctx.setOffline(false);
 
-// ── 5. una versione nuova entra da sola, senza chiedere niente ────────────
+// ── 5. una versione nuova entra da sola, con l'app aperta e ferma ─────────
+// E' il caso che conta: l'app installata riprende la pagina gia' aperta senza
+// nessuna navigazione, quindi il contenuto vecchio resterebbe li'.
 console.log('\nAggiornamento silenzioso');
-const sw = 'pwa/viaggio/sw.js';
-const orig = fs.readFileSync(sw, 'utf8');
-const marchio = '/* versione finta, solo per questa prova */';
-fs.writeFileSync(sw, orig + '\n' + marchio + '\n');
+const idx = 'pwa/viaggio/index.html', sw = 'pwa/viaggio/sw.js';
+const idxOrig = fs.readFileSync(idx, 'utf8'), swOrig = fs.readFileSync(sw, 'utf8');
 try {
-  await p.evaluate(async () => { const r = await navigator.serviceWorker.getRegistration(); await r.update(); });
-  await p.waitForTimeout(1800);
+  // rimette l'app su una versione "vecchia" riconoscibile e la fa installare
+  fs.writeFileSync(idx, idxOrig.replace('<main>', '<main><div id="vecchia"></div>'));
+  await p.goto(base + '/viaggio/');
+  await p.evaluate(() => navigator.serviceWorker.ready);
+  await p.waitForTimeout(900);
+  controlla(await p.evaluate(() => !!document.getElementById('vecchia')),
+    'parte dalla versione vecchia');
+
+  // esce quella nuova mentre l'app e' aperta: nessuna navigazione, solo il
+  // ritorno in primo piano
+  fs.writeFileSync(idx, idxOrig);
+  fs.writeFileSync(sw, swOrig + '\n/* versione finta, solo per questa prova */\n');
+  await p.evaluate(() => {
+    Object.defineProperty(document, 'visibilityState', { value: 'visible', configurable: true });
+    document.dispatchEvent(new Event('visibilitychange'));
+  });
+  await p.waitForTimeout(3200);
+  controlla(!(await p.evaluate(() => !!document.getElementById('vecchia'))),
+    'si aggiorna da sola senza che nessuno navighi o confermi niente');
+  controlla(!(await p.evaluate(() => !!document.getElementById('agg'))),
+    'e senza mostrare nessun avviso');
   const stato = await p.evaluate(async () => {
     const r = await navigator.serviceWorker.getRegistration();
-    return { attesa: !!r.waiting, avviso: !!document.getElementById('agg') };
+    return !!r.waiting;
   });
-  controlla(!stato.attesa, 'si attiva da sola, senza restare in attesa di un permesso');
-  controlla(!stato.avviso, 'non compare nessun avviso');
-  const servito = await p.evaluate(() => fetch('sw.js').then(r => r.text()));
-  controlla(servito.includes(marchio.slice(3, 20)), 'alla riapertura viene servita la versione nuova');
+  controlla(!stato, 'nessun service worker lasciato in attesa di un permesso');
 } finally {
-  fs.writeFileSync(sw, orig);
+  fs.writeFileSync(idx, idxOrig);
+  fs.writeFileSync(sw, swOrig);
 }
 
 controlla(errori.length === 0, errori.length ? 'errori in pagina: ' + errori.join(' | ') : 'nessun errore in pagina');
