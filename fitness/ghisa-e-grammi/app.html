@@ -1440,6 +1440,218 @@ const IMPREVISTI = [
   ['Domenica variabile','±300 kcal la domenica sono irrilevanti sulla media dei 7 giorni. Goditela senza ossessione: si regola sempre sulla media, mai sul dato singolo.']
 ];
 
+/* Il piano originale finiva a settembre 2026, cioe' senza una risposta alla
+   domanda "e poi?". Dopo 12-16 settimane di deficit la mossa giusta non e'
+   ricominciare a costruire subito: prima si riporta il metabolismo a
+   mantenimento, poi si costruisce piano. */
+FASI.push(
+  { id:'ripristino', n:7, nome:'Ripristino', periodo:'Ottobre 2026', da:'2026-10-01', a:'2026-10-31',
+    durata:'4 settimane', split:'PPL + Upper', obiettivo:'Torna a mantenimento · recupero ormonale',
+    giorni:{1:'pu_push',2:'pu_pull',4:'pu_legs',6:'pu_upper',0:'pu_legs2'},
+    settimane:['base','deload'], dieta:'ripristino',
+    nota:'Calorie riportate a mantenimento con +100-150 kcal a settimana, non in un colpo. I carichi restano quelli del recomp e il volume non cambia: RIR 1-2, niente cedimento sui compound. Il peso sale di 1-2 kg nelle prime due settimane — è acqua e glicogeno dopo mesi di deficit, non grasso. Non tagliare.' },
+  { id:'costruzione', n:8, nome:'Costruzione lean', periodo:'Novembre 2026 – Febbraio 2027', da:'2026-11-01', a:'2027-02-28',
+    durata:'12-16 settimane', split:'PPL + Upper', obiettivo:'+0,25/0,35 kg a settimana',
+    giorni:{1:'pu_push',2:'pu_pull',4:'pu_legs',6:'pu_upper',0:'pu_legs2'},
+    settimane:['base','peak','deload'], dieta:'costruzione',
+    nota:'Surplus contenuto: +150-200 kcal. Sopra 0,4 kg a settimana per due settimane consecutive stai facendo grasso, non muscolo: −100 kcal. Fermo per due settimane: +100 kcal solo nei giorni di allenamento. Partire da qui con 10-11% di grasso è la condizione migliore che avrai per costruire.' }
+);
+Object.assign(TARGET, {
+  rip_allen:{ k:2750, p:185, c:334, f:75 }, rip_riposo:{ k:2550, p:185, c:284, f:75 },
+  cos_pesante:{ k:3050, p:185, c:402, f:78 }, cos_medio:{ k:2950, p:185, c:377, f:78 },
+  cos_riposo:{ k:2700, p:185, c:315, f:78 }
+});
+Object.assign(GIORNO_DIETA, {
+  ripristino:{1:'allen',2:'allen',4:'allen',6:'allen',0:'allen'},
+  costruzione:{1:'pesante',2:'medio',4:'pesante',6:'medio'}
+});
+Object.assign(DIETE, {
+  ripristino:{ allen:{l:'Allenamento',m:'acc_medio',t:TARGET.rip_allen},
+               riposo:{l:'Riposo',m:'acc_riposo',t:TARGET.rip_riposo} },
+  costruzione:{ pesante:{l:'Push / Legs',m:'acc_pesante',t:TARGET.cos_pesante},
+               medio:{l:'Pull / Upper',m:'acc_medio',t:TARGET.cos_medio},
+               riposo:{l:'Riposo',m:'acc_riposo',t:TARGET.cos_riposo} }
+});
+Object.assign(INTENSITA, {
+  ripristino:{ base:'RIR 1–2 · carichi del recomp mantenuti, nessuna forzatura', deload:'RIR 3–4 · mai al cedimento' },
+  costruzione:{ base:'Compound RIR 1–2 · isolamento RIR 0–1', peak:'Compound RIR 1 · isolamento a cedimento', deload:'RIR 3–4 · mai al cedimento' }
+});
+Object.assign(ATTESO_PESO, { ripristino:[0.2,0.6], costruzione:[0.25,0.35] });
+for(const t of Object.values(TARGET)) if(t.kp === undefined) t.kp = t.k;
+
+
+/* ---------- CUT E TRANSIZIONE · PROGRAMMAZIONE RIVISTA ----------
+   Stesso budget del cut originale (58 serie con il sabato), stesse durate.
+   Petto da 2 serie a 5 — due a settimana sono sotto la manutenzione, non
+   sotto la crescita — dorso da 4 a 6, femorali da 5 a 7 e da 1× a 2× di
+   frequenza. Le serie arrivano da tricipiti (11→7) e bicipiti (12→10), che
+   nel cut restavano i gruppi piu' serviti di tutti.
+   In transizione valgono le stesse sedute: cambia l'intensita' (RIR 2-3 su
+   tutto), che l'app mostra in testa alla sessione. */
+SESS.rc_push = { id:'rc_push', nome:'Push', gg:'Lunedì', durata:55, rivista:1,
+  focus:'Petto compound + isolamento · Spalle · Tricipiti', ex:[
+  e('Panca piana bilanciere','petto',3,'5–8','RIR 1–2',210,{sv:{base:3,volplus:3,peak:3,deload:1},
+    cue:'Presa 1,5× spalle · gomiti 45° · scapole retratte · fermi rack',
+    note:'Obiettivo del cut: carico stabile. Se cala per due settimane di fila, mangi poco o dormi poco.'}),
+  e('Military press bilanciere','spalle',2,'6–8','RIR 1–2',210,{p:1,sv:{base:2,volplus:3,peak:3,deload:1},
+    cue:'Core braced · gomiti davanti · espira salendo'}),
+  e('Croci ai cavi','petto',2,'10–12','RIR 0–1',105,{nuovo:1,sv:{base:2,volplus:2,peak:3,deload:1},
+    cue:'Gomiti morbidi e fermi · allunga bene in apertura',
+    note:'Aggiunta: nel cut il petto stava a 2 serie a settimana, sotto la manutenzione.'}),
+  e('Alzate laterali manubri','spalle',3,'12–15','+ Rest-pause ×2',105,{p:1,wm:1,sv:{base:3,volplus:3,peak:4,deload:1},
+    cue:'Pronazione pollice · gomito guida · no trapezio · stop a 90°'}),
+  e('Alzate posteriori / face pull','spalle',2,'15–20','+ Rest-pause',105,{p:1,sv:{base:2,volplus:2,peak:3,deload:1},
+    cue:'Busto parallelo · gomiti verso il soffitto'}),
+  e('Tricipite overhead pulley','tricipiti',2,'12–15','+ Rest-pause',105,{p:1,wm:1,sv:{base:2,volplus:3,peak:3,deload:1},
+    cue:'Gomiti fermi sopra la testa · stretch massimo'})
+]};
+SESS.rc_pull = { id:'rc_pull', nome:'Pull', gg:'Mercoledì', durata:55, rivista:1,
+  focus:'Schiena su tre angoli · Bicipiti · Femorali 2ª frequenza', ex:[
+  e('Trazioni zavorate / Lat machine','dorso',2,'5–8','RIR 1–2',210,{inc:2.5,sv:{base:2,volplus:3,peak:3,deload:1},
+    cue:'Petto verso la barra · scapole in basso · eccentrica controllata'}),
+  e('Rematore bilanciere — Yates','dorso',2,'6–10','RIR 1–2',210,{sv:{base:2,volplus:3,peak:3,deload:1},
+    cue:'Tira verso l’ombelico · gomiti vicini · squeeze 1 sec'}),
+  e('Pulley basso — presa neutra','dorso',2,'10–12','+ Rest-pause',105,{nuovo:1,sv:{base:2,volplus:2,peak:3,deload:1},
+    cue:'Busto fermo · gomiti indietro lungo i fianchi',note:'Aggiunta: terzo angolo e spessore dorsale.'}),
+  e('Curl manubri su panca inclinata','bicipiti',3,'8–10','RIR 0–1',105,{p:1,nuovo:1,sv:{base:3,volplus:3,peak:3,deload:1},
+    cue:'Panca a 45-60° · braccia dietro la linea del busto · eccentrica 3 sec',
+    note:'Sostituisce il curl bilanciere 2×5-6 al cedimento: stesso volume, molto meno carico sul gomito.'}),
+  e('Curl hammer manubri','bicipiti',2,'10–12','+ Drop set',105,{p:1,sv:{base:2,volplus:3,peak:3,deload:1},
+    cue:'Presa neutra · alternato · gomiti fermi'}),
+  e('Leg curl seduto','femorali',2,'10–12','+ Rest-pause',105,{p:1,nuovo:1,sv:{base:2,volplus:2,peak:3,deload:1},
+    cue:'Anca flessa · schiena appoggiata · contrazione 1 sec',
+    note:'Aggiunta: porta i femorali a 2 frequenze. Sicuro al 100% per l’ernia.'})
+]};
+SESS.rc_legs = { id:'rc_legs', nome:'Legs', gg:'Venerdì', durata:60, rivista:1,
+  focus:'Quad: hack + leg extension · Femorali: RDL + leg curl · Gluteo · Calf · Core', ex:[
+  e('Hack squat — piede basso','quad',2,'8–10','RIR 1–2',210,{ernia:1,sv:{base:2,volplus:3,peak:3,deload:1},
+    cue:'Discesa 2–3 sec · ESPIRA nella salita · mai Valsalva'}),
+  e('Romanian deadlift bilanciere','femorali',2,'8–10','RIR 1–2',210,{ernia:1,sv:{base:2,volplus:3,peak:3,deload:1},
+    cue:'La barra scorre lungo la coscia · schiena neutra · espira salendo'}),
+  e('Leg extension','quad',2,'10–15','+ Rest-pause',105,{nuovo:1,sv:{base:2,volplus:3,peak:3,deload:1},
+    cue:'Schiena appoggiata · contrai 1 sec in cima · eccentrica 3 sec',
+    note:'Aggiunta: carica il quadricipite in progressione vera. Nessuna pressione addominale.'}),
+  e('Leg curl seduto','femorali',3,'12–15','+ Drop set',105,{p:1,sv:{base:3,volplus:3,peak:3,deload:1},
+    cue:'Anca flessa · range completo · stretch in basso'}),
+  e('Pressa — piede alto e largo','gluteo',2,'10–12','+ Drop set',150,{sv:{base:2,volplus:3,peak:3,deload:1},
+    cue:'Piedi molto in alto · spingi sui talloni'}),
+  e('Calf raise in piedi','polpacci',2,'8–12','+ Rest-pause',105,{
+    cue:'Pausa 2" in basso · 1" in cima · no rimbalzo'}),
+  e('Dead bug','core',2,'30–45"','Controllo',60,{tempo:1,ernia:1,
+    cue:'Lombare incollata al suolo · espira nell’estensione'})
+]};
+SESS.rc_sab = { id:'rc_sab', nome:'Accessorio', gg:'Sabato', durata:35, opz:1, rivista:1,
+  focus:'Spalle 4ª freq · Braccia volume puro · Nessun compound', ex:[
+  e('Alzate laterali 3 angoli','spalle',3,'15 per angolo','+ Rest-pause',105,{p:1,
+    cue:'Ruota il busto di 30° tra gli angoli · eccentrica 3 sec · peso leggero'}),
+  e('Curl manubri alternati','bicipiti',3,'10–12','+ Drop set',105,{p:1,
+    cue:'Supinazione totale in cima · gomiti fermi'}),
+  e('Curl hammer manubri','bicipiti',2,'12','RIR 2',90,{cue:'Presa neutra · alternato'}),
+  e('Tricipite overhead pulley','tricipiti',3,'12–15','+ Rest-pause',0,{p:1,ss:'A',
+    cue:'Gomiti fermi sopra la testa · stretch massimo'}),
+  e('Tricipite push-down','tricipiti',2,'12–15','Superset',90,{ss:'A',
+    cue:'Gomiti fermi ai fianchi · contrazione massima in basso'})
+]};
+const GIORNI_RIVISTI_PPL3 = {1:'rc_push',3:'rc_pull',5:'rc_legs',6:'rc_sab'};
+
+/* ── ORARIO DI ALLENAMENTO ────────────────────────────────────────────────
+   Il piano lo dice a pag. 2 ma non lo applicava: "allenamento al mattino,
+   colazione = pre e pranzo = post; al pomeriggio, pranzo leggero = pre e cena
+   abbondante = post; alla sera, cena post-workout". I macro totali non
+   cambiano, cambia dove cadono i carboidrati. */
+const ORARI = {
+  mattina:    { l:'Mattina · 10-12', 5:['07:30','10:20','12:30','16:30','20:00'], 4:['07:30','12:30','16:30','20:00'] },
+  pomeriggio: { l:'Pomeriggio · 15-18', 5:['07:30','10:00','12:30','15:30','19:30'], 4:['07:30','12:30','15:30','19:30'] },
+  sera:       { l:'Sera · 19-21', 5:['07:30','10:30','13:00','17:30','21:00'], 4:['07:30','13:00','17:30','21:00'] }
+};
+const RUOLI = {
+  mattina:    { 5:{1:'pre',2:'post'}, 4:{} },
+  pomeriggio: { 5:{2:'pre',4:'post'}, 4:{} },
+  sera:       { 5:{3:'pre',4:'post'}, 4:{} }
+};
+/* Per allenamento nel pomeriggio o di sera le fonti di carboidrati del pranzo
+   e della cena si scambiano: il pasto dopo l'allenamento deve essere quello
+   carico. Il risolutore ribilancia comunque la giornata sul target. */
+function spostaCarbo(lista){
+  const carbo = m => m.i.reduce((a,[k,g]) => a + (ALIMENTI[k].r === 'c' ? ALIMENTI[k].c*g : 0), 0);
+  const ultimo = lista.length - 1;
+  let iMax = -1, top = 0;
+  lista.forEach((m,i) => { if(i < ultimo && carbo(m) > top){ top = carbo(m); iMax = i; } });
+  if(iMax < 0 || top === 0) return lista;
+  const soloC = m => m.i.filter(([k]) => ALIMENTI[k].r === 'c');
+  const senzaC = m => m.i.filter(([k]) => ALIMENTI[k].r !== 'c');
+  const A = lista[iMax], B = lista[ultimo];
+  return lista.map((m,i) => i === iMax ? Object.assign({}, m, { i:senzaC(A).concat(soloC(B)) })
+    : (i === ultimo ? Object.assign({}, m, { i:senzaC(B).concat(soloC(A)) }) : m));
+}
+
+/* ── NUTRIZIONE RIVISTA ───────────────────────────────────────────────────
+   Due correzioni, a calorie identiche.
+
+   1. Proteine da 200-215 g a 190, cioe' 2,2 g/kg. Sopra i 2,0-2,2 non c'e'
+      vantaggio dimostrato, nemmeno in deficit; le calorie liberate vanno sui
+      carboidrati, che servono all'allenamento. In pratica: 60-70 g di pollo in
+      meno per pasto, che a 370 g di porzione e' la differenza fra un piano
+      sostenibile e uno da sopportare.
+   2. Via la cena senza carboidrati nei giorni di riposo. Il razionale del piano
+      — carbo sotto i 20 g e grassi alti la sera per il picco di GH e la lipolisi
+      sul grasso addominale basso — non e' supportato: a pari calorie e macro non
+      cambia la perdita di grasso, e la perdita localizzata non si indirizza con
+      la composizione dei pasti. Distribuire i carboidrati piu' equamente e'
+      uguale sul grasso e migliore su sonno e allenamento del mattino dopo. */
+/* Le fasi 7 e 8 hanno carboidrati alti anche nei giorni di riposo: il menu' di
+   riposo dell'accumulo, con quattro pasti e poche fonti, non ci arriva. Menu'
+   dedicato, con una fonte di carboidrati anche a cena. */
+PASTI.nuovo_riposo = [
+  { h:'07:30', n:'Colazione', i:[['pane_segale',70],['avocado',80],['uovo',2],['albume',33],['caffe',1]],
+    alt:[['yogurt_greco',200],['avena',50],['whey',15],['frutti_bosco',80],['caffe',1]] },
+  { h:'12:30', n:'Pranzo', i:[['riso_integrale',50],['pollo',230],['verdure',300],['evo',8]] },
+  { h:'16:30', n:'Spuntino', i:[['fiocchi_latte',250],['mela',150],['noci',20]] },
+  { h:'20:00', n:'Cena', i:[['salmone',260],['patate',200],['verdure',300],['evo',10]],
+    tip:'Carboidrati anche a cena: nelle fasi a calorie alte non c’è ragione di comprimerli in tre pasti.' }
+];
+DIETE.ripristino.riposo.m = 'nuovo_riposo';
+DIETE.costruzione.riposo.m = 'nuovo_riposo';
+
+const TARGET_RIV = {};
+for(const [k,t] of Object.entries(TARGET)){
+  const pr = Math.min(t.p, 190);
+  TARGET_RIV[k] = { k:t.k, kp:t.kp, p:pr, c:t.c + (t.p - pr), f:t.f };
+}
+/* Cene dei giorni di riposo: si aggiunge una fonte di carboidrati, cosi' il
+   risolutore puo' distribuirli anche la sera. */
+const NOTA_CARB = 'Carboidrati anche la sera: a pari calorie e macro non cambia niente sulla perdita di grasso, e dormi e ti alleni meglio il mattino dopo.';
+const PASTI_RIV = {
+  cut13_riposo:{ 3:{ n:'Cena', tip:NOTA_CARB,
+    i:[['salmone',240],['patate',150],['verdure',350],['evo',14]] } },
+  cut49_riposo:{ 3:{ n:'Cena', tip:NOTA_CARB,
+    i:[['salmone',240],['patate',150],['verdure',350],['evo',14]] } },
+  recomp_riposo:{ 3:{ n:'Cena', tip:NOTA_CARB,
+    i:[['salmone',240],['patate',150],['verdure',350],['evo',16]] } }
+};
+const targetDi = cfg => (S.ui.nutri === 'rivista' && TARGET_RIV[cfg.m]) ? TARGET_RIV[cfg.m] : cfg.t;
+function listaDi(cfg, allenamento){
+  let lista = PASTI[cfg.m];
+  if(S.ui.nutri === 'rivista'){
+    const ov = PASTI_RIV[cfg.m];
+    if(ov) lista = lista.map((m,i) => ov[i]
+      ? Object.assign({}, m, { i:ov[i].i, n:ov[i].n || m.n, tip:ov[i].tip, nocarb:0, alt:undefined })
+      : m);
+  }
+  const ora = S.ui.oraAll || 'mattina';
+  const conf = ORARI[ora] || ORARI.mattina;
+  const orari = conf[lista.length];
+  const ruoli = allenamento ? ((RUOLI[ora]||{})[lista.length] || {}) : {};
+  if(allenamento && ora !== 'mattina') lista = spostaCarbo(lista);
+  if(orari || Object.keys(ruoli).length){
+    lista = lista.map((m,i) => Object.assign({}, m, {
+      h: orari ? orari[i] : m.h,
+      ruolo: ruoli[i] || null
+    }));
+  }
+  return lista;
+}
+
 /* ═══════════════════════════════════════════════════════════════════════════
    MOTORE — stato, calcoli, utilità
    ═══════════════════════════════════════════════════════════════════════════ */
@@ -1461,7 +1673,7 @@ const piuGiorni = (s,n) => { const d = dalISO(s); d.setDate(d.getDate()+n); retu
 const settimanaDi = s => { const d = dalISO(s); const g = (d.getDay()+6)%7; d.setDate(d.getDate()-g); return iso(d); };
 
 const nuovoStato = () => ({ v:1,
-  ui:{ tema:null, tab:'oggi', sett:'base', faseManuale:null, esercizio:null, periodo:56, prog:'rivista' },
+  ui:{ tema:null, tab:'oggi', sett:'base', faseManuale:null, esercizio:null, periodo:56, prog:'rivista', nutri:'rivista', oraAll:'mattina' },
   sess:{}, pasti:{}, corpo:[], check:{}, meta:{ backup:null, mod:Date.now() } });
 
 let S = nuovoStato();
@@ -1491,7 +1703,8 @@ function faseDi(d){
 }
 /* La programmazione rivista sostituisce i giorni delle fasi con split
    PPL + Upper (dalla 3 alla 6). Cut e transizione restano come sono. */
-const giorniDi = f => (S.ui.prog === 'rivista' && f.split === 'PPL + Upper') ? GIORNI_RIVISTI : f.giorni;
+const giorniDi = f => S.ui.prog !== 'rivista' ? f.giorni
+  : (f.split === 'PPL + Upper' ? GIORNI_RIVISTI : GIORNI_RIVISTI_PPL3);
 function sessioneDi(d,f){
   const L = S.sess[d];
   if(L && L.manuale && SESS[L.sid]) return SESS[L.sid];   // seduta spostata a mano
@@ -1694,9 +1907,10 @@ function tipoPastoDi(d){
 }
 function pastiDi(d){
   const f = faseDi(d), t = tipoPastoDi(d), cfg = DIETE[f.id][t];
-  const lista = PASTI[cfg.m];
+  const allenamento = !!(GIORNO_DIETA[f.id]||{})[dalISO(d).getDay()] && t !== 'riposo' && t !== 'riposo13';
+  const lista = listaDi(cfg, allenamento), target = targetDi(cfg);
   const L = S.pasti[d];
-  return { fase:f, tipo:t, cfg, lista, voci: risolvi(lista, cfg.t, L) };
+  return { fase:f, tipo:t, cfg, target, lista, voci: risolvi(lista, target, L) };
 }
 function pastoLog(d){
   if(!S.pasti[d]) S.pasti[d] = { tipo:null, ok:{}, alt:{}, sub:{}, extra:[], mod:Date.now() };
@@ -1902,7 +2116,7 @@ function renderOggi(){
   const st = statoOggi(d), v7 = serieSettimana(d,7);
   const { fatto, piano } = totaliDieta(d), pd = pastiDi(d);
   const peso = [...S.corpo].sort((a,b) => a.d < b.d ? 1 : -1)[0];
-  const kcalT = pd.cfg.t.k;
+  const kcalT = pd.target.k;
 
   const cta = s
     ? `<button class="bigcta" data-vai="workout">
@@ -1942,7 +2156,7 @@ function renderOggi(){
     <div class="card">
       <div class="hd"><h2>Dieta di oggi</h2><span class="chip line sp">${esc(pd.cfg.l)}</span></div>
       <div class="bd">
-        ${anelli(fatto, pd.cfg.t)}
+        ${anelli(fatto, pd.target)}
         <button class="btn wide" data-vai="dieta" style="margin-top:14px">Apri la giornata</button>
       </div>
     </div>
@@ -2182,8 +2396,8 @@ function striscia(dp, kg){
 
 /* ── DIETA ──────────────────────────────────────────────────────────────── */
 function renderDieta(){
-  const d = S.ui.data, { fase, tipo, cfg, lista, voci } = pastiDi(d), L = pastoLog(d);
-  const { fatto, piano } = totaliDieta(d), t = cfg.t;
+  const d = S.ui.data, { fase, tipo, cfg, lista, voci, target } = pastiDi(d), L = pastoLog(d);
+  const { fatto, piano } = totaliDieta(d), t = target;
   const originale = lista.reduce((a,m) => { const x = macroDi(m.i);
     return { k:a.k+x.k, p:a.p+x.p, c:a.c+x.c, f:a.f+x.f }; }, {k:0,p:0,c:0,f:0});
   const residuo = Math.max(Math.abs(piano.p-t.p), Math.abs(piano.c-t.c), Math.abs(piano.f-t.f));
@@ -2200,6 +2414,7 @@ function renderDieta(){
       <div class="item ${on?'on':''}" style="border-top:0">
         <button class="cb" data-pasto="${i}" aria-pressed="${on}" aria-label="${on?'Annulla':'Segna come fatto'} ${esc(m.n)}">${ICO.check}</button>
         <div class="tx"><b>${esc(m.h)} · ${esc(m.n)}</b>
+          ${m.ruolo?`<span style="color:var(--accent-text)">${m.ruolo==='pre'?'Pasto pre-workout':'Pasto post-workout'}</span>`:''}
           ${variante?'<span style="color:var(--accent-text)">Variante del piano</span>':''}</div>
         <div style="text-align:right;flex:0 0 auto">
           <div class="num" style="font-size:15px">${nf(mm.k)}</div>
@@ -2228,6 +2443,10 @@ function renderDieta(){
       <button class="iconbtn" data-giorno="1" aria-label="Giorno successivo">${ICO.next}</button>
     </div>
     <h1 class="big">${esc(cfg.l)}</h1>
+    <div class="seg" role="group" aria-label="Nutrizione" style="margin-top:10px">
+      <button data-nutri="originale" aria-pressed="${S.ui.nutri==='originale'}">Nutrizione originale</button>
+      <button data-nutri="rivista" aria-pressed="${S.ui.nutri==='rivista'}">Rivista</button>
+    </div>
     <div class="seg" role="group" aria-label="Tipo di giornata" style="margin-top:10px">
       ${Object.entries(DIETE[fase.id]).map(([k,v]) => `<button data-tipogiorno="${k}" aria-pressed="${k===tipo}">${esc(v.l)}</button>`).join('')}
     </div>
@@ -2272,6 +2491,10 @@ function renderDieta(){
         restano ${nf(piano.f - t.f, 1)} g di grassi oltre il target. Il menù di oggi porta più grassi di quanti ne consenta il target anche con
         salmone, manzo, ricotta, uova, frutta secca e olio già al minimo. Proteine e carboidrati sono comunque esatti.
         Se vuoi chiuderla al grammo, cambia il salmone della cena con merluzzo.</span></div>` : ''}
+      ${S.ui.nutri === 'rivista' ? `<div class="backup ok" style="margin-top:12px">${ICO.check}
+        <span><b>Nutrizione rivista attiva.</b> Proteine a ${nf(target.p)} g invece di ${nf(cfg.t.p)} — 2,2 g/kg, sopra non
+        rende nemmeno in deficit — e le ${nf(cfg.t.p - target.p)} g liberate spostate sui carboidrati, a calorie identiche.
+        Nei giorni di riposo la cena non è più senza carboidrati: quel razionale non era supportato.</span></div>` : ''}
       <details class="subwrap" style="margin-top:12px">
         <summary style="padding-left:0">Verifica della tabella del piano</summary>
         <div style="padding:4px 0 0">
@@ -2380,7 +2603,7 @@ function renderProgressi(){
 
   ${(() => {
     const m7 = media7(d), ap = andamentoPeso(d), att = ATTESO_PESO[faseDi(d).id];
-    const tg = pastiDi(d).cfg.t;
+    const tg = pastiDi(d).target;
     const inRange = ap && ap.delta >= att[0] - 0.05 && ap.delta <= att[1] + 0.05;
     const azione = !ap ? '' : (ap.delta > att[1]
       ? (faseDi(d).id === 'cut' || faseDi(d).id === 'recomp'
@@ -2568,6 +2791,9 @@ function renderPiano(){
   <div class="card">
     <div class="hd"><h2>Fase in corso</h2></div>
     <div class="bd stack">
+      <label class="fld"><span>Quando ti alleni</span>
+        <select id="selOra">${Object.entries(ORARI).map(([k,v]) => `<option value="${k}" ${S.ui.oraAll===k?'selected':''}>${esc(v.l)}</option>`).join('')}</select></label>
+      <p class="tiny muted" style="margin:-4px 0 0">Sposta gli orari dei pasti e porta il carico di carboidrati sul pasto dopo l’allenamento. I macro totali non cambiano.</p>
       <label class="fld"><span>Fase attiva</span>
         <select id="selFase">
           <option value="">Automatica dalla data (${esc(faseDi(d).nome)})</option>
@@ -2582,10 +2808,12 @@ function renderPiano(){
     </div>
   </div>
 
-  ${f.split === 'PPL + Upper' ? (() => {
-    const a = volumePrevisto(f.giorni), b = volumePrevisto(GIORNI_RIVISTI);
-    const a4 = volumePrevisto({1:f.giorni[1],2:f.giorni[2],4:f.giorni[4],6:f.giorni[6]});
-    const b4 = volumePrevisto({1:GIORNI_RIVISTI[1],2:GIORNI_RIVISTI[2],4:GIORNI_RIVISTI[4],6:GIORNI_RIVISTI[6]});
+  ${(() => {
+    const upper = f.split === 'PPL + Upper';
+    const riv = upper ? GIORNI_RIVISTI : GIORNI_RIVISTI_PPL3;
+    const senzaOpz = o => Object.fromEntries(Object.entries(o).filter(([,id]) => !SESS[id].opz && !SESS[id].consigliata));
+    const a = volumePrevisto(f.giorni), b = volumePrevisto(riv);
+    const a4 = volumePrevisto(senzaOpz(f.giorni)), b4 = volumePrevisto(senzaOpz(riv));
     const riga = (g) => {
       const t = VOL_TARGET[g], lo = t ? t[0] : null;
       const a5 = a.per[g]||0, b5 = b.per[g]||0, d = b5 - a5;
@@ -2611,9 +2839,9 @@ function renderPiano(){
         <div class="vcmp head"><span class="g">Gruppo</span><span class="da">orig.</span><span class="ar"></span>
           <span class="a">riv.</span><span class="dd"></span><span class="ff">freq</span></div>
         ${['petto','dorso','spalle','bicipiti','tricipiti','quad','femorali','gluteo','polpacci','core'].map(riga).join('')}
-        <p class="tiny muted" style="margin:0">Serie a settimana su <b>5 giorni</b>, Legs 2 compreso. Su 4 giorni:
+        <p class="tiny muted" style="margin:0">Serie a settimana con <b>tutte</b> le sedute della fase. Senza quella opzionale:
           petto ${b4.per.petto||0}, dorso ${b4.per.dorso||0}, femorali ${b4.per.femorali||0},
-          quadricipiti ${b4.per.quad||0}, gluteo ${b4.per.gluteo||0} — ed è per questo che il Legs 2 non è più opzionale.</p>
+          quadricipiti ${b4.per.quad||0}, gluteo ${b4.per.gluteo||0}${upper ? ' — ed è per questo che il Legs 2 non è più opzionale' : ''}.</p>
         <p class="tiny muted" style="margin:0">Il segno <b>+</b> marca i gruppi che ricevono molto lavoro indiretto e
           che il conteggio delle serie dirette sottostima: tricipiti da ${esc(INDIRETTO.tricipiti)}, bicipiti da
           ${esc(INDIRETTO.bicipiti)}, gluteo da ${esc(INDIRETTO.gluteo)}. Per quelli il numero diretto più basso non è un problema.</p>
@@ -2646,7 +2874,7 @@ function renderPiano(){
       <div class="backup" style="background:var(--accent-soft);color:var(--accent-text)">${ICO.info}
         <span>Gli esercizi nuovi sono marcati <b>Aggiunto</b> nella scheda. Lo storico dei carichi resta legato al nome
         dell’esercizio, quindi tutto quello che hai già registrato continua a valere.</span></div>
-    </div></div>` ; })() : ''}
+    </div></div>` ; })()}
 
   <div class="card"><div class="hd"><h2>Settimana tipo</h2></div><div class="bd ed">${sett}</div></div>
 
@@ -2848,6 +3076,10 @@ document.addEventListener('click', ev => {
   if(tg){ const L = pastoLog(S.ui.data); L.tipo = tg.dataset.tipogiorno; L.mod = Date.now(); salva(); render(); return; }
 
   const pr = el('[data-periodo]'); if(pr){ S.ui.periodo = +pr.dataset.periodo; salva(); render(); return; }
+
+  const nu = el('[data-nutri]');
+  if(nu){ S.ui.nutri = nu.dataset.nutri; salva(); render();
+    toast(nu.dataset.nutri === 'rivista' ? 'Nutrizione rivista: proteine 190 g' : 'Tornato ai macro originali'); return; }
 
   const pg = el('[data-prog]');
   if(pg){ S.ui.prog = pg.dataset.prog; APERTI.clear(); salva(); render();
@@ -3093,6 +3325,7 @@ document.addEventListener('input', ev => {
 document.addEventListener('change', ev => {
   const t = ev.target;
   if(t.id === 'selEx'){ S.ui.esercizio = t.value; salva(); renderProgressi(); }
+  if(t.id === 'selOra'){ S.ui.oraAll = t.value; salva(); render(); toast('Orari dei pasti aggiornati'); }
   if(t.id === 'selFase'){ S.ui.faseManuale = t.value || null; APERTI.clear(); salva(); render(); }
   if(t.id === 'fileIn' && t.files && t.files[0]){
     const fr = new FileReader();
