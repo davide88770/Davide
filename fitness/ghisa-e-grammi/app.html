@@ -404,6 +404,16 @@ label.fld>span{font-family:var(--display);font-size:11px;letter-spacing:.14em;te
 .tip.on{opacity:1}
 .legend{display:flex;gap:14px;flex-wrap:wrap;padding:8px 0 0;font-size:12.5px;color:var(--ink-2)}
 .legend i{width:10px;height:10px;border-radius:3px;display:inline-block;margin-right:6px;vertical-align:-1px}
+.vcmp{display:grid;grid-template-columns:1fr 32px 16px 32px 30px 32px;gap:6px;align-items:center;
+  padding:8px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+.vcmp:last-of-type{border-bottom:0}
+.vcmp .g{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.vcmp .da,.vcmp .a,.vcmp .dd,.vcmp .ff{font-family:var(--display);font-variant-numeric:tabular-nums;text-align:right;font-size:15px}
+.vcmp .ar{text-align:center;color:var(--ink-4);font-size:13px}
+.vcmp .dd,.vcmp .ff{font-size:12.5px}
+.vcmp .ff{color:var(--ink-3)}
+.vcmp.head{border-bottom:1px solid var(--line-2);padding-bottom:5px}
+.vcmp.head span{font-family:var(--display);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
 .vbar{display:grid;grid-template-columns:88px 1fr 62px;gap:10px;align-items:center;padding:5px 0}
 .vbar .g{font-family:var(--display);font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .vbar .tr{height:12px;border-radius:3px;background:var(--sunk);overflow:hidden;position:relative}
@@ -589,7 +599,16 @@ const GRUPPI = {
    core il piano non fissa un target: si mostra il conteggio e basta. */
 const VOL_TARGET = {
   bicipiti:[10,20], tricipiti:[10,20], quad:[10,20], femorali:[10,20],
-  gluteo:[10,16], spalle:[12,20]
+  gluteo:[10,16], spalle:[12,20],
+  /* Il piano non dichiara un target per questi: valori comunemente accettati,
+     segnalati come tali dove compaiono. */
+  petto:[10,20], dorso:[10,20], polpacci:[6,12]
+};
+/* Gruppi che ricevono molto lavoro indiretto: il conteggio delle serie dirette
+   li sottostima, e non vanno segnalati come sotto-dosati. */
+const INDIRETTO = {
+  tricipiti:'panca, military e dip', bicipiti:'trazioni e rematore',
+  gluteo:'hack squat, pressa e stacco romeno', polpacci:'ogni compound in piedi'
 };
 const VOL_PIANO = {
   bicipiti:{ atteso:[15,19], punti:[16,20] }, tricipiti:{ atteso:[12,15], punti:[13,16] },
@@ -830,6 +849,122 @@ SESS.pu_legs2 = { id:'pu_legs2', nome:'Legs 2', gg:'Domenica', durata:50, opz:1,
   e('Calf raise seduto — soleo','polpacci',3,'15–20','+ Rest-pause',105,{
     cue:'Ginocchio flesso 90° · peso sulle cosce · pausa 2" in basso · no rimbalzo'})
 ]};
+
+/* ---------- PPL + UPPER · PROGRAMMAZIONE RIVISTA ----------
+   Stesso numero di sedute, stessa durata, stesso budget di serie (78 su 4
+   giorni, 96 su 5): cambia solo dove vanno. Le tre correzioni:
+
+   1. Tricipiti 14 serie contro petto 6. I tricipiti ricevono lavoro indiretto
+      da panca, military e dip; il petto da niente. Tricipiti a 9 dirette,
+      petto a 9 con le croci ai cavi, che lo caricano in allungamento.
+   2. Femorali a frequenza 1×, contro il principio dichiarato dal piano
+      stesso ("2× a settimana per gruppo, Schoenfeld 2022"). Leg curl seduto
+      nel Pull: da 6 serie a 9-12 e da 1× a 2×. Seduto e non prono, perche'
+      con l'anca flessa il capo lungo del bicipite femorale lavora allungato.
+   3. Tolto il lavoro a basso rendimento: le alzate laterali 2×20 al 30-40%
+      del carico e la terza frequenza di tricipite. Quattro serie liberate.
+
+   Aggiunte anche: leg extension, che carica il quadricipite in modo
+   progressivo dove il sissy squat non puo' (ed e' sicura per l'ernia), e
+   pulley basso per lo spessore dorsale. Il curl bilanciere 2×5-6 al cedimento
+   diventa curl su panca inclinata 3×8-10: stesso volume, bicipite in
+   allungamento, molto meno carico sul gomito a 38 anni.
+
+   Range di ripetizioni dei compound da 4-6 a 5-8 / 6-10: a pari volume i
+   carichi alti costruiscono massa, ma costano piu' stress articolare per
+   serie. Un solo slot resta pesante, per mantenere la forza. */
+SESS.rv_push = { id:'rv_push', nome:'Push', gg:'Lunedì', durata:57, rivista:1,
+  focus:'Petto compound + isolamento · Spalle forza, laterale e posteriore · Tricipiti', ex:[
+  e('Panca piana bilanciere','petto',3,'5–8','RIR 1–2',210,{
+    cue:'Presa 1,5× spalle · gomiti 45° · scapole retratte · fermi rack · eccentrica 2 sec',
+    note:'3 serie di riscaldamento. Range allargato a 5-8: stesso stimolo, meno stress articolare per serie.'}),
+  e('Military press bilanciere','spalle',3,'6–8','RIR 1–2',210,{p:1,
+    cue:'Core braced · gomiti davanti · no iperestensione lombare · espira salendo',
+    note:'Spalle forza. Lo slot pesante della sessione.'}),
+  e('Croci ai cavi','petto',3,'10–12','RIR 0–1',105,{nuovo:1,
+    cue:'Gomiti morbidi e fermi · porta le mani a incrociarsi · allunga bene in apertura',
+    note:'Aggiunta: il petto non riceveva nessun isolamento e nessun lavoro in allungamento. Sicura per l’ernia.'}),
+  e('Alzate laterali manubri','spalle',3,'12–15','+ Rest-pause ×2',105,{p:1,wm:1,
+    cue:'Pronazione pollice · gomito guida · no trapezio · eccentrica 3 sec · stop a 90°'}),
+  e('Alzate posteriori / face pull corda','spalle',3,'15–20','+ Rest-pause',105,{p:1,
+    cue:'Busto parallelo al suolo · gomiti flessi 90° · gomiti verso il soffitto',
+    note:'Da 2 a 3 serie: bilancia il pressing e tiene in salute la cuffia.'}),
+  e('Tricipite overhead pulley — corda','tricipiti',3,'10–12','+ Rest-pause',105,{p:1,wm:1,
+    cue:'Gomiti fermi sopra la testa · stretch massimo · si muove solo l’avambraccio'})
+]};
+SESS.rv_pull = { id:'rv_pull', nome:'Pull', gg:'Martedì', durata:57, rivista:1,
+  focus:'Schiena su tre angoli · Bicipiti in allungamento · Femorali 2ª frequenza', ex:[
+  e('Trazioni zavorate','dorso',3,'5–8','RIR 1–2',210,{
+    cue:'Petto verso la barra · scapole in basso · no kipping · eccentrica controllata'}),
+  e('Rematore bilanciere — Yates','dorso',3,'6–10','RIR 1–2',210,{
+    cue:'Tira verso l’ombelico · gomiti vicini · squeeze 1 sec · no rotazione'}),
+  e('Pulley basso — presa neutra','dorso',3,'10–12','+ Rest-pause',105,{nuovo:1,
+    cue:'Busto fermo · porta i gomiti indietro lungo i fianchi · allunga in avanti senza curvare',
+    note:'Aggiunta: terzo angolo sulla schiena, e spessore che il lat machine non dà. Sicura per l’ernia.'}),
+  e('Curl manubri su panca inclinata','bicipiti',3,'8–10','RIR 0–1',105,{p:1,nuovo:1,
+    cue:'Panca a 45-60° · braccia dietro la linea del busto · supinazione completa · eccentrica 3 sec',
+    note:'Sostituisce il curl bilanciere 2×5-6 al cedimento: stesso volume, bicipite in allungamento, molto meno carico sul gomito.'}),
+  e('Curl hammer manubri','bicipiti',3,'10–12','+ Drop set',105,{p:1,
+    cue:'Presa neutra · alternato · gomiti fermi · no oscillazione del busto'}),
+  e('Leg curl seduto','femorali',3,'10–12','+ Rest-pause',105,{p:1,nuovo:1,
+    cue:'Anca flessa · schiena appoggiata · contrazione 1 sec · eccentrica controllata',
+    note:'Aggiunta: porta i femorali a 2 frequenze, come il piano dichiara di volere. Seduto perché con l’anca flessa il capo lungo lavora allungato. Sicuro al 100% per l’ernia.'})
+]};
+SESS.rv_legs = { id:'rv_legs', nome:'Legs', gg:'Giovedì', durata:62, rivista:1,
+  focus:'Quad: hack + leg extension · Femorali: RDL + leg curl · Gluteo · Calf · Core', ex:[
+  e('Hack squat — piede basso','quad',3,'6–10','RIR 1–2',210,{ernia:1,
+    cue:'Discesa 2–3 sec · ginocchia in linea con le punte · ESPIRA nella salita · mai Valsalva',
+    note:'3 serie di riscaldamento. Carico conservativo per l’ernia.'}),
+  e('Romanian deadlift bilanciere','femorali',3,'8–10','RIR 1–2',210,{ernia:1,
+    cue:'La barra scorre lungo la coscia · squeeze del gluteo in cima · schiena neutra · espira salendo'}),
+  e('Leg extension','quad',3,'10–15','+ Rest-pause',105,{nuovo:1,
+    cue:'Schiena appoggiata · contrai 1 sec in cima · eccentrica 3 sec · non sbattere il peso',
+    note:'Aggiunta: carica il quadricipite in progressione vera, cosa che il sissy squat a corpo libero non permette. Nessuna pressione addominale: sicura per l’ernia.'}),
+  e('Leg curl seduto','femorali',3,'10–12','+ Drop set',105,{p:1,
+    cue:'Anca flessa · schiena appoggiata · contrazione 1 sec · range completo'}),
+  e('Pressa — piede alto e largo','gluteo',3,'10–12','+ Drop set',150,{
+    cue:'Piedi molto in alto · spingi sui talloni · non bloccare le ginocchia'}),
+  e('Calf raise in piedi','polpacci',3,'8–12','+ Rest-pause',105,{
+    cue:'Ginocchio dritto · pausa 2" in basso · 1" in cima · no rimbalzo',
+    note:'Range abbassato a 8-12 con più carico: il soleo e il gastrocnemio rispondono al carico, non solo alle ripetizioni.'}),
+  e('Dead bug','core',2,'30–45"','Controllo',60,{tempo:1,ernia:1,
+    cue:'Lombare incollata al suolo · estendi gli opposti · espira nell’estensione'})
+]};
+SESS.rv_upper = { id:'rv_upper', nome:'Upper', gg:'Sabato', durata:60, rivista:1,
+  focus:'Petto e schiena 2ª freq · Spalle 3ª freq · Braccia volume · Quad 2ª freq', ex:[
+  e('Panca inclinata manubri','petto',3,'8–12','+ Drop set',150,{
+    cue:'Angolo 30° · gomiti 60–70° · stretch completo in basso · pausa 1 sec'}),
+  e('Lat machine presa larga','dorso',3,'8–12','+ Drop set',150,{
+    cue:'Ferma sotto il mento · scapole giù · non portare al petto · stretch in cima'}),
+  e('Alzate laterali manubri','spalle',3,'12–15','+ Rest-pause ×2',105,{p:1,wm:1,
+    cue:'Pronazione pollice · gomito guida · no trapezio · stop a 90°'}),
+  e('Dip verticale zavorra','tricipiti',3,'8–10','Superset + Myo-reps',0,{p:1,ss:'A',
+    cue:'Busto verticale · zavorra · subito dopo, senza recupero, il push-down'}),
+  e('Tricipite push-down','tricipiti',3,'10–12','Superset',90,{p:1,ss:'A',
+    cue:'Gomiti fermi ai fianchi · contrazione massima in basso'}),
+  e('Curl manubri alternati','bicipiti',3,'10–12','+ Drop set',0,{p:1,ss:'B',
+    cue:'Supinazione totale in cima · gomiti fermi · eccentrica 3 sec'}),
+  e('Curl hammer manubri','bicipiti',2,'12','Superset',90,{p:1,ss:'B',
+    cue:'Presa neutra · alternato · subito dopo il curl alternato'}),
+  e('Sissy squat — finisher quad','quad',2,'12–15','+ Rest-pause',105,{p:1,
+    cue:'Eccentrica 3–4 sec · contrai forte in cima',note:'Garantisce la 2ª frequenza quad anche senza il Legs 2.'})
+]};
+SESS.rv_legs2 = { id:'rv_legs2', nome:'Legs 2', gg:'Domenica', durata:53, rivista:1, consigliata:1,
+  focus:'Quad e gluteo 2ª frequenza · Femorali · Soleo. Se le gambe sono una priorità, questa seduta non è opzionale', ex:[
+  e('Pressa — piede alto e largo','gluteo',3,'8–12','+ Drop set',150,{p:1,
+    cue:'Piedi molto in alto · spingi sui talloni · non bloccare le ginocchia'}),
+  e('Hack squat — piede basso','quad',3,'8–10','RIR 1–2',210,{ernia:1,
+    cue:'Piede basso sul bordo · discesa 2-3 sec · espira salendo'}),
+  e('Sissy squat — eccentrica lenta','quad',3,'10–12','+ Myo-reps',105,{p:1,
+    cue:'Eccentrica 5 sec · 1 sec di isometria in basso · contrai forte in cima'}),
+  e('Hip thrust bilanciere','gluteo',3,'10–12','+ Rest-pause',105,{
+    cue:'Spalla sul bordo panca · spingi i talloni nel suolo · squeeze in cima · iso 2"',note:'Sicuro per l’ernia.'}),
+  e('Leg curl sdraiato — manubri','femorali',3,'12–15','+ Drop set',105,{p:1,
+    cue:'Pancia a terra · non sollevare i fianchi · contrazione 1 sec in cima'}),
+  e('Calf raise seduto — soleo','polpacci',3,'15–20','+ Rest-pause',105,{
+    cue:'Ginocchio flesso 90° · pausa 2" in basso · no rimbalzo'})
+]};
+const GIORNI_RIVISTI = {1:'rv_push',2:'rv_pull',4:'rv_legs',6:'rv_upper',0:'rv_legs2'};
 
 /* ── FASI ───────────────────────────────────────────────────────────────── */
 const FASI = [
@@ -1177,8 +1312,10 @@ const MOBILITA = {
   legs:['Hip hinge corpo libero 2×10','Squat goblet mobilità 2×10','Hip flexor stretch 2×8 per lato','Hack squat progressivo 3 serie'],
   upper:['Band pull-apart 2×15','Wall slide 2×10','Rotazioni spalla 2×15','Panca inclinata leggera 2×8']
 };
-const MOB_DI = { cut_push:'push', tr_push:'push', pu_push:'push', cut_pull:'pull', tr_pull:'pull', pu_pull:'pull',
-  cut_legs:'legs', tr_legs:'legs', pu_legs:'legs', pu_legs2:'legs', pu_upper:'upper', cut_sab:'upper', tr_sab:'upper' };
+const MOB_DI = { cut_push:'push', tr_push:'push', pu_push:'push', rv_push:'push',
+  cut_pull:'pull', tr_pull:'pull', pu_pull:'pull', rv_pull:'pull',
+  cut_legs:'legs', tr_legs:'legs', pu_legs:'legs', pu_legs2:'legs', rv_legs:'legs', rv_legs2:'legs',
+  pu_upper:'upper', rv_upper:'upper', cut_sab:'upper', tr_sab:'upper' };
 /* Stretching post-sessione, 8 minuti obbligatori (pag. 36-37) */
 const STRETCHING = [
   ['Petto','Braccio appoggiato al muro a 90°, corpo ruotato lontano, 2 lati','30" × 2',['push']],
@@ -1324,7 +1461,7 @@ const piuGiorni = (s,n) => { const d = dalISO(s); d.setDate(d.getDate()+n); retu
 const settimanaDi = s => { const d = dalISO(s); const g = (d.getDay()+6)%7; d.setDate(d.getDate()-g); return iso(d); };
 
 const nuovoStato = () => ({ v:1,
-  ui:{ tema:null, tab:'oggi', sett:'base', faseManuale:null, esercizio:null, periodo:56 },
+  ui:{ tema:null, tab:'oggi', sett:'base', faseManuale:null, esercizio:null, periodo:56, prog:'rivista' },
   sess:{}, pasti:{}, corpo:[], check:{}, meta:{ backup:null, mod:Date.now() } });
 
 let S = nuovoStato();
@@ -1352,14 +1489,30 @@ function faseDi(d){
   for(const f of FASI){ if(d >= f.da && d <= f.a) return f; }
   return d < FASI[0].da ? FASI[0] : FASI[FASI.length-1];
 }
+/* La programmazione rivista sostituisce i giorni delle fasi con split
+   PPL + Upper (dalla 3 alla 6). Cut e transizione restano come sono. */
+const giorniDi = f => (S.ui.prog === 'rivista' && f.split === 'PPL + Upper') ? GIORNI_RIVISTI : f.giorni;
 function sessioneDi(d,f){
   const L = S.sess[d];
   if(L && L.manuale && SESS[L.sid]) return SESS[L.sid];   // seduta spostata a mano
-  const id = f.giorni[dalISO(d).getDay()];
+  const id = giorniDi(f)[dalISO(d).getDay()];
   return id ? SESS[id] : null;
 }
-const sedutePossibili = f => [1,2,3,4,5,6,0].map(g => f.giorni[g])
+const sedutePossibili = f => [1,2,3,4,5,6,0].map(g => giorniDi(f)[g])
   .filter((id,i,a) => id && a.indexOf(id) === i).map(id => SESS[id]);
+/* Volume settimanale che una programmazione produce, per gruppo */
+function volumePrevisto(giorni, tipo='base'){
+  const per = {}, freq = {}; let tot = 0;
+  for(const sid of [...new Set(Object.values(giorni))]){
+    const visti = new Set();
+    for(const ex of SESS[sid].ex){
+      const n = serieDi(ex, tipo);
+      per[ex.g] = (per[ex.g]||0) + n; tot += n; visti.add(ex.g);
+    }
+    for(const g of visti) freq[g] = (freq[g]||0) + 1;
+  }
+  return { per, freq, tot };
+}
 function tipoSettDi(d){
   const f = faseDi(d);
   const t = (S.sess[d] && S.sess[d].tipo) || S.ui.sett;
@@ -1889,7 +2042,7 @@ function renderWorkout(){
       <span class="chip line">${st.fatte}/${st.totali} serie</span>
       <button class="btn sm ghost" data-scegli="1">Cambia seduta</button>
     </div>
-    ${(S.sess[d]||{}).manuale ? `<p class="tiny" style="margin:9px 0 0;color:var(--accent-text)">Seduta scelta a mano: il piano per oggi prevedeva ${esc((SESS[f.giorni[dalISO(d).getDay()]]||{}).nome || 'riposo')}.</p>` : ''}
+    ${(S.sess[d]||{}).manuale ? `<p class="tiny" style="margin:9px 0 0;color:var(--accent-text)">Seduta scelta a mano: il piano per oggi prevedeva ${esc((SESS[giorniDi(f)[dalISO(d).getDay()]]||{}).nome || 'riposo')}.</p>` : ''}
     <p class="small muted" style="margin:11px 0 0">${esc(INTENSITA[f.id][tipo] || '')}</p>
     ${tipo==='deload' ? `<div class="sug" style="border-color:var(--warn);background:var(--warn-soft);color:var(--warn-text)"><b>Deload</b>Stesso carico, −40% di serie, stessa frequenza, 7 giorni. Mai saltarlo.</div>` : ''}
     ${tipo==='peak' ? `<div class="sug"><b>Widowmaker</b>Una sola serie da 20 rep con un peso da 10-12, su un isolamento sicuro (sissy squat, laterali, curl, leg curl). Ultima serie della sessione, mai sui compound.</div>` : ''}
@@ -1957,6 +2110,7 @@ function cardEsercizio(ex, i, d, f, tipo){
     ex.ernia ? pill('Ernia · conservativo','crit') : '',
     isWM(ex,tipo) ? pill('Widowmaker','warn') : '',
     ex.ss ? pill('Superset','line') : '',
+    ex.nuovo ? pill('Aggiunto','good') : '',
     ex.fv ? pill(ex.fv==='forza'?'Blocco forza':'Blocco volume','line') : ''
   ].filter(Boolean).join('');
 
@@ -2384,10 +2538,11 @@ function renderPiano(){
   const chk = S.check[wk] || {};
   const att = Object.values(chk).filter(x => x === 'att').length;
   const giorniDa = backup ? Math.floor((Date.now()-backup)/86400000) : null;
+  const gg = giorniDi(f);
   const sett = [1,2,3,4,5,6,0].map(g => {
-    const sid = f.giorni[g], s = sid ? SESS[sid] : null;
+    const sid = gg[g], s = sid ? SESS[sid] : null;
     return `<div class="edrow"><div class="hnd" style="width:34px;font-family:var(--display);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)">${GG[g].slice(0,3)}</div>
-      <div class="tx"><b>${s ? esc(s.nome) + (s.opz ? ' · opzionale' : '') : 'Riposo'}</b>
+      <div class="tx"><b>${s ? esc(s.nome) + (s.opz ? ' · opzionale' : (s.consigliata ? ' · consigliata' : '')) : 'Riposo'}</b>
       <span>${s ? `${s.ex.length} esercizi · ~${s.durata} min · ${esc(s.focus)}` : 'Bici zona 2 · mobilità'}</span></div></div>`;
   }).join('');
 
@@ -2411,6 +2566,72 @@ function renderPiano(){
       <p class="small muted" style="margin:0">${esc(f.periodo)} · ${esc(f.obiettivo)}</p>
     </div>
   </div>
+
+  ${f.split === 'PPL + Upper' ? (() => {
+    const a = volumePrevisto(f.giorni), b = volumePrevisto(GIORNI_RIVISTI);
+    const a4 = volumePrevisto({1:f.giorni[1],2:f.giorni[2],4:f.giorni[4],6:f.giorni[6]});
+    const b4 = volumePrevisto({1:GIORNI_RIVISTI[1],2:GIORNI_RIVISTI[2],4:GIORNI_RIVISTI[4],6:GIORNI_RIVISTI[6]});
+    const riga = (g) => {
+      const t = VOL_TARGET[g], lo = t ? t[0] : null;
+      const a5 = a.per[g]||0, b5 = b.per[g]||0, d = b5 - a5;
+      const col = x => (lo && x < lo && !INDIRETTO[g]) ? 'var(--crit-text)' : 'var(--ink)';
+      return `<div class="vcmp">
+        <span class="g">${GRUPPI[g]}</span>
+        <span class="da" style="color:${col(a5)}">${a5}</span>
+        <span class="ar">→</span>
+        <span class="a" style="color:${col(b5)}">${b5}</span>
+        <span class="dd" style="color:${d>0?'var(--good-text)':(d<0?'var(--ink-3)':'transparent')}">${d>0?'+'+d:(d<0?d:'0')}</span>
+        <span class="ff">${b.freq[g]||0}×${INDIRETTO[g] ? '<sup style="color:var(--ink-4)">+</sup>' : ''}</span>
+      </div>`;
+    };
+    return `<div class="card">
+      <div class="hd"><h2>Programmazione</h2><span class="chip ${S.ui.prog==='rivista'?'good':'line'} sp">${S.ui.prog==='rivista'?'rivista':'originale'}</span></div>
+      <div class="bd stack">
+        <div class="seg" role="group" aria-label="Programmazione">
+          <button data-prog="originale" aria-pressed="${S.ui.prog==='originale'}">Originale</button>
+          <button data-prog="rivista" aria-pressed="${S.ui.prog==='rivista'}">Rivista</button>
+        </div>
+        <p class="small muted" style="margin:0">Stesso numero di sedute, stessa durata, stesso budget:
+          <b>${a.tot} serie</b> a settimana nell’originale, <b>${b.tot}</b> nella rivista. Cambia dove vanno.</p>
+        <div class="vcmp head"><span class="g">Gruppo</span><span class="da">orig.</span><span class="ar"></span>
+          <span class="a">riv.</span><span class="dd"></span><span class="ff">freq</span></div>
+        ${['petto','dorso','spalle','bicipiti','tricipiti','quad','femorali','gluteo','polpacci','core'].map(riga).join('')}
+        <p class="tiny muted" style="margin:0">Serie a settimana su <b>5 giorni</b>, Legs 2 compreso. Su 4 giorni:
+          petto ${b4.per.petto||0}, dorso ${b4.per.dorso||0}, femorali ${b4.per.femorali||0},
+          quadricipiti ${b4.per.quad||0}, gluteo ${b4.per.gluteo||0} — ed è per questo che il Legs 2 non è più opzionale.</p>
+        <p class="tiny muted" style="margin:0">Il segno <b>+</b> marca i gruppi che ricevono molto lavoro indiretto e
+          che il conteggio delle serie dirette sottostima: tricipiti da ${esc(INDIRETTO.tricipiti)}, bicipiti da
+          ${esc(INDIRETTO.bicipiti)}, gluteo da ${esc(INDIRETTO.gluteo)}. Per quelli il numero diretto più basso non è un problema.</p>
+        <p class="tiny muted" style="margin:0">In rosso i gruppi sotto il minimo utile. Il range vale per i gruppi
+          per cui il piano dichiara un target; per petto, dorso, polpacci e core non lo fa, e sono stati usati i valori
+          comunemente accettati (petto e dorso 10-20, polpacci 6-12).</p>
+      </div>
+    </div>
+
+    <div class="card"><div class="hd"><h3>Cosa cambia, e perché</h3></div><div class="bd stack-s">
+      <p class="small" style="margin:0"><b>1. Tricipiti 14 serie contro petto 6.</b> I tricipiti prendono lavoro indiretto
+        da panca, military e dip; il petto da niente, e non aveva nessun isolamento. Tricipiti a 9 dirette, petto a 9 con
+        le croci ai cavi, che lo caricano in allungamento.</p>
+      <p class="small" style="margin:0"><b>2. Femorali allenati una volta sola</b>, contro il principio che il piano stesso
+        dichiara ("2× a settimana per gruppo"). Leg curl seduto nel Pull: da 6 serie a 9 su 4 giorni, 12 su 5, e da 1× a 2×.
+        Seduto e non prono, perché con l’anca flessa il capo lungo del bicipite femorale lavora allungato.</p>
+      <p class="small" style="margin:0"><b>3. Tolto il lavoro a basso rendimento:</b> le alzate laterali 2×20 al 30-40% del
+        carico e la terza frequenza di tricipite. Quattro serie liberate senza perdere niente, spese su petto e dorso.</p>
+      <p class="small" style="margin:0"><b>Curl bilanciere 2×5-6 al cedimento → curl su panca inclinata 3×8-10.</b>
+        Stesso volume, bicipite in allungamento, molto meno carico sul gomito a 38 anni. La spiegazione che davo prima
+        — la forza recluta più unità motorie e amplifica il volume successivo — non è supportata: conta il volume totale.</p>
+      <p class="small" style="margin:0"><b>Aggiunte leg extension e pulley basso.</b> La leg extension carica il
+        quadricipite in progressione vera, cosa che il sissy squat a corpo libero non permette, e non genera pressione
+        addominale: sicura per l’ernia. Il pulley dà lo spessore che il lat machine non dà.</p>
+      <p class="small" style="margin:0"><b>Range dei compound da 4-6 a 5-8 e 6-10, RIR 1-2 invece di 0.</b> A pari volume i
+        carichi alti costruiscono massa, ma costano più stress articolare per serie, e il cedimento sui multiarticolari
+        rende poco e affatica molto — soprattutto in deficit, come adesso. Il cedimento resta sull’isolamento.</p>
+      <p class="small" style="margin:0"><b>Il Legs 2 della domenica non è più opzionale.</b> Senza, quadricipiti e gluteo
+        restano a 8 e 3 serie: le gambe sono una priorità dichiarata e su quattro giorni non ci stanno. Con, arrivano a 14 e 9.</p>
+      <div class="backup" style="background:var(--accent-soft);color:var(--accent-text)">${ICO.info}
+        <span>Gli esercizi nuovi sono marcati <b>Aggiunto</b> nella scheda. Lo storico dei carichi resta legato al nome
+        dell’esercizio, quindi tutto quello che hai già registrato continua a valere.</span></div>
+    </div></div>` ; })() : ''}
 
   <div class="card"><div class="hd"><h2>Settimana tipo</h2></div><div class="bd ed">${sett}</div></div>
 
@@ -2613,6 +2834,10 @@ document.addEventListener('click', ev => {
 
   const pr = el('[data-periodo]'); if(pr){ S.ui.periodo = +pr.dataset.periodo; salva(); render(); return; }
 
+  const pg = el('[data-prog]');
+  if(pg){ S.ui.prog = pg.dataset.prog; APERTI.clear(); salva(); render();
+    toast(pg.dataset.prog === 'rivista' ? 'Programmazione rivista attiva' : 'Tornato al piano originale'); return; }
+
   const tk = el('[data-tick]');
   if(tk){
     const [i,j] = tk.dataset.tick.split(':').map(Number);
@@ -2652,7 +2877,7 @@ document.addEventListener('click', ev => {
     return;
   }
   if(el('[data-scegli]')){
-    const f = faseDi(S.ui.data), prevista = f.giorni[dalISO(S.ui.data).getDay()];
+    const f = faseDi(S.ui.data), prevista = giorniDi(f)[dalISO(S.ui.data).getDay()];
     apriSheet('Quale seduta?', `<div class="ed">
       ${sedutePossibili(f).map(x => `<button class="edrow" data-sed="${x.id}" style="width:100%;text-align:left;cursor:pointer">
         <div class="tx"><b>${esc(x.nome)}${x.id===prevista?' · prevista oggi':''}</b>
