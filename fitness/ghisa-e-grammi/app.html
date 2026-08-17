@@ -1682,7 +1682,19 @@ let TIMER = null;
 function carica(){
   try{
     const raw = localStorage.getItem(KEY);
-    if(raw){ const d = JSON.parse(raw); if(d && d.v === 1) S = Object.assign(nuovoStato(), d); }
+    if(raw){
+      const d = JSON.parse(raw);
+      if(d && d.v === 1){
+        /* Object.assign e' superficiale: lo stato salvato sostituiva l'intero
+           oggetto ui, e ogni impostazione aggiunta dopo restava invisibile a
+           chi usava gia' l'app. Ora ui e meta si fondono chiave per chiave. */
+        const base = nuovoStato();
+        S = Object.assign(base, d, {
+          ui:   Object.assign({}, base.ui,   d.ui   || {}),
+          meta: Object.assign({}, base.meta, d.meta || {})
+        });
+      }
+    }
   }catch(err){ /* dati illeggibili: si riparte puliti, il backup resta sul file esportato */ }
 }
 let salvaT = null;
@@ -1755,9 +1767,17 @@ function serieLog(d, i, n){
   n += (L.piu[i] || 0);
   if(!L.set[i]) L.set[i] = [];
   while(L.set[i].length < n) L.set[i].push({ kg:'', rep:'', ok:false });
-  if(L.set[i].length > n) L.set[i] = L.set[i].slice(0, Math.max(n, L.set[i].filter(x => x.ok).length));
+  /* Riducendo il tipo di settimana non si buttano righe che hanno dei dati. */
+  if(L.set[i].length > n) L.set[i] = L.set[i].slice(0, Math.max(n, L.set[i].filter(serieValida).length));
   return L.set[i];
 }
+/* Una serie conta come fatta se l'hai confermata col tasto OPPURE se hai
+   scritto carico e ripetizioni. Prima contavano solo le confermate, e chi
+   compilava i campi senza toccare la spunta non si ritrovava piu' niente:
+   nessuno storico, nessun "ultima volta", nessun suggerimento. Il tasto serve
+   a far partire il recupero e a segnare l'avanzamento, non a salvare. */
+const serieValida = r => !!r && (r.ok || (+r.kg > 0 && +r.rep > 0));
+
 /* Storico di un esercizio per nome: attraversa fasi e sessioni diverse. */
 function storico(nome){
   const out = [];
@@ -1765,7 +1785,7 @@ function storico(nome){
     const s = SESS[L.sid]; if(!s) continue;
     s.ex.forEach((ex,i) => {
       if(ex.n !== nome) return;
-      const righe = (L.set[i]||[]).filter(r => r.ok && +r.kg > 0 && +r.rep > 0);
+      const righe = (L.set[i]||[]).filter(r => serieValida(r) && +r.kg > 0 && +r.rep > 0);
       if(righe.length) out.push({ d, righe });
     });
   }
@@ -1993,7 +2013,7 @@ function serieSettimana(fineISO, giorni=7){
     const d = piuGiorni(fineISO,-i), L = S.sess[d]; if(!L) continue;
     const s = SESS[L.sid]; if(!s) continue;
     s.ex.forEach((ex,idx) => {
-      const righe = (L.set[idx]||[]).filter(r => r.ok);
+      const righe = (L.set[idx]||[]).filter(serieValida);
       if(!righe.length) return;
       per[ex.g] = (per[ex.g]||0) + righe.length;
       tot += righe.length;
@@ -2105,7 +2125,7 @@ function statoOggi(d){
   let fatte = 0, totali = 0;
   s.ex.forEach((ex,i) => {
     totali += serieDi(ex, L.tipo || 'base') + ((L.piu||{})[i] || 0);
-    fatte  += (L.set[i]||[]).filter(r => r.ok).length;
+    fatte  += (L.set[i]||[]).filter(serieValida).length;
   });
   return { fatte, totali };
 }
@@ -2224,7 +2244,11 @@ function renderWorkout(){
     return;
   }
   const L = log(d);
-  L.sid = s.id; L.tipo = tipo;
+  /* Se il giorno ha gia' dei dati, la sua seduta non si tocca: cambiare
+     programmazione non deve rimappare serie gia' registrate su altri esercizi. */
+  const compilato = Object.values(L.set||{}).some(r => r.some(serieValida));
+  if(!compilato) L.sid = s.id;
+  L.tipo = tipo;
   const st = statoOggi(d);
 
   const blocchi = [];
@@ -2319,7 +2343,7 @@ function renderWorkout(){
 function cardEsercizio(ex, i, d, f, tipo){
   const base = serieDi(ex,tipo), extra = (log(d).piu||{})[i] || 0;
   const n = base + extra, righe = serieLog(d,i,base);
-  const fatte = righe.filter(r => r.ok).length;
+  const fatte = righe.filter(serieValida).length;
   const sug = suggerimento(ex, ex.n, d);
   const ult = ultimaVolta(ex.n, d);
   const best = miglioreDi(ex.n);
@@ -2373,6 +2397,7 @@ function cardEsercizio(ex, i, d, f, tipo){
         ${isWM(ex,tipo) ? `<button class="btn sm ghost" data-wm="${i}" style="color:var(--warn-text)">+ Widowmaker</button>` : ''}
         ${best.rm>0 ? `<span class="pr">${ICO.trofeo} 1RM ${nf(best.rm,1)} kg</span>` : ''}
       </div>
+      <p class="tiny muted" style="margin:7px 0 0">Carico e ripetizioni si salvano mentre li scrivi. La spunta fa partire il recupero e segna l’avanzamento.</p>
       ${extra>0 ? `<p class="tiny muted" style="margin:6px 0 0">${extra} serie oltre il piano: drop set, rest-pause allungato o Widowmaker.</p>` : ''}
       ${ult ? `<div class="lastnote"><b>Ultima volta ${dataCorta(ult.d)}</b>
         <span class="mono">${ult.righe.map(r => `${nf(r.kg,1)}×${r.rep}`).join('  ·  ')}</span></div>` : ''}
@@ -2563,7 +2588,7 @@ function nomiEsercizi(){
   const set = new Set();
   for(const L of Object.values(S.sess)){
     const s = SESS[L.sid]; if(!s) continue;
-    s.ex.forEach((ex,i) => { if((L.set[i]||[]).some(r => r.ok && +r.kg > 0)) set.add(ex.n); });
+    s.ex.forEach((ex,i) => { if((L.set[i]||[]).some(r => serieValida(r) && +r.kg > 0)) set.add(ex.n); });
   }
   return [...set].sort((a,b) => a.localeCompare(b,'it'));
 }
@@ -3108,7 +3133,7 @@ document.addEventListener('click', ev => {
     const ora = L.piu[i]||0;
     if(dl < 0){
       const righe = L.set[i]||[];
-      if(righe.length && righe[righe.length-1].ok){ toast('Quella serie è già confermata: annullala prima.'); return; }
+      if(righe.length && serieValida(righe[righe.length-1])){ toast('Quella serie ha già dei dati: svuotala prima.'); return; }
       L.piu[i] = Math.max(0, ora-1); righe.pop();
     } else L.piu[i] = ora + 1;
     L.mod = Date.now(); salva(); renderWorkout(); return;
@@ -3135,7 +3160,7 @@ document.addEventListener('click', ev => {
         const id = b.dataset.sed, L = log(S.ui.data);
         if(!id){
           L.manuale = false;
-          const vuota = !Object.values(L.set||{}).some(r => r.some(x => x.ok));
+          const vuota = !Object.values(L.set||{}).some(r => r.some(serieValida));
           if(vuota && !sessioneDi(S.ui.data, faseDi(S.ui.data))) delete S.sess[S.ui.data];
         }
         else if(L.sid !== id){ L.sid = id; L.manuale = true; L.set = {}; L.piu = {}; }
