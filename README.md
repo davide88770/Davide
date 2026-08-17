@@ -59,7 +59,8 @@ node tools/build-icone.mjs           # rigenera i PNG dagli SVG
 Le app vivono sullo stesso dominio, quindi ogni service worker serve solo il
 proprio indice e ripulisce solo le cache col proprio prefisso: senza queste
 due regole quella alla radice, che ha scope sull'intero sito, si mangia il
-guscio offline dell'altra. Il workflow controlla che le regole ci siano, e
+guscio offline dell'altra. Gli aggiornamenti sono silenziosi (`skipWaiting`):
+niente banner da confermare, la versione nuova si vede alla riapertura. Il workflow controlla che le regole ci siano, e
 `npm run prova:pwa` le mette alla prova sul serio — serve le due app da un
 server locale, le installa, stacca la rete e verifica che si riaprano
 entrambe con le scelte salvate ancora al loro posto.

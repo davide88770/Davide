@@ -1,6 +1,6 @@
 /* Prova che le versioni installabili si aprano davvero senza rete, che le due
-   app non si mangino il guscio a vicenda, e che l'avviso di aggiornamento
-   compaia solo quando c'e' davvero una versione nuova.
+   app non si mangino il guscio a vicenda, e che una versione nuova entri da
+   sola senza chiedere niente a chi la usa.
    Si lancia con: npm run prova:pwa   (dopo node tools/build-pwa.mjs) */
 import { chromium } from 'playwright-core';
 import http from 'node:http';
@@ -47,8 +47,8 @@ await p.goto(base + '/viaggio/');
 const swV = await p.evaluate(() => navigator.serviceWorker.ready.then(r => r.active.scriptURL));
 controlla(swV.includes('/viaggio/sw.js'), 'service worker proprio, non quello della radice');
 await p.waitForTimeout(900);
-controlla(!(await p.evaluate(() => !document.getElementById('agg').hidden)),
-  'nessun avviso di aggiornamento (e\' la prima installazione)');
+controlla(await p.evaluate(() => !document.getElementById('agg')),
+  'nessun avviso di aggiornamento in pagina');
 const man = await p.evaluate(async () => {
   const j = await (await fetch('manifest.webmanifest')).json();
   const ic = await Promise.all(j.icons.map(i => fetch(i.src).then(x => x.status)));
@@ -89,20 +89,23 @@ controlla((await p.evaluate(() => document.getElementById('totbar').textContent)
   'la scelta salvata si ritrova dopo il riavvio');
 await ctx.setOffline(false);
 
-// ── 5. l'avviso compare solo per un aggiornamento vero ────────────────────
-console.log('\nAvviso di aggiornamento');
+// ── 5. una versione nuova entra da sola, senza chiedere niente ────────────
+console.log('\nAggiornamento silenzioso');
 const sw = 'pwa/viaggio/sw.js';
 const orig = fs.readFileSync(sw, 'utf8');
-fs.writeFileSync(sw, orig + '\n/* versione finta, solo per questa prova */\n');
+const marchio = '/* versione finta, solo per questa prova */';
+fs.writeFileSync(sw, orig + '\n' + marchio + '\n');
 try {
   await p.evaluate(async () => { const r = await navigator.serviceWorker.getRegistration(); await r.update(); });
-  await p.waitForTimeout(1600);
-  controlla(await p.evaluate(() => !document.getElementById('agg').hidden),
-    'compare quando arriva davvero una versione nuova');
-  await p.click('#aggOra');
   await p.waitForTimeout(1800);
-  controlla(!(await p.evaluate(() => !document.getElementById('agg').hidden)),
-    '"Aggiorna" ricarica sulla versione nuova e l\'avviso sparisce');
+  const stato = await p.evaluate(async () => {
+    const r = await navigator.serviceWorker.getRegistration();
+    return { attesa: !!r.waiting, avviso: !!document.getElementById('agg') };
+  });
+  controlla(!stato.attesa, 'si attiva da sola, senza restare in attesa di un permesso');
+  controlla(!stato.avviso, 'non compare nessun avviso');
+  const servito = await p.evaluate(() => fetch('sw.js').then(r => r.text()));
+  controlla(servito.includes(marchio.slice(3, 20)), 'alla riapertura viene servita la versione nuova');
 } finally {
   fs.writeFileSync(sw, orig);
 }

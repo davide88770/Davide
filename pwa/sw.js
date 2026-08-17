@@ -15,15 +15,18 @@ const mio = p => p === BASE || p === BASE + 'index.html';
 // offline a vicenda a ogni aggiornamento.
 const miaCache = k => k.startsWith('ghisa-e-grammi-');
 
+// skipWaiting: la versione nuova prende il posto della vecchia senza chiedere
+// niente. Si puo' fare senza rischi perche' la pagina e' un file unico, senza
+// pezzi caricati a parte che potrebbero non combaciare; il contenuto nuovo si
+// vede alla riapertura.
 self.addEventListener('install', ev => {
-  ev.waitUntil(caches.open(CACHE).then(c => c.addAll(GUSCIO)));
+  ev.waitUntil(caches.open(CACHE).then(c => c.addAll(GUSCIO)).then(() => self.skipWaiting()));
 });
 self.addEventListener('activate', ev => {
   ev.waitUntil(caches.keys()
     .then(k => Promise.all(k.filter(x => miaCache(x) && x !== CACHE).map(x => caches.delete(x))))
     .then(() => self.clients.claim()));
 });
-self.addEventListener('message', ev => { if (ev.data === 'attiva') self.skipWaiting(); });
 
 // La pagina: prima la rete, così un aggiornamento arriva appena c'è campo;
 // se la rete non c'è si serve la copia in cache e l'app si apre lo stesso.

@@ -126,23 +126,28 @@ con il nord in teal: `pwa/viaggio/icone/icona.svg`.
 
 `npm run prova:pwa` mette alla prova tutto questo per davvero: serve le due
 app da un server locale, le installa, stacca la rete, verifica che si riaprano
-entrambe con le scelte salvate, e controlla che l'avviso di aggiornamento
-compaia **solo** quando c'è una versione nuova.
+entrambe con le scelte salvate, e controlla che una versione nuova si attivi
+da sola senza chiedere niente.
 
-### L'avviso «Nuova versione» compariva a sproposito
+### Niente avviso di aggiornamento: entra da sola
 
-Alla prima apertura di `/viaggio/` su un telefono che aveva già aperto l'app
-alla radice, spuntava il banner di aggiornamento senza motivo. La causa è la
-stessa convivenza: il service worker della radice ha scope su tutto il
-dominio, quindi `navigator.serviceWorker.controller` era **già** valorizzato
-prima che quello del viaggio si registrasse, e il codice lo scambiava per un
-aggiornamento in corso. La guardia giusta è `registration.active`, che è nullo
-solo alla prima installazione.
+La prima versione mostrava un banner «Nuova versione — Aggiorna». Compariva
+anche quando non doveva: alla prima apertura di `/viaggio/` su un telefono che
+aveva già aperto l'app alla radice, perché quel service worker ha scope su
+tutto il dominio e quindi `navigator.serviceWorker.controller` era **già**
+valorizzato prima che quello del viaggio si registrasse.
 
-Correggendolo è emerso il rovescio: con una scheda sola l'aggiornamento si
-attiva da solo alla riapertura, quindi il banner non compariva mai. Serve
-davvero solo quando l'app resta aperta per ore — il caso normale in viaggio —
-e per quello ora c'è un controllo al ritorno in primo piano, solo con rete.
+Sistemata la guardia, è saltata fuori la domanda giusta: **a cosa serve
+chiedere il permesso?** Qui non c'è niente da salvare prima di ricaricare —
+le scelte e le spunte stanno in `localStorage`, e la pagina è un file unico
+senza pezzi caricati a parte che potrebbero non combaciare. Quindi il banner è
+stato tolto del tutto: il service worker fa `skipWaiting()` in installazione,
+la versione nuova prende il posto della vecchia da sola, e il contenuto
+aggiornato si vede alla riapertura. Chi usa l'app non deve dare permessi a
+nessuno.
+
+Resta un `registration.update()` al ritorno in primo piano, solo con rete, così
+la versione nuova è già pronta per la volta dopo.
 
 ### Icone disegnate, non glifi
 
