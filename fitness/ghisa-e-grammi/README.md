@@ -81,6 +81,47 @@ scritta anche dentro l'app, in fondo alla sezione Piano):
   ("riduci il riso a 130 g", "togli il riso serale"). L'app usa quel menù e
   mostra i TIP.
 
+## Programmazione: originale e rivista
+
+L'app contiene due programmazioni per le fasi con split PPL + Upper, con un
+interruttore in **Piano → Programmazione**. Cut e transizione restano invariati.
+
+Il vincolo che decide tutto è il budget: 17-22 serie per seduta, 53-62 minuti,
+cioè **77 serie a settimana su 4 giorni e 95 su 5**. Non si aggiunge volume, si
+sposta. La rivista usa lo stesso budget (78 e 96) e cambia dove va:
+
+| Gruppo | Originale | Rivista | Frequenza |
+|---|---|---|---|
+| Petto | 6 | **9** | 2× |
+| Dorso | 9 | **12** | 2× |
+| Femorali | 9 (1× su 4 gg) | **12** | 3× |
+| Tricipiti | 14 | 9 | 2× |
+| Bicipiti | 13 | 11 | 2× |
+| Spalle | 13 | 12 | 2× |
+
+Le tre correzioni:
+
+1. **Tricipiti 14 serie contro petto 6.** I tricipiti prendono lavoro indiretto
+   da panca, military e dip; il petto da niente, e non aveva alcun isolamento.
+   Aggiunte le croci ai cavi, che lo caricano in allungamento.
+2. **Femorali a frequenza 1×**, contro il principio che il piano stesso dichiara
+   ("2× a settimana per gruppo"). Leg curl seduto nel Pull — seduto perché con
+   l'anca flessa il capo lungo del bicipite femorale lavora allungato.
+3. **Rimosso il lavoro a basso rendimento**: alzate laterali 2×20 al 30-40% del
+   carico e terza frequenza di tricipite. Quattro serie liberate.
+
+Altri cambi: **leg extension** (carica il quadricipite in progressione vera dove
+il sissy squat a corpo libero non può, e non genera pressione addominale),
+**pulley basso** per lo spessore dorsale, e il **curl bilanciere 2×5-6 al
+cedimento sostituito da curl su panca inclinata 3×8-10** — stesso volume,
+bicipite in allungamento, molto meno carico sul gomito. Range dei compound da
+4-6 a 5-8 e 6-10, con **RIR 1-2 invece di 0**: il cedimento resta
+sull'isolamento. Il **Legs 2 non è più opzionale**: senza, quadricipiti e gluteo
+restano a 8 e 3 serie.
+
+Lo storico dei carichi è legato al nome dell'esercizio, quindi cambiando
+programmazione tutto quello che è già registrato continua a valere.
+
 ## Scelte fatte pensando alla palestra
 
 - **Cronometro ancorato all'orologio**, non a un contatore che scende: con lo
@@ -227,6 +268,11 @@ al testo dei sorgenti. Le pagine 6, 13, 18, 25, 32 del workout e 4, 8, 11, 15,
 
 ## Storico
 
+- **v8** — programmazione rivista, attivabile. Riallocato il volume a parità di
+  budget e di durata: petto 6→9, dorso 9→12, femorali 9→12 e da 1× a 3× di
+  frequenza, tricipiti 14→9. Aggiunti croci ai cavi, pulley basso, leg
+  extension e leg curl seduto; curl bilanciere pesante sostituito da curl su
+  panca inclinata; compound a RIR 1-2 invece del cedimento.
 - **v7** — versione installabile. Manifest, service worker con funzionamento
   offline verificato, icone disegnate, avviso d'installazione su iPhone,
   aggiornamento in-app e pubblicazione automatica su GitHub Pages. Rifiniture
