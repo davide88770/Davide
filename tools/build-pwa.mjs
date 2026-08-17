@@ -19,6 +19,13 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
+import { fileURLToPath } from 'node:url';
+
+// L'impronta della versione tiene dentro anche questo file: il guscio
+// (service worker, registrazione, avvii) fa parte di cio' che viene servito,
+// e cambiandolo la versione deve cambiare — altrimenti l'impronta mostrata in
+// fondo alla pagina dice il falso e la cache non si rinnova.
+const GUSCIO_SRC = fs.readFileSync(fileURLToPath(import.meta.url));
 
 const APP = {
   'ghisa-e-grammi': {
@@ -59,7 +66,7 @@ function costruisci(id) {
   const corpo = fs.readFileSync(a.src, 'utf8');
   const titolo = (corpo.match(/<title>([\s\S]*?)<\/title>/) ?? [, amp(a.nome)])[1];
   const senzaTitolo = corpo.replace(/<title>[\s\S]*?<\/title>\s*/, '');
-  const versione = crypto.createHash('sha256').update(corpo).digest('hex').slice(0, 10);
+  const versione = crypto.createHash('sha256').update(corpo).update(GUSCIO_SRC).digest('hex').slice(0, 10);
 
   const testa = `<!doctype html>
 <html lang="it">

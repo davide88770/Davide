@@ -1,5 +1,5 @@
-/* Ghisa & Grammi — service worker, versione f75f080c73 */
-const CACHE = 'ghisa-e-grammi-f75f080c73';
+/* Ghisa & Grammi — service worker, versione 40c25ad073 */
+const CACHE = 'ghisa-e-grammi-40c25ad073';
 const GUSCIO = ['./', './index.html', './manifest.webmanifest',
   './icone/icona-192.png', './icone/icona-512.png',
   './icone/icona-maskable-512.png', './icone/apple-touch-icon.png'];
