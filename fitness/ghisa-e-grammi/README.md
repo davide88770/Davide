@@ -268,6 +268,11 @@ al testo dei sorgenti. Le pagine 6, 13, 18, 25, 32 del workout e 4, 8, 11, 15,
 
 ## Storico
 
+- **v9** — corretti gli incrementi di carico. Due bug: "curl su panca inclinata"
+  prendeva +2,5 kg per la parola "panca" e il sissy squat per la parola "squat".
+  Ma il difetto era a monte: +1,25 kg non è realizzabile con nessun attrezzo, e
+  la regola è tornata a +2,5 su tutto, con l'avviso in percentuale quando il
+  salto è grande.
 - **v8** — programmazione rivista, attivabile. Riallocato il volume a parità di
   budget e di durata: petto 6→9, dorso 9→12, femorali 9→12 e da 1× a 3× di
   frequenza, tricipiti 14→9. Aggiunti croci ai cavi, pulley basso, leg

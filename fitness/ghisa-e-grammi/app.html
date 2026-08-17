@@ -650,7 +650,7 @@ SESS.cut_push = { id:'cut_push', nome:'Push', gg:'Lunedì', durata:55,
 ]};
 SESS.cut_pull = { id:'cut_pull', nome:'Pull', gg:'Mercoledì', durata:55,
   focus:'Schiena · Braccia forza→volume · Tricipite 3ª freq · Spalle 3ª freq', ex:[
-  e('Trazioni zavorate / Lat machine','dorso',2,'4–6','Ced. tecnico',210,{sv:{base:2,volplus:3,peak:3,deload:1},
+  e('Trazioni zavorate / Lat machine','dorso',2,'4–6','Ced. tecnico',210,{inc:2.5,sv:{base:2,volplus:3,peak:3,deload:1},
     cue:'Petto verso la barra · scapole in basso · no kipping · eccentrica controllata',
     note:'2 serie di riscaldamento. Larghezza dorsale.'}),
   e('Rematore bilanciere — Yates','dorso',2,'6–8','Ced. tecnico',210,{sv:{base:2,volplus:3,peak:3,deload:1},
@@ -721,7 +721,7 @@ SESS.tr_push = { id:'tr_push', nome:'Push', gg:'Lunedì', durata:50,
 ]};
 SESS.tr_pull = { id:'tr_pull', nome:'Pull', gg:'Mercoledì', durata:50,
   focus:'Stessi esercizi del cut · RIR 2-3 · braccia forza→volume mantenuto', ex:[
-  e('Trazioni zavorate / Lat machine','dorso',2,'6–8','RIR 2–3',210,{cue:'Range completo · nessuna fretta · recupero articolare'}),
+  e('Trazioni zavorate / Lat machine','dorso',2,'6–8','RIR 2–3',210,{inc:2.5,cue:'Range completo · nessuna fretta · recupero articolare'}),
   e('Rematore bilanciere — Yates','dorso',2,'8–10','RIR 2–3',210,{cue:'Pausa 1 sec in contrazione · squeeze scapole'}),
   e('Curl bilanciere — FORZA','bicipiti',2,'5–6','RIR 1',210,{p:1,fv:'forza',cue:'Mantieni il protocollo forza→volume anche in transizione'}),
   e('Curl bilanciere — VOLUME','bicipiti',2,'8–10','RIR 2',90,{p:1,fv:'volume',cue:'−15% peso · 2 serie invece di 3 · rest-pause opzionale'}),
@@ -1572,6 +1572,15 @@ function ultimaVolta(nome, escludi){
   const h = storico(nome).filter(g => g.d !== escludi);
   return h.length ? h[h.length-1] : null;
 }
+/* Incremento da proporre quando si conquista il top del range.
+   Il piano dice +2,5 kg, ed e' anche il salto minimo che esiste davvero in
+   palestra: 1,25 kg per lato sul bilanciere, un piastrino sullo stack, il
+   manubrio successivo. L'idea di proporre +1,25 sull'isolamento era sbagliata:
+   non e' un peso che puoi mettere. Sull'isolamento la granularita' la danno le
+   ripetizioni, non il carico — ed e' esattamente il senso della doppia
+   progressione. Un esercizio puo' dichiarare il proprio con inc. */
+const incrementoDi = (ex, nome) => (ex && ex.inc) ? ex.inc : 2.5;
+
 /* Suggerimento carico — doppia progressione del piano:
    "top del range → +2,5 kg la settimana dopo". */
 function suggerimento(ex, nome, dOggi){
@@ -1583,9 +1592,15 @@ function suggerimento(ex, nome, dOggi){
   if(!top || ex.tempo) return { kg:kgMax, testo:`Ultima volta ${nf(kgMax,1)} kg. Stesso carico, punta al top del range.` };
   const lavorate = u.righe.filter(r => +r.kg === kgMax);
   const tutteAlTop = lavorate.length >= 2 && lavorate.every(r => +r.rep >= +top);
-  const inc = /squat|pressa|hack|deadlift|stacco|hip thrust|panca|rematore|trazioni|military|dip/i.test(nome) ? 2.5 : 1.25;
-  if(tutteAlTop) return { kg:kgMax + inc, su:true,
-    testo:`Hai chiuso ${top} rep su tutte le serie a ${nf(kgMax,1)} kg: sali a ${nf(kgMax+inc,2)} kg.` };
+  const inc = incrementoDi(ex, nome);
+  if(tutteAlTop){
+    const pct = kgMax > 0 ? inc/kgMax*100 : 0;
+    const nota = pct > 12
+      ? ` Sono +${nf(pct,0)}%: se il salto è troppo, aggiungi prima ripetizioni oltre le ${top}, oppure usa i micro-dischi se la palestra li ha.`
+      : '';
+    return { kg:kgMax + inc, su:true,
+      testo:`Hai chiuso ${top} rep su tutte le serie a ${nf(kgMax,1)} kg: sali a ${nf(kgMax+inc,2)} kg.${nota}` };
+  }
   return { kg:kgMax,
     testo:`Ultima volta ${nf(kgMax,1)} kg × ${reps.join('·')}. Resta a ${nf(kgMax,1)} kg finché non chiudi ${top} rep su tutte.` };
 }
