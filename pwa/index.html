@@ -293,7 +293,8 @@ label.fld>span{font-family:var(--display);font-size:11px;letter-spacing:.14em;te
 .exc .nm{flex:1;min-width:0}
 .exc .nm b{display:block;font-size:15.5px;line-height:1.25;font-weight:600}
 .exc .nm span{display:block;font-size:12.5px;color:var(--ink-3);margin-top:1px}
-.exc .prog{font-family:var(--display);font-size:13px;color:var(--ink-3);font-variant-numeric:tabular-nums;flex:0 0 auto}
+.exc .prog{font-family:var(--display);font-size:13px;color:var(--ink-3);font-variant-numeric:tabular-nums;flex:0 0 auto;text-align:right;line-height:1.25}
+.exc .ultkg{display:block;font-size:12px;color:var(--accent-text)}
 .exc .caret{width:16px;height:16px;color:var(--ink-4);transition:transform .18s ease;flex:0 0 auto}
 .exc[open] .caret{transform:rotate(180deg)}
 .exc .body{padding:0 14px 14px;border-top:1px solid var(--line)}
@@ -2372,7 +2373,7 @@ function cardEsercizio(ex, i, d, f, tipo){
   const testa = `<div class="idx">${fatte >= n ? ICO.check : i+1}</div>
     <div class="nm"><b>${esc(ex.n)}</b>
       <span>${n} × ${esc(repDi(ex,f))} · ${esc(ex.i)}${ex.rec?` · rec ${ex.rec>=60?Math.round(ex.rec/60)+' min':ex.rec+'s'}`:''}</span></div>
-    <div class="prog">${fatte}/${n}</div>
+    <div class="prog">${ult ? `<span class="ultkg">${nf(Math.max(...ult.righe.map(r=>+r.kg||0)),1)} kg</span>` : ''}${fatte}/${n}</div>
     <div class="caret">${ICO.chevron}</div>`;
 
   const tag = [
@@ -2384,17 +2385,23 @@ function cardEsercizio(ex, i, d, f, tipo){
     ex.fv ? pill(ex.fv==='forza'?'Blocco forza':'Blocco volume','line') : ''
   ].filter(Boolean).join('');
 
-  const setRighe = righe.map((r,j) => `
-    <div class="setrow ${r.ok?'ok':''}">
+  /* I numeri della volta prima entrano come segnaposto in ogni campo, serie per
+     serie: si vedono senza aprire niente e senza essere registrati per sbaglio.
+     Il tasto "Ripeti la volta prima" li scrive davvero, ed è una tua scelta. */
+  const prec = j => (ult && ult.righe[j]) ? ult.righe[j] : null;
+  const setRighe = righe.map((r,j) => {
+    const q = prec(j);
+    return `<div class="setrow ${r.ok?'ok':''}">
       <span class="sn">${r.wm ? 'WM' : j+1}</span>
-      <input type="number" inputmode="decimal" step="0.5" placeholder="kg" aria-label="Serie ${j+1}, carico in kg"
+      <input type="number" inputmode="decimal" step="0.5" placeholder="${q ? nf(q.kg,1) : 'kg'}" aria-label="Serie ${j+1}, carico in kg${q?', la volta prima '+nf(q.kg,1)+' kg':''}"
              data-i="${i}" data-s="${j}" data-k="kg" value="${r.kg}">
-      <input type="number" inputmode="numeric" step="1" placeholder="${ex.tempo?'sec':'rep'}" aria-label="Serie ${j+1}, ripetizioni"
+      <input type="number" inputmode="numeric" step="1" placeholder="${q ? q.rep : (ex.tempo?'sec':'rep')}" aria-label="Serie ${j+1}, ripetizioni${q?', la volta prima '+q.rep:''}"
              data-i="${i}" data-s="${j}" data-k="rep" value="${r.rep}">
-      <input class="rir" type="number" inputmode="numeric" step="1" placeholder="RIR" aria-label="Serie ${j+1}, RIR"
+      <input class="rir" type="number" inputmode="numeric" step="1" placeholder="${q && q.rir ? q.rir : 'RIR'}" aria-label="Serie ${j+1}, RIR"
              data-i="${i}" data-s="${j}" data-k="rir" value="${r.rir ?? ''}">
       <button class="tick" data-tick="${i}:${j}" aria-label="${r.ok?'Annulla':'Conferma'} serie ${j+1}">${ICO.check}</button>
-    </div>`).join('');
+    </div>`;
+  }).join('');
 
   return `<details class="exc ${fatte>=n?'done':''}" data-ex="${i}" ${aperto?'open':''}>
     <summary>${testa}</summary>
@@ -2416,8 +2423,10 @@ function cardEsercizio(ex, i, d, f, tipo){
       </div>
       <p class="tiny muted" style="margin:7px 0 0">Carico e ripetizioni si salvano mentre li scrivi. La spunta fa partire il recupero e segna l’avanzamento.</p>
       ${extra>0 ? `<p class="tiny muted" style="margin:6px 0 0">${extra} serie oltre il piano: drop set, rest-pause allungato o Widowmaker.</p>` : ''}
-      ${ult ? `<div class="lastnote"><b>Ultima volta ${dataCorta(ult.d)}</b>
-        <span class="mono">${ult.righe.map(r => `${nf(r.kg,1)}×${r.rep}`).join('  ·  ')}</span></div>` : ''}
+      ${ult ? `<div class="lastnote"><b>Volta prima · ${dataCorta(ult.d)}</b>
+        <span class="mono">${ult.righe.map((r,k) => `${k+1}ª ${nf(r.kg,1)}×${r.rep}${r.rir!==undefined&&r.rir!==''?' rir'+r.rir:''}`).join('   ')}</span>
+        <button class="btn sm ghost noprint" data-ripeti="${i}" style="margin-left:auto">Ripeti</button></div>
+        <p class="tiny muted" style="margin:4px 0 0">I numeri in grigio dentro i campi sono quelli della volta prima. “Ripeti” li scrive tutti, poi li correggi dove serve.</p>` : ''}
       ${sug ? `<div class="sug"><b>${sug.su?'Sali di carico':'Progressione'}</b>${esc(sug.testo)}</div>` : ''}
       ${ex.cue ? `<p class="small muted" style="margin:11px 0 0"><b style="font-family:var(--display);letter-spacing:.1em;text-transform:uppercase;font-size:11px;color:var(--ink-3)">Tecnica</b><br>${esc(ex.cue)}</p>` : ''}
       ${ex.note ? `<p class="small muted" style="margin:8px 0 0">${esc(ex.note)}</p>` : ''}
@@ -3141,6 +3150,23 @@ document.addEventListener('click', ev => {
     L.mod = Date.now(); salva(); renderWorkout(); return;
   }
 
+  const rp = el('[data-ripeti]');
+  if(rp){
+    const i = +rp.dataset.ripeti, d = S.ui.data;
+    const f = faseDi(d), sess = sessioneDi(d,f), ex = sess.ex[i];
+    const u = ultimaVolta(ex.n, d);
+    if(!u){ toast('Non c’è una volta prima da ripetere'); return; }
+    const L = log(d), righe = L.set[i] || [];
+    righe.forEach((r,j) => {
+      const q = u.righe[j] || u.righe[u.righe.length-1];
+      if(!q) return;
+      r.kg = String(q.kg); r.rep = String(q.rep);
+      if(q.rir !== undefined && q.rir !== '') r.rir = String(q.rir);
+    });
+    L.mod = Date.now(); salva(); renderWorkout();
+    toast(`Ricopiato dal ${dataCorta(u.d)}: correggi dove serve`);
+    return;
+  }
   const rc = el('[data-rec]'); if(rc){ avviaTimer(+rc.dataset.rec, 'Recupero'); return; }
 
   const pu = el('[data-piu]');

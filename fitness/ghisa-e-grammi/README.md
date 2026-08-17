@@ -37,6 +37,18 @@ La sessione e il tipo di giornata alimentare si ricavano dalla data: lo split
 cambia da solo passando da PPL 3× (cut, transizione) a PPL + Upper (dalle fase 3
 in poi). La fase si può forzare a mano dalla sezione Piano.
 
+## La volta prima, serie per serie
+
+Aprendo un esercizio, ogni riga mostra **come segnaposto grigio** il carico, le
+ripetizioni e il RIR di quella stessa serie la volta precedente. Si vedono senza
+aprire niente e non vengono registrati per sbaglio: se non scrivi nulla, nulla
+viene salvato. Il tasto **Ripeti** ricopia tutta la seduta precedente in un
+tocco, e poi correggi dove serve. A blocco chiuso, accanto al contatore delle
+serie, compare il carico più alto dell'ultima volta.
+
+Prima c'era solo una riga riassuntiva con tutte le serie concatenate, dentro il
+blocco chiuso: i dati c'erano ma non si trovavano.
+
 ## Come vengono registrati i carichi
 
 Carico e ripetizioni si salvano **mentre li scrivi**. La spunta verde fa partire
@@ -318,6 +330,9 @@ al testo dei sorgenti. Le pagine 6, 13, 18, 25, 32 del workout e 4, 8, 11, 15,
 
 ## Storico
 
+- **v12** — la volta prima diventa visibile serie per serie: segnaposto nei
+  campi con carico, ripetizioni e RIR della sessione precedente, tasto Ripeti per
+  ricopiarla, e carico dell'ultima volta nella testata dell'esercizio.
 - **v11** — due bug di memoria. Storico, suggerimenti, record, volume e grafici
   contavano solo le serie confermate col tasto: chi scriveva i valori senza
   spuntare non si ritrovava niente da una settimana all'altra. E la fusione
