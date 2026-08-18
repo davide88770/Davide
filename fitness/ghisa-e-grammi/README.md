@@ -161,16 +161,50 @@ sedute opzionali da cui dipenda il risultato:
 | Gluteo | 9 | 2× |
 | Polpacci | 6 | 2× |
 
-### Versione a 4 giorni
+### Le due versioni a 4 giorni
 
-Interruttore in **Piano → Programmazione**: *Originale · 5 giorni · 4 giorni*.
+Interruttore in **Piano → Programmazione**: *Originale · 5 giorni · 4 ·
+Upper/Lower · 4 · PPL+Full*.
 
-Con quattro sedute l'unico modo di tenere **ogni gruppo a frequenza 2×** è
-alternare parte alta e parte bassa — **Upper A · Lower A · Upper B · Lower B**
-(lunedì, martedì, giovedì, sabato). Con Push/Pull/Legs/Upper le gambe
-tornerebbero a una volta sola, che è l'errore appena corretto.
+Con quattro sedute ci sono **due** strutture che tengono ogni gruppo a
+frequenza 2×, e costano quasi lo stesso (83 e 82 serie contro le 98 dei cinque
+giorni). Cambia a chi vanno le serie. Push/Pull/Legs/Upper, invece, non è una
+delle due: lì le gambe tornerebbero a una volta sola, che è l'errore appena
+corretto.
 
-Il budget scende da 98 a **83 serie**, e il prezzo lo pagano le braccia:
+| Gruppo | 5 giorni | 4 · Upper/Lower | 4 · PPL+Full |
+|---|---|---|---|
+| Petto | 10 | 9 | 9 |
+| Dorso | 12 | 8 | **12** |
+| Spalle | 12 | 11 | **12** |
+| Bicipiti | 14 | 8 | **12** |
+| Tricipiti | 11 | 8 | 7 |
+| Quadricipiti | 12 | **12** | 9 |
+| Femorali | 10 | **10** | 9 |
+| Gluteo | 9 | **9** | 5 |
+| Polpacci | 6 | **6** | 5 |
+| Core | 2 | 2 | 2 |
+| **Totale** | **98** | **83** | **82** |
+
+**Upper/Lower protegge le gambe**: due sedute intere di parte bassa non le
+batte niente, e il taglio si concentra su schiena e braccia.
+**PPL + full body** (lunedì Push, martedì Pull, giovedì Legs, sabato full body)
+fa il contrario: le tre sedute specializzate restano identiche a quelle da
+cinque giorni, il sabato fa da seconda frequenza per tutto con 2-3 serie a
+gruppo, e le gambe scendono al minimo di mantenimento. Il full body è ordinato
+con le gambe per prime, che sono quelle che a fine settimana rischiano di più.
+
+La raccomandazione, con braccia, spalle e gambe come obiettivo dichiarato, è
+**Upper/Lower**: le braccia perdono serie dirette ma continuano a prendere
+lavoro indiretto da ogni spinta e ogni tirata, mentre quadricipite e gluteo non
+hanno nessuna fonte indiretta — quello che togli lì è tolto davvero.
+PPL + full body ha senso se in quel periodo la parte alta è la priorità, o se
+il sabato è la seduta che si salta più spesso: lì si perde una seduta mista,
+non metà delle gambe.
+
+Il core resta a 1× in tutte e tre le versioni, come già nel piano originale.
+
+Dettaglio Upper/Lower contro i cinque giorni — il prezzo lo pagano le braccia:
 
 | Gruppo | 5 giorni | 4 giorni | |
 |---|---|---|---|
@@ -184,8 +218,14 @@ Il budget scende da 98 a **83 serie**, e il prezzo lo pagano le braccia:
 | Gluteo | 9 | 9 | = |
 | Polpacci | 6 | 6 | = |
 
-Le gambe restano intatte. Sedute da 55 a 63 minuti, con le braccia in superset
+Le gambe restano intatte. Sedute da 56 a 63 minuti, con le braccia in superset
 nell'Upper A e due superset nell'Upper B per stare nei tempi.
+
+Le durate dichiarate sono ricalcolate, non stimate a occhio: serie × (45
+secondi di lavoro + recupero previsto), più mezzo minuto per la serie finale
+intensificata, riscaldamento e mobilità esclusi. Con lo stesso conto le sedute
+di PPL + full body stanno fra 56 e 64 minuti, e il full body del sabato — 24
+serie — a 62.
 
 ### La lente biomeccanica sugli esercizi
 
@@ -396,6 +436,13 @@ al testo dei sorgenti. Le pagine 6, 13, 18, 25, 32 del workout e 4, 8, 11, 15,
 
 ## Storico
 
+- **v15** — seconda struttura a 4 giorni: **Push, Pull, Legs, full body**, in
+  alternativa a Upper/Lower. Stessa frequenza 2× e stesso budget (82 serie
+  contro 83), volume spostato dalla parte bassa alla parte alta: dorso 8→12,
+  bicipiti 8→12, gluteo 9→5. Nuova scheda di confronto fra le due, calcolata a
+  ogni apertura dai dati delle sedute. Durate delle sedute ricalcolate col
+  modello dichiarato e riallineate: sette erano fuori, la più lontana di 11
+  minuti.
 - **v14** — versione a 4 giorni: Upper A, Lower A, Upper B, Lower B, l'unica
   struttura che tiene ogni gruppo a 2× con quattro sedute. 83 serie contro 98,
   con le gambe intatte e il taglio concentrato sulle braccia.

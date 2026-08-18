@@ -432,6 +432,16 @@ label.fld>span{font-family:var(--display);font-size:11px;letter-spacing:.14em;te
 .vcmp .ff{color:var(--ink-3)}
 .vcmp.head{border-bottom:1px solid var(--line-2);padding-bottom:5px}
 .vcmp.head span{font-family:var(--display);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+.cmp4{display:grid;grid-template-columns:1fr 44px 44px 40px;gap:6px;align-items:center;
+  padding:7px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+.cmp4:last-of-type{border-bottom:0}
+.cmp4 .g{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cmp4 b,.cmp4 .w{font-family:var(--display);font-variant-numeric:tabular-nums;text-align:right;font-size:15px;font-weight:500}
+.cmp4 .w{font-size:12.5px;color:var(--ink-3);text-align:center}
+.cmp4.head{border-bottom:1px solid var(--line-2);padding-bottom:5px}
+.cmp4.head span{font-family:var(--display);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);text-align:right}
+.cmp4.head span.g{text-align:left}
+.cmp4.head span.w{text-align:center}
 .vbar{display:grid;grid-template-columns:88px 1fr 62px;gap:10px;align-items:center;padding:5px 0}
 .vbar .g{font-family:var(--display);font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .vbar .tr{height:12px;border-radius:3px;background:var(--sunk);overflow:hidden;position:relative}
@@ -891,7 +901,7 @@ SESS.pu_legs2 = { id:'pu_legs2', nome:'Legs 2', gg:'Domenica', durata:50, opz:1,
    Range di ripetizioni dei compound da 4-6 a 5-8 / 6-10: a pari volume i
    carichi alti costruiscono massa, ma costano piu' stress articolare per
    serie. Un solo slot resta pesante, per mantenere la forza. */
-SESS.rv_push = { id:'rv_push', nome:'Push', gg:'Lunedì', durata:58, rivista:1,
+SESS.rv_push = { id:'rv_push', nome:'Push', gg:'Lunedì', durata:64, rivista:1,
   focus:'Petto · Spalle · Tricipiti', ex:[
   e('Panca piana bilanciere','petto',3,'5–8','RIR 1–2',210,{
     cue:'Presa 1,5× spalle · gomiti 45° · scapole retratte · fermi rack · eccentrica 2 sec',
@@ -912,7 +922,7 @@ SESS.rv_push = { id:'rv_push', nome:'Push', gg:'Lunedì', durata:58, rivista:1,
   e('Dip verticale zavorra','tricipiti',2,'8–10','+ Myo-reps',150,{
     cue:'Busto verticale · gomiti vicini al corpo · range completo'})
 ]};
-SESS.rv_pull = { id:'rv_pull', nome:'Pull', gg:'Martedì', durata:55, rivista:1,
+SESS.rv_pull = { id:'rv_pull', nome:'Pull', gg:'Martedì', durata:56, rivista:1,
   focus:'Schiena su tre angoli · Bicipiti su tre posizioni di braccio', ex:[
   e('Trazioni zavorate','dorso',3,'5–8','RIR 1–2',210,{
     cue:'Petto verso la barra · scapole in basso · no kipping · eccentrica controllata'}),
@@ -929,7 +939,7 @@ SESS.rv_pull = { id:'rv_pull', nome:'Pull', gg:'Martedì', durata:55, rivista:1,
   e('Curl ai cavi in piedi','bicipiti',3,'12–15','+ Rest-pause',90,{p:1,nuovo:1,
     cue:'Cavo basso · gomiti fermi · contrazione piena in cima'})
 ]};
-SESS.rv_legs = { id:'rv_legs', nome:'Legs', gg:'Mercoledì', durata:62, rivista:1,
+SESS.rv_legs = { id:'rv_legs', nome:'Legs', gg:'Mercoledì', durata:63, rivista:1,
   focus:'Quad · Femorali · Gluteo · Polpacci · Core', ex:[
   e('Hack squat — piede basso','quad',3,'6–10','RIR 1–2',210,{ernia:1,
     cue:'Discesa 2–3 sec · ginocchia in linea con le punte · ESPIRA nella salita · mai Valsalva'}),
@@ -948,7 +958,7 @@ SESS.rv_legs = { id:'rv_legs', nome:'Legs', gg:'Mercoledì', durata:62, rivista:
   e('Dead bug','core',2,'30–45"','Controllo',60,{tempo:1,ernia:1,
     cue:'Lombare incollata al suolo · estendi gli opposti · espira nell’estensione'})
 ]};
-SESS.rv_upper = { id:'rv_upper', nome:'Upper', gg:'Venerdì', durata:60, rivista:1,
+SESS.rv_upper = { id:'rv_upper', nome:'Upper', gg:'Venerdì', durata:49, rivista:1,
   focus:'Petto, schiena, spalle e braccia · seconda frequenza della parte alta', ex:[
   e('Panca inclinata manubri','petto',4,'8–12','+ Drop set',150,{
     cue:'Angolo 30° · gomiti 60–70° · scendi fino allo stretch completo · pausa 1 sec'}),
@@ -982,14 +992,15 @@ SESS.rv_lower = { id:'rv_lower', nome:'Lower', gg:'Sabato', durata:58, rivista:1
   e('Calf raise seduto — soleo','polpacci',3,'15–20','+ Rest-pause',105,{
     cue:'Ginocchio flesso 90° · pausa 2" in basso',note:'Ginocchio flesso: qui lavora il soleo, non il gastrocnemio.'})
 ]};
-/* ---------- VERSIONE A 4 GIORNI ----------
-   Con quattro sedute l'unico modo di tenere OGNI gruppo a frequenza 2x e'
-   alternare parte alta e parte bassa: Upper A, Lower A, Upper B, Lower B.
-   Con Push/Pull/Legs/Upper le gambe tornerebbero a una volta sola, che e'
-   l'errore che avevamo appena corretto.
-   Il prezzo si paga sulla parte alta, e soprattutto sulle braccia: il budget
-   scende da 98 a circa 83 serie e le gambe restano intatte. */
-SESS.q_upperA = { id:'q_upperA', nome:'Upper A', gg:'Lunedì', durata:58, rivista:1, quattro:1,
+/* ---------- VERSIONE A 4 GIORNI · UPPER / LOWER ----------
+   Con quattro sedute ci sono due modi di tenere OGNI gruppo a frequenza 2x.
+   Il primo e' alternare parte alta e parte bassa: Upper A, Lower A, Upper B,
+   Lower B. Il secondo e' Push/Pull/Legs + full body, piu' sotto.
+   Push/Pull/Legs/Upper invece no: le gambe tornerebbero a una volta sola,
+   che e' l'errore che avevamo appena corretto.
+   Qui il prezzo si paga sulla parte alta, e soprattutto sulle braccia: il
+   budget scende da 98 a 83 serie e le gambe restano intatte. */
+SESS.q_upperA = { id:'q_upperA', nome:'Upper A', gg:'Lunedì', durata:59, rivista:1, quattro:1,
   focus:'Parte alta pesante: petto, dorso e spalle sui compound · Braccia in superset', ex:[
   e('Panca piana bilanciere','petto',3,'5–8','RIR 1–2',210,{
     cue:'Presa 1,5× spalle · gomiti 45° · scapole retratte · fermi rack'}),
@@ -1008,7 +1019,7 @@ SESS.q_upperA = { id:'q_upperA', nome:'Upper A', gg:'Lunedì', durata:58, rivist
     cue:'Gomiti fermi sopra la testa · stretch massimo',
     note:'In superset col curl: bicipite e tricipite non si rubano niente e si risparmiano 6 minuti.'})
 ]};
-SESS.q_lowerA = { id:'q_lowerA', nome:'Lower A', gg:'Martedì', durata:60, rivista:1, quattro:1,
+SESS.q_lowerA = { id:'q_lowerA', nome:'Lower A', gg:'Martedì', durata:63, rivista:1, quattro:1,
   focus:'Quad · Femorali · Gluteo · Polpacci · Core', ex:[
   e('Hack squat — piede basso','quad',3,'6–10','RIR 1–2',210,{ernia:1,
     cue:'Discesa 2–3 sec · ESPIRA nella salita · mai Valsalva'}),
@@ -1025,7 +1036,7 @@ SESS.q_lowerA = { id:'q_lowerA', nome:'Lower A', gg:'Martedì', durata:60, rivis
   e('Dead bug','core',2,'30–45"','Controllo',60,{tempo:1,ernia:1,
     cue:'Lombare incollata al suolo · espira nell’estensione'})
 ]};
-SESS.q_upperB = { id:'q_upperB', nome:'Upper B', gg:'Giovedì', durata:60, rivista:1, quattro:1,
+SESS.q_upperB = { id:'q_upperB', nome:'Upper B', gg:'Giovedì', durata:56, rivista:1, quattro:1,
   focus:'Parte alta in volume: isolamento e braccia · due superset per stare nei tempi', ex:[
   e('Panca inclinata manubri','petto',3,'8–12','+ Drop set',150,{
     cue:'Angolo 30° · scendi fino allo stretch completo · pausa 1 sec'}),
@@ -1061,6 +1072,38 @@ SESS.q_lowerB = { id:'q_lowerB', nome:'Lower B', gg:'Sabato', durata:58, rivista
   e('Calf raise seduto — soleo','polpacci',3,'15–20','+ Rest-pause',105,{
     cue:'Ginocchio flesso 90° · pausa 2" in basso'})
 ]};
+/* ---------- VERSIONE A 4 GIORNI · PUSH / PULL / LEGS / FULL BODY ----------
+   Anche questa tiene tutti i gruppi a 2x, ma sposta il volume dall'altra
+   parte rispetto all'Upper/Lower: le tre sedute specializzate danno molto ai
+   loro gruppi, e il full body fa da seconda frequenza per tutti con 2-3 serie
+   a testa. Risultato: schiena e braccia meglio servite, gambe peggio.
+   Il full body e' impostato con le gambe per prime, che sono quelle che qui
+   rischiano di piu' e che con la stanchezza di fine settimana vanno fatte
+   quando hai ancora energia. */
+SESS.fb_full = { id:'fb_full', nome:'Full body', gg:'Sabato', durata:62, rivista:1, quattro:1,
+  focus:'Seconda frequenza per tutto · gambe per prime, finché hai energia', ex:[
+  e('Hack squat — piede basso','quad',3,'8–10','RIR 1–2',180,{ernia:1,
+    cue:'Piede basso sul bordo · discesa 2-3 sec · espira salendo'}),
+  e('Panca inclinata manubri','petto',3,'8–12','+ Drop set',150,{
+    cue:'Angolo 30° · scendi fino allo stretch completo · pausa 1 sec'}),
+  e('Leg curl seduto','femorali',3,'10–12','+ Drop set',105,{p:1,
+    cue:'Anca flessa · schiena appoggiata · range completo'}),
+  e('Lat machine presa larga','dorso',3,'8–12','+ Drop set',150,{
+    cue:'Ferma sotto il mento · scapole giù · allunga bene in cima'}),
+  e('Alzate laterali ai cavi','spalle',3,'12–15','+ Rest-pause ×2',105,{p:1,wm:1,
+    cue:'Cavo basso dal lato opposto · gomito guida · stop a 90°'}),
+  e('Hip thrust bilanciere','gluteo',2,'10–12','+ Rest-pause',105,{
+    cue:'Spalla sul bordo panca · spingi i talloni · squeeze in cima'}),
+  e('Curl hammer ai cavi','bicipiti',3,'10–12','Superset + Drop set',0,{p:1,ss:'B',
+    cue:'Corda o presa neutra · gomiti fermi ai fianchi'}),
+  e('Tricipite push-down','tricipiti',2,'10–12','Superset',0,{p:1,ss:'B',
+    cue:'Gomiti fermi ai fianchi · contrazione massima in basso'}),
+  e('Calf raise seduto — soleo','polpacci',2,'15–20','Superset',90,{ss:'B',
+    cue:'Ginocchio flesso 90° · pausa 2" in basso'})
+]};
+/* Lun Push · Mar Pull · Gio Legs · Sab Full body. */
+const GIORNI_PPLFB = {1:'rv_push',2:'rv_pull',4:'rv_legs',6:'fb_full'};
+
 /* Lun Upper A · Mar Lower A · Gio Upper B · Sab Lower B. Tre giorni liberi. */
 const GIORNI_RIVISTI_4 = {1:'q_upperA',2:'q_lowerA',4:'q_upperB',6:'q_lowerB'};
 
@@ -1820,7 +1863,9 @@ function faseDi(d){
 const giorniDi = f => {
   if(S.ui.prog === 'originale') return f.giorni;
   if(f.split !== 'PPL + Upper') return GIORNI_RIVISTI_PPL3;
-  return S.ui.prog === 'rivista4' ? GIORNI_RIVISTI_4 : GIORNI_RIVISTI;
+  if(S.ui.prog === 'rivista4') return GIORNI_RIVISTI_4;
+  if(S.ui.prog === 'pplfb') return GIORNI_PPLFB;
+  return GIORNI_RIVISTI;
 };
 function sessioneDi(d,f){
   const L = S.sess[d];
@@ -2972,7 +3017,7 @@ function renderPiano(){
 
   ${(() => {
     const upper = f.split === 'PPL + Upper';
-    const riv = upper ? (S.ui.prog === 'rivista4' ? GIORNI_RIVISTI_4 : GIORNI_RIVISTI) : GIORNI_RIVISTI_PPL3;
+    const riv = upper ? giorniDi(f) : GIORNI_RIVISTI_PPL3;
     const senzaOpz = o => Object.fromEntries(Object.entries(o).filter(([,id]) => !SESS[id].opz && !SESS[id].consigliata));
     const a = volumePrevisto(f.giorni), b = volumePrevisto(riv);
     const a4 = volumePrevisto(senzaOpz(f.giorni)), b4 = volumePrevisto(senzaOpz(riv));
@@ -2990,12 +3035,13 @@ function renderPiano(){
       </div>`;
     };
     return `<div class="card">
-      <div class="hd"><h2>Programmazione</h2><span class="chip ${S.ui.prog==='originale'?'line':'good'} sp">${{rivista:'5 giorni',rivista4:'4 giorni',originale:'originale'}[S.ui.prog]}</span></div>
+      <div class="hd"><h2>Programmazione</h2><span class="chip ${S.ui.prog==='originale'?'line':'good'} sp">${{rivista:'5 giorni',rivista4:'4 · upper/lower',pplfb:'4 · ppl+full',originale:'originale'}[S.ui.prog]}</span></div>
       <div class="bd stack">
         <div class="seg" role="group" aria-label="Programmazione">
           <button data-prog="originale" aria-pressed="${S.ui.prog==='originale'}">Originale</button>
           <button data-prog="rivista" aria-pressed="${S.ui.prog==='rivista'}">5 giorni</button>
-          <button data-prog="rivista4" aria-pressed="${S.ui.prog==='rivista4'}">4 giorni</button>
+          <button data-prog="rivista4" aria-pressed="${S.ui.prog==='rivista4'}">4 · Upper/Lower</button>
+          <button data-prog="pplfb" aria-pressed="${S.ui.prog==='pplfb'}">4 · PPL+Full</button>
         </div>
         <p class="small muted" style="margin:0">Stesso numero di sedute, stessa durata, stesso budget:
           <b>${a.tot} serie</b> a settimana nell’originale, <b>${b.tot}</b> nella rivista. Cambia dove vanno.</p>
@@ -3013,6 +3059,40 @@ function renderPiano(){
           comunemente accettati (petto e dorso 10-20, polpacci 6-12).</p>
       </div>
     </div>
+
+    ${(() => {
+      if(!upper) return '';
+      const ul = volumePrevisto(GIORNI_RIVISTI_4), fb = volumePrevisto(GIORNI_PPLFB);
+      const min = Object.values(GIORNI_RIVISTI_4).map(id => SESS[id].durata);
+      const mfb = Object.values(GIORNI_PPLFB).map(id => SESS[id].durata);
+      const riga = g => {
+        const u = ul.per[g]||0, p = fb.per[g]||0, d = p - u;
+        const c = x => d === 0 ? 'var(--ink)' : (x === Math.max(u,p) ? 'var(--good-text)' : 'var(--ink-3)');
+        return `<div class="cmp4"><span class="g">${GRUPPI[g]}</span>
+          <b style="color:${c(u)}">${u}</b><b style="color:${c(p)}">${p}</b>
+          <span class="w">${(ul.freq[g]||0) === (fb.freq[g]||0) ? (ul.freq[g]||0)+'×' : (ul.freq[g]||0)+'/'+(fb.freq[g]||0)+'×'}</span></div>`;
+      };
+      return `<div class="card"><div class="hd"><h3>Se fai 4 sedute: le due strade</h3></div><div class="bd stack">
+        <p class="small" style="margin:0">Tengono <b>tutti</b> i gruppi a frequenza 2× — il core resta 1×, come anche nella versione da 5 giorni — e costano quasi lo stesso:
+          <b>${ul.tot} serie</b> con Upper/Lower, <b>${fb.tot}</b> con PPL + full body. Cambia a chi vanno.</p>
+        <div class="cmp4 head"><span class="g">Gruppo</span><span>U/L</span><span>PPL+FB</span><span class="w">freq</span></div>
+        ${['petto','dorso','spalle','bicipiti','tricipiti','quad','femorali','gluteo','polpacci','core'].map(riga).join('')}
+        <p class="small" style="margin:0"><b>Upper/Lower protegge le gambe.</b> Quadricipiti ${ul.per.quad||0} contro
+          ${fb.per.quad||0}, gluteo ${ul.per.gluteo||0} contro ${fb.per.gluteo||0}: due sedute intere di gambe non le
+          batte niente. Il prezzo lo pagano schiena e braccia, che scendono a ${ul.per.dorso||0} e ${ul.per.bicipiti||0}.</p>
+        <p class="small" style="margin:0"><b>PPL + full body serve la parte alta.</b> Dorso ${fb.per.dorso||0},
+          bicipiti ${fb.per.bicipiti||0}, spalle ${fb.per.spalle||0}: le tre sedute specializzate restano identiche a
+          quelle da 5 giorni, e il sabato fa da seconda frequenza per tutto. Le gambe però ricevono una seduta e mezza:
+          quadricipiti ${fb.per.quad||0} e gluteo ${fb.per.gluteo||0} sono il minimo per mantenere, non per crescere.</p>
+        <p class="small" style="margin:0"><b>Come sceglierei.</b> Se l’obiettivo restano braccia, spalle e gambe insieme,
+          <b>Upper/Lower</b>: le braccia perdono serie dirette ma continuano a prendere lavoro indiretto da ogni spinta e
+          ogni tirata, mentre il quadricipite e il gluteo non hanno nessuna fonte indiretta — quello che togli lì è tolto
+          davvero. <b>PPL + full body</b> ha senso se in quel periodo la parte alta è la priorità dichiarata, o se il
+          sabato è la seduta che salti più spesso: lì perdi una seduta mista, non metà delle gambe.</p>
+        <p class="tiny muted" style="margin:0">Durate stimate: Upper/Lower ${min.join(', ')} min ·
+          PPL + full body ${mfb.join(', ')} min. Serie × (45 secondi di lavoro + recupero previsto), più mezzo minuto
+          per la serie finale intensificata. Il riscaldamento e i 10 minuti di mobilità sono fuori dal conto.</p>
+      </div></div>`; })()}
 
     <div class="card"><div class="hd"><h3>Cosa cambia, e perché</h3></div><div class="bd stack-s">
       <p class="small" style="margin:0"><b>1. Tricipiti 14 serie contro petto 6.</b> I tricipiti prendono lavoro indiretto
@@ -3252,8 +3332,8 @@ document.addEventListener('click', ev => {
 
   const pg = el('[data-prog]');
   if(pg){ S.ui.prog = pg.dataset.prog; APERTI.clear(); salva(); render();
-    toast({ rivista:'Programmazione a 5 giorni', rivista4:'Programmazione a 4 giorni',
-            originale:'Tornato al piano originale' }[pg.dataset.prog]); return; }
+    toast({ rivista:'5 giorni · Push Pull Legs Upper Lower', rivista4:'4 giorni · Upper e Lower alternati',
+            pplfb:'4 giorni · Push Pull Legs e full body', originale:'Tornato al piano originale' }[pg.dataset.prog]); return; }
 
   const tk = el('[data-tick]');
   if(tk){
