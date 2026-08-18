@@ -14,6 +14,7 @@ fitness/<slug>/app.html                 sorgente dell'Artifact
 fitness/<slug>/README.md                sintesi, scelte di trascrizione, storico
 fitness/<slug>/verify.json              selettori e giro delle viste per la verifica
 tools/verify.mjs                        verifica di rendering obbligatoria
+tools/prova-dati.mjs                    prova con dati seminati, obbligatoria per fitness/
 out/                                    screenshot e PDF generati (non versionato)
 ```
 
@@ -112,6 +113,20 @@ cambiano. Controlla come minimo:
 Errori trovati solo così, in passato: regole CSS troppo larghe che
 trasformavano i grassetti del testo in titoli; etichette sovrapposte sulla
 mappa. A occhio non si vedevano.
+
+Per le app in `fitness/` **questo non basta**: `verify` apre un profilo vuoto, e
+con il profilo vuoto metà del codice non viene mai eseguita. Serve anche la
+prova con i dati dentro, che semina sedute, carichi, peso corporeo, pasti e un
+esercizio sostituito, poi gira tutte le viste e tutti gli interruttori:
+
+```sh
+npm run prova fitness/<cartella>/app.html
+```
+
+Due bug sono passati per due versioni proprio perché mancava: la scheda
+Progressi si rompeva appena c'era un carico registrato, e un giorno di dieta
+importato da un backup vecchio rompeva la scheda Dieta. Nessuno dei due era
+visibile su un profilo pulito.
 
 ## Consegna
 

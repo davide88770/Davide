@@ -145,21 +145,65 @@ sull'isolamento. Il **Legs 2 non è più opzionale**: senza, quadricipiti e glut
 restano a 8 e 3 serie.
 
 Lo split della programmazione rivista è **Push · Pull · Legs · riposo · Upper ·
-Lower · riposo** (lunedì-mercoledì, venerdì e sabato). Cinque sedute da 55-62
-minuti, 98 serie a settimana, e **ogni gruppo muscolare a frequenza 2×** senza
-sedute opzionali da cui dipenda il risultato:
+Lower · riposo** (lunedì-mercoledì, venerdì e sabato). Cinque sedute da 56-63
+minuti, 98 serie dirette a settimana, e **ogni gruppo muscolare a frequenza 2×**
+senza sedute opzionali da cui dipenda il risultato:
 
-| Gruppo | Serie/sett | Freq. |
-|---|---|---|
-| Petto | 10 | 2× |
-| Dorso | 12 | 2× |
-| Spalle | 12 | 2× |
-| Bicipiti | 14 | 2× |
-| Tricipiti | 11 | 2× |
-| Quadricipiti | 12 | 2× |
-| Femorali | 10 | 2× |
-| Gluteo | 9 | 2× |
-| Polpacci | 6 | 2× |
+| Gruppo | Dirette | Frazionali | Freq. |
+|---|---|---|---|
+| Petto | 10 | 12,5 | 2× |
+| Dorso | 12 | 12,0 | 2× |
+| Spalle | 12 | 18,0 | 2× |
+| Bicipiti | 14 | 20,0 | 2× |
+| Tricipiti | 11 | 16,0 | 2× |
+| Quadricipiti | 12 | 15,0 | 2× |
+| Femorali | 10 | 11,5 | 2× |
+| Gluteo | 9 | 13,5 | 2× |
+| Polpacci | 6 | 6,0 | 2× |
+
+### Serie dirette e frazionali
+
+Dalla v16 il volume è contato come lo conta la ricerca che lo ha misurato:
+**serie dirette più metà delle serie indirette**. Una panca non è una serie di
+tricipite, ma non è nemmeno zero. È la convenzione della meta-regressione di
+Pelland e colleghi (*Sports Medicine*, 2025), che ha trovato la distinzione fra
+dirette e indirette necessaria per prevedere il risultato di un programma.
+
+Cambia parecchio la lettura: bicipiti da 14 a 20, tricipiti da 11 a 16, spalle
+da 12 a 18, gluteo da 9 a 13,5. La nota qualitativa che c'era prima ("questi
+gruppi prendono molto lavoro indiretto") è diventata un numero, in tutte e tre
+le programmazioni e anche nel conteggio delle serie davvero eseguite, in
+Progressi.
+
+La mappa dei secondari è una tabella sola, per nome di esercizio: panca →
+tricipiti e spalle, dip → petto e spalle, military → tricipiti, trazioni /
+lat machine / rematore / pulley → bicipiti, hack squat → gluteo, pressa →
+quadricipiti, stacco romeno → gluteo, hip thrust → femorali. Un esercizio
+scritto a mano nella sostituzione non ha secondari e conta solo diretto.
+
+### Il controllo sul volume per seduta
+
+La meta-regressione sul volume **per singola seduta** (2025) colloca intorno a
+**11 serie frazionali** il punto oltre il quale, nella stessa sessione, le serie
+in più sullo stesso muscolo non mostrano un vantaggio rilevabile. L'app lo
+controlla a ogni apertura e lo dice in chiaro nella scheda Programmazione.
+
+Il controllo ha trovato due sedute fuori, e le ha fatte correggere:
+
+| Seduta | Gruppo | Prima | Dopo |
+|---|---|---|---|
+| Pull | Bicipiti | 13,5 | 10,5 |
+| Push | Spalle | 11,5 | 8,5 |
+
+La correzione è **a volume invariato**, due esercizi spostati di seduta:
+
+- **Alzate posteriori / face pull** da Push a **Pull**: il deltoide posteriore
+  lavora sullo stesso schema di tirata della schiena ed è già caldo.
+- **Curl ai cavi in piedi** da Pull a **Upper**, che era la seduta più corta di
+  tutte.
+
+Le durate si sono pareggiate come effetto secondario: Push da 64 a 57 minuti,
+Upper da 49 a 56, e la seduta più lunga resta il Legs a 63.
 
 ### Le due versioni a 4 giorni
 
@@ -172,26 +216,32 @@ giorni). Cambia a chi vanno le serie. Push/Pull/Legs/Upper, invece, non è una
 delle due: lì le gambe tornerebbero a una volta sola, che è l'errore appena
 corretto.
 
+Serie frazionali (dirette + metà delle indirette), che è come le conta l'app:
+
 | Gruppo | 5 giorni | 4 · Upper/Lower | 4 · PPL+Full |
 |---|---|---|---|
-| Petto | 10 | 9 | 9 |
-| Dorso | 12 | 8 | **12** |
-| Spalle | 12 | 11 | **12** |
-| Bicipiti | 14 | 8 | **12** |
-| Tricipiti | 11 | 8 | 7 |
-| Quadricipiti | 12 | **12** | 9 |
-| Femorali | 10 | **10** | 9 |
-| Gluteo | 9 | **9** | 5 |
-| Polpacci | 6 | **6** | 5 |
-| Core | 2 | 2 | 2 |
-| **Totale** | **98** | **83** | **82** |
+| Petto | 12,5 | 10,5 | 10,0 |
+| Dorso | 12,0 | 8,0 | **12,0** |
+| Spalle | 18,0 | 15,5 | **16,0** |
+| Bicipiti | 20,0 | 12,0 | **15,0** |
+| Tricipiti | 16,0 | **12,5** | 11,5 |
+| Quadricipiti | 15,0 | **15,0** | 10,5 |
+| Femorali | 11,5 | **11,5** | 10,0 |
+| Gluteo | 13,5 | **13,5** | 9,5 |
+| Polpacci | 6,0 | **6,0** | 5,0 |
+| Core | 2,0 | 2,0 | 2,0 |
+| **Totale dirette** | **98** | **83** | **80** |
+
+Contate a serie dirette il divario sulle gambe sembra enorme (gluteo 9 contro
+5); contate come vanno contate, con hack squat e pressa che il gluteo lo
+caricano davvero, si dimezza — ma resta.
 
 **Upper/Lower protegge le gambe**: due sedute intere di parte bassa non le
 batte niente, e il taglio si concentra su schiena e braccia.
 **PPL + full body** (lunedì Push, martedì Pull, giovedì Legs, sabato full body)
 fa il contrario: le tre sedute specializzate restano identiche a quelle da
 cinque giorni, il sabato fa da seconda frequenza per tutto con 2-3 serie a
-gruppo, e le gambe scendono al minimo di mantenimento. Il full body è ordinato
+gruppo, e le gambe scendono vicino al minimo. Il full body è ordinato
 con le gambe per prime, che sono quelle che a fine settimana rischiano di più.
 
 La raccomandazione, con braccia, spalle e gambe come obiettivo dichiarato, è
@@ -424,7 +474,52 @@ esercizi trascritti, i loro range di ripetizioni e i 18 target di macro traccian
 al testo dei sorgenti. Le pagine 6, 13, 18, 25, 32 del workout e 4, 8, 11, 15,
 18, 22 dell'alimentare sono divisori senza contenuto né grafica.
 
+## Il consenso science-based
+
+La scheda **Piano → Il consenso science-based** dice da dove vengono le regole
+con cui è costruito il programma: prima i sette punti su cui la ricerca e i
+preparatori sono d'accordo, poi i tre su cui non lo sono, con la posizione presa
+qui e il perché.
+
+Le cinque fonti dei numeri:
+
+| Autori | Cosa | Dove |
+|---|---|---|
+| Pelland, Remmert, Robinson, Hinson, Zourdos | Dose-risposta di volume e frequenza, 67 studi | *Sports Medicine*, 2025 |
+| Robinson, Pelland, Remmert e colleghi | Dose-risposta della vicinanza al cedimento | *Sports Medicine*, 2024 |
+| Gruppo Data Driven Strength | Volume per singola seduta | Meta-regressione, 2025 |
+| Wolf, Androulakis Korakakis, Schoenfeld e colleghi | Parziali in allungamento contro range completo | Meta-analisi 2023 · studio controllato 2025 |
+| Morton, Murphy, McKellar e colleghi | Proteine e massa magra, 49 studi | *BJSM*, 2018 |
+
+I tre punti di disaccordo, con la scelta fatta:
+
+1. **Quanto volume.** Israetel e Renaissance Periodization spingono verso il
+   massimo recuperabile; Beardsley sostiene che gran parte del volume alto è
+   fatica senza stimolo; Helms e Nippard stanno in mezzo. → Si sta in mezzo, e
+   non per prudenza: con 55-65 minuti a seduta il volume non ha dove crescere, e
+   la curva è già piatta lì dove siamo.
+2. **Fino a che punto tirare la serie.** → Dipende dall'esercizio, non dalla
+   settimana: a cedimento dove costa poco (cavi, macchine, isolamento), 1-2
+   ripetizioni di margine sui compound pesanti, dove la meta-regressione sulla
+   forza dice che non si guadagna niente e il costo articolare, a 38 anni e con
+   l'ernia, è reale.
+3. **I parziali in allungamento.** Wolf e Rabasco li usano sistematicamente,
+   Helms e Nippard li considerano un extra modesto. → Messi come coda
+   dell'ultima serie su due esercizi soli, mai al posto del range completo.
+
+Una correzione a quanto scritto nelle versioni precedenti: **la frequenza, da
+sola, non fa niente**. A parità di volume settimanale la frequenza doppia non
+batte quella singola in modo rilevabile. Il motivo per spezzare resta, ma è il
+volume per seduta.
+
 ## Verificato
+
+Due script, entrambi obbligatori prima di pubblicare:
+
+```sh
+npm run verify fitness/ghisa-e-grammi/app.html   # profilo vuoto
+npm run prova  fitness/ghisa-e-grammi/app.html   # con i dati dentro
+```
 
 - Nessun errore in console su tutte e cinque le viste, in chiaro e in scuro.
 - 390 px senza scroll orizzontale del body.
@@ -433,9 +528,27 @@ al testo dei sorgenti. Le pagine 6, 13, 18, 25, 32 del workout e 4, 8, 11, 15,
 - Totali della dieta ricalcolati eseguendo il codice e confrontati con una somma
   indipendente dei pasti: coincidono.
 - PDF A4 di stampa: 4 pagine, scheda compilabile a penna, senza navigazione.
+- **Con i dati dentro** (`npm run prova`): 20 sedute seminate su quattro
+  settimane, 396 serie, peso corporeo, pasti spuntati, un esercizio sostituito e
+  un giorno di dieta incompleto come da backup vecchio. Tutte e cinque le
+  schede, i quattro interruttori di programmazione e i tre tipi di settimana,
+  senza un solo errore JS. È la prova che mancava: `verify` gira su un profilo
+  vuoto, e con il profilo vuoto metà dell'app non viene mai eseguita — è così
+  che due bug sono passati per due versioni.
 
 ## Storico
 
+- **v16** — passata sul consenso science-based. Volume contato in **serie
+  frazionali** (dirette + metà delle indirette) ovunque, controllo automatico
+  sulle 11 serie frazionali per seduta, due esercizi spostati a volume invariato
+  per rientrare (bicipiti nel Pull da 13,5 a 10,5, spalle nel Push da 11,5 a
+  8,5), tabella dell'intensità per settimana riscritta per la programmazione
+  rivista, partial in allungamento su due esercizi, scheda «Il consenso
+  science-based» con le fonti e i tre punti su cui i preparatori non sono
+  d'accordo. Corretto quello che avevo scritto sulla frequenza. Corretti due
+  bug trovati dalla nuova prova con i dati dentro: la scheda Progressi si
+  rompeva appena c'era un carico registrato, e un giorno di dieta importato da
+  un backup vecchio rompeva la scheda Dieta.
 - **v15** — seconda struttura a 4 giorni: **Push, Pull, Legs, full body**, in
   alternativa a Upper/Lower. Stessa frequenza 2× e stesso budget (82 serie
   contro 83), volume spostato dalla parte bassa alla parte alta: dorso 8→12,
