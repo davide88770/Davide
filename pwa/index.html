@@ -891,71 +891,71 @@ SESS.pu_legs2 = { id:'pu_legs2', nome:'Legs 2', gg:'Domenica', durata:50, opz:1,
    Range di ripetizioni dei compound da 4-6 a 5-8 / 6-10: a pari volume i
    carichi alti costruiscono massa, ma costano piu' stress articolare per
    serie. Un solo slot resta pesante, per mantenere la forza. */
-SESS.rv_push = { id:'rv_push', nome:'Push', gg:'Lunedì', durata:57, rivista:1,
-  focus:'Petto compound + isolamento · Spalle forza, laterale e posteriore · Tricipiti', ex:[
+SESS.rv_push = { id:'rv_push', nome:'Push', gg:'Lunedì', durata:58, rivista:1,
+  focus:'Petto · Spalle · Tricipiti', ex:[
   e('Panca piana bilanciere','petto',3,'5–8','RIR 1–2',210,{
     cue:'Presa 1,5× spalle · gomiti 45° · scapole retratte · fermi rack · eccentrica 2 sec',
-    note:'3 serie di riscaldamento. Range allargato a 5-8: stesso stimolo, meno stress articolare per serie.'}),
+    note:'Il compound pesante della sessione. Il petto in allungamento lo caricano le croci.'}),
   e('Military press bilanciere','spalle',3,'6–8','RIR 1–2',210,{p:1,
-    cue:'Core braced · gomiti davanti · no iperestensione lombare · espira salendo',
-    note:'Spalle forza. Lo slot pesante della sessione.'}),
+    cue:'Core braced · gomiti davanti · no iperestensione lombare · espira salendo'}),
   e('Croci ai cavi','petto',3,'10–12','RIR 0–1',105,{nuovo:1,
-    cue:'Gomiti morbidi e fermi · porta le mani a incrociarsi · allunga bene in apertura',
-    note:'Aggiunta: il petto non riceveva nessun isolamento e nessun lavoro in allungamento. Sicura per l’ernia.'}),
-  e('Alzate laterali manubri','spalle',3,'12–15','+ Rest-pause ×2',105,{p:1,wm:1,
-    cue:'Pronazione pollice · gomito guida · no trapezio · eccentrica 3 sec · stop a 90°'}),
+    cue:'Gomiti morbidi e fermi · allunga bene in apertura · incrocia le mani in chiusura',
+    note:'Il cavo tiene la tensione dove il petto è allungato, cosa che il manubrio in apertura non fa.'}),
+  e('Alzate laterali ai cavi','spalle',3,'12–15','+ Rest-pause ×2',105,{p:1,wm:1,nuovo:1,
+    cue:'Cavo basso dal lato opposto · braccio che parte incrociato davanti al corpo · gomito guida · stop a 90°',
+    note:'Col manubrio il deltoide non ha carico proprio in basso, dove è allungato. Col cavo sì: stesso esercizio, profilo di resistenza migliore.'}),
   e('Alzate posteriori / face pull corda','spalle',3,'15–20','+ Rest-pause',105,{p:1,
-    cue:'Busto parallelo al suolo · gomiti flessi 90° · gomiti verso il soffitto',
-    note:'Da 2 a 3 serie: bilancia il pressing e tiene in salute la cuffia.'}),
+    cue:'Busto parallelo al suolo · gomiti flessi 90° · gomiti verso il soffitto'}),
   e('Tricipite overhead pulley — corda','tricipiti',3,'10–12','+ Rest-pause',105,{p:1,wm:1,
-    cue:'Gomiti fermi sopra la testa · stretch massimo · si muove solo l’avambraccio'})
+    cue:'Gomiti fermi sopra la testa · stretch massimo · si muove solo l’avambraccio',
+    note:'Braccio sopra la testa: il capo lungo lavora allungato, ed è la posizione che rende di più.'}),
+  e('Dip verticale zavorra','tricipiti',2,'8–10','+ Myo-reps',150,{
+    cue:'Busto verticale · gomiti vicini al corpo · range completo'})
 ]};
-SESS.rv_pull = { id:'rv_pull', nome:'Pull', gg:'Martedì', durata:57, rivista:1,
-  focus:'Schiena su tre angoli · Bicipiti in allungamento · Femorali 2ª frequenza', ex:[
+SESS.rv_pull = { id:'rv_pull', nome:'Pull', gg:'Martedì', durata:55, rivista:1,
+  focus:'Schiena su tre angoli · Bicipiti su tre posizioni di braccio', ex:[
   e('Trazioni zavorate','dorso',3,'5–8','RIR 1–2',210,{
     cue:'Petto verso la barra · scapole in basso · no kipping · eccentrica controllata'}),
   e('Rematore bilanciere — Yates','dorso',3,'6–10','RIR 1–2',210,{
     cue:'Tira verso l’ombelico · gomiti vicini · squeeze 1 sec · no rotazione'}),
   e('Pulley basso — presa neutra','dorso',3,'10–12','+ Rest-pause',105,{nuovo:1,
-    cue:'Busto fermo · porta i gomiti indietro lungo i fianchi · allunga in avanti senza curvare',
-    note:'Aggiunta: terzo angolo sulla schiena, e spessore che il lat machine non dà. Sicura per l’ernia.'}),
+    cue:'Busto fermo · gomiti indietro lungo i fianchi · allunga in avanti senza curvare'}),
   e('Curl manubri su panca inclinata','bicipiti',3,'8–10','RIR 0–1',105,{p:1,nuovo:1,
     cue:'Panca a 45-60° · braccia dietro la linea del busto · supinazione completa · eccentrica 3 sec',
-    note:'Sostituisce il curl bilanciere 2×5-6 al cedimento: stesso volume, bicipite in allungamento, molto meno carico sul gomito.'}),
-  e('Curl hammer manubri','bicipiti',3,'10–12','+ Drop set',105,{p:1,
-    cue:'Presa neutra · alternato · gomiti fermi · no oscillazione del busto'}),
-  e('Leg curl seduto','femorali',3,'10–12','+ Rest-pause',105,{p:1,nuovo:1,
-    cue:'Anca flessa · schiena appoggiata · contrazione 1 sec · eccentrica controllata',
-    note:'Aggiunta: porta i femorali a 2 frequenze, come il piano dichiara di volere. Seduto perché con l’anca flessa il capo lungo lavora allungato. Sicuro al 100% per l’ernia.'})
+    note:'Braccio dietro il corpo: il capo lungo del bicipite parte allungato. È la posizione che rende di più.'}),
+  e('Curl hammer ai cavi','bicipiti',3,'10–12','+ Drop set',105,{p:1,nuovo:1,
+    cue:'Corda o presa neutra · gomiti fermi ai fianchi · niente oscillazione',
+    note:'Col cavo la tensione non cade in basso come col manubrio.'}),
+  e('Curl ai cavi in piedi','bicipiti',3,'12–15','+ Rest-pause',90,{p:1,nuovo:1,
+    cue:'Cavo basso · gomiti fermi · contrazione piena in cima'})
 ]};
-SESS.rv_legs = { id:'rv_legs', nome:'Legs', gg:'Giovedì', durata:62, rivista:1,
-  focus:'Quad: hack + leg extension · Femorali: RDL + leg curl · Gluteo · Calf · Core', ex:[
+SESS.rv_legs = { id:'rv_legs', nome:'Legs', gg:'Mercoledì', durata:62, rivista:1,
+  focus:'Quad · Femorali · Gluteo · Polpacci · Core', ex:[
   e('Hack squat — piede basso','quad',3,'6–10','RIR 1–2',210,{ernia:1,
-    cue:'Discesa 2–3 sec · ginocchia in linea con le punte · ESPIRA nella salita · mai Valsalva',
-    note:'3 serie di riscaldamento. Carico conservativo per l’ernia.'}),
+    cue:'Discesa 2–3 sec · ginocchia in linea con le punte · ESPIRA nella salita · mai Valsalva'}),
   e('Romanian deadlift bilanciere','femorali',3,'8–10','RIR 1–2',210,{ernia:1,
-    cue:'La barra scorre lungo la coscia · squeeze del gluteo in cima · schiena neutra · espira salendo'}),
+    cue:'La barra scorre lungo la coscia · squeeze del gluteo in cima · schiena neutra'}),
   e('Leg extension','quad',3,'10–15','+ Rest-pause',105,{nuovo:1,
-    cue:'Schiena appoggiata · contrai 1 sec in cima · eccentrica 3 sec · non sbattere il peso',
-    note:'Aggiunta: carica il quadricipite in progressione vera, cosa che il sissy squat a corpo libero non permette. Nessuna pressione addominale: sicura per l’ernia.'}),
-  e('Leg curl seduto','femorali',3,'10–12','+ Drop set',105,{p:1,
-    cue:'Anca flessa · schiena appoggiata · contrazione 1 sec · range completo'}),
+    cue:'Schiena appoggiata · contrai 1 sec in cima · eccentrica 3 sec',
+    note:'Carica il quadricipite in progressione vera, senza pressione addominale: sicura per l’ernia.'}),
+  e('Leg curl seduto','femorali',3,'10–12','+ Drop set',105,{p:1,nuovo:1,
+    cue:'Anca flessa · schiena appoggiata · contrazione 1 sec · range completo',
+    note:'Seduto e non prono: con l’anca flessa il capo lungo del bicipite femorale lavora allungato.'}),
   e('Pressa — piede alto e largo','gluteo',3,'10–12','+ Drop set',150,{
-    cue:'Piedi molto in alto · spingi sui talloni · non bloccare le ginocchia'}),
+    cue:'Piedi molto in alto · spingi sui talloni · scendi profondo, è lì che il gluteo si allunga'}),
   e('Calf raise in piedi','polpacci',3,'8–12','+ Rest-pause',105,{
-    cue:'Ginocchio dritto · pausa 2" in basso · 1" in cima · no rimbalzo',
-    note:'Range abbassato a 8-12 con più carico: il soleo e il gastrocnemio rispondono al carico, non solo alle ripetizioni.'}),
+    cue:'Ginocchio dritto · pausa 2" in basso · no rimbalzo',note:'Ginocchio esteso: il gastrocnemio lavora allungato.'}),
   e('Dead bug','core',2,'30–45"','Controllo',60,{tempo:1,ernia:1,
     cue:'Lombare incollata al suolo · estendi gli opposti · espira nell’estensione'})
 ]};
-SESS.rv_upper = { id:'rv_upper', nome:'Upper', gg:'Sabato', durata:60, rivista:1,
-  focus:'Petto e schiena 2ª freq · Spalle 3ª freq · Braccia volume · Quad 2ª freq', ex:[
-  e('Panca inclinata manubri','petto',3,'8–12','+ Drop set',150,{
-    cue:'Angolo 30° · gomiti 60–70° · stretch completo in basso · pausa 1 sec'}),
+SESS.rv_upper = { id:'rv_upper', nome:'Upper', gg:'Venerdì', durata:60, rivista:1,
+  focus:'Petto, schiena, spalle e braccia · seconda frequenza della parte alta', ex:[
+  e('Panca inclinata manubri','petto',4,'8–12','+ Drop set',150,{
+    cue:'Angolo 30° · gomiti 60–70° · scendi fino allo stretch completo · pausa 1 sec'}),
   e('Lat machine presa larga','dorso',3,'8–12','+ Drop set',150,{
-    cue:'Ferma sotto il mento · scapole giù · non portare al petto · stretch in cima'}),
-  e('Alzate laterali manubri','spalle',3,'12–15','+ Rest-pause ×2',105,{p:1,wm:1,
-    cue:'Pronazione pollice · gomito guida · no trapezio · stop a 90°'}),
+    cue:'Ferma sotto il mento · scapole giù · allunga bene in cima'}),
+  e('Alzate laterali ai cavi','spalle',3,'12–15','+ Rest-pause ×2',105,{p:1,wm:1,
+    cue:'Cavo basso dal lato opposto · gomito guida · stop a 90°'}),
   e('Dip verticale zavorra','tricipiti',3,'8–10','Superset + Myo-reps',0,{p:1,ss:'A',
     cue:'Busto verticale · zavorra · subito dopo, senza recupero, il push-down'}),
   e('Tricipite push-down','tricipiti',3,'10–12','Superset',90,{p:1,ss:'A',
@@ -963,26 +963,28 @@ SESS.rv_upper = { id:'rv_upper', nome:'Upper', gg:'Sabato', durata:60, rivista:1
   e('Curl manubri alternati','bicipiti',3,'10–12','+ Drop set',0,{p:1,ss:'B',
     cue:'Supinazione totale in cima · gomiti fermi · eccentrica 3 sec'}),
   e('Curl hammer manubri','bicipiti',2,'12','Superset',90,{p:1,ss:'B',
-    cue:'Presa neutra · alternato · subito dopo il curl alternato'}),
-  e('Sissy squat — finisher quad','quad',2,'12–15','+ Rest-pause',105,{p:1,
-    cue:'Eccentrica 3–4 sec · contrai forte in cima',note:'Garantisce la 2ª frequenza quad anche senza il Legs 2.'})
+    cue:'Presa neutra · alternato · subito dopo il curl alternato'})
 ]};
-SESS.rv_legs2 = { id:'rv_legs2', nome:'Legs 2', gg:'Domenica', durata:53, rivista:1, consigliata:1,
-  focus:'Quad e gluteo 2ª frequenza · Femorali · Soleo. Se le gambe sono una priorità, questa seduta non è opzionale', ex:[
+SESS.rv_lower = { id:'rv_lower', nome:'Lower', gg:'Sabato', durata:58, rivista:1,
+  focus:'Seconda frequenza delle gambe · Gluteo · Femorali · Soleo', ex:[
   e('Pressa — piede alto e largo','gluteo',3,'8–12','+ Drop set',150,{p:1,
-    cue:'Piedi molto in alto · spingi sui talloni · non bloccare le ginocchia'}),
+    cue:'Piedi molto in alto · scendi profondo · spingi sui talloni'}),
   e('Hack squat — piede basso','quad',3,'8–10','RIR 1–2',210,{ernia:1,
     cue:'Piede basso sul bordo · discesa 2-3 sec · espira salendo'}),
   e('Sissy squat — eccentrica lenta','quad',3,'10–12','+ Myo-reps',105,{p:1,
-    cue:'Eccentrica 5 sec · 1 sec di isometria in basso · contrai forte in cima'}),
+    cue:'Eccentrica 5 sec · 1 sec di isometria in basso · contrai forte in cima',
+    note:'Retto femorale in massimo allungamento: è la sua funzione che nessun altro esercizio di gamba copre.'}),
   e('Hip thrust bilanciere','gluteo',3,'10–12','+ Rest-pause',105,{
-    cue:'Spalla sul bordo panca · spingi i talloni nel suolo · squeeze in cima · iso 2"',note:'Sicuro per l’ernia.'}),
-  e('Leg curl sdraiato — manubri','femorali',3,'12–15','+ Drop set',105,{p:1,
+    cue:'Spalla sul bordo panca · spingi i talloni · squeeze in cima · iso 2"',
+    note:'Carica il gluteo dove è accorciato: complementare alla pressa profonda, non alternativo.'}),
+  e('Leg curl sdraiato — manubri','femorali',4,'12–15','+ Drop set',105,{p:1,
     cue:'Pancia a terra · non sollevare i fianchi · contrazione 1 sec in cima'}),
   e('Calf raise seduto — soleo','polpacci',3,'15–20','+ Rest-pause',105,{
-    cue:'Ginocchio flesso 90° · pausa 2" in basso · no rimbalzo'})
+    cue:'Ginocchio flesso 90° · pausa 2" in basso',note:'Ginocchio flesso: qui lavora il soleo, non il gastrocnemio.'})
 ]};
-const GIORNI_RIVISTI = {1:'rv_push',2:'rv_pull',4:'rv_legs',6:'rv_upper',0:'rv_legs2'};
+/* Lun Push · Mar Pull · Mer Legs · Gio riposo · Ven Upper · Sab Lower · Dom riposo.
+   Ogni gruppo muscolare due volte a settimana, senza sedute opzionali. */
+const GIORNI_RIVISTI = {1:'rv_push',2:'rv_pull',3:'rv_legs',5:'rv_upper',6:'rv_lower'};
 
 /* ── FASI ───────────────────────────────────────────────────────────────── */
 const FASI = [
@@ -1775,7 +1777,7 @@ const isWM  = (ex,tipo) => !!(ex.wm && tipo === 'peak');
 function log(d){
   if(!S.sess[d]){
     const f = faseDi(d), s = sessioneDi(d,f);
-    S.sess[d] = { sid: s ? s.id : null, tipo: tipoSettDi(d), set:{}, piu:{}, nota:'', mod:Date.now() };
+    S.sess[d] = { sid: s ? s.id : null, tipo: tipoSettDi(d), set:{}, piu:{}, sost:{}, nota:'', mod:Date.now() };
   }
   return S.sess[d];
 }
@@ -1796,12 +1798,31 @@ function serieLog(d, i, n){
    a far partire il recupero e a segnare l'avanzamento, non a salvare. */
 const serieValida = r => !!r && (r.ok || (+r.kg > 0 && +r.rep > 0));
 
+/* L'esercizio che vale per quella giornata: quello del piano, oppure quello
+   che hai scritto tu al suo posto. La sostituzione vale solo per quel giorno. */
+function exDi(sess, i, d){
+  const ov = ((S.sess[d]||{}).sost||{})[i];
+  const base = sess.ex[i];
+  if(!ov || !base) return base;
+  return Object.assign({}, base, {
+    n: ov.n || base.n,
+    g: ov.g || base.g,
+    r: ov.r || base.r,
+    s: ov.s || base.s,
+    sv: ov.s ? null : base.sv,
+    cue: ov.n ? '' : base.cue,
+    note: ov.n ? 'Esercizio messo da te al posto di “' + base.n + '” per questa giornata.' : base.note,
+    sost: ov.n ? 1 : 0
+  });
+}
+
 /* Storico di un esercizio per nome: attraversa fasi e sessioni diverse. */
 function storico(nome){
   const out = [];
   for(const [d,L] of Object.entries(S.sess)){
     const s = SESS[L.sid]; if(!s) continue;
-    s.ex.forEach((ex,i) => {
+    s.ex.forEach((_,i) => {
+      const ex = exDi(s, i, d);
       if(ex.n !== nome) return;
       const righe = (L.set[i]||[]).filter(r => serieValida(r) && +r.kg > 0 && +r.rep > 0);
       if(righe.length) out.push({ d, righe });
@@ -2030,7 +2051,8 @@ function serieSettimana(fineISO, giorni=7){
   for(let i=0;i<giorni;i++){
     const d = piuGiorni(fineISO,-i), L = S.sess[d]; if(!L) continue;
     const s = SESS[L.sid]; if(!s) continue;
-    s.ex.forEach((ex,idx) => {
+    s.ex.forEach((_,idx) => {
+      const ex = exDi(s, idx, d);
       const righe = (L.set[idx]||[]).filter(serieValida);
       if(!righe.length) return;
       per[ex.g] = (per[ex.g]||0) + righe.length;
@@ -2141,7 +2163,8 @@ function statoOggi(d){
   const L = S.sess[d]; if(!L) return { fatte:0, totali:0 };
   const s = SESS[L.sid]; if(!s) return { fatte:0, totali:0 };
   let fatte = 0, totali = 0;
-  s.ex.forEach((ex,i) => {
+  s.ex.forEach((_,i) => {
+    const ex = exDi(s, i, d);
     totali += serieDi(ex, L.tipo || 'base') + ((L.piu||{})[i] || 0);
     fatte  += (L.set[i]||[]).filter(serieValida).length;
   });
@@ -2270,7 +2293,8 @@ function renderWorkout(){
   const st = statoOggi(d);
 
   const blocchi = [];
-  s.ex.forEach((ex,i) => {
+  s.ex.forEach((_,i) => {
+    const ex = exDi(s, i, d);
     const ult = blocchi[blocchi.length-1];
     if(ex.ss && ult && ult.ss === ex.ss) ult.items.push([ex,i]);
     else blocchi.push({ ss:ex.ss, items:[[ex,i]] });
@@ -2291,7 +2315,7 @@ function renderWorkout(){
       dedotto: mk === 'upper' && !x[3].includes('upper') && (x[3].includes('push') || x[3].includes('pull')) }))
     .filter(x => x.diretto || x.dedotto);
   const gruppi = {};
-  s.ex.forEach((ex,i) => { gruppi[ex.g] = (gruppi[ex.g]||0) + serieDi(ex,tipo); });
+  s.ex.forEach((_,i) => { const ex = exDi(s,i,d); gruppi[ex.g] = (gruppi[ex.g]||0) + serieDi(ex,tipo); });
 
   box.innerHTML = `
   <div class="hero noprint">
@@ -2382,6 +2406,7 @@ function cardEsercizio(ex, i, d, f, tipo){
     isWM(ex,tipo) ? pill('Widowmaker','warn') : '',
     ex.ss ? pill('Superset','line') : '',
     ex.nuovo ? pill('Aggiunto','good') : '',
+    ex.sost ? pill('Sostituito','acc') : '',
     ex.fv ? pill(ex.fv==='forza'?'Blocco forza':'Blocco volume','line') : ''
   ].filter(Boolean).join('');
 
@@ -2417,6 +2442,7 @@ function cardEsercizio(ex, i, d, f, tipo){
       <div class="row wrapf noprint" style="margin-top:11px">
         ${ex.rec ? `<button class="btn sm" data-rec="${ex.rec}">Recupero ${ex.rec>=60?Math.round(ex.rec/60)+' min':ex.rec+'s'}</button>` : ''}
         <button class="btn sm ghost" data-piu="${i}:1">${ICO.piu} Serie</button>
+        <button class="btn sm ghost" data-sost="${i}">Sostituisci</button>
         ${extra>0 ? `<button class="btn sm ghost" data-piu="${i}:-1">− Serie</button>` : ''}
         ${isWM(ex,tipo) ? `<button class="btn sm ghost" data-wm="${i}" style="color:var(--warn-text)">+ Widowmaker</button>` : ''}
         ${best.rm>0 ? `<span class="pr">${ICO.trofeo} 1RM ${nf(best.rm,1)} kg</span>` : ''}
@@ -2614,7 +2640,7 @@ function nomiEsercizi(){
   const set = new Set();
   for(const L of Object.values(S.sess)){
     const s = SESS[L.sid]; if(!s) continue;
-    s.ex.forEach((ex,i) => { if((L.set[i]||[]).some(r => serieValida(r) && +r.kg > 0)) set.add(ex.n); });
+    s.ex.forEach((_,i) => { if((L.set[i]||[]).some(r => serieValida(r) && +r.kg > 0)) set.add(exDi(s,i,d).n); });
   }
   return [...set].sort((a,b) => a.localeCompare(b,'it'));
 }
@@ -2851,7 +2877,7 @@ function renderPiano(){
           ${FASI.map(x => `<option value="${x.id}" ${S.ui.faseManuale===x.id?'selected':''}>Fase ${x.n} — ${esc(x.nome)}</option>`).join('')}
         </select></label>
       <div class="row wrapf">
-        <span class="chip acc">Fase ${f.n} di 6</span>
+        <span class="chip acc">Fase ${f.n} di ${FASI.length}</span>
         <span class="chip">${esc(f.durata)}</span>
         <span class="chip">${esc(f.split)}</span>
       </div>
@@ -2890,9 +2916,9 @@ function renderPiano(){
         <div class="vcmp head"><span class="g">Gruppo</span><span class="da">orig.</span><span class="ar"></span>
           <span class="a">riv.</span><span class="dd"></span><span class="ff">freq</span></div>
         ${['petto','dorso','spalle','bicipiti','tricipiti','quad','femorali','gluteo','polpacci','core'].map(riga).join('')}
-        <p class="tiny muted" style="margin:0">Serie a settimana con <b>tutte</b> le sedute della fase. Senza quella opzionale:
+        <p class="tiny muted" style="margin:0">Serie a settimana con tutte le sedute. Senza quelle opzionali del piano originale:
           petto ${b4.per.petto||0}, dorso ${b4.per.dorso||0}, femorali ${b4.per.femorali||0},
-          quadricipiti ${b4.per.quad||0}, gluteo ${b4.per.gluteo||0}${upper ? ' — ed è per questo che il Legs 2 non è più opzionale' : ''}.</p>
+          quadricipiti ${b4.per.quad||0}, gluteo ${b4.per.gluteo||0}.</p>
         <p class="tiny muted" style="margin:0">Il segno <b>+</b> marca i gruppi che ricevono molto lavoro indiretto e
           che il conteggio delle serie dirette sottostima: tricipiti da ${esc(INDIRETTO.tricipiti)}, bicipiti da
           ${esc(INDIRETTO.bicipiti)}, gluteo da ${esc(INDIRETTO.gluteo)}. Per quelli il numero diretto più basso non è un problema.</p>
@@ -2920,8 +2946,14 @@ function renderPiano(){
       <p class="small" style="margin:0"><b>Range dei compound da 4-6 a 5-8 e 6-10, RIR 1-2 invece di 0.</b> A pari volume i
         carichi alti costruiscono massa, ma costano più stress articolare per serie, e il cedimento sui multiarticolari
         rende poco e affatica molto — soprattutto in deficit, come adesso. Il cedimento resta sull’isolamento.</p>
-      <p class="small" style="margin:0"><b>Il Legs 2 della domenica non è più opzionale.</b> Senza, quadricipiti e gluteo
-        restano a 8 e 3 serie: le gambe sono una priorità dichiarata e su quattro giorni non ci stanno. Con, arrivano a 14 e 9.</p>
+      <p class="small" style="margin:0"><b>Split rifatto: Push, Pull, Legs, riposo, Upper, Lower.</b> Cinque sedute con il
+        giovedì e la domenica liberi. Ogni gruppo muscolare finisce <b>due volte a settimana</b>, senza sedute opzionali da cui
+        dipende il risultato: prima le gambe arrivavano a frequenza doppia solo se facevi il Legs 2 della domenica.</p>
+      <p class="small" style="margin:0"><b>La lente biomeccanica sulla scelta degli esercizi.</b> A parità di volume conta
+        <em>dove</em> l’esercizio è più duro rispetto a dove il muscolo è allungato: è lì che rende di più. Da qui le alzate
+        laterali ai cavi invece che coi manubri (col manubrio in basso il deltoide non ha carico proprio dov’è allungato),
+        il curl su panca inclinata col braccio dietro il corpo, il leg curl seduto con l’anca flessa, le croci ai cavi,
+        il tricipite overhead. Non sono esercizi diversi per gusto: è lo stesso muscolo caricato dove serve.</p>
       <div class="backup" style="background:var(--accent-soft);color:var(--accent-text)">${ICO.info}
         <span>Gli esercizi nuovi sono marcati <b>Aggiunto</b> nella scheda. Lo storico dei carichi resta legato al nome
         dell’esercizio, quindi tutto quello che hai già registrato continua a valere.</span></div>
@@ -2929,7 +2961,7 @@ function renderPiano(){
 
   <div class="card"><div class="hd"><h2>Settimana tipo</h2></div><div class="bd ed">${sett}</div></div>
 
-  <div class="card"><div class="hd"><h2>Le sei fasi</h2></div><div class="bd tblwrap">
+  <div class="card"><div class="hd"><h2>Le ${FASI.length} fasi</h2></div><div class="bd tblwrap">
     <table class="tbl"><thead><tr><th>Fase</th><th>Periodo</th><th>Split</th><th>Durata</th></tr></thead><tbody>
     ${FASI.map(x => `<tr style="${x.id===f.id?'background:var(--accent-soft)':''}">
       <td><b>${x.n}. ${esc(x.nome)}</b><br><span class="tiny muted">${esc(x.obiettivo)}</span></td>
@@ -3150,10 +3182,49 @@ document.addEventListener('click', ev => {
     L.mod = Date.now(); salva(); renderWorkout(); return;
   }
 
+  const so = el('[data-sost]');
+  if(so){
+    const i = +so.dataset.sost, d = S.ui.data;
+    const f = faseDi(d), sess = sessioneDi(d,f);
+    const base = sess.ex[i], att = exDi(sess, i, d);
+    apriSheet('Sostituisci l’esercizio', `
+      <p class="tiny muted" style="margin:0 0 14px">Vale solo per <b>${esc(dataLunga(d))}</b>. Il piano non cambia,
+        e lo storico del nuovo esercizio parte per conto suo, legato al nome che scrivi.</p>
+      <div class="stack">
+        <label class="fld"><span>Esercizio</span>
+          <input type="text" id="soN" value="${esc(att.n)}" placeholder="${esc(base.n)}"></label>
+        <div class="fldrow">
+          <label class="fld"><span>Gruppo</span>
+            <select id="soG">${Object.entries(GRUPPI).map(([k,v]) => `<option value="${k}" ${att.g===k?'selected':''}>${v}</option>`).join('')}</select></label>
+          <label class="fld"><span>Serie</span>
+            <input type="number" inputmode="numeric" id="soS" min="1" max="10" value="${serieDi(att, tipoSettDi(d))}"></label>
+          <label class="fld"><span>Ripetizioni</span>
+            <input type="text" id="soR" value="${esc(att.r)}" placeholder="8–12"></label>
+        </div>
+        <button class="btn solid wide" id="soOk">Usa questo oggi</button>
+        ${att.sost ? `<button class="btn ghost wide" id="soNo">Torna a “${esc(base.n)}”</button>` : ''}
+      </div>`, sh => {
+      sh.querySelector('#soOk').onclick = () => {
+        const n = sh.querySelector('#soN').value.trim();
+        if(!n){ toast('Scrivi il nome dell’esercizio'); return; }
+        const L = log(d); if(!L.sost) L.sost = {};
+        L.sost[i] = { n, g: sh.querySelector('#soG').value,
+          s: +sh.querySelector('#soS').value || base.s, r: sh.querySelector('#soR').value.trim() || base.r };
+        L.mod = Date.now(); salva(); chiudiSheet(); renderWorkout(); toast('Esercizio sostituito per oggi');
+      };
+      const no = sh.querySelector('#soNo');
+      if(no) no.onclick = () => {
+        const L = log(d); if(L.sost) delete L.sost[i];
+        L.mod = Date.now(); salva(); chiudiSheet(); renderWorkout(); toast('Tornato all’esercizio del piano');
+      };
+    });
+    return;
+  }
+
   const rp = el('[data-ripeti]');
   if(rp){
     const i = +rp.dataset.ripeti, d = S.ui.data;
-    const f = faseDi(d), sess = sessioneDi(d,f), ex = sess.ex[i];
+    const f = faseDi(d), sess = sessioneDi(d,f), ex = exDi(sess, i, d);
     const u = ultimaVolta(ex.n, d);
     if(!u){ toast('Non c’è una volta prima da ripetere'); return; }
     const L = log(d), righe = L.set[i] || [];
