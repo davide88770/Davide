@@ -161,6 +161,32 @@ sedute opzionali da cui dipenda il risultato:
 | Gluteo | 9 | 2× |
 | Polpacci | 6 | 2× |
 
+### Versione a 4 giorni
+
+Interruttore in **Piano → Programmazione**: *Originale · 5 giorni · 4 giorni*.
+
+Con quattro sedute l'unico modo di tenere **ogni gruppo a frequenza 2×** è
+alternare parte alta e parte bassa — **Upper A · Lower A · Upper B · Lower B**
+(lunedì, martedì, giovedì, sabato). Con Push/Pull/Legs/Upper le gambe
+tornerebbero a una volta sola, che è l'errore appena corretto.
+
+Il budget scende da 98 a **83 serie**, e il prezzo lo pagano le braccia:
+
+| Gruppo | 5 giorni | 4 giorni | |
+|---|---|---|---|
+| Bicipiti | 14 | 8 | −6 |
+| Dorso | 12 | 8 | −4 |
+| Tricipiti | 11 | 8 | −3 |
+| Petto | 10 | 9 | −1 |
+| Spalle | 12 | 11 | −1 |
+| Quadricipiti | 12 | 12 | = |
+| Femorali | 10 | 10 | = |
+| Gluteo | 9 | 9 | = |
+| Polpacci | 6 | 6 | = |
+
+Le gambe restano intatte. Sedute da 55 a 63 minuti, con le braccia in superset
+nell'Upper A e due superset nell'Upper B per stare nei tempi.
+
 ### La lente biomeccanica sugli esercizi
 
 A parità di volume conta *dove* l'esercizio è più duro rispetto a dove il muscolo
@@ -370,6 +396,9 @@ al testo dei sorgenti. Le pagine 6, 13, 18, 25, 32 del workout e 4, 8, 11, 15,
 
 ## Storico
 
+- **v14** — versione a 4 giorni: Upper A, Lower A, Upper B, Lower B, l'unica
+  struttura che tiene ogni gruppo a 2× con quattro sedute. 83 serie contro 98,
+  con le gambe intatte e il taglio concentrato sulle braccia.
 - **v13** — split rifatto su richiesta: Push, Pull, Legs, riposo, Upper, Lower.
   Ogni gruppo a frequenza 2× senza sedute opzionali, 98 serie a settimana.
   Scelta degli esercizi rivista con la lente biomeccanica (alzate laterali ai
