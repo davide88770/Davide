@@ -144,6 +144,46 @@ bicipite in allungamento, molto meno carico sul gomito. Range dei compound da
 sull'isolamento. Il **Legs 2 non è più opzionale**: senza, quadricipiti e gluteo
 restano a 8 e 3 serie.
 
+Lo split della programmazione rivista è **Push · Pull · Legs · riposo · Upper ·
+Lower · riposo** (lunedì-mercoledì, venerdì e sabato). Cinque sedute da 55-62
+minuti, 98 serie a settimana, e **ogni gruppo muscolare a frequenza 2×** senza
+sedute opzionali da cui dipenda il risultato:
+
+| Gruppo | Serie/sett | Freq. |
+|---|---|---|
+| Petto | 10 | 2× |
+| Dorso | 12 | 2× |
+| Spalle | 12 | 2× |
+| Bicipiti | 14 | 2× |
+| Tricipiti | 11 | 2× |
+| Quadricipiti | 12 | 2× |
+| Femorali | 10 | 2× |
+| Gluteo | 9 | 2× |
+| Polpacci | 6 | 2× |
+
+### La lente biomeccanica sugli esercizi
+
+A parità di volume conta *dove* l'esercizio è più duro rispetto a dove il muscolo
+è allungato. Da qui le scelte che si discostano dal piano originale:
+
+- **Alzate laterali ai cavi** invece che coi manubri: col manubrio il deltoide
+  non ha carico proprio in basso, dove è allungato.
+- **Curl su panca inclinata**, braccio dietro la linea del busto: il capo lungo
+  del bicipite parte allungato.
+- **Leg curl seduto** invece che prono: con l'anca flessa il capo lungo del
+  bicipite femorale lavora allungato.
+- **Croci ai cavi** e **tricipite overhead**: stessa logica su petto e capo lungo
+  del tricipite.
+- **Hip thrust** tenuto accanto alla pressa profonda, non al suo posto: caricano
+  il gluteo a lunghezze opposte e sono complementari.
+
+### Sostituire un esercizio
+
+Dentro ogni esercizio c'è **Sostituisci**: scrivi il nome che vuoi, scegli
+gruppo, serie e ripetizioni. Vale **solo per quella giornata**, il piano non
+cambia, e lo storico del nuovo esercizio parte per conto suo legato al nome
+scritto. Un tocco su "Torna a…" ripristina quello del piano.
+
 Nel **cut** (PPL 3×, stesso budget di 55-58 serie): petto da **2 a 5** serie —
 due a settimana sono sotto la manutenzione — dorso da 4 a 6, femorali da 5 a 7 e
 da 1× a 2× di frequenza. Le serie arrivano da tricipiti (11→7) e bicipiti
@@ -330,6 +370,11 @@ al testo dei sorgenti. Le pagine 6, 13, 18, 25, 32 del workout e 4, 8, 11, 15,
 
 ## Storico
 
+- **v13** — split rifatto su richiesta: Push, Pull, Legs, riposo, Upper, Lower.
+  Ogni gruppo a frequenza 2× senza sedute opzionali, 98 serie a settimana.
+  Scelta degli esercizi rivista con la lente biomeccanica (alzate laterali ai
+  cavi, curl hammer ai cavi, curl ai cavi). Aggiunta la sostituzione
+  dell'esercizio nella singola giornata, scritta a mano.
 - **v12** — la volta prima diventa visibile serie per serie: segnaposto nei
   campi con carico, ripetizioni e RIR della sessione precedente, tasto Ripeti per
   ricopiarla, e carico dell'ultima volta nella testata dell'esercizio.
