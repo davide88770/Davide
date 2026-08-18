@@ -982,6 +982,88 @@ SESS.rv_lower = { id:'rv_lower', nome:'Lower', gg:'Sabato', durata:58, rivista:1
   e('Calf raise seduto — soleo','polpacci',3,'15–20','+ Rest-pause',105,{
     cue:'Ginocchio flesso 90° · pausa 2" in basso',note:'Ginocchio flesso: qui lavora il soleo, non il gastrocnemio.'})
 ]};
+/* ---------- VERSIONE A 4 GIORNI ----------
+   Con quattro sedute l'unico modo di tenere OGNI gruppo a frequenza 2x e'
+   alternare parte alta e parte bassa: Upper A, Lower A, Upper B, Lower B.
+   Con Push/Pull/Legs/Upper le gambe tornerebbero a una volta sola, che e'
+   l'errore che avevamo appena corretto.
+   Il prezzo si paga sulla parte alta, e soprattutto sulle braccia: il budget
+   scende da 98 a circa 83 serie e le gambe restano intatte. */
+SESS.q_upperA = { id:'q_upperA', nome:'Upper A', gg:'Lunedì', durata:58, rivista:1, quattro:1,
+  focus:'Parte alta pesante: petto, dorso e spalle sui compound · Braccia in superset', ex:[
+  e('Panca piana bilanciere','petto',3,'5–8','RIR 1–2',210,{
+    cue:'Presa 1,5× spalle · gomiti 45° · scapole retratte · fermi rack'}),
+  e('Trazioni zavorate','dorso',3,'5–8','RIR 1–2',180,{
+    cue:'Petto verso la barra · scapole in basso · eccentrica controllata'}),
+  e('Military press bilanciere','spalle',3,'6–8','RIR 1–2',180,{p:1,
+    cue:'Core braced · gomiti davanti · espira salendo'}),
+  e('Rematore bilanciere — Yates','dorso',2,'6–10','RIR 1–2',150,{
+    cue:'Tira verso l’ombelico · gomiti vicini · squeeze 1 sec',
+    note:'Recupero 2-3 min: è il compound secondario della sessione, e con quattro compound di fila i 3-4 minuti non ci stanno nei tempi.'}),
+  e('Alzate laterali ai cavi','spalle',3,'12–15','+ Rest-pause ×2',105,{p:1,wm:1,
+    cue:'Cavo basso dal lato opposto · gomito guida · stop a 90°'}),
+  e('Curl manubri su panca inclinata','bicipiti',3,'8–10','Superset',0,{p:1,ss:'B',
+    cue:'Panca a 45-60° · braccia dietro la linea del busto · eccentrica 3 sec'}),
+  e('Tricipite overhead pulley — corda','tricipiti',3,'10–12','Superset',90,{p:1,ss:'B',
+    cue:'Gomiti fermi sopra la testa · stretch massimo',
+    note:'In superset col curl: bicipite e tricipite non si rubano niente e si risparmiano 6 minuti.'})
+]};
+SESS.q_lowerA = { id:'q_lowerA', nome:'Lower A', gg:'Martedì', durata:60, rivista:1, quattro:1,
+  focus:'Quad · Femorali · Gluteo · Polpacci · Core', ex:[
+  e('Hack squat — piede basso','quad',3,'6–10','RIR 1–2',210,{ernia:1,
+    cue:'Discesa 2–3 sec · ESPIRA nella salita · mai Valsalva'}),
+  e('Romanian deadlift bilanciere','femorali',3,'8–10','RIR 1–2',210,{ernia:1,
+    cue:'La barra scorre lungo la coscia · schiena neutra · espira salendo'}),
+  e('Leg extension','quad',3,'10–15','+ Rest-pause',105,{
+    cue:'Schiena appoggiata · contrai 1 sec in cima · eccentrica 3 sec'}),
+  e('Leg curl seduto','femorali',3,'10–12','+ Drop set',105,{p:1,
+    cue:'Anca flessa · schiena appoggiata · range completo'}),
+  e('Pressa — piede alto e largo','gluteo',3,'10–12','+ Drop set',150,{
+    cue:'Piedi molto in alto · scendi profondo · spingi sui talloni'}),
+  e('Calf raise in piedi','polpacci',3,'8–12','+ Rest-pause',105,{
+    cue:'Ginocchio dritto · pausa 2" in basso · no rimbalzo'}),
+  e('Dead bug','core',2,'30–45"','Controllo',60,{tempo:1,ernia:1,
+    cue:'Lombare incollata al suolo · espira nell’estensione'})
+]};
+SESS.q_upperB = { id:'q_upperB', nome:'Upper B', gg:'Giovedì', durata:60, rivista:1, quattro:1,
+  focus:'Parte alta in volume: isolamento e braccia · due superset per stare nei tempi', ex:[
+  e('Panca inclinata manubri','petto',3,'8–12','+ Drop set',150,{
+    cue:'Angolo 30° · scendi fino allo stretch completo · pausa 1 sec'}),
+  e('Lat machine presa larga','dorso',3,'8–12','+ Drop set',150,{
+    cue:'Ferma sotto il mento · scapole giù · allunga bene in cima'}),
+  e('Croci ai cavi','petto',3,'10–12','RIR 0–1',105,{
+    cue:'Gomiti morbidi e fermi · allunga bene in apertura'}),
+  e('Alzate laterali ai cavi','spalle',3,'12–15','+ Rest-pause ×2',105,{p:1,wm:1,
+    cue:'Cavo basso dal lato opposto · gomito guida · stop a 90°'}),
+  e('Alzate posteriori / face pull corda','spalle',2,'15–20','+ Rest-pause',105,{p:1,
+    cue:'Busto parallelo · gomiti verso il soffitto'}),
+  e('Dip verticale zavorra','tricipiti',3,'8–10','Superset + Myo-reps',0,{p:1,ss:'A',
+    cue:'Busto verticale · subito dopo, senza recupero, il push-down'}),
+  e('Tricipite push-down','tricipiti',2,'10–12','Superset',90,{p:1,ss:'A',
+    cue:'Gomiti fermi ai fianchi · contrazione massima in basso'}),
+  e('Curl hammer ai cavi','bicipiti',3,'10–12','Superset + Drop set',0,{p:1,ss:'B',
+    cue:'Corda o presa neutra · gomiti fermi ai fianchi'}),
+  e('Curl ai cavi in piedi','bicipiti',2,'12–15','Superset',90,{p:1,ss:'B',
+    cue:'Cavo basso · gomiti fermi · contrazione piena in cima'})
+]};
+SESS.q_lowerB = { id:'q_lowerB', nome:'Lower B', gg:'Sabato', durata:58, rivista:1, quattro:1,
+  focus:'Seconda frequenza gambe · Gluteo · Femorali · Soleo', ex:[
+  e('Pressa — piede alto e largo','gluteo',3,'8–12','+ Drop set',150,{p:1,
+    cue:'Piedi molto in alto · scendi profondo'}),
+  e('Hack squat — piede basso','quad',3,'8–10','RIR 1–2',210,{ernia:1,
+    cue:'Piede basso sul bordo · discesa 2-3 sec · espira salendo'}),
+  e('Sissy squat — eccentrica lenta','quad',3,'10–12','+ Myo-reps',105,{p:1,
+    cue:'Eccentrica 5 sec · 1 sec di isometria in basso'}),
+  e('Hip thrust bilanciere','gluteo',3,'10–12','+ Rest-pause',105,{
+    cue:'Spalla sul bordo panca · spingi i talloni · squeeze in cima'}),
+  e('Leg curl sdraiato — manubri','femorali',4,'12–15','+ Drop set',105,{p:1,
+    cue:'Pancia a terra · non sollevare i fianchi'}),
+  e('Calf raise seduto — soleo','polpacci',3,'15–20','+ Rest-pause',105,{
+    cue:'Ginocchio flesso 90° · pausa 2" in basso'})
+]};
+/* Lun Upper A · Mar Lower A · Gio Upper B · Sab Lower B. Tre giorni liberi. */
+const GIORNI_RIVISTI_4 = {1:'q_upperA',2:'q_lowerA',4:'q_upperB',6:'q_lowerB'};
+
 /* Lun Push · Mar Pull · Mer Legs · Gio riposo · Ven Upper · Sab Lower · Dom riposo.
    Ogni gruppo muscolare due volte a settimana, senza sedute opzionali. */
 const GIORNI_RIVISTI = {1:'rv_push',2:'rv_pull',3:'rv_legs',5:'rv_upper',6:'rv_lower'};
@@ -1735,8 +1817,11 @@ function faseDi(d){
 }
 /* La programmazione rivista sostituisce i giorni delle fasi con split
    PPL + Upper (dalla 3 alla 6). Cut e transizione restano come sono. */
-const giorniDi = f => S.ui.prog !== 'rivista' ? f.giorni
-  : (f.split === 'PPL + Upper' ? GIORNI_RIVISTI : GIORNI_RIVISTI_PPL3);
+const giorniDi = f => {
+  if(S.ui.prog === 'originale') return f.giorni;
+  if(f.split !== 'PPL + Upper') return GIORNI_RIVISTI_PPL3;
+  return S.ui.prog === 'rivista4' ? GIORNI_RIVISTI_4 : GIORNI_RIVISTI;
+};
 function sessioneDi(d,f){
   const L = S.sess[d];
   if(L && L.manuale && SESS[L.sid]) return SESS[L.sid];   // seduta spostata a mano
@@ -2887,7 +2972,7 @@ function renderPiano(){
 
   ${(() => {
     const upper = f.split === 'PPL + Upper';
-    const riv = upper ? GIORNI_RIVISTI : GIORNI_RIVISTI_PPL3;
+    const riv = upper ? (S.ui.prog === 'rivista4' ? GIORNI_RIVISTI_4 : GIORNI_RIVISTI) : GIORNI_RIVISTI_PPL3;
     const senzaOpz = o => Object.fromEntries(Object.entries(o).filter(([,id]) => !SESS[id].opz && !SESS[id].consigliata));
     const a = volumePrevisto(f.giorni), b = volumePrevisto(riv);
     const a4 = volumePrevisto(senzaOpz(f.giorni)), b4 = volumePrevisto(senzaOpz(riv));
@@ -2905,11 +2990,12 @@ function renderPiano(){
       </div>`;
     };
     return `<div class="card">
-      <div class="hd"><h2>Programmazione</h2><span class="chip ${S.ui.prog==='rivista'?'good':'line'} sp">${S.ui.prog==='rivista'?'rivista':'originale'}</span></div>
+      <div class="hd"><h2>Programmazione</h2><span class="chip ${S.ui.prog==='originale'?'line':'good'} sp">${{rivista:'5 giorni',rivista4:'4 giorni',originale:'originale'}[S.ui.prog]}</span></div>
       <div class="bd stack">
         <div class="seg" role="group" aria-label="Programmazione">
           <button data-prog="originale" aria-pressed="${S.ui.prog==='originale'}">Originale</button>
-          <button data-prog="rivista" aria-pressed="${S.ui.prog==='rivista'}">Rivista</button>
+          <button data-prog="rivista" aria-pressed="${S.ui.prog==='rivista'}">5 giorni</button>
+          <button data-prog="rivista4" aria-pressed="${S.ui.prog==='rivista4'}">4 giorni</button>
         </div>
         <p class="small muted" style="margin:0">Stesso numero di sedute, stessa durata, stesso budget:
           <b>${a.tot} serie</b> a settimana nell’originale, <b>${b.tot}</b> nella rivista. Cambia dove vanno.</p>
@@ -3166,7 +3252,8 @@ document.addEventListener('click', ev => {
 
   const pg = el('[data-prog]');
   if(pg){ S.ui.prog = pg.dataset.prog; APERTI.clear(); salva(); render();
-    toast(pg.dataset.prog === 'rivista' ? 'Programmazione rivista attiva' : 'Tornato al piano originale'); return; }
+    toast({ rivista:'Programmazione a 5 giorni', rivista4:'Programmazione a 4 giorni',
+            originale:'Tornato al piano originale' }[pg.dataset.prog]); return; }
 
   const tk = el('[data-tick]');
   if(tk){
