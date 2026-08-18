@@ -442,7 +442,7 @@ label.fld>span{font-family:var(--display);font-size:11px;letter-spacing:.14em;te
 .cmp4.head span{font-family:var(--display);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);text-align:right}
 .cmp4.head span.g{text-align:left}
 .cmp4.head span.w{text-align:center}
-.vbar{display:grid;grid-template-columns:88px 1fr 62px;gap:10px;align-items:center;padding:5px 0}
+.vbar{display:grid;grid-template-columns:76px 1fr 76px;gap:10px;align-items:center;padding:5px 0}
 .vbar .g{font-family:var(--display);font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .vbar .tr{height:12px;border-radius:3px;background:var(--sunk);overflow:hidden;position:relative}
 .vbar .fl{height:100%;border-radius:3px;background:var(--accent);min-width:2px}
@@ -638,6 +638,30 @@ const INDIRETTO = {
   tricipiti:'panca, military e dip', bicipiti:'trazioni e rematore',
   gluteo:'hack squat, pressa e stacco romeno', polpacci:'ogni compound in piedi'
 };
+/* Serie dirette e indirette. Pelland e colleghi (Sports Medicine, 2025) hanno
+   mostrato che separare le serie dirette da quelle indirette e' necessario per
+   prevedere gli adattamenti: una panca non e' una serie di tricipite, ma non e'
+   nemmeno zero. La convenzione usata qui e' la loro: la serie indiretta pesa
+   mezza serie ("frazionale"). Le voci coprono tutti gli esercizi del piano; un
+   esercizio scritto a mano nella sostituzione non ha secondari e conta solo
+   diretto. */
+const SECONDARI = [
+  [/^Panca /,            ['tricipiti','spalle']],
+  [/^Dip /,              ['petto','spalle']],
+  [/^Military press/,    ['tricipiti']],
+  [/^(Trazioni|Lat machine|Rematore|Pulley basso)/, ['bicipiti']],
+  [/^Hack squat/,        ['gluteo']],
+  [/^Pressa/,            ['quad']],
+  [/^Romanian deadlift/, ['gluteo']],
+  [/^Hip thrust/,        ['femorali']]
+];
+const secDi = n => { for(const [r,g] of SECONDARI) if(r.test(n)) return g; return []; };
+/* Oltre questa soglia, nella stessa seduta, le serie in piu' sullo stesso
+   muscolo non mostrano piu' un vantaggio rilevabile ("Is There Too Much of a
+   Good Thing?", meta-regressione sul volume per seduta, 2025). Contate in
+   serie frazionali. */
+const SERIE_SEDUTA_MAX = 11;
+
 const VOL_PIANO = {
   bicipiti:{ atteso:[15,19], punti:[16,20] }, tricipiti:{ atteso:[12,15], punti:[13,16] },
   quad:{ atteso:[10,13], punti:[11,14] },     femorali:{ atteso:[12,15], punti:[12,15] },
@@ -901,43 +925,42 @@ SESS.pu_legs2 = { id:'pu_legs2', nome:'Legs 2', gg:'Domenica', durata:50, opz:1,
    Range di ripetizioni dei compound da 4-6 a 5-8 / 6-10: a pari volume i
    carichi alti costruiscono massa, ma costano piu' stress articolare per
    serie. Un solo slot resta pesante, per mantenere la forza. */
-SESS.rv_push = { id:'rv_push', nome:'Push', gg:'Lunedì', durata:64, rivista:1,
+SESS.rv_push = { id:'rv_push', nome:'Push', gg:'Lunedì', durata:57, rivista:1,
   focus:'Petto · Spalle · Tricipiti', ex:[
   e('Panca piana bilanciere','petto',3,'5–8','RIR 1–2',210,{
     cue:'Presa 1,5× spalle · gomiti 45° · scapole retratte · fermi rack · eccentrica 2 sec',
     note:'Il compound pesante della sessione. Il petto in allungamento lo caricano le croci.'}),
   e('Military press bilanciere','spalle',3,'6–8','RIR 1–2',210,{p:1,
     cue:'Core braced · gomiti davanti · no iperestensione lombare · espira salendo'}),
-  e('Croci ai cavi','petto',3,'10–12','RIR 0–1',105,{nuovo:1,
+  e('Croci ai cavi','petto',3,'10–12','RIR 0–1 + Allungamento',105,{nuovo:1,
     cue:'Gomiti morbidi e fermi · allunga bene in apertura · incrocia le mani in chiusura',
     note:'Il cavo tiene la tensione dove il petto è allungato, cosa che il manubrio in apertura non fa.'}),
   e('Alzate laterali ai cavi','spalle',3,'12–15','+ Rest-pause ×2',105,{p:1,wm:1,nuovo:1,
     cue:'Cavo basso dal lato opposto · braccio che parte incrociato davanti al corpo · gomito guida · stop a 90°',
     note:'Col manubrio il deltoide non ha carico proprio in basso, dove è allungato. Col cavo sì: stesso esercizio, profilo di resistenza migliore.'}),
-  e('Alzate posteriori / face pull corda','spalle',3,'15–20','+ Rest-pause',105,{p:1,
-    cue:'Busto parallelo al suolo · gomiti flessi 90° · gomiti verso il soffitto'}),
   e('Tricipite overhead pulley — corda','tricipiti',3,'10–12','+ Rest-pause',105,{p:1,wm:1,
     cue:'Gomiti fermi sopra la testa · stretch massimo · si muove solo l’avambraccio',
     note:'Braccio sopra la testa: il capo lungo lavora allungato, ed è la posizione che rende di più.'}),
   e('Dip verticale zavorra','tricipiti',2,'8–10','+ Myo-reps',150,{
     cue:'Busto verticale · gomiti vicini al corpo · range completo'})
 ]};
-SESS.rv_pull = { id:'rv_pull', nome:'Pull', gg:'Martedì', durata:56, rivista:1,
-  focus:'Schiena su tre angoli · Bicipiti su tre posizioni di braccio', ex:[
+SESS.rv_pull = { id:'rv_pull', nome:'Pull', gg:'Martedì', durata:58, rivista:1,
+  focus:'Schiena su tre angoli · Deltoide posteriore · Bicipiti in allungamento', ex:[
   e('Trazioni zavorate','dorso',3,'5–8','RIR 1–2',210,{
     cue:'Petto verso la barra · scapole in basso · no kipping · eccentrica controllata'}),
   e('Rematore bilanciere — Yates','dorso',3,'6–10','RIR 1–2',210,{
     cue:'Tira verso l’ombelico · gomiti vicini · squeeze 1 sec · no rotazione'}),
   e('Pulley basso — presa neutra','dorso',3,'10–12','+ Rest-pause',105,{nuovo:1,
     cue:'Busto fermo · gomiti indietro lungo i fianchi · allunga in avanti senza curvare'}),
-  e('Curl manubri su panca inclinata','bicipiti',3,'8–10','RIR 0–1',105,{p:1,nuovo:1,
+  e('Alzate posteriori / face pull corda','spalle',3,'15–20','+ Rest-pause',105,{p:1,
+    cue:'Busto parallelo al suolo · gomiti flessi 90° · gomiti verso il soffitto',
+    note:'Spostato qui dal Push: il deltoide posteriore lavora sullo stesso schema di tirata della schiena, ed è già caldo.'}),
+  e('Curl manubri su panca inclinata','bicipiti',3,'8–10','RIR 0–1 + Allungamento',105,{p:1,nuovo:1,
     cue:'Panca a 45-60° · braccia dietro la linea del busto · supinazione completa · eccentrica 3 sec',
     note:'Braccio dietro il corpo: il capo lungo del bicipite parte allungato. È la posizione che rende di più.'}),
   e('Curl hammer ai cavi','bicipiti',3,'10–12','+ Drop set',105,{p:1,nuovo:1,
     cue:'Corda o presa neutra · gomiti fermi ai fianchi · niente oscillazione',
-    note:'Col cavo la tensione non cade in basso come col manubrio.'}),
-  e('Curl ai cavi in piedi','bicipiti',3,'12–15','+ Rest-pause',90,{p:1,nuovo:1,
-    cue:'Cavo basso · gomiti fermi · contrazione piena in cima'})
+    note:'Col cavo la tensione non cade in basso come col manubrio.'})
 ]};
 SESS.rv_legs = { id:'rv_legs', nome:'Legs', gg:'Mercoledì', durata:63, rivista:1,
   focus:'Quad · Femorali · Gluteo · Polpacci · Core', ex:[
@@ -958,8 +981,8 @@ SESS.rv_legs = { id:'rv_legs', nome:'Legs', gg:'Mercoledì', durata:63, rivista:
   e('Dead bug','core',2,'30–45"','Controllo',60,{tempo:1,ernia:1,
     cue:'Lombare incollata al suolo · estendi gli opposti · espira nell’estensione'})
 ]};
-SESS.rv_upper = { id:'rv_upper', nome:'Upper', gg:'Venerdì', durata:49, rivista:1,
-  focus:'Petto, schiena, spalle e braccia · seconda frequenza della parte alta', ex:[
+SESS.rv_upper = { id:'rv_upper', nome:'Upper', gg:'Venerdì', durata:56, rivista:1,
+  focus:'Seconda frequenza della parte alta · il grosso del lavoro di braccia', ex:[
   e('Panca inclinata manubri','petto',4,'8–12','+ Drop set',150,{
     cue:'Angolo 30° · gomiti 60–70° · scendi fino allo stretch completo · pausa 1 sec'}),
   e('Lat machine presa larga','dorso',3,'8–12','+ Drop set',150,{
@@ -973,7 +996,10 @@ SESS.rv_upper = { id:'rv_upper', nome:'Upper', gg:'Venerdì', durata:49, rivista
   e('Curl manubri alternati','bicipiti',3,'10–12','+ Drop set',0,{p:1,ss:'B',
     cue:'Supinazione totale in cima · gomiti fermi · eccentrica 3 sec'}),
   e('Curl hammer manubri','bicipiti',2,'12','Superset',90,{p:1,ss:'B',
-    cue:'Presa neutra · alternato · subito dopo il curl alternato'})
+    cue:'Presa neutra · alternato · subito dopo il curl alternato'}),
+  e('Curl ai cavi in piedi','bicipiti',3,'12–15','+ Rest-pause',90,{p:1,
+    cue:'Cavo basso · gomiti fermi · contrazione piena in cima',
+    note:'Spostato qui dal Pull, dove il bicipite superava da solo le serie utili in una seduta.'})
 ]};
 SESS.rv_lower = { id:'rv_lower', nome:'Lower', gg:'Sabato', durata:58, rivista:1,
   focus:'Seconda frequenza delle gambe · Gluteo · Femorali · Soleo', ex:[
@@ -1145,6 +1171,25 @@ const FASI = [
     nota:'Carichi del peak mantenuti integralmente: l’allenamento non cambia, cambia solo la nutrizione. Qui misuri il risultato dell’intero anno.' }
 ];
 const TIPI_SETT = { base:'Base', volplus:'Vol +', peak:'Peak', deload:'Deload' };
+/* Intensita' per tipo di settimana nella programmazione rivista. Sostituisce
+   quella del piano originale, che in fase 6 prescriveva "RIR 0" su tutto e
+   contraddiceva quello che c'e' scritto sugli esercizi (compound RIR 1-2).
+   La regola qui e' la stessa in ogni fase, e viene dal risultato piu' solido
+   che abbiamo sulla vicinanza al cedimento (Robinson e colleghi, Sports
+   Medicine 2024): l'ipertrofia cresce man mano che la serie finisce vicino al
+   cedimento, mentre la forza non ne risente. Quindi si va a cedimento dove
+   costa poco — isolamento, macchine, cavi — e si resta a 1-2 ripetizioni di
+   margine sui compound pesanti, dove il costo in fatica e in articolazioni e'
+   alto e il guadagno non c'e'. Nelle settimane si alza la vicinanza al
+   cedimento, non il numero di serie: con 55-65 minuti a seduta il volume non
+   ha dove crescere, e la curva del volume e' comunque a rendimento
+   decrescente. */
+const INTENSITA_RIV = {
+  base:    'Compound RIR 2 · isolamento RIR 0–1 · il carico sale quando chiudi il top del range',
+  volplus: 'Compound RIR 2 · isolamento RIR 0 · una serie in più sulle priorità, se la seduta sta nei tempi',
+  peak:    'Compound RIR 1 · isolamento a cedimento tecnico · è la settimana in cui si spinge',
+  deload:  '−40% di serie, stesso carico, RIR 3–4 · mai al cedimento, su niente'
+};
 const INTENSITA = {
   cut:{ base:'Compound RIR 1–2 · isolamento RIR 0–1', volplus:'Compound RIR 0–1 · isolamento RIR 0 · +1 serie sulle priorità',
         peak:'Compound RIR 0 · isolamento RIR 0 + 1 Widowmaker', deload:'RIR 3–4 · mai al cedimento' },
@@ -1448,6 +1493,7 @@ const TECNICHE = {
   'Doppia progressione':['Doppia progressione','Arrivi al top del range → la settimana dopo +2,5 kg. Esempio: range 8-10, chiudi 10, sali.'],
   'Superset':['Superset','Zero recupero tra l’esercizio A e il B. Dopo aver completato entrambi, 90 secondi, poi si ripete.'],
   'Pump':['Pump / RIR 4','Peso al 30-40% del normale. Conta solo la sensazione muscolare, mai il trapezio. Non si salta.'],
+  'Allungamento':['Partial in allungamento','Finita l’ultima ripetizione completa, altre 3-5 ripetizioni parziali nella metà del movimento in cui il muscolo è allungato — la parte bassa. Solo sull’isolamento, solo sull’ultima serie, mai al posto del range completo. La meta-analisi di Wolf e colleghi (2023) dà i parziali in allungamento leggermente sopra il range completo; lo studio controllato del 2025 li dà pari. In nessuno dei due sono peggio: è un modo economico di allungare la serie oltre il cedimento.'],
   'Controllo':['Controllo','Esecuzione lenta e controllata, respirazione ritmica. Nessuna fretta, nessun cedimento.']
 };
 /* Mobilità pre-sessione, 10 minuti obbligatori (pag. 34) */
@@ -1548,6 +1594,53 @@ const ATTESA = [
   ['Peso e BF','86 kg ~16%','81-82 kg ~12%','84-85 kg ~14%','87-88 kg ~15%','82-83 kg ~10-11%','−4 kg di grasso netto']
 ];
 /* Principi nutrizionali (pag. 2 del piano alimentare) */
+/* ── IL CONSENSO SCIENCE-BASED ──────────────────────────────────────────────
+   Le posizioni riportate qui sono quelle pubblicate dai rispettivi autori:
+   dove ci sono numeri vengono dalle meta-analisi citate in fondo, dove c'e'
+   una posizione di scuola e' attribuita a chi la sostiene, senza metterla in
+   bocca a nessun altro. Dove il consenso non c'e', e' detto. */
+const CONS_ACCORDO = [
+  ['Il volume conta, ma rende sempre meno',
+   'Più serie a settimana, più ipertrofia: la relazione non si spegne dentro l’intervallo studiato. Ma ogni serie in più vale meno della precedente, e per la forza il rendimento cala molto prima che per la massa.',
+   'Pelland e colleghi, 67 studi, 2025'],
+  ['La frequenza da sola non fa niente',
+   'A parità di volume settimanale, allenare un muscolo due o tre volte non cambia l’ipertrofia in modo rilevabile. La frequenza non è un ingrediente attivo: è un modo di distribuire il volume.',
+   'Stessa meta-regressione'],
+  ['Il motivo vero per allenare 2× è il volume per seduta',
+   'Oltre circa 11 serie frazionali sullo stesso muscolo nella stessa seduta, le serie aggiunte non mostrano più un vantaggio misurabile. Se un gruppo deve ricevere 18 serie a settimana, vanno spezzate: è da qui che nasce la frequenza doppia, non dalla frequenza in sé.',
+   'Meta-regressione sul volume per seduta, 2025'],
+  ['Finire vicino al cedimento serve — ma non dappertutto',
+   'L’ipertrofia migliora man mano che la serie finisce vicino al cedimento. La forza no: lì il margine di ripetizioni residue non sposta il risultato. Sono due curve diverse, e vanno trattate diversamente.',
+   'Robinson e colleghi, 55 studi sull’ipertrofia, 2024'],
+  ['Il range di ripetizioni non è quasi mai il problema',
+   'Da 5 a 30 ripetizioni l’ipertrofia è equivalente, purché la serie finisca vicino al cedimento. Il carico si sceglie per le articolazioni, per il tempo e per la tecnica — non perché un range faccia crescere più di un altro.',
+   'Consenso consolidato dalla letteratura sul carico'],
+  ['Dove il muscolo è allungato è dove l’esercizio rende di più',
+   'Caricare il muscolo nella posizione in cui è lungo rende almeno quanto il range completo, e in diversi confronti di più. È il criterio con cui è stata rifatta tutta la selezione degli esercizi.',
+   'Wolf e colleghi, meta-analisi 2023 e studio controllato 2025'],
+  ['Le proteine hanno un punto oltre il quale non si misura più niente',
+   'Il beneficio si appiattisce intorno a 1,6 g per kg di peso; l’intervallo di confidenza arriva a 2,2. In deficit calorico si sta nella parte alta, o sopra, per proteggere la massa magra: è l’unica situazione in cui alzare ancora ha senso.',
+   'Morton e colleghi, 49 studi, 2018']
+];
+const CONS_DISACCORDO = [
+  ['Quanto volume',
+   'Israetel e la scuola di Renaissance Periodization spingono verso il massimo volume che riesci a recuperare, aggiungendo serie ogni settimana fino al deload. Beardsley sostiene la posizione opposta: contano solo le ultime ripetizioni difficili, e gran parte del volume in più è fatica senza stimolo. Helms e Nippard stanno in mezzo.',
+   'Sto in mezzo, e non per prudenza: con 55-65 minuti a seduta il volume non ha dove crescere, e tu sei già nel punto in cui la curva è piatta. Le settimane fanno salire la vicinanza al cedimento, non il numero di serie.'],
+  ['Fino a che punto tirare la serie',
+   'Chi porta quasi tutto a cedimento, chi tiene 1-3 ripetizioni di margine quasi sempre per gestire la fatica accumulata (Helms). La meta-regressione del 2024 dà ragione ai primi sull’ipertrofia, ma non dice niente su quanto costa.',
+   'Dipende dall’esercizio, non dalla settimana. A cedimento dove costa poco — cavi, macchine, isolamento — e 1-2 ripetizioni di margine sui compound pesanti, dove sulla forza non guadagni niente e il conto in articolazioni, a 38 anni e con l’ernia, lo paghi tu.'],
+  ['I parziali in allungamento',
+   'Wolf li usa in modo sistematico e ha prodotto gran parte dei dati; Rabasco è sulla stessa linea. Helms e Nippard li considerano un extra modesto, con ancora pochi studi e differenze piccole.',
+   'Li ho messi come coda dell’ultima serie su due esercizi soli — croci ai cavi e curl su panca inclinata — e mai al posto del range completo. Se i prossimi studi li ridimensionano, non hai perso niente.']
+];
+const CONS_FONTI = [
+  ['Pelland, Remmert, Robinson, Hinson, Zourdos', 'The Resistance Training Dose Response: meta-regressioni su volume e frequenza', 'Sports Medicine, 2025'],
+  ['Robinson, Pelland, Remmert e colleghi', 'Dose-risposta fra vicinanza al cedimento, forza e ipertrofia', 'Sports Medicine, 2024'],
+  ['Gruppo Data Driven Strength', '“Is There Too Much of a Good Thing?”: volume per singola seduta', 'Meta-regressione, 2025'],
+  ['Wolf, Androulakis Korakakis, Schoenfeld e colleghi', 'Parziali in allungamento contro range completo', 'Meta-analisi 2023 · studio controllato 2025'],
+  ['Morton, Murphy, McKellar e colleghi', 'Proteine e massa magra: dose-risposta', 'British Journal of Sports Medicine, 2018']
+];
+
 const PRINCIPI = [
   ['Proteine 2,3-2,5 g/kg','Mai sotto 200 g al giorno in nessuna fase. In cut 210 g per preservare la massa in deficit, in bulk 200-215 g. Minimo 30-40 g per pasto per massimizzare la sintesi.'],
   ['Carboidrati — timing','Concentrali prima e dopo l’allenamento: la colazione è il pre-workout, il pranzo è il post. Nei giorni di riposo in cut e recomp, cena sotto i 20 g di carbo. Mai eliminare i carboidrati del mattino: servono al sistema nervoso.'],
@@ -1877,16 +1970,38 @@ const sedutePossibili = f => [1,2,3,4,5,6,0].map(g => giorniDi(f)[g])
   .filter((id,i,a) => id && a.indexOf(id) === i).map(id => SESS[id]);
 /* Volume settimanale che una programmazione produce, per gruppo */
 function volumePrevisto(giorni, tipo='base'){
-  const per = {}, freq = {}; let tot = 0;
+  const per = {}, freq = {}, fr = {}; let tot = 0;
   for(const sid of [...new Set(Object.values(giorni))]){
     const visti = new Set();
     for(const ex of SESS[sid].ex){
       const n = serieDi(ex, tipo);
       per[ex.g] = (per[ex.g]||0) + n; tot += n; visti.add(ex.g);
+      fr[ex.g] = (fr[ex.g]||0) + n;
+      for(const g of secDi(ex.n)) fr[g] = (fr[g]||0) + n/2;
     }
     for(const g of visti) freq[g] = (freq[g]||0) + 1;
   }
-  return { per, freq, tot };
+  return { per, freq, fr, tot };
+}
+/* Serie frazionali per gruppo dentro una singola seduta, per il controllo
+   sulla soglia per seduta. */
+function fraseduta(sid, tipo='base'){
+  const w = {};
+  for(const ex of SESS[sid].ex){
+    const n = serieDi(ex, tipo);
+    w[ex.g] = (w[ex.g]||0) + n;
+    for(const g of secDi(ex.n)) w[g] = (w[g]||0) + n/2;
+  }
+  return w;
+}
+/* Sedute in cui un gruppo supera la soglia utile per seduta. */
+function sopraSoglia(giorni, tipo='base'){
+  const out = [];
+  for(const sid of [...new Set(Object.values(giorni))]){
+    const w = fraseduta(sid, tipo);
+    for(const [g,v] of Object.entries(w)) if(v > SERIE_SEDUTA_MAX) out.push({ sid, g, v });
+  }
+  return out;
 }
 function tipoSettDi(d){
   const f = faseDi(d);
@@ -1909,7 +2024,11 @@ function log(d){
     const f = faseDi(d), s = sessioneDi(d,f);
     S.sess[d] = { sid: s ? s.id : null, tipo: tipoSettDi(d), set:{}, piu:{}, sost:{}, nota:'', mod:Date.now() };
   }
-  return S.sess[d];
+  const L = S.sess[d];
+  if(!L.set)  L.set  = {};
+  if(!L.piu)  L.piu  = {};
+  if(!L.sost) L.sost = {};
+  return L;
 }
 function serieLog(d, i, n){
   const L = log(d);
@@ -2101,10 +2220,16 @@ function pastiDi(d){
   const L = S.pasti[d];
   return { fase:f, tipo:t, cfg, target, lista, voci: risolvi(lista, target, L) };
 }
+/* Completa le chiavi mancanti invece di controllarne una sola: il giorno puo'
+   arrivare da un backup scritto da una versione precedente, e li' bastava una
+   chiave assente per far saltare tutta la scheda Dieta. */
 function pastoLog(d){
-  if(!S.pasti[d]) S.pasti[d] = { tipo:null, ok:{}, alt:{}, sub:{}, extra:[], mod:Date.now() };
-  if(!S.pasti[d].sub) S.pasti[d].sub = {};
-  return S.pasti[d];
+  const L = S.pasti[d] || (S.pasti[d] = { tipo:null, mod:Date.now() });
+  if(!L.ok)  L.ok  = {};
+  if(!L.alt) L.alt = {};
+  if(!L.sub) L.sub = {};
+  if(!Array.isArray(L.extra)) L.extra = [];
+  return L;
 }
 function totaliDieta(d){
   const { voci } = pastiDi(d), L = pastoLog(d);
@@ -2177,7 +2302,7 @@ function spesa(daISO, giorni=7){
 
 /* ── volume ─────────────────────────────────────────────────────────────── */
 function serieSettimana(fineISO, giorni=7){
-  const per = {}; let tonn = 0, tot = 0;
+  const per = {}, fr = {}; let tonn = 0, tot = 0;
   for(let i=0;i<giorni;i++){
     const d = piuGiorni(fineISO,-i), L = S.sess[d]; if(!L) continue;
     const s = SESS[L.sid]; if(!s) continue;
@@ -2186,11 +2311,13 @@ function serieSettimana(fineISO, giorni=7){
       const righe = (L.set[idx]||[]).filter(serieValida);
       if(!righe.length) return;
       per[ex.g] = (per[ex.g]||0) + righe.length;
+      fr[ex.g] = (fr[ex.g]||0) + righe.length;
+      for(const g of secDi(ex.n)) fr[g] = (fr[g]||0) + righe.length/2;
       tot += righe.length;
       for(const r of righe) if(+r.kg > 0 && +r.rep > 0) tonn += +r.kg * +r.rep;
     });
   }
-  return { per, tonn, tot };
+  return { per, fr, tonn, tot };
 }
 
 /* ── bilanciere: dischi per lato ────────────────────────────────────────── */
@@ -2468,7 +2595,7 @@ function renderWorkout(){
       <button class="btn sm ghost" data-scegli="1">Cambia seduta</button>
     </div>
     ${(S.sess[d]||{}).manuale ? `<p class="tiny" style="margin:9px 0 0;color:var(--accent-text)">Seduta scelta a mano: il piano per oggi prevedeva ${esc((SESS[giorniDi(f)[dalISO(d).getDay()]]||{}).nome || 'riposo')}.</p>` : ''}
-    <p class="small muted" style="margin:11px 0 0">${esc(INTENSITA[f.id][tipo] || '')}</p>
+    <p class="small muted" style="margin:11px 0 0">${esc((S.ui.prog === 'originale' ? (INTENSITA[f.id]||{})[tipo] : INTENSITA_RIV[tipo]) || '')}</p>
     ${tipo==='deload' ? `<div class="sug" style="border-color:var(--warn);background:var(--warn-soft);color:var(--warn-text)"><b>Deload</b>Stesso carico, −40% di serie, stessa frequenza, 7 giorni. Mai saltarlo.</div>` : ''}
     ${tipo==='peak' ? `<div class="sug"><b>Widowmaker</b>Una sola serie da 20 rep con un peso da 10-12, su un isolamento sicuro (sissy squat, laterali, curl, leg curl). Ultima serie della sessione, mai sui compound.</div>` : ''}
   </div>
@@ -2768,7 +2895,11 @@ function renderDieta(){
 /* ── PROGRESSI ──────────────────────────────────────────────────────────── */
 function nomiEsercizi(){
   const set = new Set();
-  for(const L of Object.values(S.sess)){
+  /* Object.entries e non values: exDi ha bisogno della data per sapere se in
+     quella giornata l'esercizio era sostituito. Con Object.values la data era
+     undefined e l'intera scheda Progressi si rompeva appena c'era un carico
+     registrato. */
+  for(const [d,L] of Object.entries(S.sess)){
     const s = SESS[L.sid]; if(!s) continue;
     s.ex.forEach((_,i) => { if((L.set[i]||[]).some(r => serieValida(r) && +r.kg > 0)) set.add(exDi(s,i,d).n); });
   }
@@ -2871,20 +3002,25 @@ function renderProgressi(){
     <div class="hd"><h2>Serie per gruppo</h2><span class="chip line sp">${giorni >= 400 ? 'tutto' : 'ultimi '+giorni+'g'}</span></div>
     <div class="bd">
       ${Object.keys(GRUPPI).map(g => {
-        const n = v.per[g]||0;
+        const n = v.fr[g]||0, dir = v.per[g]||0;
         const sett = giorni >= 400 ? n : n/(giorni/7);
+        const sdir = giorni >= 400 ? dir : dir/(giorni/7);
         const t = VOL_TARGET[g];
+        const eti = nf(sett,1) + (sett !== sdir ? `<span class="tiny muted">/${nf(sdir,1)}</span>` : '');
         if(!t) return `<div class="vbar"><span class="g">${GRUPPI[g]}</span>
           <div class="tr"><div class="fl" style="width:${clamp(sett/20,0,1)*100}%;background:var(--ink-4)"></div></div>
-          <span class="n">${nf(sett,1)}</span></div>`;
+          <span class="n">${eti}</span></div>`;
         const [lo,hi] = t, dentro = sett >= lo && sett <= hi;
         return `<div class="vbar">
           <span class="g">${GRUPPI[g]}</span>
           <div class="tr"><div class="fl" style="width:${clamp(sett/hi,0,1)*100}%;background:${dentro?'var(--good)':'var(--accent)'}"></div>
             <span class="tg" style="left:${clamp(lo/hi,0,1)*100}%"></span></div>
-          <span class="n">${nf(sett,1)}</span></div>`;
+          <span class="n">${eti}</span></div>`;
       }).join('')}
-      <p class="tiny muted" style="margin:10px 0 0">Serie effettive per settimana. La tacca è il minimo del target, la barra piena il massimo; verde = dentro il range. Per petto, dorso, polpacci e core (in grigio) il piano <b>non fissa un target</b>: c’è solo il conteggio.</p>
+      <p class="tiny muted" style="margin:10px 0 0">Serie <b>frazionali</b> per settimana, e dopo la barra le sole serie
+        dirette dove le due cifre differiscono: una panca conta mezza serie di tricipite, una trazione mezza serie di
+        bicipite. La tacca è il minimo del target, la barra piena il massimo; verde = dentro il range. Per petto, dorso,
+        polpacci e core (in grigio) il piano <b>non fissa un target</b>: c’è solo il conteggio.</p>
       <div class="tblwrap" style="margin-top:12px"><table class="tbl">
         <thead><tr><th>Gruppo</th><th>Atteso 4 gg</th><th>Atteso 5 gg</th><th>Punti deboli</th></tr></thead><tbody>
         ${Object.entries(VOL_PIANO).map(([g,x]) => `<tr><td>${GRUPPI[g]}</td><td class="n">${x.atteso[0]}</td><td class="n">${x.atteso[1]}</td>
@@ -3023,17 +3159,18 @@ function renderPiano(){
     const a4 = volumePrevisto(senzaOpz(f.giorni)), b4 = volumePrevisto(senzaOpz(riv));
     const riga = (g) => {
       const t = VOL_TARGET[g], lo = t ? t[0] : null;
-      const a5 = a.per[g]||0, b5 = b.per[g]||0, d = b5 - a5;
-      const col = x => (lo && x < lo && !INDIRETTO[g]) ? 'var(--crit-text)' : 'var(--ink)';
+      const a5 = a.per[g]||0, b5 = b.per[g]||0, d = b5 - a5, bf = b.fr[g]||0;
+      const cf = (lo && bf < lo) ? 'var(--crit-text)' : 'var(--ink-2)';
       return `<div class="vcmp">
         <span class="g">${GRUPPI[g]}</span>
-        <span class="da" style="color:${col(a5)}">${a5}</span>
+        <span class="da">${a5}</span>
         <span class="ar">→</span>
-        <span class="a" style="color:${col(b5)}">${b5}</span>
+        <span class="a">${b5}</span>
         <span class="dd" style="color:${d>0?'var(--good-text)':(d<0?'var(--ink-3)':'transparent')}">${d>0?'+'+d:(d<0?d:'0')}</span>
-        <span class="ff">${b.freq[g]||0}×${INDIRETTO[g] ? '<sup style="color:var(--ink-4)">+</sup>' : ''}</span>
+        <span class="ff" style="color:${cf}">${nf(bf,1)}</span>
       </div>`;
     };
+    const fuori = sopraSoglia(riv);
     return `<div class="card">
       <div class="hd"><h2>Programmazione</h2><span class="chip ${S.ui.prog==='originale'?'line':'good'} sp">${{rivista:'5 giorni',rivista4:'4 · upper/lower',pplfb:'4 · ppl+full',originale:'originale'}[S.ui.prog]}</span></div>
       <div class="bd stack">
@@ -3046,17 +3183,24 @@ function renderPiano(){
         <p class="small muted" style="margin:0">Stesso numero di sedute, stessa durata, stesso budget:
           <b>${a.tot} serie</b> a settimana nell’originale, <b>${b.tot}</b> nella rivista. Cambia dove vanno.</p>
         <div class="vcmp head"><span class="g">Gruppo</span><span class="da">orig.</span><span class="ar"></span>
-          <span class="a">riv.</span><span class="dd"></span><span class="ff">freq</span></div>
+          <span class="a">riv.</span><span class="dd"></span><span class="ff">fraz.</span></div>
         ${['petto','dorso','spalle','bicipiti','tricipiti','quad','femorali','gluteo','polpacci','core'].map(riga).join('')}
         <p class="tiny muted" style="margin:0">Serie a settimana con tutte le sedute. Senza quelle opzionali del piano originale:
           petto ${b4.per.petto||0}, dorso ${b4.per.dorso||0}, femorali ${b4.per.femorali||0},
           quadricipiti ${b4.per.quad||0}, gluteo ${b4.per.gluteo||0}.</p>
-        <p class="tiny muted" style="margin:0">Il segno <b>+</b> marca i gruppi che ricevono molto lavoro indiretto e
-          che il conteggio delle serie dirette sottostima: tricipiti da ${esc(INDIRETTO.tricipiti)}, bicipiti da
-          ${esc(INDIRETTO.bicipiti)}, gluteo da ${esc(INDIRETTO.gluteo)}. Per quelli il numero diretto più basso non è un problema.</p>
-        <p class="tiny muted" style="margin:0">In rosso i gruppi sotto il minimo utile. Il range vale per i gruppi
-          per cui il piano dichiara un target; per petto, dorso, polpacci e core non lo fa, e sono stati usati i valori
-          comunemente accettati (petto e dorso 10-20, polpacci 6-12).</p>
+        <p class="tiny muted" style="margin:0">La colonna <b>fraz.</b> è il volume reale: serie dirette più metà delle
+          serie indirette. Una panca non è una serie di tricipite, ma non è nemmeno zero. È la convenzione della
+          meta-regressione di Pelland e colleghi (2025), che ha mostrato come separare dirette e indirette sia
+          necessario per prevedere il risultato. Il salto più grosso è sulle braccia: tricipiti da
+          ${b.per.tricipiti||0} a ${nf(b.fr.tricipiti||0,1)} e bicipiti da ${b.per.bicipiti||0} a
+          ${nf(b.fr.bicipiti||0,1)} — sono i gruppi che il conteggio diretto sottostima di più.</p>
+        <p class="tiny muted" style="margin:0">In rosso i gruppi il cui volume frazionale resta sotto il minimo utile.
+          Il range vale per i gruppi per cui il piano dichiara un target; per petto, dorso, polpacci e core non lo fa,
+          e sono stati usati i valori comunemente accettati (petto e dorso 10-20, polpacci 6-12).</p>
+        <div class="backup" style="background:${fuori.length?'var(--warn-soft)':'var(--good-soft)'};color:${fuori.length?'var(--warn-text)':'var(--good-text)'}">${fuori.length ? ICO.alert : ICO.check}
+          <span>${fuori.length
+            ? 'Sopra le '+SERIE_SEDUTA_MAX+' serie frazionali in una sola seduta: '+fuori.map(x => SESS[x.sid].nome+' — '+GRUPPI[x.g]+' '+nf(x.v,1)).join(', ')+'. Oltre quella soglia le serie in più nella stessa seduta non rendono.'
+            : 'Nessun gruppo supera le '+SERIE_SEDUTA_MAX+' serie frazionali in una singola seduta, che è il punto oltre il quale le serie aggiunte nella stessa sessione non mostrano più un vantaggio rilevabile. Il controllo è rifatto a ogni apertura.'}</span></div>
       </div>
     </div>
 
@@ -3066,29 +3210,35 @@ function renderPiano(){
       const min = Object.values(GIORNI_RIVISTI_4).map(id => SESS[id].durata);
       const mfb = Object.values(GIORNI_PPLFB).map(id => SESS[id].durata);
       const riga = g => {
-        const u = ul.per[g]||0, p = fb.per[g]||0, d = p - u;
+        const u = ul.fr[g]||0, p = fb.fr[g]||0, d = p - u;
         const c = x => d === 0 ? 'var(--ink)' : (x === Math.max(u,p) ? 'var(--good-text)' : 'var(--ink-3)');
         return `<div class="cmp4"><span class="g">${GRUPPI[g]}</span>
-          <b style="color:${c(u)}">${u}</b><b style="color:${c(p)}">${p}</b>
+          <b style="color:${c(u)}">${nf(u,1)}</b><b style="color:${c(p)}">${nf(p,1)}</b>
           <span class="w">${(ul.freq[g]||0) === (fb.freq[g]||0) ? (ul.freq[g]||0)+'×' : (ul.freq[g]||0)+'/'+(fb.freq[g]||0)+'×'}</span></div>`;
       };
       return `<div class="card"><div class="hd"><h3>Se fai 4 sedute: le due strade</h3></div><div class="bd stack">
-        <p class="small" style="margin:0">Tengono <b>tutti</b> i gruppi a frequenza 2× — il core resta 1×, come anche nella versione da 5 giorni — e costano quasi lo stesso:
-          <b>${ul.tot} serie</b> con Upper/Lower, <b>${fb.tot}</b> con PPL + full body. Cambia a chi vanno.</p>
+        <p class="small" style="margin:0">Tengono <b>tutti</b> i gruppi a frequenza 2× — il core resta 1×, come anche
+          nella versione da 5 giorni — e costano quasi lo stesso: <b>${ul.tot} serie</b> dirette con Upper/Lower,
+          <b>${fb.tot}</b> con PPL + full body. Cambia a chi vanno. I numeri qui sotto sono <b>frazionali</b>: serie
+          dirette più metà delle indirette.</p>
         <div class="cmp4 head"><span class="g">Gruppo</span><span>U/L</span><span>PPL+FB</span><span class="w">freq</span></div>
         ${['petto','dorso','spalle','bicipiti','tricipiti','quad','femorali','gluteo','polpacci','core'].map(riga).join('')}
-        <p class="small" style="margin:0"><b>Upper/Lower protegge le gambe.</b> Quadricipiti ${ul.per.quad||0} contro
-          ${fb.per.quad||0}, gluteo ${ul.per.gluteo||0} contro ${fb.per.gluteo||0}: due sedute intere di gambe non le
-          batte niente. Il prezzo lo pagano schiena e braccia, che scendono a ${ul.per.dorso||0} e ${ul.per.bicipiti||0}.</p>
-        <p class="small" style="margin:0"><b>PPL + full body serve la parte alta.</b> Dorso ${fb.per.dorso||0},
-          bicipiti ${fb.per.bicipiti||0}, spalle ${fb.per.spalle||0}: le tre sedute specializzate restano identiche a
-          quelle da 5 giorni, e il sabato fa da seconda frequenza per tutto. Le gambe però ricevono una seduta e mezza:
-          quadricipiti ${fb.per.quad||0} e gluteo ${fb.per.gluteo||0} sono il minimo per mantenere, non per crescere.</p>
+        <p class="small" style="margin:0"><b>Upper/Lower protegge le gambe.</b> Quadricipiti ${nf(ul.fr.quad||0,1)}
+          contro ${nf(fb.fr.quad||0,1)}, gluteo ${nf(ul.fr.gluteo||0,1)} contro ${nf(fb.fr.gluteo||0,1)}: due sedute
+          intere di gambe non le batte niente. Il prezzo lo pagano schiena e braccia, che scendono a
+          ${nf(ul.fr.dorso||0,1)} e ${nf(ul.fr.bicipiti||0,1)}.</p>
+        <p class="small" style="margin:0"><b>PPL + full body serve la parte alta.</b> Dorso ${nf(fb.fr.dorso||0,1)},
+          bicipiti ${nf(fb.fr.bicipiti||0,1)}, spalle ${nf(fb.fr.spalle||0,1)}: le tre sedute specializzate restano
+          identiche a quelle da 5 giorni, e il sabato fa da seconda frequenza per tutto. Le gambe però ricevono una
+          seduta e mezza. Contate a serie dirette la differenza sembra enorme (gluteo ${fb.per.gluteo||0} contro
+          ${ul.per.gluteo||0}); contate come vanno contate, con hack squat e pressa che il gluteo lo caricano davvero,
+          il divario si dimezza — ma resta.</p>
         <p class="small" style="margin:0"><b>Come sceglierei.</b> Se l’obiettivo restano braccia, spalle e gambe insieme,
           <b>Upper/Lower</b>: le braccia perdono serie dirette ma continuano a prendere lavoro indiretto da ogni spinta e
-          ogni tirata, mentre il quadricipite e il gluteo non hanno nessuna fonte indiretta — quello che togli lì è tolto
-          davvero. <b>PPL + full body</b> ha senso se in quel periodo la parte alta è la priorità dichiarata, o se il
-          sabato è la seduta che salti più spesso: lì perdi una seduta mista, non metà delle gambe.</p>
+          ogni tirata — è esattamente quello che la colonna frazionale mostra — mentre quadricipite e gluteo hanno una
+          sola fonte indiretta e molto meno generosa. <b>PPL + full body</b> ha senso se in quel periodo la parte alta è
+          la priorità dichiarata, o se il sabato è la seduta che salti più spesso: lì perdi una seduta mista, non metà
+          delle gambe.</p>
         <p class="tiny muted" style="margin:0">Durate stimate: Upper/Lower ${min.join(', ')} min ·
           PPL + full body ${mfb.join(', ')} min. Serie × (45 secondi di lavoro + recupero previsto), più mezzo minuto
           per la serie finale intensificata. Il riscaldamento e i 10 minuti di mobilità sono fuori dal conto.</p>
@@ -3115,6 +3265,22 @@ function renderPiano(){
       <p class="small" style="margin:0"><b>Split rifatto: Push, Pull, Legs, riposo, Upper, Lower.</b> Cinque sedute con il
         giovedì e la domenica liberi. Ogni gruppo muscolare finisce <b>due volte a settimana</b>, senza sedute opzionali da cui
         dipende il risultato: prima le gambe arrivavano a frequenza doppia solo se facevi il Legs 2 della domenica.</p>
+      <p class="small" style="margin:0"><b>Perché due volte, davvero.</b> Ti avevo scritto che la frequenza doppia batte
+        quella singola. La meta-regressione più grande che abbiamo dice un’altra cosa: <em>a parità di volume settimanale</em>
+        la frequenza, da sola, non sposta l’ipertrofia. Il motivo per spezzare resta, ma è un altro — oltre circa 11 serie
+        frazionali sullo stesso muscolo <em>nella stessa seduta</em> le serie in più smettono di rendere. Con 18 serie di
+        spalle a settimana non c’è modo di metterle in una sola sessione senza buttarne metà. La correzione non cambia il
+        piano; cambia il motivo, e il motivo giusto adesso è un controllo automatico nella scheda qui sopra.</p>
+      <p class="small" style="margin:0"><b>Due esercizi spostati di seduta, a volume invariato.</b> Il conteggio frazionale
+        ha trovato due sedute sopra soglia: il bicipite nel Pull arrivava a 13,5 serie (nove di curl più metà di ogni tirata)
+        e la spalla nel Push a 11,5. Le alzate posteriori sono passate al <b>Pull</b>, dove il deltoide posteriore lavora
+        sullo stesso schema di tirata ed è già caldo; il curl ai cavi in piedi è passato all’<b>Upper</b>, che era la seduta
+        più corta di tutte. Nessuna serie tolta o aggiunta: solo spostate. Le durate si sono pareggiate — il Push scende da
+        64 a 57 minuti, l’Upper sale da 49 a 56 — e nessun gruppo supera più la soglia in una singola seduta.</p>
+      <p class="small" style="margin:0"><b>Partial in allungamento su due esercizi.</b> Croci ai cavi e curl su panca
+        inclinata: finita l’ultima ripetizione completa dell’ultima serie, altre 3-5 parziali nella parte bassa. È l’unica
+        cosa qui dentro su cui i preparatori non sono d’accordo fra loro, ed è messa dove costa niente se fra due anni
+        risulta ridimensionata.</p>
       <p class="small" style="margin:0"><b>La lente biomeccanica sulla scelta degli esercizi.</b> A parità di volume conta
         <em>dove</em> l’esercizio è più duro rispetto a dove il muscolo è allungato: è lì che rende di più. Da qui le alzate
         laterali ai cavi invece che coi manubri (col manubrio in basso il deltoide non ha carico proprio dov’è allungato),
@@ -3124,6 +3290,50 @@ function renderPiano(){
         <span>Gli esercizi nuovi sono marcati <b>Aggiunto</b> nella scheda. Lo storico dei carichi resta legato al nome
         dell’esercizio, quindi tutto quello che hai già registrato continua a valere.</span></div>
     </div></div>` ; })()}
+
+  <div class="card"><div class="hd"><h2>Il consenso science-based</h2><span class="chip line sp">${CONS_FONTI.length} fonti</span></div>
+    <div class="bd stack">
+      <p class="small muted" style="margin:0">Le regole con cui è costruito questo piano non sono opinioni mie. Qui c’è
+        da dove vengono: prima quello su cui la ricerca e i preparatori sono d’accordo, poi i tre punti in cui non lo
+        sono — con la posizione che ho preso per te e perché.</p>
+
+      <b style="font-family:var(--display);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2)">Su cosa sono d’accordo</b>
+      ${CONS_ACCORDO.map(([t,c,f]) => `<div>
+        <b class="small">${esc(t)}</b>
+        <p class="small" style="margin:3px 0 0;color:var(--ink-2)">${esc(c)}</p>
+        <p class="tiny muted" style="margin:3px 0 0">${esc(f)}</p></div>`).join('')}
+
+      ${(() => {
+        const ult = S.corpo.filter(x => x.peso).sort((a,b) => a.d < b.d ? -1 : 1).pop();
+        const kg = ult ? +ult.peso : 83, prot = pastiDi(d).target.p;
+        const magra = kg * 0.89;                       /* ~11% di grasso, l'obiettivo della fase */
+        const gkg = prot/kg, gmagra = prot/magra;
+        const dentro = gmagra >= 2.3 && gmagra <= 3.1;
+        return `<div class="backup" style="background:${dentro?'var(--good-soft)':'var(--warn-soft)'};color:${dentro?'var(--good-text)':'var(--warn-text)'}">${dentro ? ICO.check : ICO.alert}
+          <span>Sulle tue proteine il conto torna${ult?'':' (peso non ancora registrato, calcolato su 83 kg)'}:
+          <b>${nf(prot,0)} g</b> oggi su <b>${nf(kg,1)} kg</b> sono ${nf(gkg,2)} g per kg di peso e
+          <b>${nf(gmagra,2)}</b> per kg di massa magra stimata. In deficit il riferimento è 2,3-3,1 per kg di massa
+          magra${dentro ? ': ci sei dentro' : ', e sei fuori banda'}. Sopra 1,6 g per kg di peso il beneficio non si
+          misura più negli studi, ma quel numero viene da persone in pareggio calorico: in deficit la parte alta serve
+          a difendere il muscolo, non a costruirlo.</span></div>`;
+      })()}
+
+      <b style="font-family:var(--display);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2)">Dove non sono d’accordo</b>
+      ${CONS_DISACCORDO.map(([t,pos,sc]) => `<div>
+        <b class="small">${esc(t)}</b>
+        <p class="small" style="margin:3px 0 6px;color:var(--ink-2)">${esc(pos)}</p>
+        <div class="sug"><b>Cosa ho scelto</b>${esc(sc)}</div></div>`).join('')}
+
+      <b style="font-family:var(--display);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2)">Le fonti</b>
+      ${CONS_FONTI.map(([a,t,r]) => `<div style="padding:8px 0;border-bottom:1px solid var(--line)">
+        <b class="small">${esc(a)}</b>
+        <p class="small" style="margin:2px 0 0;color:var(--ink-2)">${esc(t)}</p>
+        <p class="tiny muted" style="margin:2px 0 0">${esc(r)}</p></div>`).join('')}
+      <p class="tiny muted" style="margin:0">Quello che il consenso <b>non</b> copre: quanto in fretta cresci tu, quanto
+        recuperi tu, e cosa succede a un corpo di 38 anni con un’ernia inguinale. Quello lo dicono solo i tuoi numeri
+        nella scheda Progressi, ed è per questo che l’app li tiene.</p>
+    </div>
+  </div>
 
   <div class="card"><div class="hd"><h2>Settimana tipo</h2></div><div class="bd ed">${sett}</div></div>
 
