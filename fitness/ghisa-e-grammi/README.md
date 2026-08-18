@@ -7,7 +7,8 @@ Alimentare Master** (29 pagine). Copre l'intero ciclo **agosto 2025 → settembr
 
 **App installabile:** <https://davide88770.github.io/Davide/>
 **Artifact:** <https://claude.ai/code/artifact/2c08979c-1b31-4f71-89c9-15375daa20d8>
-**Sorgente:** [`app.html`](app.html) · **Verifica:** `npm run verify fitness/ghisa-e-grammi/app.html`
+**Sorgente:** [`app.html`](app.html)
+**Verifica:** `npm run verify fitness/ghisa-e-grammi/app.html` e `npm run prova fitness/ghisa-e-grammi/app.html`
 
 ## Cosa fa
 
@@ -33,9 +34,10 @@ sissy squat porta con sé la sua progressione del range per l'ernia. La
 **checklist della domenica** è interattiva: a tre parametri in attenzione scatta
 da sola la regola 3 su 7 con l'indicazione di anticipare il deload.
 
-La sessione e il tipo di giornata alimentare si ricavano dalla data: lo split
-cambia da solo passando da PPL 3× (cut, transizione) a PPL + Upper (dalle fase 3
-in poi). La fase si può forzare a mano dalla sezione Piano.
+La sessione e il tipo di giornata alimentare si ricavano dalla data. Dalla fase 3
+in poi ci sono **due schede e basta** — 5 sedute e 4 sedute — con un interruttore
+in Piano; nel cut e nella transizione (fasi 1-2) vale lo split a tre giorni. La
+fase si può forzare a mano dalla sezione Piano.
 
 ## La volta prima, serie per serie
 
@@ -105,75 +107,69 @@ scritta anche dentro l'app, in fondo alla sezione Piano):
   ("riduci il riso a 130 g", "togli il riso serale"). L'app usa quel menù e
   mostra i TIP.
 
-## Programmazione: originale e rivista
+## Le due schede
 
-L'app contiene due programmazioni, con un interruttore in **Piano →
-Programmazione**. Copre tutte le fasi: PPL + Upper (3-8) e PPL 3× (cut e
-transizione).
+Dalla v17 l'app contiene **due programmazioni e nessun'altra**: la **5 sedute** e
+la **4 sedute**. Il piano di partenza e la variante Push/Pull/Legs + full body
+sono stati tolti — la richiesta era avere solo le migliori, e tenere quattro
+opzioni significava tenerne due che non avrei consigliato.
 
-Il vincolo che decide tutto è il budget: 17-22 serie per seduta, 53-62 minuti,
-cioè **77 serie a settimana su 4 giorni e 95 su 5**. Non si aggiunge volume, si
-sposta. La rivista usa lo stesso budget (78 e 96) e cambia dove va:
+| | 5 sedute | 4 sedute |
+|---|---|---|
+| Giorni | Lun Push · Mar Pull · Mer Legs · Ven Upper · Sab Lower | Lun Upper A · Mar Lower A · Gio Upper B · Sab Lower B |
+| Liberi | Giovedì, domenica | Mercoledì, venerdì, domenica |
+| Serie dirette | 102 | 88 |
+| Durate | 60, 63, 63, 57, 58 min | 62, 63, 62, 63 min |
 
-| Gruppo | Originale | Rivista | Frequenza |
+Serie **frazionali** a settimana (dirette + metà delle indirette), che è come le
+conta l'app:
+
+| Gruppo | 5 sedute | 4 sedute | Freq. |
 |---|---|---|---|
-| Petto | 6 | **9** | 2× |
-| Dorso | 9 | **12** | 2× |
-| Femorali | 9 (1× su 4 gg) | **12** | 3× |
-| Tricipiti | 14 | 9 | 2× |
-| Bicipiti | 13 | 11 | 2× |
-| Spalle | 13 | 12 | 2× |
+| Spalle | 18,0 | 14,5 | 3× / 2× |
+| Bicipiti | 18,5 | 14,0 | 2× |
+| Tricipiti | 16,0 | 12,5 | 2× |
+| Dorso | 15,0 | 12,0 | 2× |
+| Quadricipiti | 15,0 | 15,0 | 2× |
+| Gluteo | 13,5 | 13,5 | 2× |
+| Petto | 12,5 | 10,5 | 2× |
+| Femorali | 11,5 | 11,5 | 2× |
+| Polpacci | 8,0 | 8,0 | 3× / 2× |
+| Core | 4,0 | 2,0 | 2× / 1× |
 
-Le tre correzioni:
+**Le gambe sono identiche nelle due schede.** Quello che si perde passando a
+quattro sedute è tutto sulla parte alta, e soprattutto sulle braccia. È una
+scelta: il quadricipite e il gluteo hanno una sola fonte indiretta e poco
+generosa, le braccia ne hanno una a ogni spinta e a ogni tirata.
 
-1. **Tricipiti 14 serie contro petto 6.** I tricipiti prendono lavoro indiretto
-   da panca, military e dip; il petto da niente, e non aveva alcun isolamento.
-   Aggiunte le croci ai cavi, che lo caricano in allungamento.
-2. **Femorali a frequenza 1×**, contro il principio che il piano stesso dichiara
-   ("2× a settimana per gruppo"). Leg curl seduto nel Pull — seduto perché con
-   l'anca flessa il capo lungo del bicipite femorale lavora allungato.
-3. **Rimosso il lavoro a basso rendimento**: alzate laterali 2×20 al 30-40% del
-   carico e terza frequenza di tricipite. Quattro serie liberate.
+### Le sette regole che le hanno generate
 
-Altri cambi: **leg extension** (carica il quadricipite in progressione vera dove
-il sissy squat a corpo libero non può, e non genera pressione addominale),
-**pulley basso** per lo spessore dorsale, e il **curl bilanciere 2×5-6 al
-cedimento sostituito da curl su panca inclinata 3×8-10** — stesso volume,
-bicipite in allungamento, molto meno carico sul gomito. Range dei compound da
-4-6 a 5-8 e 6-10, con **RIR 1-2 invece di 0**: il cedimento resta
-sull'isolamento. Il **Legs 2 non è più opzionale**: senza, quadricipiti e gluteo
-restano a 8 e 3 serie.
-
-Lo split della programmazione rivista è **Push · Pull · Legs · riposo · Upper ·
-Lower · riposo** (lunedì-mercoledì, venerdì e sabato). Cinque sedute da 56-63
-minuti, 98 serie dirette a settimana, e **ogni gruppo muscolare a frequenza 2×**
-senza sedute opzionali da cui dipenda il risultato:
-
-| Gruppo | Dirette | Frazionali | Freq. |
-|---|---|---|---|
-| Petto | 10 | 12,5 | 2× |
-| Dorso | 12 | 12,0 | 2× |
-| Spalle | 12 | 18,0 | 2× |
-| Bicipiti | 14 | 20,0 | 2× |
-| Tricipiti | 11 | 16,0 | 2× |
-| Quadricipiti | 12 | 15,0 | 2× |
-| Femorali | 10 | 11,5 | 2× |
-| Gluteo | 9 | 13,5 | 2× |
-| Polpacci | 6 | 6,0 | 2× |
+1. **Ogni gruppo due volte a settimana, per spezzare il volume.** Non perché la
+   frequenza doppia sia meglio in sé — a parità di volume settimanale non lo è —
+   ma perché oltre ~11 serie frazionali sullo stesso muscolo *nella stessa
+   seduta* le serie in più smettono di rendere.
+2. **Volume dentro la banda utile, priorità in alto.** Braccia, spalle e gambe
+   nella parte alta; nessun gruppo sotto il minimo.
+3. **A cedimento dove costa poco, con margine dove costa caro.** Isolamento,
+   cavi e macchine a cedimento tecnico; 1-2 ripetizioni di margine sui compound
+   pesanti.
+4. **Esercizi scelti per dove caricano il muscolo.** Alzate laterali ai cavi,
+   curl su panca inclinata, leg curl seduto, croci ai cavi, tricipite overhead,
+   pressa profonda a piede alto.
+5. **Nessuna seduta sopra i 65 minuti.** È il vincolo che decide tutto il resto.
+6. **Costruite intorno all'ernia inguinale.** Hack squat, pressa e leg extension
+   al posto dello squat libero; espirazione nella salita, mai Valsalva; core
+   anti-rotazione (dead bug, pallof press) e non flessione.
+7. **Doppia progressione.** Chiudi il top del range su tutte le serie → la volta
+   dopo sali di carico.
 
 ### Serie dirette e frazionali
 
-Dalla v16 il volume è contato come lo conta la ricerca che lo ha misurato:
-**serie dirette più metà delle serie indirette**. Una panca non è una serie di
-tricipite, ma non è nemmeno zero. È la convenzione della meta-regressione di
-Pelland e colleghi (*Sports Medicine*, 2025), che ha trovato la distinzione fra
-dirette e indirette necessaria per prevedere il risultato di un programma.
-
-Cambia parecchio la lettura: bicipiti da 14 a 20, tricipiti da 11 a 16, spalle
-da 12 a 18, gluteo da 9 a 13,5. La nota qualitativa che c'era prima ("questi
-gruppi prendono molto lavoro indiretto") è diventata un numero, in tutte e tre
-le programmazioni e anche nel conteggio delle serie davvero eseguite, in
-Progressi.
+Il volume è contato come lo conta la ricerca che lo ha misurato: **serie dirette
+più metà delle serie indirette**. Una panca non è una serie di tricipite, ma non
+è nemmeno zero. È la convenzione della meta-regressione di Pelland e colleghi
+(*Sports Medicine*, 2025), che ha trovato la distinzione fra dirette e indirette
+necessaria per prevedere il risultato di un programma.
 
 La mappa dei secondari è una tabella sola, per nome di esercizio: panca →
 tricipiti e spalle, dip → petto e spalle, military → tricipiti, trazioni /
@@ -187,95 +183,34 @@ La meta-regressione sul volume **per singola seduta** (2025) colloca intorno a
 **11 serie frazionali** il punto oltre il quale, nella stessa sessione, le serie
 in più sullo stesso muscolo non mostrano un vantaggio rilevabile. L'app lo
 controlla a ogni apertura e lo dice in chiaro nella scheda Programmazione.
+Entrambe le schede sono sotto soglia su tutti i gruppi.
 
-Il controllo ha trovato due sedute fuori, e le ha fatte correggere:
+### Cosa è cambiato nella v17
 
-| Seduta | Gruppo | Prima | Dopo |
+Il **dorso** era il gruppo peggio servito e l'unico senza nessuna fonte
+indiretta; il **bicipite** era il più servito di tutti, nel punto in cui la curva
+del volume è piatta. Il volume si è spostato dal secondo al primo:
+
+| | Prima | Dopo | Come |
 |---|---|---|---|
-| Pull | Bicipiti | 13,5 | 10,5 |
-| Push | Spalle | 11,5 | 8,5 |
+| Dorso, 5 sedute | 12,0 | **15,0** | Il terzo curl dell'Upper diventa un rematore con manubrio |
+| Dorso, 4 sedute | 8,0 | **12,0** | Pulley basso nell'Upper B, +1 serie di rematore nell'Upper A, −1 di alzate laterali |
+| Bicipiti, 5 sedute | 20,0 | 18,5 | Conseguenza dello scambio: resta il secondo gruppo più servito |
+| Polpacci | 6,0 | **8,0** | +2 serie in entrambe, nella seduta con più margine |
+| Core, 5 sedute | 2,0 (1×) | **4,0 (2×)** | Pallof press nel Push: anti-rotazione, sicuro con l'ernia |
 
-La correzione è **a volume invariato**, due esercizi spostati di seduta:
+Le sedute restano tutte fra 57 e 63 minuti.
 
-- **Alzate posteriori / face pull** da Push a **Pull**: il deltoide posteriore
-  lavora sullo stesso schema di tirata della schiena ed è già caldo.
-- **Curl ai cavi in piedi** da Pull a **Upper**, che era la seduta più corta di
-  tutte.
+### Le sedute archiviate
 
-Le durate si sono pareggiate come effetto secondario: Push da 64 a 57 minuti,
-Upper da 49 a 56, e la seduta più lunga resta il Legs a 63.
+Le sedute del piano di partenza e quelle della variante full body non sono più
+nel programma, ma restano nel codice in forma ridotta (nome, gruppo, serie,
+ripetizioni) come **archivio**: servono soltanto perché una giornata registrata
+mesi fa continui a essere leggibile nello storico e nei grafici. Non compaiono in
+nessuna programmazione e non si possono scegliere.
 
-### Le due versioni a 4 giorni
-
-Interruttore in **Piano → Programmazione**: *Originale · 5 giorni · 4 ·
-Upper/Lower · 4 · PPL+Full*.
-
-Con quattro sedute ci sono **due** strutture che tengono ogni gruppo a
-frequenza 2×, e costano quasi lo stesso (83 e 82 serie contro le 98 dei cinque
-giorni). Cambia a chi vanno le serie. Push/Pull/Legs/Upper, invece, non è una
-delle due: lì le gambe tornerebbero a una volta sola, che è l'errore appena
-corretto.
-
-Serie frazionali (dirette + metà delle indirette), che è come le conta l'app:
-
-| Gruppo | 5 giorni | 4 · Upper/Lower | 4 · PPL+Full |
-|---|---|---|---|
-| Petto | 12,5 | 10,5 | 10,0 |
-| Dorso | 12,0 | 8,0 | **12,0** |
-| Spalle | 18,0 | 15,5 | **16,0** |
-| Bicipiti | 20,0 | 12,0 | **15,0** |
-| Tricipiti | 16,0 | **12,5** | 11,5 |
-| Quadricipiti | 15,0 | **15,0** | 10,5 |
-| Femorali | 11,5 | **11,5** | 10,0 |
-| Gluteo | 13,5 | **13,5** | 9,5 |
-| Polpacci | 6,0 | **6,0** | 5,0 |
-| Core | 2,0 | 2,0 | 2,0 |
-| **Totale dirette** | **98** | **83** | **80** |
-
-Contate a serie dirette il divario sulle gambe sembra enorme (gluteo 9 contro
-5); contate come vanno contate, con hack squat e pressa che il gluteo lo
-caricano davvero, si dimezza — ma resta.
-
-**Upper/Lower protegge le gambe**: due sedute intere di parte bassa non le
-batte niente, e il taglio si concentra su schiena e braccia.
-**PPL + full body** (lunedì Push, martedì Pull, giovedì Legs, sabato full body)
-fa il contrario: le tre sedute specializzate restano identiche a quelle da
-cinque giorni, il sabato fa da seconda frequenza per tutto con 2-3 serie a
-gruppo, e le gambe scendono vicino al minimo. Il full body è ordinato
-con le gambe per prime, che sono quelle che a fine settimana rischiano di più.
-
-La raccomandazione, con braccia, spalle e gambe come obiettivo dichiarato, è
-**Upper/Lower**: le braccia perdono serie dirette ma continuano a prendere
-lavoro indiretto da ogni spinta e ogni tirata, mentre quadricipite e gluteo non
-hanno nessuna fonte indiretta — quello che togli lì è tolto davvero.
-PPL + full body ha senso se in quel periodo la parte alta è la priorità, o se
-il sabato è la seduta che si salta più spesso: lì si perde una seduta mista,
-non metà delle gambe.
-
-Il core resta a 1× in tutte e tre le versioni, come già nel piano originale.
-
-Dettaglio Upper/Lower contro i cinque giorni — il prezzo lo pagano le braccia:
-
-| Gruppo | 5 giorni | 4 giorni | |
-|---|---|---|---|
-| Bicipiti | 14 | 8 | −6 |
-| Dorso | 12 | 8 | −4 |
-| Tricipiti | 11 | 8 | −3 |
-| Petto | 10 | 9 | −1 |
-| Spalle | 12 | 11 | −1 |
-| Quadricipiti | 12 | 12 | = |
-| Femorali | 10 | 10 | = |
-| Gluteo | 9 | 9 | = |
-| Polpacci | 6 | 6 | = |
-
-Le gambe restano intatte. Sedute da 56 a 63 minuti, con le braccia in superset
-nell'Upper A e due superset nell'Upper B per stare nei tempi.
-
-Le durate dichiarate sono ricalcolate, non stimate a occhio: serie × (45
-secondi di lavoro + recupero previsto), più mezzo minuto per la serie finale
-intensificata, riscaldamento e mobilità esclusi. Con lo stesso conto le sedute
-di PPL + full body stanno fra 56 e 64 minuti, e il full body del sabato — 24
-serie — a 62.
+Chi aveva salvato una delle programmazioni tolte viene riportato sulla 5 sedute
+al primo caricamento.
 
 ### La lente biomeccanica sugli esercizi
 
@@ -300,11 +235,14 @@ gruppo, serie e ripetizioni. Vale **solo per quella giornata**, il piano non
 cambia, e lo storico del nuovo esercizio parte per conto suo legato al nome
 scritto. Un tocco su "Torna a…" ripristina quello del piano.
 
-Nel **cut** (PPL 3×, stesso budget di 55-58 serie): petto da **2 a 5** serie —
-due a settimana sono sotto la manutenzione — dorso da 4 a 6, femorali da 5 a 7 e
-da 1× a 2× di frequenza. Le serie arrivano da tricipiti (11→7) e bicipiti
-(12→10). Su un PPL a 3 giorni petto, dorso e gambe restano necessariamente a
-frequenza 1×: è la natura dello split, non un difetto correggibile.
+### Cut e transizione (fasi 1-2)
+
+Le prime due fasi sono passate, ma restano nell'app perché lo storico le
+attraversa. Lì vale lo split a tre giorni, riequilibrato con lo stesso criterio:
+petto da 2 a 5 serie — due a settimana sono sotto la manutenzione — dorso da 4 a
+6, femorali da 5 a 7 e da 1× a 2×. Su un PPL a tre giorni petto, dorso e gambe
+restano necessariamente a frequenza 1×: è la natura dello split, non un difetto
+correggibile.
 
 Lo storico dei carichi è legato al nome dell'esercizio, quindi cambiando
 programmazione tutto quello che è già registrato continua a valere.
@@ -474,6 +412,11 @@ esercizi trascritti, i loro range di ripetizioni e i 18 target di macro traccian
 al testo dei sorgenti. Le pagine 6, 13, 18, 25, 32 del workout e 4, 8, 11, 15,
 18, 22 dell'alimentare sono divisori senza contenuto né grafica.
 
+Dalla v17 le **sedute** del piano di partenza non sono più selezionabili
+nell'app: restano in archivio per leggere lo storico, e la trascrizione integrale
+resta nella cronologia del repo. Tutto il resto dei due documenti — protocolli,
+nutrizione, KPI, fasi, deload, ernia, integratori — è rimasto dov'era.
+
 ## Il consenso science-based
 
 La scheda **Piano → Il consenso science-based** dice da dove vengono le regole
@@ -538,6 +481,14 @@ npm run prova  fitness/ghisa-e-grammi/app.html   # con i dati dentro
 
 ## Storico
 
+- **v17** — due schede e basta: **5 sedute** e **4 sedute**, le migliori
+  possibili sotto i vincoli. Tolti il piano di partenza e la variante
+  Push/Pull/Legs + full body (restano in archivio per lo storico). Volume
+  spostato dal bicipite, che era nel punto piatto della curva, al dorso, che era
+  l'unico gruppo senza fonti indirette: 5 sedute 12→15 frazionali, 4 sedute
+  8→12. Polpacci da 6 a 8 in entrambe, core da 1× a 2× nella 5 sedute col pallof
+  press. Sedute fra 57 e 63 minuti. Confronto e raccomandazione ricostruiti sulle
+  due schede.
 - **v16** — passata sul consenso science-based. Volume contato in **serie
   frazionali** (dirette + metà delle indirette) ovunque, controllo automatico
   sulle 11 serie frazionali per seduta, due esercizi spostati a volume invariato

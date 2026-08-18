@@ -52,7 +52,7 @@ const seminato = await page.evaluate(() => {
     const dt = new Date(oggi.getTime() - i * 864e5), d = iso(dt), sid = giorni[dt.getDay()];
     if (!sid) continue;
     const set = {};
-    const n = { rv_push: 6, rv_pull: 6, rv_legs: 7, rv_upper: 8, rv_lower: 6 }[sid];
+    const n = { rv_push: 7, rv_pull: 7, rv_legs: 7, rv_upper: 8, rv_lower: 6 }[sid];
     for (let j = 0; j < n; j++) {
       set[j] = [0, 1, 2].map(k => ({ kg: 40 + j * 5 + (27 - i) * 0.5, rep: 8 - k, rir: 1, ok: 1 }));
       serie += 3;
@@ -92,7 +92,7 @@ const esercizi = await page.$$eval('#selEs option, select option', ns => ns.leng
 /* Cambia programmazione e tipo di settimana: sono i due interruttori che
    ricalcolano tutto. */
 await page.click('#tab-piano'); await page.waitForTimeout(200);
-for (const p of ['rivista4', 'pplfb', 'originale', 'rivista']) {
+for (const p of ['rivista4', 'rivista']) {
   await page.click(`[data-prog="${p}"]`);
   await page.waitForTimeout(200);
 }
