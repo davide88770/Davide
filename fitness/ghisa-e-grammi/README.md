@@ -119,7 +119,7 @@ opzioni significava tenerne due che non avrei consigliato.
 | Giorni | Lun Push · Mar Pull · Mer Legs · Ven Upper · Sab Lower | Lun Upper A · Mar Lower A · Gio Upper B · Sab Lower B |
 | Liberi | Giovedì, domenica | Mercoledì, venerdì, domenica |
 | Serie dirette | 102 | 88 |
-| Durate | 60, 63, 63, 57, 58 min | 62, 63, 62, 63 min |
+| Durate | 59, 63, 63, 57, 58 min | 61, 63, 62, 63 min |
 
 Serie **frazionali** a settimana (dirette + metà delle indirette), che è come le
 conta l'app:
@@ -142,7 +142,7 @@ quattro sedute è tutto sulla parte alta, e soprattutto sulle braccia. È una
 scelta: il quadricipite e il gluteo hanno una sola fonte indiretta e poco
 generosa, le braccia ne hanno una a ogni spinta e a ogni tirata.
 
-### Le sette regole che le hanno generate
+### Le otto regole che le hanno generate
 
 1. **Ogni gruppo due volte a settimana, per spezzare il volume.** Non perché la
    frequenza doppia sia meglio in sé — a parità di volume settimanale non lo è —
@@ -153,15 +153,51 @@ generosa, le braccia ne hanno una a ogni spinta e a ogni tirata.
 3. **A cedimento dove costa poco, con margine dove costa caro.** Isolamento,
    cavi e macchine a cedimento tecnico; 1-2 ripetizioni di margine sui compound
    pesanti.
-4. **Esercizi scelti per dove caricano il muscolo.** Alzate laterali ai cavi,
-   curl su panca inclinata, leg curl seduto, croci ai cavi, tricipite overhead,
-   pressa profonda a piede alto.
+4. **Esercizi scelti per dove caricano il muscolo.** Alzate laterali dal pulley
+   basso, curl su panca inclinata, croci coi manubri su panca inclinata,
+   tricipite overhead, pressa profonda a piede alto, sissy squat zavorrato.
 5. **Nessuna seduta sopra i 65 minuti.** È il vincolo che decide tutto il resto.
-6. **Costruite intorno all'ernia inguinale.** Hack squat, pressa e leg extension
+6. **Costruite intorno all'ernia inguinale.** Hack squat, sissy squat e pressa
    al posto dello squat libero; espirazione nella salita, mai Valsalva; core
    anti-rotazione (dead bug, pallof press) e non flessione.
-7. **Doppia progressione.** Chiudi il top del range su tutte le serie → la volta
+7. **Eseguibili con l'attrezzatura che c'è in casa** — vedi la sezione qui sotto.
+8. **Doppia progressione.** Chiudi il top del range su tutte le serie → la volta
    dopo sali di carico.
+
+### L'attrezzatura della home gym
+
+Questa informazione mancava fino alla v18, e non l'avevo chiesta: le schede erano
+costruite assumendo una palestra commerciale completa. Quattro esercizi non erano
+eseguibili. Cosa c'è:
+
+| C'è | Cosa ci gira |
+|---|---|
+| Rack, bilanciere, panca regolabile | Panca piana e inclinata, military, rematore Yates, stacco romeno, hip thrust |
+| Manubri | Panca inclinata, croci, curl in tutte le versioni, rematore a un braccio, leg curl sdraiato |
+| Lat machine, carrucola alta | Lat machine presa larga, push-down, face pull |
+| Pulley basso | Pulley basso presa neutra, alzate laterali ai cavi, curl ai cavi, curl hammer, tricipite overhead, pallof press |
+| Pressa + hack squat, macchinario unico | Hack squat piede basso e pressa piede alto — stessa macchina, una riconfigurazione a seduta |
+| Sbarra per trazioni | Trazioni zavorate |
+| Parallele | Dip verticale zavorra |
+
+Cosa **non** c'è, e con cosa è stato sostituito:
+
+| Manca | Sostituito con | Cosa si tiene, cosa si perde |
+|---|---|---|
+| Leg extension | **Sissy squat zavorrato** | Stessa funzione: estensione pura del ginocchio col retto femorale allungato, nessuna pressione addominale. Col disco al petto diventa progressivo |
+| Leg curl a macchina | **Leg curl nordico** (+ leg curl sdraiato coi manubri) | Il nordico è la flessione del ginocchio più dura possibile senza macchina, tutta in eccentrica. Si perde l'anca flessa: il lavoro in allungamento sul femorale resta tutto sullo stacco romeno |
+| Carrucola regolabile in altezza | **Croci coi manubri su panca inclinata** | Col manubrio il punto più duro è in basso, dove il petto è allungato — la parte che conta. Si perde la tensione in chiusura |
+| Pulley all'altezza del petto | **Pallof press dal pulley basso, in ginocchio** | In ginocchio la linea di tiro dal basso è quella da contrastare: l'anti-rotazione funziona uguale |
+
+Tre esercizi sono stati rinominati per non dipendere da un attrezzo che potrebbe
+mancare: *Tricipite overhead — cavo o manubrio*, *Alzate posteriori manubri /
+face pull*, *Curl hammer — cavo basso o manubri*.
+
+**Il lavoro a un arto per volta costa tempo.** Alzate laterali ai cavi, rematore
+manubrio singolo, curl alternati e pallof press si fanno un lato alla volta: nel
+modello delle durate contano 75 secondi di lavoro per serie invece di 45. In
+compenso il recupero fra le serie scende a 60 secondi, perché mentre un lato
+lavora l'altro riposa: ogni braccio arriva comunque a oltre due minuti.
 
 ### Serie dirette e frazionali
 
@@ -223,8 +259,10 @@ A parità di volume conta *dove* l'esercizio è più duro rispetto a dove il mus
   del bicipite parte allungato.
 - **Leg curl seduto** invece che prono: con l'anca flessa il capo lungo del
   bicipite femorale lavora allungato.
-- **Croci ai cavi** e **tricipite overhead**: stessa logica su petto e capo lungo
-  del tricipite.
+- **Croci coi manubri su panca inclinata** e **tricipite overhead**: stessa
+  logica su petto e capo lungo del tricipite. Sulle croci il manubrio è più duro
+  proprio in basso, dove il petto è allungato: quello che si perde è la tensione
+  in chiusura, che conta meno.
 - **Hip thrust** tenuto accanto alla pressa profonda, non al suo posto: caricano
   il gluteo a lunghezze opposte e sono complementari.
 
@@ -481,6 +519,14 @@ npm run prova  fitness/ghisa-e-grammi/app.html   # con i dati dentro
 
 ## Storico
 
+- **v18** — le schede passano sull'**attrezzatura vera della home gym**, che non
+  avevo mai chiesto. Quattro esercizi non erano eseguibili: leg extension →
+  sissy squat zavorrato, leg curl a macchina → leg curl nordico, croci ai cavi →
+  croci coi manubri su panca inclinata, pallof press → dal pulley basso in
+  ginocchio. Tre rinominati per non dipendere da un attrezzo incerto. Volumi e
+  frequenze invariati su tutti i gruppi. Aggiunto il costo in tempo del lavoro a
+  un arto per volta (75 s invece di 45) con recupero a 60 s, e la scheda «La tua
+  attrezzatura» nel Piano, perché il vincolo resti scritto.
 - **v17** — due schede e basta: **5 sedute** e **4 sedute**, le migliori
   possibili sotto i vincoli. Tolti il piano di partenza e la variante
   Push/Pull/Legs + full body (restano in archivio per lo storico). Volume

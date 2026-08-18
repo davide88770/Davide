@@ -687,27 +687,33 @@ const SESS = {};
    perche' oltre ~11 serie frazionali per muscolo in una sessione le serie in
    piu' non rendono; cedimento sull'isolamento e 1-2 ripetizioni di margine sui
    compound; esercizi scelti per dove caricano il muscolo, non per abitudine;
-   nessuna seduta sopra i 65 minuti; hack squat, pressa e leg extension al posto
-   dello squat libero, e core anti-rotazione, per l'ernia inguinale.
+   nessuna seduta sopra i 65 minuti; hack squat e pressa al posto dello squat
+   libero, e core anti-rotazione, per l'ernia inguinale.
+
+   Ogni esercizio e' eseguibile con l'attrezzatura della home gym: rack,
+   bilanciere, panca regolabile, manubri, lat machine con carrucola alta e
+   pulley basso, pressa/hack squat in macchinario unico, sbarra e parallele.
+   Niente leg extension, niente leg curl a macchina, nessuna carrucola
+   regolabile in altezza: vedi la scheda "La tua attrezzatura".
 
    Rispetto al piano di partenza (ora in archivio): petto da 6 a 10 serie con le
-   croci ai cavi, dorso da 9 a 15, femorali da 1x a 2x col leg curl seduto,
-   tricipiti da 14 a 11, curl bilanciere pesante sostituito dal curl su panca
-   inclinata, compound da 4-6 a 5-8 / 6-10 ripetizioni. */
-SESS.rv_push = { id:'rv_push', nome:'Push', gg:'Lunedì', durata:60, rivista:1,
+   croci coi manubri, dorso da 9 a 15, femorali da 1x a 2x, tricipiti da 14 a
+   11, curl bilanciere pesante sostituito dal curl su panca inclinata, compound
+   da 4-6 a 5-8 / 6-10 ripetizioni. */
+SESS.rv_push = { id:'rv_push', nome:'Push', gg:'Lunedì', durata:59, rivista:1,
   focus:'Petto · Spalle · Tricipiti · Core', ex:[
   e('Panca piana bilanciere','petto',3,'5–8','RIR 1–2',210,{
     cue:'Presa 1,5× spalle · gomiti 45° · scapole retratte · fermi rack · eccentrica 2 sec',
     note:'Il compound pesante della sessione. Il petto in allungamento lo caricano le croci.'}),
   e('Military press bilanciere','spalle',3,'6–8','RIR 1–2',210,{p:1,
     cue:'Core braced · gomiti davanti · no iperestensione lombare · espira salendo'}),
-  e('Croci ai cavi','petto',3,'10–12','RIR 0–1 + Allungamento',105,{nuovo:1,
-    cue:'Gomiti morbidi e fermi · allunga bene in apertura · incrocia le mani in chiusura',
-    note:'Il cavo tiene la tensione dove il petto è allungato, cosa che il manubrio in apertura non fa.'}),
-  e('Alzate laterali ai cavi','spalle',3,'12–15','+ Rest-pause ×2',105,{p:1,wm:1,nuovo:1,
+  e('Croci manubri su panca inclinata','petto',3,'10–12','RIR 0–1 + Allungamento',105,{
+    cue:'Panca a 30° · gomiti morbidi e fermi · scendi finché senti lo stretto sul petto · non arrivare a toccare in alto',
+    note:'Le croci ai cavi servivano due carrucole all’altezza del petto, che la lat machine non ha. Col manubrio il punto più duro è proprio in basso, dove il petto è allungato: per il nostro scopo va bene uguale. Quello che si perde è la tensione in chiusura, che conta meno.'}),
+  e('Alzate laterali ai cavi','spalle',3,'12–15','+ Rest-pause ×2',60,{p:1,wm:1,uni:1,
     cue:'Cavo basso dal lato opposto · braccio che parte incrociato davanti al corpo · gomito guida · stop a 90°',
     note:'Col manubrio il deltoide non ha carico proprio in basso, dove è allungato. Col cavo sì: stesso esercizio, profilo di resistenza migliore.'}),
-  e('Tricipite overhead pulley — corda','tricipiti',3,'10–12','+ Rest-pause',105,{p:1,wm:1,
+  e('Tricipite overhead — cavo o manubrio','tricipiti',3,'10–12','+ Rest-pause',105,{p:1,wm:1,
     cue:'Gomiti fermi sopra la testa · stretch massimo · si muove solo l’avambraccio',
     note:'Braccio sopra la testa: il capo lungo lavora allungato, ed è la posizione che rende di più.'}),
   e('Dip verticale zavorra','tricipiti',2,'8–10','+ Myo-reps',150,{
@@ -724,13 +730,13 @@ SESS.rv_pull = { id:'rv_pull', nome:'Pull', gg:'Martedì', durata:63, rivista:1,
     cue:'Tira verso l’ombelico · gomiti vicini · squeeze 1 sec · no rotazione'}),
   e('Pulley basso — presa neutra','dorso',3,'10–12','+ Rest-pause',105,{nuovo:1,
     cue:'Busto fermo · gomiti indietro lungo i fianchi · allunga in avanti senza curvare'}),
-  e('Alzate posteriori / face pull corda','spalle',3,'15–20','+ Rest-pause',105,{p:1,
+  e('Alzate posteriori manubri / face pull','spalle',3,'15–20','+ Rest-pause',105,{p:1,
     cue:'Busto parallelo al suolo · gomiti flessi 90° · gomiti verso il soffitto',
     note:'Spostato qui dal Push: il deltoide posteriore lavora sullo stesso schema di tirata della schiena, ed è già caldo.'}),
   e('Curl manubri su panca inclinata','bicipiti',3,'8–10','RIR 0–1 + Allungamento',105,{p:1,nuovo:1,
     cue:'Panca a 45-60° · braccia dietro la linea del busto · supinazione completa · eccentrica 3 sec',
     note:'Braccio dietro il corpo: il capo lungo del bicipite parte allungato. È la posizione che rende di più.'}),
-  e('Curl hammer ai cavi','bicipiti',3,'10–12','+ Drop set',105,{p:1,nuovo:1,
+  e('Curl hammer — cavo basso o manubri','bicipiti',3,'10–12','+ Drop set',105,{p:1,nuovo:1,
     cue:'Corda o presa neutra · gomiti fermi ai fianchi · niente oscillazione',
     note:'Col cavo la tensione non cade in basso come col manubrio.'}),
   e('Calf raise in piedi','polpacci',2,'8–12','+ Rest-pause',90,{
@@ -743,12 +749,12 @@ SESS.rv_legs = { id:'rv_legs', nome:'Legs', gg:'Mercoledì', durata:63, rivista:
     cue:'Discesa 2–3 sec · ginocchia in linea con le punte · ESPIRA nella salita · mai Valsalva'}),
   e('Romanian deadlift bilanciere','femorali',3,'8–10','RIR 1–2',210,{ernia:1,
     cue:'La barra scorre lungo la coscia · squeeze del gluteo in cima · schiena neutra'}),
-  e('Leg extension','quad',3,'10–15','+ Rest-pause',105,{nuovo:1,
-    cue:'Schiena appoggiata · contrai 1 sec in cima · eccentrica 3 sec',
-    note:'Carica il quadricipite in progressione vera, senza pressione addominale: sicura per l’ernia.'}),
-  e('Leg curl seduto','femorali',3,'10–12','+ Drop set',105,{p:1,nuovo:1,
-    cue:'Anca flessa · schiena appoggiata · contrazione 1 sec · range completo',
-    note:'Seduto e non prono: con l’anca flessa il capo lungo del bicipite femorale lavora allungato.'}),
+  e('Sissy squat zavorrato','quad',3,'10–15','+ Rest-pause',105,{ernia:1,
+    cue:'Disco al petto · talloni alzati · scendi indietro tenendo anca e ginocchio in linea · eccentrica 3 sec',
+    note:'Al posto della leg extension, che in casa non c’è. Stessa funzione — estensione pura del ginocchio col retto femorale allungato — e col disco al petto diventa progressivo. Nessuna pressione addominale: sicuro per l’ernia.'}),
+  e('Leg curl nordico','femorali',3,'5–8','Eccentrica lenta',105,{
+    cue:'Caviglie bloccate sotto il pad della lat machine, o sotto un bilanciere caricato a terra · scendi in 4-5 sec tenendo anca e busto in linea · risali spingendo con le mani se serve',
+    note:'Al posto del leg curl seduto, che in casa non c’è. È l’esercizio di flessione del ginocchio più duro che esista a corpo libero, ed è tutto eccentrica — la parte che sul femorale conta di più. Se all’inizio non controlli la discesa, frena con le mani a terra e accorcia il range.'}),
   e('Pressa — piede alto e largo','gluteo',3,'10–12','+ Drop set',150,{
     cue:'Piedi molto in alto · spingi sui talloni · scendi profondo, è lì che il gluteo si allunga'}),
   e('Calf raise in piedi','polpacci',3,'8–12','+ Rest-pause',105,{
@@ -762,17 +768,17 @@ SESS.rv_upper = { id:'rv_upper', nome:'Upper', gg:'Venerdì', durata:57, rivista
     cue:'Angolo 30° · gomiti 60–70° · scendi fino allo stretch completo · pausa 1 sec'}),
   e('Lat machine presa larga','dorso',3,'8–12','+ Drop set',150,{
     cue:'Ferma sotto il mento · scapole giù · allunga bene in cima'}),
-  e('Alzate laterali ai cavi','spalle',3,'12–15','+ Rest-pause ×2',105,{p:1,wm:1,
+  e('Alzate laterali ai cavi','spalle',3,'12–15','+ Rest-pause ×2',60,{p:1,wm:1,uni:1,
     cue:'Cavo basso dal lato opposto · gomito guida · stop a 90°'}),
   e('Dip verticale zavorra','tricipiti',3,'8–10','Superset + Myo-reps',0,{p:1,ss:'A',
     cue:'Busto verticale · zavorra · subito dopo, senza recupero, il push-down'}),
   e('Tricipite push-down','tricipiti',3,'10–12','Superset',90,{p:1,ss:'A',
     cue:'Gomiti fermi ai fianchi · contrazione massima in basso'}),
-  e('Curl manubri alternati','bicipiti',3,'10–12','+ Drop set',0,{p:1,ss:'B',
+  e('Curl manubri alternati','bicipiti',3,'10–12','+ Drop set',0,{p:1,uni:1,ss:'B',
     cue:'Supinazione totale in cima · gomiti fermi · eccentrica 3 sec'}),
   e('Curl hammer manubri','bicipiti',2,'12','Superset',90,{p:1,ss:'B',
     cue:'Presa neutra · alternato · subito dopo il curl alternato'}),
-  e('Rematore manubrio singolo','dorso',3,'8–12','+ Rest-pause',105,{
+  e('Rematore manubrio singolo','dorso',3,'8–12','+ Rest-pause',60,{uni:1,
     cue:'Ginocchio e mano sulla panca · tira verso l’anca · allunga in basso senza ruotare il busto',
     note:'Ha preso il posto del terzo curl. Il dorso era il gruppo peggio servito di tutti e l’unico senza nessuna fonte indiretta; il bicipite era il più servito e qui prende comunque mezza serie a ogni tirata.'})
 ]};
@@ -801,7 +807,7 @@ SESS.rv_lower = { id:'rv_lower', nome:'Lower', gg:'Sabato', durata:58, rivista:1
    o le riduce a mezza seduta.
    Il prezzo si paga tutto sulla parte alta, e soprattutto sulle braccia:
    88 serie dirette contro 102, con il taglio concentrato li'. */
-SESS.q_upperA = { id:'q_upperA', nome:'Upper A', gg:'Lunedì', durata:62, rivista:1, quattro:1,
+SESS.q_upperA = { id:'q_upperA', nome:'Upper A', gg:'Lunedì', durata:61, rivista:1, quattro:1,
   focus:'Parte alta pesante: petto, dorso e spalle sui compound · Braccia in superset', ex:[
   e('Panca piana bilanciere','petto',3,'5–8','RIR 1–2',210,{
     cue:'Presa 1,5× spalle · gomiti 45° · scapole retratte · fermi rack'}),
@@ -812,11 +818,11 @@ SESS.q_upperA = { id:'q_upperA', nome:'Upper A', gg:'Lunedì', durata:62, rivist
   e('Rematore bilanciere — Yates','dorso',3,'6–10','RIR 1–2',150,{
     cue:'Tira verso l’ombelico · gomiti vicini · squeeze 1 sec',
     note:'Recupero 2-3 min: è il compound secondario della sessione, e con quattro compound di fila i 3-4 minuti non ci stanno nei tempi.'}),
-  e('Alzate laterali ai cavi','spalle',3,'12–15','+ Rest-pause ×2',105,{p:1,wm:1,
+  e('Alzate laterali ai cavi','spalle',3,'12–15','+ Rest-pause ×2',60,{p:1,wm:1,uni:1,
     cue:'Cavo basso dal lato opposto · gomito guida · stop a 90°'}),
   e('Curl manubri su panca inclinata','bicipiti',3,'8–10','Superset',0,{p:1,ss:'B',
     cue:'Panca a 45-60° · braccia dietro la linea del busto · eccentrica 3 sec'}),
-  e('Tricipite overhead pulley — corda','tricipiti',3,'10–12','Superset',90,{p:1,ss:'B',
+  e('Tricipite overhead — cavo o manubrio','tricipiti',3,'10–12','Superset',90,{p:1,ss:'B',
     cue:'Gomiti fermi sopra la testa · stretch massimo',
     note:'In superset col curl: bicipite e tricipite non si rubano niente e si risparmiano 6 minuti.'})
 ]};
@@ -826,10 +832,10 @@ SESS.q_lowerA = { id:'q_lowerA', nome:'Lower A', gg:'Martedì', durata:63, rivis
     cue:'Discesa 2–3 sec · ESPIRA nella salita · mai Valsalva'}),
   e('Romanian deadlift bilanciere','femorali',3,'8–10','RIR 1–2',210,{ernia:1,
     cue:'La barra scorre lungo la coscia · schiena neutra · espira salendo'}),
-  e('Leg extension','quad',3,'10–15','+ Rest-pause',105,{
-    cue:'Schiena appoggiata · contrai 1 sec in cima · eccentrica 3 sec'}),
-  e('Leg curl seduto','femorali',3,'10–12','+ Drop set',105,{p:1,
-    cue:'Anca flessa · schiena appoggiata · range completo'}),
+  e('Sissy squat zavorrato','quad',3,'10–15','+ Rest-pause',105,{ernia:1,
+    cue:'Disco al petto · talloni alzati · eccentrica 3 sec · sali contraendo forte'}),
+  e('Leg curl nordico','femorali',3,'5–8','Eccentrica lenta',105,{
+    cue:'Caviglie sotto il pad della lat machine o un bilanciere caricato · discesa 4-5 sec · anca e busto in linea'}),
   e('Pressa — piede alto e largo','gluteo',3,'10–12','+ Drop set',150,{
     cue:'Piedi molto in alto · scendi profondo · spingi sui talloni'}),
   e('Calf raise in piedi','polpacci',3,'8–12','+ Rest-pause',105,{
@@ -843,23 +849,23 @@ SESS.q_upperB = { id:'q_upperB', nome:'Upper B', gg:'Giovedì', durata:62, rivis
     cue:'Angolo 30° · scendi fino allo stretch completo · pausa 1 sec'}),
   e('Lat machine presa larga','dorso',3,'8–12','+ Drop set',150,{
     cue:'Ferma sotto il mento · scapole giù · allunga bene in cima'}),
-  e('Croci ai cavi','petto',3,'10–12','RIR 0–1',105,{
-    cue:'Gomiti morbidi e fermi · allunga bene in apertura'}),
+  e('Croci manubri su panca inclinata','petto',3,'10–12','RIR 0–1 + Allungamento',105,{
+    cue:'Panca a 30° · gomiti morbidi e fermi · scendi finché senti lo stretto sul petto'}),
   e('Pulley basso — presa neutra','dorso',3,'10–12','+ Rest-pause',105,{
     cue:'Busto fermo · gomiti indietro lungo i fianchi · allunga in avanti senza curvare',
     note:'Con quattro sedute il dorso restava a 8 serie, sotto il minimo utile e senza nessuna fonte indiretta. Questa è la terza angolazione: tirata orizzontale bassa.'}),
-  e('Alzate laterali ai cavi','spalle',2,'12–15','+ Rest-pause ×2',105,{p:1,wm:1,
+  e('Alzate laterali ai cavi','spalle',2,'12–15','+ Rest-pause ×2',60,{p:1,wm:1,uni:1,
     cue:'Cavo basso dal lato opposto · gomito guida · stop a 90°',
     note:'Da 3 serie a 2: la spalla era fra i gruppi più serviti, il dorso fra i meno. La serie va dove rende.'}),
-  e('Alzate posteriori / face pull corda','spalle',2,'15–20','+ Rest-pause',105,{p:1,
+  e('Alzate posteriori manubri / face pull','spalle',2,'15–20','+ Rest-pause',105,{p:1,
     cue:'Busto parallelo · gomiti verso il soffitto'}),
   e('Dip verticale zavorra','tricipiti',3,'8–10','Superset + Myo-reps',0,{p:1,ss:'A',
     cue:'Busto verticale · subito dopo, senza recupero, il push-down'}),
   e('Tricipite push-down','tricipiti',2,'10–12','Superset',90,{p:1,ss:'A',
     cue:'Gomiti fermi ai fianchi · contrazione massima in basso'}),
-  e('Curl hammer ai cavi','bicipiti',3,'10–12','Superset + Drop set',0,{p:1,ss:'B',
+  e('Curl hammer — cavo basso o manubri','bicipiti',3,'10–12','Superset + Drop set',0,{p:1,ss:'B',
     cue:'Corda o presa neutra · gomiti fermi ai fianchi'}),
-  e('Curl ai cavi in piedi','bicipiti',2,'12–15','Superset',90,{p:1,ss:'B',
+  e('Curl ai cavi in piedi — pulley basso','bicipiti',2,'12–15','Superset',90,{p:1,ss:'B',
     cue:'Cavo basso · gomiti fermi · contrazione piena in cima'})
 ]};
 SESS.q_lowerB = { id:'q_lowerB', nome:'Lower B', gg:'Sabato', durata:63, rivista:1, quattro:1,
@@ -1226,6 +1232,7 @@ const TECNICHE = {
   'Doppia progressione':['Doppia progressione','Arrivi al top del range → la settimana dopo +2,5 kg. Esempio: range 8-10, chiudi 10, sali.'],
   'Superset':['Superset','Zero recupero tra l’esercizio A e il B. Dopo aver completato entrambi, 90 secondi, poi si ripete.'],
   'Pump':['Pump / RIR 4','Peso al 30-40% del normale. Conta solo la sensazione muscolare, mai il trapezio. Non si salta.'],
+  'Eccentrica lenta':['Eccentrica lenta','La discesa dura 4-5 secondi e la risalita si fa come si può — anche aiutandosi con le mani. Sul leg curl nordico è così che funziona: il femorale lavora frenando, ed è la parte che rende di più. Quando riesci a controllare la discesa completa su tutte le serie, aggiungi ripetizioni prima di aggiungere carico.'],
   'Allungamento':['Partial in allungamento','Finita l’ultima ripetizione completa, altre 3-5 ripetizioni parziali nella metà del movimento in cui il muscolo è allungato — la parte bassa. Solo sull’isolamento, solo sull’ultima serie, mai al posto del range completo. La meta-analisi di Wolf e colleghi (2023) dà i parziali in allungamento leggermente sopra il range completo; lo studio controllato del 2025 li dà pari. In nessuno dei due sono peggio: è un modo economico di allungare la serie oltre il cedimento.'],
   'Controllo':['Controllo','Esecuzione lenta e controllata, respirazione ritmica. Nessuna fretta, nessun cedimento.']
 };
@@ -1364,7 +1371,7 @@ const CONS_DISACCORDO = [
    'Dipende dall’esercizio, non dalla settimana. A cedimento dove costa poco — cavi, macchine, isolamento — e 1-2 ripetizioni di margine sui compound pesanti, dove sulla forza non guadagni niente e il conto in articolazioni, a 38 anni e con l’ernia, lo paghi tu.'],
   ['I parziali in allungamento',
    'Wolf li usa in modo sistematico e ha prodotto gran parte dei dati; Rabasco è sulla stessa linea. Helms e Nippard li considerano un extra modesto, con ancora pochi studi e differenze piccole.',
-   'Li ho messi come coda dell’ultima serie su due esercizi soli — croci ai cavi e curl su panca inclinata — e mai al posto del range completo. Se i prossimi studi li ridimensionano, non hai perso niente.']
+   'Li ho messi come coda dell’ultima serie su due esercizi soli — croci coi manubri e curl su panca inclinata — e mai al posto del range completo. Se i prossimi studi li ridimensionano, non hai perso niente.']
 ];
 const CONS_FONTI = [
   ['Pelland, Remmert, Robinson, Hinson, Zourdos', 'The Resistance Training Dose Response: meta-regressioni su volume e frequenza', 'Sports Medicine, 2025'],
@@ -1372,6 +1379,23 @@ const CONS_FONTI = [
   ['Gruppo Data Driven Strength', '“Is There Too Much of a Good Thing?”: volume per singola seduta', 'Meta-regressione, 2025'],
   ['Wolf, Androulakis Korakakis, Schoenfeld e colleghi', 'Parziali in allungamento contro range completo', 'Meta-analisi 2023 · studio controllato 2025'],
   ['Morton, Murphy, McKellar e colleghi', 'Proteine e massa magra: dose-risposta', 'British Journal of Sports Medicine, 2018']
+];
+
+/* ── ATTREZZATURA ───────────────────────────────────────────────────────────
+   Quello che c'e' davvero nella home gym. Le due schede sono costruite su
+   questa lista e su niente altro: e' l'informazione che mancava fino alla v18,
+   e che aveva fatto finire nel programma quattro esercizi non eseguibili. */
+const ATTREZZI = [
+  ['Rack, bilanciere, panca regolabile', 1, 'Panca piana e inclinata, military press, rematore Yates, stacco romeno, hip thrust'],
+  ['Manubri', 1, 'Panca inclinata, croci, curl in tutte le versioni, rematore a un braccio, leg curl sdraiato'],
+  ['Lat machine — carrucola alta', 1, 'Lat machine presa larga, push-down, face pull'],
+  ['Pulley basso — carrucola bassa', 1, 'Pulley basso presa neutra, alzate laterali ai cavi, curl ai cavi, curl hammer, tricipite overhead, pallof press'],
+  ['Pressa e hack squat, macchinario unico', 1, 'Hack squat piede basso e pressa piede alto: stessa macchina, una riconfigurazione a seduta'],
+  ['Sbarra per trazioni', 1, 'Trazioni zavorate'],
+  ['Parallele / dip station', 1, 'Dip verticale zavorra'],
+  ['Leg extension', 0, 'Sostituita dal sissy squat zavorrato'],
+  ['Leg curl, seduto o sdraiato a macchina', 0, 'Sostituito dal leg curl nordico e dal leg curl sdraiato coi manubri'],
+  ['Stazione a cavi con carrucola regolabile', 0, 'Le croci ai cavi sono diventate croci coi manubri su panca inclinata']
 ];
 
 const PRINCIPI = [
@@ -1460,14 +1484,14 @@ SESS.rc_push = { id:'rc_push', nome:'Push', gg:'Lunedì', durata:55, rivista:1,
     note:'Obiettivo del cut: carico stabile. Se cala per due settimane di fila, mangi poco o dormi poco.'}),
   e('Military press bilanciere','spalle',2,'6–8','RIR 1–2',210,{p:1,sv:{base:2,volplus:3,peak:3,deload:1},
     cue:'Core braced · gomiti davanti · espira salendo'}),
-  e('Croci ai cavi','petto',2,'10–12','RIR 0–1',105,{nuovo:1,sv:{base:2,volplus:2,peak:3,deload:1},
+  e('Croci manubri su panca inclinata','petto',2,'10–12','RIR 0–1',105,{nuovo:1,sv:{base:2,volplus:2,peak:3,deload:1},
     cue:'Gomiti morbidi e fermi · allunga bene in apertura',
     note:'Aggiunta: nel cut il petto stava a 2 serie a settimana, sotto la manutenzione.'}),
   e('Alzate laterali manubri','spalle',3,'12–15','+ Rest-pause ×2',105,{p:1,wm:1,sv:{base:3,volplus:3,peak:4,deload:1},
     cue:'Pronazione pollice · gomito guida · no trapezio · stop a 90°'}),
   e('Alzate posteriori / face pull','spalle',2,'15–20','+ Rest-pause',105,{p:1,sv:{base:2,volplus:2,peak:3,deload:1},
     cue:'Busto parallelo · gomiti verso il soffitto'}),
-  e('Tricipite overhead pulley','tricipiti',2,'12–15','+ Rest-pause',105,{p:1,wm:1,sv:{base:2,volplus:3,peak:3,deload:1},
+  e('Tricipite overhead — cavo o manubrio','tricipiti',2,'12–15','+ Rest-pause',105,{p:1,wm:1,sv:{base:2,volplus:3,peak:3,deload:1},
     cue:'Gomiti fermi sopra la testa · stretch massimo'})
 ]};
 SESS.rc_pull = { id:'rc_pull', nome:'Pull', gg:'Mercoledì', durata:55, rivista:1,
@@ -1483,20 +1507,20 @@ SESS.rc_pull = { id:'rc_pull', nome:'Pull', gg:'Mercoledì', durata:55, rivista:
     note:'Sostituisce il curl bilanciere 2×5-6 al cedimento: stesso volume, molto meno carico sul gomito.'}),
   e('Curl hammer manubri','bicipiti',2,'10–12','+ Drop set',105,{p:1,sv:{base:2,volplus:3,peak:3,deload:1},
     cue:'Presa neutra · alternato · gomiti fermi'}),
-  e('Leg curl seduto','femorali',2,'10–12','+ Rest-pause',105,{p:1,nuovo:1,sv:{base:2,volplus:2,peak:3,deload:1},
+  e('Leg curl nordico','femorali',2,'5–8','Eccentrica lenta',105,{nuovo:1,sv:{base:2,volplus:2,peak:3,deload:1},
     cue:'Anca flessa · schiena appoggiata · contrazione 1 sec',
     note:'Aggiunta: porta i femorali a 2 frequenze. Sicuro al 100% per l’ernia.'})
 ]};
 SESS.rc_legs = { id:'rc_legs', nome:'Legs', gg:'Venerdì', durata:60, rivista:1,
-  focus:'Quad: hack + leg extension · Femorali: RDL + leg curl · Gluteo · Calf · Core', ex:[
+  focus:'Quad: hack + sissy · Femorali: RDL + nordico · Gluteo · Calf · Core', ex:[
   e('Hack squat — piede basso','quad',2,'8–10','RIR 1–2',210,{ernia:1,sv:{base:2,volplus:3,peak:3,deload:1},
     cue:'Discesa 2–3 sec · ESPIRA nella salita · mai Valsalva'}),
   e('Romanian deadlift bilanciere','femorali',2,'8–10','RIR 1–2',210,{ernia:1,sv:{base:2,volplus:3,peak:3,deload:1},
     cue:'La barra scorre lungo la coscia · schiena neutra · espira salendo'}),
-  e('Leg extension','quad',2,'10–15','+ Rest-pause',105,{nuovo:1,sv:{base:2,volplus:3,peak:3,deload:1},
+  e('Sissy squat zavorrato','quad',2,'10–15','+ Rest-pause',105,{ernia:1,nuovo:1,sv:{base:2,volplus:3,peak:3,deload:1},
     cue:'Schiena appoggiata · contrai 1 sec in cima · eccentrica 3 sec',
     note:'Aggiunta: carica il quadricipite in progressione vera. Nessuna pressione addominale.'}),
-  e('Leg curl seduto','femorali',3,'12–15','+ Drop set',105,{p:1,sv:{base:3,volplus:3,peak:3,deload:1},
+  e('Leg curl sdraiato — manubri','femorali',3,'12–15','+ Drop set',105,{p:1,sv:{base:3,volplus:3,peak:3,deload:1},
     cue:'Anca flessa · range completo · stretch in basso'}),
   e('Pressa — piede alto e largo','gluteo',2,'10–12','+ Drop set',150,{sv:{base:2,volplus:3,peak:3,deload:1},
     cue:'Piedi molto in alto · spingi sui talloni'}),
@@ -1512,7 +1536,7 @@ SESS.rc_sab = { id:'rc_sab', nome:'Accessorio', gg:'Sabato', durata:35, opz:1, r
   e('Curl manubri alternati','bicipiti',3,'10–12','+ Drop set',105,{p:1,
     cue:'Supinazione totale in cima · gomiti fermi'}),
   e('Curl hammer manubri','bicipiti',2,'12','RIR 2',90,{cue:'Presa neutra · alternato'}),
-  e('Tricipite overhead pulley','tricipiti',3,'12–15','+ Rest-pause',0,{p:1,ss:'A',
+  e('Tricipite overhead — cavo o manubrio','tricipiti',3,'12–15','+ Rest-pause',0,{p:1,ss:'A',
     cue:'Gomiti fermi sopra la testa · stretch massimo'}),
   e('Tricipite push-down','tricipiti',2,'12–15','Superset',90,{ss:'A',
     cue:'Gomiti fermi ai fianchi · contrazione massima in basso'})
@@ -2945,8 +2969,8 @@ function renderPiano(){
             ? 'Sopra le '+SERIE_SEDUTA_MAX+' serie frazionali in una sola seduta: '+fuori.map(x => SESS[x.sid].nome+' — '+GRUPPI[x.g]+' '+nf(x.v,1)).join(', ')+'.'
             : 'Nessun gruppo supera le '+SERIE_SEDUTA_MAX+' serie frazionali in una singola seduta, che è il punto oltre il quale le serie aggiunte nella stessa sessione non mostrano più un vantaggio rilevabile. Il controllo è rifatto a ogni apertura.'}</span></div>
         <p class="tiny muted" style="margin:0">Durate: 5 sedute ${durA.join(', ')} min · 4 sedute ${durB.join(', ')} min.
-          Serie × (45 secondi di lavoro + recupero previsto), più mezzo minuto per la serie finale intensificata.
-          Riscaldamento e mobilità fuori dal conto.</p>
+          Serie × (45 secondi di lavoro + recupero previsto), 75 secondi per gli esercizi a un arto per volta,
+          più mezzo minuto per la serie finale intensificata. Riscaldamento e mobilità fuori dal conto.</p>
       </div>
     </div>
 
@@ -2985,13 +3009,14 @@ function renderPiano(){
         andare oltre, e il costo articolare a 38 anni con un’ernia lo paghi tu.</p>
       <p class="small" style="margin:0"><b>4. Ogni esercizio scelto per dove carica il muscolo, non per abitudine.</b>
         A parità di volume conta <em>dove</em> l’esercizio è più duro rispetto a dove il muscolo è allungato. Da qui le
-        alzate laterali ai cavi e non coi manubri, il curl su panca inclinata col braccio dietro il corpo, il leg curl
-        seduto con l’anca flessa, le croci ai cavi, il tricipite overhead, la pressa profonda a piede alto.</p>
+        alzate laterali dal pulley basso e non coi manubri, il curl su panca inclinata col braccio dietro il corpo, il leg curl
+        nordico in eccentrica lenta, le croci coi manubri su panca inclinata, il tricipite overhead, la pressa profonda
+        a piede alto, il sissy squat zavorrato.</p>
       <p class="small" style="margin:0"><b>5. Nessuna seduta sopra i 65 minuti.</b> È il vincolo che decide tutto il
         resto: quanti esercizi, quanti recuperi lunghi, quanti superset. Ogni volta che una seduta sfora, qualcosa esce
         o si accorcia — non si allunga la seduta.</p>
-      <p class="small" style="margin:0"><b>6. Costruite intorno all’ernia inguinale.</b> Hack squat, pressa e leg
-        extension al posto dello squat libero; espirazione nella salita e mai Valsalva sui carichi alti; il core è
+      <p class="small" style="margin:0"><b>6. Costruite intorno all’ernia inguinale.</b> Hack squat, sissy squat
+        e pressa al posto dello squat libero; espirazione nella salita e mai Valsalva sui carichi alti; il core è
         anti-rotazione (dead bug, pallof press) e non flessione con pressione addominale.</p>
       <p class="small" style="margin:0"><b>7. Doppia progressione, sempre la stessa.</b> Chiudi il top del range su
         tutte le serie → la volta dopo sali di carico. Niente percentuali da calcolare, niente test di massimale.</p>
@@ -3008,6 +3033,27 @@ function renderPiano(){
         schede. Le giornate che avevi registrato su quelle sedute continuano a leggersi, e lo storico dei carichi è
         legato al nome dell’esercizio.</span></div>
     </div></div>` ; })()}
+
+  <div class="card"><div class="hd"><h2>La tua attrezzatura</h2>
+    <span class="chip line sp">${ATTREZZI.filter(x => x[1]).length} su ${ATTREZZI.length}</span></div>
+    <div class="bd stack-s">
+      <p class="small muted" style="margin:0">Le due schede sono costruite su questa lista e su niente altro. Se
+        aggiungi o togli qualcosa in palestra, dimmelo: cambia la scelta degli esercizi, non il metodo.</p>
+      ${ATTREZZI.map(([nome, ce, uso]) => `<div class="row" style="gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px solid var(--line)">
+        <span style="color:${ce?'var(--good-text)':'var(--ink-4)'};flex:none;line-height:1.2">${ce ? ICO.check : '—'}</span>
+        <div><b class="small" style="${ce?'':'color:var(--ink-3)'}">${esc(nome)}</b>
+          <p class="tiny muted" style="margin:2px 0 0">${esc(uso)}</p></div>
+      </div>`).join('')}
+      <p class="tiny muted" style="margin:0">I tre esercizi in fondo non li hai, e le schede non li usano più. Le
+        sostituzioni non sono ripieghi: il sissy squat zavorrato fa lo stesso lavoro della leg extension col retto
+        femorale allungato, il nordico è la flessione del ginocchio più dura che esista senza macchina, e per le croci
+        il manubrio è più duro proprio in basso, dove il petto è allungato — che è la parte che conta.</p>
+      <div class="backup" style="background:var(--warn-soft);color:var(--warn-text)">${ICO.alert}
+        <span>Quello che <b>non</b> si recupera: il leg curl con l’anca flessa. Il nordico e il leg curl sdraiato
+        lavorano ad anca estesa, dove il capo lungo del femorale è più corto. Il lavoro in allungamento sul femorale
+        resta tutto sullo stacco romeno — per questo è rimasto pesante e in entrambe le sedute di gamba.</span></div>
+    </div>
+  </div>
 
   <div class="card"><div class="hd"><h2>Il consenso science-based</h2><span class="chip line sp">${CONS_FONTI.length} fonti</span></div>
     <div class="bd stack">
