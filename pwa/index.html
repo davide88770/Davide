@@ -15,7 +15,7 @@
 <link rel="apple-touch-icon" href="icone/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="192x192" href="icone/icona-192.png">
 <style>:root{color-scheme:light dark}*{box-sizing:border-box}body{margin:0}img{max-width:100%}</style>
-<script>window.__GG_BUILD='36c100ac29';</script>
+<script>window.__GG_BUILD='1e2796f1e8';</script>
 </head>
 <body>
 <style>
@@ -674,7 +674,7 @@ const VOL_MIN = 6;
    supera, lo dice. */
 const VOL_OBIETTIVO = {
   petto:9, tricipiti:9, bicipiti:9, dorso:9, trapezi:3, spalle:8,
-  quad:8, femorali:6, polpacci:4, core:6
+  quad:8, femorali:8, gluteo:3, polpacci:4, core:6
 };
 
 const VOL_PIANO = {
@@ -731,12 +731,15 @@ SESS.rv_pull = { id:'rv_pull', nome:'Pull', gg:'Martedì', durata:37, rivista:1,
     cue:'Due maniglie alte, braccia aperte a croce · porta le mani alle orecchie · squeeze 1 sec',
     note:'Il curl in accorciamento: l\'opposto del Bayesian.'})
 ]};
-SESS.rv_legs = { id:'rv_legs', nome:'Legs', gg:'Mercoledì', durata:40, rivista:1,
+SESS.rv_legs = { id:'rv_legs', nome:'Legs', gg:'Mercoledì', durata:49, rivista:1,
   focus:'Accosciata pesante · Femorali · Polpacci · Addome', ex:[
   e('Hack squat — piede basso','quad',3,'6–10','RIR 1–2',210,{ernia:1,
     cue:'Discesa 2–3 sec · fermo 1 sec in basso · ESPIRA nella salita · mai Valsalva'}),
   e('Romanian deadlift bilanciere','femorali',3,'8–10','RIR 1–2',210,{ernia:1,
     cue:'La barra scorre lungo la coscia · schiena neutra · espira salendo'}),
+  e('Hip thrust bilanciere','gluteo',3,'10–12','+ Rest-pause',120,{
+    cue:'Spalla sul bordo panca · spingi i talloni · squeeze in cima · iso 2"',
+    note:'L’unico lavoro diretto di gluteo del piano. La pressa profonda del sabato lo carica allungato, questo lo carica accorciato: i due si completano.'}),
   e('Calf raise in piedi','polpacci',2,'8–12','+ Rest-pause',120,{
     cue:'Ginocchio dritto · su un rialzo o un disco · pausa 2" in basso',note:'Gastrocnemio.'}),
   e('D’Annunzio crunch','core',3,'10–15','+ Rest-pause',120,{ernia:1,
@@ -761,7 +764,7 @@ SESS.rv_upper = { id:'rv_upper', nome:'Upper', gg:'Venerdì', durata:48, rivista
   e('Curl hammer — cavo basso','bicipiti',3,'10–12','Superset + Drop set',120,{p:1,ss:'A',
     cue:'Corda o presa neutra · gomiti fermi ai fianchi · niente oscillazione'})
 ]};
-SESS.rv_lower = { id:'rv_lower', nome:'Lower', gg:'Sabato', durata:43, rivista:1,
+SESS.rv_lower = { id:'rv_lower', nome:'Lower', gg:'Sabato', durata:49, rivista:1,
   focus:'Accosciata alla pressa · Quadricipiti · Femorali · Soleo · Addome', ex:[
   e('Pressa — piede alto e largo','quad',3,'8–12','+ Drop set',180,{
     cue:'Piedi molto in alto · spingi sui talloni · scendi profondo',
@@ -770,6 +773,9 @@ SESS.rv_lower = { id:'rv_lower', nome:'Lower', gg:'Sabato', durata:43, rivista:1
     cue:'Disco al petto · mano al montante per stabilizzarti · talloni alzati · eccentrica 3 sec'}),
   e('Leg curl nordico','femorali',3,'5–8','Eccentrica lenta',150,{
     cue:'Caviglie bloccate sotto il pad della lat machine · scendi in 4-5 sec tenendo anca e busto in linea'}),
+  e('Leg curl sdraiato — manubri','femorali',2,'12–15','+ Drop set',120,{p:1,
+    cue:'Prono sulla panca · manubrio stretto fra i piedi · non sollevare i fianchi · eccentrica 3 sec',
+    note:'La seconda dose di flessione del ginocchio: senza leg curl a macchina il femorale è il gruppo più scoperto, e con 2-3 serie per esercizio l’unico modo di alzarlo è aggiungerne uno.'}),
   e('Calf raise seduto — soleo','polpacci',2,'15–20','+ Rest-pause',120,{
     cue:'Ginocchio flesso 90° · pausa 2" in basso',note:'Soleo.'}),
   e('Crunch al cavo alto','core',3,'10–15','+ Rest-pause',120,{ernia:1,
@@ -782,7 +788,7 @@ SESS.rv_lower = { id:'rv_lower', nome:'Lower', gg:'Sabato', durata:43, rivista:1
    spalle, bicipiti e tricipiti a 6 invece di 8-9 — mentre dorso, trapezi,
    gambe, polpacci e addome restano identici alla scheda da 5. E' il prezzo di
    un giorno in meno, e si paga dove il lavoro indiretto e' piu' abbondante. */
-SESS.q_upperA = { id:'q_upperA', nome:'Upper A', gg:'Lunedì', durata:54, rivista:1, quattro:1,
+SESS.q_upperA = { id:'q_upperA', nome:'Upper A', gg:'Lunedì', durata:63, rivista:1, quattro:1,
   focus:'Spinta orizzontale · Tirata verticale · Trapezi · Braccia in allungamento', ex:[
   e('Panca piana bilanciere','petto',3,'5–8','RIR 1–2',210,{
     cue:'Presa 1,5× spalle · gomiti 45° · scapole retratte · fermo 1 sec in basso'}),
@@ -793,39 +799,46 @@ SESS.q_upperA = { id:'q_upperA', nome:'Upper A', gg:'Lunedì', durata:54, rivist
   e('Rematore manubri gomiti alti — trapezi','trapezi',3,'10–15','+ Rest-pause',120,{
     cue:'Panca a 30-40°, petto appoggiato · presa larga · gomiti ALTI · squeeze delle scapole 1 sec',
     note:'L\'unico rematore della giornata.'}),
+  e('Pullover ai cavi — carrucola alta','dorso',3,'10–12','+ Rest-pause',120,{
+    cue:'In piedi davanti alla lat machine, corda o barra · braccia quasi tese · porta giù verso le cosce solo ruotando la spalla · allunga bene in cima',
+    note:'La terza dose di dorso, e non è una tirata in più: qui il gran dorsale lavora senza che il gomito fletta, e la tensione massima cade dove il muscolo è allungato.'}),
   e('French press ai cavi — overhead','tricipiti',3,'10–12','Superset',0,{p:1,ss:'A',
     cue:'Corda alla carrucola bassa, di spalle · gomiti fermi sopra la testa · stretch massimo'}),
   e('Curl ai cavi dietro il corpo — Bayesian','bicipiti',3,'8–12','Superset + Drop set',120,{p:1,ss:'A',
     cue:'Carrucola bassa, braccio dietro la linea del corpo · gomito fermo · eccentrica 3 sec'})
 ]};
-SESS.q_lowerA = { id:'q_lowerA', nome:'Lower A', gg:'Martedì', durata:40, rivista:1, quattro:1,
+SESS.q_lowerA = { id:'q_lowerA', nome:'Lower A', gg:'Martedì', durata:49, rivista:1, quattro:1,
   focus:'Accosciata pesante · Femorali · Polpacci · Addome', ex:[
   e('Hack squat — piede basso','quad',3,'6–10','RIR 1–2',210,{ernia:1,
     cue:'Discesa 2–3 sec · fermo 1 sec in basso · ESPIRA nella salita · mai Valsalva'}),
   e('Romanian deadlift bilanciere','femorali',3,'8–10','RIR 1–2',210,{ernia:1,
     cue:'La barra scorre lungo la coscia · schiena neutra · espira salendo'}),
+  e('Hip thrust bilanciere','gluteo',3,'10–12','+ Rest-pause',120,{
+    cue:'Spalla sul bordo panca · spingi i talloni · squeeze in cima · iso 2"',
+    note:'L’unico lavoro diretto di gluteo del piano.'}),
   e('Calf raise in piedi','polpacci',2,'8–12','+ Rest-pause',120,{
     cue:'Ginocchio dritto · su un rialzo · pausa 2" in basso'}),
   e('D’Annunzio crunch','core',3,'10–15','+ Rest-pause',120,{ernia:1,
     cue:'Sdraiato sulla lat machine, gambe sotto il pad · busto oltre l’appoggio · eccentrica 3 sec · ESPIRA salendo'})
 ]};
 SESS.q_upperB = { id:'q_upperB', nome:'Upper B', gg:'Giovedì', durata:49, rivista:1, quattro:1,
-  focus:'Tirata orizzontale · Spinta inclinata · Braccia in accorciamento', ex:[
-  e('Rematore manubri — busto appoggiato','dorso',3,'8–12','+ Rest-pause',150,{
-    cue:'Panca inclinata a 30-40° · petto appoggiato · tira i gomiti indietro lungo i fianchi',
-    note:'L\'unico rematore della giornata.'}),
+  focus:'Spinta inclinata · Tirata orizzontale · Braccia in accorciamento', ex:[
   e('Panca inclinata manubri','petto',3,'8–12','+ Drop set',150,{
-    cue:'Angolo 30° · scendi fino allo stretch completo · pausa 1 sec'}),
-  e('Pullover ai cavi — carrucola alta','dorso',3,'10–12','+ Rest-pause',120,{
-    cue:'In piedi davanti alla lat machine · braccia quasi tese · porta giù verso le cosce ruotando la spalla · allunga in cima'}),
+    cue:'Angolo 30° · gomiti 60–70° · scendi fino allo stretch completo · pausa 1 sec'}),
+  e('Pulley basso — presa neutra','dorso',3,'10–12','+ Rest-pause',150,{
+    cue:'Busto fermo · gomiti indietro lungo i fianchi · allunga in avanti senza curvare · tirata in linea con le fibre',
+    note:'La tirata orizzontale, e l’unica tirata della giornata: quella verticale sta di lunedì.'}),
+  e('Croci manubri su panca inclinata','petto',3,'10–12','RIR 0–1 + Allungamento',120,{p:1,
+    cue:'Panca a 30° · scendi fino allo stretto sul petto · FERMATI prima di chiudere in alto'}),
   e('Alzate laterali ai cavi','spalle',3,'12–15','+ Rest-pause ×2',90,{p:1,wm:1,uni:1,
     cue:'Cavo basso dal lato opposto · gomito guida · stop a 90°'}),
-  e('Dip verticale zavorra','tricipiti',3,'8–10','Superset + Myo-reps',0,{p:1,ss:'B',
-    cue:'Busto verticale · gomiti vicini al corpo · range completo'}),
+  e('Tricipite push-down','tricipiti',3,'10–12','Superset + Drop set',0,{p:1,ss:'B',
+    cue:'Gomiti fermi ai fianchi · contrazione massima in basso · subito dopo, senza recupero, il curl',
+    note:'La dose in accorciamento del tricipite: il french press del lunedì è l’altro estremo.'}),
   e('Curl ai cavi — carrucola alta','bicipiti',3,'10–15','Superset',120,{p:1,ss:'B',
     cue:'Due maniglie alte, braccia aperte a croce · porta le mani alle orecchie · squeeze 1 sec'})
 ]};
-SESS.q_lowerB = { id:'q_lowerB', nome:'Lower B', gg:'Sabato', durata:43, rivista:1, quattro:1,
+SESS.q_lowerB = { id:'q_lowerB', nome:'Lower B', gg:'Venerdì', durata:49, rivista:1, quattro:1,
   focus:'Accosciata alla pressa · Quadricipiti · Femorali · Soleo · Addome', ex:[
   e('Pressa — piede alto e largo','quad',3,'8–12','+ Drop set',180,{
     cue:'Piedi molto in alto · scendi profondo · spingi sui talloni'}),
@@ -833,14 +846,16 @@ SESS.q_lowerB = { id:'q_lowerB', nome:'Lower B', gg:'Sabato', durata:43, rivista
     cue:'Disco al petto · mano al montante · talloni alzati · eccentrica 3 sec'}),
   e('Leg curl nordico','femorali',3,'5–8','Eccentrica lenta',150,{
     cue:'Caviglie sotto il pad della lat machine · discesa 4-5 sec'}),
+  e('Leg curl sdraiato — manubri','femorali',2,'12–15','+ Drop set',120,{p:1,
+    cue:'Prono sulla panca · manubrio stretto fra i piedi · non sollevare i fianchi · eccentrica 3 sec'}),
   e('Calf raise seduto — soleo','polpacci',2,'15–20','+ Rest-pause',120,{
     cue:'Ginocchio flesso 90° · pausa 2" in basso'}),
   e('Crunch al cavo alto','core',3,'10–15','+ Rest-pause',120,{ernia:1,
     cue:'In ginocchio sotto la carrucola alta, corda dietro la nuca · arrotola il busto · ESPIRA chiudendo'})
 ]};
 
-/* Lun Upper A · Mar Lower A · Gio Upper B · Sab Lower B. Tre giorni liberi. */
-const GIORNI_RIVISTI_4 = {1:'q_upperA',2:'q_lowerA',4:'q_upperB',6:'q_lowerB'};
+/* Lun Upper A · Mar Lower A · Gio Upper B · Ven Lower B. Mercoledi', sabato e domenica liberi. */
+const GIORNI_RIVISTI_4 = {1:'q_upperA',2:'q_lowerA',4:'q_upperB',5:'q_lowerB'};
 
 /* Lun Push · Mar Pull · Mer Legs · Gio riposo · Ven Upper · Sab Lower · Dom riposo.
    Ogni gruppo muscolare due volte a settimana, senza sedute opzionali. */
@@ -1346,7 +1361,7 @@ const CONS_FONTI = [
 /* Versione dell'app. Serve a sapere, dal telefono, se quello che hai davanti e'
    l'ultima versione: la PWA installata puo' restare indietro se iOS non rifa'
    la navigazione. Il numero si alza a ogni pubblicazione. */
-const VERSIONE = { n:'v28', data:'19 agosto 2026', nota:'Un rematore per giornata, gambe pulite' };
+const VERSIONE = { n:'v29', data:'19 agosto 2026', nota:'Gambe più piene, Lower B al venerdì' };
 
 const ATTREZZI = [
   ['Rack, bilanciere, panca regolabile', 1, 'Panca piana e inclinata, military press, rematore Yates, stacco romeno, hip thrust'],
@@ -2923,9 +2938,9 @@ function renderPiano(){
         ${['petto','dorso','trapezi','spalle','bicipiti','tricipiti','quad','femorali','gluteo','polpacci','core'].map(riga).join('')}
         <p class="tiny muted" style="margin:0">Serie <b>dirette</b> a settimana, contro il volume di riferimento.
           Verde quando il numero è quello, rosso sotto. La scheda da <b>5 sedute lo centra tutto</b>. Quella da 4 tiene
-          identici dorso, trapezi, gambe, polpacci e addome, e scende su petto, spalle e braccia: con due sole sedute di
-          parte alta, e senza mettere le braccia nelle giornate di gambe, non c’è modo di tenerle su. È il prezzo di un
-          giorno in meno, e si paga dove il lavoro indiretto è più abbondante.</p>
+          identici petto, dorso, trapezi, gambe, polpacci e addome, e scende solo su spalle e braccia: con due sole
+          sedute di parte alta, e senza mettere le braccia nelle giornate di gambe, non c’è modo di tenerle su. È il
+          prezzo di un giorno in meno, e si paga dove il lavoro indiretto è più abbondante.</p>
         <div class="backup" style="background:${fuori.length?'var(--warn-soft)':'var(--good-soft)'};color:${fuori.length?'var(--warn-text)':'var(--good-text)'}">${fuori.length ? ICO.alert : ICO.check}
           <span>${fuori.length
             ? 'Sopra le '+SERIE_SEDUTA_MAX+' serie frazionali in una sola seduta: '+fuori.map(x => SESS[x.sid].nome+' — '+GRUPPI[x.g]+' '+nf(x.v,1)).join(', ')+'.'
