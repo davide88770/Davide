@@ -109,201 +109,72 @@ scritta anche dentro l'app, in fondo alla sezione Piano):
 
 ## Le due schede
 
-Dalla v17 l'app contiene **due programmazioni e nessun'altra**: la **5 sedute** e
-la **4 sedute**. Il piano di partenza e la variante Push/Pull/Legs + full body
-sono stati tolti — la richiesta era avere solo le migliori, e tenere quattro
-opzioni significava tenerne due che non avrei consigliato.
+Dalla v26 il **volume settimanale è fissato da Davide**, in serie dirette, e le
+schede partono da lì:
+
+| Gruppo | Obiettivo | 5 sedute | 4 sedute |
+|---|---|---|---|
+| Petto | 8 | **8** | 6 |
+| Dorso | 8 | **8** | 6 |
+| Trapezi | 4 | **4** | **4** |
+| Spalle | 8 | **8** | **8** |
+| Bicipiti | 10 | **10** | 8 |
+| Tricipiti | 10 | **10** | 8 |
+| Accosciata | 8 | **8** | **8** |
+| Femorali | 5 | **5** | **5** |
+| Polpacci | 3 | **3** | **3** |
+| Addome | — | 6 | 6 |
+| **Totale** | **64** | **70** | **62** |
+
+**La scheda da 5 sedute li centra tutti.** Quella da 4 sta due serie sotto su
+petto, dorso, bicipiti e tricipiti: con due sole sedute di parte alta, 48 serie
+non ci stanno in sette-otto esercizi a seduta senza sforare i tempi. Gambe,
+polpacci, trapezi e addome sono identici nelle due.
 
 | | 5 sedute | 4 sedute |
 |---|---|---|
 | Giorni | Lun Push · Mar Pull · Mer Legs · Ven Upper · Sab Lower | Lun Upper A · Mar Lower A · Gio Upper B · Sab Lower B |
-| Liberi | Giovedì, domenica | Mercoledì, venerdì, domenica |
-| Serie dirette | 86 | 70 |
-| Durate | 64, 58, 51, 50, 51 min | 59, 51, 59, 51 min |
+| Esercizi per seduta | 4-8 | 4-8 |
+| Durate | 56, 44, 43, 43, 34 min | 60, 43, 51, 34 min |
 
-Serie **frazionali** a settimana (dirette + metà delle indirette), che è come le
-conta l'app:
+### Le regole
 
-| Gruppo | 5 sedute | 4 sedute | Freq. |
-|---|---|---|---|
-| Spalle | 16,5 | 13,0 | 3× / 2× |
-| Bicipiti | 16,5 | 10,5 | 2× |
-| Dorso | 15,0 | 9,0 | 2× |
-| Tricipiti | 13,5 | 10,5 | 2× |
-| Petto | 10,5 | 9,0 | 2× |
-| Femorali | 10,5 | 10,5 | 2× |
-| Gluteo | 9,0 | 9,0 | 2× |
-| Quadricipiti | 7,5 | 7,5 | 2× |
-| Polpacci | 6,0 | 6,0 | 2× |
-| Core | 5,0 | 3,0 | 2× / 1× |
-| Polpacci | 8,0 | 8,0 | 3× / 2× |
-| Core | 4,0 | 2,0 | 2× / 1× |
+0. **Il volume settimanale è fissato, non dedotto.** Tutto il resto — quanti
+   esercizi, come si dividono, quanto dura una seduta — è una conseguenza.
+1. **Massimo 3 serie per esercizio.** Il volume si alza aggiungendo esercizi.
+2. **RIR 0-2** su tutto quello che si allena davvero.
+3. **Stabilità**: dove serve equilibrio il sistema nervoso frena l'output sul
+   muscolo bersaglio. Macchine e cavi non sono un ripiego.
+4. **Carico massimo dove il muscolo è lungo**, senza punti morti.
+5. **Una dose in allungamento e una in accorciamento sulle braccia.** Bicipite:
+   curl ai cavi dietro il corpo + curl alla carrucola alta. Tricipite: french
+   press overhead + push-down.
+6. **Una tirata verticale e una orizzontale.** Verticale: lat machine
+   unilaterale con maniglia. Orizzontale: rematore coi manubri a busto
+   appoggiato.
+7. **Recuperi da 2 a 3 minuti.**
+8. **Frequenza 2×** per ogni gruppo.
+9. **Progressione in tre passi**: tecnica e fermo in allungamento → ripetizioni
+   → carico.
+10. **Costruite intorno all'ernia inguinale**: niente squat libero né spinte
+    sopra la testa in piedi.
 
-**Le gambe sono identiche nelle due schede.** Quello che si perde passando a
-quattro sedute è tutto sulla parte alta, e soprattutto sulle braccia. È una
-scelta: il quadricipite e il gluteo hanno una sola fonte indiretta e poco
-generosa, le braccia ne hanno una a ogni spinta e a ogni tirata.
+### Cosa è cambiato nella v26
 
-### Le due sedute di gambe
-
-Erano quasi la stessa seduta — hack squat, pressa e sissy squat in tutte e due —
-e il mercoledì teneva insieme i tre esercizi più pesanti del piano. Un primo giro
-le ha separate, ma ci aveva lasciato **due posizioni della pressa di fila** il
-sabato: una scorciatoia logistica (la macchina è già impostata), non una scelta
-di allenamento. Rifatte per **funzione**:
-
-| | Mercoledì · Legs | Sabato · Lower |
-|---|---|---|
-| Tema | **Quadricipite**, su tre livelli | **Catena posteriore** |
-| Il pesante | Hack squat 3 × 6-10, RIR 1-2 | Stacco romeno 3 × 8-10, RIR 1-2 |
-| Secondo | Split squat bulgaro 3 × 8-10 per gamba | Pressa piede alto e largo 3 × 8-12 |
-| Isolamento | Sissy squat zavorrato 3 × 10-15, a cedimento | Leg curl nordico 3 × 5-8 · Hip thrust 3 × 10-12 |
-| Polpacci | Calf in piedi 5 (gastrocnemio) | Calf seduto 3 (soleo) |
-| Core | Dead bug 2 | — |
-| **Serie** | **16** | **15** |
-| **Durata** | **47 min** | **47 min** |
-
-Il **split squat bulgaro** è la novità e copriva un buco vero: è l'unico
-esercizio unilaterale del piano, carica quadricipite e gluteo in allungamento
-con metà del peso sulla schiena e senza pressione addominale — quindi è anche il
-più sicuro dei tre pesanti per l'ernia.
-
-Alla pressa si usa **una sola posizione dei piedi, una volta sola**. Il
-quadricipite la sua giornata ce l'ha già il mercoledì; il gluteo la sua il
-sabato.
-
-### Le due sedute di parte alta
-
-L'Upper B della scheda da 4 aveva **dieci esercizi**, e l'Upper A quattro
-compound pesanti di fila — panca, trazioni, military, rematore: lo stesso
-errore delle gambe, con due distensioni massimali nella stessa seduta e la
-seconda fatta già stanchi.
-
-Adesso le due sedute si dividono **per schema motorio**, che è il modo pulito
-di ottenere la frequenza 2× senza ripetere niente:
-
-| | Lunedì · Upper A | Giovedì · Upper B |
-|---|---|---|
-| Schema | Spinta **orizzontale** · tirata **verticale** | Spinta **verticale** · tirata **orizzontale** |
-| Pesante di spinta | Panca piana 3 × 5-8 | Military press manubri seduto 3 × 6-8 |
-| Tirata | Trazioni zavorate 3 × 5-8 | Rematore manubri a busto appoggiato 3 × 8-12 |
-| Petto | Croci manubri inclinata 3, a cedimento | Panca inclinata manubri 3 |
-| Dorso | — | Pulley basso 4 |
-| Spalle | Alzate laterali ai cavi 3 | Face pull alla lat machine 2 |
-| Braccia | Curl inclinata 3 + tricipite overhead 3, in superset | Curl hammer 3 + dip 3, in superset |
-| **Esercizi** | **6** (erano 7) | **7** (erano 10) |
-| **Serie** | **18** (erano 21) | **21** (erano 26) |
-| **Durata** | **49 min** | **57 min** |
-
-Cosa è uscito e perché:
-
-- **Push-down** dall'Upper B: era la terza dose settimanale di tricipite, sullo
-  stesso schema del dip e senza allungamento.
-- La **quarta serie di schiena** è andata sul pulley basso e non sul rematore:
-  costa meno dove il carico è più leggero, e la schiena resta l'unico gruppo
-  senza nessuna fonte indiretta.
-- Nella scheda da 5 sedute, il **secondo curl a martello** dell'Upper: fra Pull
-  e Upper il bicipite riceveva quattro esercizi diversi a settimana, adesso tre,
-  tutti portati a cedimento. L'Upper scende da 8 a 7 esercizi e da 24 a 20
-  serie.
-
-Le braccia restano in **superset antagonista** — bicipite e tricipite non si
-rubano niente e si risparmiano sei minuti — e in tutte e due le sedute partono
-dall'esercizio che le carica allungate.
-
-### La passata biomeccanica sulla selezione
-
-Il criterio è uno solo: **dove il carico è massimo rispetto a dove il muscolo è
-lungo**. Tre esercizi non lo rispettavano.
-
-| Prima | Adesso | Perché |
-|---|---|---|
-| Rematore bilanciere — Yates | **Rematore manubri a busto appoggiato** | Col bilanciere a busto flesso il limite lo mette la schiena bassa, non il dorso, e proprio in fondo — dove il dorso è allungato — il carico cala. Col petto sulla panca inclinata la schiena non entra in gioco, il range è pieno e il punto più duro resta dove serve |
-| Alzate posteriori manubri | **Face pull alla lat machine** | Col manubrio, in basso, il braccio è appeso: il deltoide posteriore non ha carico proprio dov'è allungato. Col cavo la tensione c'è in tutto il range |
-| Military press bilanciere, in piedi | **Military press manubri, seduto** | La spinta sopra la testa in piedi è il gesto che alza di più la pressione addominale, ed è il primo da togliere con un'ernia inguinale. In più i manubri scendono più in basso, dove il deltoide è allungato |
-
-Il resto della selezione regge l'esame: le trazioni sono più dure in basso, dove
-il dorso è lungo; l'hack squat e lo stacco romeno caricano al massimo nel punto
-di massimo allungamento; il nordico ha il braccio di leva più lungo proprio a
-ginocchio esteso; le croci coi manubri e il sissy squat sono più duri in fondo.
-
-**Quello che non c'è qui dentro**: i contenuti specifici della masterclass di
-Noha Rabasco. Da questa sessione YouTube non è raggiungibile e non esistono
-trascrizioni pubbliche affidabili, quindi la passata è fatta sui principi di
-biomeccanica applicata — che è il suo terreno — ma senza attribuirgli posizioni
-che non ho potuto verificare.
-
-### Riscritta sui principi della masterclass
-
-Il riassunto della masterclass di Noha Rabasco ha fatto emergere **cinque
-divergenze**, due delle quali erano decisioni prese nei giri precedenti.
-
-| Punto della masterclass | Cosa c'era | Cosa c'è adesso |
-|---|---|---|
-| **Stabilità**: dove serve equilibrio il sistema nervoso frena l'output sul muscolo bersaglio; affondi e simili sono da evitare | Split squat bulgaro, aggiunto due giri fa | **Tolto**. Il quadricipite pesante è tutto su hack squat e pressa, guidati |
-| **Frequenza 2×**: la monofrequenza obbliga a stipare troppe serie in un giorno e dalla quinta in poi la prestazione crolla | Gambe accorpate in due giornate monotematiche, quindi **1×** per quad, femorali e gluteo | **2× per tutti**, senza ripetere esercizi: hack + nordico + hip thrust il primo giorno, pressa + stacco + sissy il secondo |
-| **Punti morti**: il carico non deve azzerarsi dove il muscolo è allungato | Curl manubri su panca inclinata (in basso il braccio è appeso, carico zero) | **Curl ai cavi dietro il corpo (Bayesian)** |
-| **Recuperi 2-3 minuti** | Isolamento a 105 s, alcuni a 60-90 s | **120-150 s** sull'isolamento, 180-210 s sui compound |
-| **Deload a intensità invariata** | −40% serie e RIR 3-4 | −40% serie, **carico invariato, RIR 2**: si toglie volume, non intensità |
-
-Confermato invece quello che c'era già: panca col bilanciere (più stabile dei
-manubri), rematore col petto appoggiato, military da seduto, face pull ai cavi,
-laterali ai cavi, french press ai cavi, hack squat e pressa guidati, stacco
-romeno e nordico per gli ischiocrurali, sissy squat al posto della leg
-extension che non c'è.
-
-**Una ripetizione voluta.** Le alzate laterali ai cavi compaiono in due sedute,
-in tutte e due le schede. La regola della frequenza doppia dice di dividere il
-volume di un muscolo su due giorni, e ai cavi è l'unica versione senza punto
-morto in basso: ripetere il migliore vale più che usarne uno peggiore per non
-ripetersi.
-
-**Dove la masterclass e le meta-analisi non concordano.** Il video parla di
-curva a U rovesciata sul volume — oltre un certo punto le serie in più diventano
-*junk volume* e fanno danno. La meta-regressione più grande (Pelland 2025) trova
-una curva che sale sempre, con rendimento sempre più basso ma senza scendere. Su
-questo piano non cambia niente: a questi volumi la serie in più o rende
-pochissimo o fa danno, e in nessuno dei due casi conviene aggiungerla.
-
-### Due o tre serie per esercizio, e mai in accorciamento
-
-Tre correzioni arrivate dagli appunti sulla masterclass.
-
-**1. Massimo 3 serie per esercizio.** Ce n'erano diversi a 4. Il volume si alza
-aggiungendo un esercizio, non serie allo stesso: dalla quarta o quinta serie
-consecutiva sullo stesso movimento la tensione è già scesa e quelle serie non
-allenano. Conseguenza diretta: il femorale, che era il gruppo più scoperto, non
-si è alzato mettendo una serie in più ma **aggiungendo il leg curl sdraiato coi
-manubri** — da 7,5 a 10,5 serie frazionali.
-
-**2. In allungamento, non in accorciamento.** Sono usciti gli ultimi due
-esercizi che caricavano dove il muscolo è corto:
-
-| Fuori | Dentro | Perché |
-|---|---|---|
-| Tricipite push-down | **French press manubri su panca inclinata** | Col gomito lungo il fianco il tricipite lavora accorciato. Dietro la testa il capo lungo parte allungato |
-| Curl ai cavi in piedi | **Preacher curl manubri** | Sul preacher il punto più duro è in basso, col bicipite disteso |
-
-L'unico rimasto in accorciamento è l'**hip thrust**, e resta perché il gluteo
-l'altra dose ce l'ha già in allungamento con la pressa profonda: le due si
-completano invece di sovrapporsi.
-
-**3. L'addome è un muscolo come gli altri.** Niente centinaia di ripetizioni,
-niente circuiti: **D'Annunzio crunch**, 3 × 10-15 con eccentrica di tre secondi e
-recupero pieno, sovraccaricabile con un disco sul petto. Si fa sulla lat machine,
-gambe bloccate sotto il pad, col busto che scende oltre l'appoggio — il crunch
-normale lavora solo in accorciamento e senza eccentrica. Ha preso il posto del
-dead bug.
-
-> Con l'ernia inguinale è l'unico esercizio del piano che alza la pressione
-> addominale. Si espira sempre salendo, si parte a corpo libero, e il disco si
-> aggiunge solo se non tira sull'inguine.
-
-**Quello che l'attrezzatura non permette di risolvere**: il quadricipite resta a
-7,5 serie frazionali. Con il tetto di 3 serie per esercizio servono tre esercizi
-di quadricipite, e in casa ce ne sono due e mezzo — hack squat, sissy squat e la
-pressa, che però è la stessa macchina dell'hack e sta nell'altra giornata. Una
-leg extension è il primo attrezzo che cambierebbe i numeri.
+- **Face pull → lat machine unilaterale con maniglia.** Un braccio per volta: il
+  range è più ampio e la scapola sale davvero, cosa che con la barra a due mani
+  non succede.
+- **Trapezi**, gruppo nuovo: scrollate coi manubri, 4 serie a settimana.
+- **Dead bug e pallof press → crunch al cavo alto**, che affianca il D'Annunzio
+  crunch. L'addome è allenato come ogni altro muscolo: carico progressivo,
+  eccentrica controllata, recupero pieno.
+- **Curl: uno in allungamento e uno in accorciamento** (Bayesian + carrucola
+  alta). Stessa cosa sul tricipite (french press + push-down).
+- **La pressa conta come accosciata**, non come gluteo: è lo stesso schema
+  dell'hack squat, e il gluteo ne prende mezza serie a testa.
+- **Hip thrust, split squat bulgaro e leg curl sdraiato fuori**: il volume
+  fissato non lascia spazio, e le gambe lo prendono dalla accosciata, dallo
+  stacco romeno e dal nordico.
 
 ### Serie dirette e frazionali
 
@@ -326,22 +197,6 @@ La meta-regressione sul volume **per singola seduta** (2025) colloca intorno a
 in più sullo stesso muscolo non mostrano un vantaggio rilevabile. L'app lo
 controlla a ogni apertura e lo dice in chiaro nella scheda Programmazione.
 Entrambe le schede sono sotto soglia su tutti i gruppi.
-
-### Cosa è cambiato nella v17
-
-Il **dorso** era il gruppo peggio servito e l'unico senza nessuna fonte
-indiretta; il **bicipite** era il più servito di tutti, nel punto in cui la curva
-del volume è piatta. Il volume si è spostato dal secondo al primo:
-
-| | Prima | Dopo | Come |
-|---|---|---|---|
-| Dorso, 5 sedute | 12,0 | **15,0** | Il terzo curl dell'Upper diventa un rematore con manubrio |
-| Dorso, 4 sedute | 8,0 | **12,0** | Pulley basso nell'Upper B, +1 serie di rematore nell'Upper A, −1 di alzate laterali |
-| Bicipiti, 5 sedute | 20,0 | 18,5 | Conseguenza dello scambio: resta il secondo gruppo più servito |
-| Polpacci | 6,0 | **8,0** | +2 serie in entrambe, nella seduta con più margine |
-| Core, 5 sedute | 2,0 (1×) | **4,0 (2×)** | Pallof press nel Push: anti-rotazione, sicuro con l'ernia |
-
-Le sedute restano tutte fra 57 e 63 minuti.
 
 ### Le sedute archiviate
 
@@ -650,6 +505,14 @@ npm run prova:pwa                                # giro di aggiornamento dell'ap
 
 ## Storico
 
+- **v26** — **volume settimanale su misura**: petto 8, tricipiti 10, bicipiti 10,
+  dorso 8, trapezi 4, spalle 8, accosciata 8, femorali 5, polpacci 3. La scheda
+  da 5 sedute li centra tutti; quella da 4 sta due serie sotto su petto, dorso e
+  braccia, perché 48 serie di parte alta non stanno in due sedute. Face pull →
+  lat machine unilaterale con maniglia; nuovo gruppo **trapezi** con le
+  scrollate; addome tutto a crunch caricati (D'Annunzio + cavo alto); un curl in
+  allungamento e uno in accorciamento, e lo stesso sul tricipite; una tirata
+  verticale e una orizzontale.
 - **v25** — tre correzioni dagli appunti sulla masterclass. **Massimo 3 serie per
   esercizio** (ce n'erano a 4): il volume si alza aggiungendo esercizi, non
   serie, e infatti il femorale è passato da 7,5 a 10,5 serie frazionali con il
