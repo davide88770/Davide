@@ -111,39 +111,38 @@ scritta anche dentro l'app, in fondo alla sezione Piano):
 
 | Gruppo | Riferimento | 5 sedute | 4 sedute |
 |---|---|---|---|
-| Petto | 9 | **9** | 6 |
+| Petto | 9 | **9** | **9** |
 | Dorso | 9 | **9** | **9** |
 | Bicipiti | 9 | **9** | 6 |
 | Tricipiti | 9 | **9** | 6 |
 | Spalle | 8 | **8** | 6 |
 | Accosciata | 8 | **8** | **8** |
-| Femorali | 6 | **6** | **6** |
+| Femorali | 8 | **8** | **8** |
 | Polpacci | 4 | **4** | **4** |
 | Trapezi | 3 | **3** | **3** |
+| Gluteo | 3 | **3** | **3** |
 | Addome | 6 | **6** | **6** |
-| **Totale** | **71** | **71** | **60** |
+| **Totale** | **76** | **76** | **68** |
 
-La scheda da 5 centra tutto. Quella da 4 tiene identici **dorso, trapezi,
-gambe, polpacci e addome**, e scende su petto, spalle e braccia: con due sole
-sedute di parte alta, e senza infilare le braccia nelle giornate di gambe, non
-c'è modo di tenerle su. È il prezzo di un giorno in meno, e si paga dove il
-lavoro indiretto è più abbondante.
+La scheda da 5 centra tutto. Quella da 4 tiene identici **petto, dorso, trapezi,
+gambe, gluteo, polpacci e addome**, e scende solo su spalle e braccia: con due
+sole sedute di parte alta, e senza infilare le braccia nelle giornate di gambe,
+non c'è modo di tenerle su.
 
 | | 5 sedute | 4 sedute |
 |---|---|---|
-| Giorni | Lun Push · Mar Pull · Mer Legs · Ven Upper · Sab Lower | Lun Upper A · Mar Lower A · Gio Upper B · Sab Lower B |
-| Esercizi per seduta | 4-6 | 4-6 |
-| Serie per seduta | 11-18 | 11-18 |
-| Durate | 58, 37, 40, 48, 43 min | 54, 40, 49, 43 min |
+| Giorni | Lun Push · Mar Pull · Mer Legs · Ven Upper · Sab Lower | Lun Upper A · Mar Lower A · Gio Upper B · **Ven Lower B** |
+| Liberi | Giovedì, domenica | Mercoledì, sabato, domenica |
+| Esercizi per seduta | 4-6 | 5-7 |
+| Durate | 58, 37, 49, 48, 49 min | 63, 49, 49, 49 min |
 
 ### Le regole
 
 0. **Il volume settimanale è il punto di partenza.** Tutto il resto è una
    conseguenza.
-1. **Un solo rematore per giornata**, e **nelle sedute di gamba solo gambe.**
-   Due rematori nello stesso giorno sono lo stesso movimento fatto due volte
-   sulla stessa panca; l'isolamento di braccia in coda a una seduta di gambe è
-   un riempitivo.
+1. **Una sola tirata orizzontale per giornata**, e **nelle sedute di gamba solo
+   gambe.** Due rematori nello stesso giorno sono lo stesso movimento fatto due
+   volte; l'isolamento di braccia in coda a una seduta di gambe è un riempitivo.
 2. **Massimo 3 serie per esercizio.** Il volume si alza aggiungendo esercizi.
 3. **RIR 0-2** su tutto quello che si allena davvero.
 4. **Stabilità**: dove serve equilibrio il sistema nervoso frena l'output sul
@@ -152,23 +151,40 @@ lavoro indiretto è più abbondante.
 6. **Una dose in allungamento e una in accorciamento sulle braccia.**
 7. **Una tirata verticale e una orizzontale.**
 8. **Recuperi da 2 a 3 minuti.**
-9. **Frequenza 2×** per ogni gruppo (i trapezi 1×).
+9. **Frequenza 2×** per ogni gruppo (trapezi e gluteo 1×).
 10. **Progressione in tre passi**: tecnica e fermo in allungamento →
     ripetizioni → carico.
 11. **Costruite intorno all'ernia inguinale.**
 
+### Le gambe
+
+Identiche nelle due schede, due sedute a testa:
+
+| | Primo giorno | Secondo giorno |
+|---|---|---|
+| Accosciata | Hack squat 3 | Pressa piede alto 3 · Sissy squat 2 |
+| Femorali | Stacco romeno 3 | Leg curl nordico 3 · Leg curl sdraiato 2 |
+| Gluteo | Hip thrust 3 | — |
+| Polpacci | Calf in piedi 2 | Calf seduto 2 |
+| Addome | D'Annunzio crunch 3 | Crunch al cavo alto 3 |
+| **Serie** | **14** | **15** |
+
+L'**hip thrust** è tornato: è l'unico lavoro diretto di gluteo che questa
+attrezzatura permette, e la pressa profonda del secondo giorno lo carica
+allungato mentre l'hip thrust lo carica accorciato — i due si completano. Il
+**leg curl sdraiato coi manubri** dà la seconda dose di flessione del ginocchio:
+senza leg curl a macchina il femorale è il gruppo più scoperto, e con 2-3 serie
+per esercizio l'unico modo di alzarlo è aggiungerne uno.
+
 ### Il pullover, e i trapezi in una seduta sola
 
 Il dorso ha bisogno di tre esercizi per arrivare a 9 serie col tetto di 3, ma
-due dei tre sarebbero rematori — e finirebbero nello stesso giorno. Il terzo è
-diventato il **pullover ai cavi alla carrucola alta**: non è un rematore, il
-gran dorsale lavora senza che il gomito fletta, e la tensione massima cade dove
-il muscolo è allungato.
+due dei tre sarebbero rematori. Il terzo è il **pullover ai cavi alla carrucola
+alta**: non è una tirata in più, il gran dorsale lavora senza che il gomito
+fletta, e la tensione massima cade dove il muscolo è allungato.
 
-I **trapezi** stanno tutti nella seduta in cui la schiena tira in verticale
-(lat machine unilaterale), così il rematore a gomiti alti è l'unico rematore di
-quella giornata. Frequenza 1×: sono 3 serie di un gruppo piccolo che riceve
-lavoro da ogni tirata.
+I **trapezi** stanno tutti nella seduta in cui la schiena tira in verticale, così
+il rematore a gomiti alti è l'unica tirata orizzontale di quella giornata.
 
 ### Serie dirette e frazionali
 
@@ -499,6 +515,14 @@ npm run prova:pwa                                # giro di aggiornamento dell'ap
 
 ## Storico
 
+- **v29** — **Lower B al venerdì** nella scheda da 4 (liberi mercoledì, sabato e
+  domenica). Un esercizio in più per gamba in tutte e due le sedute basse, uguale
+  nelle due schede: **hip thrust** il primo giorno — l'unico lavoro diretto di
+  gluteo possibile con questa attrezzatura — e **leg curl sdraiato coi manubri**
+  il secondo, che porta il femorale da 6 a 8 serie. Nell'Upper B: dentro le
+  **croci coi manubri**, il pullover sostituito dal **pulley basso**, i dip
+  sostituiti dal **push-down**. Il pullover si sposta nell'Upper A, dove riporta
+  il dorso a 9 serie anche nella scheda da 4.
 - **v28** — due vincoli nuovi, arrivati dall'uso: **un solo rematore per
   giornata** e **nelle sedute di gamba solo gambe**. Il terzo esercizio di dorso
   diventa il **pullover ai cavi** (non è un rematore, e carica il gran dorsale
