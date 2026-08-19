@@ -15,6 +15,7 @@
 <link rel="apple-touch-icon" href="icone/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="192x192" href="icone/icona-192.png">
 <style>:root{color-scheme:light dark}*{box-sizing:border-box}body{margin:0}img{max-width:100%}</style>
+<script>window.__GG_BUILD='26ee63c9ba';</script>
 </head>
 <body>
 <style>
@@ -1385,6 +1386,11 @@ const CONS_FONTI = [
    Quello che c'e' davvero nella home gym. Le due schede sono costruite su
    questa lista e su niente altro: e' l'informazione che mancava fino alla v18,
    e che aveva fatto finire nel programma quattro esercizi non eseguibili. */
+/* Versione dell'app. Serve a sapere, dal telefono, se quello che hai davanti e'
+   l'ultima versione: la PWA installata puo' restare indietro se iOS non rifa'
+   la navigazione. Il numero si alza a ogni pubblicazione. */
+const VERSIONE = { n:'v19', data:'18 agosto 2026', nota:'Aggiornamento dell’app riparato' };
+
 const ATTREZZI = [
   ['Rack, bilanciere, panca regolabile', 1, 'Panca piana e inclinata, military press, rematore Yates, stacco romeno, hip thrust'],
   ['Manubri', 1, 'Panca inclinata, croci, curl in tutte le versioni, rematore a un braccio, leg curl sdraiato'],
@@ -3192,6 +3198,17 @@ function renderPiano(){
       <div class="stat"><b class="num">${S.corpo.length}</b><span>Pesate</span></div>
     </div>
     <button class="btn danger" id="reset">Cancella tutti i dati</button>
+    <div class="row wrapf" style="gap:8px;align-items:baseline">
+      <span class="chip line">${esc(VERSIONE.n)}</span>
+      <span class="tiny muted">${esc(VERSIONE.data)} · ${esc(VERSIONE.nota)}${
+        typeof window !== 'undefined' && window.__GG_BUILD ? ' · build ' + esc(window.__GG_BUILD) : ''}</span>
+    </div>
+    <p class="tiny muted" style="margin:0">Se il numero qui sopra non è quello dell’ultimo messaggio, l’app installata è
+      rimasta indietro. Nell’ordine: <b>1.</b> chiudila del tutto scorrendola via dal multitasking e riaprila col
+      telefono online — al rientro controlla da sola; <b>2.</b> quando compare in basso <b>Nuova versione pronta</b>,
+      tocca <b>Ricarica</b>; <b>3.</b> solo se non basta, <b>esporta il backup</b>, togli l’icona dalla schermata Home,
+      riaggiungila da Safari e reimporta il file. Il passaggio 3 cancella i dati salvati, quindi il backup prima non è
+      un consiglio.</p>
   </div></div>
 
   <div class="card"><div class="hd"><h3>Scelte fatte in trascrizione</h3></div><div class="bd stack-s">
@@ -3688,27 +3705,65 @@ vai(S.ui.tab && ['oggi','workout','dieta','progressi','piano'].includes(S.ui.tab
 (function(){
   "use strict";
   // ── service worker: la pagina funziona anche senza campo, in palestra ──
+  //
+  // Su iPhone una PWA aperta dalla schermata Home spesso NON rifa' la
+  // navigazione quando la riapri: riprende la pagina che era in memoria. Senza
+  // navigazione il browser non controlla sw.js, e l'aggiornamento non arriva
+  // mai da solo. Per questo qui:
+  //   1. updateViaCache:'none' — sw.js non viene mai preso dalla cache HTTP;
+  //   2. reg.update() al caricamento e ogni volta che l'app torna in primo
+  //      piano (al massimo una volta al minuto);
+  //   3. si guarda anche reg.waiting, perche' l'aggiornamento puo' essersi
+  //      installato mentre la pagina non stava ascoltando: in quel caso
+  //      'updatefound' e' gia' passato e senza questo controllo l'avviso non
+  //      comparirebbe piu'.
   if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function(){
-      navigator.serviceWorker.register('sw.js').then(function(reg){
-        reg.addEventListener('updatefound', function(){
-          var nuovo = reg.installing;
-          if (!nuovo) return;
-          nuovo.addEventListener('statechange', function(){
-            if (nuovo.state === 'installed' && navigator.serviceWorker.controller) {
-              var box = document.getElementById('agg');
-              box.hidden = false;
-              document.getElementById('aggOra').onclick = function(){
-                nuovo.postMessage('attiva');
-                nuovo.addEventListener('statechange', function(){
-                  if (nuovo.state === 'activated') location.reload();
-                });
-              };
-            }
-          });
+    var REG = null, ultimo = 0;
+
+    function mostra(nuovo){
+      if (!nuovo) return;
+      var box = document.getElementById('agg');
+      if (!box || !box.hidden) return;
+      box.hidden = false;
+      document.getElementById('aggOra').onclick = function(){
+        nuovo.postMessage('attiva');
+        nuovo.addEventListener('statechange', function(){
+          if (nuovo.state === 'activated') location.reload();
         });
+        // se per qualche motivo lo statechange non arriva, si ricarica comunque
+        setTimeout(function(){ location.reload(); }, 1500);
+      };
+    }
+    function segui(nuovo){
+      if (!nuovo) return;
+      if (nuovo.state === 'installed') return mostra(nuovo);
+      nuovo.addEventListener('statechange', function(){
+        if (nuovo.state === 'installed' && navigator.serviceWorker.controller) mostra(nuovo);
+      });
+    }
+    function controlla(){
+      if (!REG) return;
+      var ora = Date.now();
+      if (ora - ultimo < 60000) return;
+      ultimo = ora;
+      REG.update().catch(function(){ /* offline: si riprova alla prossima apertura */ });
+    }
+
+    window.addEventListener('load', function(){
+      navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' }).then(function(reg){
+        REG = reg;
+        if (reg.waiting && navigator.serviceWorker.controller) mostra(reg.waiting);
+        segui(reg.installing);
+        reg.addEventListener('updatefound', function(){ segui(reg.installing); });
+        ultimo = Date.now();
+        setTimeout(function(){ ultimo = 0; controlla(); }, 3000);
       }).catch(function(){ /* senza service worker l'app funziona lo stesso */ });
     });
+
+    document.addEventListener('visibilitychange', function(){
+      if (document.visibilityState === 'visible') controlla();
+    });
+    window.addEventListener('online', function(){ ultimo = 0; controlla(); });
   }
   // ── suggerimento d'installazione, solo su iPhone e solo se non installata ──
   var standalone = window.matchMedia('(display-mode: standalone)').matches

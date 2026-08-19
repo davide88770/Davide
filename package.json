@@ -7,7 +7,8 @@
     "verify": "node tools/verify.mjs",
     "build:pwa": "node tools/build-pwa.mjs",
     "build:icone": "node tools/build-icone.mjs",
-    "prova": "node tools/prova-dati.mjs"
+    "prova": "node tools/prova-dati.mjs",
+    "prova:pwa": "node tools/prova-pwa.mjs"
   },
   "devDependencies": {
     "playwright-core": "^1.49.0"

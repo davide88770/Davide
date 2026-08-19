@@ -15,6 +15,7 @@ fitness/<slug>/README.md                sintesi, scelte di trascrizione, storico
 fitness/<slug>/verify.json              selettori e giro delle viste per la verifica
 tools/verify.mjs                        verifica di rendering obbligatoria
 tools/prova-dati.mjs                    prova con dati seminati, obbligatoria per fitness/
+tools/prova-pwa.mjs                     prova del giro di aggiornamento della PWA
 out/                                    screenshot e PDF generati (non versionato)
 ```
 
@@ -127,6 +128,23 @@ Due bug sono passati per due versioni proprio perché mancava: la scheda
 Progressi si rompeva appena c'era un carico registrato, e un giorno di dieta
 importato da un backup vecchio rompeva la scheda Dieta. Nessuno dei due era
 visibile su un profilo pulito.
+
+E se l'app e' anche installata come PWA, va provato **il giro di aggiornamento**:
+serve a niente pubblicare una versione nuova se sul telefono non arriva.
+
+```sh
+npm run prova:pwa
+```
+
+Serve `pwa/` su un server locale con `cache-control: max-age=600`, come GitHub
+Pages, e verifica che l'app si accorga da sola di una versione nuova senza
+navigazione e che il pulsante Ricarica porti davvero alla nuova. Ha trovato un
+bug che teneva l'app installata indietro per giorni: la richiesta di rete del
+service worker finiva nella cache HTTP di Safari e restituiva la pagina vecchia.
+Su iPhone una PWA riaperta dalla Home spesso non rifa' la navigazione, quindi
+niente si aggiorna da solo: ci vogliono `updateViaCache:'none'`, un
+`reg.update()` al ritorno in primo piano, il controllo di `reg.waiting` e
+`cache:'no-store'` su ogni fetch del service worker.
 
 ## Consegna
 

@@ -8,7 +8,7 @@ Alimentare Master** (29 pagine). Copre l'intero ciclo **agosto 2025 → settembr
 **App installabile:** <https://davide88770.github.io/Davide/>
 **Artifact:** <https://claude.ai/code/artifact/2c08979c-1b31-4f71-89c9-15375daa20d8>
 **Sorgente:** [`app.html`](app.html)
-**Verifica:** `npm run verify fitness/ghisa-e-grammi/app.html` e `npm run prova fitness/ghisa-e-grammi/app.html`
+**Verifica:** `npm run verify …/app.html` · `npm run prova …/app.html` · `npm run prova:pwa`
 
 ## Cosa fa
 
@@ -338,33 +338,57 @@ Il piano finiva a settembre senza rispondere a "e poi?". Aggiunte due fasi:
 
 Lo stesso sorgente diventa un'app che si installa sulla schermata Home
 dell'iPhone. `tools/build-pwa.mjs` genera `pwa/` dall'Artifact — che resta
-l'unica fonte di verità — aggiungendo manifest, service worker e icone.
+l'unica fonte di verità — aggiungendo manifest, service worker e icone. Un
+workflow GitHub Actions ricostruisce e pubblica su `gh-pages` a ogni push:
+<https://davide88770.github.io/Davide/>
 
-```sh
-npm run build:pwa      # rigenera pwa/ dal sorgente
-npm run build:icone    # rigenera i PNG dai due SVG in pwa/icone/
-```
+### L'aggiornamento, e perché non arrivava
 
-Pubblicazione: già attiva su <https://davide88770.github.io/Davide/>. Il workflow
-`.github/workflows/pwa.yml` ricostruisce e aggiorna il ramo `gh-pages` a ogni
-push sul ramo predefinito — niente impostazioni da toccare.
+Fino alla v18 l'app installata poteva restare indietro per giorni. Tre cause,
+tutte reali, tutte corrette nella v19:
 
-Cosa cambia rispetto all'Artifact aperto in Safari:
+1. **Su iPhone una PWA riaperta dalla schermata Home spesso non rifà la
+   navigazione**: riprende la pagina che era in memoria. Senza navigazione il
+   browser non controlla `sw.js`, e non si accorge di niente. Ora la
+   registrazione usa `updateViaCache:'none'` e c'è un `reg.update()` al
+   caricamento, a ogni ritorno in primo piano (`visibilitychange`) e quando la
+   rete torna, con un limite di una volta al minuto.
+2. **L'avviso si perdeva.** Il codice ascoltava solo `updatefound`: se
+   l'aggiornamento si era installato mentre la pagina non stava ascoltando,
+   quell'evento era già passato e l'avviso non compariva più. Ora all'avvio si
+   controlla anche `reg.waiting`.
+3. **Il bug vero.** La richiesta di rete del service worker era un `fetch(req)`
+   normale, quindi finiva nella **cache HTTP di Safari**: GitHub Pages serve
+   l'HTML con un `max-age` breve ma non nullo, e la pagina "nuova" che tornava
+   era ancora quella vecchia. Si vedeva l'avviso, si toccava Ricarica, e non
+   cambiava niente. Ora ogni fetch del service worker — sia in installazione che
+   in navigazione — usa `cache:'no-store'`.
 
-- **I dati non vengono più cancellati.** La regola dei 7 giorni vale per Safari;
-  le web app aggiunte alla Home hanno un contatore proprio, che si azzera a ogni
-  apertura.
-- **Funziona senza campo.** Il service worker tiene in cache tutta la pagina:
-  provato staccando la rete e ricaricando, l'app si apre e risolve i pasti.
-- **Si apre a schermo intero**, con icona propria e barra di stato integrata.
-- **Si aggiorna da sola**: quando c'è una versione nuova compare "Nuova versione
-  pronta" con il tasto per ricaricare.
-- Al primo avvio su iPhone, se non è ancora installata, spiega come farlo.
+Il punto 3 è stato trovato da `npm run prova:pwa`, che serve `pwa/` su un server
+locale con lo stesso `cache-control` di GitHub Pages e verifica il giro completo:
+il service worker prende il controllo, senza versioni nuove l'avviso non compare,
+pubblicata una versione nuova l'app se ne accorge **senza navigazione**, e il
+pulsante Ricarica porta davvero alla versione nuova. Senza il `no-store` il test
+falliva 3 volte su 3 all'ultimo passaggio; con il `no-store` passa sempre.
 
-Resta fuori dalla portata del web, e servirebbe un'app nativa: il timer di
-recupero come Live Activity sulla schermata di blocco, l'integrazione con Salute
-e i widget. Anche il feedback aptico alla conferma di una serie è predisposto ma
-su iOS non è ancora disponibile al web: funziona su Android.
+### Sapere su che versione sei
+
+In **Piano → Dati e backup**, in fondo, c'è il numero di versione con la data e,
+quando l'app è quella installata, anche l'hash della build. Se non è quello
+dell'ultimo messaggio, l'app è rimasta indietro: chiuderla del tutto dal
+multitasking e riaprirla online basta quasi sempre, perché al rientro controlla
+da sola. In ultima istanza si esporta il backup, si toglie l'icona dalla Home, si
+riaggiunge e si reimporta — e il backup prima non è un consiglio, perché togliere
+l'icona cancella i dati salvati.
+
+### Perché una PWA e non un sito
+
+- Esce dal limite dei **7 giorni** di Safari: i dati di un sito normale vengono
+  cancellati dopo una settimana di inattività, quelli di un'app aggiunta alla
+  Home no.
+- Funziona **senza campo** in palestra: il guscio è in cache.
+- Si apre a schermo intero, senza barre, con l'icona sulla schermata Home.
+- Gestione del `safe-area` per il notch e la barra inferiore.
 
 ## Grammature: perché sono ricalcolate
 
@@ -495,11 +519,12 @@ volume per seduta.
 
 ## Verificato
 
-Due script, entrambi obbligatori prima di pubblicare:
+Tre script, tutti obbligatori prima di pubblicare:
 
 ```sh
 npm run verify fitness/ghisa-e-grammi/app.html   # profilo vuoto
 npm run prova  fitness/ghisa-e-grammi/app.html   # con i dati dentro
+npm run prova:pwa                                # giro di aggiornamento dell'app installata
 ```
 
 - Nessun errore in console su tutte e cinque le viste, in chiaro e in scuro.
@@ -519,6 +544,14 @@ npm run prova  fitness/ghisa-e-grammi/app.html   # con i dati dentro
 
 ## Storico
 
+- **v19** — **riparato l'aggiornamento dell'app installata**, che era il motivo
+  per cui le versioni nuove non arrivavano sul telefono. Il bug vero: la
+  richiesta di rete del service worker finiva nella cache HTTP di Safari e
+  restituiva la pagina vecchia, quindi anche toccando «Ricarica» non cambiava
+  niente. Ora `cache:'no-store'` su ogni fetch, `updateViaCache:'none'`,
+  controllo attivo al ritorno in primo piano e alla riconnessione, e lettura di
+  `reg.waiting` all'avvio. Aggiunto `npm run prova:pwa`, che ha trovato il bug e
+  lo blocca in futuro, e il numero di versione visibile in Dati e backup.
 - **v18** — le schede passano sull'**attrezzatura vera della home gym**, che non
   avevo mai chiesto. Quattro esercizi non erano eseguibili: leg extension →
   sissy squat zavorrato, leg curl a macchina → leg curl nordico, croci ai cavi →
