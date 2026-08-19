@@ -118,8 +118,8 @@ opzioni significava tenerne due che non avrei consigliato.
 |---|---|---|
 | Giorni | Lun Push · Mar Pull · Mer Legs · Ven Upper · Sab Lower | Lun Upper A · Mar Lower A · Gio Upper B · Sab Lower B |
 | Liberi | Giovedì, domenica | Mercoledì, venerdì, domenica |
-| Serie dirette | 86 | 71 |
-| Durate | 64, 58, 53, 50, 51 min | 59, 53, 62, 51 min |
+| Serie dirette | 86 | 70 |
+| Durate | 64, 58, 51, 50, 51 min | 59, 51, 59, 51 min |
 
 Serie **frazionali** a settimana (dirette + metà delle indirette), che è come le
 conta l'app:
@@ -127,13 +127,15 @@ conta l'app:
 | Gruppo | 5 sedute | 4 sedute | Freq. |
 |---|---|---|---|
 | Spalle | 16,5 | 13,0 | 3× / 2× |
-| Bicipiti | 16,5 | 11,0 | 2× |
-| Dorso | 15,0 | 10,0 | 2× |
+| Bicipiti | 16,5 | 10,5 | 2× |
+| Dorso | 15,0 | 9,0 | 2× |
 | Tricipiti | 13,5 | 10,5 | 2× |
-| Gluteo | 10,5 | 10,5 | 2× |
 | Petto | 10,5 | 9,0 | 2× |
-| Quadricipiti | 10,0 | 10,0 | 2× |
-| Femorali | 7,5 | 7,5 | 2× |
+| Femorali | 10,5 | 10,5 | 2× |
+| Gluteo | 9,0 | 9,0 | 2× |
+| Quadricipiti | 7,5 | 7,5 | 2× |
+| Polpacci | 6,0 | 6,0 | 2× |
+| Core | 5,0 | 3,0 | 2× / 1× |
 | Polpacci | 8,0 | 8,0 | 3× / 2× |
 | Core | 4,0 | 2,0 | 2× / 1× |
 
@@ -262,6 +264,46 @@ curva a U rovesciata sul volume — oltre un certo punto le serie in più divent
 una curva che sale sempre, con rendimento sempre più basso ma senza scendere. Su
 questo piano non cambia niente: a questi volumi la serie in più o rende
 pochissimo o fa danno, e in nessuno dei due casi conviene aggiungerla.
+
+### Due o tre serie per esercizio, e mai in accorciamento
+
+Tre correzioni arrivate dagli appunti sulla masterclass.
+
+**1. Massimo 3 serie per esercizio.** Ce n'erano diversi a 4. Il volume si alza
+aggiungendo un esercizio, non serie allo stesso: dalla quarta o quinta serie
+consecutiva sullo stesso movimento la tensione è già scesa e quelle serie non
+allenano. Conseguenza diretta: il femorale, che era il gruppo più scoperto, non
+si è alzato mettendo una serie in più ma **aggiungendo il leg curl sdraiato coi
+manubri** — da 7,5 a 10,5 serie frazionali.
+
+**2. In allungamento, non in accorciamento.** Sono usciti gli ultimi due
+esercizi che caricavano dove il muscolo è corto:
+
+| Fuori | Dentro | Perché |
+|---|---|---|
+| Tricipite push-down | **French press manubri su panca inclinata** | Col gomito lungo il fianco il tricipite lavora accorciato. Dietro la testa il capo lungo parte allungato |
+| Curl ai cavi in piedi | **Preacher curl manubri** | Sul preacher il punto più duro è in basso, col bicipite disteso |
+
+L'unico rimasto in accorciamento è l'**hip thrust**, e resta perché il gluteo
+l'altra dose ce l'ha già in allungamento con la pressa profonda: le due si
+completano invece di sovrapporsi.
+
+**3. L'addome è un muscolo come gli altri.** Niente centinaia di ripetizioni,
+niente circuiti: **D'Annunzio crunch**, 3 × 10-15 con eccentrica di tre secondi e
+recupero pieno, sovraccaricabile con un disco sul petto. Si fa sulla lat machine,
+gambe bloccate sotto il pad, col busto che scende oltre l'appoggio — il crunch
+normale lavora solo in accorciamento e senza eccentrica. Ha preso il posto del
+dead bug.
+
+> Con l'ernia inguinale è l'unico esercizio del piano che alza la pressione
+> addominale. Si espira sempre salendo, si parte a corpo libero, e il disco si
+> aggiunge solo se non tira sull'inguine.
+
+**Quello che l'attrezzatura non permette di risolvere**: il quadricipite resta a
+7,5 serie frazionali. Con il tetto di 3 serie per esercizio servono tre esercizi
+di quadricipite, e in casa ce ne sono due e mezzo — hack squat, sissy squat e la
+pressa, che però è la stessa macchina dell'hack e sta nell'altra giornata. Una
+leg extension è il primo attrezzo che cambierebbe i numeri.
 
 ### Serie dirette e frazionali
 
@@ -608,6 +650,14 @@ npm run prova:pwa                                # giro di aggiornamento dell'ap
 
 ## Storico
 
+- **v25** — tre correzioni dagli appunti sulla masterclass. **Massimo 3 serie per
+  esercizio** (ce n'erano a 4): il volume si alza aggiungendo esercizi, non
+  serie, e infatti il femorale è passato da 7,5 a 10,5 serie frazionali con il
+  leg curl sdraiato coi manubri. **Niente lavoro in accorciamento**: push-down →
+  french press coi manubri su panca inclinata, curl ai cavi in piedi → preacher
+  curl; resta solo l'hip thrust, che completa la pressa profonda. **Addome**:
+  D'Annunzio crunch 3 × 10-15 con eccentrica lenta e disco sul petto, al posto
+  del dead bug.
 - **v24** — **riscritta sui principi della masterclass di Noha Rabasco**. Tolto
   lo split squat bulgaro (chiedeva equilibrio, e dove serve stabilità il sistema
   nervoso frena l'output); gambe di nuovo a **frequenza 2×** senza ripetere
