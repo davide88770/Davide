@@ -118,22 +118,22 @@ opzioni significava tenerne due che non avrei consigliato.
 |---|---|---|
 | Giorni | Lun Push · Mar Pull · Mer Legs · Ven Upper · Sab Lower | Lun Upper A · Mar Lower A · Gio Upper B · Sab Lower B |
 | Liberi | Giovedì, domenica | Mercoledì, venerdì, domenica |
-| Serie dirette | 88 | 70 |
-| Durate | 59, 63, 40, 51, 47 min | 49, 40, 57, 52 min |
+| Serie dirette | 86 | 70 |
+| Durate | 59, 58, 47, 47, 47 min | 49, 42, 57, 52 min |
 
 Serie **frazionali** a settimana (dirette + metà delle indirette), che è come le
 conta l'app:
 
 | Gruppo | 5 sedute | 4 sedute | Freq. |
 |---|---|---|---|
-| Spalle | 17,5 | 12,5 | 3× / 2× |
+| Spalle | 16,0 | 12,5 | 3× / 2× |
 | Bicipiti | 16,5 | 11,0 | 2× |
 | Dorso | 15,0 | 10,0 | 2× |
-| Tricipiti | 14,5 | 10,5 | 2× |
-| Petto | 11,5 | 10,5 | 2× |
-| Quadricipiti | 10,5 | 10,5 | 2× |
-| Gluteo | 9,0 | 9,0 | 1× diretto |
-| Femorali | 7,5 | 7,5 | 2× |
+| Tricipiti | 12,5 | 10,5 | 2× |
+| Quadricipiti | 10,5 | 10,5 | 1× |
+| Gluteo | 10,5 | 10,5 | 1× |
+| Petto | 10,0 | 10,5 | 2× |
+| Femorali | 7,5 | 7,5 | 1× |
 | Polpacci | 8,0 | 8,0 | 3× / 2× |
 | Core | 4,0 | 2,0 | 2× / 1× |
 
@@ -144,106 +144,31 @@ generosa, le braccia ne hanno una a ogni spinta e a ogni tirata.
 
 ### Le due sedute di gambe
 
-Fino alla v19 Legs e Lower erano quasi la stessa seduta: **hack squat, pressa e
-sissy squat comparivano in tutte e due**, e il mercoledì teneva insieme i tre
-esercizi più pesanti del piano — hack squat, stacco romeno e pressa — più altri
-quattro, per 20 serie e 63 minuti. Rifatte:
+Erano quasi la stessa seduta — hack squat, pressa e sissy squat in tutte e due —
+e il mercoledì teneva insieme i tre esercizi più pesanti del piano. Un primo giro
+le ha separate, ma ci aveva lasciato **due posizioni della pressa di fila** il
+sabato: una scorciatoia logistica (la macchina è già impostata), non una scelta
+di allenamento. Rifatte per **funzione**:
 
 | | Mercoledì · Legs | Sabato · Lower |
 |---|---|---|
-| Tema | Quadricipite e flessione del ginocchio | Anca e femorale in allungamento |
-| Il pesante | **Hack squat** 3 × 6-10, RIR 1-2 | **Stacco romeno** 3 × 8-10, RIR 1-2 |
-| Quad | Sissy squat zavorrato 3 × 10-15, a cedimento | Pressa piede basso e stretto 3 × 10-12 |
-| Femorali | Leg curl nordico 3 × 5-8, eccentrica lenta | — (lo copre lo stacco) |
-| Gluteo | — | Pressa piede alto 3 × 8-12 · Hip thrust 3 × 10-12 |
-| Polpacci | Calf in piedi 3 (gastrocnemio) | Calf seduto 3 (soleo) |
+| Tema | **Quadricipite**, su tre livelli | **Catena posteriore** |
+| Il pesante | Hack squat 3 × 6-10, RIR 1-2 | Stacco romeno 3 × 8-10, RIR 1-2 |
+| Secondo | Split squat bulgaro 3 × 8-10 per gamba | Pressa piede alto e largo 3 × 8-12 |
+| Isolamento | Sissy squat zavorrato 3 × 10-15, a cedimento | Leg curl nordico 3 × 5-8 · Hip thrust 3 × 10-12 |
+| Polpacci | Calf in piedi 5 (gastrocnemio) | Calf seduto 3 (soleo) |
 | Core | Dead bug 2 | — |
-| **Serie** | **14** | **15** |
-| **Durata** | **40 min** | **47 min** |
+| **Serie** | **16** | **15** |
+| **Durata** | **47 min** | **47 min** |
 
-Le regole applicate:
+Il **split squat bulgaro** è la novità e copriva un buco vero: è l'unico
+esercizio unilaterale del piano, carica quadricipite e gluteo in allungamento
+con metà del peso sulla schiena e senza pressione addominale — quindi è anche il
+più sicuro dei tre pesanti per l'ernia.
 
-1. **Un solo esercizio davvero pesante per giornata.** Hack squat il mercoledì,
-   stacco romeno il sabato. Due compound massimali nella stessa seduta si
-   tolgono ripetizioni a vicenda.
-2. **Nessun esercizio ripetuto** fra le due sedute. La frequenza 2× si ottiene
-   con schemi diversi — flessione del ginocchio da una parte, estensione
-   dell'anca dall'altra — non ripetendo la stessa cosa.
-3. **Hack squat e pressa in giorni diversi.** Sono anche la stessa macchina:
-   così sparisce pure la riconfigurazione a metà seduta.
-4. **La seconda dose di quadricipite senza un secondo pesante**: pressa a piede
-   basso e stretto, subito dopo la pressa a piede alto. La macchina è già lì, si
-   spostano solo i piedi.
-
-Il volume delle gambe scende **da 39 a 29 serie** a settimana. È la direzione
-giusta per un modello a volume basso e intensità alta: poche serie portate
-vicino al cedimento rendono più di tante serie fermate lontano. Il prezzo sta
-nei numeri — femorali a 7,5 serie frazionali e gluteo a 9,0 — ma il femorale
-tiene i due esercizi che rendono di più in assoluto (stacco romeno pesante e
-nordico in eccentrica) e il gluteo prende mezza serie da ogni hack squat,
-pressa e stacco.
-
-**Sulla banda 10-20.** Quel riferimento viene da studi in cui le serie finivano
-spesso a 2-4 ripetizioni dal cedimento. Portandole a cedimento ne servono meno,
-ed è per questo che l'app segnala in rosso solo sotto le **6 serie frazionali**,
-non sotto 10: sotto 6 non ci sta nessun modello, fra 6 e 10 ci sta questo.
-
-### Le otto regole che le hanno generate
-
-1. **Ogni gruppo due volte a settimana, per spezzare il volume.** Non perché la
-   frequenza doppia sia meglio in sé — a parità di volume settimanale non lo è —
-   ma perché oltre ~11 serie frazionali sullo stesso muscolo *nella stessa
-   seduta* le serie in più smettono di rendere.
-2. **Volume dentro la banda utile, priorità in alto.** Braccia, spalle e gambe
-   nella parte alta; nessun gruppo sotto il minimo.
-3. **A cedimento dove costa poco, con margine dove costa caro.** Isolamento,
-   cavi e macchine a cedimento tecnico; 1-2 ripetizioni di margine sui compound
-   pesanti.
-4. **Esercizi scelti per dove caricano il muscolo.** Alzate laterali dal pulley
-   basso, curl su panca inclinata, croci coi manubri su panca inclinata,
-   tricipite overhead, pressa profonda a piede alto, sissy squat zavorrato.
-5. **Nessuna seduta sopra i 65 minuti.** È il vincolo che decide tutto il resto.
-6. **Costruite intorno all'ernia inguinale.** Hack squat, sissy squat e pressa
-   al posto dello squat libero; espirazione nella salita, mai Valsalva; core
-   anti-rotazione (dead bug, pallof press) e non flessione.
-7. **Eseguibili con l'attrezzatura che c'è in casa** — vedi la sezione qui sotto.
-8. **Doppia progressione.** Chiudi il top del range su tutte le serie → la volta
-   dopo sali di carico.
-
-### L'attrezzatura della home gym
-
-Questa informazione mancava fino alla v18, e non l'avevo chiesta: le schede erano
-costruite assumendo una palestra commerciale completa. Quattro esercizi non erano
-eseguibili. Cosa c'è:
-
-| C'è | Cosa ci gira |
-|---|---|
-| Rack, bilanciere, panca regolabile | Panca piana e inclinata, military, rematore Yates, stacco romeno, hip thrust |
-| Manubri | Panca inclinata, croci, curl in tutte le versioni, rematore a un braccio, leg curl sdraiato |
-| Lat machine, carrucola alta | Lat machine presa larga, push-down, face pull |
-| Pulley basso | Pulley basso presa neutra, alzate laterali ai cavi, curl ai cavi, curl hammer, tricipite overhead, pallof press |
-| Pressa + hack squat, macchinario unico | Hack squat piede basso e pressa piede alto — stessa macchina, una riconfigurazione a seduta |
-| Sbarra per trazioni | Trazioni zavorate |
-| Parallele | Dip verticale zavorra |
-
-Cosa **non** c'è, e con cosa è stato sostituito:
-
-| Manca | Sostituito con | Cosa si tiene, cosa si perde |
-|---|---|---|
-| Leg extension | **Sissy squat zavorrato** | Stessa funzione: estensione pura del ginocchio col retto femorale allungato, nessuna pressione addominale. Col disco al petto diventa progressivo |
-| Leg curl a macchina | **Leg curl nordico** (+ leg curl sdraiato coi manubri) | Il nordico è la flessione del ginocchio più dura possibile senza macchina, tutta in eccentrica. Si perde l'anca flessa: il lavoro in allungamento sul femorale resta tutto sullo stacco romeno |
-| Carrucola regolabile in altezza | **Croci coi manubri su panca inclinata** | Col manubrio il punto più duro è in basso, dove il petto è allungato — la parte che conta. Si perde la tensione in chiusura |
-| Pulley all'altezza del petto | **Pallof press dal pulley basso, in ginocchio** | In ginocchio la linea di tiro dal basso è quella da contrastare: l'anti-rotazione funziona uguale |
-
-Tre esercizi sono stati rinominati per non dipendere da un attrezzo che potrebbe
-mancare: *Tricipite overhead — cavo o manubrio*, *Alzate posteriori manubri /
-face pull*, *Curl hammer — cavo basso o manubri*.
-
-**Il lavoro a un arto per volta costa tempo.** Alzate laterali ai cavi, rematore
-manubrio singolo, curl alternati e pallof press si fanno un lato alla volta: nel
-modello delle durate contano 75 secondi di lavoro per serie invece di 45. In
-compenso il recupero fra le serie scende a 60 secondi, perché mentre un lato
-lavora l'altro riposa: ogni braccio arriva comunque a oltre due minuti.
+Alla pressa si usa **una sola posizione dei piedi, una volta sola**. Il
+quadricipite la sua giornata ce l'ha già il mercoledì; il gluteo la sua il
+sabato.
 
 ### Le due sedute di parte alta
 
@@ -629,6 +554,16 @@ npm run prova:pwa                                # giro di aggiornamento dell'ap
 
 ## Storico
 
+- **v22** — **una regola sola su tutte e nove le sedute**: un solo esercizio
+  davvero pesante per giornata, e **nessun esercizio in due sedute**. Le gambe si
+  dividono per funzione — mercoledì quadricipite su tre livelli (hack squat,
+  split squat bulgaro, sissy), sabato catena posteriore (stacco, pressa, nordico,
+  hip thrust) — e alla pressa si usa una sola posizione dei piedi, una volta
+  sola. Aggiunto lo **split squat bulgaro**, l'unico unilaterale del piano e il
+  più sicuro dei pesanti per l'ernia. Nel 5 sedute tolte le ultime tre
+  ripetizioni: alzate laterali coi manubri il venerdì (curva di carico diversa
+  da quelle ai cavi del lunedì), niente secondo dip, polpaccio tutto nelle sedute
+  di gamba. Sedute da 5 a 7 esercizi, fra 42 e 59 minuti.
 - **v21** — **le due sedute di parte alta rifatte** con lo stesso metro delle
   gambe. L'Upper B aveva dieci esercizi e l'Upper A quattro compound pesanti di
   fila. Ora si dividono per schema motorio: spinta orizzontale e tirata
