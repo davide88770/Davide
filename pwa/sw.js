@@ -1,5 +1,5 @@
-/* Ghisa & Grammi — service worker, versione dde9a45317 */
-const CACHE = 'ghisa-e-grammi-dde9a45317';
+/* Ghisa & Grammi — service worker, versione 8cbe49353c */
+const CACHE = 'ghisa-e-grammi-8cbe49353c';
 const GUSCIO = ['./', './index.html', './manifest.webmanifest',
   './icone/icona-192.png', './icone/icona-512.png',
   './icone/icona-maskable-512.png', './icone/apple-touch-icon.png'];
@@ -41,7 +41,7 @@ self.addEventListener('activate', ev => {
        sole), poi si aspetta un attimo perche' il salvataggio su localStorage e'
        ritardato di 220 ms, poi si naviga. */
     const clienti = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
-    for (const c of clienti) { try { c.postMessage({ gg: 'aggiornata', versione: 'dde9a45317' }); } catch (e) {} }
+    for (const c of clienti) { try { c.postMessage({ gg: 'aggiornata', versione: '8cbe49353c' }); } catch (e) {} }
     await new Promise(r => setTimeout(r, 1200));
     for (const c of clienti) {
       if (typeof c.navigate !== 'function') continue;

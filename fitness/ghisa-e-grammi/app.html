@@ -655,8 +655,8 @@ const VOL_MIN = 6;
    contro cui l'app controlla le schede: se una scheda non ci arriva o lo
    supera, lo dice. */
 const VOL_OBIETTIVO = {
-  petto:8, tricipiti:8, bicipiti:8, dorso:8, trapezi:4, spalle:7,
-  quad:8, femorali:9, gluteo:3, polpacci:3, core:6
+  petto:8, tricipiti:8, bicipiti:8, dorso:8, trapezi:3, spalle:7,
+  quad:8, femorali:9, polpacci:3, core:6
 };
 
 const VOL_PIANO = {
@@ -676,19 +676,34 @@ const e = (n,g,s,r,i,rec,x={}) => Object.assign({n,g,s,r,i,rec},x);
 const SESS = {};
 
 /* ---------- SCHEDA A 5 SEDUTE ----------
-   Volume settimanale in serie dirette, deciso da Davide:
-     petto 8 · dorso 8 · trapezi 4 · spalle 7 · bicipiti 8 · tricipiti 8
-     accosciata 8 · leg curl 6 · polpacci 3
-   piu' stacco romeno 3 (anca) , hip thrust 3 (gluteo) e addome 6, che sono
-   esercizi di gamba tenuti come stavano.
-   Vincoli: max 3 serie per esercizio; mai due volte lo stesso esercizio nella
-   stessa giornata; mai due rematori coi manubri nello stesso giorno; nelle
-   sedute di gamba solo gambe; recuperi 2-3 minuti. */
-SESS.rv_push = { id:'rv_push', nome:'Push', gg:'Lunedì', durata:49, rivista:1,
-  focus:'Petto · Spalle · Tricipiti', ex:[
-  e('Panca piana bilanciere','petto',3,'5–8','RIR 1–2',210,{
-    cue:'Presa 1,5× spalle · gomiti 45° · scapole retratte · fermi rack · fermo 1 sec in basso'}),
-  e('Military press manubri — seduto','spalle',3,'6–8','RIR 1–2',180,{p:1,
+   Volume settimanale in serie dirette:
+     petto 8 · dorso 8 · trapezi 3 · spalle 7 · bicipiti 8 · tricipiti 8
+     accosciata 8 · leg curl 6 · stacco 3 · polpacci 3 · addome 6   = 68
+
+   Cinque vincoli, controllati a ogni pubblicazione:
+     1. mai piu' di 3 serie per esercizio
+     2. mai lo stesso esercizio due volte nella stessa giornata
+     3. MAI DUE REMATORI nella stessa giornata, di nessun tipo
+     4. MAI DUE LEG CURL nella stessa giornata
+     5. nelle sedute di gamba solo gambe
+
+   Il vincolo 3 costringe a scegliere: con due sole sedute di tirata e un solo
+   rematore ciascuna, il dorso arriva a 8 serie con lat machine unilaterale
+   (verticale), rematore coi manubri (orizzontale) e PULLOVER AI CAVI, che non
+   e' un rematore. E i trapezi stanno a 3 in una seduta sola: portarli a 4
+   vorrebbe dire due rematori in un giorno, che e' proprio quello da evitare.
+
+   FORZA. Quattro alzate portano il carico: panca piana, military press, hack
+   squat e stacco romeno, piu' la pressa. Range piu' bassi, recuperi piu'
+   lunghi, e sono sempre le prime della giornata. Su queste si sale di carico
+   appena chiudi il top del range su tutte e tre le serie; sul resto si lavora
+   a cedimento e il carico segue. */
+SESS.rv_push = { id:'rv_push', nome:'Push', gg:'Lunedì', durata:52, rivista:1,
+  focus:'Forza in spinta · Petto · Spalle · Tricipiti', ex:[
+  e('Panca piana bilanciere','petto',3,'4–6','RIR 1–2 · FORZA',240,{
+    cue:'Presa 1,5× spalle · gomiti 45° · scapole retratte · fermi rack · fermo 1 sec in basso · eccentrica 2 sec',
+    note:'L’alzata di forza della giornata: 4-6 ripetizioni e 4 minuti di recupero. Si sale di carico appena chiudi 6 su tutte e tre le serie.'}),
+  e('Military press manubri — seduto','spalle',3,'5–7','RIR 1–2 · FORZA',210,{p:1,
     cue:'Schienale a 80-85° · manubri all’altezza delle orecchie in basso · espira salendo · mai Valsalva'}),
   e('Panca inclinata manubri','petto',3,'8–12','+ Drop set',150,{
     cue:'Angolo 30° · gomiti 60–70° · scendi fino allo stretch completo · pausa 1 sec'}),
@@ -697,110 +712,113 @@ SESS.rv_push = { id:'rv_push', nome:'Push', gg:'Lunedì', durata:49, rivista:1,
   e('French press ai cavi — overhead','tricipiti',3,'10–12','+ Rest-pause',120,{p:1,wm:1,
     cue:'Corda alla carrucola bassa, di spalle · gomiti fermi sopra la testa · stretch massimo'})
 ]};
-SESS.rv_pull = { id:'rv_pull', nome:'Pull', gg:'Martedì', durata:40, rivista:1,
-  focus:'Tirata verticale · Trapezi · Bicipiti in allungamento', ex:[
+SESS.rv_pull = { id:'rv_pull', nome:'Pull', gg:'Martedì', durata:42, rivista:1,
+  focus:'Tirata verticale · Trapezi · Bicipiti', ex:[
   e('Lat machine unilaterale — maniglia','dorso',3,'8–12','+ Rest-pause',120,{uni:1,
-    cue:'Una maniglia sola, un braccio per volta · siediti di lato · allunga in cima lasciando salire la scapola · tira il gomito verso il fianco'}),
-  e('Pulley basso — presa neutra','dorso',2,'10–12','+ Rest-pause',150,{
-    cue:'Busto fermo · gomiti indietro lungo i fianchi · allunga in avanti senza curvare'}),
-  e('Rematore manubri gomiti alti — trapezi','trapezi',2,'10–15','+ Rest-pause',120,{
+    cue:'Una maniglia sola, un braccio per volta · siediti di lato · allunga in cima lasciando salire la scapola · tira il gomito verso il fianco',
+    note:'La tirata verticale. Quella orizzontale sta di venerdì: un solo rematore per giornata.'}),
+  e('Rematore manubri gomiti alti — trapezi','trapezi',3,'10–15','+ Rest-pause',120,{
     cue:'Panca inclinata a 30-40°, petto appoggiato · presa larga · tira coi gomiti ALTI · squeeze delle scapole 1 sec',
-    note:'L’unico rematore coi manubri della giornata: il rematore per il dorso sta di venerdì.'}),
+    note:'L’unico rematore della giornata. Il gomito alto chiude le scapole: è il lavoro del trapezio medio, e prende anche il deltoide posteriore.'}),
+  e('Pullover ai cavi — carrucola alta','dorso',2,'10–12','+ Rest-pause',120,{
+    cue:'In piedi davanti alla lat machine, corda o barra · braccia quasi tese · porta giù verso le cosce solo ruotando la spalla · allunga bene in cima',
+    note:'La terza dose di dorso senza essere un rematore: il gran dorsale lavora senza che il gomito fletta, e la tensione massima cade dove il muscolo è allungato.'}),
   e('Curl ai cavi dietro il corpo — Bayesian','bicipiti',3,'8–12','+ Drop set',120,{p:1,
     cue:'Carrucola bassa, un passo avanti, braccio dietro la linea del corpo · gomito fermo · eccentrica 3 sec',
     note:'Il curl in allungamento.'}),
   e('Curl manubri su panca inclinata','bicipiti',3,'8–10','RIR 0–1',120,{p:1,
     cue:'Panca a 45-60° · braccia dietro la linea del busto · supinazione completa · eccentrica 3 sec'})
 ]};
-SESS.rv_legs = { id:'rv_legs', nome:'Legs', gg:'Mercoledì', durata:52, rivista:1,
-  focus:'Accosciata pesante · Anca · Gluteo · Polpacci · Addome', ex:[
-  e('Hack squat — piede basso','quad',3,'6–10','RIR 1–2',210,{ernia:1,
-    cue:'Discesa 2–3 sec · fermo 1 sec in basso · ESPIRA nella salita · mai Valsalva'}),
-  e('Romanian deadlift bilanciere','femorali',3,'8–10','RIR 1–2',210,{ernia:1,
-    cue:'La barra scorre lungo la coscia · schiena neutra · espira salendo'}),
-  e('Hip thrust bilanciere','gluteo',3,'10–12','+ Rest-pause',120,{
-    cue:'Spalla sul bordo panca · spingi i talloni · squeeze in cima · iso 2"'}),
-  e('Calf raise in piedi','polpacci',3,'8–12','+ Rest-pause',120,{
-    cue:'Ginocchio dritto · su un rialzo o un disco · pausa 2" in basso'}),
+SESS.rv_legs = { id:'rv_legs', nome:'Legs', gg:'Mercoledì', durata:48, rivista:1,
+  focus:'Forza sulle gambe · Accosciata · Catena posteriore · Addome', ex:[
+  e('Hack squat — piede basso','quad',3,'5–8','RIR 1–2 · FORZA',240,{ernia:1,
+    cue:'Discesa 2–3 sec · fermo 1 sec in basso · ginocchia in linea con le punte · ESPIRA nella salita · mai Valsalva',
+    note:'L’alzata di forza delle gambe: 5-8 ripetizioni, 4 minuti di recupero. La pressa sta di sabato — è la stessa macchina.'}),
+  e('Romanian deadlift bilanciere','femorali',3,'6–8','RIR 1–2 · FORZA',240,{ernia:1,
+    cue:'La barra scorre lungo la coscia · squeeze del gluteo in cima · schiena neutra · espira salendo',
+    note:'L’estensione dell’anca col femorale allungato. Da 6-8 ripetizioni: qui il carico conta, ed è anche l’unico lavoro serio di gluteo rimasto.'}),
+  e('Leg curl nordico','femorali',3,'5–8','Eccentrica lenta',150,{
+    cue:'Caviglie bloccate sotto il pad della lat machine, o sotto un bilanciere caricato · scendi in 4-5 sec tenendo anca e busto in linea',
+    note:'L’unico leg curl della giornata: l’altro sta di sabato.'}),
   e('D’Annunzio crunch','core',3,'10–15','+ Rest-pause',120,{ernia:1,
     cue:'Sdraiato sulla lat machine con le gambe bloccate sotto il pad · il busto scende oltre l’appoggio · eccentrica 3 sec · ESPIRA salendo, mai in apnea'})
 ]};
-SESS.rv_upper = { id:'rv_upper', nome:'Upper', gg:'Venerdì', durata:43, rivista:1,
+SESS.rv_upper = { id:'rv_upper', nome:'Upper', gg:'Venerdì', durata:37, rivista:1,
   focus:'Tirata orizzontale · Petto in allungamento · Braccia in accorciamento', ex:[
   e('Rematore manubri — busto appoggiato','dorso',3,'8–12','+ Rest-pause',150,{
-    cue:'Panca inclinata a 30-40° · petto appoggiato · tira i gomiti indietro lungo i fianchi · lascia allungare in basso'}),
+    cue:'Panca inclinata a 30-40° · petto appoggiato · tira i gomiti indietro lungo i fianchi · lascia allungare in basso',
+    note:'La tirata orizzontale, e l’unico rematore della giornata.'}),
   e('Croci manubri su panca inclinata','petto',2,'10–12','RIR 0–1 + Allungamento',120,{p:1,
-    cue:'Panca a 30° · scendi fino allo stretto sul petto · FERMATI prima di chiudere in alto'}),
-  e('Rematore alto ai cavi — trapezi','trapezi',2,'12–15','+ Rest-pause',120,{
-    cue:'Carrucola alta con corda · tira verso il viso coi gomiti ALTI · squeeze delle scapole 1 sec',
-    note:'Ai cavi e non coi manubri: il rematore per il dorso di oggi e\' gia\' sulla panca, e due rematori coi manubri nello stesso giorno sono lo stesso movimento due volte.'}),
+    cue:'Panca a 30° · gomiti morbidi e fermi · scendi fino allo stretto sul petto · FERMATI prima di chiudere in alto, lì il carico si azzera'}),
   e('Alzate laterali ai cavi','spalle',2,'12–15','+ Rest-pause ×2',90,{p:1,wm:1,uni:1,
     cue:'Cavo basso dal lato opposto · gomito guida · stop a 90°'}),
   e('Tricipite push-down','tricipiti',3,'10–12','Superset + Drop set',0,{p:1,ss:'A',
     cue:'Gomiti fermi ai fianchi · contrazione massima in basso · subito dopo, senza recupero, il curl',
-    note:'La dose in accorciamento del tricipite: il french press del lunedi\' e\' l\'altro estremo.'}),
+    note:'La dose in accorciamento del tricipite: il french press del lunedì è l’altro estremo.'}),
   e('Curl hammer — cavo basso','bicipiti',2,'10–12','Superset',120,{p:1,ss:'A',
     cue:'Corda o presa neutra · gomiti fermi ai fianchi · niente oscillazione'}),
   e('French press ai cavi — overhead','tricipiti',2,'10–12','+ Rest-pause',120,{p:1,
     cue:'Corda alla carrucola bassa, di spalle · gomiti fermi sopra la testa · stretch massimo'})
 ]};
-SESS.rv_lower = { id:'rv_lower', nome:'Lower', gg:'Sabato', durata:46, rivista:1,
-  focus:'Accosciata alla pressa · Leg curl · Addome', ex:[
-  e('Pressa — piede alto e largo','quad',3,'8–12','+ Drop set',180,{
-    cue:'Piedi molto in alto · spingi sui talloni · scendi profondo',
-    note:'L\'hack squat sta di mercoledi\': e\' la stessa macchina.'}),
+SESS.rv_lower = { id:'rv_lower', nome:'Lower', gg:'Sabato', durata:45, rivista:1,
+  focus:'Accosciata alla pressa · Quadricipiti · Leg curl · Polpacci · Addome', ex:[
+  e('Pressa — piede alto e largo','quad',3,'6–8','RIR 1–2 · FORZA',210,{
+    cue:'Piedi molto in alto · spingi sui talloni · scendi profondo, è lì che il gluteo si allunga',
+    note:'La seconda alzata pesante delle gambe, su una macchina diversa dall’hack squat solo per posizione dei piedi e giorno.'}),
   e('Sissy squat zavorrato','quad',2,'10–15','+ Rest-pause',120,{ernia:1,p:1,
     cue:'Disco al petto · mano al montante per stabilizzarti · talloni alzati · eccentrica 3 sec'}),
-  e('Leg curl nordico','femorali',3,'5–8','Eccentrica lenta',150,{
-    cue:'Caviglie bloccate sotto il pad della lat machine · scendi in 4-5 sec tenendo anca e busto in linea'}),
   e('Leg curl sdraiato — manubri','femorali',3,'12–15','+ Drop set',120,{p:1,
-    cue:'Prono sulla panca · manubrio stretto fra i piedi · non sollevare i fianchi · eccentrica 3 sec'}),
+    cue:'Prono sulla panca · manubrio stretto fra i piedi · non sollevare i fianchi · eccentrica 3 sec',
+    note:'L’unico leg curl della giornata: il nordico sta di mercoledì.'}),
+  e('Calf raise in piedi','polpacci',3,'8–12','+ Rest-pause',120,{
+    cue:'Ginocchio dritto · su un rialzo o un disco · pausa 2" in basso · no rimbalzo'}),
   e('Crunch al cavo alto','core',3,'10–15','+ Rest-pause',120,{ernia:1,
     cue:'In ginocchio sotto la carrucola alta, corda dietro la nuca · arrotola il busto portando i gomiti al bacino · ESPIRA chiudendo · eccentrica 3 sec'})
 ]};
 
 /* ---------- SCHEDA A 4 SEDUTE ----------
-   Gambe, gluteo, trapezi, polpacci e addome identici alla scheda da 5. Con due
-   sole sedute di parte alta petto, dorso, spalle e braccia scendono: 43 serie
-   alte non stanno in due giornate da sei esercizi. */
-SESS.q_upperA = { id:'q_upperA', nome:'Upper A', gg:'Lunedì', durata:51, rivista:1, quattro:1,
-  focus:'Spinta orizzontale · Tirata verticale · Braccia in allungamento', ex:[
-  e('Panca piana bilanciere','petto',3,'5–8','RIR 1–2',210,{
-    cue:'Presa 1,5× spalle · gomiti 45° · scapole retratte · fermo 1 sec in basso'}),
+   Stessi vincoli e stessi esercizi. Gambe, leg curl, polpacci e addome
+   identici; petto, dorso e trapezi quasi; spalle e braccia scendono, perche'
+   con due sole sedute di parte alta non c'e' spazio. */
+SESS.q_upperA = { id:'q_upperA', nome:'Upper A', gg:'Lunedì', durata:57, rivista:1, quattro:1,
+  focus:'Forza in spinta · Tirata verticale · Braccia in allungamento', ex:[
+  e('Panca piana bilanciere','petto',3,'4–6','RIR 1–2 · FORZA',240,{
+    cue:'Presa 1,5× spalle · gomiti 45° · scapole retratte · fermo 1 sec in basso · eccentrica 2 sec'}),
   e('Lat machine unilaterale — maniglia','dorso',3,'8–12','+ Rest-pause',120,{uni:1,
     cue:'Una maniglia sola, un braccio per volta · allunga in cima lasciando salire la scapola'}),
-  e('Military press manubri — seduto','spalle',3,'6–8','RIR 1–2',180,{p:1,
+  e('Military press manubri — seduto','spalle',3,'5–7','RIR 1–2 · FORZA',210,{p:1,
     cue:'Schienale a 80-85° · manubri all’altezza delle orecchie in basso · espira salendo'}),
-  e('Rematore manubri gomiti alti — trapezi','trapezi',2,'10–15','+ Rest-pause',120,{
-    cue:'Panca a 30-40°, petto appoggiato · presa larga · gomiti ALTI · squeeze delle scapole'}),
+  e('Rematore manubri gomiti alti — trapezi','trapezi',3,'10–15','+ Rest-pause',120,{
+    cue:'Panca a 30-40°, petto appoggiato · presa larga · gomiti ALTI · squeeze delle scapole',
+    note:'L’unico rematore della giornata, e l’unica dose di trapezio della settimana.'}),
   e('French press ai cavi — overhead','tricipiti',3,'10–12','Superset',0,{p:1,ss:'A',
     cue:'Corda alla carrucola bassa, di spalle · gomiti fermi sopra la testa · stretch massimo'}),
   e('Curl ai cavi dietro il corpo — Bayesian','bicipiti',3,'8–12','Superset + Drop set',120,{p:1,ss:'A',
     cue:'Carrucola bassa, braccio dietro la linea del corpo · gomito fermo · eccentrica 3 sec'})
 ]};
-SESS.q_lowerA = { id:'q_lowerA', nome:'Lower A', gg:'Martedì', durata:52, rivista:1, quattro:1,
-  focus:'Accosciata pesante · Anca · Gluteo · Polpacci · Addome', ex:[
-  e('Hack squat — piede basso','quad',3,'6–10','RIR 1–2',210,{ernia:1,
+SESS.q_lowerA = { id:'q_lowerA', nome:'Lower A', gg:'Martedì', durata:48, rivista:1, quattro:1,
+  focus:'Forza sulle gambe · Accosciata · Catena posteriore · Addome', ex:[
+  e('Hack squat — piede basso','quad',3,'5–8','RIR 1–2 · FORZA',240,{ernia:1,
     cue:'Discesa 2–3 sec · fermo 1 sec in basso · ESPIRA nella salita · mai Valsalva'}),
-  e('Romanian deadlift bilanciere','femorali',3,'8–10','RIR 1–2',210,{ernia:1,
+  e('Romanian deadlift bilanciere','femorali',3,'6–8','RIR 1–2 · FORZA',240,{ernia:1,
     cue:'La barra scorre lungo la coscia · schiena neutra · espira salendo'}),
-  e('Hip thrust bilanciere','gluteo',3,'10–12','+ Rest-pause',120,{
-    cue:'Spalla sul bordo panca · spingi i talloni · squeeze in cima · iso 2"'}),
-  e('Calf raise in piedi','polpacci',3,'8–12','+ Rest-pause',120,{
-    cue:'Ginocchio dritto · su un rialzo · pausa 2" in basso'}),
+  e('Leg curl nordico','femorali',3,'5–8','Eccentrica lenta',150,{
+    cue:'Caviglie sotto il pad della lat machine o un bilanciere caricato · discesa 4-5 sec',
+    note:'L’unico leg curl della giornata.'}),
   e('D’Annunzio crunch','core',3,'10–15','+ Rest-pause',120,{ernia:1,
     cue:'Sdraiato sulla lat machine, gambe sotto il pad · busto oltre l’appoggio · eccentrica 3 sec · ESPIRA salendo'})
 ]};
-SESS.q_upperB = { id:'q_upperB', nome:'Upper B', gg:'Giovedì', durata:51, rivista:1, quattro:1,
-  focus:'Tirata orizzontale · Spinta inclinata · Braccia in accorciamento', ex:[
+SESS.q_upperB = { id:'q_upperB', nome:'Upper B', gg:'Giovedì', durata:50, rivista:1, quattro:1,
+  focus:'Tirata orizzontale · Petto · Braccia in accorciamento', ex:[
   e('Rematore manubri — busto appoggiato','dorso',3,'8–12','+ Rest-pause',150,{
-    cue:'Panca inclinata a 30-40° · petto appoggiato · tira i gomiti indietro lungo i fianchi'}),
+    cue:'Panca inclinata a 30-40° · petto appoggiato · tira i gomiti indietro lungo i fianchi',
+    note:'L’unico rematore della giornata.'}),
   e('Panca inclinata manubri','petto',3,'8–12','+ Drop set',150,{
     cue:'Angolo 30° · scendi fino allo stretch completo · pausa 1 sec'}),
-  e('Pulley basso — presa neutra','dorso',2,'10–12','+ Rest-pause',150,{
-    cue:'Busto fermo · gomiti indietro lungo i fianchi · allunga in avanti senza curvare'}),
-  e('Rematore alto ai cavi — trapezi','trapezi',2,'12–15','+ Rest-pause',120,{
-    cue:'Carrucola alta con corda · tira verso il viso coi gomiti ALTI · squeeze delle scapole'}),
+  e('Pullover ai cavi — carrucola alta','dorso',2,'10–12','+ Rest-pause',120,{
+    cue:'In piedi davanti alla lat machine · braccia quasi tese · porta giù verso le cosce ruotando la spalla'}),
+  e('Croci manubri su panca inclinata','petto',2,'10–12','RIR 0–1 + Allungamento',120,{p:1,
+    cue:'Panca a 30° · scendi fino allo stretto sul petto · FERMATI prima di chiudere in alto'}),
   e('Alzate laterali ai cavi','spalle',2,'12–15','+ Rest-pause ×2',90,{p:1,wm:1,uni:1,
     cue:'Cavo basso dal lato opposto · gomito guida · stop a 90°'}),
   e('Tricipite push-down','tricipiti',3,'10–12','Superset + Drop set',0,{p:1,ss:'B',
@@ -808,16 +826,17 @@ SESS.q_upperB = { id:'q_upperB', nome:'Upper B', gg:'Giovedì', durata:51, rivis
   e('Curl manubri su panca inclinata','bicipiti',3,'8–10','Superset',120,{p:1,ss:'B',
     cue:'Panca a 45-60° · braccia dietro la linea del busto · supinazione completa · eccentrica 3 sec'})
 ]};
-SESS.q_lowerB = { id:'q_lowerB', nome:'Lower B', gg:'Venerdì', durata:46, rivista:1, quattro:1,
-  focus:'Accosciata alla pressa · Leg curl · Addome', ex:[
-  e('Pressa — piede alto e largo','quad',3,'8–12','+ Drop set',180,{
+SESS.q_lowerB = { id:'q_lowerB', nome:'Lower B', gg:'Venerdì', durata:45, rivista:1, quattro:1,
+  focus:'Accosciata alla pressa · Leg curl · Polpacci · Addome', ex:[
+  e('Pressa — piede alto e largo','quad',3,'6–8','RIR 1–2 · FORZA',210,{
     cue:'Piedi molto in alto · scendi profondo · spingi sui talloni'}),
   e('Sissy squat zavorrato','quad',2,'10–15','+ Rest-pause',120,{ernia:1,p:1,
     cue:'Disco al petto · mano al montante · talloni alzati · eccentrica 3 sec'}),
-  e('Leg curl nordico','femorali',3,'5–8','Eccentrica lenta',150,{
-    cue:'Caviglie sotto il pad della lat machine · discesa 4-5 sec'}),
   e('Leg curl sdraiato — manubri','femorali',3,'12–15','+ Drop set',120,{p:1,
-    cue:'Prono sulla panca · manubrio stretto fra i piedi · non sollevare i fianchi · eccentrica 3 sec'}),
+    cue:'Prono sulla panca · manubrio stretto fra i piedi · non sollevare i fianchi · eccentrica 3 sec',
+    note:'L’unico leg curl della giornata.'}),
+  e('Calf raise in piedi','polpacci',3,'8–12','+ Rest-pause',120,{
+    cue:'Ginocchio dritto · su un rialzo · pausa 2" in basso'}),
   e('Crunch al cavo alto','core',3,'10–15','+ Rest-pause',120,{ernia:1,
     cue:'In ginocchio sotto la carrucola alta, corda dietro la nuca · arrotola il busto · ESPIRA chiudendo'})
 ]};
@@ -1177,14 +1196,17 @@ const TECNICHE = {
 /* Mobilità pre-sessione, 10 minuti obbligatori (pag. 34) */
 const MOBILITA = {
   push:['Band pull-apart 2×20','Rotazioni spalla 2×15','Wall slide 2×10','Panca progressiva 3 serie (40-60-80%)'],
-  pull:['Cat-cow vertebrale 2×10','Dislocazioni bastone 2×10','Face pull leggero 1×20','Trazioni leggere 2×5'],
-  legs:['Hip hinge corpo libero 2×10','Squat goblet mobilità 2×10','Hip flexor stretch 2×8 per lato','Hack squat progressivo 3 serie'],
-  upper:['Band pull-apart 2×15','Wall slide 2×10','Rotazioni spalla 2×15','Panca inclinata leggera 2×8']
+  pull:['Cat-cow vertebrale 2×10','Dislocazioni bastone 2×10','Face pull leggero 1×20','Lat machine leggera 2×10'],
+  legs:['Hip hinge corpo libero 2×10','Squat goblet mobilità 2×10','Hip flexor stretch 2×8 per lato','Hack squat progressivo 3 serie (40-60-80%)'],
+  lower:['Hip hinge corpo libero 2×10','Caviglia al muro 2×10 per lato','Hip flexor stretch 2×8 per lato','Pressa progressiva 3 serie (40-60-80%)'],
+  upper:['Band pull-apart 2×15','Wall slide 2×10','Rotazioni spalla 2×15','Panca inclinata leggera 2×8'],
+  upperfz:['Band pull-apart 2×20','Rotazioni spalla 2×15','Wall slide 2×10','Panca progressiva 3 serie (40-60-80%)']
 };
 const MOB_DI = { cut_push:'push', tr_push:'push', pu_push:'push', rv_push:'push',
   cut_pull:'pull', tr_pull:'pull', pu_pull:'pull', rv_pull:'pull',
   cut_legs:'legs', tr_legs:'legs', pu_legs:'legs', pu_legs2:'legs', rv_legs:'legs', rv_legs2:'legs',
-  pu_upper:'upper', rv_upper:'upper', cut_sab:'upper', tr_sab:'upper' };
+  pu_upper:'upper', rv_upper:'upper', cut_sab:'upper', tr_sab:'upper',
+  rv_lower:'lower', q_lowerA:'legs', q_lowerB:'lower', q_upperA:'upperfz', q_upperB:'upper' };
 /* Stretching post-sessione, 8 minuti obbligatori (pag. 36-37) */
 const STRETCHING = [
   ['Petto','Braccio appoggiato al muro a 90°, corpo ruotato lontano, 2 lati','30" × 2',['push']],
@@ -1329,16 +1351,16 @@ const CONS_FONTI = [
 /* Versione dell'app. Serve a sapere, dal telefono, se quello che hai davanti e'
    l'ultima versione: la PWA installata puo' restare indietro se iOS non rifa'
    la navigazione. Il numero si alza a ogni pubblicazione. */
-const VERSIONE = { n:'v30', data:'19 agosto 2026', nota:'Serie ed esercizi come da elenco' };
+const VERSIONE = { n:'v31', data:'19 agosto 2026', nota:'Un rematore e un leg curl al giorno, forza in testa' };
 
 const ATTREZZI = [
-  ['Rack, bilanciere, panca regolabile', 1, 'Panca piana e inclinata, military press, rematore Yates, stacco romeno, hip thrust'],
-  ['Manubri', 1, 'Panca inclinata, croci, curl in tutte le versioni, rematore a un braccio, leg curl sdraiato'],
-  ['Lat machine — carrucola alta', 1, 'Lat machine presa larga, push-down, face pull'],
-  ['Pulley basso — carrucola bassa', 1, 'Pulley basso presa neutra, alzate laterali ai cavi, curl ai cavi, curl hammer, tricipite overhead, pallof press'],
+  ['Rack, bilanciere, panca regolabile', 1, 'Panca piana, stacco romeno, panca inclinata per croci, curl e rematore col petto appoggiato'],
+  ['Manubri', 1, 'Panca inclinata, croci, military press seduto, curl inclinato, rematore coi gomiti alti e col busto appoggiato, leg curl sdraiato'],
+  ['Lat machine — carrucola alta', 1, 'Lat machine unilaterale, pullover ai cavi, push-down, crunch al cavo alto, e il pad blocca le caviglie per nordico e D’Annunzio crunch'],
+  ['Pulley basso — carrucola bassa', 1, 'Alzate laterali ai cavi, curl Bayesian dietro il corpo, curl hammer, french press overhead'],
   ['Pressa e hack squat, macchinario unico', 1, 'Hack squat piede basso e pressa piede alto: stessa macchina, una riconfigurazione a seduta'],
-  ['Sbarra per trazioni', 1, 'Trazioni zavorate'],
-  ['Parallele / dip station', 1, 'Dip verticale zavorra'],
+  ['Sbarra per trazioni', 1, 'Non usata dalle due schede: la verticale la fa la lat machine a un braccio, con più range'],
+  ['Parallele / dip station', 1, 'Non usata dalle due schede: le dip caricano il tricipite in accorciamento, il french press overhead lo carica allungato'],
   ['Leg extension', 0, 'Sostituita dal sissy squat zavorrato'],
   ['Leg curl, seduto o sdraiato a macchina', 0, 'Sostituito dal leg curl nordico e dal leg curl sdraiato coi manubri'],
   ['Stazione a cavi con carrucola regolabile', 0, 'Le croci ai cavi sono diventate croci coi manubri su panca inclinata']
@@ -2293,8 +2315,8 @@ function renderWorkout(){
      quadricipite, pur essendo una seduta di petto, schiena, spalle e braccia:
      si aggiungono gli allungamenti di Push e Pull, marcati come deduzione. */
   const str = STRETCHING.map(x => ({ m:x[0], c:x[1], d:x[2],
-      diretto: x[3].includes(mk),
-      dedotto: mk === 'upper' && !x[3].includes('upper') && (x[3].includes('push') || x[3].includes('pull')) }))
+      diretto: x[3].includes(mk) || (mk === 'lower' && x[3].includes('legs')),
+      dedotto: mk && mk.indexOf('upper') === 0 && !x[3].includes('upper') && (x[3].includes('push') || x[3].includes('pull')) }))
     .filter(x => x.diretto || x.dedotto);
   const gruppi = {};
   s.ex.forEach((_,i) => { const ex = exDi(s,i,d); gruppi[ex.g] = (gruppi[ex.g]||0) + serieDi(ex,tipo); });
@@ -2939,6 +2961,11 @@ function renderPiano(){
     <div class="card"><div class="hd"><h3>Come sono costruite</h3></div><div class="bd stack-s">
       <p class="small muted" style="margin:0">Le stesse regole hanno generato tutte e due le schede. Cambia solo quante
         sedute hanno a disposizione.</p>
+      <p class="small" style="margin:0"><b>0. Il volume settimanale è fissato, non dedotto.</b> Petto 8, dorso 8,
+        trapezi 3, spalle 7, bicipiti 8, tricipiti 8, accosciata 8, femorali 9, polpacci 3, addome 6. Le schede
+        partono da lì e ci arrivano esattamente: quanti esercizi, come si dividono e quanto dura una seduta sono
+        conseguenze di quei numeri, non scelte libere. La 5 sedute li centra tutti; la 4 sedute li centra tutti
+        tranne spalle e braccia, che scendono di due serie ciascuna — e sotto è scritto perché.</p>
       <p class="small" style="margin:0"><b>1. La tensione meccanica è il driver, non il bruciore.</b> Il pompaggio e i
         dolori del giorno dopo non sono indici di crescita: il primo è un effetto collaterale, i secondi sono un
         sottoprodotto che rallenta il recupero. Quello che conta è quanta tensione il muscolo regge, e per reclutare le
@@ -2947,59 +2974,68 @@ function renderPiano(){
       <p class="small" style="margin:0"><b>2. RIR 0–2 su tutto quello che alleni davvero.</b> Compound a 1-2 ripetizioni
         di margine, isolamento a cedimento tecnico. Le serie lontane dal cedimento non sono allenamento leggero: sono
         fatica senza stimolo.</p>
-      <p class="small" style="margin:0"><b>0. Il volume settimanale è fissato, non dedotto.</b> Petto 8, tricipiti 10,
-        bicipiti 10, dorso 8, trapezi 4, spalle 8, accosciata 8, femorali 5, polpacci 3. Le schede partono da lì e ci
-        arrivano esattamente: tutto il resto — quanti esercizi, come si dividono, quanto dura una seduta — è una
-        conseguenza, non una scelta libera.</p>
-      <p class="small" style="margin:0"><b>2-bis. Un solo rematore per giornata, e nelle sedute di gamba solo gambe.</b>
-        Due rematori nello stesso giorno sono lo stesso movimento fatto due volte sulla stessa panca: il secondo lo fai
-        già stanco e non aggiunge un angolo nuovo. E l’isolamento di braccia infilato in coda a una seduta di gambe è un
-        riempitivo. Da qui il <b>pullover ai cavi</b> come terzo esercizio di dorso — non è un rematore, e il gran
-        dorsale lavora senza che il gomito fletta — e i <b>trapezi tutti in una seduta sola</b>, quella in cui la
-        schiena tira in verticale.</p>
-      <p class="small" style="margin:0"><b>3. Da due a tre serie per esercizio, mai di più.</b> Il volume si alza
+      <p class="small" style="margin:0"><b>3. Un’alzata di forza in testa a ogni seduta.</b> Panca piana 4-6, military
+        press coi manubri 5-7, hack squat 5-8, stacco romeno 6-8, pressa 6-8: prima cosa dopo il riscaldamento, quattro
+        minuti di recupero, carico che sale appena chiudi il tetto del range su tutte e tre le serie. Non è un blocco di
+        powerlifting appiccicato davanti: è che la tensione più alta la esprimi da fresco, e su un range basso il carico
+        è l’unica variabile che si muove. Tutto quello che viene dopo lavora su range più alti, dove è la vicinanza al
+        cedimento a fare il lavoro.</p>
+      <p class="small" style="margin:0"><b>4. Un solo rematore e un solo leg curl per giornata, e nelle sedute di gamba
+        solo gambe.</b> Due rematori nello stesso giorno sono lo stesso movimento fatto due volte sulla stessa panca: il
+        secondo lo fai già stanco e non aggiunge un angolo nuovo. Lo stesso vale per due flessioni del ginocchio di
+        fila. E l’isolamento di braccia infilato in coda a una seduta di gambe è un riempitivo. Da qui il <b>pullover ai
+        cavi</b> come terza dose di dorso — non è un rematore, e il gran dorsale lavora senza che il gomito fletta — il
+        <b>nordico</b> di mercoledì separato dal <b>leg curl sdraiato</b> di sabato, e i <b>trapezi tutti in una seduta
+        sola</b>, quella in cui la schiena tira in verticale.</p>
+      <p class="small" style="margin:0"><b>5. Da due a tre serie per esercizio, mai di più.</b> Il volume si alza
         aggiungendo un esercizio, non serie allo stesso: dalla quarta o quinta serie consecutiva sullo stesso
         movimento la tensione che riesci a produrre è già scesa, e quelle serie le fai ma non allenano. Tutte le sedute
         rispettano il tetto, nessuna esclusa.</p>
-      <p class="small" style="margin:0"><b>4. Stabilità: dove serve equilibrio, il muscolo riceve meno.</b> Se un
+      <p class="small" style="margin:0"><b>6. Stabilità: dove serve equilibrio, il muscolo riceve meno.</b> Se un
         esercizio chiede di stare in piedi su una gamba o di controllare un bilanciere libero, il sistema nervoso frena
         l’output per proteggerti, e il muscolo bersaglio non arriva mai al suo limite. Per questo qui macchine e cavi
         non sono un ripiego: hack squat guidato, pressa, rematore col petto appoggiato, military da seduto, laterali e
         curl ai cavi. Ed è anche il motivo per cui lo <b>split squat bulgaro è uscito</b>: unilaterale in equilibrio,
         chiedeva stabilità e restituiva meno quadricipite.</p>
-      <p class="small" style="margin:0"><b>5. Il carico deve pesare dove il muscolo è lungo, e non deve mai azzerarsi.</b>
+      <p class="small" style="margin:0"><b>7. Il carico deve pesare dove il muscolo è lungo, e non deve mai azzerarsi.</b>
         Un esercizio è buono quando la resistenza dell’attrezzo segue la forza che il muscolo può esprimere a quell’angolo,
-        senza punti morti. Da qui il <b>curl ai cavi dietro il corpo</b> al posto del curl su panca inclinata (col
-        manubrio, in basso, il braccio è appeso e il carico è zero proprio dove il bicipite è allungato), il
-        <b>french press ai cavi</b>, le <b>alzate laterali ai cavi</b>, il face pull invece delle alzate posteriori. E
-        sulle croci coi manubri, che il punto morto in cima ce l’hanno: si chiude a due terzi e non si arriva a toccare.</p>
-      <p class="small" style="margin:0"><b>5-ter. Una dose in allungamento e una in accorciamento, sulle braccia.</b>
-        Il bicipite ha il <b>curl ai cavi dietro il corpo</b> (braccio dietro il busto: il punto più duro è dove il
-        capo lungo è teso) e il <b>curl alla carrucola alta</b> (braccia aperte a croce: il punto più duro è in
-        chiusura). Il tricipite ha lo stesso schema: <b>french press</b> col gomito sopra la testa e
-        <b>push-down</b> col gomito al fianco. Sono i due estremi della stessa curva, non due esercizi uguali.</p>
-      <p class="small" style="margin:0"><b>5-quater. Una tirata verticale e una orizzontale.</b> Verticale: <b>lat
+        senza punti morti. Da qui il <b>curl ai cavi dietro il corpo</b>, il <b>french press ai cavi</b> con la corda
+        alla carrucola bassa e le <b>alzate laterali ai cavi</b> invece che coi manubri, dove in basso il carico è zero.
+        E sulle <b>croci coi manubri</b>, che il punto morto in cima ce l’hanno: si chiude a due terzi e non si arriva a
+        toccare, perché lì il petto non regge più niente.</p>
+      <p class="small" style="margin:0"><b>8. In allungamento, non in accorciamento.</b> Mettere il muscolo sotto
+        massima tensione mentre è <em>lungo</em> dà un segnale di crescita superiore a quello che si ottiene lavorando
+        dove è corto. È la ragione per cui l’<b>hip thrust è uscito del tutto</b>: caricava il gluteo nel punto in cui è
+        più corto, e la stessa anca ce l’ha già in allungamento — profondo — sullo stacco romeno e sulla pressa. Al suo
+        posto lo stacco romeno è salito a un’alzata di forza vera, 6-8 ripetizioni e quattro minuti. Stessa logica sulle
+        <b>croci su panca inclinata</b> al posto di qualunque chiusura ai cavi, e sul <b>sissy squat</b>, dove il retto
+        femorale lavora allungato dall’anca estesa.</p>
+      <p class="small" style="margin:0"><b>9. Sulle braccia, i due estremi della curva.</b> Il tricipite li ha
+        entrambi e puliti: <b>french press overhead</b> col gomito sopra la testa, dove il capo lungo è teso, e
+        <b>push-down</b> col gomito al fianco, dove è corto. Sul bicipite le due dosi migliori sono tutte e due in
+        allungamento — <b>curl ai cavi dietro il corpo</b> e <b>curl coi manubri su panca inclinata</b>, in tutti e due
+        il braccio sta dietro la linea del busto — e va bene così: è lì che il segnale è più forte. Il
+        <b>curl hammer al cavo basso</b> non è la dose in accorciamento, è la dose per brachiale e brachioradiale, che
+        con la presa supina non lavorano mai davvero.</p>
+      <p class="small" style="margin:0"><b>10. Una tirata verticale e una orizzontale.</b> Verticale: <b>lat
         machine unilaterale con la maniglia</b>, un braccio per volta — il range è più ampio e la scapola può salire
         davvero, cosa che con la barra a due mani non succede. Orizzontale: <b>rematore coi manubri a busto
-        appoggiato</b>, dove il limite non lo mette la schiena bassa. Il face pull è uscito: il deltoide posteriore
-        e il trapezio adesso hanno le <b>scrollate</b>, 4 serie a settimana.</p>
-      <p class="small" style="margin:0"><b>5-bis. In allungamento, non in accorciamento.</b> Mettere il muscolo sotto
-        massima tensione mentre è <em>lungo</em> dà un segnale di crescita superiore a quello che si ottiene lavorando
-        dove è corto. Per questo sono usciti gli ultimi due esercizi che caricavano in accorciamento:
-        il <b>push-down</b>, che col gomito lungo il fianco tiene il tricipite corto, sostituito dal
-        <b>french press coi manubri su panca inclinata</b> (dietro la testa il capo lungo parte allungato); e il
-        <b>curl ai cavi in piedi</b>, sostituito dal <b>preacher curl</b>, dove il punto più duro è in basso col
-        bicipite disteso. L’unico rimasto in accorciamento è l’<b>hip thrust</b>, e resta perché il gluteo l’altra
-        dose ce l’ha già in allungamento con la pressa profonda: le due si completano.</p>
-      <p class="small" style="margin:0"><b>6. Recuperi da 2 a 3 minuti.</b> Servono a ricaricare la fosfocreatina e a
+        appoggiato</b>, dove il limite non lo mette la schiena bassa. Il trapezio ha il suo, il <b>rematore coi gomiti
+        alti</b> su panca inclinata: stesso attrezzo, gomito alto invece che lungo il fianco, e le scapole si chiudono
+        invece di scorrere indietro. Le scrollate sono uscite: caricano il trapezio superiore in accorciamento e basta.</p>
+      <p class="small" style="margin:0"><b>11. Recuperi da 2 a 4 minuti.</b> Servono a ricaricare la fosfocreatina e a
         far scendere la fatica centrale: con un minuto di pausa la serie dopo parte già scarica, e la tensione
-        meccanica — che è il punto — non c’è più. Sono saliti tutti: l’isolamento da 105 secondi a 120-150, i compound
-        restano a 3 minuti e mezzo.</p>
-      <p class="small" style="margin:0"><b>7. Ogni gruppo due volte a settimana.</b> Allenare un muscolo una volta sola
+        meccanica — che è il punto — non c’è più. L’isolamento sta a 120-150 secondi, le alzate di forza a 3 minuti e
+        mezzo o 4. È il motivo per cui una seduta da sole 12 serie può durare quasi un’ora: il tempo è quasi tutto
+        recupero, ed è speso bene.</p>
+      <p class="small" style="margin:0"><b>12. Ogni gruppo due volte a settimana.</b> Allenare un muscolo una volta sola
         obbliga a stipare troppe serie nello stesso giorno, e dalla quinta o sesta in poi la prestazione crolla: quelle
         serie le fai, ma non allenano. Lo stesso volume diviso su due giorni tiene alta la qualità di tutte. Vale anche
-        per le gambe, che nel giro precedente avevo accorpato in due giornate monotematiche — era un errore.</p>
-      <p class="small" style="margin:0"><b>8. Progressione in tre passi, in quest’ordine.</b> Prima si fissano tecnica e
+        per le gambe, che nel giro precedente avevo accorpato in due giornate monotematiche — era un errore. Le due
+        eccezioni sono <b>trapezi e polpacci</b>, 3 serie a settimana ciascuno: a quel volume dividere in due
+        significherebbe una serie e mezza per seduta, cioè niente. Sotto le 4-5 serie settimanali la frequenza doppia
+        non ha più senso.</p>
+      <p class="small" style="margin:0"><b>13. Progressione in tre passi, in quest’ordine.</b> Prima si fissano tecnica e
         range, col fermo di un secondo in allungamento. Poi salgono le ripetizioni fino al top del range, a parità di
         RIR. Solo alla fine sale il carico. Caricare di più a scapito dell’esecuzione non è sovraccarico progressivo.</p>
       <p class="small" style="margin:0"><b>9. Sotto i 65 minuti, e costruite intorno all’ernia.</b> Niente squat libero
@@ -3012,9 +3048,11 @@ function renderPiano(){
         dove l’addome è allungato. Con l’ernia inguinale è l’unico esercizio del piano che alza la pressione
         addominale: si espira sempre salendo, si parte a corpo libero, e il disco si aggiunge solo se non tira.</p>
       <div class="backup" style="background:var(--accent-soft);color:var(--accent-text)">${ICO.info}
-        <span>Le <b>alzate laterali ai cavi</b> sono l’unico esercizio che compare in due sedute. È voluto: la regola
-        della frequenza doppia dice di dividere il volume di un muscolo su due giorni, e ai cavi è l’unica versione
-        senza punto morto in basso. Ripetere il migliore vale più che usarne uno peggiore per non ripetersi.</span></div>
+        <span>Nella 5 sedute due esercizi compaiono due volte: le <b>alzate laterali ai cavi</b> e il <b>french
+        press ai cavi</b>. È voluto. La frequenza doppia chiede di dividere il volume su due giorni, e per spalle e capo
+        lungo del tricipite quella è la versione migliore che hai — senza punto morto e con la tensione dove il muscolo
+        è lungo. Ripetere il migliore vale più che usarne uno peggiore per non ripetersi. Nella 4 sedute non si ripete
+        niente: con due sole sedute di parte alta c’è spazio per un esercizio diverso ogni volta.</span></div>
     </div></div>` ; })()}
 
   <div class="card"><div class="hd"><h2>La tua attrezzatura</h2>
@@ -3027,10 +3065,13 @@ function renderPiano(){
         <div><b class="small" style="${ce?'':'color:var(--ink-3)'}">${esc(nome)}</b>
           <p class="tiny muted" style="margin:2px 0 0">${esc(uso)}</p></div>
       </div>`).join('')}
-      <p class="tiny muted" style="margin:0">I tre esercizi in fondo non li hai, e le schede non li usano più. Le
+      <p class="tiny muted" style="margin:0">Le tre macchine in fondo non le hai, e le schede non le usano. Le
         sostituzioni non sono ripieghi: il sissy squat zavorrato fa lo stesso lavoro della leg extension col retto
         femorale allungato, il nordico è la flessione del ginocchio più dura che esista senza macchina, e per le croci
-        il manubrio è più duro proprio in basso, dove il petto è allungato — che è la parte che conta.</p>
+        il manubrio è più duro proprio in basso, dove il petto è allungato — che è la parte che conta. Due cose che
+        invece <em>hai</em> restano ferme di proposito: sbarra per trazioni e parallele. Non è che non vadano bene,
+        è che per lo stesso muscolo hai a disposizione una versione migliore — più range sulla lat a un braccio, più
+        allungamento sul french press overhead.</p>
       <div class="backup" style="background:var(--warn-soft);color:var(--warn-text)">${ICO.alert}
         <span>Quello che <b>non</b> si recupera: il leg curl con l’anca flessa. Il nordico e il leg curl sdraiato
         lavorano ad anca estesa, dove il capo lungo del femorale è più corto. Il lavoro in allungamento sul femorale
