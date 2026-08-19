@@ -66,9 +66,19 @@ jobs:
           grep -q 'mio(url.pathname)' pwa/viaggio/sw.js
 
       - name: Aggiorna il ramo gh-pages
+        # Si parte dal contenuto gia' pubblicato e ci si sovrappone quello
+        # appena costruito, invece di sostituirlo in blocco. Cosi' una build
+        # che non conosce tutte le app non cancella quelle delle altre: e'
+        # esattamente com'e' sparita /viaggio/ quando la pubblicazione e'
+        # partita da un ramo che non la conteneva.
         run: |
           touch pwa/.nojekyll
-          cd pwa
+          git clone -q --depth 1 --branch gh-pages \
+            "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" pubblicato \
+            || mkdir -p pubblicato
+          rm -rf pubblicato/.git
+          cp -a pwa/. pubblicato/
+          cd pubblicato
           git init -q
           git checkout -qb gh-pages
           git config user.name  "github-actions[bot]"
@@ -84,6 +94,14 @@ jobs:
             "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" gh-pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Controlla che online ci siano tutte e due le app
+        run: |
+          test -s pubblicato/index.html
+          test -s pubblicato/viaggio/index.html
+          test -s pubblicato/viaggio/sw.js
+          grep -q 'Quarnero' pubblicato/viaggio/index.html
+          echo "radice $(wc -c < pubblicato/index.html) byte, viaggio $(wc -c < pubblicato/viaggio/index.html) byte"
 
       - name: Dove stanno
         run: |
