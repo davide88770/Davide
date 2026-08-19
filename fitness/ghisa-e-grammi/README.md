@@ -119,7 +119,7 @@ opzioni significava tenerne due che non avrei consigliato.
 | Giorni | Lun Push · Mar Pull · Mer Legs · Ven Upper · Sab Lower | Lun Upper A · Mar Lower A · Gio Upper B · Sab Lower B |
 | Liberi | Giovedì, domenica | Mercoledì, venerdì, domenica |
 | Serie dirette | 86 | 70 |
-| Durate | 59, 58, 47, 47, 47 min | 49, 42, 57, 52 min |
+| Durate | 59, 55, 47, 47, 47 min | 49, 42, 58, 52 min |
 
 Serie **frazionali** a settimana (dirette + metà delle indirette), che è come le
 conta l'app:
@@ -183,11 +183,11 @@ di ottenere la frequenza 2× senza ripetere niente:
 | | Lunedì · Upper A | Giovedì · Upper B |
 |---|---|---|
 | Schema | Spinta **orizzontale** · tirata **verticale** | Spinta **verticale** · tirata **orizzontale** |
-| Pesante di spinta | Panca piana 3 × 5-8 | Military press 3 × 6-8 |
-| Pesante di tirata | Trazioni zavorate 3 × 5-8 | Rematore Yates 3 × 6-10 |
+| Pesante di spinta | Panca piana 3 × 5-8 | Military press manubri seduto 3 × 6-8 |
+| Tirata | Trazioni zavorate 3 × 5-8 | Rematore manubri a busto appoggiato 3 × 8-12 |
 | Petto | Croci manubri inclinata 3, a cedimento | Panca inclinata manubri 3 |
 | Dorso | — | Pulley basso 4 |
-| Spalle | Alzate laterali ai cavi 3 | Alzate posteriori 2 |
+| Spalle | Alzate laterali ai cavi 3 | Face pull alla lat machine 2 |
 | Braccia | Curl inclinata 3 + tricipite overhead 3, in superset | Curl hammer 3 + dip 3, in superset |
 | **Esercizi** | **6** (erano 7) | **7** (erano 10) |
 | **Serie** | **18** (erano 21) | **21** (erano 26) |
@@ -208,6 +208,28 @@ Cosa è uscito e perché:
 Le braccia restano in **superset antagonista** — bicipite e tricipite non si
 rubano niente e si risparmiano sei minuti — e in tutte e due le sedute partono
 dall'esercizio che le carica allungate.
+
+### La passata biomeccanica sulla selezione
+
+Il criterio è uno solo: **dove il carico è massimo rispetto a dove il muscolo è
+lungo**. Tre esercizi non lo rispettavano.
+
+| Prima | Adesso | Perché |
+|---|---|---|
+| Rematore bilanciere — Yates | **Rematore manubri a busto appoggiato** | Col bilanciere a busto flesso il limite lo mette la schiena bassa, non il dorso, e proprio in fondo — dove il dorso è allungato — il carico cala. Col petto sulla panca inclinata la schiena non entra in gioco, il range è pieno e il punto più duro resta dove serve |
+| Alzate posteriori manubri | **Face pull alla lat machine** | Col manubrio, in basso, il braccio è appeso: il deltoide posteriore non ha carico proprio dov'è allungato. Col cavo la tensione c'è in tutto il range |
+| Military press bilanciere, in piedi | **Military press manubri, seduto** | La spinta sopra la testa in piedi è il gesto che alza di più la pressione addominale, ed è il primo da togliere con un'ernia inguinale. In più i manubri scendono più in basso, dove il deltoide è allungato |
+
+Il resto della selezione regge l'esame: le trazioni sono più dure in basso, dove
+il dorso è lungo; l'hack squat e lo stacco romeno caricano al massimo nel punto
+di massimo allungamento; il nordico ha il braccio di leva più lungo proprio a
+ginocchio esteso; le croci coi manubri e il sissy squat sono più duri in fondo.
+
+**Quello che non c'è qui dentro**: i contenuti specifici della masterclass di
+Noha Rabasco. Da questa sessione YouTube non è raggiungibile e non esistono
+trascrizioni pubbliche affidabili, quindi la passata è fatta sui principi di
+biomeccanica applicata — che è il suo terreno — ma senza attribuirgli posizioni
+che non ho potuto verificare.
 
 ### Serie dirette e frazionali
 
@@ -554,6 +576,12 @@ npm run prova:pwa                                # giro di aggiornamento dell'ap
 
 ## Storico
 
+- **v23** — passata **biomeccanica** sulla selezione, col criterio "dove il
+  carico è massimo rispetto a dove il muscolo è lungo". Rematore col bilanciere
+  → rematore coi manubri a busto appoggiato; alzate posteriori → face pull alla
+  carrucola alta; military press col bilanciere in piedi → manubri da seduto,
+  che è anche il gesto peggiore per l'ernia inguinale. Volumi e frequenze
+  invariati.
 - **v22** — **una regola sola su tutte e nove le sedute**: un solo esercizio
   davvero pesante per giornata, e **nessun esercizio in due sedute**. Le gambe si
   dividono per funzione — mercoledì quadricipite su tre livelli (hack squat,
