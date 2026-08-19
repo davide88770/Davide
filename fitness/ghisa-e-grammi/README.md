@@ -109,81 +109,66 @@ scritta anche dentro l'app, in fondo alla sezione Piano):
 
 ## Le due schede
 
-Volume settimanale in serie dirette, **centrato da tutte e due**:
+| Gruppo | Riferimento | 5 sedute | 4 sedute |
+|---|---|---|---|
+| Petto | 9 | **9** | 6 |
+| Dorso | 9 | **9** | **9** |
+| Bicipiti | 9 | **9** | 6 |
+| Tricipiti | 9 | **9** | 6 |
+| Spalle | 8 | **8** | 6 |
+| Accosciata | 8 | **8** | **8** |
+| Femorali | 6 | **6** | **6** |
+| Polpacci | 4 | **4** | **4** |
+| Trapezi | 3 | **3** | **3** |
+| Addome | 6 | **6** | **6** |
+| **Totale** | **71** | **71** | **60** |
 
-| Gruppo | Serie | Frequenza |
-|---|---|---|
-| Petto | 9 | 2× |
-| Dorso | 9 | 2× |
-| Bicipiti | 9 | 2-3× |
-| Tricipiti | 9 | 2-3× |
-| Spalle | 8 | 2-3× |
-| Accosciata | 8 | 2× |
-| Femorali | 6 | 2× |
-| Trapezi | 4 | 2× |
-| Polpacci | 4 | 2× |
-| Addome | 6 | 2× |
-| **Totale** | **72** | |
-
-Rispetto ai numeri di partenza cambiano quattro cose, tutte per un motivo:
-
-- **Femorali da 5 a 6.** Senza leg curl a macchina sono il punto debole del
-  piano, e 5 serie sono manutenzione. Adesso stacco romeno 3 + nordico 3.
-- **Polpacci da 3 a 4.** Due serie in piedi e due sedute coprono gastrocnemio e
-  soleo; con 3 se ne copre uno solo.
-- **Petto e dorso da 8 a 9, braccia da 10 a 9.** Così ogni esercizio ha 3 serie
-  piene invece di code da 2, e il totale sale solo di due serie.
+La scheda da 5 centra tutto. Quella da 4 tiene identici **dorso, trapezi,
+gambe, polpacci e addome**, e scende su petto, spalle e braccia: con due sole
+sedute di parte alta, e senza infilare le braccia nelle giornate di gambe, non
+c'è modo di tenerle su. È il prezzo di un giorno in meno, e si paga dove il
+lavoro indiretto è più abbondante.
 
 | | 5 sedute | 4 sedute |
 |---|---|---|
 | Giorni | Lun Push · Mar Pull · Mer Legs · Ven Upper · Sab Lower | Lun Upper A · Mar Lower A · Gio Upper B · Sab Lower B |
-| Esercizi per seduta | 4-6 | 6-7 |
-| Serie per seduta | 11-17 | 17-19 |
-| Durate | 58, 44, 40, 45, 43 min | 51, 52, 60, 60 min |
-
-Nella scheda da 4 **l'isolamento di braccia e spalle sta nelle due giornate di
-gambe**, che di loro sarebbero corte: con due sole sedute di parte alta le 48
-serie alte non ci starebbero in sette esercizi. Un curl dopo lo stacco romeno
-non toglie niente a nessuno dei due.
+| Esercizi per seduta | 4-6 | 4-6 |
+| Serie per seduta | 11-18 | 11-18 |
+| Durate | 58, 37, 40, 48, 43 min | 54, 40, 49, 43 min |
 
 ### Le regole
 
-0. **Il volume settimanale è il punto di partenza.** Tutto il resto — quanti
-   esercizi, come si dividono, quanto dura una seduta — è una conseguenza.
-1. **Massimo 3 serie per esercizio.** Il volume si alza aggiungendo esercizi.
-2. **RIR 0-2** su tutto quello che si allena davvero.
-3. **Stabilità**: dove serve equilibrio il sistema nervoso frena l'output sul
+0. **Il volume settimanale è il punto di partenza.** Tutto il resto è una
+   conseguenza.
+1. **Un solo rematore per giornata**, e **nelle sedute di gamba solo gambe.**
+   Due rematori nello stesso giorno sono lo stesso movimento fatto due volte
+   sulla stessa panca; l'isolamento di braccia in coda a una seduta di gambe è
+   un riempitivo.
+2. **Massimo 3 serie per esercizio.** Il volume si alza aggiungendo esercizi.
+3. **RIR 0-2** su tutto quello che si allena davvero.
+4. **Stabilità**: dove serve equilibrio il sistema nervoso frena l'output sul
    muscolo bersaglio. Macchine e cavi non sono un ripiego.
-4. **Carico massimo dove il muscolo è lungo**, senza punti morti.
-5. **Una dose in allungamento e una in accorciamento sulle braccia.** Bicipite:
-   curl ai cavi dietro il corpo + curl alla carrucola alta. Tricipite: french
-   press overhead + push-down.
-6. **Una tirata verticale e una orizzontale.** Verticale: lat machine
-   unilaterale con maniglia. Orizzontale: rematore coi manubri a busto
-   appoggiato.
-7. **Recuperi da 2 a 3 minuti.**
-8. **Frequenza 2×** per ogni gruppo.
-9. **Progressione in tre passi**: tecnica e fermo in allungamento → ripetizioni
-   → carico.
-10. **Costruite intorno all'ernia inguinale**: niente squat libero né spinte
-    sopra la testa in piedi.
+5. **Carico massimo dove il muscolo è lungo**, senza punti morti.
+6. **Una dose in allungamento e una in accorciamento sulle braccia.**
+7. **Una tirata verticale e una orizzontale.**
+8. **Recuperi da 2 a 3 minuti.**
+9. **Frequenza 2×** per ogni gruppo (i trapezi 1×).
+10. **Progressione in tre passi**: tecnica e fermo in allungamento →
+    ripetizioni → carico.
+11. **Costruite intorno all'ernia inguinale.**
 
-### I trapezi: rematore, non scrollate
+### Il pullover, e i trapezi in una seduta sola
 
-La scrollata alza le spalle e basta. Il **rematore coi manubri a gomiti alti**,
-petto appoggiato sulla panca inclinata e presa larga, porta le scapole a
-chiudersi — che è il lavoro vero del trapezio medio — e in più prende il
-deltoide posteriore, che dopo l'uscita del face pull era rimasto scoperto. 4
-serie a settimana, 2×.
+Il dorso ha bisogno di tre esercizi per arrivare a 9 serie col tetto di 3, ma
+due dei tre sarebbero rematori — e finirebbero nello stesso giorno. Il terzo è
+diventato il **pullover ai cavi alla carrucola alta**: non è un rematore, il
+gran dorsale lavora senza che il gomito fletta, e la tensione massima cade dove
+il muscolo è allungato.
 
-### Le due ripetizioni volute
-
-**Alzate laterali ai cavi** e **rematore a gomiti alti** compaiono in due
-sedute. La frequenza 2× vuole il volume di un gruppo diviso su due giorni, e per
-entrambi non esiste una seconda versione altrettanto buona con questa
-attrezzatura: ai cavi le laterali sono l'unica variante senza punto morto in
-basso, e il rematore a gomiti alti è l'unico lavoro diretto di trapezio medio.
-Ripetere il migliore vale più che usarne uno peggiore per non ripetersi.
+I **trapezi** stanno tutti nella seduta in cui la schiena tira in verticale
+(lat machine unilaterale), così il rematore a gomiti alti è l'unico rematore di
+quella giornata. Frequenza 1×: sono 3 serie di un gruppo piccolo che riceve
+lavoro da ogni tirata.
 
 ### Serie dirette e frazionali
 
@@ -514,6 +499,13 @@ npm run prova:pwa                                # giro di aggiornamento dell'ap
 
 ## Storico
 
+- **v28** — due vincoli nuovi, arrivati dall'uso: **un solo rematore per
+  giornata** e **nelle sedute di gamba solo gambe**. Il terzo esercizio di dorso
+  diventa il **pullover ai cavi** (non è un rematore, e carica il gran dorsale
+  in allungamento senza flessione del gomito); i trapezi si concentrano nella
+  seduta della tirata verticale, 1×. Nella scheda da 4 l'isolamento di braccia e
+  spalle esce dalle giornate di gambe, e petto, spalle e braccia scendono a 6:
+  è il prezzo di un giorno in meno, pagato dove il lavoro indiretto abbonda.
 - **v27** — versione definitiva. Serie decise sul merito: **petto 9, dorso 9,
   bicipiti 9, tricipiti 9, spalle 8, accosciata 8, femorali 6, trapezi 4,
   polpacci 4, addome 6** — 72 in tutto, e **le due schede le centrano
