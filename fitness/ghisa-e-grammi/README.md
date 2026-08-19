@@ -109,37 +109,46 @@ scritta anche dentro l'app, in fondo alla sezione Piano):
 
 ## Le due schede
 
-Dalla v26 il **volume settimanale è fissato da Davide**, in serie dirette, e le
-schede partono da lì:
+Volume settimanale in serie dirette, **centrato da tutte e due**:
 
-| Gruppo | Obiettivo | 5 sedute | 4 sedute |
-|---|---|---|---|
-| Petto | 8 | **8** | 6 |
-| Dorso | 8 | **8** | 6 |
-| Trapezi | 4 | **4** | **4** |
-| Spalle | 8 | **8** | **8** |
-| Bicipiti | 10 | **10** | 8 |
-| Tricipiti | 10 | **10** | 8 |
-| Accosciata | 8 | **8** | **8** |
-| Femorali | 5 | **5** | **5** |
-| Polpacci | 3 | **3** | **3** |
-| Addome | — | 6 | 6 |
-| **Totale** | **64** | **70** | **62** |
+| Gruppo | Serie | Frequenza |
+|---|---|---|
+| Petto | 9 | 2× |
+| Dorso | 9 | 2× |
+| Bicipiti | 9 | 2-3× |
+| Tricipiti | 9 | 2-3× |
+| Spalle | 8 | 2-3× |
+| Accosciata | 8 | 2× |
+| Femorali | 6 | 2× |
+| Trapezi | 4 | 2× |
+| Polpacci | 4 | 2× |
+| Addome | 6 | 2× |
+| **Totale** | **72** | |
 
-**La scheda da 5 sedute li centra tutti.** Quella da 4 sta due serie sotto su
-petto, dorso, bicipiti e tricipiti: con due sole sedute di parte alta, 48 serie
-non ci stanno in sette-otto esercizi a seduta senza sforare i tempi. Gambe,
-polpacci, trapezi e addome sono identici nelle due.
+Rispetto ai numeri di partenza cambiano quattro cose, tutte per un motivo:
+
+- **Femorali da 5 a 6.** Senza leg curl a macchina sono il punto debole del
+  piano, e 5 serie sono manutenzione. Adesso stacco romeno 3 + nordico 3.
+- **Polpacci da 3 a 4.** Due serie in piedi e due sedute coprono gastrocnemio e
+  soleo; con 3 se ne copre uno solo.
+- **Petto e dorso da 8 a 9, braccia da 10 a 9.** Così ogni esercizio ha 3 serie
+  piene invece di code da 2, e il totale sale solo di due serie.
 
 | | 5 sedute | 4 sedute |
 |---|---|---|
 | Giorni | Lun Push · Mar Pull · Mer Legs · Ven Upper · Sab Lower | Lun Upper A · Mar Lower A · Gio Upper B · Sab Lower B |
-| Esercizi per seduta | 4-8 | 4-8 |
-| Durate | 56, 44, 43, 43, 34 min | 60, 43, 51, 34 min |
+| Esercizi per seduta | 4-6 | 6-7 |
+| Serie per seduta | 11-17 | 17-19 |
+| Durate | 58, 44, 40, 45, 43 min | 51, 52, 60, 60 min |
+
+Nella scheda da 4 **l'isolamento di braccia e spalle sta nelle due giornate di
+gambe**, che di loro sarebbero corte: con due sole sedute di parte alta le 48
+serie alte non ci starebbero in sette esercizi. Un curl dopo lo stacco romeno
+non toglie niente a nessuno dei due.
 
 ### Le regole
 
-0. **Il volume settimanale è fissato, non dedotto.** Tutto il resto — quanti
+0. **Il volume settimanale è il punto di partenza.** Tutto il resto — quanti
    esercizi, come si dividono, quanto dura una seduta — è una conseguenza.
 1. **Massimo 3 serie per esercizio.** Il volume si alza aggiungendo esercizi.
 2. **RIR 0-2** su tutto quello che si allena davvero.
@@ -159,22 +168,22 @@ polpacci, trapezi e addome sono identici nelle due.
 10. **Costruite intorno all'ernia inguinale**: niente squat libero né spinte
     sopra la testa in piedi.
 
-### Cosa è cambiato nella v26
+### I trapezi: rematore, non scrollate
 
-- **Face pull → lat machine unilaterale con maniglia.** Un braccio per volta: il
-  range è più ampio e la scapola sale davvero, cosa che con la barra a due mani
-  non succede.
-- **Trapezi**, gruppo nuovo: scrollate coi manubri, 4 serie a settimana.
-- **Dead bug e pallof press → crunch al cavo alto**, che affianca il D'Annunzio
-  crunch. L'addome è allenato come ogni altro muscolo: carico progressivo,
-  eccentrica controllata, recupero pieno.
-- **Curl: uno in allungamento e uno in accorciamento** (Bayesian + carrucola
-  alta). Stessa cosa sul tricipite (french press + push-down).
-- **La pressa conta come accosciata**, non come gluteo: è lo stesso schema
-  dell'hack squat, e il gluteo ne prende mezza serie a testa.
-- **Hip thrust, split squat bulgaro e leg curl sdraiato fuori**: il volume
-  fissato non lascia spazio, e le gambe lo prendono dalla accosciata, dallo
-  stacco romeno e dal nordico.
+La scrollata alza le spalle e basta. Il **rematore coi manubri a gomiti alti**,
+petto appoggiato sulla panca inclinata e presa larga, porta le scapole a
+chiudersi — che è il lavoro vero del trapezio medio — e in più prende il
+deltoide posteriore, che dopo l'uscita del face pull era rimasto scoperto. 4
+serie a settimana, 2×.
+
+### Le due ripetizioni volute
+
+**Alzate laterali ai cavi** e **rematore a gomiti alti** compaiono in due
+sedute. La frequenza 2× vuole il volume di un gruppo diviso su due giorni, e per
+entrambi non esiste una seconda versione altrettanto buona con questa
+attrezzatura: ai cavi le laterali sono l'unica variante senza punto morto in
+basso, e il rematore a gomiti alti è l'unico lavoro diretto di trapezio medio.
+Ripetere il migliore vale più che usarne uno peggiore per non ripetersi.
 
 ### Serie dirette e frazionali
 
@@ -505,6 +514,14 @@ npm run prova:pwa                                # giro di aggiornamento dell'ap
 
 ## Storico
 
+- **v27** — versione definitiva. Serie decise sul merito: **petto 9, dorso 9,
+  bicipiti 9, tricipiti 9, spalle 8, accosciata 8, femorali 6, trapezi 4,
+  polpacci 4, addome 6** — 72 in tutto, e **le due schede le centrano
+  entrambe**, gruppo per gruppo, con ogni gruppo a frequenza 2×. Scrollate →
+  **rematore coi manubri a gomiti alti** per i trapezi, che chiude le scapole
+  invece di alzare le spalle e recupera il deltoide posteriore lasciato scoperto
+  dall'uscita del face pull. Nella scheda da 4, l'isolamento di braccia e spalle
+  si sposta nelle due giornate di gambe, che erano corte.
 - **v26** — **volume settimanale su misura**: petto 8, tricipiti 10, bicipiti 10,
   dorso 8, trapezi 4, spalle 8, accosciata 8, femorali 5, polpacci 3. La scheda
   da 5 sedute li centra tutti; quella da 4 sta due serie sotto su petto, dorso e
