@@ -109,82 +109,63 @@ scritta anche dentro l'app, in fondo alla sezione Piano):
 
 ## Le due schede
 
+Volume settimanale in serie dirette:
+
 | Gruppo | Riferimento | 5 sedute | 4 sedute |
 |---|---|---|---|
-| Petto | 9 | **9** | **9** |
-| Dorso | 9 | **9** | **9** |
-| Bicipiti | 9 | **9** | 6 |
-| Tricipiti | 9 | **9** | 6 |
-| Spalle | 8 | **8** | 6 |
+| Petto | 8 | **8** | 6 |
+| Dorso | 8 | **8** | **8** |
+| Trapezi | 4 | **4** | **4** |
+| Spalle | 7 | **7** | 5 |
+| Bicipiti | 8 | **8** | 6 |
+| Tricipiti | 8 | **8** | 6 |
 | Accosciata | 8 | **8** | **8** |
-| Femorali | 8 | **8** | **8** |
-| Polpacci | 4 | **4** | **4** |
-| Trapezi | 3 | **3** | **3** |
+| Leg curl + stacco | 9 | **9** | **9** |
 | Gluteo | 3 | **3** | **3** |
+| Polpacci | 3 | **3** | **3** |
 | Addome | 6 | **6** | **6** |
-| **Totale** | **76** | **76** | **68** |
+| **Totale** | **72** | **72** | **64** |
 
-La scheda da 5 centra tutto. Quella da 4 tiene identici **petto, dorso, trapezi,
-gambe, gluteo, polpacci e addome**, e scende solo su spalle e braccia: con due
-sole sedute di parte alta, e senza infilare le braccia nelle giornate di gambe,
-non c'è modo di tenerle su.
+La scheda da 5 centra tutto. Quella da 4 tiene identici dorso, trapezi, gambe,
+gluteo, polpacci e addome; petto, spalle e braccia scendono di due serie,
+perché 43 serie di parte alta non stanno in due giornate da sei-sette esercizi.
 
 | | 5 sedute | 4 sedute |
 |---|---|---|
-| Giorni | Lun Push · Mar Pull · Mer Legs · Ven Upper · Sab Lower | Lun Upper A · Mar Lower A · Gio Upper B · **Ven Lower B** |
+| Giorni | Lun Push · Mar Pull · Mer Legs · Ven Upper · Sab Lower | Lun Upper A · Mar Lower A · Gio Upper B · Ven Lower B |
 | Liberi | Giovedì, domenica | Mercoledì, sabato, domenica |
-| Esercizi per seduta | 4-6 | 5-7 |
-| Durate | 58, 37, 49, 48, 49 min | 63, 49, 49, 49 min |
+| Esercizi per seduta | 5-7 | 5-7 |
+| Durate | 49, 40, 52, 43, 46 min | 51, 52, 51, 46 min |
 
-### Le regole
+### Gli esercizi
 
-0. **Il volume settimanale è il punto di partenza.** Tutto il resto è una
-   conseguenza.
-1. **Una sola tirata orizzontale per giornata**, e **nelle sedute di gamba solo
-   gambe.** Due rematori nello stesso giorno sono lo stesso movimento fatto due
-   volte; l'isolamento di braccia in coda a una seduta di gambe è un riempitivo.
-2. **Massimo 3 serie per esercizio.** Il volume si alza aggiungendo esercizi.
-3. **RIR 0-2** su tutto quello che si allena davvero.
-4. **Stabilità**: dove serve equilibrio il sistema nervoso frena l'output sul
-   muscolo bersaglio. Macchine e cavi non sono un ripiego.
-5. **Carico massimo dove il muscolo è lungo**, senza punti morti.
-6. **Una dose in allungamento e una in accorciamento sulle braccia.**
-7. **Una tirata verticale e una orizzontale.**
-8. **Recuperi da 2 a 3 minuti.**
-9. **Frequenza 2×** per ogni gruppo (trapezi e gluteo 1×).
-10. **Progressione in tre passi**: tecnica e fermo in allungamento →
-    ripetizioni → carico.
-11. **Costruite intorno all'ernia inguinale.**
+| Gruppo | Esercizi |
+|---|---|
+| Petto | Panca piana bilanciere · Panca inclinata manubri · Croci manubri |
+| Dorso | Lat machine unilaterale · Rematore manubri busto appoggiato · Pulley basso |
+| Trapezi | Rematore manubri gomiti alti · Rematore alto ai cavi |
+| Spalle | Military press manubri seduto · Alzate laterali ai cavi |
+| Bicipiti | Curl ai cavi dietro il corpo (allungamento) · Curl su panca inclinata · Curl hammer al cavo |
+| Tricipiti | French press ai cavi · Tricipite push-down |
+| Accosciata | Hack squat · Pressa piede alto · Sissy squat zavorrato |
+| Catena posteriore | Stacco romeno · Leg curl nordico · Leg curl sdraiato manubri |
+| Gluteo | Hip thrust |
+| Polpacci | Calf raise in piedi |
+| Addome | D'Annunzio crunch · Crunch al cavo alto |
 
-### Le gambe
+### I vincoli, verificati a ogni pubblicazione
 
-Identiche nelle due schede, due sedute a testa:
-
-| | Primo giorno | Secondo giorno |
-|---|---|---|
-| Accosciata | Hack squat 3 | Pressa piede alto 3 · Sissy squat 2 |
-| Femorali | Stacco romeno 3 | Leg curl nordico 3 · Leg curl sdraiato 2 |
-| Gluteo | Hip thrust 3 | — |
-| Polpacci | Calf in piedi 2 | Calf seduto 2 |
-| Addome | D'Annunzio crunch 3 | Crunch al cavo alto 3 |
-| **Serie** | **14** | **15** |
-
-L'**hip thrust** è tornato: è l'unico lavoro diretto di gluteo che questa
-attrezzatura permette, e la pressa profonda del secondo giorno lo carica
-allungato mentre l'hip thrust lo carica accorciato — i due si completano. Il
-**leg curl sdraiato coi manubri** dà la seconda dose di flessione del ginocchio:
-senza leg curl a macchina il femorale è il gruppo più scoperto, e con 2-3 serie
-per esercizio l'unico modo di alzarlo è aggiungerne uno.
-
-### Il pullover, e i trapezi in una seduta sola
-
-Il dorso ha bisogno di tre esercizi per arrivare a 9 serie col tetto di 3, ma
-due dei tre sarebbero rematori. Il terzo è il **pullover ai cavi alla carrucola
-alta**: non è una tirata in più, il gran dorsale lavora senza che il gomito
-fletta, e la tensione massima cade dove il muscolo è allungato.
-
-I **trapezi** stanno tutti nella seduta in cui la schiena tira in verticale, così
-il rematore a gomiti alti è l'unica tirata orizzontale di quella giornata.
+1. **Massimo 3 serie per esercizio.**
+2. **Mai lo stesso esercizio due volte nella stessa giornata.**
+3. **Mai due rematori coi manubri nello stesso giorno** — per questo i trapezi
+   hanno due versioni: coi manubri il giorno della tirata verticale, ai cavi il
+   giorno del rematore per il dorso.
+4. **Nelle sedute di gamba solo gambe.**
+5. **RIR 0-2**, recuperi 2-3 minuti, frequenza 2× per ogni gruppo (gluteo e
+   polpacci 1×, che a 3 serie è una seduta sola).
+6. Carico massimo dove il muscolo è lungo; una dose in allungamento e una in
+   accorciamento su bicipiti e tricipiti; una tirata verticale e una
+   orizzontale.
 
 ### Serie dirette e frazionali
 
@@ -515,6 +496,12 @@ npm run prova:pwa                                # giro di aggiornamento dell'ap
 
 ## Storico
 
+- **v30** — serie ed esercizi come da elenco: petto 8, dorso 8, trapezi 4,
+  spalle 7, bicipiti 8, tricipiti 8, accosciata 8, leg curl 6 (più stacco romeno
+  3), polpacci 3. La scheda da 5 li centra tutti. Bicipiti su tre esercizi
+  (allungamento, panca inclinata, hammer al cavo), tricipiti su due (french press
+  ai cavi e push-down). I trapezi hanno due versioni del rematore — manubri e
+  cavi — per non averne mai due coi manubri nello stesso giorno.
 - **v29** — **Lower B al venerdì** nella scheda da 4 (liberi mercoledì, sabato e
   domenica). Un esercizio in più per gamba in tutte e due le sedute basse, uguale
   nelle due schede: **hip thrust** il primo giorno — l'unico lavoro diretto di
