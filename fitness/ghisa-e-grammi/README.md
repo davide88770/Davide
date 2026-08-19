@@ -118,22 +118,22 @@ opzioni significava tenerne due che non avrei consigliato.
 |---|---|---|
 | Giorni | Lun Push · Mar Pull · Mer Legs · Ven Upper · Sab Lower | Lun Upper A · Mar Lower A · Gio Upper B · Sab Lower B |
 | Liberi | Giovedì, domenica | Mercoledì, venerdì, domenica |
-| Serie dirette | 86 | 70 |
-| Durate | 59, 55, 47, 47, 47 min | 49, 42, 58, 52 min |
+| Serie dirette | 86 | 71 |
+| Durate | 64, 58, 53, 50, 51 min | 59, 53, 62, 51 min |
 
 Serie **frazionali** a settimana (dirette + metà delle indirette), che è come le
 conta l'app:
 
 | Gruppo | 5 sedute | 4 sedute | Freq. |
 |---|---|---|---|
-| Spalle | 16,0 | 12,5 | 3× / 2× |
+| Spalle | 16,5 | 13,0 | 3× / 2× |
 | Bicipiti | 16,5 | 11,0 | 2× |
 | Dorso | 15,0 | 10,0 | 2× |
-| Tricipiti | 12,5 | 10,5 | 2× |
-| Quadricipiti | 10,5 | 10,5 | 1× |
-| Gluteo | 10,5 | 10,5 | 1× |
-| Petto | 10,0 | 10,5 | 2× |
-| Femorali | 7,5 | 7,5 | 1× |
+| Tricipiti | 13,5 | 10,5 | 2× |
+| Gluteo | 10,5 | 10,5 | 2× |
+| Petto | 10,5 | 9,0 | 2× |
+| Quadricipiti | 10,0 | 10,0 | 2× |
+| Femorali | 7,5 | 7,5 | 2× |
 | Polpacci | 8,0 | 8,0 | 3× / 2× |
 | Core | 4,0 | 2,0 | 2× / 1× |
 
@@ -230,6 +230,38 @@ Noha Rabasco. Da questa sessione YouTube non è raggiungibile e non esistono
 trascrizioni pubbliche affidabili, quindi la passata è fatta sui principi di
 biomeccanica applicata — che è il suo terreno — ma senza attribuirgli posizioni
 che non ho potuto verificare.
+
+### Riscritta sui principi della masterclass
+
+Il riassunto della masterclass di Noha Rabasco ha fatto emergere **cinque
+divergenze**, due delle quali erano decisioni prese nei giri precedenti.
+
+| Punto della masterclass | Cosa c'era | Cosa c'è adesso |
+|---|---|---|
+| **Stabilità**: dove serve equilibrio il sistema nervoso frena l'output sul muscolo bersaglio; affondi e simili sono da evitare | Split squat bulgaro, aggiunto due giri fa | **Tolto**. Il quadricipite pesante è tutto su hack squat e pressa, guidati |
+| **Frequenza 2×**: la monofrequenza obbliga a stipare troppe serie in un giorno e dalla quinta in poi la prestazione crolla | Gambe accorpate in due giornate monotematiche, quindi **1×** per quad, femorali e gluteo | **2× per tutti**, senza ripetere esercizi: hack + nordico + hip thrust il primo giorno, pressa + stacco + sissy il secondo |
+| **Punti morti**: il carico non deve azzerarsi dove il muscolo è allungato | Curl manubri su panca inclinata (in basso il braccio è appeso, carico zero) | **Curl ai cavi dietro il corpo (Bayesian)** |
+| **Recuperi 2-3 minuti** | Isolamento a 105 s, alcuni a 60-90 s | **120-150 s** sull'isolamento, 180-210 s sui compound |
+| **Deload a intensità invariata** | −40% serie e RIR 3-4 | −40% serie, **carico invariato, RIR 2**: si toglie volume, non intensità |
+
+Confermato invece quello che c'era già: panca col bilanciere (più stabile dei
+manubri), rematore col petto appoggiato, military da seduto, face pull ai cavi,
+laterali ai cavi, french press ai cavi, hack squat e pressa guidati, stacco
+romeno e nordico per gli ischiocrurali, sissy squat al posto della leg
+extension che non c'è.
+
+**Una ripetizione voluta.** Le alzate laterali ai cavi compaiono in due sedute,
+in tutte e due le schede. La regola della frequenza doppia dice di dividere il
+volume di un muscolo su due giorni, e ai cavi è l'unica versione senza punto
+morto in basso: ripetere il migliore vale più che usarne uno peggiore per non
+ripetersi.
+
+**Dove la masterclass e le meta-analisi non concordano.** Il video parla di
+curva a U rovesciata sul volume — oltre un certo punto le serie in più diventano
+*junk volume* e fanno danno. La meta-regressione più grande (Pelland 2025) trova
+una curva che sale sempre, con rendimento sempre più basso ma senza scendere. Su
+questo piano non cambia niente: a questi volumi la serie in più o rende
+pochissimo o fa danno, e in nessuno dei due casi conviene aggiungerla.
 
 ### Serie dirette e frazionali
 
@@ -576,6 +608,13 @@ npm run prova:pwa                                # giro di aggiornamento dell'ap
 
 ## Storico
 
+- **v24** — **riscritta sui principi della masterclass di Noha Rabasco**. Tolto
+  lo split squat bulgaro (chiedeva equilibrio, e dove serve stabilità il sistema
+  nervoso frena l'output); gambe di nuovo a **frequenza 2×** senza ripetere
+  esercizi; curl su panca inclinata → **curl ai cavi dietro il corpo**, che non
+  ha il punto morto in basso; **recuperi da 2 a 3 minuti** ovunque; deload a
+  carico invariato. Confermato il resto della selezione. Sedute da 50 a 64
+  minuti.
 - **v23** — passata **biomeccanica** sulla selezione, col criterio "dove il
   carico è massimo rispetto a dove il muscolo è lungo". Rematore col bilanciere
   → rematore coi manubri a busto appoggiato; alzate posteriori → face pull alla
