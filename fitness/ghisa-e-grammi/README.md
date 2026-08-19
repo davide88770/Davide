@@ -118,19 +118,19 @@ opzioni significava tenerne due che non avrei consigliato.
 |---|---|---|
 | Giorni | Lun Push · Mar Pull · Mer Legs · Ven Upper · Sab Lower | Lun Upper A · Mar Lower A · Gio Upper B · Sab Lower B |
 | Liberi | Giovedì, domenica | Mercoledì, venerdì, domenica |
-| Serie dirette | 92 | 78 |
-| Durate | 59, 63, 40, 57, 47 min | 61, 40, 62, 52 min |
+| Serie dirette | 88 | 70 |
+| Durate | 59, 63, 40, 51, 47 min | 49, 40, 57, 52 min |
 
 Serie **frazionali** a settimana (dirette + metà delle indirette), che è come le
 conta l'app:
 
 | Gruppo | 5 sedute | 4 sedute | Freq. |
 |---|---|---|---|
-| Spalle | 18,0 | 14,5 | 3× / 2× |
-| Bicipiti | 18,5 | 14,0 | 2× |
-| Tricipiti | 16,0 | 12,5 | 2× |
-| Dorso | 15,0 | 12,0 | 2× |
-| Petto | 12,5 | 10,5 | 2× |
+| Spalle | 17,5 | 12,5 | 3× / 2× |
+| Bicipiti | 16,5 | 11,0 | 2× |
+| Dorso | 15,0 | 10,0 | 2× |
+| Tricipiti | 14,5 | 10,5 | 2× |
+| Petto | 11,5 | 10,5 | 2× |
 | Quadricipiti | 10,5 | 10,5 | 2× |
 | Gluteo | 9,0 | 9,0 | 1× diretto |
 | Femorali | 7,5 | 7,5 | 2× |
@@ -244,6 +244,45 @@ manubrio singolo, curl alternati e pallof press si fanno un lato alla volta: nel
 modello delle durate contano 75 secondi di lavoro per serie invece di 45. In
 compenso il recupero fra le serie scende a 60 secondi, perché mentre un lato
 lavora l'altro riposa: ogni braccio arriva comunque a oltre due minuti.
+
+### Le due sedute di parte alta
+
+L'Upper B della scheda da 4 aveva **dieci esercizi**, e l'Upper A quattro
+compound pesanti di fila — panca, trazioni, military, rematore: lo stesso
+errore delle gambe, con due distensioni massimali nella stessa seduta e la
+seconda fatta già stanchi.
+
+Adesso le due sedute si dividono **per schema motorio**, che è il modo pulito
+di ottenere la frequenza 2× senza ripetere niente:
+
+| | Lunedì · Upper A | Giovedì · Upper B |
+|---|---|---|
+| Schema | Spinta **orizzontale** · tirata **verticale** | Spinta **verticale** · tirata **orizzontale** |
+| Pesante di spinta | Panca piana 3 × 5-8 | Military press 3 × 6-8 |
+| Pesante di tirata | Trazioni zavorate 3 × 5-8 | Rematore Yates 3 × 6-10 |
+| Petto | Croci manubri inclinata 3, a cedimento | Panca inclinata manubri 3 |
+| Dorso | — | Pulley basso 4 |
+| Spalle | Alzate laterali ai cavi 3 | Alzate posteriori 2 |
+| Braccia | Curl inclinata 3 + tricipite overhead 3, in superset | Curl hammer 3 + dip 3, in superset |
+| **Esercizi** | **6** (erano 7) | **7** (erano 10) |
+| **Serie** | **18** (erano 21) | **21** (erano 26) |
+| **Durata** | **49 min** | **57 min** |
+
+Cosa è uscito e perché:
+
+- **Push-down** dall'Upper B: era la terza dose settimanale di tricipite, sullo
+  stesso schema del dip e senza allungamento.
+- La **quarta serie di schiena** è andata sul pulley basso e non sul rematore:
+  costa meno dove il carico è più leggero, e la schiena resta l'unico gruppo
+  senza nessuna fonte indiretta.
+- Nella scheda da 5 sedute, il **secondo curl a martello** dell'Upper: fra Pull
+  e Upper il bicipite riceveva quattro esercizi diversi a settimana, adesso tre,
+  tutti portati a cedimento. L'Upper scende da 8 a 7 esercizi e da 24 a 20
+  serie.
+
+Le braccia restano in **superset antagonista** — bicipite e tricipite non si
+rubano niente e si risparmiano sei minuti — e in tutte e due le sedute partono
+dall'esercizio che le carica allungate.
 
 ### Serie dirette e frazionali
 
@@ -590,6 +629,15 @@ npm run prova:pwa                                # giro di aggiornamento dell'ap
 
 ## Storico
 
+- **v21** — **le due sedute di parte alta rifatte** con lo stesso metro delle
+  gambe. L'Upper B aveva dieci esercizi e l'Upper A quattro compound pesanti di
+  fila. Ora si dividono per schema motorio: spinta orizzontale e tirata
+  verticale il lunedì, spinta verticale e tirata orizzontale il giovedì, un
+  pesante di spinta e uno di tirata per giornata. Sei e sette esercizi invece di
+  sette e dieci. Anche l'Upper della scheda da 5 scende da 8 a 7 esercizi: fra
+  Pull e Upper il bicipite riceveva quattro esercizi diversi a settimana.
+  Totali: 88 serie dirette con 5 sedute, 70 con 4, tutte le sedute fra 40 e 63
+  minuti.
 - **v20** — **le due sedute di gambe rifatte** e l'aggiornamento dell'app reso
   automatico. Legs e Lower erano quasi la stessa seduta (hack squat, pressa e
   sissy in tutte e due) e il mercoledì teneva i tre esercizi più pesanti del
