@@ -40,6 +40,7 @@ const testa = `<!doctype html>
 <link rel="apple-touch-icon" href="icone/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="192x192" href="icone/icona-192.png">
 <style>:root{color-scheme:light dark}*{box-sizing:border-box}body{margin:0}img{max-width:100%}</style>
+<script>window.__GG_BUILD='${versione}';</script>
 </head>
 <body>
 `;
@@ -65,27 +66,65 @@ const coda = `
 (function(){
   "use strict";
   // ── service worker: la pagina funziona anche senza campo, in palestra ──
+  //
+  // Su iPhone una PWA aperta dalla schermata Home spesso NON rifa' la
+  // navigazione quando la riapri: riprende la pagina che era in memoria. Senza
+  // navigazione il browser non controlla sw.js, e l'aggiornamento non arriva
+  // mai da solo. Per questo qui:
+  //   1. updateViaCache:'none' — sw.js non viene mai preso dalla cache HTTP;
+  //   2. reg.update() al caricamento e ogni volta che l'app torna in primo
+  //      piano (al massimo una volta al minuto);
+  //   3. si guarda anche reg.waiting, perche' l'aggiornamento puo' essersi
+  //      installato mentre la pagina non stava ascoltando: in quel caso
+  //      'updatefound' e' gia' passato e senza questo controllo l'avviso non
+  //      comparirebbe piu'.
   if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function(){
-      navigator.serviceWorker.register('sw.js').then(function(reg){
-        reg.addEventListener('updatefound', function(){
-          var nuovo = reg.installing;
-          if (!nuovo) return;
-          nuovo.addEventListener('statechange', function(){
-            if (nuovo.state === 'installed' && navigator.serviceWorker.controller) {
-              var box = document.getElementById('agg');
-              box.hidden = false;
-              document.getElementById('aggOra').onclick = function(){
-                nuovo.postMessage('attiva');
-                nuovo.addEventListener('statechange', function(){
-                  if (nuovo.state === 'activated') location.reload();
-                });
-              };
-            }
-          });
+    var REG = null, ultimo = 0;
+
+    function mostra(nuovo){
+      if (!nuovo) return;
+      var box = document.getElementById('agg');
+      if (!box || !box.hidden) return;
+      box.hidden = false;
+      document.getElementById('aggOra').onclick = function(){
+        nuovo.postMessage('attiva');
+        nuovo.addEventListener('statechange', function(){
+          if (nuovo.state === 'activated') location.reload();
         });
+        // se per qualche motivo lo statechange non arriva, si ricarica comunque
+        setTimeout(function(){ location.reload(); }, 1500);
+      };
+    }
+    function segui(nuovo){
+      if (!nuovo) return;
+      if (nuovo.state === 'installed') return mostra(nuovo);
+      nuovo.addEventListener('statechange', function(){
+        if (nuovo.state === 'installed' && navigator.serviceWorker.controller) mostra(nuovo);
+      });
+    }
+    function controlla(){
+      if (!REG) return;
+      var ora = Date.now();
+      if (ora - ultimo < 60000) return;
+      ultimo = ora;
+      REG.update().catch(function(){ /* offline: si riprova alla prossima apertura */ });
+    }
+
+    window.addEventListener('load', function(){
+      navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' }).then(function(reg){
+        REG = reg;
+        if (reg.waiting && navigator.serviceWorker.controller) mostra(reg.waiting);
+        segui(reg.installing);
+        reg.addEventListener('updatefound', function(){ segui(reg.installing); });
+        ultimo = Date.now();
+        setTimeout(function(){ ultimo = 0; controlla(); }, 3000);
       }).catch(function(){ /* senza service worker l'app funziona lo stesso */ });
     });
+
+    document.addEventListener('visibilitychange', function(){
+      if (document.visibilityState === 'visible') controlla();
+    });
+    window.addEventListener('online', function(){ ultimo = 0; controlla(); });
   }
   // ── suggerimento d'installazione, solo su iPhone e solo se non installata ──
   var standalone = window.matchMedia('(display-mode: standalone)').matches
@@ -142,8 +181,15 @@ const GUSCIO = ['./', './index.html', './manifest.webmanifest',
   './icone/icona-192.png', './icone/icona-512.png',
   './icone/icona-maskable-512.png', './icone/apple-touch-icon.png'];
 
+/* Sempre dalla rete vera, mai dalla cache HTTP del browser: GitHub Pages serve
+   l'HTML con un max-age breve ma non nullo, e senza no-store la pagina "nuova"
+   che arrivava era ancora quella vecchia. E' il motivo per cui l'app installata
+   restava indietro anche dopo aver ricaricato. */
+const dallaRete = u => fetch(u, { cache: 'no-store', credentials: 'same-origin' });
+
 self.addEventListener('install', ev => {
-  ev.waitUntil(caches.open(CACHE).then(c => c.addAll(GUSCIO)));
+  ev.waitUntil(caches.open(CACHE).then(c =>
+    Promise.all(GUSCIO.map(u => dallaRete(u).then(r => r.ok && c.put(u, r))))));
 });
 self.addEventListener('activate', ev => {
   ev.waitUntil(caches.keys()
@@ -159,7 +205,8 @@ self.addEventListener('fetch', ev => {
   if (req.method !== 'GET' || new URL(req.url).origin !== location.origin) return;
   if (req.mode === 'navigate') {
     ev.respondWith(
-      fetch(req).then(r => {
+      dallaRete(req.url).then(r => {
+        if (!r.ok) throw new Error('risposta ' + r.status);
         const copia = r.clone();
         caches.open(CACHE).then(c => c.put('./index.html', copia));
         return r;

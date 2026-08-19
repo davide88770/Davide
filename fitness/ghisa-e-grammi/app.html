@@ -1368,6 +1368,11 @@ const CONS_FONTI = [
    Quello che c'e' davvero nella home gym. Le due schede sono costruite su
    questa lista e su niente altro: e' l'informazione che mancava fino alla v18,
    e che aveva fatto finire nel programma quattro esercizi non eseguibili. */
+/* Versione dell'app. Serve a sapere, dal telefono, se quello che hai davanti e'
+   l'ultima versione: la PWA installata puo' restare indietro se iOS non rifa'
+   la navigazione. Il numero si alza a ogni pubblicazione. */
+const VERSIONE = { n:'v19', data:'18 agosto 2026', nota:'Aggiornamento dell’app riparato' };
+
 const ATTREZZI = [
   ['Rack, bilanciere, panca regolabile', 1, 'Panca piana e inclinata, military press, rematore Yates, stacco romeno, hip thrust'],
   ['Manubri', 1, 'Panca inclinata, croci, curl in tutte le versioni, rematore a un braccio, leg curl sdraiato'],
@@ -3175,6 +3180,17 @@ function renderPiano(){
       <div class="stat"><b class="num">${S.corpo.length}</b><span>Pesate</span></div>
     </div>
     <button class="btn danger" id="reset">Cancella tutti i dati</button>
+    <div class="row wrapf" style="gap:8px;align-items:baseline">
+      <span class="chip line">${esc(VERSIONE.n)}</span>
+      <span class="tiny muted">${esc(VERSIONE.data)} · ${esc(VERSIONE.nota)}${
+        typeof window !== 'undefined' && window.__GG_BUILD ? ' · build ' + esc(window.__GG_BUILD) : ''}</span>
+    </div>
+    <p class="tiny muted" style="margin:0">Se il numero qui sopra non è quello dell’ultimo messaggio, l’app installata è
+      rimasta indietro. Nell’ordine: <b>1.</b> chiudila del tutto scorrendola via dal multitasking e riaprila col
+      telefono online — al rientro controlla da sola; <b>2.</b> quando compare in basso <b>Nuova versione pronta</b>,
+      tocca <b>Ricarica</b>; <b>3.</b> solo se non basta, <b>esporta il backup</b>, togli l’icona dalla schermata Home,
+      riaggiungila da Safari e reimporta il file. Il passaggio 3 cancella i dati salvati, quindi il backup prima non è
+      un consiglio.</p>
   </div></div>
 
   <div class="card"><div class="hd"><h3>Scelte fatte in trascrizione</h3></div><div class="bd stack-s">
