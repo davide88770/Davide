@@ -118,8 +118,8 @@ opzioni significava tenerne due che non avrei consigliato.
 |---|---|---|
 | Giorni | Lun Push · Mar Pull · Mer Legs · Ven Upper · Sab Lower | Lun Upper A · Mar Lower A · Gio Upper B · Sab Lower B |
 | Liberi | Giovedì, domenica | Mercoledì, venerdì, domenica |
-| Serie dirette | 102 | 88 |
-| Durate | 59, 63, 63, 57, 58 min | 61, 63, 62, 63 min |
+| Serie dirette | 92 | 78 |
+| Durate | 59, 63, 40, 57, 47 min | 61, 40, 62, 52 min |
 
 Serie **frazionali** a settimana (dirette + metà delle indirette), che è come le
 conta l'app:
@@ -130,10 +130,10 @@ conta l'app:
 | Bicipiti | 18,5 | 14,0 | 2× |
 | Tricipiti | 16,0 | 12,5 | 2× |
 | Dorso | 15,0 | 12,0 | 2× |
-| Quadricipiti | 15,0 | 15,0 | 2× |
-| Gluteo | 13,5 | 13,5 | 2× |
 | Petto | 12,5 | 10,5 | 2× |
-| Femorali | 11,5 | 11,5 | 2× |
+| Quadricipiti | 10,5 | 10,5 | 2× |
+| Gluteo | 9,0 | 9,0 | 1× diretto |
+| Femorali | 7,5 | 7,5 | 2× |
 | Polpacci | 8,0 | 8,0 | 3× / 2× |
 | Core | 4,0 | 2,0 | 2× / 1× |
 
@@ -141,6 +141,52 @@ conta l'app:
 quattro sedute è tutto sulla parte alta, e soprattutto sulle braccia. È una
 scelta: il quadricipite e il gluteo hanno una sola fonte indiretta e poco
 generosa, le braccia ne hanno una a ogni spinta e a ogni tirata.
+
+### Le due sedute di gambe
+
+Fino alla v19 Legs e Lower erano quasi la stessa seduta: **hack squat, pressa e
+sissy squat comparivano in tutte e due**, e il mercoledì teneva insieme i tre
+esercizi più pesanti del piano — hack squat, stacco romeno e pressa — più altri
+quattro, per 20 serie e 63 minuti. Rifatte:
+
+| | Mercoledì · Legs | Sabato · Lower |
+|---|---|---|
+| Tema | Quadricipite e flessione del ginocchio | Anca e femorale in allungamento |
+| Il pesante | **Hack squat** 3 × 6-10, RIR 1-2 | **Stacco romeno** 3 × 8-10, RIR 1-2 |
+| Quad | Sissy squat zavorrato 3 × 10-15, a cedimento | Pressa piede basso e stretto 3 × 10-12 |
+| Femorali | Leg curl nordico 3 × 5-8, eccentrica lenta | — (lo copre lo stacco) |
+| Gluteo | — | Pressa piede alto 3 × 8-12 · Hip thrust 3 × 10-12 |
+| Polpacci | Calf in piedi 3 (gastrocnemio) | Calf seduto 3 (soleo) |
+| Core | Dead bug 2 | — |
+| **Serie** | **14** | **15** |
+| **Durata** | **40 min** | **47 min** |
+
+Le regole applicate:
+
+1. **Un solo esercizio davvero pesante per giornata.** Hack squat il mercoledì,
+   stacco romeno il sabato. Due compound massimali nella stessa seduta si
+   tolgono ripetizioni a vicenda.
+2. **Nessun esercizio ripetuto** fra le due sedute. La frequenza 2× si ottiene
+   con schemi diversi — flessione del ginocchio da una parte, estensione
+   dell'anca dall'altra — non ripetendo la stessa cosa.
+3. **Hack squat e pressa in giorni diversi.** Sono anche la stessa macchina:
+   così sparisce pure la riconfigurazione a metà seduta.
+4. **La seconda dose di quadricipite senza un secondo pesante**: pressa a piede
+   basso e stretto, subito dopo la pressa a piede alto. La macchina è già lì, si
+   spostano solo i piedi.
+
+Il volume delle gambe scende **da 39 a 29 serie** a settimana. È la direzione
+giusta per un modello a volume basso e intensità alta: poche serie portate
+vicino al cedimento rendono più di tante serie fermate lontano. Il prezzo sta
+nei numeri — femorali a 7,5 serie frazionali e gluteo a 9,0 — ma il femorale
+tiene i due esercizi che rendono di più in assoluto (stacco romeno pesante e
+nordico in eccentrica) e il gluteo prende mezza serie da ogni hack squat,
+pressa e stacco.
+
+**Sulla banda 10-20.** Quel riferimento viene da studi in cui le serie finivano
+spesso a 2-4 ripetizioni dal cedimento. Portandole a cedimento ne servono meno,
+ed è per questo che l'app segnala in rosso solo sotto le **6 serie frazionali**,
+non sotto 10: sotto 6 non ci sta nessun modello, fra 6 e 10 ci sta questo.
 
 ### Le otto regole che le hanno generate
 
@@ -544,6 +590,17 @@ npm run prova:pwa                                # giro di aggiornamento dell'ap
 
 ## Storico
 
+- **v20** — **le due sedute di gambe rifatte** e l'aggiornamento dell'app reso
+  automatico. Legs e Lower erano quasi la stessa seduta (hack squat, pressa e
+  sissy in tutte e due) e il mercoledì teneva i tre esercizi più pesanti del
+  piano insieme. Ora una giornata, un pesante: hack squat il mercoledì, stacco
+  romeno il sabato; nessun esercizio ripetuto; la seconda dose di quadricipite
+  arriva dalla pressa a piede basso, stessa macchina. Volume gambe da 39 a 29
+  serie, sedute da 63 e 58 minuti a 40 e 47. Il rosso sul volume scatta sotto 6
+  serie frazionali e non sotto 10, perché la banda 10-20 vale per serie fermate
+  lontano dal cedimento. Lato app: il service worker si attiva da solo e
+  ricarica la pagina rimasta indietro, quindi le versioni nuove entrano **senza
+  toccare niente**.
 - **v19** — **riparato l'aggiornamento dell'app installata**, che era il motivo
   per cui le versioni nuove non arrivavano sul telefono. Il bug vero: la
   richiesta di rete del service worker finiva nella cache HTTP di Safari e

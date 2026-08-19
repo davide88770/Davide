@@ -14,7 +14,8 @@
  *   2. all'apertura, senza versioni nuove, l'avviso NON compare;
  *   3. pubblicata una versione nuova, l'app se ne accorge da sola senza
  *      navigazione (evento 'online'/ritorno in primo piano);
- *   4. il pulsante Ricarica porta davvero alla versione nuova;
+ *   4. e si aggiorna da sola, senza che nessuno tocchi niente: il service
+ *      worker nuovo si attiva subito e ricarica la pagina rimasta indietro;
  *   5. nessun errore JS in tutto il giro.
  *
  * Lavora su una copia in una cartella temporanea: pwa/ non viene toccata.
@@ -80,17 +81,23 @@ try {
     .replace('</body>', '<div id="marcatore"></div></body>'));
   fs.writeFileSync(swf, fs.readFileSync(swf, 'utf8').replaceAll(build, 'versionenuova'));
 
+  /* Nessun click: l'app deve aggiornarsi da sola. Il service worker nuovo si
+     attiva senza aspettare (skipWaiting), prende il controllo e ricarica la
+     pagina che era rimasta indietro. E' l'unico modo di aggiornare un'app gia'
+     installata sul telefono senza chiedere niente a chi la usa. */
   await page.evaluate(() => window.dispatchEvent(new Event('online')));
-  await page.waitForSelector('#agg:not([hidden])', { timeout: 30000 });
-  console.log('  4    versione nuova rilevata da sola, senza navigazione');
-
-  await page.click('#aggOra');
-  /* La pagina si ricarica da sola: si aspetta che sia arrivata la build nuova,
-     non un singolo elemento, perche' fra il click e il reload c'e' una
-     navigazione in mezzo. */
-  await page.waitForFunction(() => window.__GG_BUILD === 'versionenuova' && !!document.getElementById('marcatore'),
-    null, { timeout: 30000, polling: 250 });
-  console.log('  5    dopo Ricarica la pagina e\' la versione nuova');
+  /* Si guarda a intervalli invece di usare waitForFunction: in mezzo c'e' una
+     navigazione, e una valutazione che parte proprio in quel momento fallisce
+     senza che questo voglia dire niente. */
+  let arrivata = false;
+  for (let i = 0; i < 60 && !arrivata; i++) {
+    await page.waitForTimeout(1000);
+    arrivata = await page.evaluate(
+      () => window.__GG_BUILD === 'versionenuova' && !!document.getElementById('marcatore')
+    ).catch(() => false);
+  }
+  if (!arrivata) problemi.push("l'app non e' passata da sola alla versione nuova entro un minuto");
+  else console.log('  4-5  versione nuova rilevata e caricata da sola, senza un click');
 } catch (e) {
   problemi.push(e.message.split('\n')[0]);
 }

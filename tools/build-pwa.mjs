@@ -125,6 +125,24 @@ const coda = `
       if (document.visibilityState === 'visible') controlla();
     });
     window.addEventListener('online', function(){ ultimo = 0; controlla(); });
+
+    // Quando il service worker nuovo prende il controllo, la pagina che stai
+    // guardando e' ancora quella vecchia: si ricarica da sola, una volta sola.
+    // Solo se la pagina era gia' controllata: alla primissima installazione il
+    // controllo arriva per la prima volta e non c'e' niente da aggiornare.
+    var eraControllata = !!navigator.serviceWorker.controller;
+    var ricaricato = false;
+    navigator.serviceWorker.addEventListener('controllerchange', function(){
+      if (!eraControllata || ricaricato) return;
+      ricaricato = true;
+      location.reload();
+    });
+    navigator.serviceWorker.addEventListener('message', function(ev){
+      if (ev.data && ev.data.gg === 'aggiornata' && !ricaricato) {
+        ricaricato = true;
+        setTimeout(function(){ location.reload(); }, 400);
+      }
+    });
   }
   // ── suggerimento d'installazione, solo su iPhone e solo se non installata ──
   var standalone = window.matchMedia('(display-mode: standalone)').matches
@@ -187,14 +205,44 @@ const GUSCIO = ['./', './index.html', './manifest.webmanifest',
    restava indietro anche dopo aver ricaricato. */
 const dallaRete = u => fetch(u, { cache: 'no-store', credentials: 'same-origin' });
 
+/* skipWaiting subito, senza aspettare che qualcuno tocchi un pulsante: la
+   versione nuova prende il posto della vecchia da sola. Si puo' fare perche'
+   l'app e' un unico file HTML — non ci sono pezzi di due versioni diverse che
+   rischiano di incontrarsi. */
 self.addEventListener('install', ev => {
+  self.skipWaiting();
   ev.waitUntil(caches.open(CACHE).then(c =>
     Promise.all(GUSCIO.map(u => dallaRete(u).then(r => r.ok && c.put(u, r))))));
 });
+
 self.addEventListener('activate', ev => {
-  ev.waitUntil(caches.keys()
-    .then(k => Promise.all(k.filter(x => x !== CACHE).map(x => caches.delete(x))))
-    .then(() => self.clients.claim()));
+  ev.waitUntil((async () => {
+    const chiavi = await caches.keys();
+    /* Se c'era una cache di una versione precedente, questo e' un aggiornamento
+       e non una prima installazione. Il segnale sta nella cache e non in una
+       variabile, perche' il service worker puo' essere spento e riacceso fra
+       install e activate. */
+    const vecchie = chiavi.filter(k => k.startsWith('ghisa-e-grammi-') && k !== CACHE);
+    await Promise.all(vecchie.map(k => caches.delete(k)));
+    await self.clients.claim();
+    if (!vecchie.length) return;
+
+    /* La pagina che l'utente ha davanti e' ancora quella vecchia: sta in
+       memoria e non ricarica da sola. Qui la si ricarica dal service worker,
+       che funziona anche con le versioni installate prima di questo codice —
+       e' l'unico modo di aggiornare un'app gia' sul telefono senza chiedere
+       niente a chi la usa.
+       Prima si avvisa la pagina (le versioni nuove salvano e ricaricano da
+       sole), poi si aspetta un attimo perche' il salvataggio su localStorage e'
+       ritardato di 220 ms, poi si naviga. */
+    const clienti = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
+    for (const c of clienti) { try { c.postMessage({ gg: 'aggiornata', versione: '${versione}' }); } catch (e) {} }
+    await new Promise(r => setTimeout(r, 1200));
+    for (const c of clienti) {
+      if (typeof c.navigate !== 'function') continue;
+      try { await c.navigate(c.url); } catch (e) { /* niente da fare: resta il pulsante Ricarica */ }
+    }
+  })());
 });
 self.addEventListener('message', ev => { if (ev.data === 'attiva') self.skipWaiting(); });
 
