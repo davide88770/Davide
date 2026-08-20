@@ -147,7 +147,7 @@ giorni — a 3 su uno solo era il punto più debole della scheda.
 | Liberi | Mercoledì, sabato, domenica | Mercoledì, sabato, domenica |
 | Esercizi per seduta | 6-9 | 4-7 |
 | Serie per seduta | 14-22 | 12-18 |
-| Durate | 69, 58, 55, 44 min | 57, 48, 50, 45 min |
+| Durate | 69, 58, 56, 44 min | 57, 48, 50, 45 min |
 
 Le durate sono calcolate, non stimate: serie × (45 secondi di lavoro + recupero
 previsto), 75 secondi per gli esercizi a un arto per volta, più mezzo minuto per
@@ -186,7 +186,7 @@ la serie finale intensificata. Riscaldamento e stretching fuori dal conto.
 |---|---|---|---|
 | Panca inclinata manubri 30° | 3 × 8-12 | + Drop set | 150 s |
 | Pulley basso — presa neutra | 3 × 8-12 | + Rest-pause | 150 s |
-| Pullover ai cavi | 2 × 10-12 | + Rest-pause | 120 s |
+| Lat machine unilaterale — maniglia | 2 × 10-12 | + Rest-pause | 120 s |
 | Croci manubri | 2 × 10-12 | RIR 0-1 + Allungamento | 120 s |
 | Alzate laterali ai cavi | 3 × 12-15 | + Drop set | 90 s |
 | Curl hammer manubri | 2 × 10-12 | Superset A | — |
@@ -275,7 +275,7 @@ divisione forza/volume, stesso schema di superset.
 | # | Cosa è cambiato | Perché |
 |---|---|---|
 | 1 | Rematore **Yates** → **rematore manubri gomiti alti**, petto appoggiato | Col bilanciere in piedi devi stabilizzare busto e schiena bassa: per Rabasco è il caso in cui il sistema nervoso frena e il bersaglio non arriva al limite. Con l'ernia, il bracing è anche la cosa da evitare. Il gomito alto porta i **trapezi da 0 a 3** senza aggiungere esercizi |
-| 2 | **Pullover ai cavi** in Upper B (2 serie) | Riporta il dorso a 8 e non è un rematore, quindi i bicipiti — già a 12,5 frazionali — non ne prendono altre |
+| 2 | Seconda dose di dorso in Upper B (2 serie), che non può essere un rematore | Riporta il dorso a 8. Dalla v37 è la **lat machine a un braccio**, non più il pullover |
 | 3 | Alzate laterali **manubri 4 → cavi 3** | Col manubrio, in basso, il carico è zero dove il deltoide è allungato. E il tetto delle tre serie vale anche qui |
 | 4 | **Hip thrust** → **stacco a gambe tese coi manubri** | Stessa anca, caricata dove il femorale è lungo invece che dove il gluteo è corto. È il punto su cui Rabasco è più netto |
 | 5 | Leg curl **2 → 3** serie, sissy **3 → 2** | I femorali erano 7 contro 11 di quadricipite. Ora 11 contro 9: è il rapporto che Nippard ed Emmerich tengono sulle gambe |
@@ -632,6 +632,17 @@ npm run prova:pwa                                # giro di aggiornamento dell'ap
 
 ## Storico
 
+- **v37** — nella Top il **pullover ai cavi** dell'Upper B lascia il posto alla
+  **lat machine a un braccio**. Il pullover allena solo l'estensione della spalla
+  col gomito bloccato e la resistenza cala proprio dove chiudi: per Nippard i
+  pulldown caricati stanno un gradino sopra, e per Rabasco la lat a un braccio è
+  la versione migliore perché la scapola può salire davvero e il range in
+  allungamento è più ampio. Effetto collaterale positivo: la tirata verticale
+  passa a **frequenza 2×** — zavorrata e pesante il lunedì, a range alto il
+  giovedì. Prezzo: i bicipiti passano da 12,5 a 13,5 serie frazionali, e l'Upper
+  B da 55 a 56 minuti. Nella **4 sedute il pullover resta**: lì la verticale del
+  lunedì è già la lat a un braccio, e sostituirlo vorrebbe dire fare lo stesso
+  esercizio due volte nella settimana con nient'altro in mezzo.
 - **v36** — Davide ha detto che sedute un po' più lunghe non sono un problema,
   se portano al risultato. Tolto il freno del tempo dove costava davvero, la Top
   passa da 68 a **73 serie dirette** e **nessun gruppo resta sotto il
