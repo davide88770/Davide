@@ -15,7 +15,7 @@
 <link rel="apple-touch-icon" href="icone/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="192x192" href="icone/icona-192.png">
 <style>:root{color-scheme:light dark}*{box-sizing:border-box}body{margin:0}img{max-width:100%}</style>
-<script>window.__GG_BUILD='133a9bb219';</script>
+<script>window.__GG_BUILD='592240c71a';</script>
 </head>
 <body>
 <style>
@@ -777,8 +777,9 @@ SESS.t_upperB = { id:'t_upperB', nome:'Upper B', gg:'Giovedì', durata:52, rivis
     cue:'Presa neutra · gomiti fermi ai fianchi · niente oscillazione · subito dopo, senza recupero, il push-down'}),
   e('Push-down — triangolo largo','tricipiti',2,'10–12','Superset + Drop set',120,{p:1,ss:'A',
     cue:'Gomiti fermi ai fianchi · contrazione massima in basso · sull’ultima serie drop set'}),
-  e('Curl bilanciere / EZ — volume','bicipiti',2,'10–12','Superset',0,{p:1,ss:'B',
-    cue:'EZ se il polso tira · niente slancio di schiena · subito dopo, senza recupero, l’overhead'}),
+  e('Curl manubri su panca inclinata','bicipiti',2,'8–10','Superset',0,{p:1,ss:'B',
+    cue:'Panca a 45-60° · braccia che pendono dietro la linea del busto · supinazione completa · eccentrica 3 sec · non alzare la spalla per aiutarti · subito dopo, senza recupero, l’overhead',
+    note:'Ha preso il posto del secondo curl col bilanciere, che era la stessa cosa del lunedì fatta una seconda volta. Sulla panca inclinata il braccio parte dietro il busto: il capo lungo del bicipite è già allungato prima ancora di iniziare, e lì il carico non si azzera come col bilanciere a braccia distese.'}),
   e('Tricipite overhead — 2ª frequenza','tricipiti',2,'12–15','Superset + Rest-pause',90,{p:1,ss:'B',
     cue:'Corda alla carrucola bassa, di spalle · gomiti fermi sopra la testa · stretch massimo dietro la nuca',
     note:'Seconda dose settimanale sul capo lungo, tre giorni dopo quella dell’Upper A.'})
@@ -1377,7 +1378,7 @@ const CONS_FONTI = [
 /* Versione dell'app. Serve a sapere, dal telefono, se quello che hai davanti e'
    l'ultima versione: la PWA installata puo' restare indietro se iOS non rifa'
    la navigazione. Il numero si alza a ogni pubblicazione. */
-const VERSIONE = { n:'v34', data:'20 agosto 2026', nota:'La Top allineata a Rabasco e Nippard: tutti i vincoli rispettati' };
+const VERSIONE = { n:'v35', data:'20 agosto 2026', nota:'Curl su panca inclinata al posto del secondo curl col bilanciere' };
 
 const ATTREZZI = [
   ['Rack, bilanciere, panca regolabile', 1, 'Panca piana, stacco romeno, curl bilanciere, military press, panca inclinata per croci, curl e rematore col petto appoggiato'],
@@ -3060,8 +3061,11 @@ function renderPiano(){
         <b>push-down</b> col gomito al fianco, dove è corto. Sul bicipite le due dosi migliori sono tutte e due in
         allungamento — <b>curl ai cavi dietro il corpo</b> e <b>curl coi manubri su panca inclinata</b>, in tutti e due
         il braccio sta dietro la linea del busto — e va bene così: è lì che il segnale è più forte. Il
-        <b>curl hammer al cavo basso</b> non è la dose in accorciamento, è la dose per brachiale e brachioradiale, che
-        con la presa supina non lavorano mai davvero.</p>
+        <b>curl hammer</b> non è la dose in accorciamento, è la dose per brachiale e brachioradiale, che con la presa
+        supina non lavorano mai davvero. Nella <b>Top</b> i quattro curl coprono quattro cose diverse: il
+        <b>bilanciere</b> per il carico, il <b>cavo dietro il corpo</b> per la tensione dove il bilanciere non ne ha,
+        la <b>panca inclinata</b> per il capo lungo che parte già allungato, l’<b>hammer</b> per il brachiale.
+        Nessuno dei quattro ripete un altro.</p>
       <p class="small" style="margin:0"><b>10. Una tirata verticale e una orizzontale.</b> Verticale: <b>lat
         machine unilaterale con la maniglia</b>, un braccio per volta — il range è più ampio e la scapola può salire
         davvero, cosa che con la barra a due mani non succede. Orizzontale: <b>rematore coi manubri a busto

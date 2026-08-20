@@ -190,7 +190,7 @@ la serie finale intensificata. Riscaldamento e stretching fuori dal conto.
 | Alzate laterali ai cavi | 3 × 12-15 | + Drop set | 90 s |
 | Curl hammer manubri | 2 × 10-12 | Superset A | — |
 | Push-down triangolo largo | 2 × 10-12 | Superset A + Drop set | 120 s |
-| Curl bilanciere / EZ — volume | 2 × 10-12 | Superset B | — |
+| Curl manubri su panca inclinata | 2 × 8-10 | Superset B | — |
 | Tricipite overhead — 2ª freq. | 2 × 12-15 | Superset B + Rest-pause | 90 s |
 
 **Lower B — Venerdì · 13 serie · volume**
@@ -632,6 +632,15 @@ npm run prova:pwa                                # giro di aggiornamento dell'ap
 
 ## Storico
 
+- **v35** — nella Top il secondo **curl col bilanciere** dell'Upper B (era la
+  stessa cosa del lunedì fatta una seconda volta) lascia il posto al **curl coi
+  manubri su panca inclinata**. Sulla panca il braccio parte dietro la linea del
+  busto, quindi il capo lungo è già allungato prima di iniziare e il carico non
+  si azzera come col bilanciere a braccia distese. Volume, durate e vincoli
+  invariati: i quattro curl della settimana ora coprono quattro cose diverse —
+  bilanciere per il carico, cavo dietro il corpo per la tensione dove il
+  bilanciere non ne ha, panca inclinata per il capo lungo allungato, hammer per
+  il brachiale.
 - **v34** — la "4 sedute Top" riallineata a **Rabasco e Nippard** senza toccarne
   la struttura: stessi quattro giorni, stessa divisione forza/volume, stesso
   schema di superset. Sei modifiche. Il **rematore Yates** diventa **rematore
