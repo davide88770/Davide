@@ -124,31 +124,30 @@ Volume settimanale in serie dirette:
 |---|---|---|---|
 | Petto | 8 | 7 | **8** |
 | Dorso | 8 | **8** | **8** |
-| Trapezi | 3 | 0 | **3** |
-| Spalle | 7 | **7** | 5 |
+| Trapezi | 3 | **3** | **3** |
+| Spalle | 7 | 6 | 5 |
 | Bicipiti | 8 | **8** | 6 |
 | Tricipiti | 8 | **8** | 6 |
-| Accosciata | 8 | 11 | **8** |
-| Leg curl + stacco | 9 | 7 | **9** |
-| Gluteo | — | 2 | 0 |
+| Accosciata | 8 | 9 | **8** |
+| Leg curl + stacco | 9 | 11 | **9** |
 | Polpacci | 3 | 4 | **3** |
 | Addome | 6 | 4 | **6** |
-| **Totale** | **68** | **66** | **62** |
+| **Totale** | **68** | **68** | **62** |
 
-**Quello che la Top lascia scoperto, detto in chiaro:** i **trapezi** non hanno
-esercizi diretti — ricevono solo il lavoro indiretto del rematore Yates e del
-pulley basso, che chiudono le scapole ma coi gomiti bassi. È l'unico gruppo del
-piano a zero. L'**addome** sta a 4 serie contro 6 e i **femorali** a 7 contro 9,
-mentre l'accosciata è a 11 contro 8: la scheda sceglie il quadricipite. L'app lo
-segnala da sola nella scheda Programmazione, in rosso, a ogni apertura.
+Dalla **v34** la Top rispetta tutti e cinque i vincoli del piano — tetto delle
+tre serie per esercizio compreso — e centra dorso, trapezi, bicipiti e
+tricipiti. Restano una serie sotto **petto** e **spalle**, e due l'**addome**.
+I **femorali a 11 contro 9 di accosciata** non sono uno sbilanciamento: è il
+rapporto che Nippard ed Emmerich tengono sulle gambe, e fino alla v33 era
+rovesciato (7 contro 11).
 
 | | 4 sedute Top | 4 sedute |
 |---|---|---|
 | Giorni | Lun Upper A · Mar Lower A · Gio Upper B · Ven Lower B | Lun Upper A · Mar Lower A · Gio Upper B · Ven Lower B |
 | Liberi | Mercoledì, sabato, domenica | Mercoledì, sabato, domenica |
-| Esercizi per seduta | 6-8 | 4-7 |
-| Serie per seduta | 13-19 | 12-18 |
-| Durate | 60, 56, 47, 42 min | 57, 48, 50, 45 min |
+| Esercizi per seduta | 6-9 | 4-7 |
+| Serie per seduta | 13-20 | 12-18 |
+| Durate | 63, 55, 52, 41 min | 57, 48, 50, 45 min |
 
 Le durate sono calcolate, non stimate: serie × (45 secondi di lavoro + recupero
 previsto), 75 secondi per gli esercizi a un arto per volta, più mezzo minuto per
@@ -156,14 +155,14 @@ la serie finale intensificata. Riscaldamento e stretching fuori dal conto.
 
 ### La "4 sedute Top", seduta per seduta
 
-**Upper A — Lunedì · 19 serie · forza**
+**Upper A — Lunedì · 20 serie · forza**
 
 | Esercizio | Serie × rip | Tecnica | Rec. |
 |---|---|---|---|
 | Panca piana bilanciere | 3 × 4-6 | RIR 1-2 · forza | 240 s |
 | Trazioni zavorate / Lat machine singola | 3 × 6-8 | RIR 1-2 · forza | 180 s |
 | Military press seduto | 3 × 5-7 | RIR 1-2 · forza | 210 s |
-| Rematore bilanciere Yates | 2 × 8-10 | + Rest-pause | 150 s |
+| Rematore manubri gomiti alti (trapezi) | 3 × 10-15 | + Rest-pause | 150 s |
 | Curl bilanciere — allungamento | 2 × 8-10 | Superset A + Drop set | — |
 | Push-down alla corda | 2 × 10-12 | Superset A + Drop set | 120 s |
 | Curl ai cavi dietro il corpo — Bayesian | 2 × 10-12 | Superset B | — |
@@ -175,19 +174,20 @@ la serie finale intensificata. Riscaldamento e stretching fuori dal conto.
 |---|---|---|---|
 | Hack squat piede basso | 3 × 5-8 | RIR 1-2 · forza | 240 s |
 | Romanian deadlift | 3 × 6-8 | RIR 1-2 · forza | 240 s |
-| Sissy squat | 3 × 10-15 | + Rest-pause | 150 s |
-| Leg curl manubri / pulley | 2 × 12-15 | + Drop set | 120 s |
+| Sissy squat | 2 × 10-15 | + Rest-pause | 150 s |
+| Leg curl manubri / pulley | 3 × 12-15 | + Drop set | 120 s |
 | Calf raise in piedi | 2 × 8-12 | + Rest-pause | 120 s |
 | D'Annunzio crunch | 2 × 10-15 | + Rest-pause | 90 s |
 
-**Upper B — Giovedì · 19 serie · volume**
+**Upper B — Giovedì · 20 serie · volume**
 
 | Esercizio | Serie × rip | Tecnica | Rec. |
 |---|---|---|---|
 | Panca inclinata manubri 30° | 2 × 8-12 | + Drop set | 150 s |
 | Pulley basso — presa neutra | 3 × 8-12 | + Rest-pause | 150 s |
+| Pullover ai cavi | 2 × 10-12 | + Rest-pause | 120 s |
 | Croci manubri | 2 × 10-12 | RIR 0-1 + Allungamento | 120 s |
-| Alzate laterali manubri | 4 × 12-15 | + Drop set | 90 s |
+| Alzate laterali ai cavi | 3 × 12-15 | + Drop set | 90 s |
 | Curl hammer manubri | 2 × 10-12 | Superset A | — |
 | Push-down triangolo largo | 2 × 10-12 | Superset A + Drop set | 120 s |
 | Curl bilanciere / EZ — volume | 2 × 10-12 | Superset B | — |
@@ -197,10 +197,10 @@ la serie finale intensificata. Riscaldamento e stretching fuori dal conto.
 
 | Esercizio | Serie × rip | Tecnica | Rec. |
 |---|---|---|---|
-| Hip thrust / stacco gambe tese | 2 × 8-12 | RIR 1-2 | 180 s |
+| Stacco a gambe tese — manubri | 2 × 10-12 | RIR 1-2 | 180 s |
 | Pressa piede alto | 2 × 10-12 | + Drop set | 180 s |
-| Sissy squat — eccentrica 5 sec | 3 × 8-10 | Eccentrica lenta | 150 s |
-| Leg curl sdraiato manubri | 2 × 12-15 | + Drop set | 120 s |
+| Sissy squat — eccentrica 5 sec | 2 × 8-10 | Eccentrica lenta | 150 s |
+| Leg curl sdraiato manubri | 3 × 12-15 | + Drop set | 120 s |
 | Calf pressa | 2 × 12-15 | + Rest-pause | 90 s |
 | Crunch cavo alto | 2 × 10-15 | + Rest-pause | 90 s |
 
@@ -219,7 +219,7 @@ la serie finale intensificata. Riscaldamento e stretching fuori dal conto.
   cavo dietro il corpo per la tensione dove il braccio è allungato (col
   bilanciere, a braccia distese, il momento è quasi zero proprio lì); sul
   tricipite l'overhead in allungamento e il push-down in accorciamento.
-- **Eccentrica da 5 secondi** sul sissy del venerdì: è lo stesso esercizio del
+- **Eccentrica da 5 secondi** sul sissy del venerdì (2 serie): è lo stesso esercizio del
   martedì, e la differenza di esecuzione è quello che lo rende un secondo
   stimolo invece che una ripetizione.
 - **Niente tecniche sulle cinque alzate di forza.** Lì si sale di carico, e
@@ -261,19 +261,33 @@ stacco romeno) e stanno tutte nelle due giornate di lunedì e martedì.
 7. Carico massimo dove il muscolo è lungo; i due estremi della curva sul
    tricipite; una tirata verticale e una orizzontale.
 
-La **4 sedute** li rispetta tutti. La **4 sedute Top** si scosta su quattro
-punti, tutti consapevoli e scritti anche dentro l'app:
+Dalla **v34 tutte e due le schede li rispettano tutti**, tetto delle tre serie
+per esercizio compreso.
 
-| Regola | Scostamento | Perché è accettabile |
+### Le sei correzioni della v34
+
+La Top era partita dall'elenco dettato da Davide e si scostava su cinque punti
+che Rabasco e Nippard difendono esplicitamente. Sei modifiche l'hanno
+riallineata senza toccarne la struttura — stessi quattro giorni, stessa
+divisione forza/volume, stesso schema di superset.
+
+| # | Cosa è cambiato | Perché |
 |---|---|---|
-| 1 | Alzate laterali a 4 serie | Unico esercizio del piano sopra il tetto; sul deltoide laterale è lo sforamento che costa meno |
-| 6 | Trapezi a 0 serie | Nessun esercizio diretto; arrivano solo il lavoro indiretto di Yates e pulley basso, coi gomiti bassi |
-| 7 | Torna l'hip thrust, che carica il gluteo in accorciamento | Per questo l'ho lasciato in alternativa allo stacco a gambe tese; se se ne sceglie uno solo, il secondo rende di più |
-| 7 | Alzate laterali coi manubri, non ai cavi | In basso il carico si azzera; il drop set sull'ultima serie serve anche a compensare |
+| 1 | Rematore **Yates** → **rematore manubri gomiti alti**, petto appoggiato | Col bilanciere in piedi devi stabilizzare busto e schiena bassa: per Rabasco è il caso in cui il sistema nervoso frena e il bersaglio non arriva al limite. Con l'ernia, il bracing è anche la cosa da evitare. Il gomito alto porta i **trapezi da 0 a 3** senza aggiungere esercizi |
+| 2 | **Pullover ai cavi** in Upper B (2 serie) | Riporta il dorso a 8 e non è un rematore, quindi i bicipiti — già a 12,5 frazionali — non ne prendono altre |
+| 3 | Alzate laterali **manubri 4 → cavi 3** | Col manubrio, in basso, il carico è zero dove il deltoide è allungato. E il tetto delle tre serie vale anche qui |
+| 4 | **Hip thrust** → **stacco a gambe tese coi manubri** | Stessa anca, caricata dove il femorale è lungo invece che dove il gluteo è corto. È il punto su cui Rabasco è più netto |
+| 5 | Leg curl **2 → 3** serie, sissy **3 → 2** | I femorali erano 7 contro 11 di quadricipite. Ora 11 contro 9: è il rapporto che Nippard ed Emmerich tengono sulle gambe |
+| 6 | **Trazioni zavorate**: nessuna decisione, una scelta documentata | Nippard le tiene, Rabasco preferisce la lat a un braccio. La scheda lascia l'alternativa e scrive quando conviene passare |
 
-Tutto il resto — RIR 0-2, un rematore e un leg curl al giorno, niente braccia
-nelle giornate di gambe, alzata di forza in testa, recuperi lunghi, progressione
-in tre passi — la Top lo rispetta.
+Le sedute non hanno cambiato taglia: Upper A e Upper B guadagnano una serie a
+testa, Lower A e Lower B nemmeno quella.
+
+**Quello che resta diverso da un programma di Nippard o Rabasco:** i superset
+sulle braccia (Nippard li usa, Rabasco preferisce il recupero pieno), le
+trazioni zavorate come tirata verticale pesante, petto e spalle una serie sotto
+il riferimento, addome a 4 serie invece di 6 — che però sta dentro la forchetta
+di tutti e due.
 
 ### Serie dirette e frazionali
 
@@ -618,6 +632,21 @@ npm run prova:pwa                                # giro di aggiornamento dell'ap
 
 ## Storico
 
+- **v34** — la "4 sedute Top" riallineata a **Rabasco e Nippard** senza toccarne
+  la struttura: stessi quattro giorni, stessa divisione forza/volume, stesso
+  schema di superset. Sei modifiche. Il **rematore Yates** diventa **rematore
+  coi manubri a gomiti alti** col petto appoggiato — via il bracing e la
+  stabilizzazione lombare, e i trapezi passano da 0 a 3 serie senza aggiungere
+  niente. Entra il **pullover ai cavi** in Upper B, che riporta il dorso a 8
+  senza dare altre serie ai bicipiti. Le **alzate laterali** passano dai manubri
+  ai cavi e da 4 serie a 3, rientrando sotto il tetto. L'**hip thrust** lascia il
+  posto allo **stacco a gambe tese coi manubri**. I **leg curl** salgono a 3
+  serie ciascuno e i **sissy** scendono a 2: i femorali erano 7 contro 11 di
+  quadricipite, ora sono 11 contro 9. Sulle **trazioni zavorate** non ho deciso
+  io, perché i due coach non sono d'accordo: resta l'alternativa con la lat a un
+  braccio e la nota su quando conviene. Risultato: **primo giro in cui la Top
+  passa tutti e cinque i vincoli**, 68 serie dirette come il riferimento, dorso
+  trapezi bicipiti e tricipiti centrati. Durate 63, 55, 52, 41 minuti.
 - **v33** — tre correzioni sulla "4 sedute Top". **Upper A**: le braccia passano
   da due esercizi da 3 serie a quattro da 2, in due superset di antagonisti —
   entrano il *push-down alla corda* e il *curl ai cavi dietro il corpo*. Il
