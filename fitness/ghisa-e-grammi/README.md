@@ -354,6 +354,30 @@ estesa, dove il capo lungo del femorale è più corto. Tutto il lavoro in
 allungamento sul femorale resta sullo stacco romeno — per questo è pesante e
 compare in tutte e due le schede.
 
+### Riscrivere il testo di un esercizio
+
+Dentro ogni esercizio, accanto a **Sostituisci**, c'è **Testo**: riscrive *nome*,
+*tecnica* e *nota*. Vale **sempre** — tutte le giornate, tutte e due le schede —
+e non tocca serie, ripetizioni, recupero o volume: cambia solo le parole.
+
+La chiave dell'override è **il nome originale del piano, mai quello nuovo**. È la
+scelta che regge tutto il resto: lo storico dei carichi è legato al nome
+dell'esercizio, quindi rinominare senza questa precauzione avrebbe orfanato tutto
+quello che c'era registrato sotto. In pratica `ex.n` resta il nome del piano e il
+nome tuo viaggia in `ex.nv`, che serve solo a mostrarlo — così i controlli di
+volume, le regex dei muscoli secondari e il selettore dei progressi continuano a
+lavorare sui nomi veri. Nel selettore dei progressi l'etichetta è la tua e il
+`value` è quello del piano; `tools/prova-dati.mjs` lo verifica a ogni giro.
+
+Nella scheda Piano c'è la card **I testi degli esercizi**: elenca quelli
+riscritti, dice quali campi hai toccato e sotto che nome stanno nel piano, e
+ripristina il singolo o tutti insieme.
+
+All'import di un backup i testi entrano **solo dove non ne hai già uno**: non
+hanno una data di modifica, quindi non sono confrontabili, e sovrascriverli
+significherebbe cambiarti un testo senza averlo toccato. Su un telefono pulito
+arrivano tutti.
+
 ### Sostituire un esercizio
 
 Dentro ogni esercizio c'è **Sostituisci**: scrivi il nome che vuoi, scegli
@@ -632,6 +656,14 @@ npm run prova:pwa                                # giro di aggiornamento dell'ap
 
 ## Storico
 
+- **v39** — **nome, tecnica e nota di ogni esercizio si possono riscrivere**, dal
+  pulsante *Testo* dentro l'esercizio. Vale in tutte le giornate e in tutte e due
+  le schede, non tocca serie né volume, e la chiave dell'override è il nome
+  originale del piano: rinominare non stacca i carichi già registrati. Nella
+  scheda Piano una card elenca i testi riscritti e li ripristina, singolarmente o
+  tutti. `fondi()` ora unisce anche i testi all'import di un backup — prima li
+  perdeva. Corretto anche un errore mio della v38: la nota del pullover conteneva
+  `<b>`, ma le note vengono escapate, quindi si vedevano i tag in chiaro.
 - **v38** — sul **pullover ai cavi della «4 sedute»** aggiunta solo l'alternativa
   (lat machine a un braccio, 2×10-12), senza toccare l'esercizio né il suo nome:
   lo storico dei carichi è legato al nome, e rinominarlo l'avrebbe staccato. Il
