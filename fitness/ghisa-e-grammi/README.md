@@ -123,32 +123,32 @@ Volume settimanale in serie dirette:
 | Gruppo | Riferimento | 4 sedute Top | 4 sedute |
 |---|---|---|---|
 | Petto | 8 | 7 | **8** |
-| Dorso | 8 | 5 | **8** |
+| Dorso | 8 | **8** | **8** |
 | Trapezi | 3 | 0 | **3** |
 | Spalle | 7 | **7** | 5 |
 | Bicipiti | 8 | **8** | 6 |
-| Tricipiti | 8 | 7 | 6 |
+| Tricipiti | 8 | **8** | 6 |
 | Accosciata | 8 | 11 | **8** |
 | Leg curl + stacco | 9 | 7 | **9** |
 | Gluteo | — | 2 | 0 |
 | Polpacci | 3 | 4 | **3** |
 | Addome | 6 | 4 | **6** |
-| **Totale** | **68** | **62** | **62** |
+| **Totale** | **68** | **66** | **62** |
 
-**Quello che la Top lascia scoperto, detto in chiaro:** il **dorso** sta a 5
-serie e le prende tutte lo stesso giorno — l'Upper B non ha tirate, quindi è
-l'unico gruppo del piano a frequenza 1× — e i **trapezi** non hanno lavoro
-diretto. In cambio l'accosciata arriva a 11 serie e le due giornate di forza
-portano carichi che l'altra scheda non tocca. L'app lo segnala da sola nella
-scheda Programmazione, in rosso, a ogni apertura.
+**Quello che la Top lascia scoperto, detto in chiaro:** i **trapezi** non hanno
+esercizi diretti — ricevono solo il lavoro indiretto del rematore Yates e del
+pulley basso, che chiudono le scapole ma coi gomiti bassi. È l'unico gruppo del
+piano a zero. L'**addome** sta a 4 serie contro 6 e i **femorali** a 7 contro 9,
+mentre l'accosciata è a 11 contro 8: la scheda sceglie il quadricipite. L'app lo
+segnala da sola nella scheda Programmazione, in rosso, a ogni apertura.
 
 | | 4 sedute Top | 4 sedute |
 |---|---|---|
-| Giorni | Lun Upper A · Mar Lower A · Gio Upper B · Sab Lower B | Lun Upper A · Mar Lower A · Gio Upper B · Ven Lower B |
-| Liberi | Mercoledì, venerdì, domenica | Mercoledì, sabato, domenica |
-| Esercizi per seduta | 6-7 | 4-7 |
-| Serie per seduta | 13-17 | 12-18 |
-| Durate | 57, 56, 38, 42 min | 57, 48, 50, 45 min |
+| Giorni | Lun Upper A · Mar Lower A · Gio Upper B · Ven Lower B | Lun Upper A · Mar Lower A · Gio Upper B · Ven Lower B |
+| Liberi | Mercoledì, sabato, domenica | Mercoledì, sabato, domenica |
+| Esercizi per seduta | 6-8 | 4-7 |
+| Serie per seduta | 13-19 | 12-18 |
+| Durate | 60, 56, 47, 42 min | 57, 48, 50, 45 min |
 
 Le durate sono calcolate, non stimate: serie × (45 secondi di lavoro + recupero
 previsto), 75 secondi per gli esercizi a un arto per volta, più mezzo minuto per
@@ -156,7 +156,7 @@ la serie finale intensificata. Riscaldamento e stretching fuori dal conto.
 
 ### La "4 sedute Top", seduta per seduta
 
-**Upper A — Lunedì · 17 serie · forza**
+**Upper A — Lunedì · 19 serie · forza**
 
 | Esercizio | Serie × rip | Tecnica | Rec. |
 |---|---|---|---|
@@ -164,8 +164,10 @@ la serie finale intensificata. Riscaldamento e stretching fuori dal conto.
 | Trazioni zavorate / Lat machine singola | 3 × 6-8 | RIR 1-2 · forza | 180 s |
 | Military press seduto | 3 × 5-7 | RIR 1-2 · forza | 210 s |
 | Rematore bilanciere Yates | 2 × 8-10 | + Rest-pause | 150 s |
-| Curl bilanciere — allungamento | 3 × 8-10 | Superset A + Drop set | — |
-| Tricipite overhead corda | 3 × 10-12 | Superset A + Rest-pause | 120 s |
+| Curl bilanciere — allungamento | 2 × 8-10 | Superset A + Drop set | — |
+| Push-down alla corda | 2 × 10-12 | Superset A + Drop set | 120 s |
+| Curl ai cavi dietro il corpo — Bayesian | 2 × 10-12 | Superset B | — |
+| Tricipite overhead corda | 2 × 10-12 | Superset B + Rest-pause | 90 s |
 
 **Lower A — Martedì · 15 serie · forza**
 
@@ -178,19 +180,20 @@ la serie finale intensificata. Riscaldamento e stretching fuori dal conto.
 | Calf raise in piedi | 2 × 8-12 | + Rest-pause | 120 s |
 | D'Annunzio crunch | 2 × 10-15 | + Rest-pause | 90 s |
 
-**Upper B — Giovedì · 17 serie · volume**
+**Upper B — Giovedì · 19 serie · volume**
 
 | Esercizio | Serie × rip | Tecnica | Rec. |
 |---|---|---|---|
 | Panca inclinata manubri 30° | 2 × 8-12 | + Drop set | 150 s |
+| Pulley basso — presa neutra | 3 × 8-12 | + Rest-pause | 150 s |
 | Croci manubri | 2 × 10-12 | RIR 0-1 + Allungamento | 120 s |
 | Alzate laterali manubri | 4 × 12-15 | + Drop set | 90 s |
-| Curl hammer manubri | 3 × 10-12 | Superset A | — |
-| Push-down triangolo largo | 3 × 10-12 | Superset A + Drop set | 120 s |
+| Curl hammer manubri | 2 × 10-12 | Superset A | — |
+| Push-down triangolo largo | 2 × 10-12 | Superset A + Drop set | 120 s |
 | Curl bilanciere / EZ — volume | 2 × 10-12 | Superset B | — |
-| Tricipite overhead — 2ª freq. | 1 × 12-15 | Superset B + Myo-reps | 90 s |
+| Tricipite overhead — 2ª freq. | 2 × 12-15 | Superset B + Rest-pause | 90 s |
 
-**Lower B — Sabato · 13 serie · volume**
+**Lower B — Venerdì · 13 serie · volume**
 
 | Esercizio | Serie × rip | Tecnica | Rec. |
 |---|---|---|---|
@@ -211,9 +214,12 @@ la serie finale intensificata. Riscaldamento e stretching fuori dal conto.
 - **Drop set dove il carico si può togliere in tre secondi.** Manubri, cavi,
   pressa. Sull'ultima serie, mai su tutte.
 - **Rest-pause dove il drop set non si può fare** — Yates, sissy, calf, addome.
-- **Myo-reps sull'unica serie singola del piano**, il tricipite overhead
-  dell'Upper B: una serie sola merita di essere estesa, non fatta e basta.
-- **Eccentrica da 5 secondi** sul sissy del sabato: è lo stesso esercizio del
+- **Quattro esercizi di braccia da 2 serie per seduta**, non due da 3. Stesso
+  tempo, ma due angoli in più: sul bicipite il bilanciere per il carico e il
+  cavo dietro il corpo per la tensione dove il braccio è allungato (col
+  bilanciere, a braccia distese, il momento è quasi zero proprio lì); sul
+  tricipite l'overhead in allungamento e il push-down in accorciamento.
+- **Eccentrica da 5 secondi** sul sissy del venerdì: è lo stesso esercizio del
   martedì, e la differenza di esecuzione è quello che lo rende un secondo
   stimolo invece che una ripetizione.
 - **Niente tecniche sulle cinque alzate di forza.** Lì si sale di carico, e
@@ -261,7 +267,7 @@ punti, tutti consapevoli e scritti anche dentro l'app:
 | Regola | Scostamento | Perché è accettabile |
 |---|---|---|
 | 1 | Alzate laterali a 4 serie | Unico esercizio del piano sopra il tetto; sul deltoide laterale è lo sforamento che costa meno |
-| 6 | Dorso a frequenza 1×, trapezi 0 serie | L'Upper B non ha tirate. È il prezzo dichiarato della struttura |
+| 6 | Trapezi a 0 serie | Nessun esercizio diretto; arrivano solo il lavoro indiretto di Yates e pulley basso, coi gomiti bassi |
 | 7 | Torna l'hip thrust, che carica il gluteo in accorciamento | Per questo l'ho lasciato in alternativa allo stacco a gambe tese; se se ne sceglie uno solo, il secondo rende di più |
 | 7 | Alzate laterali coi manubri, non ai cavi | In basso il carico si azzera; il drop set sull'ultima serie serve anche a compensare |
 
@@ -612,6 +618,19 @@ npm run prova:pwa                                # giro di aggiornamento dell'ap
 
 ## Storico
 
+- **v33** — tre correzioni sulla "4 sedute Top". **Upper A**: le braccia passano
+  da due esercizi da 3 serie a quattro da 2, in due superset di antagonisti —
+  entrano il *push-down alla corda* e il *curl ai cavi dietro il corpo*. Il
+  push-down non è un esercizio in più tanto per: senza, la settimana aveva 2
+  serie di tricipite in accorciamento contro 6 in allungamento; ora sono 4 e 4.
+  **Upper B**: entra il *pulley basso* (3 serie, secondo esercizio, da fresco) e
+  le braccia scendono tutte a 2 serie. Il pulley chiude il buco più grosso della
+  scheda: il dorso passa da 5 a **8 serie** — il riferimento — e da frequenza 1×
+  a 2×. **Lower B spostata al venerdì**, quindi liberi mercoledì, sabato e
+  domenica. Totale 66 serie dirette contro 62. Ora la Top centra dorso, spalle,
+  bicipiti e tricipiti; restano sotto femorali (7 contro 9) e addome (4 contro
+  6), e i trapezi restano l'unico gruppo a zero diretto. Durate: 60, 56, 47, 42
+  minuti.
 - **v32** — via la scheda da **5 sedute**, dentro la **"4 sedute Top"**: esercizi
   e serie dettati da Davide, tecniche di intensità, recuperi, range e ordine
   dentro la seduta scelti da me. Lun · Mar · Gio · Sab, con le due giornate di

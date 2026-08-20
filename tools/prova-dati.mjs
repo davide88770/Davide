@@ -48,10 +48,10 @@ const seminato = await page.evaluate(() => {
   const iso = t => new Date(t).toISOString().slice(0, 10);
   const oggi = new Date();
   const vecchi = { 1: 'rv_push', 2: 'rv_pull', 3: 'rv_legs', 5: 'rv_upper', 6: 'rv_lower' };
-  const nuovi  = { 1: 't_upperA', 2: 't_lowerA', 4: 't_upperB', 6: 't_lowerB' };
+  const nuovi  = { 1: 't_upperA', 2: 't_lowerA', 4: 't_upperB', 5: 't_lowerB' };
   const st = { v: 1, ui: { prog: 'top', nutri: 'rivista' }, sess: {}, corpo: [], pasti: {}, meta: {} };
   const nEs = { rv_push: 5, rv_pull: 5, rv_legs: 4, rv_upper: 6, rv_lower: 5,
-                t_upperA: 6, t_lowerA: 6, t_upperB: 7, t_lowerB: 6 };
+                t_upperA: 8, t_lowerA: 6, t_upperB: 8, t_lowerB: 6 };
   let sedute = 0, serie = 0;
   for (let i = 27; i >= 0; i--) {
     const dt = new Date(oggi.getTime() - i * 864e5), d = iso(dt);

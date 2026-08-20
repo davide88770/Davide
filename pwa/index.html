@@ -15,7 +15,7 @@
 <link rel="apple-touch-icon" href="icone/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="192x192" href="icone/icona-192.png">
 <style>:root{color-scheme:light dark}*{box-sizing:border-box}body{margin:0}img{max-width:100%}</style>
-<script>window.__GG_BUILD='751178f4d7';</script>
+<script>window.__GG_BUILD='e4a7f17282';</script>
 </head>
 <body>
 <style>
@@ -712,8 +712,8 @@ const SESS = {};
    Programmazione: il DORSO sta a 5 serie e le prende tutte lo stesso giorno
    (l'Upper B non ha tirate), e i TRAPEZI non hanno lavoro diretto. */
 
-SESS.t_upperA = { id:'t_upperA', nome:'Upper A', gg:'Lunedì', durata:57, rivista:1, top:1,
-  focus:'Forza · Spinta orizzontale e verticale · Tirata · Braccia in superset', ex:[
+SESS.t_upperA = { id:'t_upperA', nome:'Upper A', gg:'Lunedì', durata:60, rivista:1, top:1,
+  focus:'Forza · Spinta orizzontale e verticale · Tirata · Braccia in due superset', ex:[
   e('Panca piana bilanciere','petto',3,'4–6','RIR 1–2 · FORZA',240,{
     cue:'Presa 1,5× spalle · gomiti 45° · scapole retratte · fermi rack · fermo 1 sec in basso · eccentrica 2 sec',
     note:'L’alzata di forza della settimana. Si sale di carico appena chiudi 6 su tutte e tre le serie.'}),
@@ -725,10 +725,16 @@ SESS.t_upperA = { id:'t_upperA', nome:'Upper A', gg:'Lunedì', durata:57, rivist
   e('Rematore bilanciere — Yates','dorso',2,'8–10','+ Rest-pause',150,{ernia:1,
     cue:'Busto a 30-45° · presa supina o prona stretta · tira alla cintura · schiena neutra, mai in flessione · espira tirando',
     note:'La tirata orizzontale, e l’unico rematore della giornata.'}),
-  e('Curl bilanciere — focus allungamento','bicipiti',3,'8–10','Superset + Drop set',0,{p:1,ss:'A',
-    cue:'Schiena al muro o busto fermo · scendi fino a braccia distese, senza rimbalzare · eccentrica 3 sec · subito dopo, senza recupero, il tricipite',
-    note:'Curl e tricipite in superset: sono antagonisti, non competono, e uno recupera mentre lavora l’altro.'}),
-  e('Tricipite overhead — corda','tricipiti',3,'10–12','Superset + Rest-pause',120,{p:1,ss:'A',
+  e('Curl bilanciere — focus allungamento','bicipiti',2,'8–10','Superset + Drop set',0,{p:1,ss:'A',
+    cue:'Schiena al muro o busto fermo · scendi fino a braccia distese, senza rimbalzare · eccentrica 3 sec · subito dopo, senza recupero, il push-down',
+    note:'Curl e tricipite in superset: sono antagonisti, non competono, e uno recupera mentre lavora l’altro. Quattro esercizi da 2 serie invece di due da 3: stesso tempo, due angoli in più.'}),
+  e('Push-down alla corda','tricipiti',2,'10–12','Superset + Drop set',120,{p:1,ss:'A',
+    cue:'Corda alla carrucola alta · gomiti fermi ai fianchi · separa le mani in fondo, negli ultimi gradi di estensione',
+    note:'La dose in accorciamento del tricipite. Senza questa la settimana ne avrebbe 2 serie contro 6 in allungamento: è per riequilibrare, non per avere un esercizio in più.'}),
+  e('Curl ai cavi dietro il corpo — Bayesian','bicipiti',2,'10–12','Superset',0,{p:1,ss:'B',
+    cue:'Carrucola bassa, un passo avanti, braccio dietro la linea del corpo · gomito fermo · eccentrica 3 sec · subito dopo, senza recupero, l’overhead',
+    note:'Col bilanciere, a braccia distese, il carico sul bicipite è quasi zero proprio dove è più allungato. Il cavo lì tira ancora: i due si completano.'}),
+  e('Tricipite overhead — corda','tricipiti',2,'10–12','Superset + Rest-pause',90,{p:1,ss:'B',
     cue:'Corda alla carrucola bassa, di spalle · gomiti fermi sopra la testa · stretch massimo dietro la nuca'})
 ]};
 SESS.t_lowerA = { id:'t_lowerA', nome:'Lower A', gg:'Martedì', durata:56, rivista:1, top:1,
@@ -749,26 +755,29 @@ SESS.t_lowerA = { id:'t_lowerA', nome:'Lower A', gg:'Martedì', durata:56, rivis
   e('D’Annunzio crunch','core',2,'10–15','+ Rest-pause',90,{ernia:1,
     cue:'Sdraiato sulla lat machine con le gambe bloccate sotto il pad · il busto scende oltre l’appoggio · eccentrica 3 sec · ESPIRA salendo, mai in apnea'})
 ]};
-SESS.t_upperB = { id:'t_upperB', nome:'Upper B', gg:'Giovedì', durata:38, rivista:1, top:1,
-  focus:'Volume · Petto in allungamento · Spalle · Braccia in superset', ex:[
+SESS.t_upperB = { id:'t_upperB', nome:'Upper B', gg:'Giovedì', durata:47, rivista:1, top:1,
+  focus:'Volume · Petto · Tirata orizzontale · Spalle · Braccia in superset', ex:[
   e('Panca inclinata manubri 30°','petto',2,'8–12','+ Drop set',150,{
     cue:'Angolo 30° · gomiti 60–70° · scendi fino allo stretch completo · pausa 1 sec'}),
+  e('Pulley basso — presa neutra','dorso',3,'8–12','+ Rest-pause',150,{
+    cue:'Seduto, ginocchia morbide, busto fermo · lascia allungare le scapole in avanti · tira alla pancia coi gomiti lungo i fianchi · schiena mai in flessione',
+    note:'La tirata orizzontale del giovedì. Prima delle croci, da fresco: è l’esercizio che porta il dorso da 5 a 8 serie e a frequenza 2×.'}),
   e('Croci manubri','petto',2,'10–12','RIR 0–1 + Allungamento',120,{p:1,
     cue:'Panca a 30° · gomiti morbidi e fermi · scendi fino allo stretto sul petto · FERMATI prima di chiudere in alto, lì il carico si azzera'}),
   e('Alzate laterali manubri','spalle',4,'12–15','+ Drop set',90,{p:1,wm:1,
     cue:'Busto fermo, gomito guida, stop a 90° · le prime tre pulite, sull’ultima drop set: −25% e subito a cedimento',
     note:'Quattro serie: è l’unico esercizio del piano sopra le tre, e sta qui perché il deltoide laterale regge volume come nessun altro.'}),
-  e('Curl hammer manubri','bicipiti',3,'10–12','Superset',0,{p:1,ss:'A',
+  e('Curl hammer manubri','bicipiti',2,'10–12','Superset',0,{p:1,ss:'A',
     cue:'Presa neutra · gomiti fermi ai fianchi · niente oscillazione · subito dopo, senza recupero, il push-down'}),
-  e('Push-down — triangolo largo','tricipiti',3,'10–12','Superset + Drop set',120,{p:1,ss:'A',
+  e('Push-down — triangolo largo','tricipiti',2,'10–12','Superset + Drop set',120,{p:1,ss:'A',
     cue:'Gomiti fermi ai fianchi · contrazione massima in basso · sull’ultima serie drop set'}),
   e('Curl bilanciere / EZ — volume','bicipiti',2,'10–12','Superset',0,{p:1,ss:'B',
     cue:'EZ se il polso tira · niente slancio di schiena · subito dopo, senza recupero, l’overhead'}),
-  e('Tricipite overhead — 2ª frequenza','tricipiti',1,'12–15','Superset + Myo-reps',90,{p:1,ss:'B',
-    cue:'Una serie sola, e per questo si estende: al cedimento 3-5 respiri e altre 4-5 ripetizioni, per 3 cluster',
+  e('Tricipite overhead — 2ª frequenza','tricipiti',2,'12–15','Superset + Rest-pause',90,{p:1,ss:'B',
+    cue:'Corda alla carrucola bassa, di spalle · gomiti fermi sopra la testa · stretch massimo dietro la nuca',
     note:'Seconda dose settimanale sul capo lungo, tre giorni dopo quella dell’Upper A.'})
 ]};
-SESS.t_lowerB = { id:'t_lowerB', nome:'Lower B', gg:'Sabato', durata:42, rivista:1, top:1,
+SESS.t_lowerB = { id:'t_lowerB', nome:'Lower B', gg:'Venerdì', durata:42, rivista:1, top:1,
   focus:'Volume · Anca · Quadricipiti in eccentrica · Polpacci · Addome', ex:[
   e('Hip thrust bilanciere / stacco gambe tese','gluteo',2,'8–12','RIR 1–2',180,{ernia:1,
     cue:'Scapole sulla panca, bilanciere sul bacino con un cuscino · squeeze 1 sec in cima · ESPIRA spingendo. In alternativa stacco a gambe tese, che porta il lavoro sul femorale allungato',
@@ -854,9 +863,9 @@ SESS.q_lowerB = { id:'q_lowerB', nome:'Lower B', gg:'Venerdì', durata:45, rivis
 /* Lun Upper A · Mar Lower A · Gio Upper B · Ven Lower B. Mercoledi', sabato e domenica liberi. */
 const GIORNI_RIVISTI_4 = {1:'q_upperA',2:'q_lowerA',4:'q_upperB',5:'q_lowerB'};
 
-/* Lun Upper A · Mar Lower A · Gio Upper B · Sab Lower B.
-   Mercoledi', venerdi' e domenica liberi. Forza all'inizio, volume alla fine. */
-const GIORNI_TOP = {1:'t_upperA',2:'t_lowerA',4:'t_upperB',6:'t_lowerB'};
+/* Lun Upper A · Mar Lower A · Gio Upper B · Ven Lower B.
+   Mercoledi', sabato e domenica liberi. Forza all'inizio, volume alla fine. */
+const GIORNI_TOP = {1:'t_upperA',2:'t_lowerA',4:'t_upperB',5:'t_lowerB'};
 
 /* ── FASI ───────────────────────────────────────────────────────────────── */
 const FASI = [
@@ -1362,13 +1371,13 @@ const CONS_FONTI = [
 /* Versione dell'app. Serve a sapere, dal telefono, se quello che hai davanti e'
    l'ultima versione: la PWA installata puo' restare indietro se iOS non rifa'
    la navigazione. Il numero si alza a ogni pubblicazione. */
-const VERSIONE = { n:'v32', data:'20 agosto 2026', nota:'Nuova scheda \u201c4 sedute Top\u201d al posto della 5 sedute' };
+const VERSIONE = { n:'v33', data:'20 agosto 2026', nota:'Top: quattro esercizi di braccia da 2 serie, pulley basso, Lower B al venerd\u00ec' };
 
 const ATTREZZI = [
   ['Rack, bilanciere, panca regolabile', 1, 'Panca piana, stacco romeno, rematore Yates, curl bilanciere, military press, hip thrust, panca inclinata per croci e curl'],
   ['Manubri', 1, 'Panca inclinata, croci, military press seduto, alzate laterali, curl hammer e inclinato, rematore coi gomiti alti e col busto appoggiato, leg curl sdraiato'],
   ['Lat machine — carrucola alta', 1, 'Lat machine unilaterale, pullover ai cavi, push-down triangolo, crunch al cavo alto, e il pad blocca le caviglie per nordico e D’Annunzio crunch'],
-  ['Pulley basso — carrucola bassa', 1, 'Tricipite overhead con la corda, alzate laterali ai cavi, curl Bayesian dietro il corpo, curl hammer, leg curl alla fettuccia'],
+  ['Pulley basso — carrucola bassa', 1, 'Pulley basso presa neutra, tricipite overhead con la corda, alzate laterali ai cavi, curl Bayesian dietro il corpo, curl hammer, leg curl alla fettuccia'],
   ['Pressa e hack squat, macchinario unico', 1, 'Hack squat piede basso, pressa piede alto, calf alla pressa: stessa macchina, una riconfigurazione a seduta'],
   ['Sbarra per trazioni', 1, 'Trazioni zavorate, la tirata pesante della “4 sedute Top”. Nella “4 sedute” la verticale la fa la lat machine a un braccio, con più range'],
   ['Parallele / dip station', 1, 'Non usata da nessuna delle due schede: le dip caricano il tricipite in accorciamento, l’overhead lo carica allungato'],
@@ -2945,17 +2954,18 @@ function renderPiano(){
         ${['petto','dorso','trapezi','spalle','bicipiti','tricipiti','quad','femorali','gluteo','polpacci','core'].map(riga).join('')}
         <p class="tiny muted" style="margin:0">Serie <b>dirette</b> a settimana, contro il volume di riferimento.
           Verde quando il numero è quello, rosso sotto, azzurro sopra. La <b>4 sedute Top</b> è la scheda che hai
-          dettato tu: spinge sull’accosciata (${A.per.quad} contro ${VOL_OBIETTIVO.quad}) e tiene i bicipiti a
-          bersaglio, ma paga sul <b>dorso</b> (${A.per.dorso} serie) e non ha lavoro diretto sui <b>trapezi</b>.
+          dettato tu: centra dorso, spalle, bicipiti e tricipiti, spinge sull’accosciata
+          (${A.per.quad} contro ${VOL_OBIETTIVO.quad}) e paga su femorali, addome e trapezi.
           La <b>4 sedute</b> centra petto, dorso, trapezi, gambe, polpacci e addome, e scende solo su spalle e
-          braccia. Non c’è una scheda giusta e una sbagliata: c’è una che privilegia forza e gambe e una che
-          distribuisce.</p>
+          braccia. Non c’è una scheda giusta e una sbagliata: c’è una che privilegia forza e quadricipiti e una
+          che distribuisce.</p>
         <div class="backup" style="background:var(--warn-soft);color:var(--warn-text)">${ICO.alert}
-          <span>Quello che la <b>4 sedute Top</b> lascia scoperto, detto in chiaro: il <b>dorso</b> ha
-          ${A.per.dorso} serie e le prende tutte lo stesso giorno, perché l’Upper B non ha tirate — è l’unico
-          gruppo del piano a frequenza 1×; e i <b>trapezi</b> non hanno esercizi diretti, ricevono solo dal
-          rematore Yates. Se vuoi chiuderli senza cambiare la struttura bastano due serie di rematore o pullover
-          in coda all’Upper B: dimmelo e le metto.</span></div>
+          <span>Quello che la <b>4 sedute Top</b> lascia scoperto, detto in chiaro: i <b>trapezi</b> non hanno
+          esercizi diretti — ricevono solo il lavoro indiretto del rematore Yates e del pulley basso, che chiudono
+          le scapole ma coi gomiti bassi. È l’unico gruppo del piano a zero. L’<b>addome</b> sta a
+          ${A.per.core} serie contro ${VOL_OBIETTIVO.core} e i <b>femorali</b> a ${A.per.femorali} contro
+          ${VOL_OBIETTIVO.femorali}, con l’accosciata che invece è a ${A.per.quad}: la scheda sceglie il
+          quadricipite. Sono scelte, non sviste — se vuoi che ne chiuda una, dimmelo.</span></div>
         <div class="backup" style="background:${fuori.length?'var(--warn-soft)':'var(--good-soft)'};color:${fuori.length?'var(--warn-text)':'var(--good-text)'}">${fuori.length ? ICO.alert : ICO.check}
           <span>${fuori.length
             ? 'Sopra le '+SERIE_SEDUTA_MAX+' serie frazionali in una sola seduta: '+fuori.map(x => SESS[x.sid].nome+' — '+GRUPPI[x.g]+' '+nf(x.v,1)).join(', ')+'.'
@@ -2969,16 +2979,16 @@ function renderPiano(){
     <div class="card"><div class="hd"><h3>Quale delle due</h3></div><div class="bd stack-s">
       <p class="small" style="margin:0"><b>La Top, se vuoi spingere sui carichi.</b> Apre la settimana con due
         giornate di forza vera — panca, trazioni zavorate, military, hack squat, stacco romeno — e la chiude con due
-        di volume, dove i superset e i drop set fanno il lavoro. Quadricipiti ${nf(A.fr.quad,1)} serie frazionali
-        contro ${nf(B.fr.quad,1)}, bicipiti ${nf(A.fr.bicipiti,1)} contro ${nf(B.fr.bicipiti,1)}. Le due sedute
-        di volume sono corte: ${Math.min(...durA)} e 42 minuti.</p>
-      <p class="small" style="margin:0"><b>L’altra, se vuoi coprire tutto.</b> Nessun gruppo sotto il riferimento
-        tranne spalle e braccia, dorso ${nf(B.fr.dorso,1)} frazionali contro ${nf(A.fr.dorso,1)}, trapezi allenati
-        invece che ignorati, e frequenza 2× su ogni gruppo. Le sedute sono più uniformi, fra 45 e 57 minuti, e non
-        c’è nessuna giornata sotto i 40.</p>
-      <p class="small" style="margin:0"><b>Non sono due livelli, sono due priorità.</b> La Top mette forza e gambe
-        davanti a tutto e accetta di lasciare indietro dorso e trapezi. La 4 sedute distribuisce e non lascia buchi,
-        ma nessuna alzata arriva ai carichi della Top. Scegli in base a cosa ti serve in questo blocco, non a quale
+        di volume, dove superset e drop set fanno il lavoro. Quadricipiti ${nf(A.fr.quad,1)} serie frazionali contro
+        ${nf(B.fr.quad,1)}, braccia ${nf(A.fr.bicipiti,1)} e ${nf(A.fr.tricipiti,1)} contro
+        ${nf(B.fr.bicipiti,1)} e ${nf(B.fr.tricipiti,1)}: quattro esercizi da 2 serie per seduta invece di due da
+        3, che sono più angoli a parità di tempo.</p>
+      <p class="small" style="margin:0"><b>L’altra, se vuoi coprire tutto.</b> Petto, femorali, addome e trapezi
+        stanno sul riferimento invece che sotto, e nessun gruppo è a zero. In cambio spalle e braccia scendono di
+        due serie, e nessuna alzata arriva ai carichi della Top.</p>
+      <p class="small" style="margin:0"><b>Non sono due livelli, sono due priorità.</b> La Top mette forza,
+        quadricipiti e braccia davanti a tutto, e accetta di lasciare indietro femorali, addome e trapezi. La
+        4 sedute distribuisce e non lascia buchi. Scegli in base a cosa ti serve in questo blocco, non a quale
         è "meglio".</p>
       <div class="backup" style="background:var(--accent-soft);color:var(--accent-text)">${ICO.info}
         <span>Puoi cambiare quando vuoi: lo storico dei carichi è legato al nome dell’esercizio, non alla scheda,
@@ -3079,8 +3089,8 @@ function renderPiano(){
         addominale: si espira sempre salendo, si parte a corpo libero, e il disco si aggiunge solo se non tira.</p>
       <p class="small" style="margin:0"><b>Dove la "4 sedute Top" si scosta da queste regole.</b> Quattro punti, tutti
         consapevoli. <b>Regola 5</b>: le alzate laterali stanno a 4 serie invece che a 3 — è l’unico esercizio del
-        piano sopra il tetto, e sul deltoide laterale è lo sforamento che costa meno. <b>Regola 12</b>: il dorso è a
-        frequenza 1× e a ${A.per.dorso} serie, perché l’Upper B non ha tirate; i trapezi non hanno lavoro diretto.
+        piano sopra il tetto, e sul deltoide laterale è lo sforamento che costa meno. <b>Regola 12</b>: i trapezi non hanno
+        lavoro diretto e restano a zero — l’unico gruppo del piano in questa condizione.
         <b>Regola 8</b>: torna l’hip thrust, che carica il gluteo dove è corto — per questo l’ho lasciato in
         alternativa allo stacco a gambe tese, e se devi sceglierne uno solo scegli il secondo. <b>Regola 7</b>: le
         alzate laterali sono coi manubri e non ai cavi, quindi in basso il carico si azzera; il drop set sull’ultima
@@ -3089,11 +3099,12 @@ function renderPiano(){
         rispetta tutto.</p>
       <div class="backup" style="background:var(--accent-soft);color:var(--accent-text)">${ICO.info}
         <span>Un esercizio ripetuto nella settimana non è un errore. Nella <b>Top</b> il tricipite overhead compare
-        in tutte e due le sedute alte — 3 serie il lunedì, 1 il giovedì — ed è il modo con cui quella scheda dà al
-        capo lungo la frequenza doppia; il sissy squat compare in tutte e due le sedute basse, ma con esecuzione
-        diversa (rest-pause il martedì, eccentrica da 5 secondi il sabato). Ripetere il migliore vale più che usarne
-        uno peggiore per non ripetersi. Nella <b>4 sedute</b> non si ripete niente, perché con due sole sedute di
-        parte alta c’è spazio per un esercizio diverso ogni volta.</span></div>
+        in tutte e due le sedute alte, 2 serie per volta, ed è il modo con cui quella scheda dà al capo lungo la
+        frequenza doppia; il push-down pure, con la corda il lunedì e col triangolo il giovedì; il sissy squat sta
+        in tutte e due le sedute basse, ma con esecuzione diversa (rest-pause il martedì, eccentrica da 5 secondi
+        il venerdì). Ripetere il migliore vale più che usarne uno peggiore per non ripetersi. Nella <b>4 sedute</b>
+        non si ripete niente, perché con due sole sedute di parte alta c’è spazio per un esercizio diverso ogni
+        volta.</span></div>
     </div></div>` ; })()}
 
   <div class="card"><div class="hd"><h2>La tua attrezzatura</h2>
