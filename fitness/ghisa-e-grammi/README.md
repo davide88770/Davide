@@ -35,7 +35,7 @@ sissy squat porta con sé la sua progressione del range per l'ernia. La
 da sola la regola 3 su 7 con l'indicazione di anticipare il deload.
 
 La sessione e il tipo di giornata alimentare si ricavano dalla data. Dalla fase 3
-in poi ci sono **due schede e basta** — 5 sedute e 4 sedute — con un interruttore
+in poi ci sono **due schede e basta** — «4 sedute Top» e «4 sedute» — con un interruttore
 in Piano; nel cut e nella transizione (fasi 1-2) vale lo split a tre giorni. La
 fase si può forzare a mano dalla sezione Piano.
 
@@ -109,60 +109,124 @@ scritta anche dentro l'app, in fondo alla sezione Piano):
 
 ## Le due schede
 
+Tutte e due da **quattro sedute**, e sono due priorità diverse, non due livelli.
+
+- **4 sedute Top** — dettata da Davide il 20 agosto 2026. Esercizi e serie sono
+  i suoi; tecniche di intensità, recuperi, range di ripetizioni e ordine dentro
+  la seduta sono scelte mie. Lun · Mar · Gio · Sab: due giornate di **forza** in
+  testa alla settimana, due di **volume** in coda.
+- **4 sedute** — costruita dai numeri di riferimento, gruppo per gruppo.
+  Lun · Mar · Gio · Ven.
+
 Volume settimanale in serie dirette:
 
-| Gruppo | Riferimento | 5 sedute | 4 sedute |
+| Gruppo | Riferimento | 4 sedute Top | 4 sedute |
 |---|---|---|---|
-| Petto | 8 | **8** | **8** |
-| Dorso | 8 | **8** | **8** |
-| Trapezi | 3 | **3** | **3** |
+| Petto | 8 | 7 | **8** |
+| Dorso | 8 | 5 | **8** |
+| Trapezi | 3 | 0 | **3** |
 | Spalle | 7 | **7** | 5 |
 | Bicipiti | 8 | **8** | 6 |
-| Tricipiti | 8 | **8** | 6 |
-| Accosciata | 8 | **8** | **8** |
-| Leg curl + stacco | 9 | **9** | **9** |
-| Polpacci | 3 | **3** | **3** |
-| Addome | 6 | **6** | **6** |
-| **Totale** | **68** | **68** | **62** |
+| Tricipiti | 8 | 7 | 6 |
+| Accosciata | 8 | 11 | **8** |
+| Leg curl + stacco | 9 | 7 | **9** |
+| Gluteo | — | 2 | 0 |
+| Polpacci | 3 | 4 | **3** |
+| Addome | 6 | 4 | **6** |
+| **Totale** | **68** | **62** | **62** |
 
-La scheda da 5 centra tutti i riferimenti. Quella da 4 tiene identici petto,
-dorso, trapezi, gambe, polpacci e addome; scendono di due serie soltanto spalle,
-bicipiti e tricipiti, perché 40 serie di parte alta non stanno in due giornate
-che devono restare sotto l'ora. È l'unico prezzo del giorno in meno, ed è
-scritto anche dentro l'app.
+**Quello che la Top lascia scoperto, detto in chiaro:** il **dorso** sta a 5
+serie e le prende tutte lo stesso giorno — l'Upper B non ha tirate, quindi è
+l'unico gruppo del piano a frequenza 1× — e i **trapezi** non hanno lavoro
+diretto. In cambio l'accosciata arriva a 11 serie e le due giornate di forza
+portano carichi che l'altra scheda non tocca. L'app lo segnala da sola nella
+scheda Programmazione, in rosso, a ogni apertura.
 
-| | 5 sedute | 4 sedute |
+| | 4 sedute Top | 4 sedute |
 |---|---|---|
-| Giorni | Lun Push · Mar Pull · Mer Legs · Ven Upper · Sab Lower | Lun Upper A · Mar Lower A · Gio Upper B · Ven Lower B |
-| Liberi | Giovedì, domenica | Mercoledì, sabato, domenica |
-| Esercizi per seduta | 4-6 | 4-7 |
-| Serie per seduta | 12-14 | 12-18 |
-| Durate | 52, 42, 48, 37, 45 min | 57, 48, 50, 45 min |
+| Giorni | Lun Upper A · Mar Lower A · Gio Upper B · Sab Lower B | Lun Upper A · Mar Lower A · Gio Upper B · Ven Lower B |
+| Liberi | Mercoledì, venerdì, domenica | Mercoledì, sabato, domenica |
+| Esercizi per seduta | 6-7 | 4-7 |
+| Serie per seduta | 13-17 | 12-18 |
+| Durate | 57, 56, 38, 42 min | 57, 48, 50, 45 min |
 
 Le durate sono calcolate, non stimate: serie × (45 secondi di lavoro + recupero
-previsto), 75 secondi di lavoro per gli esercizi a un arto per volta, più mezzo
-minuto per la serie finale intensificata. Riscaldamento e stretching fuori dal
-conto. Sono salite rispetto alle versioni precedenti perché sono saliti i
-recuperi, non il volume: una seduta da 12 serie può durare quasi un'ora.
+previsto), 75 secondi per gli esercizi a un arto per volta, più mezzo minuto per
+la serie finale intensificata. Riscaldamento e stretching fuori dal conto.
+
+### La "4 sedute Top", seduta per seduta
+
+**Upper A — Lunedì · 17 serie · forza**
+
+| Esercizio | Serie × rip | Tecnica | Rec. |
+|---|---|---|---|
+| Panca piana bilanciere | 3 × 4-6 | RIR 1-2 · forza | 240 s |
+| Trazioni zavorate / Lat machine singola | 3 × 6-8 | RIR 1-2 · forza | 180 s |
+| Military press seduto | 3 × 5-7 | RIR 1-2 · forza | 210 s |
+| Rematore bilanciere Yates | 2 × 8-10 | + Rest-pause | 150 s |
+| Curl bilanciere — allungamento | 3 × 8-10 | Superset A + Drop set | — |
+| Tricipite overhead corda | 3 × 10-12 | Superset A + Rest-pause | 120 s |
+
+**Lower A — Martedì · 15 serie · forza**
+
+| Esercizio | Serie × rip | Tecnica | Rec. |
+|---|---|---|---|
+| Hack squat piede basso | 3 × 5-8 | RIR 1-2 · forza | 240 s |
+| Romanian deadlift | 3 × 6-8 | RIR 1-2 · forza | 240 s |
+| Sissy squat | 3 × 10-15 | + Rest-pause | 150 s |
+| Leg curl manubri / pulley | 2 × 12-15 | + Drop set | 120 s |
+| Calf raise in piedi | 2 × 8-12 | + Rest-pause | 120 s |
+| D'Annunzio crunch | 2 × 10-15 | + Rest-pause | 90 s |
+
+**Upper B — Giovedì · 17 serie · volume**
+
+| Esercizio | Serie × rip | Tecnica | Rec. |
+|---|---|---|---|
+| Panca inclinata manubri 30° | 2 × 8-12 | + Drop set | 150 s |
+| Croci manubri | 2 × 10-12 | RIR 0-1 + Allungamento | 120 s |
+| Alzate laterali manubri | 4 × 12-15 | + Drop set | 90 s |
+| Curl hammer manubri | 3 × 10-12 | Superset A | — |
+| Push-down triangolo largo | 3 × 10-12 | Superset A + Drop set | 120 s |
+| Curl bilanciere / EZ — volume | 2 × 10-12 | Superset B | — |
+| Tricipite overhead — 2ª freq. | 1 × 12-15 | Superset B + Myo-reps | 90 s |
+
+**Lower B — Sabato · 13 serie · volume**
+
+| Esercizio | Serie × rip | Tecnica | Rec. |
+|---|---|---|---|
+| Hip thrust / stacco gambe tese | 2 × 8-12 | RIR 1-2 | 180 s |
+| Pressa piede alto | 2 × 10-12 | + Drop set | 180 s |
+| Sissy squat — eccentrica 5 sec | 3 × 8-10 | Eccentrica lenta | 150 s |
+| Leg curl sdraiato manubri | 2 × 12-15 | + Drop set | 120 s |
+| Calf pressa | 2 × 12-15 | + Rest-pause | 90 s |
+| Crunch cavo alto | 2 × 10-15 | + Rest-pause | 90 s |
+
+### Le tecniche, e perché stanno dove stanno
+
+- **Superset solo sulle braccia, e solo fra antagonisti.** Curl + tricipite
+  nell'Upper A, hammer + push-down e curl EZ + overhead nell'Upper B. Non
+  competono per lo stesso muscolo, quindi il secondo non parte penalizzato, e
+  la coda della seduta si chiude in metà tempo senza perdere tensione. Mai
+  superset sui compound pesanti: lì il recupero pieno *è* l'allenamento.
+- **Drop set dove il carico si può togliere in tre secondi.** Manubri, cavi,
+  pressa. Sull'ultima serie, mai su tutte.
+- **Rest-pause dove il drop set non si può fare** — Yates, sissy, calf, addome.
+- **Myo-reps sull'unica serie singola del piano**, il tricipite overhead
+  dell'Upper B: una serie sola merita di essere estesa, non fatta e basta.
+- **Eccentrica da 5 secondi** sul sissy del sabato: è lo stesso esercizio del
+  martedì, e la differenza di esecuzione è quello che lo rende un secondo
+  stimolo invece che una ripetizione.
+- **Niente tecniche sulle cinque alzate di forza.** Lì si sale di carico, e
+  basta.
 
 ### L'alzata di forza in testa a ogni seduta
 
-Da v31 ogni seduta apre con un'alzata pesante, subito dopo la mobilità, con
-quattro minuti di recupero e un range basso in cui l'unica variabile che si
-muove è il carico:
+Ogni seduta apre con un'alzata pesante, subito dopo la mobilità, con recuperi da
+tre a quattro minuti e un range basso in cui l'unica variabile che si muove è il
+carico. Nella Top sono cinque (panca, trazioni zavorate, military, hack squat,
+stacco romeno) e stanno tutte nelle due giornate di lunedì e martedì.
 
-| Seduta | Alzata | Serie × rip | Recupero |
-|---|---|---|---|
-| Push / Upper A | Panca piana bilanciere | 3 × 4-6 | 240 s |
-| Push / Upper A | Military press manubri seduto | 3 × 5-7 | 210 s |
-| Legs / Lower A | Hack squat piede basso | 3 × 5-8 | 240 s |
-| Legs / Lower A | Stacco romeno bilanciere | 3 × 6-8 | 240 s |
-| Lower / Lower B | Pressa piede alto | 3 × 6-8 | 210 s |
-
-Tutto il resto della seduta lavora su range più alti, dove è la vicinanza al
-cedimento a fare il lavoro.
-
-### Gli esercizi
+### Gli esercizi della "4 sedute"
 
 | Gruppo | Esercizi |
 |---|---|
@@ -177,44 +241,33 @@ cedimento a fare il lavoro.
 | Polpacci | Calf raise in piedi |
 | Addome | D'Annunzio crunch · Crunch al cavo alto |
 
-Ventuno esercizi in tutto. Usciti in v31: **hip thrust** (caricava il gluteo dove
-è corto, e l'anca ha già lo stacco romeno e la pressa profonda in allungamento),
-**pulley basso** e **rematore alto ai cavi** (erano il secondo e il terzo
-rematore della settimana), **scrollate**, **face pull**, **dip**, **trazioni**.
-
-Il gluteo non ha più una riga sua: non ha esercizi diretti, riceve dal lavoro
-indiretto di hack squat, pressa e stacco romeno, e l'app lo conta come serie
-frazionali.
-
 ### I vincoli, verificati a ogni pubblicazione
 
 1. **Massimo 3 serie per esercizio**, mai di più: il volume si alza aggiungendo
    un esercizio, non serie allo stesso.
 2. **Mai lo stesso esercizio due volte nella stessa giornata.**
-3. **Un solo rematore per giornata**, di qualunque tipo — non solo coi manubri.
-   Per questo il terzo esercizio di dorso è il pullover ai cavi, che non è un
-   rematore, e i trapezi stanno tutti in una seduta sola.
-4. **Un solo leg curl per giornata**: nordico il primo giorno di gambe, leg curl
-   sdraiato coi manubri il secondo.
+3. **Un solo rematore per giornata**, di qualunque tipo.
+4. **Un solo leg curl per giornata.**
 5. **Nelle sedute di gamba solo gambe**, niente isolamento di braccia in coda.
 6. **RIR 0-2**, recuperi 2-4 minuti, frequenza 2× per ogni gruppo. Le eccezioni
    sono trapezi e polpacci, 3 serie a settimana: dividerle in due significherebbe
    una serie e mezza per seduta.
 7. Carico massimo dove il muscolo è lungo; i due estremi della curva sul
-   tricipite (french press overhead e push-down); una tirata verticale e una
-   orizzontale.
+   tricipite; una tirata verticale e una orizzontale.
 
-Sul bicipite le due dosi migliori sono **entrambe in allungamento** — curl ai
-cavi dietro il corpo e curl coi manubri su panca inclinata, in tutti e due il
-braccio sta dietro la linea del busto. Il curl hammer al cavo non è la dose in
-accorciamento: è la dose per brachiale e brachioradiale, che con la presa supina
-non lavorano. Preferisco dirlo così invece di far tornare una simmetria che non
-c'è.
+La **4 sedute** li rispetta tutti. La **4 sedute Top** si scosta su quattro
+punti, tutti consapevoli e scritti anche dentro l'app:
 
-Nella scheda da 5 due esercizi compaiono in due sedute — alzate laterali ai cavi
-e french press ai cavi — ed è voluto: la frequenza doppia chiede di dividere il
-volume su due giorni, e per spalle e capo lungo del tricipite quelle sono le
-versioni migliori disponibili in casa. Nella scheda da 4 non si ripete niente.
+| Regola | Scostamento | Perché è accettabile |
+|---|---|---|
+| 1 | Alzate laterali a 4 serie | Unico esercizio del piano sopra il tetto; sul deltoide laterale è lo sforamento che costa meno |
+| 6 | Dorso a frequenza 1×, trapezi 0 serie | L'Upper B non ha tirate. È il prezzo dichiarato della struttura |
+| 7 | Torna l'hip thrust, che carica il gluteo in accorciamento | Per questo l'ho lasciato in alternativa allo stacco a gambe tese; se se ne sceglie uno solo, il secondo rende di più |
+| 7 | Alzate laterali coi manubri, non ai cavi | In basso il carico si azzera; il drop set sull'ultima serie serve anche a compensare |
+
+Tutto il resto — RIR 0-2, un rematore e un leg curl al giorno, niente braccia
+nelle giornate di gambe, alzata di forza in testa, recuperi lunghi, progressione
+in tre passi — la Top lo rispetta.
 
 ### Serie dirette e frazionali
 
@@ -247,8 +300,10 @@ ripetizioni) come **archivio**: servono soltanto perché una giornata registrata
 mesi fa continui a essere leggibile nello storico e nei grafici. Non compaiono in
 nessuna programmazione e non si possono scegliere.
 
-Chi aveva salvato una delle programmazioni tolte viene riportato sulla 5 sedute
-al primo caricamento.
+Da v32 nell'archivio ci sono anche le cinque sedute della **scheda da 5**
+(v28-v31): Push, Pull, Legs, Upper, Lower. Chi aveva salvato una delle
+programmazioni tolte viene riportato sulla **4 sedute Top** al primo
+caricamento, e tutte le giornate già registrate restano leggibili.
 
 ### La lente biomeccanica sugli esercizi
 
@@ -557,6 +612,22 @@ npm run prova:pwa                                # giro di aggiornamento dell'ap
 
 ## Storico
 
+- **v32** — via la scheda da **5 sedute**, dentro la **"4 sedute Top"**: esercizi
+  e serie dettati da Davide, tecniche di intensità, recuperi, range e ordine
+  dentro la seduta scelti da me. Lun · Mar · Gio · Sab, con le due giornate di
+  forza in testa alla settimana e le due di volume in coda. Tornano trazioni
+  zavorate, rematore Yates, curl bilanciere, alzate laterali coi manubri e hip
+  thrust (in alternativa allo stacco a gambe tese). Superset solo fra antagonisti
+  sulle braccia, drop set dove il carico si toglie in tre secondi, rest-pause
+  dove no, myo-reps sull'unica serie singola del piano, niente tecniche sulle
+  cinque alzate di forza. Le cinque sedute della vecchia scheda finiscono
+  nell'archivio e chi ci aveva registrato dei carichi li ritrova. Le due cose che
+  la Top paga — dorso a 5 serie e frequenza 1×, trapezi senza lavoro diretto —
+  sono scritte nell'app, in rosso, e nella tabella qui sopra: non le ho
+  nascoste e non le ho corrette da solo, perché la scheda è una scelta di
+  priorità, non un errore. Aggiornata anche la prova con i dati seminati, che
+  ora semina due settimane sulle sedute archiviate e due sulle nuove: è il caso
+  vero di chi cambia scheda avendo già uno storico.
 - **v31** — quattro correzioni chieste in blocco, tutte strutturali. **Un solo
   rematore per giornata di qualunque tipo** (prima la regola vietava solo due
   rematori *coi manubri*): via il pulley basso e il rematore alto ai cavi, i
