@@ -632,6 +632,11 @@ npm run prova:pwa                                # giro di aggiornamento dell'ap
 
 ## Storico
 
+- **v38** — sul **pullover ai cavi della «4 sedute»** aggiunta solo l'alternativa
+  (lat machine a un braccio, 2×10-12), senza toccare l'esercizio né il suo nome:
+  lo storico dei carichi è legato al nome, e rinominarlo l'avrebbe staccato. Il
+  pullover resta il titolare perché in quella scheda la verticale del lunedì è
+  già la lat a un braccio.
 - **v37** — nella Top il **pullover ai cavi** dell'Upper B lascia il posto alla
   **lat machine a un braccio**. Il pullover allena solo l'estensione della spalla
   col gomito bloccato e la resistenza cala proprio dove chiudi: per Nippard i
