@@ -40,19 +40,25 @@ page.on('console', m => { if (m.type() === 'error') errori.push('console: ' + m.
 const url = 'file://' + preview;
 await page.goto(url);
 
-/* Semina: quattro settimane di sedute sulla programmazione rivista a 5 giorni,
-   con una sostituzione e una serie extra, piu' peso corporeo e pasti. */
+/* Semina: quattro settimane di sedute, con una sostituzione e una serie extra,
+   piu' peso corporeo e pasti. Le prime due settimane stanno sulle sedute
+   ARCHIVIATE della vecchia scheda da 5 giorni — e' il caso vero di chi ha uno
+   storico da prima del cambio scheda — le ultime due sulla "4 sedute Top". */
 const seminato = await page.evaluate(() => {
   const iso = t => new Date(t).toISOString().slice(0, 10);
   const oggi = new Date();
-  const giorni = { 1: 'rv_push', 2: 'rv_pull', 3: 'rv_legs', 5: 'rv_upper', 6: 'rv_lower' };
-  const st = { v: 1, ui: { prog: 'rivista', nutri: 'rivista' }, sess: {}, corpo: [], pasti: {}, meta: {} };
+  const vecchi = { 1: 'rv_push', 2: 'rv_pull', 3: 'rv_legs', 5: 'rv_upper', 6: 'rv_lower' };
+  const nuovi  = { 1: 't_upperA', 2: 't_lowerA', 4: 't_upperB', 6: 't_lowerB' };
+  const st = { v: 1, ui: { prog: 'top', nutri: 'rivista' }, sess: {}, corpo: [], pasti: {}, meta: {} };
+  const nEs = { rv_push: 5, rv_pull: 5, rv_legs: 4, rv_upper: 6, rv_lower: 5,
+                t_upperA: 6, t_lowerA: 6, t_upperB: 7, t_lowerB: 6 };
   let sedute = 0, serie = 0;
   for (let i = 27; i >= 0; i--) {
-    const dt = new Date(oggi.getTime() - i * 864e5), d = iso(dt), sid = giorni[dt.getDay()];
+    const dt = new Date(oggi.getTime() - i * 864e5), d = iso(dt);
+    const sid = (i > 13 ? vecchi : nuovi)[dt.getDay()];
     if (!sid) continue;
     const set = {};
-    const n = { rv_push: 7, rv_pull: 7, rv_legs: 7, rv_upper: 8, rv_lower: 6 }[sid];
+    const n = nEs[sid];
     for (let j = 0; j < n; j++) {
       set[j] = [0, 1, 2].map(k => ({ kg: 40 + j * 5 + (27 - i) * 0.5, rep: 8 - k, rir: 1, ok: 1 }));
       serie += 3;
@@ -92,7 +98,7 @@ const esercizi = await page.$$eval('#selEs option, select option', ns => ns.leng
 /* Cambia programmazione e tipo di settimana: sono i due interruttori che
    ricalcolano tutto. */
 await page.click('#tab-piano'); await page.waitForTimeout(200);
-for (const p of ['rivista4', 'rivista']) {
+for (const p of ['rivista4', 'top']) {
   await page.click(`[data-prog="${p}"]`);
   await page.waitForTimeout(200);
 }
