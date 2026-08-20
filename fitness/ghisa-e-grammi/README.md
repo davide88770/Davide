@@ -122,32 +122,32 @@ Volume settimanale in serie dirette:
 
 | Gruppo | Riferimento | 4 sedute Top | 4 sedute |
 |---|---|---|---|
-| Petto | 8 | 7 | **8** |
+| Petto | 8 | **8** | **8** |
 | Dorso | 8 | **8** | **8** |
 | Trapezi | 3 | **3** | **3** |
-| Spalle | 7 | 6 | 5 |
+| Spalle | 7 | 8 | 5 |
 | Bicipiti | 8 | **8** | 6 |
 | Tricipiti | 8 | **8** | 6 |
 | Accosciata | 8 | 9 | **8** |
 | Leg curl + stacco | 9 | 11 | **9** |
 | Polpacci | 3 | 4 | **3** |
-| Addome | 6 | 4 | **6** |
-| **Totale** | **68** | **68** | **62** |
+| Addome | 6 | **6** | **6** |
+| **Totale** | **68** | **73** | **62** |
 
-Dalla **v34** la Top rispetta tutti e cinque i vincoli del piano — tetto delle
-tre serie per esercizio compreso — e centra dorso, trapezi, bicipiti e
-tricipiti. Restano una serie sotto **petto** e **spalle**, e due l'**addome**.
-I **femorali a 11 contro 9 di accosciata** non sono uno sbilanciamento: è il
-rapporto che Nippard ed Emmerich tengono sulle gambe, e fino alla v33 era
-rovesciato (7 contro 11).
+Dalla **v36 la Top non ha nessun gruppo sotto il riferimento**, e rispetta tutti
+e cinque i vincoli del piano — tetto delle tre serie per esercizio compreso.
+Dove sta sopra è voluto: **femorali 11 contro 9 di accosciata** è il rapporto
+che Nippard ed Emmerich tengono sulle gambe (fino alla v33 era rovesciato, 7
+contro 11), e **spalle 8** perché il deltoide laterale sta a 5 serie su due
+giorni — a 3 su uno solo era il punto più debole della scheda.
 
 | | 4 sedute Top | 4 sedute |
 |---|---|---|
 | Giorni | Lun Upper A · Mar Lower A · Gio Upper B · Ven Lower B | Lun Upper A · Mar Lower A · Gio Upper B · Ven Lower B |
 | Liberi | Mercoledì, sabato, domenica | Mercoledì, sabato, domenica |
 | Esercizi per seduta | 6-9 | 4-7 |
-| Serie per seduta | 13-20 | 12-18 |
-| Durate | 63, 55, 52, 41 min | 57, 48, 50, 45 min |
+| Serie per seduta | 14-22 | 12-18 |
+| Durate | 69, 58, 55, 44 min | 57, 48, 50, 45 min |
 
 Le durate sono calcolate, non stimate: serie × (45 secondi di lavoro + recupero
 previsto), 75 secondi per gli esercizi a un arto per volta, più mezzo minuto per
@@ -155,7 +155,7 @@ la serie finale intensificata. Riscaldamento e stretching fuori dal conto.
 
 ### La "4 sedute Top", seduta per seduta
 
-**Upper A — Lunedì · 20 serie · forza**
+**Upper A — Lunedì · 22 serie · forza**
 
 | Esercizio | Serie × rip | Tecnica | Rec. |
 |---|---|---|---|
@@ -163,12 +163,13 @@ la serie finale intensificata. Riscaldamento e stretching fuori dal conto.
 | Trazioni zavorate / Lat machine singola | 3 × 6-8 | RIR 1-2 · forza | 180 s |
 | Military press seduto | 3 × 5-7 | RIR 1-2 · forza | 210 s |
 | Rematore manubri gomiti alti (trapezi) | 3 × 10-15 | + Rest-pause | 150 s |
+| Alzate laterali sdraiato — panca inclinata | 2 × 10-12 | + Rest-pause | 90 s |
 | Curl bilanciere — allungamento | 2 × 8-10 | Superset A + Drop set | — |
 | Push-down alla corda | 2 × 10-12 | Superset A + Drop set | 120 s |
 | Curl ai cavi dietro il corpo — Bayesian | 2 × 10-12 | Superset B | — |
 | Tricipite overhead corda | 2 × 10-12 | Superset B + Rest-pause | 90 s |
 
-**Lower A — Martedì · 15 serie · forza**
+**Lower A — Martedì · 16 serie · forza**
 
 | Esercizio | Serie × rip | Tecnica | Rec. |
 |---|---|---|---|
@@ -177,13 +178,13 @@ la serie finale intensificata. Riscaldamento e stretching fuori dal conto.
 | Sissy squat | 2 × 10-15 | + Rest-pause | 150 s |
 | Leg curl manubri / pulley | 3 × 12-15 | + Drop set | 120 s |
 | Calf raise in piedi | 2 × 8-12 | + Rest-pause | 120 s |
-| D'Annunzio crunch | 2 × 10-15 | + Rest-pause | 90 s |
+| D'Annunzio crunch | 3 × 10-15 | + Rest-pause | 90 s |
 
-**Upper B — Giovedì · 20 serie · volume**
+**Upper B — Giovedì · 21 serie · volume**
 
 | Esercizio | Serie × rip | Tecnica | Rec. |
 |---|---|---|---|
-| Panca inclinata manubri 30° | 2 × 8-12 | + Drop set | 150 s |
+| Panca inclinata manubri 30° | 3 × 8-12 | + Drop set | 150 s |
 | Pulley basso — presa neutra | 3 × 8-12 | + Rest-pause | 150 s |
 | Pullover ai cavi | 2 × 10-12 | + Rest-pause | 120 s |
 | Croci manubri | 2 × 10-12 | RIR 0-1 + Allungamento | 120 s |
@@ -193,7 +194,7 @@ la serie finale intensificata. Riscaldamento e stretching fuori dal conto.
 | Curl manubri su panca inclinata | 2 × 8-10 | Superset B | — |
 | Tricipite overhead — 2ª freq. | 2 × 12-15 | Superset B + Rest-pause | 90 s |
 
-**Lower B — Venerdì · 13 serie · volume**
+**Lower B — Venerdì · 14 serie · volume**
 
 | Esercizio | Serie × rip | Tecnica | Rec. |
 |---|---|---|---|
@@ -202,7 +203,7 @@ la serie finale intensificata. Riscaldamento e stretching fuori dal conto.
 | Sissy squat — eccentrica 5 sec | 2 × 8-10 | Eccentrica lenta | 150 s |
 | Leg curl sdraiato manubri | 3 × 12-15 | + Drop set | 120 s |
 | Calf pressa | 2 × 12-15 | + Rest-pause | 90 s |
-| Crunch cavo alto | 2 × 10-15 | + Rest-pause | 90 s |
+| Crunch cavo alto | 3 × 10-15 | + Rest-pause | 90 s |
 
 ### Le tecniche, e perché stanno dove stanno
 
@@ -284,10 +285,9 @@ Le sedute non hanno cambiato taglia: Upper A e Upper B guadagnano una serie a
 testa, Lower A e Lower B nemmeno quella.
 
 **Quello che resta diverso da un programma di Nippard o Rabasco:** i superset
-sulle braccia (Nippard li usa, Rabasco preferisce il recupero pieno), le
-trazioni zavorate come tirata verticale pesante, petto e spalle una serie sotto
-il riferimento, addome a 4 serie invece di 6 — che però sta dentro la forchetta
-di tutti e due.
+sulle braccia (Nippard li usa, Rabasco preferisce il recupero pieno) e le
+trazioni zavorate come tirata verticale pesante. Nient'altro: dalla v36 non c'è
+più nessun gruppo sotto il riferimento.
 
 ### Serie dirette e frazionali
 
@@ -632,6 +632,19 @@ npm run prova:pwa                                # giro di aggiornamento dell'ap
 
 ## Storico
 
+- **v36** — Davide ha detto che sedute un po' più lunghe non sono un problema,
+  se portano al risultato. Tolto il freno del tempo dove costava davvero, la Top
+  passa da 68 a **73 serie dirette** e **nessun gruppo resta sotto il
+  riferimento**. Quattro aggiunte: **alzate laterali sdraiato su panca
+  inclinata** 2×10-12 nell'Upper A — il deltoide laterale era a 3 serie a
+  settimana su un giorno solo, che era il punto più debole della scheda, e ora è
+  a 5 su due giorni, con la seconda dose caricata dove il muscolo è allungato;
+  **panca inclinata da 2 a 3 serie** (petto a 8); **D'Annunzio crunch e crunch
+  al cavo da 2 a 3** (addome a 6). Costo: 15 minuti a settimana, quasi tutti
+  recupero. Le durate diventano 69, 58, 55, 44 — il lunedì sfora i 65 minuti che
+  erano il tetto, ed è scritto nella regola 9 dentro l'app invece di far finta
+  di niente. Vincoli tutti rispettati, nessun gruppo sopra le 11 serie
+  frazionali per seduta.
 - **v35** — nella Top il secondo **curl col bilanciere** dell'Upper B (era la
   stessa cosa del lunedì fatta una seconda volta) lascia il posto al **curl coi
   manubri su panca inclinata**. Sulla panca il braccio parte dietro la linea del
