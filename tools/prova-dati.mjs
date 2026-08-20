@@ -49,7 +49,10 @@ const seminato = await page.evaluate(() => {
   const oggi = new Date();
   const vecchi = { 1: 'rv_push', 2: 'rv_pull', 3: 'rv_legs', 5: 'rv_upper', 6: 'rv_lower' };
   const nuovi  = { 1: 't_upperA', 2: 't_lowerA', 4: 't_upperB', 5: 't_lowerB' };
-  const st = { v: 1, ui: { prog: 'top', nutri: 'rivista' }, sess: {}, corpo: [], pasti: {}, meta: {} };
+  const st = { v: 1, ui: { prog: 'top', nutri: 'rivista' }, sess: {}, corpo: [], pasti: {}, meta: {},
+    /* un esercizio col testo riscritto: il nome mostrato cambia, la chiave dello
+       storico resta quella del piano. */
+    testi: { 'Panca inclinata manubri 30°': { n: 'Inclinata — 30 gradi netti', cue: 'Fermo 2 sec in basso', nota: 'Nota mia.' } } };
   const nEs = { rv_push: 5, rv_pull: 5, rv_legs: 4, rv_upper: 6, rv_lower: 5,
                 t_upperA: 9, t_lowerA: 6, t_upperB: 9, t_lowerB: 6 };
   let sedute = 0, serie = 0;
@@ -95,6 +98,15 @@ await page.click('#tab-progressi');
 await page.waitForTimeout(300);
 const esercizi = await page.$$eval('#selEs option, select option', ns => ns.length);
 
+/* Il testo riscritto deve mostrarsi come nome ma non staccare lo storico: nel
+   selettore dei progressi l'etichetta e' quella nuova, il value resta quello
+   del piano. Due versioni fa non c'era proprio, e un rename avrebbe orfanato
+   i carichi. */
+await page.click('#tab-progressi'); await page.waitForTimeout(250);
+const rinominato = await page.$$eval('#selEx option', os =>
+  os.filter(o => o.value === 'Panca inclinata manubri 30°' && o.textContent.trim() === 'Inclinata — 30 gradi netti').length);
+if (!rinominato) { console.error('  ERRORE  il testo riscritto non arriva al selettore dei progressi'); process.exit(1); }
+
 /* Cambia programmazione e tipo di settimana: sono i due interruttori che
    ricalcolano tutto. */
 await page.click('#tab-piano'); await page.waitForTimeout(200);
@@ -113,6 +125,7 @@ await browser.close();
 console.log(`  seminate  ${seminato.sedute} sedute · ${seminato.serie} serie · ${aperti} blocchi aperti · ${campi} campi`);
 console.log(`  schede    ${Object.entries(conta).map(([k, v]) => `${k} ${v} card`).join(' · ')}`);
 console.log(`  esercizi  ${esercizi} voci nel selettore dei progressi`);
+console.log('  testi     nome riscritto mostrato, storico ancora legato al nome del piano');
 if (errori.length) {
   console.error(`\n${errori.length} errori:`);
   for (const e of errori) console.error('  ✗ ' + e);

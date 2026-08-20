@@ -15,7 +15,7 @@
 <link rel="apple-touch-icon" href="icone/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="192x192" href="icone/icona-192.png">
 <style>:root{color-scheme:light dark}*{box-sizing:border-box}body{margin:0}img{max-width:100%}</style>
-<script>window.__GG_BUILD='bafb33ab35';</script>
+<script>window.__GG_BUILD='847dbfdb1e';</script>
 </head>
 <body>
 <style>
@@ -849,7 +849,7 @@ SESS.q_upperB = { id:'q_upperB', nome:'Upper B', gg:'Giovedì', durata:50, rivis
     cue:'Angolo 30° · scendi fino allo stretch completo · pausa 1 sec'}),
   e('Pullover ai cavi — carrucola alta','dorso',2,'10–12','+ Rest-pause',120,{
     cue:'In piedi davanti alla lat machine · braccia quasi tese · porta giù verso le cosce ruotando la spalla',
-    note:'Alternativa: <b>lat machine a un braccio</b>, 2×10-12. Nippard mette i pulldown caricati un gradino sopra il pullover, e Rabasco preferisce la versione a un braccio perché la scapola sale davvero. Qui però il pullover resta il titolare, perché la verticale del lunedì è già la lat a un braccio: scambiarlo significherebbe fare lo stesso esercizio due volte nella settimana. Usa l’alternativa quando la carrucola alta è occupata o quando vuoi variare per qualche settimana — con Sostituisci, così lo storico del pullover resta intatto.'}),
+    note:'Alternativa: lat machine a un braccio, 2×10-12. Nippard mette i pulldown caricati un gradino sopra il pullover, e Rabasco preferisce la versione a un braccio perché la scapola sale davvero. Qui però il pullover resta il titolare, perché la verticale del lunedì è già la lat a un braccio: scambiarlo significherebbe fare lo stesso esercizio due volte nella settimana. Usa l’alternativa quando la carrucola alta è occupata o quando vuoi variare per qualche settimana — con Sostituisci, così lo storico del pullover resta intatto.'}),
   e('Croci manubri su panca inclinata','petto',2,'10–12','RIR 0–1 + Allungamento',120,{p:1,
     cue:'Panca a 30° · scendi fino allo stretto sul petto · FERMATI prima di chiudere in alto'}),
   e('Alzate laterali ai cavi','spalle',2,'12–15','+ Rest-pause ×2',90,{p:1,wm:1,uni:1,
@@ -1385,7 +1385,7 @@ const CONS_FONTI = [
 /* Versione dell'app. Serve a sapere, dal telefono, se quello che hai davanti e'
    l'ultima versione: la PWA installata puo' restare indietro se iOS non rifa'
    la navigazione. Il numero si alza a ogni pubblicazione. */
-const VERSIONE = { n:'v38', data:'20 agosto 2026', nota:'Alternativa documentata sul pullover della 4 sedute' };
+const VERSIONE = { n:'v39', data:'20 agosto 2026', nota:'Nome, tecnica e nota di ogni esercizio si possono riscrivere' };
 
 const ATTREZZI = [
   ['Rack, bilanciere, panca regolabile', 1, 'Panca piana, stacco romeno, curl bilanciere, military press, panca inclinata per croci, curl e rematore col petto appoggiato'],
@@ -1696,6 +1696,7 @@ const piuGiorni = (s,n) => { const d = dalISO(s); d.setDate(d.getDate()+n); retu
 const settimanaDi = s => { const d = dalISO(s); const g = (d.getDay()+6)%7; d.setDate(d.getDate()-g); return iso(d); };
 
 const nuovoStato = () => ({ v:1,
+  testi:{},
   ui:{ tema:null, tab:'oggi', sett:'base', faseManuale:null, esercizio:null, periodo:56, prog:'top', nutri:'rivista', oraAll:'mattina' },
   sess:{}, pasti:{}, corpo:[], check:{}, meta:{ backup:null, mod:Date.now() } });
 
@@ -1720,6 +1721,7 @@ function carica(){
            scheda da 5 sedute) tornano sulla "4 sedute Top". Le giornate gia'
            registrate restano leggibili: quelle sedute sono nell'archivio. */
         if(S.ui.prog !== 'top' && S.ui.prog !== 'rivista4') S.ui.prog = 'top';
+        if(!S.testi || typeof S.testi !== 'object' || Array.isArray(S.testi)) S.testi = {};
       }
     }
   }catch(err){ /* dati illeggibili: si riparte puliti, il backup resta sul file esportato */ }
@@ -1833,12 +1835,31 @@ function serieLog(d, i, n){
    a far partire il recupero e a segnare l'avanzamento, non a salvare. */
 const serieValida = r => !!r && (r.ok || (+r.kg > 0 && +r.rep > 0));
 
+/* ── testi riscritti da te ───────────────────────────────────────────────
+   Nome, tecnica e nota di ogni esercizio si possono riscrivere. La chiave e'
+   SEMPRE il nome originale del piano, mai quello nuovo: cosi' rinominare un
+   esercizio non stacca i carichi che ci hai gia' registrato sotto, e se un
+   giorno ripristini l'originale ritrovi tutto. Per lo stesso motivo ex.n resta
+   il nome del piano e il nome tuo viaggia in ex.nv, che serve solo a mostrarlo. */
+const testoDi = n => (S.testi || {})[n] || null;
+const nomeDi  = n => { const t = testoDi(n); return (t && t.n) ? t.n : n; };
+function conTesti(base){
+  const t = testoDi(base.n);
+  if(!t) return base;
+  return Object.assign({}, base, {
+    nv:   t.n    || base.n,
+    cue:  t.cue  !== undefined ? t.cue  : base.cue,
+    note: t.nota !== undefined ? t.nota : base.note,
+    mio: 1
+  });
+}
 /* L'esercizio che vale per quella giornata: quello del piano, oppure quello
    che hai scritto tu al suo posto. La sostituzione vale solo per quel giorno. */
 function exDi(sess, i, d){
   const ov = ((S.sess[d]||{}).sost||{})[i];
   const base = sess.ex[i];
-  if(!ov || !base) return base;
+  if(!base) return base;
+  if(!ov) return conTesti(base);
   return Object.assign({}, base, {
     n: ov.n || base.n,
     g: ov.g || base.g,
@@ -2438,7 +2459,7 @@ function cardEsercizio(ex, i, d, f, tipo){
   const dp = bilanciere ? dischiPerLato(kgAttuale) : null;
 
   const testa = `<div class="idx">${fatte >= n ? ICO.check : i+1}</div>
-    <div class="nm"><b>${esc(ex.n)}</b>
+    <div class="nm"><b>${esc(ex.nv || ex.n)}</b>
       <span>${n} × ${esc(repDi(ex,f))} · ${esc(ex.i)}${ex.rec?` · rec ${ex.rec>=60?Math.round(ex.rec/60)+' min':ex.rec+'s'}`:''}</span></div>
     <div class="prog">${ult ? `<span class="ultkg">${nf(Math.max(...ult.righe.map(r=>+r.kg||0)),1)} kg</span>` : ''}${fatte}/${n}</div>
     <div class="caret">${ICO.chevron}</div>`;
@@ -2450,6 +2471,7 @@ function cardEsercizio(ex, i, d, f, tipo){
     ex.ss ? pill('Superset','line') : '',
     ex.nuovo ? pill('Aggiunto','good') : '',
     ex.sost ? pill('Sostituito','acc') : '',
+    ex.mio ? pill('Testo tuo','line') : '',
     ex.fv ? pill(ex.fv==='forza'?'Blocco forza':'Blocco volume','line') : ''
   ].filter(Boolean).join('');
 
@@ -2486,6 +2508,7 @@ function cardEsercizio(ex, i, d, f, tipo){
         ${ex.rec ? `<button class="btn sm" data-rec="${ex.rec}">Recupero ${ex.rec>=60?Math.round(ex.rec/60)+' min':ex.rec+'s'}</button>` : ''}
         <button class="btn sm ghost" data-piu="${i}:1">${ICO.piu} Serie</button>
         <button class="btn sm ghost" data-sost="${i}">Sostituisci</button>
+        <button class="btn sm ghost" data-testi="${i}">Testo</button>
         ${extra>0 ? `<button class="btn sm ghost" data-piu="${i}:-1">− Serie</button>` : ''}
         ${isWM(ex,tipo) ? `<button class="btn sm ghost" data-wm="${i}" style="color:var(--warn-text)">+ Widowmaker</button>` : ''}
         ${best.rm>0 ? `<span class="pr">${ICO.trofeo} 1RM ${nf(best.rm,1)} kg</span>` : ''}
@@ -2771,7 +2794,7 @@ function renderProgressi(){
     <div class="hd"><h2>Forza — 1RM stimato</h2></div>
     <div class="bd">
       <label class="fld" style="margin-bottom:12px"><span>Esercizio</span>
-        <select id="selEx">${nomi.map(n => `<option ${n===sel?'selected':''}>${esc(n)}</option>`).join('')}</select></label>
+        <select id="selEx">${nomi.map(n => `<option value="${esc(n)}" ${n===sel?'selected':''}>${esc(nomeDi(n))}</option>`).join('')}</select></label>
       ${punti1RM.length > 1
         ? grafLinea(punti1RM, { unita:'kg', id:'g1rm' })
         : `<p class="small muted">Serve almeno una seconda sessione con ${esc(sel)} per disegnare la curva.</p>`}
@@ -2832,7 +2855,7 @@ function renderProgressi(){
     <div class="hd"><h2>Record</h2></div>
     <div class="bd tblwrap">
       <table class="tbl"><thead><tr><th>Esercizio</th><th>Max</th><th>1RM stim.</th><th>Quando</th></tr></thead><tbody>
-      ${nomi.map(n => { const b = miglioreDi(n); return `<tr><td>${esc(n)}</td><td class="n">${nf(b.kg,1)}</td>
+      ${nomi.map(n => { const b = miglioreDi(n); return `<tr><td>${esc(nomeDi(n))}</td><td class="n">${nf(b.kg,1)}</td>
         <td class="n">${nf(b.rm,1)}</td><td class="n">${b.quando?dataCorta(b.quando):'—'}</td></tr>`; }).join('')}
       </tbody></table></div>
   </div>`;
@@ -3134,6 +3157,33 @@ function renderPiano(){
         peggiore per non ripetersi.</span></div>
     </div></div>` ; })()}
 
+  ${(() => {
+    const k = Object.keys(S.testi || {});
+    if(!k.length) return `<div class="card"><div class="hd"><h2>I testi degli esercizi</h2></div>
+      <div class="bd"><p class="small muted" style="margin:0">Nome, tecnica e nota di ogni esercizio si possono
+        riscrivere: apri un esercizio nella scheda Allenamento e tocca <b>Testo</b>. Vale in tutte le giornate, non
+        tocca serie e ripetizioni, e lo storico dei carichi non si stacca perché resta legato all’esercizio e non al
+        nome che scrivi. Adesso non ne hai riscritto nessuno.</p></div></div>`;
+    return `<div class="card"><div class="hd"><h2>I testi degli esercizi</h2>
+      <span class="chip good sp">${k.length} riscritt${k.length===1?'o':'i'}</span></div>
+      <div class="bd stack-s">
+        <p class="small muted" style="margin:0">Valgono in tutte le giornate e in tutte e due le schede. Il nome del
+          piano resta quello a destra: è la chiave a cui sono legati i carichi che hai registrato.</p>
+        ${k.sort((a,b) => a.localeCompare(b,'it')).map(orig => {
+          const t = S.testi[orig];
+          const campi = [t.n ? 'nome' : '', t.cue !== undefined ? 'tecnica' : '', t.nota !== undefined ? 'nota' : ''].filter(Boolean).join(' · ');
+          return `<div class="row" style="gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--line)">
+            <div style="flex:1;min-width:0">
+              <b class="small">${esc(t.n || orig)}</b>
+              <p class="tiny muted" style="margin:2px 0 0">${esc(campi)}${t.n ? ' · nel piano è “' + esc(orig) + '”' : ''}</p>
+            </div>
+            <button class="btn sm ghost noprint" data-testi-reset="${esc(orig)}" style="flex:none">Ripristina</button>
+          </div>`;
+        }).join('')}
+        <button class="btn ghost wide noprint" data-testi-reset="*">Ripristina tutti i testi del piano</button>
+      </div></div>`;
+  })()}
+
   <div class="card"><div class="hd"><h2>La tua attrezzatura</h2>
     <span class="chip line sp">${ATTREZZI.filter(x => x[1]).length} su ${ATTREZZI.length}</span></div>
     <div class="bd stack-s">
@@ -3333,6 +3383,12 @@ function fondi(r){
   const m = new Map(S.corpo.map(x => [x.d,x]));
   for(const x of (r.corpo||[])){ const l = m.get(x.d); if(!l || (x.mod||0) > (l.mod||0)){ m.set(x.d,x); n++; } }
   S.corpo = [...m.values()].sort((a,b) => a.d < b.d ? -1 : 1);
+  /* I testi riscritti non hanno una data di modifica, quindi non si possono
+     confrontare: quelli del file entrano solo dove tu non ne hai gia' uno.
+     Su un telefono pulito arrivano tutti; fra due telefoni, ognuno tiene il
+     suo e non ti ritrovi un testo cambiato senza averlo toccato. */
+  if(!S.testi) S.testi = {};
+  for(const [k,x] of Object.entries(r.testi||{})){ if(!S.testi[k]){ S.testi[k] = x; n++; } }
   salva(); return n;
 }
 async function esporta(){
@@ -3472,6 +3528,59 @@ document.addEventListener('click', ev => {
         L.mod = Date.now(); salva(); chiudiSheet(); renderWorkout(); toast('Tornato all’esercizio del piano');
       };
     });
+    return;
+  }
+
+  const tx = el('[data-testi]');
+  if(tx){
+    const i = +tx.dataset.testi, d = S.ui.data;
+    const f = faseDi(d), sess = sessioneDi(d,f);
+    const base = sess.ex[i];
+    const t = testoDi(base.n) || {};
+    apriSheet('Riscrivi il testo', `
+      <p class="tiny muted" style="margin:0 0 14px">Vale <b>sempre</b>, in tutte le giornate e in tutte e due le schede.
+        Non tocca serie, ripetizioni, recupero o volume: cambia solo le parole. Lo storico dei carichi resta legato
+        all’esercizio, non al nome che scrivi, quindi puoi rinominarlo senza perdere niente.</p>
+      <div class="stack">
+        <label class="fld"><span>Nome</span>
+          <input type="text" id="txN" value="${esc(t.n || base.n)}" placeholder="${esc(base.n)}"></label>
+        <label class="fld"><span>Tecnica — come si esegue</span>
+          <textarea id="txC" rows="4" placeholder="${esc(base.cue || 'Nessuna nota tecnica')}">${esc(t.cue !== undefined ? t.cue : (base.cue || ''))}</textarea></label>
+        <label class="fld"><span>Nota</span>
+          <textarea id="txM" rows="4" placeholder="${esc(base.note || 'Nessuna nota')}">${esc(t.nota !== undefined ? t.nota : (base.note || ''))}</textarea></label>
+        <button class="btn solid wide" id="txOk">Salva</button>
+        ${testoDi(base.n) ? `<button class="btn ghost wide" id="txNo">Ripristina il testo del piano</button>` : ''}
+      </div>
+      <p class="tiny muted" style="margin:14px 0 0">Il nome del piano resta <b>“${esc(base.n)}”</b>: lo trovi
+        sotto quel nome nell’export e ci ritorni quando vuoi.</p>`, sh => {
+      sh.querySelector('#txOk').onclick = () => {
+        const n = sh.querySelector('#txN').value.trim();
+        const cue = sh.querySelector('#txC').value.trim();
+        const nota = sh.querySelector('#txM').value.trim();
+        const ov = {};
+        if(n && n !== base.n) ov.n = n;
+        if(cue !== (base.cue || '')) ov.cue = cue;
+        if(nota !== (base.note || '')) ov.nota = nota;
+        if(!S.testi) S.testi = {};
+        if(Object.keys(ov).length) S.testi[base.n] = ov;
+        else delete S.testi[base.n];
+        salva(); chiudiSheet(); render();
+        toast(Object.keys(ov).length ? 'Testo aggiornato' : 'Testo uguale a quello del piano');
+      };
+      const no = sh.querySelector('#txNo');
+      if(no) no.onclick = () => {
+        delete S.testi[base.n];
+        salva(); chiudiSheet(); render(); toast('Tornato al testo del piano');
+      };
+    });
+    return;
+  }
+
+  const tz = el('[data-testi-reset]');
+  if(tz){
+    const k = tz.dataset.testiReset;
+    if(k === '*'){ S.testi = {}; salva(); render(); toast('Tutti i testi tornati a quelli del piano'); }
+    else { delete S.testi[k]; salva(); render(); toast('Tornato al testo del piano'); }
     return;
   }
 
