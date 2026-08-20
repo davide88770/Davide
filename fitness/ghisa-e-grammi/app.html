@@ -745,17 +745,17 @@ SESS.t_lowerA = { id:'t_lowerA', nome:'Lower A', gg:'Martedì', durata:58, rivis
     cue:'Sdraiato sulla lat machine con le gambe bloccate sotto il pad · il busto scende oltre l’appoggio · eccentrica 3 sec · ESPIRA salendo, mai in apnea',
     note:'Da 2 a 3 serie: con l’altra seduta l’addome arriva a 6, il numero di riferimento.'})
 ]};
-SESS.t_upperB = { id:'t_upperB', nome:'Upper B', gg:'Giovedì', durata:55, rivista:1, top:1,
-  focus:'Volume · Petto · Tirata orizzontale · Dorso in allungamento · Spalle · Braccia', ex:[
+SESS.t_upperB = { id:'t_upperB', nome:'Upper B', gg:'Giovedì', durata:56, rivista:1, top:1,
+  focus:'Volume · Petto · Tirata orizzontale e verticale · Spalle · Braccia', ex:[
   e('Panca inclinata manubri 30°','petto',3,'8–12','+ Drop set',150,{
     cue:'Angolo 30° · gomiti 60–70° · scendi fino allo stretch completo · pausa 1 sec',
     note:'Da 2 a 3 serie: porta il petto a 8, il numero di riferimento.'}),
   e('Pulley basso — presa neutra','dorso',3,'8–12','+ Rest-pause',150,{
     cue:'Seduto, ginocchia morbide, busto fermo · lascia allungare le scapole in avanti · tira alla pancia coi gomiti lungo i fianchi · schiena mai in flessione',
     note:'La tirata orizzontale del giovedì. Prima delle croci, da fresco: è l’esercizio che porta il dorso da 5 a 8 serie e a frequenza 2×.'}),
-  e('Pullover ai cavi — carrucola alta','dorso',2,'10–12','+ Rest-pause',120,{
-    cue:'In piedi davanti alla lat machine, corda o barra · braccia quasi tese · porta giù verso le cosce solo ruotando la spalla · allunga bene in cima',
-    note:'La terza dose di dorso, e non è un rematore: il gran dorsale lavora senza che il gomito fletta, quindi i bicipiti — che sono già a 12 serie frazionali — non ne prendono altre. La tensione massima cade dove il muscolo è allungato.'}),
+  e('Lat machine unilaterale — maniglia','dorso',2,'10–12','+ Rest-pause',120,{uni:1,
+    cue:'Una maniglia sola, un braccio per volta · siediti di lato e lascia salire la scapola in cima, fino a sentire il dorsale tirare · tira il gomito verso il fianco · eccentrica 3 sec',
+    note:'Ha preso il posto del pullover ai cavi. Il pullover allena solo l’estensione della spalla col gomito bloccato, e la resistenza cala proprio dove chiudi: per Nippard i pulldown caricati stanno un gradino sopra, e per Rabasco la lat a un braccio è la versione migliore perché la scapola può salire davvero e il range in allungamento è più ampio. Il prezzo è che i bicipiti prendono mezza serie a serie: passano da 12,5 a 13,5 frazionali.'}),
   e('Croci manubri','petto',2,'10–12','RIR 0–1 + Allungamento',120,{p:1,
     cue:'Panca a 30° · gomiti morbidi e fermi · scendi fino allo stretto sul petto · FERMATI prima di chiudere in alto, lì il carico si azzera'}),
   e('Alzate laterali ai cavi','spalle',3,'12–15','+ Drop set',90,{p:1,wm:1,uni:1,
@@ -1366,12 +1366,12 @@ const CONS_FONTI = [
 /* Versione dell'app. Serve a sapere, dal telefono, se quello che hai davanti e'
    l'ultima versione: la PWA installata puo' restare indietro se iOS non rifa'
    la navigazione. Il numero si alza a ogni pubblicazione. */
-const VERSIONE = { n:'v36', data:'20 agosto 2026', nota:'Top: nessun gruppo sotto il riferimento, 73 serie' };
+const VERSIONE = { n:'v37', data:'20 agosto 2026', nota:'Lat machine a un braccio al posto del pullover nell\u2019Upper B' };
 
 const ATTREZZI = [
   ['Rack, bilanciere, panca regolabile', 1, 'Panca piana, stacco romeno, curl bilanciere, military press, panca inclinata per croci, curl e rematore col petto appoggiato'],
   ['Manubri', 1, 'Panca inclinata, croci, military press seduto, curl hammer e inclinato, rematore coi gomiti alti e col busto appoggiato, stacco a gambe tese, leg curl sdraiato'],
-  ['Lat machine — carrucola alta', 1, 'Lat machine unilaterale, pullover ai cavi, push-down triangolo, crunch al cavo alto, e il pad blocca le caviglie per nordico e D’Annunzio crunch'],
+  ['Lat machine — carrucola alta', 1, 'Lat machine unilaterale, pullover ai cavi, push-down alla corda e col triangolo, crunch al cavo alto, e il pad blocca le caviglie per nordico e D’Annunzio crunch'],
   ['Pulley basso — carrucola bassa', 1, 'Pulley basso presa neutra, tricipite overhead con la corda, alzate laterali ai cavi, curl Bayesian dietro il corpo, curl hammer, leg curl alla fettuccia'],
   ['Pressa e hack squat, macchinario unico', 1, 'Hack squat piede basso, pressa piede alto, calf alla pressa: stessa macchina, una riconfigurazione a seduta'],
   ['Sbarra per trazioni', 1, 'Trazioni zavorate, la tirata pesante della “4 sedute Top”. Nella “4 sedute” la verticale la fa la lat machine a un braccio, con più range'],
@@ -3018,10 +3018,11 @@ function renderPiano(){
       <p class="small" style="margin:0"><b>4. Un solo rematore e un solo leg curl per giornata, e nelle sedute di gamba
         solo gambe.</b> Due rematori nello stesso giorno sono lo stesso movimento fatto due volte sulla stessa panca: il
         secondo lo fai già stanco e non aggiunge un angolo nuovo. Lo stesso vale per due flessioni del ginocchio di
-        fila. E l’isolamento di braccia infilato in coda a una seduta di gambe è un riempitivo. Da qui il <b>pullover ai
-        cavi</b> come terza dose di dorso — non è un rematore, e il gran dorsale lavora senza che il gomito fletta — il
-        <b>nordico</b> di mercoledì separato dal <b>leg curl sdraiato</b> di sabato, e i <b>trapezi tutti in una seduta
-        sola</b>, quella in cui la schiena tira in verticale.</p>
+        fila. E l’isolamento di braccia infilato in coda a una seduta di gambe è un riempitivo. Da qui la scelta della terza
+        dose di dorso, che non può essere un rematore: <b>pullover ai cavi</b> nella 4 sedute, <b>lat machine a un
+        braccio</b> nella Top — lì il pullover non serve, perché la verticale pesante del lunedì e quella a range alto
+        del giovedì coprono già il dorsale meglio. E da qui i due <b>leg curl separati</b> sulle due giornate di gamba,
+        e i <b>trapezi tutti in una seduta sola</b>.</p>
       <p class="small" style="margin:0"><b>5. Da due a tre serie per esercizio, mai di più.</b> Il volume si alza
         aggiungendo un esercizio, non serie allo stesso: dalla quarta o quinta serie consecutiva sullo stesso
         movimento la tensione che riesci a produrre è già scesa, e quelle serie le fai ma non allenano. Tutte le sedute
@@ -3093,9 +3094,10 @@ function renderPiano(){
         sulla panca inclinata: col bilanciere in piedi devi stabilizzare busto e schiena bassa, e per Rabasco è
         esattamente il caso in cui il sistema nervoso frena e il muscolo bersaglio non arriva al limite — con
         l’ernia, poi, il bracing è la cosa da evitare. Il gomito alto chiude le scapole, così i <b>trapezi</b>
-        passano da 0 a 3 serie senza aggiungere niente. <b>2.</b> Nell’Upper B entra il <b>pullover ai cavi</b>:
-        riporta il dorso a 8 serie e non è un rematore, quindi i bicipiti — già a 12 frazionali — non ne prendono
-        altre. <b>3.</b> Le <b>alzate laterali</b> passano dai manubri ai <b>cavi</b> e da 4 serie a 3: col
+        passano da 0 a 3 serie senza aggiungere niente. <b>2.</b> Nell’Upper B entra una seconda dose di dorso che
+        non è un rematore, così il vincolo tiene: dalla v37 è la <b>lat machine a un braccio</b>, che riporta il
+        dorso a 8 serie e la tirata verticale a frequenza 2× — pesante e zavorrata il lunedì, a range alto il
+        giovedì. <b>3.</b> Le <b>alzate laterali</b> passano dai manubri ai <b>cavi</b> e da 4 serie a 3: col
         manubrio, in basso, il carico sul deltoide è zero proprio dove il muscolo è allungato, e il tetto delle tre
         serie vale anche qui. <b>4.</b> L’<b>hip thrust</b> lascia il posto allo <b>stacco a gambe tese coi
         manubri</b>: stessa anca, ma caricata dove il femorale è lungo invece che dove il gluteo è corto. <b>5.</b>
