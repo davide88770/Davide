@@ -126,34 +126,39 @@ Volume settimanale in serie dirette:
 | Dorso | 8 | **8** | **8** |
 | Trapezi | 3 | **3** | **3** |
 | Spalle | 7 | 8 | **7** |
-| Bicipiti | 8 | **8** | 6 |
-| Tricipiti | 8 | **8** | 6 |
+| Bicipiti | 8 | **8** | **8** |
+| Tricipiti | 8 | **8** | **8** |
 | Accosciata | 8 | 9 | **8** |
 | Leg curl + stacco | 9 | 11 | **9** |
 | Polpacci | 3 | 4 | **3** |
 | Addome | 6 | **6** | **6** |
-| **Totale** | **68** | **73** | **64** |
+| **Totale** | **68** | **73** | **68** |
 
-Dalla **v40** la 4 sedute non è più «la Top con meno roba»: è la stessa
-filosofia con **un'altra scommessa**, e sta sul riferimento ovunque tranne le
-braccia — 6 serie dirette contro 8, che però sono **10,5 frazionali** per
-bicipiti e tricipiti, dentro la fascia utile. Le tre cose che la distinguono:
+Dalla **v41** la 4 sedute non è più «la Top con meno roba»: **centra ogni
+singolo numero di riferimento**, nessuna riga sotto e nessuna sopra. La Top ne
+fa 73 e ne manda quattro sopra (spalle, accosciata, femorali, polpacci). Sono
+due modi diversi di essere completi. Le tre cose che la distinguono:
 
 1. **I bicipiti stanno nelle sedute basse**, i tricipiti restano in alto. Nella
    Top il bicipite arriva ai curl dopo sei serie di tirate; qui arriva a zero
-   lavoro indiretto e fa tre serie piene. È l'unica scheda che rompe di
-   proposito la regola «nelle gambe solo gambe», e lo fa per un motivo.
-2. **Nessun superset, due esercizi da 3 serie invece di quattro da 2.** Ogni
-   serie ha il suo recupero pieno — è quello che Rabasco preferisce, ed è
-   possibile solo perché le braccia sono distribuite su quattro giornate.
-3. **Meno carico assiale**: niente trazioni zavorate, una sola cerniera d'anca,
-   il nordico al posto del secondo stacco, più lavoro ai cavi.
+   lavoro indiretto. È l'unica scheda che rompe di proposito la regola «nelle
+   gambe solo gambe», e lo fa per questo.
+2. **Ogni muscolo del braccio ha i due estremi della curva, in ogni seduta**:
+   uno in allungamento e uno in accorciamento, 2 serie ciascuno. Tricipite:
+   french press overhead + push-down. Bicipite: curl col braccio dietro il busto
+   + curl col gomito sopra la spalla.
+3. **Nessun superset**: ogni serie ha il suo recupero pieno — è quello che
+   Rabasco preferisce, ed è possibile solo perché le braccia sono distribuite su
+   quattro giornate invece di due.
 
-La Top punta su **più angoli** (quattro esercizi di braccia da 2 serie in
-superset, con le braccia già scaldate dai compound); la 4 sedute sulla **qualità
-della singola serie** (due da 3, recupero pieno, muscolo fresco). La ricerca non
-dice quale vince: dice che contano volume e vicinanza al cedimento, e le
-rispettano tutte e due.
+In più c'è meno carico assiale: niente trazioni zavorate, una sola cerniera
+d'anca, il nordico al posto del secondo stacco, più lavoro ai cavi.
+
+La Top punta su **più angoli e più volume dove serve spingere**, con le braccia
+in superset e già scaldate dai compound; la 4 sedute sugli **stessi otto angoli
+a recupero pieno e col muscolo fresco**, e ogni gruppo esattamente sul bersaglio.
+La ricerca non dice quale vince: dice che contano volume e vicinanza al
+cedimento, e le rispettano tutte e due.
 
 Dalla **v36 la Top non ha nessun gruppo sotto il riferimento**, e rispetta tutti
 e cinque i vincoli del piano — tetto delle tre serie per esercizio compreso.
@@ -166,10 +171,10 @@ giorni — a 3 su uno solo era il punto più debole della scheda.
 |---|---|---|
 | Giorni | Lun Upper A · Mar Lower A · Gio Upper B · Ven Lower B | Lun Upper A · Mar Lower A · Gio Upper B · Ven Lower B |
 | Liberi | Mercoledì, sabato, domenica | Mercoledì, sabato, domenica |
-| Esercizi per seduta | 6-9 | 5-6 |
-| Serie per seduta | 14-22 | 15-17 |
-| Durate | 69, 58, 56, 44 min | 61, 56, 47, 54 min |
-| Braccia | 4 esercizi × 2 serie, in superset, nelle sedute alte | 2 esercizi × 3 serie, recupero pieno, bicipiti nelle basse |
+| Esercizi per seduta | 6-9 | 6-7 |
+| Serie per seduta | 14-22 | 16-18 |
+| Durate | 69, 58, 56, 44 min | 63, 60, 50, 56 min |
+| Braccia | 4 esercizi × 2 serie, in superset, nelle sedute alte | 4 esercizi × 2 serie, recupero pieno, bicipiti nelle basse |
 | Superset | 8 esercizi | nessuno |
 
 Le durate sono calcolate, non stimate: serie × (45 secondi di lavoro + recupero
@@ -258,7 +263,7 @@ stacco romeno) e stanno tutte nelle due giornate di lunedì e martedì.
 
 ### La "4 sedute", seduta per seduta
 
-**Upper A — Lunedì · 17 serie · 61 min · tricipiti**
+**Upper A — Lunedì · 18 serie · 63 min · tricipiti**
 
 | Esercizio | Serie × rip | Tecnica | Rec. |
 |---|---|---|---|
@@ -267,9 +272,10 @@ stacco romeno) e stanno tutte nelle due giornate di lunedì e martedì.
 | Military press manubri seduto | 3 × 5-7 | RIR 1-2 · forza | 210 s |
 | Rematore manubri gomiti alti (trapezi) | 3 × 10-15 | + Rest-pause | 120 s |
 | Alzate laterali sdraiato — panca inclinata | 2 × 10-12 | + Rest-pause | 90 s |
-| French press ai cavi overhead | 3 × 10-12 | + Rest-pause | 120 s |
+| French press ai cavi overhead — *allungamento* | 2 × 10-12 | + Rest-pause | 120 s |
+| Push-down alla corda — *accorciamento* | 2 × 10-12 | + Drop set | 90 s |
 
-**Lower A — Martedì · 15 serie · 56 min · bicipiti**
+**Lower A — Martedì · 16 serie · 60 min · bicipiti**
 
 | Esercizio | Serie × rip | Tecnica | Rec. |
 |---|---|---|---|
@@ -277,9 +283,10 @@ stacco romeno) e stanno tutte nelle due giornate di lunedì e martedì.
 | Romanian deadlift | 3 × 6-8 | RIR 1-2 · forza | 240 s |
 | Leg curl nordico | 3 × 5-8 | Eccentrica lenta | 150 s |
 | D'Annunzio crunch | 3 × 10-15 | + Rest-pause | 120 s |
-| Curl ai cavi dietro il corpo | 3 × 8-12 | + Drop set | 120 s |
+| Curl ai cavi dietro il corpo — *allungamento* | 2 × 10-12 | + Drop set | 120 s |
+| Curl alla carrucola alta, a croce — *accorciamento* | 2 × 12-15 | + Rest-pause | 90 s |
 
-**Upper B — Giovedì · 15 serie · 47 min · tricipiti**
+**Upper B — Giovedì · 16 serie · 50 min · tricipiti**
 
 | Esercizio | Serie × rip | Tecnica | Rec. |
 |---|---|---|---|
@@ -288,9 +295,10 @@ stacco romeno) e stanno tutte nelle due giornate di lunedì e martedì.
 | Pullover ai cavi | 2 × 10-12 | + Rest-pause | 120 s |
 | Croci manubri su panca inclinata | 2 × 10-12 | RIR 0-1 + Allungamento | 120 s |
 | Alzate laterali ai cavi | 2 × 12-15 | + Rest-pause ×2 | 90 s |
-| Tricipite push-down | 3 × 10-12 | + Drop set | 120 s |
+| French press manubri su panca inclinata — *allungamento* | 2 × 10-12 | + Rest-pause | 120 s |
+| Tricipite push-down — *accorciamento* | 2 × 10-12 | + Drop set | 90 s |
 
-**Lower B — Venerdì · 17 serie · 54 min · bicipiti**
+**Lower B — Venerdì · 18 serie · 56 min · bicipiti**
 
 | Esercizio | Serie × rip | Tecnica | Rec. |
 |---|---|---|---|
@@ -299,7 +307,12 @@ stacco romeno) e stanno tutte nelle due giornate di lunedì e martedì.
 | Leg curl sdraiato manubri | 3 × 12-15 | + Drop set | 120 s |
 | Calf raise in piedi | 3 × 8-12 | + Rest-pause | 120 s |
 | Crunch al cavo alto | 3 × 10-15 | + Rest-pause | 120 s |
-| Curl manubri su panca inclinata | 3 × 8-10 | + Rest-pause | 120 s |
+| Curl manubri su panca inclinata — *allungamento* | 2 × 8-10 | + Rest-pause | 120 s |
+| Spider curl — *accorciamento* | 2 × 10-12 | + Drop set | 90 s |
+
+Il recupero è **120 s sull'esercizio in allungamento e 90 s su quello in
+accorciamento**: il lavoro in allungamento produce più danno muscolare e costa
+di più, quello in accorciamento ha range corto e carico basso.
 
 ### I vincoli, verificati a ogni pubblicazione
 
@@ -712,6 +725,17 @@ npm run prova:pwa                                # giro di aggiornamento dell'ap
 
 ## Storico
 
+- **v41** — nella **4 sedute** ogni muscolo del braccio ha ora **i due estremi
+  della curva in ogni seduta**, 2 serie ciascuno. Tricipite: *french press ai
+  cavi overhead* (lunedì) e *french press manubri su panca inclinata* (giovedì)
+  in allungamento, *push-down alla corda* e *push-down* in accorciamento.
+  Bicipite: *curl ai cavi dietro il corpo* e *curl manubri su panca inclinata* in
+  allungamento, *curl alla carrucola alta a croce* e *spider curl* in
+  accorciamento — questi due sono nuovi, e sono la dose che mancava del tutto.
+  Braccia da 6 a 8 serie dirette ciascuno, e con questo la scheda **centra ogni
+  singolo numero di riferimento**: 68 serie, nessuna riga sotto e nessuna sopra.
+  Recuperi differenziati, 120 s in allungamento e 90 s in accorciamento. Durate
+  63/60/50/56.
 - **v40** — la **4 sedute** rifatta perché smettesse di essere «la Top con meno
   roba». Tre cambi. **I bicipiti passano nelle sedute basse** — curl ai cavi
   dietro il corpo il martedì, curl su panca inclinata il venerdì, 3 serie
