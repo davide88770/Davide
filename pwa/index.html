@@ -15,7 +15,7 @@
 <link rel="apple-touch-icon" href="icone/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="192x192" href="icone/icona-192.png">
 <style>:root{color-scheme:light dark}*{box-sizing:border-box}body{margin:0}img{max-width:100%}</style>
-<script>window.__GG_BUILD='1fdac59fde';</script>
+<script>window.__GG_BUILD='08864553a5';</script>
 </head>
 <body>
 <style>
@@ -818,21 +818,23 @@ SESS.t_lowerB = { id:'t_lowerB', nome:'Lower B', gg:'Venerdì', durata:44, rivis
    Le tre cose che la distinguono dalla Top:
      1. I BICIPITI STANNO NELLE SEDUTE BASSE, i tricipiti restano in alto.
         Nella Top il bicipite arriva ai curl dopo sei serie di tirate; qui
-        arriva a zero lavoro indiretto e fa tre serie piene. E' l'unica
-        scheda che rompe di proposito la regola "nelle gambe solo gambe".
-     2. Braccia su DUE esercizi da 3 serie invece di quattro da 2, e NESSUN
-        SUPERSET: ogni serie ha il suo recupero pieno. E' quello che Rabasco
-        preferisce, ed e' possibile solo perche' le braccia sono distribuite.
-     3. Meno carico assiale: niente trazioni zavorate, una sola cerniera
-        d'anca invece di due, il nordico al posto del secondo stacco, piu'
-        lavoro ai cavi. Nessuna seduta sopra i 61 minuti.
+        arriva a zero lavoro indiretto. E' l'unica scheda che rompe di
+        proposito la regola "nelle gambe solo gambe", e lo fa per questo.
+     2. OGNI MUSCOLO DEL BRACCIO HA I DUE ESTREMI DELLA CURVA, in ogni
+        seduta: uno in allungamento e uno in accorciamento, 2 serie ciascuno.
+        Tricipite: french press overhead + push-down. Bicipite: curl col
+        braccio dietro il busto + curl col gomito sopra la spalla.
+     3. NESSUN SUPERSET: ogni serie ha il suo recupero pieno, ed e' quello
+        che Rabasco preferisce. Possibile solo perche' le braccia sono
+        distribuite su quattro giornate invece di due.
 
-   Nessun gruppo sotto il riferimento tranne le braccia, che stanno a 6 serie
-   dirette contro 8: in serie frazionali sono 10,5 per bicipiti e tricipiti,
-   cioe' dentro la fascia utile. E' una scelta, non una mancanza — la Top
-   spinge le braccia a 12,5-13,5 frazionali, questa no. */
-SESS.q_upperA = { id:'q_upperA', nome:'Upper A', gg:'Lunedì', durata:61, rivista:1, quattro:1,
-  focus:'Forza in spinta · Tirata verticale · Trapezi · Deltoide laterale · Tricipiti', ex:[
+   Nessun gruppo sotto o sopra il riferimento: 68 serie dirette, ogni gruppo
+   esattamente sul suo numero. La Top ne fa 73 e ne manda quattro sopra.
+   In piu' qui c'e' meno carico assiale: niente trazioni zavorate, una sola
+   cerniera d'anca, il nordico al posto del secondo stacco, piu' lavoro ai
+   cavi, e nessuna seduta arriva ai 69 minuti del lunedi' della Top. */
+SESS.q_upperA = { id:'q_upperA', nome:'Upper A', gg:'Lunedì', durata:63, rivista:1, quattro:1,
+  focus:'Forza in spinta · Tirata verticale · Trapezi · Deltoide · Tricipiti ai due estremi', ex:[
   e('Panca piana bilanciere','petto',3,'4–6','RIR 1–2 · FORZA',240,{
     cue:'Presa 1,5× spalle · gomiti 45° · scapole retratte · fermo 1 sec in basso · eccentrica 2 sec'}),
   e('Lat machine unilaterale — maniglia','dorso',3,'8–12','+ Rest-pause',120,{uni:1,
@@ -845,12 +847,15 @@ SESS.q_upperA = { id:'q_upperA', nome:'Upper A', gg:'Lunedì', durata:61, rivist
   e('Alzate laterali sdraiato — panca inclinata','spalle',2,'10–12','+ Rest-pause',90,{p:1,uni:1,
     cue:'Sdraiato di fianco sulla panca inclinata a 45°, manubrio nella mano alta · braccio quasi teso · sali fino a 90° · la panca ti toglie il trucco del busto',
     note:'La seconda dose settimanale di deltoide laterale. Prima ce n’era una sola, 2 serie in un giorno: era il punto più debole di questa scheda.'}),
-  e('French press ai cavi — overhead','tricipiti',3,'10–12','+ Rest-pause',120,{p:1,
-    cue:'Corda alla carrucola bassa, di spalle · gomiti fermi sopra la testa · stretch massimo',
-    note:'Non è più in superset: qui i bicipiti non ci sono, e senza un antagonista con cui alternare il recupero pieno rende di più.'})
+  e('French press ai cavi — overhead','tricipiti',2,'10–12','+ Rest-pause',120,{p:1,
+    cue:'Corda alla carrucola bassa, di spalle · gomiti fermi sopra la testa · stretch massimo dietro la nuca',
+    note:'Il tricipite in ALLUNGAMENTO: col gomito sopra la testa il capo lungo parte teso. Non è più in superset — senza un antagonista con cui alternare, il recupero pieno rende di più.'}),
+  e('Push-down alla corda','tricipiti',2,'10–12','+ Drop set',90,{p:1,
+    cue:'Corda alla carrucola alta · gomiti fermi ai fianchi · separa le mani in fondo, negli ultimi gradi di estensione',
+    note:'Il tricipite in ACCORCIAMENTO, l’altro estremo della curva. Recupero più corto del french press: range corto, carico basso, e non è il lavoro che fa più danno.'})
 ]};
-SESS.q_lowerA = { id:'q_lowerA', nome:'Lower A', gg:'Martedì', durata:56, rivista:1, quattro:1,
-  focus:'Forza sulle gambe · Catena posteriore · Addome · Bicipiti a fine seduta', ex:[
+SESS.q_lowerA = { id:'q_lowerA', nome:'Lower A', gg:'Martedì', durata:60, rivista:1, quattro:1,
+  focus:'Forza sulle gambe · Catena posteriore · Addome · Bicipiti ai due estremi', ex:[
   e('Hack squat — piede basso','quad',3,'5–8','RIR 1–2 · FORZA',240,{ernia:1,
     cue:'Discesa 2–3 sec · fermo 1 sec in basso · ESPIRA nella salita · mai Valsalva'}),
   e('Romanian deadlift bilanciere','femorali',3,'6–8','RIR 1–2 · FORZA',240,{ernia:1,
@@ -860,12 +865,15 @@ SESS.q_lowerA = { id:'q_lowerA', nome:'Lower A', gg:'Martedì', durata:56, rivis
     note:'L’unico leg curl della giornata.'}),
   e('D’Annunzio crunch','core',3,'10–15','+ Rest-pause',120,{ernia:1,
     cue:'Sdraiato sulla lat machine, gambe sotto il pad · busto oltre l’appoggio · eccentrica 3 sec · ESPIRA salendo'}),
-  e('Curl ai cavi dietro il corpo — Bayesian','bicipiti',3,'8–12','+ Drop set',120,{p:1,
+  e('Curl ai cavi dietro il corpo — Bayesian','bicipiti',2,'10–12','+ Drop set',120,{p:1,
     cue:'Carrucola bassa, un passo avanti, braccio dietro la linea del corpo · gomito fermo · eccentrica 3 sec',
-    note:'Il curl sta qui, in coda a una giornata di gambe, e non nella seduta alta. Nell’Upper A il bicipite arriva ai curl dopo sei serie di tirate; qui arriva a zero lavoro indiretto, e le tre serie le fa tutte piene. È la scommessa che differenzia questa scheda dalla Top.'})
+    note:'Il bicipite in ALLUNGAMENTO. E sta qui, in coda a una giornata di gambe, non nella seduta alta: nell’Upper A arriverebbe ai curl dopo sei serie di tirate, qui arriva a zero lavoro indiretto. È la scommessa che differenzia questa scheda dalla Top.'}),
+  e('Curl alla carrucola alta — a croce','bicipiti',2,'12–15','+ Rest-pause',90,{p:1,uni:1,
+    cue:'Maniglia alla carrucola alta, un braccio per volta · braccio aperto all’altezza della spalla · porta la mano verso la tempia · il punto più duro è in chiusura',
+    note:'Il bicipite in ACCORCIAMENTO, l’altro estremo. Col gomito sopra la spalla il capo lungo è corto e la resistenza è massima proprio lì, dove il curl in allungamento non carica niente.'})
 ]};
-SESS.q_upperB = { id:'q_upperB', nome:'Upper B', gg:'Giovedì', durata:47, rivista:1, quattro:1,
-  focus:'Tirata orizzontale · Petto · Deltoide laterale · Tricipiti', ex:[
+SESS.q_upperB = { id:'q_upperB', nome:'Upper B', gg:'Giovedì', durata:50, rivista:1, quattro:1,
+  focus:'Tirata orizzontale · Petto · Deltoide · Tricipiti ai due estremi', ex:[
   e('Rematore manubri — busto appoggiato','dorso',3,'8–12','+ Rest-pause',150,{
     cue:'Panca inclinata a 30-40° · petto appoggiato · tira i gomiti indietro lungo i fianchi',
     note:'L’unico rematore della giornata.'}),
@@ -878,11 +886,15 @@ SESS.q_upperB = { id:'q_upperB', nome:'Upper B', gg:'Giovedì', durata:47, rivis
     cue:'Panca a 30° · scendi fino allo stretto sul petto · FERMATI prima di chiudere in alto'}),
   e('Alzate laterali ai cavi','spalle',2,'12–15','+ Rest-pause ×2',90,{p:1,wm:1,uni:1,
     cue:'Cavo basso dal lato opposto · gomito guida · stop a 90°'}),
-  e('Tricipite push-down','tricipiti',3,'10–12','+ Drop set',120,{p:1,
-    cue:'Gomiti fermi ai fianchi · contrazione massima in basso · sull’ultima serie drop set'})
+  e('French press manubri — panca inclinata','tricipiti',2,'10–12','+ Rest-pause',120,{p:1,
+    cue:'Sdraiato sulla panca a 30° · manubri sopra la testa, gomiti fermi e stretti · scendi dietro la testa fino allo stretch · solo l’avambraccio si muove',
+    note:'Il tricipite in ALLUNGAMENTO, seconda dose della settimana: coi manubri invece che ai cavi, e sdraiato invece che in piedi.'}),
+  e('Tricipite push-down','tricipiti',2,'10–12','+ Drop set',90,{p:1,
+    cue:'Gomiti fermi ai fianchi · contrazione massima in basso · sull’ultima serie drop set',
+    note:'Il tricipite in ACCORCIAMENTO.'})
 ]};
-SESS.q_lowerB = { id:'q_lowerB', nome:'Lower B', gg:'Venerdì', durata:54, rivista:1, quattro:1,
-  focus:'Accosciata alla pressa · Leg curl · Polpacci · Addome · Bicipiti a fine seduta', ex:[
+SESS.q_lowerB = { id:'q_lowerB', nome:'Lower B', gg:'Venerdì', durata:56, rivista:1, quattro:1,
+  focus:'Accosciata alla pressa · Leg curl · Polpacci · Addome · Bicipiti ai due estremi', ex:[
   e('Pressa — piede alto e largo','quad',3,'6–8','RIR 1–2 · FORZA',210,{
     cue:'Piedi molto in alto · scendi profondo · spingi sui talloni'}),
   e('Sissy squat zavorrato','quad',2,'10–15','+ Rest-pause',120,{ernia:1,p:1,
@@ -894,9 +906,12 @@ SESS.q_lowerB = { id:'q_lowerB', nome:'Lower B', gg:'Venerdì', durata:54, rivis
     cue:'Ginocchio dritto · su un rialzo · pausa 2" in basso'}),
   e('Crunch al cavo alto','core',3,'10–15','+ Rest-pause',120,{ernia:1,
     cue:'In ginocchio sotto la carrucola alta, corda dietro la nuca · arrotola il busto · ESPIRA chiudendo'}),
-  e('Curl manubri su panca inclinata','bicipiti',3,'8–10','+ Rest-pause',120,{p:1,
-    cue:'Panca a 45-60° · braccia dietro la linea del busto · supinazione completa · eccentrica 3 sec',
-    note:'La seconda dose di bicipite, anche questa a fine giornata di gambe e col braccio dietro il busto: due esercizi da 3 serie invece dei quattro da 2 della Top.'})
+  e('Curl manubri su panca inclinata','bicipiti',2,'8–10','+ Rest-pause',120,{p:1,
+    cue:'Panca a 45-60° · braccia che pendono dietro la linea del busto · supinazione completa · eccentrica 3 sec',
+    note:'Il bicipite in ALLUNGAMENTO, seconda dose della settimana: coi manubri invece che ai cavi.'}),
+  e('Spider curl — petto sulla panca inclinata','bicipiti',2,'10–12','+ Drop set',90,{p:1,
+    cue:'Petto appoggiato alla panca inclinata a 45°, braccia che pendono a piombo · niente slancio, il busto non si muove · stringi forte in cima',
+    note:'Il bicipite in ACCORCIAMENTO. Con le braccia a piombo la resistenza è massima quando l’avambraccio è orizzontale, cioè in piena contrazione.'})
 ]};
 
 /* Lun Upper A · Mar Lower A · Gio Upper B · Ven Lower B. Mercoledi', sabato e domenica liberi. */
@@ -1410,7 +1425,7 @@ const CONS_FONTI = [
 /* Versione dell'app. Serve a sapere, dal telefono, se quello che hai davanti e'
    l'ultima versione: la PWA installata puo' restare indietro se iOS non rifa'
    la navigazione. Il numero si alza a ogni pubblicazione. */
-const VERSIONE = { n:'v40', data:'20 agosto 2026', nota:'La 4 sedute rifatta: bicipiti nelle basse, tricipiti in alto' };
+const VERSIONE = { n:'v41', data:'21 agosto 2026', nota:'4 sedute: braccia ai due estremi della curva, ogni gruppo sul riferimento' };
 
 const ATTREZZI = [
   ['Rack, bilanciere, panca regolabile', 1, 'Panca piana, stacco romeno, curl bilanciere, military press, panca inclinata per croci, curl e rematore col petto appoggiato'],
@@ -3017,10 +3032,9 @@ function renderPiano(){
         <p class="tiny muted" style="margin:0">Serie <b>dirette</b> a settimana, contro il volume di riferimento.
           Verde quando il numero è quello, rosso sotto, azzurro sopra. La <b>4 sedute Top</b> ha ${A.tot} serie
           dirette e niente in rosso: femorali, accosciata, spalle e polpacci sopra il riferimento, tutto il resto in
-          bersaglio. La <b>4 sedute</b> ne ha ${B.tot} e sta sul riferimento ovunque tranne le <b>braccia</b>, ferme a
-          ${B.per.bicipiti} serie dirette contro 8 — che però in serie frazionali sono ${nf(B.fr.bicipiti,1)} e
-          ${nf(B.fr.tricipiti,1)}, dentro la fascia utile. Non è una mancanza: è la scommessa opposta a quella della
-          Top, che le braccia le porta a ${nf(A.fr.bicipiti,1)} e ${nf(A.fr.tricipiti,1)}.</p>
+          bersaglio. La <b>4 sedute</b> ne ha ${B.tot} e sta <b>esattamente sul riferimento su ogni gruppo</b>:
+          nessuna riga sotto, nessuna sopra. Sono due modi diversi di essere completi — una eccede dove serve
+          spingere, l’altra centra il bersaglio e basta.</p>
         <div class="backup" style="background:var(--good-soft);color:var(--good-text)">${ICO.check}
           <span>Da v36 la <b>4 sedute Top</b> non ha <b>nessun gruppo sotto il riferimento</b>, e rispetta tutti e
           cinque i vincoli del piano, tetto delle tre serie per esercizio compreso. Dove sta sopra è voluto:
@@ -3046,14 +3060,16 @@ function renderPiano(){
         ${nf(A.fr.femorali,1)} contro ${nf(B.fr.femorali,1)}, con due cerniere d’anca e due leg curl.</p>
       <p class="small" style="margin:0"><b>L’altra, se vuoi le braccia fresche e meno carico sulla schiena.</b> È
         l’unica scheda in cui i <b>bicipiti stanno nelle sedute basse</b>: nella Top arrivano ai curl dopo sei serie
-        di tirate, qui arrivano a zero lavoro indiretto e fanno tre serie piene invece di due in superset. E niente
-        superset, quindi ogni serie ha il suo recupero. Meno carico assiale: niente trazioni zavorate, una sola
-        cerniera d’anca, il nordico al posto del secondo stacco, più lavoro ai cavi. La seduta più lunga è
+        di tirate, qui arrivano a zero lavoro indiretto. E ogni muscolo del braccio ha <b>i due estremi della curva
+        in ogni seduta</b> — uno in allungamento e uno in accorciamento, 2 serie ciascuno — senza nessun superset,
+        quindi ogni serie ha il suo recupero pieno. Meno carico assiale: niente trazioni zavorate, una sola cerniera
+        d’anca, il nordico al posto del secondo stacco, più lavoro ai cavi. La seduta più lunga è
         ${Math.max(...durB)} minuti contro ${Math.max(...durA)}.</p>
       <p class="small" style="margin:0"><b>Non sono due livelli, sono due scommesse.</b> La Top punta su
         <b>più angoli</b>: quattro esercizi di braccia da 2 serie per seduta alta, in superset, con le braccia già
-        scaldate dai compound. La 4 sedute punta sulla <b>qualità della singola serie</b>: due esercizi da 3, a
-        recupero pieno, col muscolo fresco. La ricerca non dice quale delle due vince — dice che contano il volume
+        scaldate dai compound, e accetta di stare sopra il riferimento su gambe e spalle. La 4 sedute punta sulla
+        <b>qualità della singola serie</b>: stessi otto angoli, ma a recupero pieno e col muscolo fresco, e ogni
+        gruppo esattamente sul suo numero. La ricerca non dice quale delle due vince — dice che contano il volume
         e la vicinanza al cedimento, e le rispettano tutte e due.</p>
       <div class="backup" style="background:var(--accent-soft);color:var(--accent-text)">${ICO.info}
         <span>Puoi cambiare quando vuoi: lo storico dei carichi è legato al nome dell’esercizio, non alla scheda,
@@ -3090,8 +3106,7 @@ function renderPiano(){
         secondo lo fai già stanco e non aggiunge un angolo nuovo. Lo stesso vale per due flessioni del ginocchio di
         fila. Sulle braccia in coda a una seduta di gambe le due schede si dividono di proposito: nella <b>Top</b> non ce ne
         sono, nella <b>4 sedute</b> i <b>bicipiti stanno lì</b> — non come riempitivo, ma perché è l’unico posto in cui
-        arrivano senza il lavoro indiretto delle tirate, e ci fanno tre serie piene invece di due in superset. È la
-        differenza vera fra le due schede. Da qui anche la scelta della terza
+        arrivano senza il lavoro indiretto delle tirate. È la differenza vera fra le due schede. Da qui anche la scelta della terza
         dose di dorso, che non può essere un rematore: <b>pullover ai cavi</b> nella 4 sedute, <b>lat machine a un
         braccio</b> nella Top — lì il pullover non serve, perché la verticale pesante del lunedì e quella a range alto
         del giovedì coprono già il dorsale meglio. E da qui i due <b>leg curl separati</b> sulle due giornate di gamba,
