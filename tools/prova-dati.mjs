@@ -54,7 +54,8 @@ const seminato = await page.evaluate(() => {
        storico resta quella del piano. */
     testi: { 'Panca inclinata manubri 30°': { n: 'Inclinata — 30 gradi netti', cue: 'Fermo 2 sec in basso', nota: 'Nota mia.' } } };
   const nEs = { rv_push: 5, rv_pull: 5, rv_legs: 4, rv_upper: 6, rv_lower: 5,
-                t_upperA: 9, t_lowerA: 6, t_upperB: 9, t_lowerB: 6 };
+                t_upperA: 9, t_lowerA: 6, t_upperB: 9, t_lowerB: 6,
+                q_upperA: 6, q_lowerA: 5, q_upperB: 6, q_lowerB: 6 };
   let sedute = 0, serie = 0;
   for (let i = 27; i >= 0; i--) {
     const dt = new Date(oggi.getTime() - i * 864e5), d = iso(dt);
