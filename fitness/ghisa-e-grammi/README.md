@@ -125,14 +125,35 @@ Volume settimanale in serie dirette:
 | Petto | 8 | **8** | **8** |
 | Dorso | 8 | **8** | **8** |
 | Trapezi | 3 | **3** | **3** |
-| Spalle | 7 | 8 | 5 |
+| Spalle | 7 | 8 | **7** |
 | Bicipiti | 8 | **8** | 6 |
 | Tricipiti | 8 | **8** | 6 |
 | Accosciata | 8 | 9 | **8** |
 | Leg curl + stacco | 9 | 11 | **9** |
 | Polpacci | 3 | 4 | **3** |
 | Addome | 6 | **6** | **6** |
-| **Totale** | **68** | **73** | **62** |
+| **Totale** | **68** | **73** | **64** |
+
+Dalla **v40** la 4 sedute non è più «la Top con meno roba»: è la stessa
+filosofia con **un'altra scommessa**, e sta sul riferimento ovunque tranne le
+braccia — 6 serie dirette contro 8, che però sono **10,5 frazionali** per
+bicipiti e tricipiti, dentro la fascia utile. Le tre cose che la distinguono:
+
+1. **I bicipiti stanno nelle sedute basse**, i tricipiti restano in alto. Nella
+   Top il bicipite arriva ai curl dopo sei serie di tirate; qui arriva a zero
+   lavoro indiretto e fa tre serie piene. È l'unica scheda che rompe di
+   proposito la regola «nelle gambe solo gambe», e lo fa per un motivo.
+2. **Nessun superset, due esercizi da 3 serie invece di quattro da 2.** Ogni
+   serie ha il suo recupero pieno — è quello che Rabasco preferisce, ed è
+   possibile solo perché le braccia sono distribuite su quattro giornate.
+3. **Meno carico assiale**: niente trazioni zavorate, una sola cerniera d'anca,
+   il nordico al posto del secondo stacco, più lavoro ai cavi.
+
+La Top punta su **più angoli** (quattro esercizi di braccia da 2 serie in
+superset, con le braccia già scaldate dai compound); la 4 sedute sulla **qualità
+della singola serie** (due da 3, recupero pieno, muscolo fresco). La ricerca non
+dice quale vince: dice che contano volume e vicinanza al cedimento, e le
+rispettano tutte e due.
 
 Dalla **v36 la Top non ha nessun gruppo sotto il riferimento**, e rispetta tutti
 e cinque i vincoli del piano — tetto delle tre serie per esercizio compreso.
@@ -145,9 +166,11 @@ giorni — a 3 su uno solo era il punto più debole della scheda.
 |---|---|---|
 | Giorni | Lun Upper A · Mar Lower A · Gio Upper B · Ven Lower B | Lun Upper A · Mar Lower A · Gio Upper B · Ven Lower B |
 | Liberi | Mercoledì, sabato, domenica | Mercoledì, sabato, domenica |
-| Esercizi per seduta | 6-9 | 4-7 |
-| Serie per seduta | 14-22 | 12-18 |
-| Durate | 69, 58, 56, 44 min | 57, 48, 50, 45 min |
+| Esercizi per seduta | 6-9 | 5-6 |
+| Serie per seduta | 14-22 | 15-17 |
+| Durate | 69, 58, 56, 44 min | 61, 56, 47, 54 min |
+| Braccia | 4 esercizi × 2 serie, in superset, nelle sedute alte | 2 esercizi × 3 serie, recupero pieno, bicipiti nelle basse |
+| Superset | 8 esercizi | nessuno |
 
 Le durate sono calcolate, non stimate: serie × (45 secondi di lavoro + recupero
 previsto), 75 secondi per gli esercizi a un arto per volta, più mezzo minuto per
@@ -233,20 +256,50 @@ tre a quattro minuti e un range basso in cui l'unica variabile che si muove è i
 carico. Nella Top sono cinque (panca, trazioni zavorate, military, hack squat,
 stacco romeno) e stanno tutte nelle due giornate di lunedì e martedì.
 
-### Gli esercizi della "4 sedute"
+### La "4 sedute", seduta per seduta
 
-| Gruppo | Esercizi |
-|---|---|
-| Petto | Panca piana bilanciere · Panca inclinata manubri · Croci manubri su panca inclinata |
-| Dorso | Lat machine unilaterale · Rematore manubri busto appoggiato · Pullover ai cavi |
-| Trapezi | Rematore manubri gomiti alti |
-| Spalle | Military press manubri seduto · Alzate laterali ai cavi |
-| Bicipiti | Curl ai cavi dietro il corpo · Curl manubri su panca inclinata · Curl hammer al cavo basso |
-| Tricipiti | French press ai cavi overhead · Tricipite push-down |
-| Accosciata | Hack squat piede basso · Pressa piede alto · Sissy squat zavorrato |
-| Catena posteriore | Stacco romeno · Leg curl nordico · Leg curl sdraiato manubri |
-| Polpacci | Calf raise in piedi |
-| Addome | D'Annunzio crunch · Crunch al cavo alto |
+**Upper A — Lunedì · 17 serie · 61 min · tricipiti**
+
+| Esercizio | Serie × rip | Tecnica | Rec. |
+|---|---|---|---|
+| Panca piana bilanciere | 3 × 4-6 | RIR 1-2 · forza | 240 s |
+| Lat machine unilaterale | 3 × 8-12 | + Rest-pause | 120 s |
+| Military press manubri seduto | 3 × 5-7 | RIR 1-2 · forza | 210 s |
+| Rematore manubri gomiti alti (trapezi) | 3 × 10-15 | + Rest-pause | 120 s |
+| Alzate laterali sdraiato — panca inclinata | 2 × 10-12 | + Rest-pause | 90 s |
+| French press ai cavi overhead | 3 × 10-12 | + Rest-pause | 120 s |
+
+**Lower A — Martedì · 15 serie · 56 min · bicipiti**
+
+| Esercizio | Serie × rip | Tecnica | Rec. |
+|---|---|---|---|
+| Hack squat piede basso | 3 × 5-8 | RIR 1-2 · forza | 240 s |
+| Romanian deadlift | 3 × 6-8 | RIR 1-2 · forza | 240 s |
+| Leg curl nordico | 3 × 5-8 | Eccentrica lenta | 150 s |
+| D'Annunzio crunch | 3 × 10-15 | + Rest-pause | 120 s |
+| Curl ai cavi dietro il corpo | 3 × 8-12 | + Drop set | 120 s |
+
+**Upper B — Giovedì · 15 serie · 47 min · tricipiti**
+
+| Esercizio | Serie × rip | Tecnica | Rec. |
+|---|---|---|---|
+| Rematore manubri busto appoggiato | 3 × 8-12 | + Rest-pause | 150 s |
+| Panca inclinata manubri | 3 × 8-12 | + Drop set | 150 s |
+| Pullover ai cavi | 2 × 10-12 | + Rest-pause | 120 s |
+| Croci manubri su panca inclinata | 2 × 10-12 | RIR 0-1 + Allungamento | 120 s |
+| Alzate laterali ai cavi | 2 × 12-15 | + Rest-pause ×2 | 90 s |
+| Tricipite push-down | 3 × 10-12 | + Drop set | 120 s |
+
+**Lower B — Venerdì · 17 serie · 54 min · bicipiti**
+
+| Esercizio | Serie × rip | Tecnica | Rec. |
+|---|---|---|---|
+| Pressa piede alto | 3 × 6-8 | RIR 1-2 · forza | 210 s |
+| Sissy squat zavorrato | 2 × 10-15 | + Rest-pause | 120 s |
+| Leg curl sdraiato manubri | 3 × 12-15 | + Drop set | 120 s |
+| Calf raise in piedi | 3 × 8-12 | + Rest-pause | 120 s |
+| Crunch al cavo alto | 3 × 10-15 | + Rest-pause | 120 s |
+| Curl manubri su panca inclinata | 3 × 8-10 | + Rest-pause | 120 s |
 
 ### I vincoli, verificati a ogni pubblicazione
 
@@ -262,8 +315,11 @@ stacco romeno) e stanno tutte nelle due giornate di lunedì e martedì.
 7. Carico massimo dove il muscolo è lungo; i due estremi della curva sul
    tricipite; una tirata verticale e una orizzontale.
 
-Dalla **v34 tutte e due le schede li rispettano tutti**, tetto delle tre serie
-per esercizio compreso.
+La **Top** li rispetta tutti, tetto delle tre serie per esercizio compreso. La
+**4 sedute** li rispetta tutti tranne il quinto — *nelle sedute di gamba solo
+gambe* — che dalla v40 rompe di proposito mettendoci i bicipiti: non come
+riempitivo, ma perché è l'unico posto in cui arrivano senza il lavoro indiretto
+delle tirate.
 
 ### Le sei correzioni della v34
 
@@ -656,6 +712,19 @@ npm run prova:pwa                                # giro di aggiornamento dell'ap
 
 ## Storico
 
+- **v40** — la **4 sedute** rifatta perché smettesse di essere «la Top con meno
+  roba». Tre cambi. **I bicipiti passano nelle sedute basse** — curl ai cavi
+  dietro il corpo il martedì, curl su panca inclinata il venerdì, 3 serie
+  ciascuno — mentre i **tricipiti restano in alto**: nella Top il bicipite arriva
+  ai curl dopo sei serie di tirate, qui arriva a zero lavoro indiretto.
+  **Spariscono i superset**: senza un antagonista con cui alternare, ogni serie
+  prende il suo recupero pieno, che è quello che Rabasco preferisce. E entrano
+  **2 serie di alzate laterali sdraiato** nell'Upper A: il deltoide laterale
+  stava a 2 serie in un giorno solo ed era il vero punto debole della scheda; ora
+  è a 7 su due giorni, sul riferimento. Totale 64 serie contro 62, durate
+  61/56/47/54. Nessun gruppo sotto il riferimento tranne le braccia, ferme a 6
+  dirette contro 8 — ma 10,5 frazionali, dentro la fascia utile: è la scommessa
+  opposta a quella della Top, non una mancanza.
 - **v39** — **nome, tecnica e nota di ogni esercizio si possono riscrivere**, dal
   pulsante *Testo* dentro l'esercizio. Vale in tutte le giornate e in tutte e due
   le schede, non tocca serie né volume, e la chiave dell'override è il nome
