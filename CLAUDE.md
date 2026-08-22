@@ -13,9 +13,13 @@ viaggi/<anno-mese-slug>/README.md       sintesi, vincoli veri, storico versioni
 fitness/<slug>/app.html                 sorgente dell'Artifact
 fitness/<slug>/README.md                sintesi, scelte di trascrizione, storico
 fitness/<slug>/verify.json              selettori e giro delle viste per la verifica
+pwa/                                    Ghisa & Grammi installabile, alla radice del sito
+pwa-giordania/                          road book Giordania installabile, in /giordania/
+tools/app-pwa.mjs                       registro delle app installabili
 tools/verify.mjs                        verifica di rendering obbligatoria
 tools/prova-dati.mjs                    prova con dati seminati, obbligatoria per fitness/
 tools/prova-pwa.mjs                     prova del giro di aggiornamento della PWA
+tools/prova-convivenza.mjs              prova che le due PWA non si pestino i piedi
 out/                                    screenshot e PDF generati (non versionato)
 ```
 
@@ -136,8 +140,8 @@ serve a niente pubblicare una versione nuova se sul telefono non arriva.
 npm run prova:pwa
 ```
 
-Serve `pwa/` su un server locale con `cache-control: max-age=600`, come GitHub
-Pages, e verifica che l'app si accorga da sola di una versione nuova senza
+Serve ogni cartella PWA su un server locale con `cache-control: max-age=600`,
+come GitHub Pages, e verifica che l'app si accorga da sola di una versione nuova senza
 navigazione e che il pulsante Ricarica porti davvero alla nuova. Ha trovato un
 bug che teneva l'app installata indietro per giorni: la richiesta di rete del
 service worker finiva nella cache HTTP di Safari e restituiva la pagina vecchia.
@@ -145,6 +149,19 @@ Su iPhone una PWA riaperta dalla Home spesso non rifa' la navigazione, quindi
 niente si aggiorna da solo: ci vogliono `updateViaCache:'none'`, un
 `reg.update()` al ritorno in primo piano, il controllo di `reg.waiting` e
 `cache:'no-store'` su ogni fetch del service worker.
+
+Da quando le app installabili sono **due sullo stesso dominio** — Ghisa & Grammi
+alla radice, il road book della Giordania in `/giordania/` — serve anche:
+
+```sh
+npm run prova:convivenza
+```
+
+Lo scope del service worker della radice contiene per forza anche l'altra app.
+Senza precauzioni, aprire `/giordania/` una volta sola salvava il road book come
+copia offline di Ghisa & Grammi: senza campo, in palestra, si apriva la
+Giordania. Ogni service worker dichiara quali indirizzi sono suoi, e questa
+prova lo verifica andando davvero offline.
 
 ## Consegna
 

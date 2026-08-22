@@ -1,17 +1,27 @@
-name: Pubblica la PWA
+name: Pubblica le PWA
 
-# Ricostruisce la versione installabile dell'app dal sorgente dell'Artifact e
-# la pubblica sul ramo gh-pages, da cui GitHub Pages serve il sito.
+# Ricostruisce le versioni installabili dai sorgenti degli Artifact e le
+# pubblica sul ramo gh-pages, da cui GitHub Pages serve il sito.
+#
+# Il sito ospita due app sullo stesso dominio:
+#   /            Ghisa & Grammi   (allenamento e alimentazione)
+#   /giordania/  La Grande Frattura (road book, novembre 2026)
+#
+# La radice non si tocca: e' il percorso da cui l'app fitness e' gia' stata
+# installata sul telefono, e cambiarlo la scollegherebbe.
 # Nessuna impostazione da toccare: Pages si e' attivato con la creazione del
 # ramo, e questo workflow si limita ad aggiornarne il contenuto.
 
 on:
   push:
-    branches: [claude/artifact-code-session-g1s37q, main]
+    branches: [claude/artifact-code-session-g1s37q, claude/travel-app-premium-7pz1bq, main]
     paths:
       - 'fitness/ghisa-e-grammi/app.html'
+      - 'viaggi/2026-11-giordania/roadbook.html'
       - 'pwa/icone/**'
+      - 'pwa-giordania/icone/**'
       - 'tools/build-pwa.mjs'
+      - 'tools/app-pwa.mjs'
       - '.github/workflows/pwa.yml'
   workflow_dispatch:
 
@@ -32,36 +42,61 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Costruisci la PWA
+      - name: Costruisci le PWA
         run: node tools/build-pwa.mjs
 
-      - name: Controlla che sia una pagina sensata
+      - name: Componi il sito
         run: |
-          test -s pwa/index.html
-          test -s pwa/manifest.webmanifest
-          test -s pwa/sw.js
-          grep -q 'Ghisa' pwa/index.html
-          grep -q 'serviceWorker' pwa/index.html
-          echo "index.html $(wc -c < pwa/index.html) byte"
+          rm -rf _sito
+          mkdir -p _sito/giordania
+          cp -r pwa/. _sito/
+          cp -r pwa-giordania/. _sito/giordania/
+          touch _sito/.nojekyll
+
+      - name: Controlla che siano pagine sensate
+        run: |
+          test -s _sito/index.html
+          test -s _sito/manifest.webmanifest
+          test -s _sito/sw.js
+          test -s _sito/giordania/index.html
+          test -s _sito/giordania/manifest.webmanifest
+          test -s _sito/giordania/sw.js
+          grep -q 'Ghisa' _sito/index.html
+          grep -q 'Grande Frattura' _sito/giordania/index.html
+          grep -q 'serviceWorker' _sito/index.html
+          grep -q 'serviceWorker' _sito/giordania/index.html
+          # le due app devono avere cache distinte, o si sovrascrivono a vicenda
+          grep -q "CACHE = 'ghisa-e-grammi-" _sito/sw.js
+          grep -q "CACHE = 'giordania-"      _sito/giordania/sw.js
+          # e ciascun service worker deve rispondere solo alle proprie pagine
+          grep -q 'miaNavigazione' _sito/sw.js
+          grep -q 'miaNavigazione' _sito/giordania/sw.js
+          echo "radice    $(wc -c < _sito/index.html) byte"
+          echo "giordania $(wc -c < _sito/giordania/index.html) byte"
 
       - name: Aggiorna il ramo gh-pages
         run: |
-          touch pwa/.nojekyll
-          cd pwa
+          cd _sito
           git init -q
           git checkout -qb gh-pages
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
-          git commit -q -m "Pubblica la versione installabile
+          git commit -q -m "Pubblica le versioni installabili
 
-          Generato da tools/build-pwa.mjs a partire da
-          fitness/ghisa-e-grammi/app.html, commit ${GITHUB_SHA}.
-          Non modificare a mano: si rigenera a ogni push."
+          Generate da tools/build-pwa.mjs a partire da
+          fitness/ghisa-e-grammi/app.html e viaggi/2026-11-giordania/roadbook.html,
+          commit ${GITHUB_SHA}.
+          Non modificare a mano: si rigenerano a ogni push."
           git push -q --force \
             "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" gh-pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Dove sta
-        run: echo "https://${GITHUB_REPOSITORY_OWNER}.github.io/${GITHUB_REPOSITORY#*/}/" >> $GITHUB_STEP_SUMMARY
+      - name: Dove stanno
+        run: |
+          sito="https://${GITHUB_REPOSITORY_OWNER}.github.io/${GITHUB_REPOSITORY#*/}"
+          {
+            echo "- Ghisa & Grammi: ${sito}/"
+            echo "- La Grande Frattura: ${sito}/giordania/"
+          } >> $GITHUB_STEP_SUMMARY

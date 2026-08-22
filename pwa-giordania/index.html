@@ -1,5 +1,23 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>La Grande Frattura</title>
-
+<meta name="description" content="Road book della Giordania, 12–21 novembre 2026: dieci giornate costruite attorno alla luce, con mappa, profilo altimetrico, almanacco solare e budget.">
+<meta name="theme-color" content="#E9E2D6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#100D0B" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Giordania">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icone/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icone/icona-192.png">
+<style>:root{color-scheme:light dark}*{box-sizing:border-box}body{margin:0}img{max-width:100%}</style>
+<script>window.__GG_BUILD='cf856f2b79';</script>
+</head>
+<body>
 <style>
 /* ───────────────────────────────────────────────────────────────
    La Grande Frattura — road book Giordania, 12–21 novembre 2026
@@ -1839,3 +1857,133 @@ var DAYS=[
   secs.forEach(function(s){ obs.observe(s) });
 })();
 </script>
+
+<div class="agg" id="agg" hidden role="status">
+  <span>Nuova versione pronta</span>
+  <button class="btn sm" id="aggOra">Ricarica</button>
+</div>
+<style>
+.agg{position:fixed;left:50%;transform:translateX(-50%);z-index:90;
+  bottom:calc(22px + env(safe-area-inset-bottom));
+  display:flex;align-items:center;gap:12px;padding:9px 12px 9px 17px;border-radius:999px;
+  background:var(--ink);color:var(--surface);box-shadow:var(--shadow);font-size:14px;font-family:var(--ui)}
+.agg button{font-family:var(--display);font-size:12px;letter-spacing:.1em;text-transform:uppercase;
+  background:none;border:1px solid color-mix(in srgb,var(--surface) 42%,transparent);
+  color:var(--surface);border-radius:7px;padding:5px 11px;cursor:pointer}
+.agg button:hover{border-color:var(--surface)}
+@media (min-width:900px){.agg{bottom:26px}}
+.installa{margin:18px 0 4px;display:flex;gap:11px;align-items:flex-start;padding:13px 15px;
+  border:1px solid color-mix(in srgb,var(--accent) 28%,transparent);
+  border-radius:var(--r);background:var(--accent-soft);color:var(--accent-2);font-size:13.5px;line-height:1.45}
+.installa b{display:block;font-family:var(--display);font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.installa button{margin-left:auto;background:none;border:none;color:inherit;opacity:.7;
+  font-size:20px;line-height:1;padding:0 4px;cursor:pointer}
+</style>
+<script>
+(function(){
+  "use strict";
+  // ── service worker: la pagina funziona anche senza campo, in palestra ──
+  //
+  // Su iPhone una PWA aperta dalla schermata Home spesso NON rifa' la
+  // navigazione quando la riapri: riprende la pagina che era in memoria. Senza
+  // navigazione il browser non controlla sw.js, e l'aggiornamento non arriva
+  // mai da solo. Per questo qui:
+  //   1. updateViaCache:'none' — sw.js non viene mai preso dalla cache HTTP;
+  //   2. reg.update() al caricamento e ogni volta che l'app torna in primo
+  //      piano (al massimo una volta al minuto);
+  //   3. si guarda anche reg.waiting, perche' l'aggiornamento puo' essersi
+  //      installato mentre la pagina non stava ascoltando: in quel caso
+  //      'updatefound' e' gia' passato e senza questo controllo l'avviso non
+  //      comparirebbe piu'.
+  if ('serviceWorker' in navigator) {
+    var REG = null, ultimo = 0;
+
+    function mostra(nuovo){
+      if (!nuovo) return;
+      var box = document.getElementById('agg');
+      if (!box || !box.hidden) return;
+      box.hidden = false;
+      document.getElementById('aggOra').onclick = function(){
+        nuovo.postMessage('attiva');
+        nuovo.addEventListener('statechange', function(){
+          if (nuovo.state === 'activated') location.reload();
+        });
+        // se per qualche motivo lo statechange non arriva, si ricarica comunque
+        setTimeout(function(){ location.reload(); }, 1500);
+      };
+    }
+    function segui(nuovo){
+      if (!nuovo) return;
+      if (nuovo.state === 'installed') return mostra(nuovo);
+      nuovo.addEventListener('statechange', function(){
+        if (nuovo.state === 'installed' && navigator.serviceWorker.controller) mostra(nuovo);
+      });
+    }
+    function controlla(){
+      if (!REG) return;
+      var ora = Date.now();
+      if (ora - ultimo < 60000) return;
+      ultimo = ora;
+      REG.update().catch(function(){ /* offline: si riprova alla prossima apertura */ });
+    }
+
+    window.addEventListener('load', function(){
+      navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' }).then(function(reg){
+        REG = reg;
+        if (reg.waiting && navigator.serviceWorker.controller) mostra(reg.waiting);
+        segui(reg.installing);
+        reg.addEventListener('updatefound', function(){ segui(reg.installing); });
+        ultimo = Date.now();
+        setTimeout(function(){ ultimo = 0; controlla(); }, 3000);
+      }).catch(function(){ /* senza service worker l'app funziona lo stesso */ });
+    });
+
+    document.addEventListener('visibilitychange', function(){
+      if (document.visibilityState === 'visible') controlla();
+    });
+    window.addEventListener('online', function(){ ultimo = 0; controlla(); });
+
+    // Quando il service worker nuovo prende il controllo, la pagina che stai
+    // guardando e' ancora quella vecchia: si ricarica da sola, una volta sola.
+    // Solo se la pagina era gia' controllata: alla primissima installazione il
+    // controllo arriva per la prima volta e non c'e' niente da aggiornare.
+    var eraControllata = !!navigator.serviceWorker.controller;
+    var ricaricato = false;
+    navigator.serviceWorker.addEventListener('controllerchange', function(){
+      if (!eraControllata || ricaricato) return;
+      ricaricato = true;
+      location.reload();
+    });
+    navigator.serviceWorker.addEventListener('message', function(ev){
+      if (ev.data && ev.data.gg === 'aggiornata' && !ricaricato) {
+        ricaricato = true;
+        setTimeout(function(){ location.reload(); }, 400);
+      }
+    });
+  }
+  // ── suggerimento d'installazione, solo su iPhone e solo se non installata ──
+  var standalone = window.matchMedia('(display-mode: standalone)').matches
+                || window.navigator.standalone === true;
+  var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+  if (!standalone && iOS && !localStorage.getItem('giordania.installa.visto')) {
+    window.addEventListener('load', function(){
+      var main = document.querySelector('main');
+      if (!main) return;
+      var el = document.createElement('div');
+      el.className = 'installa';
+      el.innerHTML = '<div><b>Mettila sulla schermata Home</b>'
+        + 'Tocca Condividi in fondo a Safari, poi "Aggiungi a Home". Si apre a schermo intero '
+        + 'e funziona senza campo: a Dana, nel Wadi Dana e dentro il Wadi Rum il segnale sparisce, '
+        + 'ed è proprio lì che il road book serve.</div>'
+        + '<button aria-label="Ho capito">&times;</button>';
+      el.querySelector('button').onclick = function(){
+        localStorage.setItem('giordania.installa.visto', '1');
+        el.remove();
+      };
+      main.insertBefore(el, main.firstChild);
+    });
+  }
+})();
+</script>
+</body>
+</html>

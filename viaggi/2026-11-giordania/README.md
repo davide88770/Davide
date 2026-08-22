@@ -4,7 +4,8 @@ Road trip in Giordania, **12–21 novembre 2026**. Andata e ritorno dall'aeropor
 Queen Alia di Amman, in auto a noleggio.
 
 **Artifact:** <https://claude.ai/code/artifact/bdef90a6-e2e2-4c49-8c65-b6145f94c829>
-**Sorgente:** [`roadbook.html`](roadbook.html)
+**App installabile:** <https://davide88770.github.io/Davide/giordania/>
+**Sorgente:** [`roadbook.html`](roadbook.html) — la PWA si rigenera da qui, non si modifica a mano.
 
 ## In sintesi
 
@@ -99,6 +100,33 @@ prima. Tre giornate su dieci l'auto non si muove.
   numeri arabo-indiani.
 - Mappa a striscia sul solo corridoio della frattura, invece della carta
   nazionale in cui l'itinerario sarebbe illeggibile.
+
+## L'app installabile
+
+Lo stesso sorgente diventa una PWA in `pwa-giordania/`, pubblicata su GitHub
+Pages **in una sottocartella**: la radice del sito resta a *Ghisa & Grammi*,
+che è già installata sul telefono e non va scollegata.
+
+```
+https://davide88770.github.io/Davide/            Ghisa & Grammi
+https://davide88770.github.io/Davide/giordania/  La Grande Frattura
+```
+
+Su iPhone: Condividi → *Aggiungi a Home*. Si apre a schermo intero e funziona
+senza campo, che a Dana, dentro il Wadi Dana e nel Wadi Rum non è un dettaglio.
+
+**Icona:** la facciata di Al-Khazneh incorniciata dalle pareti del Siq,
+`pwa-giordania/icone/icona.svg`, con la variante *maskable* rientrata nella zona
+sicura. Si rigenera con `npm run build:icone`.
+
+Due app sullo stesso dominio si possono pestare i piedi: lo scope del service
+worker della radice contiene anche `/giordania/`. Senza precauzioni, aprire il
+road book una volta salvava *quella* pagina come copia offline dell'app fitness
+— e senza campo, in palestra, si sarebbe aperta la Giordania. Ogni service
+worker dichiara adesso esattamente quali indirizzi sono suoi, e
+`npm run prova:convivenza` lo verifica montando il sito completo, andando
+offline e controllando che ciascuna app apra ancora la propria pagina. La prova
+è stata provata: togliendo la protezione, fallisce.
 
 ## Storico
 

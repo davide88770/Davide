@@ -1,27 +1,41 @@
 #!/usr/bin/env node
 /**
- * Costruisce la versione installabile (PWA) a partire dal sorgente
- * dell'Artifact, che resta l'unica fonte di verità.
+ * Costruisce le versioni installabili (PWA) a partire dai sorgenti degli
+ * Artifact, che restano l'unica fonte di verità.
  *
- *   node tools/build-pwa.mjs
+ *   node tools/build-pwa.mjs [id ...]
  *
- * Produce pwa/index.html, pwa/manifest.webmanifest e pwa/sw.js. Le icone
- * stanno in pwa/icone/ e si rigenerano con tools/build-icone.mjs.
+ * Senza argomenti costruisce tutte le app dichiarate in tools/app-pwa.mjs.
+ * Per ciascuna produce <out>/index.html, manifest.webmanifest e sw.js; le
+ * icone stanno in <out>/icone/ e si rigenerano con tools/build-icone.mjs.
+ *
+ * Ogni app ha la sua cartella e la sua cache: `pwa/` sta alla radice di
+ * GitHub Pages e le altre in sottocartelle, così le app installate sul
+ * telefono non si sovrascrivono a vicenda.
  */
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
+import { APP } from './app-pwa.mjs';
 
-const SRC = 'fitness/ghisa-e-grammi/app.html';
-const OUT = 'pwa';
+const richieste = process.argv.slice(2);
+for (const id of richieste) {
+  if (!APP[id]) { console.error(`app sconosciuta: ${id}`); process.exit(2); }
+}
+const daFare = richieste.length ? richieste : Object.keys(APP);
+
+for (const id of daFare) costruisci(id, APP[id]);
+
+function costruisci(id, app) {
+const SRC = app.src;
+const OUT = app.out;
 const corpo = fs.readFileSync(SRC, 'utf8');
 
-const titolo = (corpo.match(/<title>([\s\S]*?)<\/title>/) ?? [, 'Ghisa &amp; Grammi'])[1];
+const titolo = (corpo.match(/<title>([\s\S]*?)<\/title>/) ?? [, app.titoloRipiego])[1];
 const senzaTitolo = corpo.replace(/<title>[\s\S]*?<\/title>\s*/, '');
 const versione = crypto.createHash('sha256').update(corpo).digest('hex').slice(0, 10);
 
-const descrizione = 'Allenamento e alimentazione, giorno per giorno: carichi, '
-  + 'progressioni, protocolli e pasti in grammi risolti sul target della fase.';
+const descrizione = app.descrizione;
 
 const testa = `<!doctype html>
 <html lang="it">
@@ -30,12 +44,12 @@ const testa = `<!doctype html>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>${titolo}</title>
 <meta name="description" content="${descrizione}">
-<meta name="theme-color" content="#EAEDEC" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0B0F12" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="${app.temaChiaro}" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="${app.temaScuro}" media="(prefers-color-scheme: dark)">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Ghisa &amp; Grammi">
+<meta name="apple-mobile-web-app-title" content="${app.nomeBreve.replace(/&/g, '&amp;')}">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icone/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="192x192" href="icone/icona-192.png">
@@ -51,16 +65,7 @@ const coda = `
   <button class="btn sm" id="aggOra">Ricarica</button>
 </div>
 <style>
-.agg{position:fixed;left:50%;transform:translateX(-50%);z-index:90;
-  bottom:calc(var(--tab-h) + 22px + env(safe-area-inset-bottom));
-  display:flex;align-items:center;gap:12px;padding:9px 12px 9px 17px;border-radius:999px;
-  background:var(--solid);color:var(--on-solid);box-shadow:var(--shadow-2);font-size:14px}
-.agg .btn{border-color:color-mix(in srgb,var(--on-solid) 35%,transparent);color:var(--on-solid)}
-@media (min-width:900px){.agg{bottom:26px}}
-.installa{margin:0 0 16px;display:flex;gap:11px;align-items:flex-start;padding:13px 15px;
-  border-radius:var(--r);background:var(--accent-soft);color:var(--accent-text);font-size:13.5px;line-height:1.45}
-.installa b{display:block;font-family:var(--display);font-size:12px;letter-spacing:.1em;text-transform:uppercase}
-.installa button{margin-left:auto;color:inherit;opacity:.7;font-size:20px;line-height:1;padding:0 4px}
+${app.stile}
 </style>
 <script>
 (function(){
@@ -148,18 +153,17 @@ const coda = `
   var standalone = window.matchMedia('(display-mode: standalone)').matches
                 || window.navigator.standalone === true;
   var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-  if (!standalone && iOS && !localStorage.getItem('gg.installa.visto')) {
+  if (!standalone && iOS && !localStorage.getItem('${app.chiaveInstalla}')) {
     window.addEventListener('load', function(){
       var main = document.querySelector('main');
       if (!main) return;
       var el = document.createElement('div');
       el.className = 'installa';
       el.innerHTML = '<div><b>Mettila sulla schermata Home</b>'
-        + 'Tocca Condividi in fondo a Safari, poi "Aggiungi a Home". Si apre a schermo intero, '
-        + 'funziona senza campo e i dati non vengono più cancellati dopo una settimana.</div>'
+        + ${app.installa}
         + '<button aria-label="Ho capito">&times;</button>';
       el.querySelector('button').onclick = function(){
-        localStorage.setItem('gg.installa.visto', '1');
+        localStorage.setItem('${app.chiaveInstalla}', '1');
         el.remove();
       };
       main.insertBefore(el, main.firstChild);
@@ -174,30 +178,39 @@ const coda = `
 fs.mkdirSync(OUT, { recursive: true });
 fs.writeFileSync(path.join(OUT, 'index.html'), testa + senzaTitolo + coda);
 
-fs.writeFileSync(path.join(OUT, 'manifest.webmanifest'), JSON.stringify({
-  name: 'Ghisa & Grammi',
-  short_name: 'Ghisa & Grammi',
+const manifest = {
+  name: app.nome,
+  short_name: app.nomeBreve,
   description: descrizione,
   start_url: './',
   scope: './',
   display: 'standalone',
-  orientation: 'portrait',
-  background_color: '#0B0F12',
-  theme_color: '#0B0F12',
+  ...(app.orientamento ? { orientation: app.orientamento } : {}),
+  background_color: app.sfondo,
+  theme_color: app.tema,
   lang: 'it',
-  categories: ['health', 'fitness', 'lifestyle'],
+  categories: app.categorie,
   icons: [
     { src: 'icone/icona-192.png', sizes: '192x192', type: 'image/png' },
     { src: 'icone/icona-512.png', sizes: '512x512', type: 'image/png' },
     { src: 'icone/icona-maskable-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
   ],
-}, null, 2));
+};
+fs.writeFileSync(path.join(OUT, 'manifest.webmanifest'), JSON.stringify(manifest, null, 2));
 
-fs.writeFileSync(path.join(OUT, 'sw.js'), `/* Ghisa & Grammi — service worker, versione ${versione} */
-const CACHE = 'ghisa-e-grammi-${versione}';
-const GUSCIO = ['./', './index.html', './manifest.webmanifest',
-  './icone/icona-192.png', './icone/icona-512.png',
-  './icone/icona-maskable-512.png', './icone/apple-touch-icon.png'];
+fs.writeFileSync(path.join(OUT, 'sw.js'), `/* ${app.nome} — service worker, versione ${versione} */
+const CACHE = '${app.cache}-${versione}';
+const GUSCIO = ${app.guscio};
+
+/* Le due app stanno sullo stesso dominio: Ghisa & Grammi alla radice e il road
+   book in /giordania/. Il service worker della radice ha per forza uno scope
+   che contiene anche l'altra, quindi qui si dichiara esattamente quali
+   indirizzi sono suoi. Senza questo, aprire /giordania/ mentre e' attivo il
+   service worker della radice salvava il road book come pagina offline di
+   Ghisa & Grammi: senza campo, l'app fitness avrebbe aperto la Giordania. */
+const BASE = new URL('./', self.location).pathname;
+const MIE = new Set([BASE, BASE + 'index.html']);
+const miaNavigazione = req => MIE.has(new URL(req.url).pathname);
 
 /* Sempre dalla rete vera, mai dalla cache HTTP del browser: GitHub Pages serve
    l'HTML con un max-age breve ma non nullo, e senza no-store la pagina "nuova"
@@ -222,7 +235,7 @@ self.addEventListener('activate', ev => {
        e non una prima installazione. Il segnale sta nella cache e non in una
        variabile, perche' il service worker puo' essere spento e riacceso fra
        install e activate. */
-    const vecchie = chiavi.filter(k => k.startsWith('ghisa-e-grammi-') && k !== CACHE);
+    const vecchie = chiavi.filter(k => k.startsWith('${app.cache}-') && k !== CACHE);
     await Promise.all(vecchie.map(k => caches.delete(k)));
     await self.clients.claim();
     if (!vecchie.length) return;
@@ -252,22 +265,24 @@ self.addEventListener('fetch', ev => {
   const req = ev.request;
   if (req.method !== 'GET' || new URL(req.url).origin !== location.origin) return;
   if (req.mode === 'navigate') {
+    if (!miaNavigazione(req)) return;   // e' una pagina dell'altra app: non la tocco
     ev.respondWith(
       dallaRete(req.url).then(r => {
         if (!r.ok) throw new Error('risposta ' + r.status);
         const copia = r.clone();
         caches.open(CACHE).then(c => c.put('./index.html', copia));
         return r;
-      }).catch(() => caches.match('./index.html'))
+      }).catch(() => caches.open(CACHE).then(c => c.match('./index.html')))
     );
     return;
   }
-  ev.respondWith(caches.match(req).then(c => c || fetch(req)));
+  ev.respondWith(caches.open(CACHE).then(c => c.match(req)).then(r => r || fetch(req)));
 });
 `);
 
 const kb = n => Math.round(fs.statSync(path.join(OUT, n)).size / 1024);
-console.log(`PWA costruita da ${SRC}`);
+console.log(`${app.nome} — costruita da ${SRC} in ${OUT}/`);
 console.log(`  index.html            ${kb('index.html')} KB`);
 console.log(`  manifest.webmanifest  ${kb('manifest.webmanifest')} KB`);
-console.log(`  sw.js                 ${kb('sw.js')} KB  (cache ${versione})`);
+console.log(`  sw.js                 ${kb('sw.js')} KB  (cache ${app.cache}-${versione})`);
+}

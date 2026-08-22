@@ -2,14 +2,16 @@
 /**
  * Prova del percorso di aggiornamento della PWA.
  *
- *   node tools/prova-pwa.mjs
+ *   node tools/prova-pwa.mjs [cartella ...]
+ *
+ * Senza argomenti prova tutte le app dichiarate in tools/app-pwa.mjs.
  *
  * L'app installata sulla schermata Home e' il modo in cui Davide la usa: se
  * l'aggiornamento non arriva, tutto il lavoro a monte non lo vede. E su iPhone
  * una PWA riaperta dalla Home spesso NON rifa' la navigazione, quindi il
  * browser non controlla sw.js da solo e la versione nuova non entra mai.
  *
- * Questo script serve pwa/ su un server locale e verifica il giro completo:
+ * Serve la cartella su un server locale e verifica il giro completo:
  *   1. il service worker si registra e prende il controllo;
  *   2. all'apertura, senza versioni nuove, l'avviso NON compare;
  *   3. pubblicata una versione nuova, l'app se ne accorge da sola senza
@@ -18,7 +20,7 @@
  *      worker nuovo si attiva subito e ricarica la pagina rimasta indietro;
  *   5. nessun errore JS in tutto il giro.
  *
- * Lavora su una copia in una cartella temporanea: pwa/ non viene toccata.
+ * Lavora su una copia in una cartella temporanea: l'originale non si tocca.
  * Esce con codice diverso da zero se un passaggio non va.
  */
 import { chromium } from 'playwright-core';
@@ -26,13 +28,24 @@ import http from 'node:http';
 import fs from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
+import { APP } from './app-pwa.mjs';
 
 const CHROME = process.env.CHROME_PATH ?? '/opt/pw-browsers/chromium-1194/chrome-linux/chrome';
-const SRC = path.resolve('pwa');
+const cartelle = process.argv.slice(2).length
+  ? process.argv.slice(2)
+  : Object.values(APP).map(a => a.out);
+
+let guasti = 0;
+for (const cartella of cartelle) guasti += await prova(cartella);
+process.exit(guasti ? 1 : 0);
+
+async function prova(cartella) {
+const SRC = path.resolve(cartella);
 if (!fs.existsSync(path.join(SRC, 'sw.js'))) {
-  console.error('pwa/ non c\'e\': esegui prima npm run build:pwa');
+  console.error(`${cartella}/ non c'e': esegui prima npm run build:pwa`);
   process.exit(2);
 }
+console.log(`\n${cartella}/`);
 
 const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'prova-pwa-'));
 fs.cpSync(SRC, dir, { recursive: true });
@@ -108,8 +121,10 @@ fs.rmSync(dir, { recursive: true, force: true });
 
 if (errori.length) problemi.push(...errori);
 if (problemi.length) {
-  console.error(`\n${problemi.length} problemi:`);
+  console.error(`  ${problemi.length} problemi:`);
   for (const x of problemi) console.error('  ✗ ' + x);
-  process.exit(1);
+  return 1;
 }
-console.log('\nIl giro di aggiornamento della PWA funziona.');
+console.log('  Il giro di aggiornamento funziona.');
+return 0;
+}
