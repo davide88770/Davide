@@ -3,7 +3,7 @@
 Road trip in Giordania, **12–21 novembre 2026**. Andata e ritorno dall'aeroporto
 Queen Alia di Amman, in auto a noleggio.
 
-**Artifact:** _(da inserire alla prima pubblicazione)_
+**Artifact:** <https://claude.ai/code/artifact/bdef90a6-e2e2-4c49-8c65-b6145f94c829>
 **Sorgente:** [`roadbook.html`](roadbook.html)
 
 ## In sintesi
