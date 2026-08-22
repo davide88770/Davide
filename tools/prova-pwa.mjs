@@ -84,7 +84,12 @@ try {
   console.log(`  1-2  service worker attivo, pagina controllata · build ${build}`);
 
   await page.waitForTimeout(1200);
-  if (await page.$eval('#agg', n => !n.hidden)) problemi.push('l\'avviso di aggiornamento compare anche senza versioni nuove');
+  /* Si guarda se l'elemento e' davvero invisibile, non se ha l'attributo
+     hidden: una regola d'app con display: qualcosa lo scavalca, e l'avviso
+     resta a video con l'attributo ancora al suo posto. E' successo. */
+  const visibile = await page.$eval('#agg', n =>
+    !n.hidden || getComputedStyle(n).display !== 'none' || !!n.getClientRects().length);
+  if (visibile) problemi.push("l'avviso di aggiornamento e' visibile anche senza versioni nuove");
   else console.log('  3    senza versioni nuove nessun avviso, come deve essere');
 
   /* Una versione nuova arriva sul server, senza che la pagina ricarichi. */

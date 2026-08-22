@@ -65,11 +65,23 @@ const coda = `
   <button class="btn sm" id="aggOra">Ricarica</button>
 </div>
 <style>
+/* L'avviso nasce con l'attributo hidden, ma una regola d'app come
+   .agg{display:flex} batte il display:none del browser: senza questa riga
+   resta a video per sempre. */
+.agg[hidden],.installa[hidden]{display:none!important}
 ${app.stile}
 </style>
 <script>
 (function(){
   "use strict";
+  /* Rete di sicurezza: se per qualsiasi motivo l'avviso finisse a video senza
+     che mostra() l'abbia acceso, il pulsante deve almeno ricaricare invece di
+     non fare niente. Un comando che non risponde e' peggio di nessun comando. */
+  (function(){
+    var b = document.getElementById('aggOra');
+    if (b) b.onclick = function(){ location.reload(); };
+  })();
+
   // ── service worker: la pagina funziona anche senza campo, in palestra ──
   //
   // Su iPhone una PWA aperta dalla schermata Home spesso NON rifa' la
