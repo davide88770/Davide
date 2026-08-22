@@ -1,0 +1,2001 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>La Grande Frattura</title>
+<meta name="description" content="Road book della Giordania, 12–21 novembre 2026: dieci giornate costruite attorno alla luce, con mappa, profilo altimetrico, almanacco solare e budget.">
+<meta name="theme-color" content="#E9E2D6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#100D0B" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Giordania">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icone/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icone/icona-192.png">
+<style>:root{color-scheme:light dark}*{box-sizing:border-box}body{margin:0}img{max-width:100%}</style>
+<script>window.__GG_BUILD='cf856f2b79';</script>
+</head>
+<body>
+<style>
+/* ───────────────────────────────────────────────────────────────
+   La Grande Frattura — road book Giordania, 12–21 novembre 2026
+   Identità: foglio di rilevamento geologico.
+   Fondo calcare freddo, accento ossido di ferro, segnale Mar Rosso.
+   ─────────────────────────────────────────────────────────────── */
+:root{
+  --bg:#E9E2D6; --surface:#F5F1E8; --surface-2:#FCFAF4; --sunk:#DED5C5;
+  --ink:#241C15; --ink-2:#5E5245; --ink-3:#8A7C6A;
+  --line:#D3C9B6; --line-strong:#B4A78F;
+  --accent:#A8391F; --accent-2:#7E2610; --accent-soft:#F4DFD5;
+  --signal:#8A6412; --signal-soft:#F2E5C6;
+  --good:#1F6B6E; --good-soft:#D3E6E4;
+  --alert:#8C2020; --alert-soft:#F5DCD6;
+  --sea:#BFD6D6; --land:#E5DECD; --land-2:#DDD5C2; --dune:#E2D2B2; --depth:#B3C6C6;
+  --night:#CCC5B7; --twi:#EADCBB; --sun:#F7E3A2;
+  --shadow:0 1px 2px rgba(36,28,21,.07),0 10px 26px -14px rgba(36,28,21,.28);
+  --display:Bahnschrift,"DIN Alternate","Avenir Next Condensed","Franklin Gothic Medium","Arial Narrow",system-ui,sans-serif;
+  --body:Charter,"Bitstream Charter","Sitka Text","Palatino Linotype",Palatino,Georgia,serif;
+  --ui:"Segoe UI Variable Text","Segoe UI",-apple-system,system-ui,sans-serif;
+  --mono:"Cascadia Mono",Consolas,"SF Mono",ui-monospace,monospace;
+  --r:9px;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#100D0B; --surface:#191512; --surface-2:#221D18; --sunk:#130F0D;
+    --ink:#EAE1D4; --ink-2:#A99C8A; --ink-3:#847768;
+    --line:#2E2721; --line-strong:#463C32;
+    --accent:#E58063; --accent-2:#F3A187; --accent-soft:#37180F;
+    --signal:#DDB059; --signal-soft:#32270F;
+    --good:#5CC3C0; --good-soft:#0D2C2C;
+    --alert:#E87C6D; --alert-soft:#391814;
+    --sea:#0F2628; --land:#1F1A14; --land-2:#181410; --dune:#2C2317; --depth:#152829;
+    --night:#221E19; --twi:#3D3117; --sun:#4E3F13;
+    --shadow:0 1px 2px rgba(0,0,0,.5),0 12px 30px -16px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#100D0B; --surface:#191512; --surface-2:#221D18; --sunk:#130F0D;
+  --ink:#EAE1D4; --ink-2:#A99C8A; --ink-3:#847768;
+  --line:#2E2721; --line-strong:#463C32;
+  --accent:#E58063; --accent-2:#F3A187; --accent-soft:#37180F;
+  --signal:#DDB059; --signal-soft:#32270F;
+  --good:#5CC3C0; --good-soft:#0D2C2C;
+  --alert:#E87C6D; --alert-soft:#391814;
+  --sea:#0F2628; --land:#1F1A14; --land-2:#181410; --dune:#2C2317; --depth:#152829;
+  --night:#221E19; --twi:#3D3117; --sun:#4E3F13;
+  --shadow:0 1px 2px rgba(0,0,0,.5),0 12px 30px -16px rgba(0,0,0,.8);
+}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--ui);font-size:15.5px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1240px;margin:0 auto;padding:0 20px}
+
+/* ── testata ────────────────────────────────────────────────── */
+.mast{border-bottom:1px solid var(--line-strong);background:var(--surface);position:relative;overflow:hidden}
+.mast::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:repeating-linear-gradient(0deg,transparent 0 47px,color-mix(in srgb,var(--line) 60%,transparent) 47px 48px)}
+.mast .wrap{padding-top:32px;padding-bottom:0;position:relative}
+.eyebrow{font-family:var(--display);font-size:12.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);font-weight:600}
+h1{font-family:var(--display);font-weight:700;letter-spacing:.005em;font-size:clamp(38px,7.4vw,74px);line-height:.93;margin:12px 0 8px;text-wrap:balance}
+h1 em{font-style:normal;color:var(--accent)}
+.subtitle{font-family:var(--body);font-size:clamp(15.5px,2.1vw,18.5px);line-height:1.5;color:var(--ink-2);margin:0;max-width:66ch}
+.keyfacts{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:1px;margin-top:24px;background:var(--surface);border-top:1px solid var(--line);border-left:1px solid var(--line);border-right:1px solid var(--line);border-radius:var(--r) var(--r) 0 0;overflow:hidden}
+.kf{background:var(--surface);padding:11px 13px;box-shadow:0 0 0 1px var(--line)}
+.kf b{display:block;font-family:var(--display);font-size:26px;line-height:1.1;font-variant-numeric:tabular-nums}
+.kf span{font-family:var(--display);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+.mastsec{margin-top:0;border:1px solid var(--line);border-bottom:none;border-radius:0;background:var(--surface-2);padding:6px 8px 0}
+.mastsec svg{display:block;width:100%;height:auto}
+.mastcap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:2px 4px 16px;font-family:var(--display);font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3)}
+
+/* ── navigazione ────────────────────────────────────────────── */
+nav{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--surface) 93%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line-strong)}
+nav .wrap{display:flex;align-items:center;gap:2px;padding-top:0;padding-bottom:0}
+.navlinks{display:flex;gap:2px;overflow-x:auto;scrollbar-width:thin;flex:1 1 auto;min-width:0}
+nav a{flex:0 0 auto;padding:11px 12px;text-decoration:none;color:var(--ink-2);font-family:var(--display);font-size:13.5px;letter-spacing:.09em;text-transform:uppercase;border-bottom:2px solid transparent;white-space:nowrap}
+nav a:hover{color:var(--ink)}
+nav a.on{color:var(--accent);border-bottom-color:var(--accent)}
+nav a:focus-visible,button:focus-visible,summary:focus-visible,.stopdot:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+#themebtn{flex:0 0 auto;margin-left:6px;background:none;border:1px solid var(--line-strong);color:var(--ink-2);border-radius:7px;padding:5px 9px;cursor:pointer;font-family:var(--display);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;display:flex;align-items:center;gap:6px}
+#themebtn:hover{border-color:var(--accent);color:var(--accent)}
+
+/* ── impianto di sezione ────────────────────────────────────── */
+section{padding:54px 0 8px;scroll-margin-top:56px}
+.sechead{display:flex;align-items:baseline;gap:14px;margin-bottom:20px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:12px}
+.sechead .no{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:.1em;padding-top:6px}
+h2{font-family:var(--display);font-weight:700;font-size:clamp(25px,3.5vw,35px);letter-spacing:.02em;margin:0;text-transform:uppercase;line-height:1.05}
+.sechead p{margin:0;color:var(--ink-2);font-family:var(--body);font-size:15.5px;max-width:60ch;flex:1 1 320px}
+h3{font-family:var(--display);font-size:19px;letter-spacing:.045em;text-transform:uppercase;margin:0 0 10px}
+h4{font-family:var(--display);font-size:13.5px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 8px;color:var(--ink-3)}
+p{margin:0 0 12px}
+.prose{font-family:var(--body);font-size:16.5px;line-height:1.6;max-width:66ch}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:17px 19px;box-shadow:var(--shadow)}
+.grid{display:grid;gap:15px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(245px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(196px,1fr))}
+
+.chip{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:3px;font-family:var(--display);font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;background:var(--sunk);color:var(--ink-2);border:1px solid var(--line)}
+.chip.acc{background:var(--accent-soft);color:var(--accent-2);border-color:transparent}
+.chip.sig{background:var(--signal-soft);color:var(--signal);border-color:transparent}
+.chip.good{background:var(--good-soft);color:var(--good);border-color:transparent}
+.chip.alert{background:var(--alert-soft);color:var(--alert);border-color:transparent}
+:root[data-theme="dark"] .chip.acc,:root[data-theme="dark"] .chip.sig,:root[data-theme="dark"] .chip.good,:root[data-theme="dark"] .chip.alert{color:var(--ink)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .chip.acc,:root:not([data-theme="light"]) .chip.sig,:root:not([data-theme="light"]) .chip.good,:root:not([data-theme="light"]) .chip.alert{color:var(--ink)}}
+
+.note{border-left:3px solid var(--accent);background:var(--accent-soft);padding:11px 14px;border-radius:0 7px 7px 0}
+.note.sig{border-color:var(--signal);background:var(--signal-soft)}
+.note.alert{border-color:var(--alert);background:var(--alert-soft)}
+.note.good{border-color:var(--good);background:var(--good-soft)}
+.note p:last-child{margin:0}
+.note strong{font-family:var(--display);letter-spacing:.07em;text-transform:uppercase;font-size:13px}
+
+a.link{color:var(--accent);text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--accent) 42%,transparent)}
+a.link:hover{border-bottom-color:var(--accent)}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:.93em}
+
+/* marcatore di verifica: ogni numero dichiara la sua provenienza */
+.v{display:inline-block;width:1.05em;text-align:center;font-family:var(--mono);font-size:.78em;vertical-align:.25em;cursor:help;font-weight:700}
+.v.ok{color:var(--good)}
+.v.est{color:var(--signal)}
+.v.chk{color:var(--alert)}
+.vkey{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--ink-2);margin:0}
+.vkey span{display:flex;align-items:center;gap:6px}
+
+/* ── strumenti grafici ─────────────────────────────────────── */
+.plate{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:10px;box-shadow:var(--shadow)}
+.plate svg{display:block;width:100%;height:auto}
+.legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:10px;padding:0 6px 4px;font-family:var(--display);font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
+.legend i{display:inline-block;width:20px;height:0;border-top-width:3px;border-top-style:solid;vertical-align:middle;margin-right:6px}
+.legend i.box{height:11px;width:13px;border:1px solid var(--line-strong);border-top:none;border-radius:2px;margin-bottom:-1px}
+.mapplate{display:grid;grid-template-columns:minmax(210px,.72fr) minmax(260px,1fr);gap:22px;align-items:start}
+.mapside{padding:4px 6px 6px 0;display:flex;flex-direction:column;gap:14px}
+.mapside .blk h4{margin-bottom:5px}
+.mapside .blk p{margin:0;font-size:14px;line-height:1.5;color:var(--ink-2)}
+.legend.col{flex-direction:column;gap:5px;margin-top:0;padding:0}
+.stopdot{cursor:pointer}
+.stopdot:hover circle.hit{fill:color-mix(in srgb,var(--accent) 22%,transparent)}
+.stopdot.hi circle.pin{fill:var(--accent);stroke:var(--surface)}
+
+/* ── filtro e pastiglie giornate ───────────────────────────── */
+.toolbar{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+.filters{display:flex;gap:6px;flex-wrap:wrap}
+.filters button{font-family:var(--display);font-size:12px;letter-spacing:.1em;text-transform:uppercase;background:var(--surface);border:1px solid var(--line);color:var(--ink-2);border-radius:6px;padding:6px 11px;cursor:pointer}
+.filters button:hover{border-color:var(--accent);color:var(--accent)}
+.filters button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--surface-2)}
+:root[data-theme="dark"] .filters button[aria-pressed="true"]{color:#12100E}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .filters button[aria-pressed="true"]{color:#12100E}}
+.pills{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 20px}
+.pill{display:flex;flex-direction:column;align-items:center;gap:1px;text-decoration:none;padding:6px 10px;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--ink-2);min-width:62px}
+.pill:hover{border-color:var(--accent);color:var(--accent)}
+.pill b{font-family:var(--display);font-size:15.5px;letter-spacing:.04em}
+.pill span{font-family:var(--display);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.pill.off{opacity:.3}
+
+/* ── scheda giornata ───────────────────────────────────────── */
+.day{display:grid;grid-template-columns:158px 1fr;margin-bottom:18px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);scroll-margin-top:62px}
+.day.off{display:none}
+.day.today{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-soft),var(--shadow)}
+.rail{background:var(--sunk);border-right:1px solid var(--line);padding:15px 14px;display:flex;flex-direction:column;gap:13px}
+.rail .num{font-family:var(--display);font-size:42px;line-height:.82;font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums}
+.rail .lab{font-family:var(--display);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3)}
+.rail dl{margin:0;display:flex;flex-direction:column;gap:8px}
+.rail dt{font-family:var(--display);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3)}
+.rail dd{margin:0;font-family:var(--display);font-size:16px;font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.sunbar{display:block;width:100%;height:auto}
+.daybody{padding:15px 19px 17px;min-width:0}
+.dayhead{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:4px}
+.dayhead .date{font-family:var(--display);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3)}
+.dayhead h3{font-size:22px;margin:2px 0 0;letter-spacing:.015em;text-transform:none}
+.route{font-family:var(--mono);font-size:12px;color:var(--ink-2);background:var(--sunk);border:1px solid var(--line);border-radius:6px;padding:8px 11px;margin:11px 0;overflow-x:auto;white-space:nowrap}
+.hour{display:flex;gap:11px;align-items:flex-start;background:var(--accent-soft);border:1px solid color-mix(in srgb,var(--accent) 25%,transparent);border-radius:7px;padding:9px 12px;margin:0 0 12px}
+.hour>b{font-family:var(--display);font-size:22px;letter-spacing:.02em;color:var(--accent-2);font-variant-numeric:tabular-nums;line-height:1.1;flex:0 0 auto}
+:root[data-theme="dark"] .hour>b{color:var(--accent-2)}
+.hour p{margin:0;font-size:14px;line-height:1.45}
+.hour p strong{font-weight:600;color:var(--ink)}
+.hour .t{font-family:var(--display);font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3);display:block}
+.daycols{display:grid;grid-template-columns:minmax(270px,1.12fr) minmax(230px,.88fr);gap:22px;margin-top:13px}
+
+ol.tl{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+ol.tl li{display:grid;grid-template-columns:52px 1fr;gap:12px;padding:0 0 11px;position:relative}
+ol.tl li::before{content:"";position:absolute;left:58px;top:15px;bottom:-4px;width:1px;background:var(--line)}
+ol.tl li:last-child::before{display:none}
+ol.tl time{font-family:var(--mono);font-size:12px;color:var(--accent);padding-top:2px;font-variant-numeric:tabular-nums}
+ol.tl .ev{position:relative;padding-left:15px}
+ol.tl .ev::before{content:"";position:absolute;left:-5px;top:6px;width:8px;height:8px;border-radius:50%;background:var(--surface);border:2px solid var(--accent)}
+ol.tl .ev b{font-weight:600}
+ol.tl .ev small{display:block;color:var(--ink-2);font-size:13.5px;line-height:1.45}
+
+.menu{margin:15px 0 2px;border:1px solid var(--line);border-radius:var(--r);background:var(--sunk);padding:13px 14px 14px}
+.menuhead{margin-bottom:11px}
+.menuhead h4{margin:0 0 3px;color:var(--accent)}
+.menuhead p{margin:0;font-family:var(--body);font-size:14.5px;line-height:1.5;color:var(--ink-2);max-width:72ch}
+.opts{display:grid;gap:9px;grid-template-columns:repeat(auto-fit,minmax(212px,1fr))}
+.opt{background:var(--surface);border:1px solid var(--line);border-radius:7px;padding:10px 12px 11px}
+.opt>b{display:block;font-family:var(--display);font-size:16.5px;letter-spacing:.03em;margin:7px 0 5px;color:var(--ink)}
+.opt p{margin:0;font-size:13.5px;line-height:1.5;color:var(--ink-2)}
+.opt p b{font-weight:600;color:var(--ink)}
+
+ul.tick{list-style:none;margin:0 0 13px;padding:0;display:flex;flex-direction:column;gap:6px}
+ul.tick li{position:relative;padding-left:16px;font-size:14.5px;line-height:1.5}
+ul.tick li::before{content:"";position:absolute;left:0;top:8px;width:5px;height:5px;background:var(--accent);border-radius:1px;transform:rotate(45deg)}
+.side .blk{margin-bottom:14px}
+.side .blk:last-child{margin-bottom:0}
+.plans{display:grid;gap:8px;margin-top:12px}
+.plan{border:1px dashed var(--line-strong);border-radius:7px;padding:9px 12px;font-size:13.5px;line-height:1.5;background:var(--surface-2)}
+.plan>b:first-child{font-family:var(--display);font-size:11px;letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:2px;color:var(--ink-3)}
+.plan.meteo>b:first-child{color:var(--good)}
+.plan.log>b:first-child{color:var(--signal)}
+
+/* ── tabelle ───────────────────────────────────────────────── */
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:14.5px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{font-family:var(--display);font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);background:var(--sunk);position:sticky;top:0;vertical-align:bottom}
+tbody tr:last-child td{border-bottom:none}
+td.num,th.num{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:13px;white-space:nowrap}
+tfoot td{font-family:var(--display);font-size:15.5px;letter-spacing:.04em;background:var(--sunk);border-top:2px solid var(--line-strong)}
+.bar{position:relative;display:block;height:6px;border-radius:2px;background:var(--accent);min-width:3px}
+.barcell{width:26%;min-width:104px}
+.barwrap{background:var(--sunk);border-radius:2px;overflow:hidden;display:block}
+
+/* ── strumenti interattivi ─────────────────────────────────── */
+.calc{display:grid;gap:16px;grid-template-columns:minmax(260px,1fr) minmax(280px,1.15fr)}
+.ctrl{display:flex;flex-direction:column;gap:4px;margin-bottom:12px}
+.ctrl>span{font-family:var(--display);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+.seg{display:flex;gap:0;border:1px solid var(--line-strong);border-radius:7px;overflow:hidden;width:fit-content;max-width:100%;flex-wrap:wrap}
+.seg button{font-family:var(--display);font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;background:var(--surface);border:none;border-right:1px solid var(--line);color:var(--ink-2);padding:7px 13px;cursor:pointer}
+.seg button:last-child{border-right:none}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--surface-2)}
+:root[data-theme="dark"] .seg button[aria-pressed="true"]{color:#12100E}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .seg button[aria-pressed="true"]{color:#12100E}}
+.stepper{display:flex;align-items:center;gap:10px}
+.stepper button{width:32px;height:32px;font-size:18px;line-height:1;font-family:var(--display);background:var(--surface);border:1px solid var(--line-strong);border-radius:6px;color:var(--ink);cursor:pointer}
+.stepper button:hover{border-color:var(--accent);color:var(--accent)}
+.stepper output{font-family:var(--display);font-size:24px;font-variant-numeric:tabular-nums;min-width:2ch;text-align:center}
+.verdict{border:1px solid var(--line-strong);border-radius:var(--r);padding:15px 17px;background:var(--surface-2)}
+.verdict .big{font-family:var(--display);font-size:clamp(30px,5vw,44px);line-height:1;font-variant-numeric:tabular-nums;margin:4px 0 6px}
+.verdict .big.pos{color:var(--good)}
+.verdict .big.neg{color:var(--alert)}
+.ledger{list-style:none;margin:12px 0 0;padding:0;font-size:14px}
+.ledger li{display:flex;justify-content:space-between;gap:12px;padding:5px 0;border-bottom:1px dotted var(--line)}
+.ledger li:last-child{border-bottom:none}
+.ledger li.tot{font-family:var(--display);font-size:16px;letter-spacing:.03em;border-top:2px solid var(--line-strong);border-bottom:none;margin-top:4px;padding-top:8px}
+.ledger .n{font-family:var(--mono);font-variant-numeric:tabular-nums}
+
+.cl{display:flex;flex-direction:column;gap:2px}
+.cl label{display:flex;gap:10px;align-items:flex-start;padding:5px 6px;border-radius:5px;cursor:pointer;font-size:14.5px}
+.cl label:hover{background:var(--sunk)}
+.cl input{margin:3px 0 0;width:16px;height:16px;accent-color:var(--accent);flex:0 0 auto}
+#clists .cl input:checked + span{color:var(--ink-3);text-decoration:line-through}
+.clhead{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px}
+.count{font-family:var(--mono);font-size:12.5px;color:var(--ink-3)}
+button.reset{font-family:var(--display);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;background:none;border:1px solid var(--line);color:var(--ink-2);border-radius:6px;padding:5px 10px;cursor:pointer}
+button.reset:hover{border-color:var(--accent);color:var(--accent)}
+
+/* ── frasario ──────────────────────────────────────────────── */
+.phr{min-width:520px}
+.phr td.it{font-family:var(--body);color:var(--ink-2)}
+.phr td.ar{font-size:20px;line-height:1.4;direction:rtl;text-align:right;white-space:nowrap}
+.phr td.tr{font-family:var(--display);font-size:15.5px;letter-spacing:.02em;color:var(--accent)}
+.phr td.pr{font-family:var(--mono);font-size:12.5px;color:var(--ink-3)}
+.numgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(88px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.numgrid div{background:var(--surface);padding:9px 10px;text-align:center}
+.numgrid b{display:block;font-size:24px;line-height:1.2}
+.numgrid span{font-family:var(--display);font-size:11.5px;letter-spacing:.08em;color:var(--ink-3);text-transform:uppercase}
+.numgrid em{display:block;font-style:normal;font-family:var(--display);font-size:14px;color:var(--accent)}
+
+footer{border-top:1px solid var(--line-strong);margin-top:56px;padding:22px 0 40px;color:var(--ink-3);font-size:13.5px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+@media (max-width:760px){
+  .mapplate{grid-template-columns:1fr}
+  .day{grid-template-columns:1fr}
+  .rail{flex-direction:row;align-items:center;flex-wrap:wrap;gap:16px;border-right:none;border-bottom:1px solid var(--line);padding:12px 15px}
+  .rail dl{flex-direction:row;gap:16px}
+  .rail .sunwrap{flex:1 1 160px;min-width:150px}
+  .daycols{grid-template-columns:1fr;gap:15px}
+  .calc{grid-template-columns:1fr}
+  .phr td.ar{font-size:18px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* ── stampa / export PDF ───────────────────────────────────── */
+@page{margin:13mm 11mm}
+@media print{
+  :root{
+    --bg:#FFFFFF; --surface:#FFFFFF; --surface-2:#FFFFFF; --sunk:#F4F1E9;
+    --ink:#1A1410; --ink-2:#463D33; --ink-3:#6F6558;
+    --line:#C8BFAD; --line-strong:#9A8F7C;
+    --accent:#8E2D16; --accent-2:#6E2210; --accent-soft:#F7E9E4;
+    --signal:#755209; --signal-soft:#F8F0DD;
+    --good:#175456; --good-soft:#E4F0EF;
+    --alert:#771818; --alert-soft:#F8E7E4;
+    --sea:#E7F0F0; --land:#F7F3E9; --land-2:#F1EDE1; --dune:#F4EBD5; --depth:#DEE9EA;
+    --night:#EDEAE3; --twi:#F8F0DC; --sun:#FDF7E1;
+    --shadow:none;
+  }
+  body{background:#fff;font-size:9.6pt;line-height:1.36}
+  .wrap{max-width:none;padding:0}
+  nav,.pills,.toolbar,button.reset,.legend,#themebtn,.stepper button,.seg{display:none!important}
+  .mast{border-bottom:1.5pt solid var(--line-strong)}
+  .mast::before{display:none}
+  .mast .wrap{padding-top:0}
+  h1{font-size:31pt}
+  .subtitle{font-size:10.5pt}
+  .mastsec{border:1pt solid var(--line-strong);break-inside:avoid}
+  section{padding:11pt 0 3pt;break-inside:auto}
+  h2{font-size:15.5pt;break-after:avoid}
+  .sechead{break-after:avoid;padding-bottom:6pt}
+  .card,.tablewrap,.note,.plate,.verdict{box-shadow:none!important;break-inside:avoid}
+  .day{box-shadow:none!important;break-inside:auto}
+  ol.tl li,.side .blk{break-inside:avoid}
+  .menu,.opt,.plan,.hour{break-inside:avoid}
+  .menu{padding:7pt 8pt}
+  .opts{grid-template-columns:1fr 1fr;gap:6pt}
+  .opt p{font-size:8.4pt}
+  .day{border:1pt solid var(--line-strong);margin-bottom:8pt;grid-template-columns:112px 1fr;break-before:auto}
+  .day.off{display:grid!important}
+  .day.today{box-shadow:none!important}
+  .rail{background:var(--sunk)}
+  .rail .num{font-size:22pt}
+  .daycols{grid-template-columns:1.12fr .88fr;gap:13pt}
+  .route{white-space:normal;overflow:visible;font-size:8.2pt}
+  .tablewrap{overflow:visible}
+  table{min-width:0;font-size:8.6pt}
+  th,td{padding:4pt 6pt}
+  thead th{position:static}
+  .plate{border:1pt solid var(--line-strong)}
+  .mapplate{grid-template-columns:88mm 1fr;gap:8mm}
+  #profilo{max-height:70mm}
+  #almanacco{max-height:92mm}
+  .calc{grid-template-columns:1fr 1fr}
+  a.link{border-bottom:none;color:var(--accent)}
+  a[target="_blank"]::after{content:" ↗";font-size:.8em}
+  .cl label{padding:1.5pt 0}
+  .cl input{-webkit-appearance:none;appearance:none;width:8.5pt;height:8.5pt;border:1pt solid var(--ink-3);border-radius:2pt}
+  .phr{min-width:0}
+  .phr td.ar{font-size:14pt}
+  footer{margin-top:13pt;padding:8pt 0 0}
+  #valigia,#sos{break-before:page}
+}
+</style>
+
+<header class="mast">
+  <div class="wrap">
+    <div class="eyebrow">Giordania · 12 → 21 novembre 2026 · 10 giorni, 9 notti, 5 basi</div>
+    <h1>La Grande<br><em>Frattura</em></h1>
+    <p class="subtitle">Tutto il viaggio sta dentro una sola cicatrice della crosta terrestre. Si scende a <b>−430 m</b> sul Mar Morto, si risale a <b>1.200 m</b> a Dana, si cammina sul bordo orientale della fossa fino a Petra e al Wadi Rum, e si finisce a <b>quota zero</b> nel Mar Rosso. Ottocentotrentacinque chilometri per <b>1.930 metri di escursione altimetrica</b>, e dieci ore precise che decidono le dieci giornate.</p>
+    <div class="keyfacts">
+      <div class="kf"><b>10</b><span>Giorni</span></div>
+      <div class="kf"><b>9</b><span>Notti</span></div>
+      <div class="kf"><b>5</b><span>Basi</span></div>
+      <div class="kf"><b>835</b><span>km totali</span></div>
+      <div class="kf"><b>13h10</b><span>Ore di guida</span></div>
+      <div class="kf"><b>1.930</b><span>m di escursione</span></div>
+      <div class="kf"><b>2</b><span>Mari</span></div>
+    </div>
+    <div class="mastsec">
+      <svg id="minisez" viewBox="0 0 1000 116" role="img" aria-label="Sezione altimetrica del viaggio, dal Mar Morto a −430 metri fino al valico di Ras an-Naqab a 1.500 metri e al Mar Rosso a quota zero"></svg>
+    </div>
+    <div class="mastcap">
+      <span>Sezione longitudinale · quote approssimate</span>
+      <span>Mar Morto −430 m &nbsp;·&nbsp; Ras an-Naqab ≈1.500 m &nbsp;·&nbsp; Aqaba 0 m</span>
+    </div>
+  </div>
+</header>
+
+<nav id="nav">
+  <div class="wrap">
+    <div class="navlinks">
+      <a href="#correzioni">Correzioni</a>
+      <a href="#mappa">Mappa</a>
+      <a href="#quota">Quota</a>
+      <a href="#luce">Luce</a>
+      <a href="#itinerario">Giorno per giorno</a>
+      <a href="#distanze">Chilometri</a>
+      <a href="#decisioni">Quando si decide</a>
+      <a href="#prenotazioni">Prenotazioni</a>
+      <a href="#pass">Jordan Pass</a>
+      <a href="#budget">Budget</a>
+      <a href="#guida">Guida pratica</a>
+      <a href="#clima">Clima</a>
+      <a href="#varianti">Varianti</a>
+      <a href="#valigia">Valigia</a>
+      <a href="#frasario">Frasario</a>
+      <a href="#sos">SOS</a>
+    </div>
+    <button id="themebtn" type="button" aria-label="Cambia tema"><span id="themeico">◐</span><span id="themetxt">Auto</span></button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<section id="correzioni">
+  <div class="sechead">
+    <span class="no">01</span>
+    <h2>Le otto correzioni</h2>
+    <p>Il routing di partenza è solido: le basi, la sequenza e le distanze reggono. Ma otto cose, verificate alle fonti, cambiano la giornata in cui capitano — e tre di queste avrebbero fatto trovare un cancello chiuso.</p>
+  </div>
+  <div class="grid g3" style="margin-bottom:18px">
+    <div class="card">
+      <div class="chip alert">Chiuso a novembre</div>
+      <h3 style="margin-top:10px">Il Wadi Ghweir non si fa</h3>
+      <p class="prose" style="font-size:14.8px">L'RSCN tiene i sentieri d'acqua di Dana aperti da metà marzo a fine ottobre: da novembre chiudono per rischio di piena improvvisa, come il Wadi Mujib. Al suo posto il <b>Wadi Dana Trail</b>, Dana → Feynan: aperto tutto l'anno, 14 km, novecento metri di discesa e quattro fasce climatiche attraversate a piedi. In novembre è il mese giusto per farlo; a maggio sarebbe un forno.</p>
+    </div>
+    <div class="card">
+      <div class="chip alert">Orario invernale</div>
+      <h3 style="margin-top:10px">Petra chiude alle 16:00</h3>
+      <p class="prose" style="font-size:14.8px">Da novembre il sito è aperto <b>06:00–16:00</b>, non fino a sera. La giornata "al contrario" del routing finiva «al Visitor Center nel tardo pomeriggio»: quel pomeriggio non esiste. Tutta la giornata 5 è stata ricalcolata all'indietro a partire dalle 16:00.</p>
+    </div>
+    <div class="card">
+      <div class="chip sig">Orientamento</div>
+      <h3 style="margin-top:10px">La Tesoreria guarda a est</h3>
+      <p class="prose" style="font-size:14.8px">Al-Khazneh prende il sole in faccia dalle <b>09:00 alle 11:00</b> circa, poi va in ombra: non «nelle ore centrali». Arrivandoci alle 14:00, come vuole il percorso invertito, la si trova in ombra. Per questo la Tesoreria ha una mattina tutta sua, il giorno 6.</p>
+    </div>
+    <div class="card">
+      <div class="chip good">+5 JOD</div>
+      <h3 style="margin-top:10px">Jordan Pass Explorer</h3>
+      <p class="prose" style="font-size:14.8px">Cinque dinari separano il pass da 1 giorno a Petra da quello da 2. Comprano l'alba del 17 novembre nel Siq deserto e la Tesoreria con la luce giusta, prima di scendere al Wadi Rum. È la spesa con il rapporto migliore di tutto il viaggio.</p>
+    </div>
+    <div class="card">
+      <div class="chip sig">Venerdì</div>
+      <h3 style="margin-top:10px">Il giorno 2 è il weekend giordano</h3>
+      <p class="prose" style="font-size:14.8px">Venerdì 13 è il giorno di preghiera e di gita fuori porta: le spiagge pubbliche del Mar Morto si riempiono di famiglie dal tardo mattino e San Giorgio a Madaba apre alle 9:30 invece che alle 8:00. Nebo all'apertura, Mar Morto entro le 10:00, e la chiesa dei mosaici spostata al pomeriggio del giorno 1.</p>
+    </div>
+    <div class="card">
+      <div class="chip alert">Buio alle 18:06</div>
+      <h3 style="margin-top:10px">Mar Morto e Kerak non ci stanno entrambi</h3>
+      <p class="prose" style="font-size:14.8px">Il tramonto del 13 novembre è alle <b>17:39</b>, e la discesa finale a Dana è stretta e tortuosa. Fatti i conti, bagno lungo al Mar Morto <em>e</em> visita piena a Kerak portano a Dana dopo il buio. Con l'ordine nuovo — Nebo 08:00, Mar Morto 09:30, Kerak 14:00 — si arriva alle 16:50 con la luce.</p>
+    </div>
+    <div class="card">
+      <div class="chip sig">Numeri</div>
+      <h3 style="margin-top:10px">Cambio 1,21 e Petra by Night 30</h3>
+      <p class="prose" style="font-size:14.8px">Il dinaro vale <b>1,21 €</b>, non 1,30: su un viaggio da millecinquecento dinari sono quasi 140 € di differenza nella stima. E Petra by Night è passato da 17 a <b>30 JOD</b> a persona. Tutto il budget è rifatto sui prezzi verificati ad agosto 2026.</p>
+    </div>
+    <div class="card">
+      <div class="chip alert">Non è il meteo</div>
+      <h3 style="margin-top:10px">Il Wadi Mujib è chiuso e basta</h3>
+      <p class="prose" style="font-size:14.8px">La Siq Trail non «chiude se piove»: la stagione è <b>1 aprile – 31 ottobre</b>, punto. A novembre il canyon è chiuso in ogni caso. Resta il belvedere sulla diga lungo la strada, che costa dieci minuti e vale la sosta.</p>
+    </div>
+  </div>
+
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Notti</th><th>Date</th><th>Base</th><th class="num">Quota</th><th>Perché proprio lì</th></tr></thead>
+      <tbody>
+        <tr><td class="num">1</td><td>12 nov</td><td><b>Madaba</b></td><td class="num">780 m</td><td>35 km dall'aeroporto invece dei 40 di Amman, e una città vecchia che si gira a piedi la sera stessa. Il primo mansaf si mangia qui.</td></tr>
+        <tr><td class="num">2</td><td>13–14 nov</td><td><b>Dana</b></td><td class="num">1.200 m</td><td>Il villaggio ottomano sul ciglio della riserva. Due notti perché il trekking del giorno 3 parte da casa e finisce novecento metri più in basso: serve una base ferma.</td></tr>
+        <tr><td class="num">2</td><td>15–16 nov</td><td><b>Little Petra / Wadi Musa</b></td><td class="num">1.100 m</td><td>Dormire vicino a Little Petra è ciò che rende possibile il <i>back door</i> all'alba del giorno 5. La seconda notte conviene invece a Wadi Musa, per il Visitor Center alle 6:00 del giorno 6.</td></tr>
+        <tr><td class="num">2</td><td>17–18 nov</td><td><b>Wadi Rum</b> 🏜</td><td class="num">1.000 m</td><td>Campo beduino dentro l'area protetta. L'auto resta al villaggio: da lì in poi si va solo in 4×4 con guida.</td></tr>
+        <tr><td class="num">2</td><td>19–20 nov</td><td><b>Aqaba</b></td><td class="num">0 m</td><td>Il Mar Rosso a 22–24 °C in novembre e la barriera raggiungibile da riva. Due notti perché l'ultima giornata è tutta strada: 330 km fino all'aeroporto.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="margin:14px 0 0;font-size:14px;color:var(--ink-2)"><b>Cinque basi in nove notti, e nessuna di una notte sola tranne la prima.</b> È il contrario di quello che fanno i tour: quattro cambi di valigia invece di otto, e ogni base ha almeno una giornata intera che parte da casa.</p>
+</section>
+
+<section id="mappa">
+  <div class="sechead">
+    <span class="no">02</span>
+    <h2>La rotta</h2>
+    <p>Mappa schematica costruita su coordinate reali. Tocca una tappa per saltare alla sua giornata; passa sopra una giornata dell'itinerario e la tappa si accende qui.</p>
+  </div>
+  <div class="plate mapplate">
+    <svg id="map" viewBox="0 0 480 1156" role="img" aria-label="Carta della striscia occidentale della Giordania con il percorso da Amman a Madaba, Mar Morto, Kerak, Dana, Petra, Wadi Rum e Aqaba"></svg>
+    <div class="mapside">
+      <div class="legend col">
+        <span><i style="border-color:var(--accent)"></i>Discesa verso sud (giorni 1–8)</span>
+        <span><i style="border-color:var(--signal);border-top-style:dashed"></i>Rientro (giorno 10)</span>
+        <span><i style="border-color:var(--good);border-top-style:dotted"></i>A piedi</span>
+        <span><i style="border-color:var(--ink-3);border-top-style:dotted"></i>In 4×4 con guida</span>
+        <span><i class="box" style="background:var(--sea)"></i>Acqua</span>
+        <span><i class="box" style="background:var(--depth);opacity:.6"></i>La fossa tettonica</span>
+      </div>
+      <div class="blk"><h4>Perché la carta è tagliata</h4><p>Il 90% della Giordania è deserto, e questa carta lo lascia fuori apposta. Tutto quello che si visita sta in una <b>striscia larga cento chilometri</b> lungo la Grande Frattura. A est di qui ci sono i castelli omayyadi e poi seicento chilometri di niente fino all’Iraq.</p></div>
+      <div class="blk"><h4>Le tre strade del sud</h4><p>Dal Mar Morto in giù si scende per la <b>Dead Sea Highway</b> (la 65, sul fondo della fossa), per la <b>King’s Highway</b> (la 35, sul ciglio dell’altopiano) o per la <b>Desert Highway</b> (la 15, dietro). Questo itinerario le usa tutte e tre, ciascuna dove rende di più: la 65 per la riva, la 35 per Kerak e Shobak, la 15 per i trasferimenti lunghi.</p></div>
+      <div class="blk"><h4>Il vincolo che decide gli orari</h4><p>Il sole tramonta alle <b>17:40</b> e alle <b>18:06</b> è buio pieno. Fuori dalle città si guida male di notte — pochi guard-rail, mezzi senza fari, greggi sulla carreggiata — e due discese di questo itinerario — quella nel villaggio di Dana e quella dal Monte Nebo al Mar Morto — sono strette e tortuose. Per questo ogni trasferimento è programmato per finire prima delle 17:00.</p></div>
+      <div class="blk"><h4>Cosa sta fuori</h4><p>Jerash, Ajloun, Umm Qais e i castelli del deserto stanno a nord e a est di questa carta. Non è una dimenticanza: è la conseguenza di scendere fino ad Aqaba in dieci giorni. Vedi la sezione 13.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="quota">
+  <div class="sechead">
+    <span class="no">03</span>
+    <h2>Il profilo</h2>
+    <p>Questo viaggio è una sezione geologica percorsa in auto. La linea rossa è la strada, la fascia azzurra è quanto si sta sotto il livello del mare. Nessun'altra strada al mondo scende così tanto sotto lo zero e risale così in fretta.</p>
+  </div>
+  <div class="plate">
+    <svg id="profilo" viewBox="0 0 1000 380" role="img" aria-label="Profilo altimetrico del percorso: dai 730 metri dell'aeroporto ai meno 430 del Mar Morto, ai 1.200 di Dana, ai 1.500 del valico di Ras an-Naqab e allo zero di Aqaba"></svg>
+  </div>
+  <div class="grid g3" style="margin-top:16px">
+    <div class="card"><h4>Il salto del giorno 2</h4><p style="font-size:14.5px;margin:0">Dal Monte Nebo (710 m) alla riva del Mar Morto (−430 m) ci sono <b>venti chilometri e 1.140 metri di discesa</b>: le orecchie si tappano due volte. Poi, nello stesso pomeriggio, si risale a Kerak (930 m) e a Dana (1.200 m). In una giornata sola si accumulano <b>2.840 metri di dislivello</b> stando seduti in auto.</p></div>
+    <div class="card"><h4>Perché fa freddo di notte</h4><p style="font-size:14.5px;margin:0">Dana, Little Petra e il Wadi Rum stanno tutti fra i mille e i milleduecento metri. A quella quota, con aria secca e cielo sereno, la temperatura crolla appena il sole va giù: <b>dai 22 °C del pomeriggio agli 8 °C dell'alba</b>, e nel deserto anche meno. Il piumino leggero non è prudenza, è necessità.</p></div>
+    <div class="card"><h4>Il valico che nessuno racconta</h4><p style="font-size:14.5px;margin:0">Fra Petra e il Wadi Rum la Desert Highway sale a <b>Ras an-Naqab</b>, circa 1.500 m, e l'altopiano finisce di colpo: sotto si apre il Wadi Araba fino a perdita d'occhio. È una sosta gratuita di dieci minuti sul ciglio della scarpata, ed è uno dei tre panorami del viaggio.</p></div>
+  </div>
+</section>
+
+<section id="luce">
+  <div class="sechead">
+    <span class="no">04</span>
+    <h2>L'almanacco della luce</h2>
+    <p>La Giordania sta sul bordo occidentale del fuso UTC+3 e non cambia l'ora: a metà novembre <b>il sole sorge verso le 07:05 e tramonta verso le 17:40</b>. Dieci ore e mezza di luce, non una di più. Ogni giornata di questo road book è costruita attorno a un'ora precisa di questo grafico.</p>
+  </div>
+  <div class="plate">
+    <svg id="almanacco" viewBox="0 0 1000 470" role="img" aria-label="Almanacco della luce: per ciascuna delle dieci giornate, l'ora del crepuscolo civile, dell'alba, del mezzogiorno solare e del tramonto, con evidenziata l'ora che conta"></svg>
+    <div class="legend">
+      <span><i class="box" style="background:var(--night)"></i>Notte</span>
+      <span><i class="box" style="background:var(--twi)"></i>Crepuscolo civile</span>
+      <span><i class="box" style="background:var(--sun)"></i>Sole sopra l'orizzonte</span>
+      <span><i style="border-color:var(--accent)"></i>L'ora che conta</span>
+    </div>
+  </div>
+  <div class="grid g3" style="margin-top:16px">
+    <div class="card"><h4>Effemeridi, non stime</h4><p style="font-size:14.5px;margin:0">Alba, tramonto e crepuscolo sono <b>calcolati con l'algoritmo solare NOAA sulle coordinate reali di ogni tappa</b>, non copiati da una media mensile: fra Madaba e Aqaba ci sono sette minuti di differenza sul tramonto, e in una giornata da dieci ore e mezza sette minuti si sentono. Orario di Giordania, UTC+3 tutto l'anno dal 2022.</p></div>
+    <div class="card"><h4>La luna del deserto</h4><p style="font-size:14.5px;margin:0">Le due notti al Wadi Rum cadono con la luna al <b>53% e al 63%</b>, che tramonta verso le <b>00:35 e le 01:35</b>. Tradotto: fino a mezzanotte il deserto è illuminato abbastanza da camminarci senza torcia — bellissimo — ma la Via Lattea si vede solo dopo. Se qualcuno vuole il cielo vero, la sveglia è all'una.</p></div>
+    <div class="card"><h4>La regola delle 16:00</h4><p style="font-size:14.5px;margin:0">Petra chiude alle 16:00, ma il sole va giù alle 17:41: c'è quasi un'ora e mezza di luce <em>dopo</em> che il sito ha chiuso. Non è tempo perso — è l'ora giusta per il Cave Bar, per il belvedere sopra Wadi Musa, o per mettersi in strada verso il campo senza guidare al buio.</p></div>
+  </div>
+</section>
+
+<section id="itinerario">
+  <div class="sechead">
+    <span class="no">05</span>
+    <h2>Giorno per giorno</h2>
+    <p>Orari con soste, parcheggio, code e cambio d'abito già dentro. Ogni giornata dichiara <b>l'ora che conta</b>, ha <b>due piani B</b> — uno meteo e uno logistico — e dice a che punto del viaggio va presa ogni decisione.</p>
+  </div>
+  <div class="toolbar">
+    <div class="filters" id="filters" role="group" aria-label="Filtra le giornate per tipo"></div>
+    <span class="count" id="filtercount"></span>
+  </div>
+  <div class="pills" id="pills"></div>
+  <div id="days"></div>
+</section>
+
+<section id="distanze">
+  <div class="sechead">
+    <span class="no">06</span>
+    <h2>Quadro chilometrico</h2>
+    <p>Distanze stradali reali e tempi di <b>sola guida</b>: aggiungi il 15–20% per soste, rifornimenti, dossi nei centri abitati e le rotonde, che in Giordania sono ovunque. Tre giornate su dieci l'auto non si muove.</p>
+  </div>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>#</th><th>Data</th><th>Tratta</th><th class="num">km</th><th class="num">Guida</th><th class="barcell">Carico</th><th class="num">Progr.</th></tr></thead>
+      <tbody>
+        <tr><td class="num">01</td><td>Gio 12</td><td>Aeroporto Queen Alia → Madaba</td><td class="num">35</td><td class="num">0h40</td><td class="barcell"><span class="barwrap"><span class="bar" style="width:11%"></span></span></td><td class="num">35</td></tr>
+        <tr><td class="num">02</td><td>Ven 13</td><td>Madaba → Nebo → Mar Morto → Kerak → Dana</td><td class="num">190</td><td class="num">3h20</td><td class="barcell"><span class="barwrap"><span class="bar" style="width:58%"></span></span></td><td class="num">225</td></tr>
+        <tr><td class="num">03</td><td>Sab 14</td><td>Dana → Feynan <span class="chip good" style="font-size:10px;padding:1px 6px">a piedi</span> rientro in 4×4</td><td class="num">0</td><td class="num">—</td><td class="barcell"><span class="barwrap"><span class="bar" style="width:1%"></span></span></td><td class="num">225</td></tr>
+        <tr><td class="num">04</td><td>Dom 15</td><td>Dana → Shobak → Little Petra</td><td class="num">65</td><td class="num">1h20</td><td class="barcell"><span class="barwrap"><span class="bar" style="width:20%"></span></span></td><td class="num">290</td></tr>
+        <tr><td class="num">05</td><td>Lun 16</td><td>Petra dal <i>back door</i> <span class="chip good" style="font-size:10px;padding:1px 6px">12 km a piedi</span></td><td class="num">25</td><td class="num">0h40</td><td class="barcell"><span class="barwrap"><span class="bar" style="width:8%"></span></span></td><td class="num">315</td></tr>
+        <tr><td class="num">06</td><td>Mar 17</td><td>Wadi Musa → Ras an-Naqab → Wadi Rum</td><td class="num">110</td><td class="num">1h50</td><td class="barcell"><span class="barwrap"><span class="bar" style="width:33%"></span></span></td><td class="num">425</td></tr>
+        <tr><td class="num">07</td><td>Mer 18</td><td>Wadi Rum, jeep full day <span class="chip" style="font-size:10px;padding:1px 6px">auto ferma</span></td><td class="num">0</td><td class="num">—</td><td class="barcell"><span class="barwrap"><span class="bar" style="width:1%"></span></span></td><td class="num">425</td></tr>
+        <tr><td class="num">08</td><td>Gio 19</td><td>Wadi Rum → Aqaba</td><td class="num">60</td><td class="num">0h55</td><td class="barcell"><span class="barwrap"><span class="bar" style="width:18%"></span></span></td><td class="num">485</td></tr>
+        <tr><td class="num">09</td><td>Ven 20</td><td>Aqaba, spostamenti in città e alle spiagge sud</td><td class="num">20</td><td class="num">0h40</td><td class="barcell"><span class="barwrap"><span class="bar" style="width:6%"></span></span></td><td class="num">505</td></tr>
+        <tr><td class="num">10</td><td>Sab 21</td><td>Aqaba → Desert Highway → Aeroporto Queen Alia</td><td class="num">330</td><td class="num">3h45</td><td class="barcell"><span class="barwrap"><span class="bar" style="width:100%"></span></span></td><td class="num">835</td></tr>
+      </tbody>
+      <tfoot><tr><td colspan="3">Totale</td><td class="num">835</td><td class="num">13h10</td><td></td><td class="num">Ø 84/g</td></tr></tfoot>
+    </table>
+  </div>
+  <div class="grid g3" style="margin-top:16px">
+    <div class="card"><h4>Come è bilanciato</h4><p style="font-size:14.5px;margin:0">Due sole giornate sopra le tre ore di guida — la 2 e la 10 — e stanno all'inizio e alla fine, dove non tolgono niente. <b>Sette giornate su dieci sotto i settanta chilometri.</b> È un viaggio che si sposta poco e si ferma molto: 835 km in dieci giorni sono meno di quanti se ne fanno in tre giorni di Islanda.</p></div>
+    <div class="card"><h4>Dove finisce la benzina</h4><p style="font-size:14.5px;margin:0">Tre buchi veri. <b>Dead Sea Highway a sud di Amman Beach</b>: niente per una novantina di chilometri fino al bivio di Kerak. <b>Dana</b>: nel villaggio non c'è distributore, il più vicino è a Qadisiyah, 7 km sulla strada per Tafileh. <b>Wadi Rum</b>: una sola pompa al villaggio, e il campo è dentro l'area protetta. Regola semplice: si riparte sempre con il pieno da Madaba, da Kerak, da Wadi Musa e da Aqaba.</p></div>
+    <div class="card"><h4>Autovelox e limiti</h4><p style="font-size:14.5px;margin:0">Sulla Desert Highway i rilevatori fissi sono numerosi e ben segnalati, ma il limite scende senza preavviso in prossimità degli abitati: <b>110–120 km/h in autostrada, 80 sulla King's Highway, 40–60 nei centri</b>. Le multe arrivano al noleggiatore, che le gira sulla carta con una commissione. Nei paesi ci sono <em>dossi non segnalati</em>: è la causa numero uno di danni ai fondi delle auto a noleggio.</p></div>
+  </div>
+</section>
+
+<section id="decisioni">
+  <div class="sechead">
+    <span class="no">07</span>
+    <h2>Quando si decide</h2>
+    <p>La cosa che regge tutto: separare quello che va deciso oggi da quello che va deciso a colazione. Ogni scelta del viaggio sta in una di queste quattro colonne, e nessuna sta in due.</p>
+  </div>
+  <div class="grid g4">
+    <div class="card">
+      <div class="chip alert">Adesso, da casa</div>
+      <h3 style="margin-top:10px">Prima di partire</h3>
+      <ul class="tick" style="margin-bottom:0">
+        <li><b>Jordan Pass</b>, e va comprato <em>prima</em> di atterrare: se lo compri in Giordania il visto non è più esente. Scegli il taglio nella sezione 09.</li>
+        <li><b>Auto a noleggio</b> con CDW e furto inclusi, ritiro e riconsegna a Queen Alia.</li>
+        <li><b>Nove notti</b> in cinque strutture. Il campo del Wadi Rum e la casa vicino a Little Petra sono i due che si esauriscono prima.</li>
+        <li><b>eSIM</b> attivata a terra, o SIM al banco arrivi.</li>
+        <li><b>Mappe offline</b> di tutta la Giordania scaricate.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="chip sig">Insieme all'alloggio</div>
+      <h3 style="margin-top:10px">Quando prenoti</h3>
+      <ul class="tick" style="margin-bottom:0">
+        <li><b>Il taglio del Jordan Pass</b>: 1, 2 o 3 giorni a Petra. Decide se il 17 novembre avrai la Tesoreria con la luce buona o no. Non si cambia dopo.</li>
+        <li><b>Il pacchetto del campo beduino</b>: quasi tutti includono cena, notte e il jeep full day del giorno 7. Chiedi esplicitamente cosa c'è dentro, perché il prezzo cambia del doppio.</li>
+        <li><b>La seconda notte a Wadi Musa</b> invece che a Little Petra, se vuoi essere al Visitor Center alle 6:00 del giorno 6 senza fare venti minuti di strada al buio.</li>
+        <li><b>Petra by Night</b> del lunedì 16, se la volete: biglietto a parte, non è nel pass.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="chip acc">Al banco, la sera</div>
+      <h3 style="margin-top:10px">La sera prima</h3>
+      <ul class="tick" style="margin-bottom:0">
+        <li><b>Il 4×4 delle 6:15 al checkpoint di Little Petra</b> (sera del giorno 4). È la telefonata più importante del viaggio: i 4×4 ufficiali partono solo dopo le 7:00, e mezz'ora di anticipo qui vale un'ora di solitudine al Monastero.</li>
+        <li><b>La guida e la navetta di rientro da Feynan</b> (sera del giorno 2), al Dana Guesthouse o al Wild Jordan Centre.</li>
+        <li><b>Il giro in jeep del pomeriggio</b> al Wadi Rum: si concorda arrivando, non prima.</li>
+        <li><b>L'uscita in barca o l'immersione</b> ad Aqaba, il giorno prima: le barche partono la mattina presto.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="chip good">A colazione</div>
+      <h3 style="margin-top:10px">La mattina stessa</h3>
+      <ul class="tick" style="margin-bottom:0">
+        <li><b>Quanto scendere nel Wadi Dana</b>: fino a Feynan o solo fino alla confluenza e ritorno. Si guarda il cielo e le gambe.</li>
+        <li><b>Kerak o Mar Morto lungo</b>, il giorno 2, se la mattina è partita in ritardo. Uno dei due salta.</li>
+        <li><b>L'Alto Luogo del Sacrificio</b> a Petra: si decide arrivati in fondo agli 800 gradini, non prima.</li>
+        <li><b>Il Burdah Rock Bridge</b> al Wadi Rum: la guida lo propone al mattino se il gruppo se la sente e il vento lo permette.</li>
+        <li><b>Tutta la giornata 9 ad Aqaba.</b> È l'unica completamente vuota, ed è vuota apposta.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="prenotazioni">
+  <div class="sechead">
+    <span class="no">08</span>
+    <h2>Da prenotare, in quest'ordine</h2>
+    <p>La buona notizia di questo itinerario: <b>non c'è nessuno slot orario contingentato</b>. Petra non ha ingressi a fascia, il Wadi Rum si registra al Visitor Center, i castelli si pagano alla cassa. Quello che si esaurisce sono i letti, non i biglietti.</p>
+  </div>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Priorità</th><th>Cosa</th><th>Dove</th><th class="num">Costo</th><th>Nota</th></tr></thead>
+      <tbody>
+        <tr><td><span class="chip alert">Subito</span></td><td><b>Jordan Pass</b></td><td class="mono">jordanpass.jo</td><td class="num">70–80 JOD<span class="v ok" title="Verificato: prezzi ufficiali 2026">✓</span></td><td><b>Deve essere acquistato prima dell'arrivo in Giordania</b>, altrimenti il visto (40 JOD) si paga comunque. Esenta dal visto solo se si resta almeno 3 notti: voi ne fate 9. Vedi il calcolo nella sezione 09.</td></tr>
+        <tr><td><span class="chip alert">Subito</span></td><td><b>Alloggi</b>, 9 notti in 5 strutture</td><td>Diretto / Booking</td><td class="num">—</td><td><b>Madaba ×1 · Dana ×2 · Little Petra–Wadi Musa ×2 · Wadi Rum ×2 · Aqaba ×2.</b> I due che vanno prenotati per primi sono il campo del Wadi Rum (i camp buoni con cena e jeep inclusi si riempiono) e Dana, che ha poche strutture in tutto.</td></tr>
+        <tr><td><span class="chip alert">Subito</span></td><td><b>Auto a noleggio</b>, 10 giorni</td><td>Aeroporto Queen Alia</td><td class="num">230–400 JOD<span class="v est" title="Stimato: dipende da categoria e stagione">~</span></td><td>Verifica <b>CDW e furto</b> nel contratto e la franchigia. L'off-road è vietato da quasi tutti i contratti: non serve un 4×4, serve un'auto con un fondo che sopporti i dossi. Chiedi conferma scritta della <b>riconsegna in aeroporto</b>, che richiede 20–30 minuti.</td></tr>
+        <tr><td><span class="chip sig">Un mese prima</span></td><td><b>Campo beduino</b> del Wadi Rum, 2 notti</td><td>Diretto</td><td class="num">—</td><td>Chiedi cosa comprende: <b>cena zarb, colazione, transfer dal villaggio, jeep pomeridiano del giorno 6 e jeep full day del giorno 7</b>. Chiedi anche se le tende hanno stufa: a novembre, di notte, nel deserto si va vicino allo zero.</td></tr>
+        <tr><td><span class="chip sig">Un mese prima</span></td><td><b>Volo e orari</b></td><td>—</td><td class="num">—</td><td>Il giorno 1 cambia forma a seconda dell'ora di atterraggio: prima delle 13:00 il Monte Nebo si fa oggi al tramonto, dopo si fa domani mattina. Vedi il menù del giorno 1.</td></tr>
+        <tr><td><span class="chip acc">Alla partenza</span></td><td><b>eSIM</b> o SIM turistica</td><td>eSIM online / banco arrivi</td><td class="num">15–22 JOD<span class="v est" title="Stimato su offerte tipiche 2026">~</span></td><td>Umniah e Orange hanno i banchi agli arrivi di Queen Alia, pacchetto tipico 10–20 GB. Una eSIM comprata prima è attiva all'atterraggio e non fa perdere la coda al banco: con l'auto da ritirare, sono venti minuti guadagnati.</td></tr>
+        <tr><td><span class="chip good">La sera prima</span></td><td><b>Guida e navetta</b> per il Wadi Dana Trail</td><td>Dana Guesthouse / RSCN</td><td class="num">60–110 JOD<span class="v chk" title="Da confermare: le tariffe RSCN 2026 non sono consultabili online, telefonare">!</span></td><td>RSCN Amman <b class="mono">+962 6 461 6523</b>. La navetta 4×4 di rientro da Feynan a Dana è la voce che pesa: sono 55 km di pista e asfalto attorno alla riserva. <b>Chiedi anche se il Wadi Ghweir è per caso aperto</b>: se lo fosse, è la prima scelta.</td></tr>
+        <tr><td><span class="chip good">La sera prima</span></td><td><b>4×4 al checkpoint</b> di Little Petra, ore 6:15</td><td>Al vostro alloggio</td><td class="num">10–20 JOD<span class="v est" title="Stimato: trasferimento privato concordato con l'alloggio">~</span></td><td>I 4×4 ufficiali dal Nabataean Cultural Village partono <b>dopo le 7:00</b> e costano 5 JOD a persona. Per essere sul sentiero alle 6:30 serve un passaggio privato concordato la sera prima.</td></tr>
+        <tr><td><span class="chip good">In loco</span></td><td>Petra, Wadi Rum, Kerak, Shobak, Madaba Park</td><td>Alla cassa / col pass</td><td class="num">incluso<span class="v ok" title="Verificato: tutti compresi nel Jordan Pass">✓</span></td><td>Tutti dentro il Jordan Pass. Al Wadi Rum la registrazione al Visitor Center è comunque obbligatoria.</td></tr>
+        <tr><td><span class="chip good">In loco</span></td><td>Monte Nebo, San Giorgio a Madaba</td><td>Alla cassa, contanti</td><td class="num">3 + 1 JOD<span class="v ok" title="Verificato: Nebo 3 JOD, San Giorgio 1 JOD, entrambi fuori dal Jordan Pass">✓</span></td><td><b>Non sono nel Jordan Pass</b>: il Nebo è dei Francescani, San Giorgio è greco-ortodossa. Servono monete. San Giorgio d'inverno apre 08:00–17:00, il <b>venerdì dalle 9:30</b>, e durante la messa la mappa non si visita.</td></tr>
+        <tr><td><span class="chip">Facoltativo</span></td><td>Petra by Night, lunedì 16</td><td class="mono">petrabynight.jo</td><td class="num">30 JOD<span class="v ok" title="Verificato: prezzo ufficiale 2026, aumentato dai 17 JOD degli anni scorsi">✓</span></td><td>Lunedì, mercoledì e giovedì, 20:30–22:30. Serve avere già un biglietto diurno o il Jordan Pass. Le opinioni sono contrastanti: suggestivo, ma è mezz'ora di Siq a lume di candela e un'ora seduti. <b>Il 16 è lunedì</b>, quindi la finestra c'è.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note sig" style="margin-top:16px">
+    <p><strong>Cosa significano i marcatori</strong> Accanto a ogni cifra di questo documento c'è la sua provenienza. <span class="v ok">✓</span> è un dato verificato ad agosto 2026 alla fonte ufficiale o a più fonti concordi. <span class="v est">~</span> è una stima dichiarata, da usare come ordine di grandezza. <span class="v chk">!</span> è un dato che <b>non sono riuscito a verificare</b> e che va confermato prima di partire — di solito perché il sito ufficiale non è consultabile: in questo viaggio sono le tariffe RSCN di Dana, che si chiedono al telefono.</p>
+  </div>
+</section>
+
+<section id="pass">
+  <div class="sechead">
+    <span class="no">09</span>
+    <h2>Il conto del Jordan Pass</h2>
+    <p>Non è una questione di fede: è aritmetica. Spunta i siti che pensate di visitare e il calcolo dice quale taglio conviene, di quanto, e se conviene affatto. Prezzi ufficiali 2026 per visitatori stranieri che pernottano in Giordania.</p>
+  </div>
+  <div class="calc">
+    <div class="card">
+      <label class="ctrl"><span>Quante persone</span>
+        <span class="stepper"><button type="button" id="pmin" aria-label="Una persona in meno">−</button><output id="pnum">2</output><button type="button" id="pplu" aria-label="Una persona in più">+</button></span>
+      </label>
+      <label class="ctrl"><span>Notti in Giordania</span>
+        <span class="stepper"><button type="button" id="nmin" aria-label="Una notte in meno">−</button><output id="nnum">9</output><button type="button" id="nplu" aria-label="Una notte in più">+</button></span>
+      </label>
+      <label class="ctrl"><span>Giorni a Petra</span>
+        <span class="seg" id="petraseg" role="group" aria-label="Giorni di ingresso a Petra">
+          <button type="button" data-gp="1" aria-pressed="false">1 giorno</button>
+          <button type="button" data-gp="2" aria-pressed="true">2 giorni</button>
+          <button type="button" data-gp="3" aria-pressed="false">3 giorni</button>
+        </span>
+      </label>
+      <h4 style="margin-top:16px">Siti compresi nel pass che pensate di visitare</h4>
+      <div class="cl" id="passsites"></div>
+      <p style="font-size:13.5px;color:var(--ink-3);margin:12px 0 0"><b>Fuori dal pass</b>, e da mettere a budget comunque: Monte Nebo 3 JOD, San Giorgio a Madaba 1 JOD, spiagge del Mar Morto, sentieri e guide RSCN a Dana, Petra by Night 30 JOD.</p>
+    </div>
+    <div>
+      <div class="verdict">
+        <h4>Verdetto</h4>
+        <div class="big pos" id="passverdict">—</div>
+        <p style="margin:0;font-size:14.5px" id="passwhy"></p>
+        <ul class="ledger" id="passledger"></ul>
+      </div>
+      <div class="note good" style="margin-top:14px">
+        <p><strong>La regola dei cinque dinari</strong> Fra il taglio da 1 giorno a Petra e quello da 2 ci sono <b>5 JOD</b>, esattamente quanto costerebbe il secondo giorno comprato a parte. Non si risparmia niente a prenderlo — ma si compra <em>l'opzione</em>. E in questo itinerario il secondo giorno serve davvero: è la mattina del 17, con la Tesoreria illuminata e il Siq vuoto, prima di scendere al Wadi Rum. Sei euro.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="budget">
+  <div class="sechead">
+    <span class="no">10</span>
+    <h2>Budget</h2>
+    <p>Stima costruita voce per voce sui prezzi verificati, in dinari e in euro al cambio di agosto 2026 (<b>1 JOD = 1,21 €</b><span class="v ok" title="Verificato ad agosto 2026">✓</span>). Le voci per persona si moltiplicano, quelle per auto e per gruppo no.</p>
+  </div>
+  <div class="toolbar">
+    <label class="ctrl" style="margin:0"><span>Persone</span>
+      <span class="stepper"><button type="button" id="bmin" aria-label="Una persona in meno">−</button><output id="bnum">2</output><button type="button" id="bplu" aria-label="Una persona in più">+</button></span>
+    </label>
+    <label class="ctrl" style="margin:0"><span>Valuta</span>
+      <span class="seg" role="group" aria-label="Valuta"><button type="button" data-cur="JOD" aria-pressed="true">JOD</button><button type="button" data-cur="EUR" aria-pressed="false">EUR</button></span>
+    </label>
+  </div>
+  <div class="tablewrap">
+    <table id="budgettable">
+      <thead><tr><th>Voce</th><th>Dettaglio</th><th>Base</th><th class="num">Essenziale</th><th class="num">Comodo</th></tr></thead>
+      <tbody id="budgetbody"></tbody>
+      <tfoot id="budgetfoot"></tfoot>
+    </table>
+  </div>
+  <div class="grid g3" style="margin-top:16px">
+    <div class="card"><h4>Dove si risparmia davvero</h4><p style="font-size:14.5px;margin:0">Il <b>vitto</b>, e senza rinunciare a niente: uno shawarma con succo di melograno a Wadi Musa o su Raghadan Street ad Aqaba costa 3–4 JOD e spesso è più buono della cena da 20 JOD sul lungomare. Alternare una cena vera e un pasto di strada al giorno taglia la voce di un terzo. La seconda leva è l'<b>ottano 90</b>: quasi tutte le auto a noleggio lo prendono e costa un terzo meno del 95.</p></div>
+    <div class="card"><h4>Dove non tagliare</h4><p style="font-size:14.5px;margin:0">Il <b>campo del Wadi Rum</b>. La differenza fra un camp da 30 JOD e uno da 80 non è il lusso: è la stufa nella tenda, la cena zarb cucinata davvero sotto la sabbia e una guida che il deserto lo conosce invece di ripetere il giro delle cinque soste. A novembre, con la notte vicina allo zero, la stufa da sola vale la differenza.</p></div>
+    <div class="card"><h4>La voce sorpresa</h4><p style="font-size:14.5px;margin:0">La <b>navetta di rientro da Feynan</b>. Il trekking del giorno 3 è a senso unico e finisce novecento metri più in basso: recuperarvi richiede un 4×4 che gira attorno a tutta la riserva. È l'unica voce del viaggio che si paga per <em>non</em> fare qualcosa — risalire — e va concordata prima, non trattata a fine giornata quando siete stanchi e senza alternative.</p></div>
+  </div>
+</section>
+
+<section id="guida">
+  <div class="sechead">
+    <span class="no">11</span>
+    <h2>Guida pratica</h2>
+    <p>Auto, documenti, soldi, telefono, e le poche cose di comportamento che in Giordania cambiano davvero l'accoglienza che ricevete.</p>
+  </div>
+  <div class="grid g2">
+    <div class="card">
+      <h3>L'auto</h3>
+      <ul class="tick">
+        <li><b>Si guida a destra</b>, patente italiana sufficiente per il noleggio. Le auto a noleggio hanno la <b>targa verde</b>: la polizia lo vede e in genere è tollerante.</li>
+        <li><b>Rotonde ovunque</b> e precedenza interpretata con generosità. La regola vera è che chi è più deciso passa: guidate prevedibili, non veloci.</li>
+        <li><b>Dossi non segnalati</b> all'ingresso e all'uscita di ogni villaggio, spesso senza vernice. Sono il danno numero uno alle auto a noleggio. Nei centri abitati: piano e occhio all'asfalto.</li>
+        <li><b>Off-road vietato</b> da quasi tutti i contratti. Al Wadi Rum l'auto resta al villaggio, punto: nell'area protetta si entra solo in 4×4 con guida autorizzata.</li>
+        <li><b>Niente pedaggi</b> in Giordania, né vignette. Le due direttrici sono la <b>Desert Highway</b> (veloce, camion, monotona) e la <b>King's Highway</b> (tortuosa, bellissima, il doppio del tempo).</li>
+        <li><b>Il pieno prima delle tratte vuote</b>: Madaba, Kerak, Qadisiyah, Wadi Musa, Aqaba. Il carburante si paga quasi sempre in contanti, e serve dire quanto.</li>
+        <li><b>Non si guida di notte</b> fuori città, se si può evitare: pochi guard-rail, mezzi senza fari, cammelli e greggi sulla carreggiata. Con il tramonto alle 17:40, questo è un vincolo di progetto, non un consiglio.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Documenti, soldi, telefono</h3>
+      <ul class="tick">
+        <li><b>Passaporto</b> con validità residua di almeno 6 mesi. Il visto è esente con il Jordan Pass comprato prima dell'arrivo e almeno 3 notti nel paese: <b>voi ne fate 9</b>.</li>
+        <li><b>Dinaro giordano (JOD)</b>, ancorato al dollaro, <b>1 JOD ≈ 1,21 €</b><span class="v ok" title="Verificato ad agosto 2026">✓</span>. Si divide in 1.000 fils: i prezzi si scrivono spesso come «1,500» che vuol dire un dinaro e mezzo, non millecinquecento.</li>
+        <li><b>Contanti</b>: indispensabili per guide, mance, biglietti minori, carburante e mercati. Bancomat ad Amman, Madaba, Kerak, Wadi Musa e Aqaba; <b>niente a Dana né nel deserto</b>. Prelevate prima di lasciare Wadi Musa.</li>
+        <li><b>Cambio</b>: gli uffici in città danno il tasso migliore, l'aeroporto il peggiore. Cambiate il minimo indispensabile agli arrivi.</li>
+        <li><b>Carte</b>: Visa e Mastercard in hotel, ristoranti buoni e distributori delle catene. Nei villaggi no.</li>
+        <li><b>Telefono</b>: eSIM o SIM locale, il roaming extra-UE italiano è caro. Copertura buona sulle direttrici, debole nei canyon di Dana e a tratti nel Wadi Rum.</li>
+        <li><b>Elettricità</b>: 230 V, prese di tipo C come in Italia, ma nei campi e in qualche struttura isolata si trova anche la <b>tipo G inglese</b>. Un adattatore universale e un power bank.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Comportamento, e perché conviene</h3>
+      <ul class="tick">
+        <li><b>Spalle e ginocchia coperte</b> nei villaggi, nelle chiese e nelle moschee, per tutti. Nel deserto e a Dana non è formalità: è la differenza fra essere ospiti ed essere turisti.</li>
+        <li><b>Ad Aqaba il costume va bene in spiaggia</b> e nei beach club, non in città. Le donne giordane fanno il bagno vestite: non è un obbligo per voi, ma tenetelo presente scegliendo la spiaggia.</li>
+        <li><b>La mano destra</b> per mangiare, dare e ricevere. Il caffè amaro al cardamomo si accetta sempre, e si scuote la tazzina per dire che basta.</li>
+        <li><b>«No» sorridendo</b> funziona: ai cavalli nel Siq, alle guide improvvisate, alle foto con gli animali. La richiesta di pagamento arriva sempre <em>dopo</em> lo scatto.</li>
+        <li><b>Mance</b>: 10% al ristorante se non è già incluso, 5–10 JOD al giorno alla guida del deserto, un paio di dinari a chi vi porta i bagagli. Sono attese e sono poco.</li>
+        <li><b>Fotografie</b>: chiedere prima, sempre, soprattutto alle donne. Un rifiuto è un rifiuto.</li>
+        <li><b>Alcol</b>: si compra nei negozi specializzati e negli hotel, si beve nei locali, non per strada. Ad Aqaba, zona franca, costa la metà.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Acqua, cibo, salute</h3>
+      <ul class="tick">
+        <li><b>Acqua in bottiglia</b> anche per i denti fuori dagli hotel grandi. Nel Wadi Dana Trail servono <b>2,5–3 litri a testa</b>: non c'è una sola fonte lungo il percorso.</li>
+        <li><b>Il mansaf</b> — agnello, riso e salsa di yogurt fermentato — è il piatto nazionale e si mangia a Madaba la prima sera. Il <b>zarb</b>, cotto sotto la sabbia, è la cena del campo. Il <b>maqluba</b> è il piatto che si rovescia dalla pentola.</li>
+        <li><b>Sole di novembre</b>: sembra mite ed è ingannevole, soprattutto sul Mar Morto, dove l'aria a −430 m filtra i raggi in modo diverso e ci si scotta senza accorgersene. Protezione alta tutti i giorni.</li>
+        <li><b>Mar Morto</b>: mai più di 15–20 minuti in acqua, mai la testa sotto, niente rasatura la mattina. Il sale su un taglio è memorabile nel modo sbagliato. Ciabatte da scoglio obbligatorie, il fondo è cristalli di sale taglienti.</li>
+        <li><b>Kit</b>: antidolorifico, antidiarroico, cerotti per vesciche, disinfettante, sali minerali. Le farmacie sono buone nelle città.</li>
+        <li><b>Assicurazione sanitaria</b> di viaggio con copertura per trekking: fuori dall'UE la Tessera Sanitaria non vale niente.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="clima">
+  <div class="sechead">
+    <span class="no">12</span>
+    <h2>Clima a novembre</h2>
+    <p>Il bello di questo mese è che tre climi diversi diventano tutti praticabili nello stesso viaggio. Il prezzo è l'escursione termica: nella stessa giornata si passa dai 26 °C del Mar Morto agli 8 °C di Dana dopo il tramonto.</p>
+  </div>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Zona</th><th class="num">Quota</th><th class="num">Giorno</th><th class="num">Notte</th><th class="num">Acqua</th><th>Cosa aspettarsi</th></tr></thead>
+      <tbody>
+        <tr><td><b>Madaba e altopiano</b></td><td class="num">780 m</td><td class="num">18–22°</td><td class="num">9–12°</td><td class="num">—</td><td>Giornate limpide, sere fresche. È il clima "mediterraneo" della Giordania.</td></tr>
+        <tr><td><b>Mar Morto</b></td><td class="num">−430 m</td><td class="num">24–28°</td><td class="num">16–19°</td><td class="num">24–26°</td><td>Il punto più caldo e più basso. Aria densa, foschia salina, sole che picchia anche a novembre.</td></tr>
+        <tr><td><b>Dana</b></td><td class="num">1.200 m</td><td class="num">15–20°</td><td class="num">6–10°</td><td class="num">—</td><td>Il posto più freddo del viaggio. Vento sul ciglio della riserva; nel canyon, mille metri più in basso, dieci gradi in più.</td></tr>
+        <tr><td><b>Petra e Wadi Musa</b></td><td class="num">1.100 m</td><td class="num">18–23°</td><td class="num">7–11°</td><td class="num">—</td><td>Perfetto per camminare tutto il giorno. All'alba sul <i>back door</i> servono guanti leggeri.</td></tr>
+        <tr><td><b>Wadi Rum</b></td><td class="num">1.000 m</td><td class="num">20–25°</td><td class="num">4–9°</td><td class="num">—</td><td>Escursione termica di venti gradi. Nelle notti serene si è arrivati vicino allo zero: cappello e piumino per la cena.</td></tr>
+        <tr><td><b>Aqaba</b></td><td class="num">0 m</td><td class="num">25–29°</td><td class="num">17–20°</td><td class="num">22–24°</td><td>Estate lunga. Il mare è ancora pienamente balneabile, con muta leggera per le immersioni lunghe.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="grid g3" style="margin-top:16px">
+    <div class="card"><h4>Pioggia</h4><p style="font-size:14.5px;margin:0">Novembre apre la stagione umida, ma la pioggia resta <b>poco probabile e concentrata in episodi brevi</b>: due o tre giorni piovosi in tutto il mese sull'altopiano, quasi zero ad Aqaba e nel deserto. Il rischio vero non è bagnarsi: è che un temporale a monte, anche a cinquanta chilometri, mandi in piena un wadi asciutto. Ecco perché i canyon d'acqua sono chiusi da novembre.</p></div>
+    <div class="card"><h4>Vento</h4><p style="font-size:14.5px;margin:0">Nel Wadi Rum il vento si alza nel primo pomeriggio quasi ogni giorno: la polvere in jeep aperta è notevole e le foto perdono nitidezza. È un motivo in più per tenere le tappe fotografiche all'ultima ora di luce. Ad Aqaba il vento di mezzogiorno increspa il mare e rovina lo snorkeling: si va in acqua presto.</p></div>
+    <div class="card"><h4>Folla</h4><p style="font-size:14.5px;margin:0">Novembre è alta stagione "buona": temperature ideali e numeri molto sotto quelli di aprile. A Petra la differenza la fa l'ora, non il mese — alle 8:00 il Siq è quasi vuoto, alle 11:00 no. Il <b>venerdì e il sabato</b> sono il fine settimana giordano: siti e spiagge si riempiono di visitatori locali, ed è bello, ma va messo in conto il 13, il 14, il 20 e il 21.</p></div>
+  </div>
+</section>
+
+<section id="varianti">
+  <div class="sechead">
+    <span class="no">13</span>
+    <h2>Varianti &amp; piani B</h2>
+    <p>Come deformare l'itinerario senza romperlo. Le prime tre aggiungono, le ultime due tolgono: servono se il tempo gira o se qualcosa risulta chiuso.</p>
+  </div>
+  <div class="grid g2">
+    <div class="card">
+      <div class="chip acc">Variante A</div>
+      <h3 style="margin-top:10px">Una notte a Feynan invece del rientro</h3>
+      <p style="font-size:14.5px">Il giorno 3 finisce al <b>Feynan Ecolodge</b>, in fondo al Wadi Dana: invece di pagare la navetta per risalire, ci si dorme. È illuminato solo a candele, l'elettricità c'è solo per il solare, e la cena si mangia sul tetto. Il giorno dopo un 4×4 vi riporta all'auto lasciata a Dana e si prosegue per Shobak con un paio d'ore di ritardo. <b>Costa una notte a Dana</b> (che non usereste) e un trasferimento in più, e regala la notte più memorabile del viaggio a chi non dorme nel deserto due volte.</p>
+    </div>
+    <div class="card">
+      <div class="chip sig">Variante B</div>
+      <h3 style="margin-top:10px">Tre giorni a Petra invece di due</h3>
+      <p style="font-size:14.5px">Con il <b>Jordan Pass Expert</b> (80 JOD, +10 rispetto al taglio da un giorno) si aggiunge un pomeriggio a Petra il <b>giorno 4</b>, arrivando da Dana: si entra alle 13:30, si fa il Siq con calma, la Tesoreria in ombra e le Tombe Reali con la luce delle 15:00, e si esce alle 16:00. Poi il <i>back door</i> il giorno 5 e la Tesoreria illuminata il giorno 6. <b>Tre passaggi diversi sullo stesso sito, con tre luci diverse</b>: è il modo in cui Petra va vista, se il tempo c'è. Il prezzo è saltare Shobak.</p>
+    </div>
+    <div class="card">
+      <div class="chip good">Variante C</div>
+      <h3 style="margin-top:10px">Il Burdah Rock Bridge</h3>
+      <p style="font-size:14.5px">Il giorno 7, al posto del giro classico delle cinque soste: <b>4–5 ore fra trekking e arrampicata leggera</b> fino al ponte di roccia più alto del Wadi Rum. Va concordato con la guida <em>quando si prenota il campo</em>, non la mattina stessa, e sostituisce metà delle tappe facili invece di aggiungersi. Serve testa per l'esposizione: l'ultimo tratto è su roccia, senza protezioni, e scendere è peggio che salire. Alternativa a metà strada: il <b>Barrah Canyon</b>, cinque chilometri a piedi o in cammello, molto meno battuto.</p>
+    </div>
+    <div class="card">
+      <div class="chip alert">Piano B pioggia</div>
+      <h3 style="margin-top:10px">Se il tempo gira</h3>
+      <ul class="tick" style="margin-bottom:0">
+        <li><b>Giorno 2:</b> le cascate termali di <b>Hammamat Ma'in</b>, mezz'ora da Madaba, sono acqua calda naturale che cade da una parete — con la pioggia sono anzi meglio. Il Wadi Mujib resta il belvedere sulla diga, che è a cielo aperto ma dura dieci minuti.</li>
+        <li><b>Giorno 3:</b> se piove a monte, <b>il Wadi Dana Trail non si fa</b>. Sostituzione: il sentiero del villaggio di Dana e delle terrazze (libero, due ore, in cresta e senza rischio di piena), poi Shobak anticipato al pomeriggio e Little Petra il giorno dopo con calma.</li>
+        <li><b>Giorno 5:</b> Petra sotto la pioggia è pericolosa nel Siq — è un canyon, e viene chiuso in caso di allerta. Se succede, il museo di Petra e il pomeriggio a Wadi Musa, e si recupera il giorno 6 con il pass da due giorni.</li>
+        <li><b>Giorno 7:</b> con il vento forte la jeep resta ferma. Il campo offre tè, musica e racconti al riparo — non è un ripiego, è l'altra metà del Wadi Rum.</li>
+        <li><b>Giorno 9:</b> il mare mosso ad Aqaba rovina lo snorkeling ma non l'hammam, il museo di Ayla né il mercato del venerdì.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="chip alert">Piano B logistico</div>
+      <h3 style="margin-top:10px">Se qualcosa è chiuso o salta</h3>
+      <ul class="tick" style="margin-bottom:0">
+        <li><b>Se l'RSCN dice che a Dana è chiuso tutto</b> — può succedere: alcune stagioni chiudono anche i sentieri di cresta — allora Dana diventa una notte sola, si anticipa a Little Petra il giorno 3 e si compra il pass da tre giorni per Petra. Il viaggio non perde niente, cambia baricentro.</li>
+        <li><b>Se l'auto arriva tardi</b> il giorno 1 (code al noleggio agli arrivi serali): Madaba è a quaranta minuti su strada illuminata e trafficata, si fa anche al buio senza problemi. È l'unica tratta notturna accettabile del viaggio.</li>
+        <li><b>Se il campo del Wadi Rum delude</b>: il villaggio ha strutture semplici e c'è sempre posto. Ma il campo si cambia la mattina, non alle undici di sera.</li>
+        <li><b>Se il volo di rientro è serale</b> il giorno 10: mezza giornata ad Amman diventa possibile. Cittadella e Teatro Romano sono vicini fra loro e si fanno in tre ore. <b>Jerash no</b>: sono 50 km a nord di Amman e vuole una giornata intera, non le ore prima di un imbarco.</li>
+        <li><b>Se il volo è mattutino</b> il giorno 10: l'ultima notte va spostata da Aqaba a Ma'an o sull'altopiano, oppure si parte alle 4:00. Verificate l'orario prima di prenotare la seconda notte ad Aqaba.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="chip">Quello che resta fuori</div>
+      <h3 style="margin-top:10px">Le rinunce, dette chiaramente</h3>
+      <p style="font-size:14.5px">Fuori da questo viaggio restano <b>Amman, Jerash, i castelli del deserto, Umm Qais e il Mar Morto vero e proprio come soggiorno</b>. Non è un errore del routing: è la conseguenza di atterrare e ripartire dallo stesso aeroporto in dieci giorni scendendo fino ad Aqaba. Aggiungere Jerash significherebbe due notti ad Amman e togliere il Wadi Rum o Dana, e sarebbe un cattivo affare. <b>Se un giorno tornate</b>, il viaggio complementare esiste già ed è tutto a nord: Amman, Jerash, Ajloun, Umm Qais, i castelli del deserto e il Mar Morto in un resort, sette giorni senza mai scendere sotto Madaba.</p>
+    </div>
+  </div>
+</section>
+
+<section id="valigia">
+  <div class="sechead">
+    <span class="no">14</span>
+    <h2>Valigia</h2>
+    <p>Pensata per il mix di questo itinerario: un trekking vero, due notti nel deserto sotto zero, un bagno nel sale e tre giorni di mare. Le spunte restano salvate su questo dispositivo.</p>
+  </div>
+  <div class="grid g3" id="clists"></div>
+</section>
+
+<section id="frasario">
+  <div class="sechead">
+    <span class="no">15</span>
+    <h2>Frasario</h2>
+    <p>Arabo giordano, quello che si parla davvero — non l'arabo standard dei manuali. Venti parole cambiano completamente il modo in cui vi trattano: in Giordania l'ospitalità è una cosa seria e il primo saluto conta.</p>
+  </div>
+  <div class="tablewrap">
+    <table class="phr">
+      <thead><tr><th>Italiano</th><th style="text-align:right">Arabo</th><th>Traslitterazione</th><th>Si legge</th></tr></thead>
+      <tbody>
+        <tr><td class="it">La pace sia con te <i>(saluto)</i></td><td class="ar">السلام عليكم</td><td class="tr">as-salāmu ʿalaykum</td><td class="pr">assalàmu alèikum</td></tr>
+        <tr><td class="it">…e con te <i>(risposta)</i></td><td class="ar">وعليكم السلام</td><td class="tr">wa ʿalaykum as-salām</td><td class="pr">ua alèikum assalàm</td></tr>
+        <tr><td class="it">Ciao / salve</td><td class="ar">مرحبا</td><td class="tr">marḥaba</td><td class="pr">màrhaba</td></tr>
+        <tr><td class="it">Buongiorno</td><td class="ar">صباح الخير</td><td class="tr">ṣabāḥ al-khayr</td><td class="pr">sabàh al-khèir</td></tr>
+        <tr><td class="it">Buonasera</td><td class="ar">مساء الخير</td><td class="tr">masāʾ al-khayr</td><td class="pr">masà al-khèir</td></tr>
+        <tr><td class="it">Grazie</td><td class="ar">شكرا</td><td class="tr">shukran</td><td class="pr">shùkran</td></tr>
+        <tr><td class="it">Grazie mille</td><td class="ar">شكرا كتير</td><td class="tr">shukran ktīr</td><td class="pr">shùkran ktìr</td></tr>
+        <tr><td class="it">Prego / non c'è di che</td><td class="ar">عفوا</td><td class="tr">ʿafwan</td><td class="pr">àfuan</td></tr>
+        <tr><td class="it">Per favore / scusi</td><td class="ar">لو سمحت</td><td class="tr">law samaḥt</td><td class="pr">lo samàht</td></tr>
+        <tr><td class="it">Sì / no</td><td class="ar">أيوه / لا</td><td class="tr">aywa / lāʾ</td><td class="pr">àiua / la</td></tr>
+        <tr><td class="it">Quanto costa?</td><td class="ar">قديش؟</td><td class="tr">qaddēsh?</td><td class="pr">addèsh</td></tr>
+        <tr><td class="it">È troppo caro</td><td class="ar">غالي كتير</td><td class="tr">ghālī ktīr</td><td class="pr">ghàli ktìr</td></tr>
+        <tr><td class="it">Il conto, per favore</td><td class="ar">الحساب لو سمحت</td><td class="tr">al-ḥisāb law samaḥt</td><td class="pr">al-hisàb lo samàht</td></tr>
+        <tr><td class="it">Non voglio, grazie</td><td class="ar">ما بدي، شكرا</td><td class="tr">mā biddī, shukran</td><td class="pr">ma bìddi, shùkran</td></tr>
+        <tr><td class="it">Non capisco</td><td class="ar">ما بفهم</td><td class="tr">mā bafham</td><td class="pr">ma bàfham</td></tr>
+        <tr><td class="it">Parla inglese?</td><td class="ar">بتحكي إنجليزي؟</td><td class="tr">bitiḥkī ingilīzī?</td><td class="pr">bitìhki inglìzi</td></tr>
+        <tr><td class="it">Dov'è…?</td><td class="ar">وين…؟</td><td class="tr">wēn…?</td><td class="pr">uèin</td></tr>
+        <tr><td class="it">Acqua</td><td class="ar">مي</td><td class="tr">mayy</td><td class="pr">mài</td></tr>
+        <tr><td class="it">Tè / caffè</td><td class="ar">شاي / قهوة</td><td class="tr">shāy / qahwa</td><td class="pr">shài / àhua</td></tr>
+        <tr><td class="it">Buonissimo <i>(di cibo)</i></td><td class="ar">زاكي</td><td class="tr">zākī</td><td class="pr">zàki</td></tr>
+        <tr><td class="it">Basta così, grazie</td><td class="ar">بس، شكرا</td><td class="tr">bas, shukran</td><td class="pr">bas, shùkran</td></tr>
+        <tr><td class="it">Se Dio vuole <i>(= forse)</i></td><td class="ar">إن شاء الله</td><td class="tr">in shāʾ Allāh</td><td class="pr">inshàlla</td></tr>
+        <tr><td class="it">Grazie a Dio <i>(= tutto bene)</i></td><td class="ar">الحمد لله</td><td class="tr">al-ḥamdu lillāh</td><td class="pr">alhàmdulillà</td></tr>
+        <tr><td class="it">Aiuto!</td><td class="ar">النجدة</td><td class="tr">an-najda</td><td class="pr">an-nàjda</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <h4 style="margin:22px 0 10px">I numeri, che sui cartellini dei prezzi si trovano ancora così</h4>
+  <div class="numgrid">
+    <div><b>١</b><em>wāḥad</em><span>1</span></div>
+    <div><b>٢</b><em>tnēn</em><span>2</span></div>
+    <div><b>٣</b><em>talāte</em><span>3</span></div>
+    <div><b>٤</b><em>arbaʿa</em><span>4</span></div>
+    <div><b>٥</b><em>khamse</em><span>5</span></div>
+    <div><b>٦</b><em>sitte</em><span>6</span></div>
+    <div><b>٧</b><em>sabʿa</em><span>7</span></div>
+    <div><b>٨</b><em>tamānye</em><span>8</span></div>
+    <div><b>٩</b><em>tisʿa</em><span>9</span></div>
+    <div><b>١٠</b><em>ʿashara</em><span>10</span></div>
+  </div>
+  <div class="note" style="margin-top:16px">
+    <p><strong>Pronuncia</strong> <span class="mono">kh</span> = la <i>ch</i> raschiata del tedesco <i>Bach</i> · <span class="mono">gh</span> = una <i>r</i> alla francese · <span class="mono">ḥ</span> = una <i>h</i> soffiata forte dalla gola · <span class="mono">ʿ</span> = una strizzata di gola senza suono, si può ignorare · <span class="mono">q</span> in Giordania si pronuncia spesso come una <b>g</b> dura in campagna e nel deserto (<i>gahwa</i>), e sparisce del tutto in città (<i>addesh</i> invece di <i>qaddesh</i>). Se dite <i>gahwa</i> nel Wadi Rum vi guardano bene.</p>
+  </div>
+</section>
+
+<section id="sos">
+  <div class="sechead">
+    <span class="no">16</span>
+    <h2>Numeri utili</h2>
+    <p>Un numero solo copre tutto, e funziona anche senza credito e senza SIM.</p>
+  </div>
+  <div class="grid g3">
+    <div class="card">
+      <h4>Emergenza unica</h4>
+      <p style="font-family:var(--display);font-size:44px;line-height:1;margin:4px 0 8px;color:var(--alert)">911<span class="v ok" title="Verificato: Public Security Directorate, numero unico nazionale" style="vertical-align:.9em">✓</span></p>
+      <p style="font-size:14.5px;margin:0;color:var(--ink-2)">Polizia, ambulanza, vigili del fuoco. Operatori in inglese. È l'unico numero da ricordare in Giordania. Secondari, se serve: <b class="mono">199</b> protezione civile, <b class="mono">196</b> sala operativa della polizia<span class="v est" title="Numeri secondari, riportati da fonti concordi ma non dalla pagina ufficiale">~</span>.</p>
+    </div>
+    <div class="card">
+      <h4>Ambasciata d'Italia ad Amman</h4>
+      <p style="font-size:14.5px;margin:0 0 8px;color:var(--ink-2)">Hafiz Ibrahim Street 5/7, Jabal Al Weibdeh.</p>
+      <p style="font-family:var(--display);font-size:19px;line-height:1.4;margin:0">+962 6 463 6413<br><span style="color:var(--alert)">+962 77 541 5000</span><span class="v chk" title="Da riconfermare: recapiti dal documento di partenza, verificare su ambamman.esteri.it prima di partire" style="vertical-align:.7em">!</span></p>
+      <p style="font-size:13.5px;margin:8px 0 0;color:var(--ink-3)">Il secondo è il cellulare di emergenza fuori orario. Riconfermate i recapiti su <a class="link" href="https://ambamman.esteri.it" target="_blank" rel="noopener">ambamman.esteri.it</a> prima di partire.</p>
+    </div>
+    <div class="card">
+      <h4>Prima di partire</h4>
+      <p style="font-size:14.5px;margin:0;color:var(--ink-2)">Registrate il viaggio su <b>Dove Siamo Nel Mondo</b> e leggete la scheda paese aggiornata su <a class="link" href="https://www.viaggiaresicuri.it" target="_blank" rel="noopener">viaggiaresicuri.it</a>. Stampate o scaricate offline: Jordan Pass, conferme degli alloggi, contratto di noleggio, polizza sanitaria.</p>
+    </div>
+    <div class="card">
+      <h4>Riserve e siti</h4>
+      <p style="font-size:14.5px;margin:0;color:var(--ink-2)">
+        <b>RSCN / Wild Jordan</b> (Dana, Mujib) <b class="mono">+962 6 461 6523</b><br>
+        <a class="link" href="https://www.rscn.org.jo" target="_blank" rel="noopener">rscn.org.jo</a> · <a class="link" href="https://www.wildjordan.com" target="_blank" rel="noopener">wildjordan.com</a><br>
+        <a class="link" href="https://www.visitpetra.jo" target="_blank" rel="noopener">visitpetra.jo</a> · orari e biglietti di Petra<br>
+        <a class="link" href="https://www.jordanpass.jo" target="_blank" rel="noopener">jordanpass.jo</a> · il pass, da comprare prima di partire<br>
+        <a class="link" href="https://international.visitjordan.com" target="_blank" rel="noopener">visitjordan.com</a> · ente del turismo
+      </p>
+    </div>
+    <div class="card">
+      <h4>Guasti e soccorso stradale</h4>
+      <p style="font-size:14.5px;margin:0;color:var(--ink-2)">In Giordania non esiste un ACI: <b>il numero da chiamare è quello del noleggiatore</b>, che è scritto sul contratto e va salvato in rubrica il giorno dell'arrivo. Fotografate il contratto e il libretto: se l'auto resta ferma sulla Desert Highway servono targa e numero di contratto, non la vostra ricostruzione.</p>
+    </div>
+    <div class="card">
+      <h4>Salute</h4>
+      <p style="font-size:14.5px;margin:0;color:var(--ink-2)">Gli ospedali privati di Amman e Aqaba sono di buon livello e si paga in anticipo: <b>senza assicurazione di viaggio si paga tutto di tasca</b>. La farmacia si chiama <i>ṣaydaliyya</i> (صيدلية) e nelle città c'è sempre un turno notturno. A Dana e nel Wadi Rum non c'è niente: il kit ve lo portate.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>La Grande Frattura · Giordania, 12–21 novembre 2026 · 835 km · 5 basi · da −430 a +1.500 m</span>
+    <span>Prezzi, orari e stagioni verificati ad agosto 2026. Effemeridi calcolate sulle coordinate reali.</span>
+  </div>
+</footer>
+
+<script>
+/* ═══ tema: auto → chiaro → scuro, salvato sul dispositivo ════ */
+(function(){
+  var K='giordania2026.tema', b=document.getElementById('themebtn'),
+      ico=document.getElementById('themeico'), txt=document.getElementById('themetxt');
+  var modi=['auto','light','dark'], eti={auto:['◐','Auto'],light:['☀','Chiaro'],dark:['☾','Scuro']};
+  var cur='auto';
+  try{ var s=localStorage.getItem(K); if(modi.indexOf(s)>=0) cur=s; }catch(e){}
+  function applica(){
+    if(cur==='auto') document.documentElement.removeAttribute('data-theme');
+    else document.documentElement.setAttribute('data-theme',cur);
+    ico.textContent=eti[cur][0]; txt.textContent=eti[cur][1];
+    b.setAttribute('aria-label','Tema: '+eti[cur][1]+'. Tocca per cambiare.');
+  }
+  b.addEventListener('click',function(){
+    cur=modi[(modi.indexOf(cur)+1)%3];
+    try{localStorage.setItem(K,cur)}catch(e){}
+    applica();
+  });
+  applica();
+})();
+
+/* ═══ effemeridi: algoritmo solare NOAA sulle coordinate reali ═
+   civ = inizio/fine crepuscolo civile · alba · mezzogiorno solare
+   · tramonto. Orario di Giordania, UTC+3 tutto l'anno.          */
+var SOLE=[
+ {d:1, luogo:'Madaba',        civA:'06:36',alba:'07:02',noon:'12:21',tram:'17:39',civT:'18:05'},
+ {d:2, luogo:'Mar Morto',     civA:'06:38',alba:'07:04',noon:'12:22',tram:'17:40',civT:'18:05'},
+ {d:3, luogo:'Dana',          civA:'06:37',alba:'07:03',noon:'12:22',tram:'17:41',civT:'18:06'},
+ {d:4, luogo:'Little Petra',  civA:'06:38',alba:'07:04',noon:'12:23',tram:'17:41',civT:'18:07'},
+ {d:5, luogo:'Petra',         civA:'06:39',alba:'07:04',noon:'12:23',tram:'17:41',civT:'18:06'},
+ {d:6, luogo:'Wadi Rum',      civA:'06:39',alba:'07:04',noon:'12:23',tram:'17:42',civT:'18:07'},
+ {d:7, luogo:'Wadi Rum',      civA:'06:40',alba:'07:05',noon:'12:23',tram:'17:42',civT:'18:07'},
+ {d:8, luogo:'Aqaba',         civA:'06:42',alba:'07:07',noon:'12:25',tram:'17:43',civT:'18:08'},
+ {d:9, luogo:'Aqaba',         civA:'06:43',alba:'07:08',noon:'12:25',tram:'17:43',civT:'18:08'},
+ {d:10,luogo:'Aqaba',         civA:'06:43',alba:'07:09',noon:'12:26',tram:'17:42',civT:'18:08'}
+];
+var ORA=[
+ {d:1, t:'16:45', k:'Il tramonto dal Monte Nebo', s:'Solo se atterrate entro le 13:00. Altrimenti l’ora che conta diventa le 20:00 e il primo mansaf.'},
+ {d:2, t:'08:00', k:'Il Nebo all’apertura',    s:'Un’ora prima che arrivi il primo pullman, con la foschia ancora sulla Valle del Giordano.'},
+ {d:3, t:'07:15', k:'Il sole entra nel Wadi Dana', s:'Si parte col fresco e con la parete opposta che si accende: dopo le 10 la discesa è solo fatica.'},
+ {d:4, t:'21:00', k:'La telefonata per il 4×4',  s:'Non è un panorama, è la decisione da cui dipende tutta la giornata dopo.'},
+ {d:5, t:'09:15', k:'Il Monastero, da soli',      s:'Chi entra dal Visitor Center ci arriva alle 13:00 dopo 800 gradini. Voi ci arrivate in discesa e prima di tutti.'},
+ {d:6, t:'07:45', k:'La Tesoreria col sole in faccia', s:'La facciata guarda a est: fra le 07:30 e le 10:00 è illuminata frontalmente, poi va in ombra fino a domani.'},
+ {d:7, t:'16:45', k:'L’ultima ora di luce sulle dune', s:'La roccia passa dall’arancio al viola in quaranta minuti. E la luna tramonta all’ 01:35: dopo, il cielo vero.'},
+ {d:8, t:'17:43', k:'Il tramonto su quattro paesi', s:'Dal lungomare di Aqaba si vedono insieme Israele, l’Egitto e l’Arabia Saudita. Succede in pochissimi posti al mondo.'},
+ {d:9, t:'07:30', k:'Il mare piatto, prima del vento', s:'Lo snorkeling si fa presto: verso mezzogiorno il vento increspa la superficie e sott’acqua non si vede più niente.'},
+ {d:10,t:'07:00', k:'Partenza da Aqaba',          s:'La salita di Wadi Yutum si fa con la luce, e restano tre ore di margine sul volo anche con un imprevisto.'}
+];
+
+/* ═══ geometria condivisa ══════════════════════════════════════ */
+var SVGNS='http://www.w3.org/2000/svg';
+function el(n,a){var e=document.createElementNS(SVGNS,n);for(var k in a)e.setAttribute(k,a[k]);return e;}
+function txt(p,x,y,s,o){var t=el('text',Object.assign({x:x,y:y},o||{}));t.textContent=s;p.appendChild(t);return t;}
+function min(hhmm){var p=hhmm.split(':');return (+p[0])*60+(+p[1]);}
+
+/* ═══ 02 · mappa della Giordania ═══════════════════════════════ */
+(function(){
+  var map=document.getElementById('map'); if(!map) return;
+  var lon0=34.75, lat1=32.30, kx=309.7, ky=361.4, W=480, H=1156;
+  function P(c){return [(c[0]-lon0)*kx,(lat1-c[1])*ky];}
+  function d(pts,close){return pts.map(function(p,i){var q=P(p);return (i?'L':'M')+q[0].toFixed(1)+' '+q[1].toFixed(1)}).join(' ')+(close?' Z':'');}
+
+  var giordania=[[34.96,29.36],[35.00,29.56],[35.08,29.72],[35.18,30.02],[35.28,30.38],[35.36,30.82],
+    [35.43,31.12],[35.47,31.44],[35.52,31.48],[35.57,31.65],[35.56,31.82],[35.51,31.93],[35.55,32.18],
+    [35.57,32.40],[35.59,32.60],[35.62,32.72],[36.02,32.66],[36.42,32.38],[37.00,32.11],[38.00,32.01],
+    [38.79,32.31],[39.20,32.16],[38.99,31.99],[37.98,30.50],[37.47,29.99],[36.75,29.87],[36.07,29.19]];
+  var rift=[[34.98,29.50],[35.06,29.75],[35.16,30.10],[35.26,30.50],[35.34,30.90],[35.40,31.20],[35.38,31.60],
+    [35.40,31.95],[35.45,32.35],[35.48,32.72],[35.64,32.72],[35.60,32.35],[35.57,31.95],[35.62,31.60],
+    [35.58,31.20],[35.52,30.90],[35.46,30.50],[35.36,30.10],[35.24,29.75],[35.12,29.50]];
+  var marmorto=[[35.47,31.78],[35.53,31.82],[35.58,31.76],[35.59,31.66],[35.57,31.56],[35.54,31.48],
+    [35.57,31.40],[35.56,31.31],[35.51,31.26],[35.46,31.32],[35.47,31.42],[35.45,31.48],[35.44,31.58],[35.44,31.70]];
+  var golfo=[[34.88,29.58],[35.02,29.53],[35.06,29.40],[35.00,29.10],[34.58,29.10],[34.70,29.45]];
+
+  map.appendChild(el('rect',{x:0,y:0,width:W,height:H,fill:'var(--land-2)'}));
+  map.appendChild(el('path',{d:d(giordania,1),fill:'var(--land)',stroke:'var(--line-strong)','stroke-width':1.2,'stroke-linejoin':'round'}));
+  map.appendChild(el('path',{d:d(rift,1),fill:'var(--depth)',opacity:.38}));
+  map.appendChild(el('path',{d:d(giordania,1),fill:'none',stroke:'var(--line-strong)','stroke-width':1.2,'stroke-linejoin':'round'}));
+  map.appendChild(el('path',{d:d(marmorto,1),fill:'var(--sea)',stroke:'var(--line-strong)','stroke-width':.7}));
+  map.appendChild(el('path',{d:d(golfo,1),fill:'var(--sea)',stroke:'var(--line-strong)','stroke-width':.7}));
+
+  [['GIORDANIA',36.13,30.95,-90,15,.42],['ISRAELE',34.86,31.30,-90,9,.5],['PALESTINA',34.86,32.00,-90,8,.5],
+   ['EGITTO · SINAI',34.86,29.75,-90,8.5,.5],['ARABIA SAUDITA',36.10,29.45,0,9,.5],
+   ['MAR MORTO',35.505,31.50,-78,8,.8],['WADI ARABA',35.245,30.62,-77,8,.7],['GOLFO DI AQABA',34.93,29.28,-56,8,.75],
+   ['→ deserto orientale e Iraq',35.72,32.16,0,7.5,.55]]
+  .forEach(function(a){
+    var q=P([a[1],a[2]]);
+    txt(map,q[0].toFixed(1),q[1].toFixed(1),a[0],{fill:'var(--ink-3)','font-family':'var(--display)','font-size':a[4],
+      'letter-spacing':a[4]>12?'4':'1.6','text-anchor':a[0].charAt(0)==='\u2192'?'start':'middle',opacity:a[5],
+      transform:'rotate('+a[3]+' '+q[0].toFixed(1)+' '+q[1].toFixed(1)+')'});
+  });
+
+  var legs=[
+   {k:'out',p:[[35.99,31.72],[35.90,31.72],[35.795,31.716]]},
+   {k:'out',p:[[35.795,31.716],[35.725,31.768],[35.65,31.74],[35.573,31.708],[35.55,31.55],[35.55,31.40],[35.58,31.25],[35.701,31.181],[35.66,31.00],[35.63,30.85],[35.611,30.677]]},
+   {k:'foot',p:[[35.611,30.677],[35.55,30.665],[35.48,30.652],[35.401,30.639]]},
+   {k:'jeep',p:[[35.401,30.639],[35.36,30.72],[35.42,30.83],[35.55,30.81],[35.62,30.74],[35.611,30.677]]},
+   {k:'out',p:[[35.611,30.677],[35.60,30.60],[35.557,30.531],[35.52,30.46],[35.452,30.375]]},
+   {k:'foot',p:[[35.452,30.375],[35.435,30.360],[35.432,30.335],[35.444,30.322],[35.478,30.322]]},
+   {k:'out',p:[[35.478,30.322],[35.55,30.20],[35.53,30.00],[35.60,29.85],[35.55,29.70],[35.421,29.640],[35.419,29.578]]},
+   {k:'jeep',p:[[35.419,29.578],[35.38,29.51],[35.45,29.46],[35.52,29.53],[35.47,29.60],[35.419,29.578]]},
+   {k:'out',p:[[35.419,29.578],[35.35,29.60],[35.15,29.58],[35.006,29.532]]},
+   {k:'back',p:[[35.006,29.532],[35.10,29.62],[35.35,29.80],[35.55,29.95],[35.75,30.45],[35.85,30.95],[35.93,31.35],[35.99,31.72]]}
+  ];
+  var stile={out:{stroke:'var(--accent)','stroke-width':2.6,opacity:.95},
+             back:{stroke:'var(--signal)','stroke-width':2.2,'stroke-dasharray':'7 4',opacity:.9},
+             foot:{stroke:'var(--good)','stroke-width':2.4,'stroke-dasharray':'.8 3.6',opacity:1},
+             jeep:{stroke:'var(--ink-3)','stroke-width':1.6,'stroke-dasharray':'1.6 3.6',opacity:.85}};
+  legs.forEach(function(L){
+    var a=Object.assign({d:d(L.p,0),fill:'none','stroke-linecap':'round','stroke-linejoin':'round'},stile[L.k]);
+    map.appendChild(el('path',a));
+  });
+
+  var stops=[
+   {n:'Amman',lon:35.93,lat:31.95,d:0,a:'start',dx:7,dy:-5,s:1},
+   {n:'Queen Alia',lon:35.99,lat:31.72,d:1,a:'start',dx:8,dy:-6},
+   {n:'Madaba',lon:35.795,lat:31.716,d:1,a:'start',dx:8,dy:13},
+   {n:'M. Nebo',lon:35.725,lat:31.768,d:2,a:'end',dx:-7,dy:-6,s:1},
+   {n:'Mar Morto',lon:35.573,lat:31.708,d:2,a:'end',dx:-8,dy:3},
+   {n:'Kerak',lon:35.701,lat:31.181,d:2,a:'start',dx:8,dy:4},
+   {n:'Dana',lon:35.611,lat:30.677,d:3,a:'start',dx:8,dy:3},
+   {n:'Feynan',lon:35.401,lat:30.639,d:3,a:'end',dx:-7,dy:5,s:1},
+   {n:'Shobak',lon:35.557,lat:30.531,d:4,a:'start',dx:7,dy:4,s:1},
+   {n:'Little Petra',lon:35.452,lat:30.375,d:4,a:'end',dx:-8,dy:-5},
+   {n:'Petra',lon:35.444,lat:30.322,d:5,a:'end',dx:-8,dy:12},
+   {n:'Wadi Musa',lon:35.478,lat:30.322,d:6,a:'start',dx:7,dy:3,s:1},
+   {n:'Ras an-Naqab',lon:35.53,lat:30.00,d:6,a:'start',dx:7,dy:4,s:1},
+   {n:'Wadi Rum',lon:35.419,lat:29.578,d:7,a:'start',dx:9,dy:4},
+   {n:'Aqaba',lon:35.006,lat:29.532,d:8,a:'end',dx:-9,dy:-4}
+  ];
+  stops.forEach(function(st){
+    var q=P([st.lon,st.lat]);
+    var g=el('g',{'class':'stopdot','data-d':st.d,role:'link',tabindex:'0','aria-label':st.n});
+    g.appendChild(el('circle',{'class':'hit',cx:q[0],cy:q[1],r:13,fill:'transparent'}));
+    g.appendChild(el('circle',{'class':'pin',cx:q[0],cy:q[1],r:st.s?2.6:4.6,fill:st.s?'var(--ink-3)':'var(--surface)',
+      stroke:st.s?'var(--ink-3)':'var(--accent)','stroke-width':st.s?.9:2.2}));
+    txt(g,(q[0]+st.dx).toFixed(1),(q[1]+st.dy).toFixed(1),st.n,{'text-anchor':st.a,
+      'font-family':'var(--display)','font-size':st.s?9:11,'letter-spacing':'.25',
+      fill:st.s?'var(--ink-3)':'var(--ink)','paint-order':'stroke',stroke:'var(--land)','stroke-width':2.6,'stroke-linejoin':'round'});
+    var ti=el('title'); ti.textContent=st.d?st.n+' — giornata '+st.d:st.n+' — non nell’itinerario'; g.appendChild(ti);
+    if(st.d){
+      var vai=function(){var t=document.getElementById('day'+st.d); if(t) t.scrollIntoView({behavior:'smooth',block:'start'});};
+      g.addEventListener('click',vai);
+      g.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();vai();}});
+    }
+    map.appendChild(g);
+  });
+})();
+
+/* ═══ 03 · profilo altimetrico ═════════════════════════════════
+   Quote approssimate (±50 m), progressive dal quadro chilometrico. */
+var PROFILO=[
+ [0,730,'Queen Alia','su','start'],[35,780,'',0],[45,710,'',0],[65,-430,'Mar Morto','giu','middle'],
+ [155,930,'Kerak','su','middle'],[225,1200,'Dana','su','middle'],[240,1330,'',0],[290,1100,'',0],
+ [305,900,'Petra','giu','middle'],[315,1100,'',0],[370,1500,'Ras an-Naqab','su','middle'],
+ [425,1000,'Wadi Rum','giu','middle'],[485,0,'Aqaba','su','middle'],[505,0,'',0],[560,1000,'',0],
+ [625,1070,'Ma’an','su','middle'],[705,760,'',0],[835,730,'Queen Alia','su','end']
+];
+function disegnaProfilo(svg,box){
+  var x0=box.x0,x1=box.x1,y0=box.y0,y1=box.y1,KM=835,LO=-500,HI=1700;
+  function X(k){return x0+k/KM*(x1-x0);}
+  function Y(m){return y1-(m-LO)/(HI-LO)*(y1-y0);}
+  var linea=PROFILO.map(function(p){return [X(p[0]),Y(p[1])];});
+  var terreno=linea.map(function(q,i){return (i?'L':'M')+q[0].toFixed(1)+' '+q[1].toFixed(1)}).join(' ')
+    +' L'+x1.toFixed(1)+' '+y1.toFixed(1)+' L'+x0.toFixed(1)+' '+y1.toFixed(1)+' Z';
+
+  if(box.grid){
+    [-500,0,500,1000,1500].forEach(function(m){
+      svg.appendChild(el('line',{x1:x0,y1:Y(m),x2:x1,y2:Y(m),stroke:'var(--line)','stroke-width':1,
+        'stroke-dasharray':m===0?'':'2 4'}));
+      txt(svg,x0-8,Y(m)+4,(m>0?'+':'')+m,{'text-anchor':'end','font-family':'var(--mono)','font-size':11,fill:'var(--ink-3)'});
+    });
+    txt(svg,x0-8,Y(1700)+4,'quota',{'text-anchor':'end','font-family':'var(--display)','font-size':10.5,fill:'var(--ink-3)','letter-spacing':'1'});
+  }
+  svg.appendChild(el('path',{d:terreno,fill:'var(--dune)',stroke:'none'}));
+
+  /* la porzione sotto il livello del mare, campita a parte */
+  var sotto=[],aperto=null;
+  for(var i=0;i<PROFILO.length-1;i++){
+    var a=PROFILO[i],b=PROFILO[i+1];
+    function taglio(){return a[0]+(0-a[1])/(b[1]-a[1])*(b[0]-a[0]);}
+    if(a[1]<0&&aperto===null){aperto=[[X(a[0]),Y(a[1])]];}
+    else if(a[1]>=0&&b[1]<0){aperto=[[X(taglio()),Y(0)]];}
+    if(aperto){
+      aperto.push([X(b[0]),Y(Math.min(b[1],0))]);
+      if(b[1]>=0){
+        aperto[aperto.length-1]=[X(taglio()),Y(0)];
+        sotto.push(aperto); aperto=null;
+      }
+    }
+  }
+  if(aperto) sotto.push(aperto);
+  sotto.forEach(function(poly){
+    var dd=poly.map(function(q,i){return (i?'L':'M')+q[0].toFixed(1)+' '+q[1].toFixed(1)}).join(' ')+' Z';
+    svg.appendChild(el('path',{d:dd,fill:'var(--depth)',stroke:'none'}));
+  });
+
+  svg.appendChild(el('line',{x1:x0,y1:Y(0),x2:x1,y2:Y(0),stroke:'var(--good)','stroke-width':1.4,'stroke-dasharray':'6 4',opacity:.85}));
+  svg.appendChild(el('path',{d:linea.map(function(q,i){return (i?'L':'M')+q[0].toFixed(1)+' '+q[1].toFixed(1)}).join(' '),
+    fill:'none',stroke:'var(--accent)','stroke-width':box.grid?2.6:2,'stroke-linejoin':'round','stroke-linecap':'round'}));
+
+  /* la discesa a piedi del giorno 3, che esce dalla strada */
+  var dx=X(225),dy=Y(1200);
+  svg.appendChild(el('path',{d:'M'+dx.toFixed(1)+' '+dy.toFixed(1)+' L'+(dx+(box.grid?58:22)).toFixed(1)+' '+Y(300).toFixed(1),
+    fill:'none',stroke:'var(--good)','stroke-width':2,'stroke-dasharray':'1 4','stroke-linecap':'round'}));
+
+  if(box.grid){
+    txt(svg,dx+62,Y(300)+4,'Feynan −900 m, a piedi',{'font-family':'var(--display)','font-size':11.5,
+      fill:'var(--good)','letter-spacing':'.6'});
+    txt(svg,x1,Y(0)-7,'livello del mare',{'text-anchor':'end','font-family':'var(--display)','font-size':11,
+      fill:'var(--good)','letter-spacing':'1.2','text-transform':'uppercase'});
+    PROFILO.forEach(function(p){
+      var qx=X(p[0]),qy=Y(p[1]),big=!!p[2];
+      svg.appendChild(el('circle',{cx:qx,cy:qy,r:big?4.4:2.6,fill:big?'var(--surface)':'var(--ink-3)',
+        stroke:big?'var(--accent)':'none','stroke-width':2.4}));
+      if(!big) return;
+      var su=p[3]==='su', anc=p[4];
+      txt(svg,qx,su?qy-14:qy+21,p[2],{'text-anchor':anc,'font-family':'var(--display)','font-size':13,
+        fill:'var(--ink)','paint-order':'stroke',stroke:'var(--surface)','stroke-width':3.5,'stroke-linejoin':'round'});
+      txt(svg,qx,su?qy-27:qy+33,(p[1]>0?'+':'')+p[1].toLocaleString('it-IT')+' m',{'text-anchor':anc,'font-family':'var(--mono)',
+        'font-size':10.5,fill:'var(--ink-3)','paint-order':'stroke',stroke:'var(--surface)','stroke-width':3});
+    });
+    [[0,'gio 12','start'],[225,'sab 14','middle'],[485,'gio 19','middle'],[835,'sab 21','end']].forEach(function(t){
+      txt(svg,X(t[0]),y1+19,t[1],{'text-anchor':t[2],'font-family':'var(--display)','font-size':11,
+        fill:'var(--ink-3)','letter-spacing':'1.4'});
+    });
+  }else{
+    [[65,-430],[370,1500],[485,0]].forEach(function(t){
+      svg.appendChild(el('circle',{cx:X(t[0]),cy:Y(t[1]),r:3.4,fill:'var(--accent)'}));
+    });
+  }
+}
+(function(){
+  var s=document.getElementById('profilo');
+  if(s) disegnaProfilo(s,{x0:78,x1:980,y0:34,y1:330,grid:1});
+  var m=document.getElementById('minisez');
+  if(m) disegnaProfilo(m,{x0:4,x1:996,y0:10,y1:104,grid:0});
+})();
+
+/* ═══ 04 · almanacco della luce ════════════════════════════════ */
+(function(){
+  var svg=document.getElementById('almanacco'); if(!svg) return;
+  var x0=118,x1=968,t0=4*60,t1=22*60,y0=52,h=38;
+  function X(m){return x0+(m-t0)/(t1-t0)*(x1-x0);}
+  var ETI=['Gio 12','Ven 13','Sab 14','Dom 15','Lun 16','Mar 17','Mer 18','Gio 19','Ven 20','Sab 21'];
+
+  for(var o=4;o<=22;o+=2){
+    svg.appendChild(el('line',{x1:X(o*60),y1:y0-14,x2:X(o*60),y2:y0+10*h-4,stroke:'var(--line)','stroke-width':1,'stroke-dasharray':'2 5'}));
+    txt(svg,X(o*60),y0-22,(o<10?'0':'')+o+':00',{'text-anchor':'middle','font-family':'var(--mono)','font-size':11,fill:'var(--ink-3)'});
+  }
+  txt(svg,x0-96,y0-40,'Ora locale · UTC+3',{'font-family':'var(--display)','font-size':10.5,
+    fill:'var(--ink-3)','letter-spacing':'1.2'});
+
+  SOLE.forEach(function(s,i){
+    var y=y0+i*h, bh=21, ora=ORA[i];
+    svg.appendChild(el('rect',{x:x0,y:y,width:x1-x0,height:bh,fill:'var(--night)',rx:3}));
+    svg.appendChild(el('rect',{x:X(min(s.civA)),y:y,width:X(min(s.civT))-X(min(s.civA)),height:bh,fill:'var(--twi)'}));
+    svg.appendChild(el('rect',{x:X(min(s.alba)),y:y,width:X(min(s.tram))-X(min(s.alba)),height:bh,fill:'var(--sun)'}));
+    svg.appendChild(el('line',{x1:X(min(s.noon)),y1:y,x2:X(min(s.noon)),y2:y+bh,stroke:'var(--signal)','stroke-width':1.2,opacity:.8}));
+
+    txt(svg,x0-10,y+15,String(i+1).padStart(2,'0')+'  '+ETI[i],{'text-anchor':'end','font-family':'var(--display)',
+      'font-size':13,fill:'var(--ink-2)','letter-spacing':'.6'});
+    txt(svg,X(min(s.alba))-5,y+15,s.alba,{'text-anchor':'end','font-family':'var(--mono)','font-size':10.5,fill:'var(--ink-3)'});
+    txt(svg,X(min(s.tram))+5,y+15,s.tram,{'font-family':'var(--mono)','font-size':10.5,fill:'var(--ink-3)'});
+
+    var mx=X(min(ora.t));
+    svg.appendChild(el('path',{d:'M'+(mx-5).toFixed(1)+' '+(y-6)+' L'+(mx+5).toFixed(1)+' '+(y-6)+' L'+mx.toFixed(1)+' '+(y+1)+' Z',fill:'var(--accent)'}));
+    svg.appendChild(el('line',{x1:mx,y1:y,x2:mx,y2:y+bh,stroke:'var(--accent)','stroke-width':2}));
+    var lab=el('g',{});
+    txt(lab,mx+8,y+bh+11,ora.t+' · '+ora.k,{'font-family':'var(--display)','font-size':11.5,fill:'var(--accent)',
+      'letter-spacing':'.4','paint-order':'stroke',stroke:'var(--surface)','stroke-width':3.2,'stroke-linejoin':'round'});
+    if(mx>x1-250){ lab.firstChild.setAttribute('text-anchor','end'); lab.firstChild.setAttribute('x',mx-8); }
+    svg.appendChild(lab);
+  });
+})();
+
+/* ═══ 05 · le dieci giornate ═══════════════════════════════════ */
+var DAYS=[
+{n:1,date:"Giovedì 12 novembre",short:"Gio 12",tipo:["Strada","Archeologia"],chip:"Arrivo",
+ title:"Atterraggio, auto, Madaba",km:35,h:"0h40",quota:"730 → 780 m",
+ route:"Aeroporto Queen Alia › Airport Highway › svincolo Madaba › centro storico",
+ gm:"https://www.google.com/maps/dir/Queen+Alia+International+Airport/Madaba",
+ menu:{h:"Il Monte Nebo oggi o domani",
+  s:"È l’unica cosa che dipende dall’orario del volo, e va decisa guardando il tabellone degli arrivi. Nessuna delle tre costa niente e nessuna cambia dove dormite.",
+  o:[{tag:"Atterraggio entro le 13:00",k:"good",t:"Nebo stasera",d:"Ritiro auto, corsa a Madaba, check-in veloce e su al <b>Monte Nebo per le 16:15</b>: chiude alle 17:00 ma il piazzale resta accessibile e il tramonto è alle 17:40, con la Valle del Giordano che si svuota di luce. Domani si guadagna un’ora e il Mar Morto si fa ancora più presto."},
+    {tag:"Atterraggio 13:00–16:00",k:"acc",t:"Solo Madaba",d:"<b>San Giorgio</b> chiude alle 17:00 e il <b>Parco Archeologico</b> anche: con due ore si fanno entrambi con calma, ed è il modo giusto di iniziare — la Mappa di Madaba prima di tutto il resto. Il Nebo resta a domani mattina all’apertura, che è comunque l’ora migliore."},
+    {tag:"Atterraggio dopo le 16:00",k:"",t:"Niente, e va benissimo",d:"Quaranta minuti di autostrada al buio — l’unica tratta notturna accettabile del viaggio, illuminata e trafficata — check-in e cena. Domani si parte alle 7:45 e si recupera tutto. Non provate a infilare una visita: i mosaici alle 16:45 di corsa non sono i mosaici."}]},
+ tl:[["—","Atterraggio a Queen Alia","Con il Jordan Pass la fila del controllo passaporti è quella dei visti già assolti, ed è più corta. Tenete il QR anche offline."],
+     ["+40′","Auto a noleggio","Fotografate tutta la carrozzeria e i cerchi <em>prima</em> di firmare. Verificate CDW e furto sul contratto, controllate il ruotino, salvate in rubrica il numero di assistenza del noleggiatore: in Giordania non esiste un soccorso stradale pubblico."],
+     ["+20′","SIM, contanti, mappe","Banchi Umniah e Orange agli arrivi. Cambiate qui il minimo — 50 JOD bastano per due giorni — perché il tasso in aeroporto è il peggiore del paese. Controllate che le mappe offline siano davvero scaricate."],
+     ["≈35′","Madaba","35 km di autostrada, poi lo svincolo. Check-in."],
+     ["16:15","Monte Nebo","Solo se siete atterrati presto: vedi il menù. 3 JOD, non è nel pass, servono monete."],
+     ["17:39","Tramonto",""],
+     ["19:30","Il primo mansaf","<b>Haret Jdoudna</b>, in una casa ottomana con il cortile, è l’indirizzo storico della città. Il mansaf — agnello, riso e salsa di yogurt fermentato — si mangia con la mano destra almeno il primo boccone, e alla gente del posto fa piacere che ci proviate."]],
+ see:["La <b>Mappa di Madaba</b>: mosaico del VI secolo, la più antica rappresentazione cartografica della Terra Santa. Gerusalemme è al centro, vista dall’alto, con il cardo colonnato e le porte esattamente dove sono ancora oggi.",
+      "Il Parco Archeologico: i mosaici della Chiesa della Vergine e della Sala di Ippolito sotto un’unica copertura. È nel Jordan Pass, San Giorgio no.",
+      "Madaba è cristiana per un terzo, e si sente: campanili accanto ai minareti, e da metà novembre le luci di Natale già accese."],
+ sleep:"<b>Madaba, 1 notte.</b> Trentacinque chilometri dall’aeroporto contro i quaranta di Amman, e metà del traffico. Il centro si gira a piedi. Riferimenti: Mosaic City Hotel, Beity Hotel, Madaba 1880, o una delle guesthouse attorno a via Talal.",
+ eat:"Haret Jdoudna per il mansaf e i mezze. Per qualcosa di più leggero: Adonis, o Ayola Coffee Shop per il primo caffè al cardamomo. La birra locale è la Carakale, artigianale, se la trovate.",
+ tip:{k:"sig",t:"<strong>Il pass va comprato prima di salire sull’aereo</strong> Il Jordan Pass esenta dal visto <em>solo</em> se acquistato prima di entrare nel paese. Comprato all’arrivo vale come biglietto cumulativo ma non come esenzione: sono <b>40 JOD a testa</b> buttati. Al controllo passaporti si mostra il QR, che va salvato offline perché il wi-fi dell’aeroporto è quello che è."},
+ pb:{m:"Con la pioggia Madaba non cambia di una virgola: mosaici, chiese e ristoranti sono tutti al coperto e a duecento metri l’uno dall’altro. È la giornata più a prova di maltempo del viaggio.",
+     l:"Se il volo ritarda o la coda al noleggio è lunga, nessun problema: l’Airport Highway è illuminata e trafficata a ogni ora. È l’unica tratta del viaggio di cui si può dire, e infatti è l’unica messa in programma dopo il buio."}},
+
+{n:2,date:"Venerdì 13 novembre",short:"Ven 13",tipo:["Strada","Archeologia","Mare"],chip:"Il salto di quota",
+ title:"Nebo, il Mar Morto, Kerak, Dana",km:190,h:"3h20",quota:"780 → −430 → 1.200 m",
+ route:"Madaba › Monte Nebo › Mar Morto › Dead Sea Highway 65 › bivio di Kerak › Castello di Kerak › King’s Highway › Qadisiyah › Dana",
+ gm:"https://www.google.com/maps/dir/Madaba/Mount+Nebo/Amman+Beach+Dead+Sea/Karak+Castle/Dana+Village",
+ tl:[["07:00","Colazione e check-out","Pieno fatto a Madaba: da qui alla salita di Kerak ci sono novanta chilometri di Dead Sea Highway quasi senza distributori."],
+     ["07:45","Partenza","10 km, un quarto d’ora di strada in leggera salita."],
+     ["08:00","Monte Nebo, all’apertura","3 JOD, contanti, non è nel Jordan Pass. Dalla piattaforma davanti al Memoriale di Mosè si vedono il Mar Morto, la Valle del Giordano e Gerico; con l’aria giusta anche le luci di Gerusalemme. Dentro, il pavimento a mosaico del VI secolo con la scena di caccia; fuori, il serpente di bronzo di Fantoni. Un’ora, e prima che arrivi il primo pullman."],
+     ["09:05","La discesa","Venti chilometri e <b>1.140 metri più in basso</b>: le orecchie si tappano due volte. A metà discesa c’è il cartello del livello del mare, ed è la foto che spiega tutto il viaggio."],
+     ["09:30","Il bagno nel Mar Morto","Un’ora e mezza in tutto: <b>massimo 15–20 minuti in acqua</b>, ciabatte da scoglio obbligatorie, niente testa sotto, e non fatevi la barba stamattina. Il fango si spalma, si lascia asciugare al sole e si risciacqua — motivo per cui serve una spiaggia con le docce, non un tratto libero."],
+     ["11:30","Doccia vera e pranzo","Il sale va tolto sul serio o resta addosso tutto il giorno."],
+     ["12:40","Verso sud sulla riva","Novanta chilometri di Dead Sea Highway, vuota e bellissima, con la parete della Grande Frattura a sinistra e l’acqua a destra. Poi la salita al bivio di Kerak: mille e trecento metri in venti chilometri."],
+     ["14:00","Castello di Kerak","2 JOD, nel pass. Fortezza crociata del 1142, la più imponente della zona: sette livelli, gallerie sotterranee dove serve la torcia, e dai bastioni tutto il Wadi Kerak fino al Mar Morto. Da qui Rinaldo di Châtillon assaltava le carovane fra Damasco e l’Egitto, e per questo Saladino venne a prendersela."],
+     ["15:35","King’s Highway verso Dana","Settanta chilometri, un’ora e un quarto sull’altopiano. Ultimo pieno a Kerak o a Qadisiyah: <b>a Dana non c’è distributore</b>."],
+     ["16:50","Dana","La discesa finale nel villaggio è stretta e a tornanti. Arrivare con la luce non è prudenza eccessiva: il tramonto è alle 17:41 e alle 18:06 è buio pieno."],
+     ["19:00","Cena e accordi per domani","Al Dana Guesthouse o alla vostra struttura si prenotano guida e navetta. È la sera in cui si decide che forma avrà il giorno 3."]],
+ see:["Il cartello <b>Sea Level</b> sulla discesa: da lì in giù si va sotto lo zero. Non esiste un’altra strada asfaltata al mondo che scenda così, così in fretta.",
+      "Il galleggiamento non è nuotare: è stare seduti sull’acqua leggendo. Il sale è al 34%, dieci volte l’oceano, e la sensazione è oleosa più che bagnata.",
+      "Kerak dai bastioni nel pomeriggio, con la luce lunga: da lassù si capisce perché un castello, proprio lì."],
+ sleep:"<b>Dana, prima di due notti.</b> Il villaggio ottomano sul ciglio della riserva, in gran parte restaurato, ha pochissime strutture: Dana Guesthouse (RSCN, la più curata), Dana Hotel, Dana Tower Hotel. Chiedete una stanza sul lato della valle. E portate uno strato in più: a 1.200 metri di notte si scende sotto i 10 °C e il riscaldamento è quello che è.",
+ eat:"A Dana si mangia dove si dorme, non c’è alternativa: cena giordana di casa a un’ora fissa, verdure, riso, pollo o agnello. Dite prenotando se qualcuno è vegetariano — qui è facilissimo e lo fanno benissimo.",
+ tip:{k:"alert",t:"<strong>Uno dei due va accorciato</strong> Bagno lungo al Mar Morto <em>e</em> visita piena a Kerak non ci stanno insieme prima del buio. Se la mattina parte in ritardo, tagliate consapevolmente: Kerak si fa in quaranta minuti dai bastioni senza scendere nei sotterranei, oppure si guarda dalla strada, che da sola vale la sosta. Quello che <em>non</em> si taglia è arrivare a Dana con la luce."},
+ pb:{m:"Con la pioggia il Mar Morto perde poco: l’acqua è calda e le docce sono coperte. Ma le cascate termali di <b>Hammamat Ma’in</b>, mezz’ora da Madaba, diventano l’alternativa migliore — acqua calda naturale che cade da una parete, e col cielo grigio è ancora più bello. Il Wadi Mujib resta chiuso in ogni caso: da novembre non è questione di meteo.",
+     l:"È venerdì, il weekend giordano: dal tardo mattino le spiagge pubbliche si riempiono di famiglie. Due modi di gestirlo — arrivarci alle 9:00 e uscirne alle 11:00, oppure pagare il <b>day-use di un hotel</b> (Dead Sea Spa, Holiday Inn, Hilton): costa il doppio e vi restituisce mezza giornata."}},
+
+{n:3,date:"Sabato 14 novembre",short:"Sab 14",tipo:["Cammino"],chip:"Trekking",
+ title:"Il Wadi Dana Trail, dalla cresta al deserto",km:0,h:"—",quota:"1.200 → 300 m a piedi",
+ route:"Dana villaggio › terrazze e sorgenti › Wadi Dana › confluenza › Khirbet Feynan › Feynan Ecolodge › navetta 4×4 per Qurayqira e Dana",
+ gm:"https://www.google.com/maps/dir/Dana+Village/Feynan+Ecolodge",
+ menu:{h:"Quanto scendere",
+  s:"Si decide a colazione, guardando il cielo, la conferma dell’RSCN e le gambe. Solo la prima richiede la navetta prenotata la sera prima; le altre tre no.",
+  o:[{tag:"La scelta piena",k:"good",t:"Fino a Feynan",d:"<b>14–16 km, 5–6 ore, 900 metri di discesa</b> e nessuna risalita. Si attraversano quattro fasce climatiche a piedi: dalla macchia mediterranea con ginepri agli oleandri del fondovalle, alle acacie sudanesi del Wadi Araba. È il trekking più bello della Giordania e novembre è il mese in cui va fatto. Richiede la <b>navetta 4×4</b> per tornare: 55 km attorno alla riserva, un’ora e mezza."},
+    {tag:"Senza navetta",k:"acc",t:"Andata e ritorno alla stretta",d:"<b>8 km, 4 ore, 400 metri</b> giù e poi su. Si scende fino alla confluenza, dove il wadi si stringe fra le pareti, si pranza al sacco all’ombra e si risale. Costa zero, non dipende da nessuno, e la parte migliore del percorso — la gola — la si vede lo stesso. Il ritorno in salita a metà pomeriggio è vero lavoro."},
+    {tag:"Se il cielo non convince",k:"sig",t:"Terrazze e cresta",d:"<b>2–3 ore, libero, senza guida</b>, tutto in quota sopra il villaggio: le terrazze coltivate, le sorgenti, il sentiero del ciglio con la valle di Dana sotto. Nessun rischio di piena perché non si scende nel fondovalle. È il piano B meteo, ma è anche una buona giornata in sé se qualcuno preferisce riposare."},
+    {tag:"Se l’RSCN dice di sì",k:"alert",t:"Il Wadi Ghweir",d:"Ufficialmente la stagione è chiusa da novembre, ma <b>telefonate e chiedete</b>: le date variano con l’anno idrologico. Se per qualche ragione fosse aperto, è la prima scelta assoluta — un canyon d’acqua con palme e giardini sospesi, guida obbligatoria e maggiore età per tutti. Se dicono di no, non insistete e non cercate guide indipendenti: il divieto è per il rischio di piena, che è reale."}]},
+ tl:[["06:30","Colazione presto","Chiedetela la sera prima: se non dite niente ve la fanno alle otto."],
+     ["07:15","Si parte dal villaggio","Il sole entra nella valle da est e accende la parete di fronte per mezz’ora. Zaino con <b>3 litri a testa</b> — lungo il percorso non c’è una sola fonte — cappello, scarponcini, e uno strato leggero che si toglie dopo venti minuti."],
+     ["08:00","Le terrazze","I primi chilometri passano fra orti, sorgenti e muretti a secco, con ginepri fenici e cipressi nani. È la Giordania mediterranea, e finisce presto."],
+     ["10:00","Dentro il wadi","Il fondovalle si stringe e la vegetazione cambia due volte in un’ora: oleandri, poi acacie, poi quasi niente. Si scende di continuo ma senza strappi, e il caldo cresce mano a mano che si perde quota."],
+     ["12:00","Khirbet Feynan","Rame estratto qui dal Neolitico, poi dai Nabatei, poi dai Romani, che ci mandavano i condannati ai lavori forzati. Le scorie di fusione sono ancora ovunque, nere sul terreno rosso, per ettari."],
+     ["12:45","Feynan Ecolodge","Pranzo e tè. Funziona quasi tutto a solare e la sera è illuminato soltanto a candele: anche solo passandoci, vale mezz’ora."],
+     ["14:00","La navetta","Cinquantacinque chilometri di pista e asfalto attorno alla riserva, un’ora e mezza abbondante. È il pezzo che va concordato ieri sera."],
+     ["16:00","Dana","Il resto del pomeriggio è vostro. Dalla terrazza del villaggio si guarda dritti dentro la valle che avete appena fatto a piedi, e la prospettiva è diversa."],
+     ["19:00","Cena","Seconda e ultima notte. Domani si riparte con l’auto."]],
+ see:["<b>Quattro fasce climatiche in cinque ore</b>: dalla macchia mediterranea a 1.200 metri alla vera fascia sudanese di acacie a 300. In Europa per farlo serve un aereo.",
+      "Le scorie di rame di Feynan: uno dei siti minerari più antichi del mondo, sfruttato quasi ininterrottamente per seimila anni.",
+      "Lo stambecco della Nubia e il caracal ci sono davvero. Li vede chi parte presto e sta in silenzio, e nessun altro."],
+ sleep:"<b>Dana, seconda notte.</b> Valigia ferma: è la ragione per cui la base sta qui e non a Petra.",
+ eat:"Pranzo al Feynan Ecolodge se scendete fino in fondo — vegetariano, semplice, ottimo — oppure al sacco preparato dalla guesthouse, che è la scelta normale. Cena di nuovo dove dormite.",
+ tip:{k:"alert",t:"<strong>Il Ghweir è chiuso, il Wadi Dana no</strong> I sentieri d’acqua della riserva hanno stagione <b>15 marzo – 31 ottobre</b> e da novembre chiudono per rischio di piena improvvisa, esattamente come il Mujib. Il Wadi Dana Trail è invece un fondovalle asciutto, percorribile tutto l’anno, con o senza guida. Telefonate comunque all’RSCN — <span class='mono'>+962 6 461 6523</span> — per farvi confermare stagioni e tariffe: sono l’unico dato di questo road book che non sono riuscito a verificare online."},
+ pb:{m:"Con la pioggia — o con la pioggia caduta a monte nelle 24 ore precedenti — il fondovalle non si fa. Un wadi asciutto resta asciutto finché non arriva l’acqua di qualcun altro, e la piena viaggia più veloce di voi. Al suo posto il sentiero delle terrazze e della cresta: due ore, libero, in quota, e la stessa valle vista dall’alto.",
+     l:"Se la navetta non si trova o costa più del ragionevole, si fa l’andata e ritorno fino alla stretta: metà cammino, zero costi, e resta la parte più bella. Decidetelo a colazione, non a metà discesa — da lì in poi risalire costa il doppio."}},
+
+{n:4,date:"Domenica 15 novembre",short:"Dom 15",tipo:["Strada","Archeologia"],chip:"Giornata corta",
+ title:"Shobak, Little Petra e la sera che conta",km:65,h:"1h20",quota:"1.200 → 1.100 m",
+ route:"Dana › Qadisiyah › King’s Highway › Castello di Shobak › Little Petra (Siq al-Barid) › Wadi Musa",
+ gm:"https://www.google.com/maps/dir/Dana+Village/Shobak+Castle/Little+Petra/Wadi+Musa",
+ tl:[["08:30","Colazione con calma","È la giornata più leggera del viaggio, e serve che lo sia: domani si cammina dodici chilometri con la sveglia alle 5:30."],
+     ["09:30","Partenza","Pieno a Qadisiyah, sette chilometri: a Dana non c’è distributore."],
+     ["10:15","Castello di Shobak","1 JOD, nel pass. Costruito da Baldovino I nel 1115, è il primo dei castelli crociati d’Oltregiordano e il meno addomesticato: iscrizioni mamelucche che corrono lungo le torri, crolli lasciati dove sono, e un <b>pozzo segreto con 350 gradini</b> scavati nella roccia che scende alla sorgente. Serve una torcia vera, non il telefono, e non è per chi soffre di spazi stretti."],
+     ["12:00","Verso Little Petra","Quarantacinque chilometri di strada interna, un’ora scarsa. Pranzo per strada o in paese."],
+     ["14:00","Little Petra — Siq al-Barid","<b>Ingresso libero.</b> Il «canyon freddo» è largo pochi metri e resta in ombra quasi tutto il giorno: da lì il nome. Facciate nabatee, triclini scavati per i banchetti delle carovane e, in fondo a una scaletta nella Painted House, <b>l’unico soffitto affrescato ellenistico rimasto in tutta Petra</b>: viti, putti e uccelli dipinti duemila anni fa. Quarantacinque minuti."],
+     ["15:30","La ricognizione","Andate a vedere il checkpoint da cui parte il sentiero di domani e il punto esatto dove vi lascerà il 4×4. Dieci minuti oggi, mezz’ora risparmiata domattina al buio."],
+     ["16:30","Check-in e riposo","Preparate zaino, acqua, colazione al sacco, frontale, e il Jordan Pass scaricato offline sul telefono."],
+     ["19:00","Cena presto","Al Wadi Restaurant o My Mom’s Recipe, a Wadi Musa."],
+     ["21:00","La telefonata","Confermate il passaggio al checkpoint di Little Petra per le <b>6:15</b>. È il momento più importante della giornata e dura due minuti."]],
+ see:["Il pozzo segreto di Shobak: trecentocinquanta gradini nel buio fino a una sorgente, scavati per resistere agli assedi. È l’unica cosa del viaggio che fa un po’ paura.",
+      "La Painted House di Little Petra, sopravvissuta perché per secoli nessuno sapeva che ci fosse.",
+      "Little Petra era il caravanserraglio: qui le carovane si fermavano <em>prima</em> di entrare nella città vera. È il vestibolo di quello che vedrete domani, e va guardato come tale."],
+ sleep:"<b>Prima di due notti in zona Petra.</b> La scelta furba è dormire <b>stanotte vicino a Little Petra</b> — Seven Wonders Bedouin Camp, Ammarin Bedouin Camp, Little Petra Bedouin Camp — per essere a due passi dal checkpoint domattina, e <b>domani notte a Wadi Musa</b> per essere al Visitor Center alle 6:00. Se preferite non spostarvi, Wadi Musa va bene per entrambe: sono venti minuti di strada in più domattina, al buio.",
+ eat:"A Wadi Musa: <b>Al Wadi Restaurant</b>, il più solido; <b>My Mom’s Recipe</b> per la cucina di casa e il prezzo giusto; <b>The Cave Bar</b>, dentro una tomba nabatea accanto al Visitor Center, per un bicchiere la sera — è davvero uno dei bar più antichi del mondo. <b>Petra Kitchen</b> se volete cucinare voi la cena giordana: si prenota.",
+ tip:{k:"acc",t:"<strong>La sera che decide domani</strong> I 4×4 ufficiali dal Nabataean Cultural Village al sentiero del Monastero partono <em>dopo le 7:00</em> e costano 5 JOD a testa. Per essere sul sentiero alle 6:40 serve un passaggio privato concordato con l’alloggio: dieci-venti dinari, e comprano un’ora e mezza di vantaggio su chiunque entri dal Siq. È la spesa con il rendimento più alto del viaggio dopo il Jordan Pass."},
+ pb:{m:"Sotto la pioggia Shobak e Little Petra reggono benissimo — sono roccia, non fango — ma il pozzo segreto diventa scivoloso e va saltato senza discutere. In compenso una giornata di pioggia oggi rende molto più probabile camminare all’asciutto domani.",
+     l:"Se il passaggio delle 6:15 non si trova, non è un dramma: si entra da Petra dal Visitor Center alle 6:00 e si fa il percorso classico. Si perde la solitudine al Monastero, non Petra. Se qualcuno non se la sente del pozzo di Shobak, il castello si visita comunque in un’ora dai bastioni."}},
+
+{n:5,date:"Lunedì 16 novembre",short:"Lun 16",tipo:["Cammino","Archeologia"],chip:"Il giorno grande",
+ title:"Petra dal back door: il Monastero all’alba",km:25,h:"0h40",quota:"1.100 → 900 m, 12 km a piedi",
+ route:"Little Petra › checkpoint › sentiero di cresta › Monastero (Ad-Deir) › 800 gradini › centro del sito › Tombe Reali › Teatro › Siq › Tesoreria › Visitor Center",
+ gm:"https://www.google.com/maps/dir/Little+Petra/Ad+Deir+Monastery/Petra+Visitor+Center",
+ tl:[["05:30","Sveglia","Colazione al sacco: alle sei non è aperto niente."],
+     ["06:15","Passaggio al checkpoint","È ancora buio: il crepuscolo civile comincia alle <b>06:39</b> e il sole sorge alle <b>07:04</b>. Frontale nello zaino, guanti leggeri se ce li avete."],
+     ["06:40","Sul sentiero","Otto chilometri di altopiano e creste, saliscendi modesti, segnavia radi ma il tracciato si segue. L’alba vi prende in cammino, sulla pietra rosa, e non c’è nessuno."],
+     ["09:15","Il Monastero (Ad-Deir)","Cinquanta metri di facciata scavata nella roccia — la più grande di Petra, più grande della Tesoreria — e ci si arriva <em>dall’alto</em>, invece che dopo 800 gradini in salita. A quest’ora non c’è quasi nessuno. Il tè al chiosco di fronte costa caro e va benissimo così."],
+     ["10:00","Il belvedere","Cinque minuti oltre il Monastero, sul ciglio: sotto c’è il Wadi Araba fino all’orizzonte e, nelle giornate limpide, la Palestina."],
+     ["10:45","Gli 800 gradini, in discesa","Un’ora comoda verso il centro del sito, con il Triclinio del Leone lungo la via. È il verso giusto in cui farli, e a metà mattina si incrociano quelli che salgono."],
+     ["12:00","Il centro e il pranzo","Il Grande Tempio, la Via Colonnata, la Chiesa Bizantina con i mosaici del pavimento. Si mangia al Basin, oppure il panino che vi siete portati."],
+     ["13:30","Le Tombe Reali","<b>Guardano a ovest</b>: nel pomeriggio la luce ci entra dentro e l’arenaria a strati va a fuoco. È il momento giusto per queste, ed è la seconda ragione per cui il percorso è invertito."],
+     ["14:45","Teatro e Street of Facades","Sempre in discesa verso il Siq, con le tombe a torre da entrambi i lati."],
+     ["15:15","La Tesoreria","In ombra a quest’ora — la facciata guarda a est — ma quasi vuota, che è l’altro modo di vederla, e non è il peggiore. Domattina la vedrete illuminata."],
+     ["15:40","Il Siq","Milleduecento metri di gola alta ottanta, in leggera salita, con i <b>canali di captazione nabatei</b> ancora visibili lungo le pareti. Fuori entro le 16:15: il sito chiude alle 16:00 e i ranger cominciano a far uscire."],
+     ["17:00","Cave Bar","Meritato. Poi cena presto."],
+     ["20:30","Petra by Night — facoltativo","Lunedì è una delle tre sere. 30 JOD a testa, biglietto a parte, serve avere già il pass. Millecinquecento candele nel Siq e alla Tesoreria: mezz’ora di cammino e un’ora seduti a terra con il tè. Chi lo ama lo ricorda per sempre, chi no lo trova breve. Con la sveglia alle 5:45 anche domani, pensateci."]],
+ see:["Il Monastero senza nessuno davanti. È l’unica ora del giorno in cui succede, e succede soltanto entrando da qui.",
+      "I <b>canali nabatei</b> nel Siq: due scanalature che corrono per tutta la gola. Portavano l’acqua in città ed è la vera invenzione che ha reso possibile Petra in mezzo al deserto.",
+      "Le Tombe Reali alle due del pomeriggio: le venature dell’arenaria sono strati geologici veri, non effetti di luce."],
+ sleep:"<b>Seconda notte in zona Petra, meglio a Wadi Musa</b>: domattina si entra dal Visitor Center alle 6:00 e ogni minuto di strada pesa. Riferimenti: Petra Guest House (attaccata all’ingresso, sopra il Cave Bar), Mövenpick Resort Petra, Petra Moon Hotel, o una delle pensioni su Tourism Street.",
+ eat:"Pranzo dentro il sito, al Basin, oppure al sacco — che è meglio, perché vi tiene liberi. Cena presto a Wadi Musa.",
+ tip:{k:"good",t:"<strong>Perché al contrario, e perché d’inverno conta il doppio</strong> Chi entra dal Siq arriva al Monastero verso l’una, dopo 800 gradini in salita e sette chilometri già nelle gambe, con la facciata in luce piatta. Entrando da dietro, il Monastero è la prima cosa che vedete, con la luce radente e in solitudine, e gli 800 gradini si fanno in discesa. Con la <b>chiusura alle 16:00</b> questo verso non è più una preferenza estetica: è l’unico che permette di vedere tutto in una giornata."},
+ pb:{m:"Se piove sul serio il Siq può essere chiuso per rischio di piena: è una gola stretta con un bacino grande sopra, ed è già successo. In quel caso: <b>museo di Petra</b> (gratuito, accanto al Visitor Center, molto ben fatto), pomeriggio a Wadi Musa e recupero domattina con il pass da due giorni. È esattamente il motivo per cui il secondo giorno, oltre che un vantaggio, è una polizza.",
+     l:"Se il sentiero del back door risulta chiuso o il passaggio salta: Visitor Center alle 6:00, Siq subito, Tesoreria alle 07:30 con la luce migliore, Monastero verso le 11:00 salendo con calma, uscita alle 15:30. Si perde la solitudine e si guadagna la Tesoreria illuminata — e allora il secondo giorno diventa davvero facoltativo."}},
+
+{n:6,date:"Martedì 17 novembre",short:"Mar 17",tipo:["Archeologia","Strada","Deserto"],chip:"Due mondi in un giorno",
+ title:"La Tesoreria illuminata, poi il Wadi Rum",km:110,h:"1h50",quota:"1.100 → 1.500 → 1.000 m",
+ route:"Wadi Musa › Visitor Center (2° giorno) › Siq › Tesoreria › Desert Highway 15 › Ras an-Naqab › bivio Wadi Rum › Visitor Center › villaggio › campo",
+ gm:"https://www.google.com/maps/dir/Petra+Visitor+Center/Ras+An+Naqab/Wadi+Rum+Visitor+Center",
+ tl:[["05:45","Sveglia e check-out","Auto già carica, così alle 10:00 si parte senza tornare in hotel."],
+     ["06:15","Al Visitor Center","Apre alle 6:00. A quest’ora ci sono una manciata di persone e il buio sta finendo: crepuscolo alle 06:40."],
+     ["06:40","Nel Siq","Da soli, o quasi. Milleduecento metri con le pareti che si stringono fino a due metri, e alla fine la fessura verticale da cui la Tesoreria si vede a pezzi prima di aprirsi tutta insieme."],
+     ["07:30","Al-Khazneh, illuminata","<b>La facciata guarda a est</b>: fra le 07:30 e le 10:00 il sole ci entra dentro e l’arenaria diventa arancio pieno. È l’immagine per cui si viene a Petra, ed è questa mezz’ora e mezzo. Con il pass da due giorni non costa un dinaro in più di ieri."],
+     ["08:15","Al-Khubtha, il belvedere — facoltativo","Novecento gradini in salita da vicino alle Tombe Reali, un’ora e un quarto andata e ritorno, e si arriva sulla terrazza a strapiombo <em>sopra</em> la Tesoreria. È la vista dall’alto, quella delle fotografie. Se le gambe di ieri lo permettono è la cosa migliore che potete aggiungere al viaggio; se no si salta senza rimpianti."],
+     ["09:45","Uscita","Ultimo caffè fuori dal Siq, ultimo sguardo."],
+     ["10:15","Desert Highway verso sud","Ottanta chilometri di altopiano piatto e poi, senza preavviso, il ciglio."],
+     ["11:00","Ras an-Naqab","Sosta gratuita, dieci minuti, e nessuno si ferma. L’altopiano finisce di colpo a <b>1.500 metri</b> e sotto si apre il Wadi Araba fino all’orizzonte: è il bordo orientale della Grande Frattura visto dall’alto, la stessa che avete attraversato al Mar Morto. Da qui in giù si perdono mille metri in mezz’ora."],
+     ["11:45","Visitor Center del Wadi Rum","Registrazione obbligatoria, 5 JOD compresi nel pass. Da qui l’auto non prosegue: si lascia al villaggio, in un parcheggio custodito, e si sale sulla jeep del campo. <b>Ultimo pieno alla pompa del villaggio.</b>"],
+     ["12:30","Al campo","Tende nere, tè al cardamomo, un’ora di niente. Serve, dopo la sveglia alle 5:45."],
+     ["14:30","Primo giro in jeep","Due o tre ore per prendere le misure del posto: la <b>sorgente di Lawrence</b>, il <b>Khazali Canyon</b> con i petroglifi nabatei e tamudici, le <b>dune rosse di Al-Ramal</b> dove la salita è di cinque minuti e la vista è tutta la valle."],
+     ["16:45","L’ultima ora di luce","La guida sa dove portarvi. La roccia cambia colore per quaranta minuti di fila, dall’arancio al rosso al viola, poi il sole sparisce dietro la cresta alle 17:42 e la temperatura crolla."],
+     ["19:00","Zarb","La carne cotta sotto la sabbia, tirata fuori davanti a voi. Poi il fuoco, il tè e, se il campo è quello giusto, il rababa e le storie."]],
+ see:["La Tesoreria illuminata: la stessa facciata di ieri pomeriggio, ed è un’altra cosa. Vale i cinque dinari di differenza sul pass dieci volte.",
+      "Il ciglio di <b>Ras an-Naqab</b>: mille metri di vuoto e la Grande Frattura che si apre sotto. Dieci minuti, gratis, e nessuno si ferma.",
+      "I petroglifi del Khazali: duemila anni di incisioni su tre metri di parete. La scrittura tamudica è alfabetica e nessuno l’ha ancora letta per intero."],
+ sleep:"<b>Wadi Rum, prima di due notti.</b> Campo beduino dentro l’area protetta. Chiedete <em>esplicitamente</em> se le tende hanno la stufa: a novembre di notte si va vicino allo zero e la differenza fra dormire e non dormire è tutta lì. Il pacchetto tipico comprende cena, colazione, transfer dal villaggio e il jeep full day di domani: fatevelo scrivere.",
+ eat:"Zarb stasera, ed è il piatto del viaggio insieme al mansaf. A pranzo si mangia al campo. Bevete più di quanto vi sembri necessario: l’aria è secchissima e non ci si accorge di sudare.",
+ tip:{k:"sig",t:"<strong>Occhiali e buff non sono un vezzo</strong> La jeep è aperta, la pista è sabbia finissima e il vento del pomeriggio la solleva tutta. Occhiali avvolgenti e una sciarpa per naso e bocca cambiano la giornata — e salvano l’obiettivo della macchina fotografica, che nel deserto è la prima cosa che si rovina e non si ripara."},
+ pb:{m:"Con vento forte il giro pomeridiano si accorcia o salta: non è pericoloso, è che non si vede niente e la sabbia entra ovunque. Il campo ha tè, musica e racconti, e lo zarb si fa comunque.",
+     l:"Se avete il pass da un giorno solo, la giornata comincia alle 8:30 da Wadi Musa e si arriva al campo per pranzo con tutto il pomeriggio davanti: il giro in jeep si allunga e si arriva al tramonto più lontano nella valle. Non è un ripiego, è un’altra buona giornata — semplicemente senza la Tesoreria illuminata."}},
+
+{n:7,date:"Mercoledì 18 novembre",short:"Mer 18",tipo:["Deserto"],chip:"Deserto · a scelta",
+ title:"Wadi Rum, la giornata intera",km:0,h:"—",quota:"1.000 m, auto ferma",
+ route:"Campo › Khazali › dune di Al-Ramal › Umm Fruth › Barrah o Burdah › Sunset Point › campo",
+ gm:"https://www.google.com/maps/dir/Wadi+Rum+Village/Khazali+Canyon/Umm+Fruth+Rock+Bridge/Wadi+Rum+Village",
+ menu:{h:"Che tipo di giornata nel deserto",
+  s:"Le prime due si concordano <b>quando prenotate il campo</b>, non la mattina: cambiano il mezzo e il numero di ore della guida. La terza si decide a colazione. La quarta non si programma mai.",
+  o:[{tag:"Il giro classico",k:"acc",t:"Sette soste in jeep",d:"Khazali, dune rosse, Umm Fruth, Lawrence’s Spring, il ponte di Little Bridge, un canyon e il Sunset Point. Poca fatica, molte fotografie, pranzo cucinato dalla guida all’ombra di una roccia. È quello che fa quasi tutti, ed è giustamente popolare: in una giornata si vede la scala del posto."},
+    {tag:"Per chi ha gambe",k:"good",t:"Il Burdah Rock Bridge",d:"<b>4–5 ore fra cammino e arrampicata leggera</b> fino al ponte di roccia naturale più alto del Wadi Rum, a picco. Sostituisce metà delle soste facili, non si aggiunge. Serve testa per l’esposizione: l’ultimo tratto è su roccia senza protezioni e scendere è peggio che salire. <b>Va concordato prenotando il campo</b>, perché richiede una guida che lo faccia."},
+    {tag:"La via di mezzo",k:"sig",t:"Barrah Canyon",d:"Cinque chilometri dentro un canyon largo, a piedi o in cammello, mezza giornata. Molto meno battuto delle tappe classiche e senza code alle fotografie: se il gruppo preferisce il silenzio alle soste, è questa. Si combina bene con due o tre tappe classiche nel pomeriggio."},
+    {tag:"Non programmabile",k:"",t:"La mongolfiera",d:"All’alba, quando c’è. Dipende interamente dal vento e viene cancellata più spesso di quanto venga fatta: <b>consideratela una possibilità, mai un programma</b>. Se il campo vi dice la sera prima che domani si vola, allora esiste. Costa attorno ai 150 JOD a persona."}]},
+ tl:[["06:00","L’alba, se volete","Il sole sorge alle 07:05 ma il cielo comincia a colorarsi dalle 06:40. Basta uscire dalla tenda e camminare cento metri nella direzione opposta al campo."],
+     ["08:00","Colazione","Pane, formaggio bianco, humus, uova, tè dolce. Poi si carica la jeep."],
+     ["09:00","Khazali Canyon","Una fessura di duecento metri nella montagna, a tratti larga un metro. Sulle pareti duemila anni di iscrizioni nabatee e tamudiche: carovane, stambecchi, piedi umani incisi come firme di passaggio."],
+     ["10:30","Le dune rosse di Al-Ramal","Cinque minuti di salita nella sabbia — che è molto più faticosa di quanto sembri — ai piedi del Jebel Umm Ishrin. Da sopra si capisce la scala del posto, che dal basso sfugge."],
+     ["12:00","Pranzo all’ombra di una roccia","La guida cucina: pane sulla brace, pomodori, tonno, tè. È una delle cose migliori della giornata e non la mette nessuno nei programmi."],
+     ["14:00","Umm Fruth Rock Bridge","Un arco naturale che si sale in cinque minuti senza attrezzatura, ma con un po’ di testa per l’esposizione. Nel tardo pomeriggio il sole lo prende da dietro e diventa una silhouette."],
+     ["15:30","Lawrence’s Spring, o Barrah","Secondo come è andata la giornata e cosa avete scelto stamattina."],
+     ["16:45","L’ultima ora","Sunset Point, vicino ai Sette Pilastri della Saggezza. Il sole va giù alle 17:42 e la temperatura crolla di dieci gradi in venti minuti: il piumino esce adesso, non dopo."],
+     ["19:00","Cena e fuoco",""],
+     ["01:35","Il cielo vero","La luna è al 63% e tramonta verso l’01:35. Fino ad allora il deserto è illuminato abbastanza da camminarci senza torcia — bellissimo, ma le stelle sono lavate. Chi vuole la Via Lattea mette la sveglia all’una: dopo il tramonto della luna, qui, non c’è una sola luce artificiale in nessuna direzione."]],
+ see:["<b>Il silenzio.</b> Se la jeep si spegne e nessuno parla, nel Wadi Rum non c’è alcun suono. È una cosa che quasi nessuno ha mai sentito in vita sua.",
+      "Arenaria su granito: le montagne del Rum sono blocchi di arenaria appoggiati su uno zoccolo di granito nero, e la linea di contatto si vede a occhio nudo a un terzo dell’altezza.",
+      "I Sette Pilastri della Saggezza, la parete che si vede dal Visitor Center. Lawrence non li ha mai chiamati così: il nome è stato appiccicato dopo, e funziona lo stesso."],
+ sleep:"<b>Wadi Rum, seconda notte.</b> Se stanotte avete avuto freddo, chiedete una coperta in più <em>prima</em> di cena: dopo, il campo dorme.",
+ eat:"Colazione e cena al campo, pranzo cucinato dalla guida nel deserto. Bevete costantemente: con quest’aria si perdono litri senza accorgersene.",
+ tip:{k:"acc",t:"<strong>Il Burdah si concorda prenotando, non a colazione</strong> Il ponte di roccia più alto del Wadi Rum richiede quattro o cinque ore fra cammino e arrampicata leggera e va <em>al posto</em> di metà delle soste classiche. Le guide lo fanno volentieri ma devono saperlo prima, perché serve chi lo conosce. La mongolfiera, invece, non va mai messa in programma: dipende dal vento e viene cancellata più spesso di quanto venga fatta."},
+ pb:{m:"Con vento forte o sabbia sospesa il full day si accorcia: si resta nella parte riparata della valle e si torna al campo per pranzo. Tè, musica, racconti sulla vita nomade — non è un ripiego, è l’altra metà del Wadi Rum, e chi la salta non ha visto il posto.",
+     l:"Se il jeep full day non è compreso nel pacchetto — verificatelo prenotando — costa indicativamente 60–90 JOD a persona concordato in loco, e va contrattato la sera prima. La mattina stessa le jeep migliori sono già partite."}},
+
+{n:8,date:"Giovedì 19 novembre",short:"Gio 19",tipo:["Strada","Mare"],chip:"Dal deserto al mare",
+ title:"Wadi Rum → Aqaba, e il primo bagno nel Mar Rosso",km:60,h:"0h55",quota:"1.000 → 0 m",
+ route:"Campo › villaggio del Wadi Rum › Highway 47 › Desert Highway › Aqaba › South Beach e Aqaba Marine Park",
+ gm:"https://www.google.com/maps/dir/Wadi+Rum+Village/Aqaba/South+Beach+Aqaba",
+ tl:[["07:05","L’ultima alba dal campo","Colazione senza fretta: oggi si fanno sessanta chilometri in tutto."],
+     ["09:30","Jeep fino al villaggio, poi l’auto","Da qui, mille metri di discesa in cinquanta minuti."],
+     ["10:45","Aqaba","Check-in, o deposito bagagli se la stanza non è pronta — quasi tutti gli hotel di Aqaba hanno una stanza di servizio proprio per chi arriva dal deserto."],
+     ["11:30","Doccia lunga","La sabbia del Wadi Rum entra ovunque, comprese le orecchie e la macchina fotografica. Non è un lusso, è manutenzione."],
+     ["12:30","Pranzo di pesce","Il primo del viaggio: sono sette giorni di agnello e riso, ed è ora."],
+     ["14:00","Snorkeling da riva","<b>South Beach e l’Aqaba Marine Park</b>, sedici chilometri a sud della città: l’accesso alla spiaggia pubblica è libero, l’attrezzatura si noleggia sul posto per pochi dinari. Dal bagnasciuga la barriera è a venti metri, e il <b>Giardino Giapponese</b> è uno dei reef più settentrionali del mondo. Acqua a 22–24 °C."],
+     ["16:30","Rientro in città","Con la luce lunga sull’acqua e il porto di Eilat che si accende di fronte."],
+     ["17:43","Tramonto","Dal lungomare si vedono contemporaneamente <b>Israele</b> (Eilat, di fronte), <b>l’Egitto</b> (il Sinai, a destra) e <b>l’Arabia Saudita</b> (a sinistra). Quattro paesi in un colpo d’occhio: succede in pochissimi posti al mondo."],
+     ["20:00","Cena","<b>Ali Baba</b>, istituzione del centro con la terrazza, o il <b>Royal Yacht Club</b> se volete il tavolo sul porticciolo."]],
+ see:["Una barriera corallina raggiungibile a nuoto da una spiaggia pubblica gratuita: succede in pochissimi posti, e ad Aqaba è la normalità.",
+      "Il <b>Cedar Pride</b>, cargo libanese affondato apposta nel 1985 per farne una barriera artificiale: la parte alta si intuisce anche in snorkeling, il resto è per chi si immerge.",
+      "Le quattro bandiere al tramonto. Aqaba è l’unico posto in cui la geografia del Medio Oriente si capisce semplicemente guardandola."],
+ sleep:"<b>Aqaba, prima di due notti.</b> In centro (Aqaba Gulf Hotel, DoubleTree, o le pensioni intorno a King Hussein Street) si è a piedi da mercato e ristoranti; a <b>Tala Bay</b>, dieci chilometri a sud, si ha spiaggia privata, house reef e acqua più pulita, ma si dipende dall’auto per cenare. Con due notti e la voglia di mare, Tala Bay conviene; con la voglia di città, il centro.",
+ eat:"<b>Ali Baba</b> per il pesce e la terrazza; <b>Floka</b>, dove vanno i locali; il <b>Royal Yacht Club</b> per la cena più elegante del viaggio. Per il pasto vero: shawarma e succhi freschi su <b>Raghadan Street</b>, dove la sera si mette in fila la gente del posto.",
+ tip:{k:"good",t:"<strong>Aqaba è zona economica speciale</strong> Alcol, elettronica, profumi e sigarette costano sensibilmente meno che nel resto della Giordania. Se volete portare a casa una bottiglia o vi serve una scheda di memoria, si compra qui e non all’aeroporto. Vale anche per il carburante prima di ripartire sabato."},
+ pb:{m:"Se il mare è mosso — succede con il vento da nord — lo snorkeling da riva non rende. Alternative al coperto o riparate: l’acquario della Marine Science Station, il sito di <b>Ayla</b> (la città islamica dell’VIII secolo, scavata a due passi dal lungomare, ingresso libero) o semplicemente un pomeriggio di niente, che dopo sette giorni ci sta tutto.",
+     l:"Se la stanza non è pronta, chiedete comunque deposito e doccia: qui è prassi. E se il campo vi lascia al villaggio più tardi del previsto, la giornata regge lo stesso — sono cinquantacinque minuti di strada e il pomeriggio è lungo."}},
+
+{n:9,date:"Venerdì 20 novembre",short:"Ven 20",tipo:["Mare"],chip:"Aperta · a scelta",
+ title:"Aqaba, la giornata che non ha programma",km:20,h:"0h40",quota:"0 m",
+ route:"Aqaba › a scelta: sott’acqua · in barca · a terra · niente › Aqaba",
+ gm:"https://www.google.com/maps/dir/Aqaba/Tala+Bay/Aqaba",
+ menu:{h:"Quattro modi di usare l’ultima giornata piena",
+  s:"È l’unica giornata del viaggio completamente vuota, ed è vuota apposta. Solo la prima va prenotata ieri; le altre tre si decidono a colazione.",
+  o:[{tag:"Sott’acqua sul serio",k:"acc",t:"Immersione o battesimo",d:"Battesimo sub 50–70 JOD, uscita in barca con due immersioni e pranzo 40–60 JOD. Si prenota <b>giovedì</b>, perché le barche partono presto e si riempiono. <b>Attenzione al volo</b>: dopo un’immersione servono almeno 12–18 ore prima di volare, meglio 24. Con il volo di sabato, un’immersione venerdì mattina va bene; una venerdì pomeriggio, se il volo è sabato mattina, no."},
+    {tag:"Senza bombole",k:"good",t:"Snorkeling e barca",d:"Uscita in barca a fondo trasparente verso i reef sud e il Cedar Pride, tre o quattro ore con pranzo a bordo, oppure semplicemente la giornata a South Beach con maschera e pinne noleggiate. <b>Il mare è piatto fino alle 11:00</b> e poi il vento lo increspa: la finestra buona è la mattina."},
+    {tag:"A terra",k:"sig",t:"Ayla, hammam e mercato",d:"Il sito di <b>Ayla</b>, città islamica dell’VIII secolo con mura e quattro porte ancora leggibili, il forte mamelucco, il museo archeologico. Poi l’<b>hammam</b> in centro nel pomeriggio, che dopo una settimana di trekking e deserto è la cosa giusta. La sera, il mercato del venerdì: saponi al Mar Morto, tappeti, bottiglie di sabbia colorata riempite davanti a voi."},
+    {tag:"Legittimo",k:"",t:"Giorno zero",d:"Non si prende l’auto. Colazione lunga, spiaggia dell’hotel, un libro, la siesta vera, il caffè con vista sul porto — che ad Aqaba è un’attività riconosciuta — e l’aperitivo al tramonto. Detto senza ironia: dopo ottocento chilometri, due notti nel deserto e trenta chilometri a piedi, è la scelta che vi ricorderete."}]},
+ tl:[["07:00","Colazione","Presto ma senza sveglia. Oggi il ritmo lo decidete voi."],
+     ["07:30","In acqua, se si va","La finestra buona per lo snorkeling è fra le 7:30 e le 11:00, prima che il vento increspi la superficie. L’acqua è a 22–24 °C: si sta bene, ma per stare dentro più di un’ora una muta leggera cambia tutto."],
+     ["12:00","Pranzo lento",""],
+     ["14:00","Hammam, mercato, o niente","Il venerdì pomeriggio, finita la preghiera, la città si riaccende: negozi aperti fino a tardi e mercato serale pieno."],
+     ["17:43","Ultimo tramonto",""],
+     ["20:00","L’ultima cena","Quella buona. Se non l’avete ancora provato, il <b>sayadieh</b> — riso e pesce con cipolla caramellata e cumino — è il piatto di mare giordano. Poi valigie: domani si parte alle 7:00."]],
+ see:["Le <b>immersioni notturne</b>: granchi, gamberetti e aragoste escono solo dopo il buio e la barriera diventa un altro posto. Le organizzano diversi dive center e quasi nessuno le fa.",
+      "Ayla, la città islamica dell’VIII secolo in mezzo agli hotel: mura, quattro porte e la moschea, ingresso libero e nessuno dentro.",
+      "Il venerdì ad Aqaba: negozi chiusi la mattina, tutto aperto e pieno dal pomeriggio. È il ritmo del posto, non un disservizio."],
+ sleep:"<b>Aqaba, seconda e ultima notte.</b>",
+ eat:"Sayadieh da Floka o da Ali Baba. E se volete chiudere in modo diverso, il pesce alla griglia comprato al banco e cucinato al momento nei locali dietro il mercato costa un terzo e non è peggio.",
+ tip:{k:"sig",t:"<strong>Immersioni e volo non si mescolano</strong> Dopo un’immersione ricreativa servono <b>almeno 12–18 ore prima di prendere un aereo</b>, e le raccomandazioni prudenti dicono 24. Il vostro volo è sabato: se parte in giornata, un’immersione <em>venerdì mattina</em> è dentro i margini; una venerdì pomeriggio no. Se qualcuno vuole immergersi, ditelo al dive center indicando l’ora del volo — sono abituati e vi diranno loro cosa si può fare."},
+ pb:{m:"Con il mare mosso: hammam, Ayla, museo archeologico e mercato. Ad Aqaba il maltempo dura poche ore e il pomeriggio si riapre quasi sempre.",
+     l:"Se il volo di domani è mattutino presto, questa notte va spostata a nord — Ma’an, o meglio Petra — oppure si parte alle 4:00 dal buio. Verificate l’orario <em>prima</em> di prenotare la seconda notte ad Aqaba: è l’unica prenotazione del viaggio che dipende dal volo di ritorno."}},
+
+{n:10,date:"Sabato 21 novembre",short:"Sab 21",tipo:["Strada"],chip:"Rientro",
+ title:"Risalita della Grande Frattura",km:330,h:"3h45",quota:"0 → 730 m",
+ route:"Aqaba › Wadi Yutum › Desert Highway 15 › Ma’an › Qatrana › Aeroporto Queen Alia",
+ gm:"https://www.google.com/maps/dir/Aqaba/Ma%27an/Queen+Alia+International+Airport",
+ menu:{h:"Cosa infilare nel rientro",
+  s:"Dipende da un solo dato: l’ora del volo. Le prime due stanno dentro la giornata, la terza è per chi ha un volo notturno e nervi saldi.",
+  o:[{tag:"Sempre valida",k:"good",t:"Dritti, con margine",d:"Partenza alle 7:00, due soste, <b>in aeroporto per mezzogiorno</b>. Tre ore e quarantacinque di sola guida diventano quattro e mezza con caffè e benzina, e restano ore di margine per la riconsegna dell’auto — che richiede 20–30 minuti e un controllo dei danni fatto bene — e per il duty free."},
+    {tag:"Con volo serale",k:"acc",t:"Mezza giornata ad Amman",d:"Arrivo in città verso le 11:00, parcheggio alla <b>Cittadella</b> (Tempio di Ercole, Palazzo Omayyade, museo archeologico con i rotoli del Mar Morto), discesa a piedi al <b>Teatro Romano</b> che è dieci minuti sotto, pranzo e caffè su <b>Rainbow Street</b>. Tre ore piene, e l’aeroporto è a quaranta minuti. È il modo giusto di usare un volo dopo le 19:00."},
+    {tag:"Solo con volo notturno",k:"sig",t:"La King’s Highway",d:"Rientro per l’altopiano invece che per la Desert Highway: <b>420 km e un’ora e mezza in più</b>, ripassando da Shobak, Kerak e Madaba con i panorami sui wadi. È la strada bella della Giordania e a novembre è vuota. <b>Non fatela nel giorno di un volo diurno</b>: un solo imprevisto e siete fuori tempo massimo."},
+    {tag:"Da sapere",k:"alert",t:"Jerash, no",d:"Jerash è una delle città romane meglio conservate del Medio Oriente, ma sta <b>50 km a nord di Amman</b>, cioè dalla parte opposta, e vuole una giornata intera. Infilarla nelle ore prima di un volo significa vederla male e rischiare l’imbarco. Resta per il prossimo viaggio, quello del nord."}]},
+ tl:[["06:00","Colazione e check-out",""],
+     ["07:00","Partenza da Aqaba","Pieno fatto qui: nella zona franca il carburante costa meno."],
+     ["07:30","La salita di Wadi Yutum","Mille metri in mezz’ora dentro un canyon di granito nero striato di sabbia rossa. Con la luce del mattino è il tratto più bello della Desert Highway, e all’andata l’avevate saltato passando da Petra."],
+     ["09:00","Ma’an","Unico punto di sosta serio della prima metà: caffè, bagno, benzina."],
+     ["11:00","Qatrana","Seconda e ultima sosta comoda. Da qui l’altopiano è uguale a se stesso fino ad Amman."],
+     ["11:45","Aeroporto Queen Alia","Riconsegna auto: mettete in conto 20–30 minuti e un controllo dei danni fatto con calma. Tenete le foto del giorno del ritiro."],
+     ["—","Duty free","Sapone al Mar Morto, olio d’oliva, datteri Medjoul, zaatar. Il sapone e lo zaatar sono gli unici due che userete davvero, e il secondo costa un terzo al mercato di Aqaba."]],
+ see:["Wadi Yutum al mattino: granito nero, sabbia rossa e per trenta chilometri nessuno.",
+      "La Desert Highway ricalca la <b>via dei pellegrini</b> verso la Mecca, e prima ancora la via dell’incenso che portava a Petra la ricchezza dell’Arabia meridionale. Duemilacinquecento anni di camion.",
+      "L’ultimo caffè al cardamomo prima del gate: in Italia non lo trovate uguale."],
+ sleep:"—",
+ eat:"Poche opzioni serie lungo la Desert Highway. Fermatevi a Ma’an o portatevi qualcosa da Aqaba: gli autogrill giordani sono onesti ma non memorabili.",
+ tip:{k:"alert",t:"<strong>Il margine non è opzionale</strong> Con un volo pomeridiano si parte alle 7:00 e si è in aeroporto per mezzogiorno, ed è la giusta quantità di margine su una strada con camion e cantieri. Con un volo mattutino <em>questa giornata non esiste</em> e l’ultima notte va spostata a nord. La King’s Highway panoramica è bellissima e va fatta un’altra volta: non oggi."},
+ pb:{m:"La pioggia sulla Desert Highway significa solo andare più piano: è dritta e larga. L’unico rischio vero è l’acqua ferma dove la strada taglia i wadi dopo un temporale — se c’è acqua sulla carreggiata non si passa, si aspetta. Sono quindici minuti, non un’ora.",
+     l:"Se l’auto dà problemi, il numero da chiamare è quello del noleggiatore, che avete salvato in rubrica il primo giorno. Servono targa e numero di contratto, non la vostra ricostruzione: per questo il contratto va fotografato all’arrivo."}}
+];
+
+/* ═══ rendering delle giornate ═════════════════════════════════ */
+(function(){
+  var box=document.getElementById('days'), pills=document.getElementById('pills');
+  var maxKm=330;
+
+  function barraSole(i){
+    var s=SOLE[i], o=ORA[i], W=132, H=30, x0=1, x1=W-1, t0=4*60, t1=22*60;
+    function X(m){return x0+(m-t0)/(t1-t0)*(x1-x0);}
+    var g='<svg class="sunbar" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Luce del giorno: alba '+s.alba+', tramonto '+s.tram+'. Ora che conta: '+o.t+'">'
+      +'<rect x="'+x0+'" y="10" width="'+(x1-x0)+'" height="12" rx="2" fill="var(--night)"/>'
+      +'<rect x="'+X(min(s.civA)).toFixed(1)+'" y="10" width="'+(X(min(s.civT))-X(min(s.civA))).toFixed(1)+'" height="12" fill="var(--twi)"/>'
+      +'<rect x="'+X(min(s.alba)).toFixed(1)+'" y="10" width="'+(X(min(s.tram))-X(min(s.alba))).toFixed(1)+'" height="12" fill="var(--sun)"/>'
+      +'<line x1="'+X(min(o.t)).toFixed(1)+'" y1="7" x2="'+X(min(o.t)).toFixed(1)+'" y2="25" stroke="var(--accent)" stroke-width="2"/>'
+      +'<text x="'+x0+'" y="6" font-family="var(--mono)" font-size="6.5" fill="var(--ink-3)">'+s.alba+'</text>'
+      +'<text x="'+x1+'" y="6" text-anchor="end" font-family="var(--mono)" font-size="6.5" fill="var(--ink-3)">'+s.tram+'</text>'
+      +'</svg>';
+    return g;
+  }
+
+  DAYS.forEach(function(d,i){
+    var a=document.createElement('a');
+    a.className='pill'; a.href='#day'+d.n; a.dataset.d=d.n;
+    a.innerHTML='<b>'+String(d.n).padStart(2,'0')+'</b><span>'+d.short+'</span>';
+    pills.appendChild(a);
+
+    var o=ORA[i];
+    var art=document.createElement('article');
+    art.className='day'; art.id='day'+d.n; art.dataset.tipo=d.tipo.join('|');
+    art.innerHTML=
+      '<div class="rail">'+
+        '<div><div class="lab">Giornata</div><div class="num">'+String(d.n).padStart(2,'0')+'</div></div>'+
+        '<dl>'+
+          '<div><dt>In auto</dt><dd>'+d.km+' km</dd></div>'+
+          '<div><dt>Guida</dt><dd>'+d.h+'</dd></div>'+
+          '<div><dt>Quota</dt><dd style="font-size:13.5px">'+d.quota+'</dd></div>'+
+        '</dl>'+
+        '<div class="barwrap" style="height:5px"><span class="bar" style="width:'+Math.max(2,Math.round(d.km/maxKm*100))+'%"></span></div>'+
+        '<div class="sunwrap">'+barraSole(i)+'</div>'+
+      '</div>'+
+      '<div class="daybody">'+
+        '<div class="dayhead"><div><div class="date">'+d.date+'</div><h3>'+d.title+'</h3></div>'+
+        '<span class="chip acc">'+d.chip+'</span></div>'+
+        '<div class="route">'+d.route+'</div>'+
+        '<div class="hour"><b>'+o.t+'</b><p><span class="t">L’ora che conta</span><b style="font-family:var(--ui);font-size:14.5px;color:var(--ink)">'+o.k+'.</b> '+o.s+'</p></div>'+
+        '<a class="link" href="'+d.gm+'" target="_blank" rel="noopener" style="font-family:var(--display);font-size:13px;letter-spacing:.1em;text-transform:uppercase">Apri la rotta in Google Maps ↗</a>'+
+        (d.menu?'<div class="menu"><div class="menuhead"><h4>'+d.menu.h+'</h4><p>'+d.menu.s+'</p></div><div class="opts">'+
+          d.menu.o.map(function(x){return '<div class="opt"><span class="chip '+(x.k||'')+'">'+x.tag+'</span><b>'+x.t+'</b><p>'+x.d+'</p></div>'}).join('')+
+        '</div></div>':'')+
+        '<div class="daycols">'+
+          '<div><h4>Programma</h4><ol class="tl">'+
+            d.tl.map(function(t){return '<li><time>'+t[0]+'</time><div class="ev"><b>'+t[1]+'</b>'+(t[2]?'<small>'+t[2]+'</small>':'')+'</div></li>'}).join('')+
+          '</ol></div>'+
+          '<div class="side">'+
+            '<div class="blk"><h4>Da non perdere</h4><ul class="tick">'+d.see.map(function(s){return '<li>'+s+'</li>'}).join('')+'</ul></div>'+
+            '<div class="blk"><h4>Dove dormire</h4><p style="font-size:14.5px;margin:0">'+d.sleep+'</p></div>'+
+            '<div class="blk"><h4>A tavola</h4><p style="font-size:14.5px;margin:0">'+d.eat+'</p></div>'+
+            '<div class="blk note '+d.tip.k+'"><p style="font-size:14.5px">'+d.tip.t+'</p></div>'+
+            '<div class="plans">'+
+              '<div class="plan meteo"><b>Piano B · meteo</b>'+d.pb.m+'</div>'+
+              '<div class="plan log"><b>Piano B · logistico</b>'+d.pb.l+'</div>'+
+            '</div>'+
+          '</div>'+
+        '</div>'+
+      '</div>';
+    box.appendChild(art);
+  });
+
+  /* la giornata di oggi, se siamo dentro il viaggio */
+  var oggi=new Date(), y=oggi.getFullYear(), m=oggi.getMonth(), gg=oggi.getDate();
+  if(y===2026&&m===10&&gg>=12&&gg<=21){
+    var t=document.getElementById('day'+(gg-11));
+    if(t){t.classList.add('today');
+      var h=t.querySelector('.dayhead .chip');
+      if(h){h.textContent='Oggi · '+h.textContent;}
+    }
+  }
+
+  /* filtri: le pastiglie, le schede e la mappa restano allineate */
+  var tipi=['Strada','Cammino','Archeologia','Deserto','Mare'];
+  var fbox=document.getElementById('filters'), cnt=document.getElementById('filtercount'), attivo='Tutte';
+  ['Tutte'].concat(tipi).forEach(function(t){
+    var b=document.createElement('button');
+    b.type='button'; b.textContent=t; b.setAttribute('aria-pressed',t==='Tutte'?'true':'false');
+    b.addEventListener('click',function(){ attivo=t; applica(); });
+    fbox.appendChild(b);
+  });
+  function applica(){
+    var n=0;
+    [].forEach.call(fbox.children,function(b){b.setAttribute('aria-pressed',b.textContent===attivo?'true':'false')});
+    DAYS.forEach(function(d){
+      var ok = attivo==='Tutte' || d.tipo.indexOf(attivo)>=0;
+      if(ok) n++;
+      document.getElementById('day'+d.n).classList.toggle('off',!ok);
+      var p=pills.querySelector('[data-d="'+d.n+'"]'); if(p) p.classList.toggle('off',!ok);
+    });
+    cnt.textContent = attivo==='Tutte' ? '10 giornate' : n+' giornate su 10';
+  }
+  applica();
+
+  /* mappa ↔ itinerario, nei due sensi */
+  var punti=[].slice.call(document.querySelectorAll('.stopdot'));
+  DAYS.forEach(function(d){
+    var art=document.getElementById('day'+d.n);
+    function acceso(v){
+      punti.forEach(function(p){ if(p.getAttribute('data-d')==String(d.n)) p.classList.toggle('hi',v); });
+    }
+    art.addEventListener('mouseenter',function(){acceso(true)});
+    art.addEventListener('mouseleave',function(){acceso(false)});
+    art.addEventListener('focusin',function(){acceso(true)});
+    art.addEventListener('focusout',function(){acceso(false)});
+  });
+})();
+
+/* ═══ 09 · calcolatore Jordan Pass ═════════════════════════════
+   Prezzi ufficiali 2026 per stranieri che pernottano in Giordania. */
+(function(){
+  var TAGLI=[{nome:'Wanderer',prezzo:70,petra:1,petraSolo:50},
+             {nome:'Explorer',prezzo:75,petra:2,petraSolo:55},
+             {nome:'Expert',  prezzo:80,petra:3,petraSolo:60}];
+  var VISTO=40;
+  var SITI=[
+    {id:'wr', n:'Wadi Rum (registrazione al Visitor Center)', p:5,  on:true},
+    {id:'ke', n:'Castello di Kerak',                          p:2,  on:true},
+    {id:'sh', n:'Castello di Shobak',                         p:1,  on:true},
+    {id:'md', n:'Madaba Archaeological Park',                 p:3,  on:true},
+    {id:'am', n:'Cittadella di Amman (solo se fate lo scalo)',p:3,  on:false},
+    {id:'je', n:'Jerash (fuori itinerario)',                  p:12, on:false},
+    {id:'ur', n:'Umm ar-Rasas (fuori itinerario)',            p:2,  on:false}
+  ];
+  var pers=2, notti=9, gPetra=2;
+  var box=document.getElementById('passsites'); if(!box) return;
+
+  SITI.forEach(function(s){
+    var lab=document.createElement('label');
+    var cb=document.createElement('input'); cb.type='checkbox'; cb.checked=s.on; cb.id='site-'+s.id;
+    var sp=document.createElement('span'); sp.innerHTML=s.n+' <span class="mono" style="color:var(--ink-3)">'+s.p+' JOD</span>';
+    cb.addEventListener('change',function(){ s.on=cb.checked; calcola(); });
+    lab.appendChild(cb); lab.appendChild(sp); box.appendChild(lab);
+  });
+
+  function stepper(idMeno,idPiu,idOut,get,set,lo,hi){
+    var o=document.getElementById(idOut);
+    function agg(){ o.textContent=get(); calcola(); }
+    document.getElementById(idMeno).addEventListener('click',function(){ if(get()>lo){set(get()-1);agg();} });
+    document.getElementById(idPiu ).addEventListener('click',function(){ if(get()<hi){set(get()+1);agg();} });
+  }
+  stepper('pmin','pplu','pnum',function(){return pers},function(v){pers=v},1,8);
+  stepper('nmin','nplu','nnum',function(){return notti},function(v){notti=v},1,30);
+  [].forEach.call(document.querySelectorAll('#petraseg button'),function(b){
+    b.addEventListener('click',function(){
+      gPetra=+b.getAttribute('data-gp');
+      [].forEach.call(document.querySelectorAll('#petraseg button'),function(o){o.setAttribute('aria-pressed',o===b?'true':'false')});
+      calcola();
+    });
+  });
+
+  function calcola(){
+    var siti=SITI.filter(function(s){return s.on}).reduce(function(a,s){return a+s.p},0);
+    var esente = notti>=3;
+    var t=TAGLI[gPetra-1];
+    var migliore={t:t, senza:t.petraSolo+siti+VISTO, con:t.prezzo+(esente?0:VISTO)};
+    migliore.risp = migliore.senza - migliore.con;
+    var v=document.getElementById('passverdict'), w=document.getElementById('passwhy'), L=document.getElementById('passledger');
+    var tot=migliore.risp*pers;
+    v.textContent = (tot>=0?'+':'−')+Math.abs(tot)+' JOD';
+    v.className = 'big '+(tot>=0?'pos':'neg');
+    if(tot>0){
+      w.innerHTML='Con '+migliore.t.petra+' giorn'+(migliore.t.petra>1?'i':'o')+' a Petra vi serve il <b>Jordan Pass '+
+        migliore.t.nome+'</b>, '+migliore.t.prezzo+' JOD. Risparmiate <b>'+migliore.risp+' JOD a testa</b> sui biglietti singoli, '+
+        Math.round(tot*1.21)+' € in '+pers+(pers>1?' persone':' persona')+'.'+
+        (esente?' Con '+notti+' notti il visto da 40 JOD è compreso.':' <b>Attenzione:</b> con meno di 3 notti il visto da 40 JOD si paga comunque all’uscita.')+
+        ' Il risparmio è lo stesso con tutti e tre i tagli: il pass costa 5 JOD in più per ogni giorno a Petra, esattamente quanto costa quel giorno comprato a parte. <b>Quindi la domanda non è quale pass conviene, ma quanti giorni a Petra volete.</b>';
+    }else{
+      w.innerHTML='Con questa selezione il pass <b>non conviene</b>: pagando i biglietti singoli spendete '+Math.abs(migliore.risp)+
+        ' JOD in meno a testa. Succede solo togliendo Petra dal conto, e a quel punto il viaggio è un altro.';
+    }
+    L.innerHTML='';
+    function riga(k,val,cls){
+      var li=document.createElement('li'); if(cls) li.className=cls;
+      li.innerHTML='<span>'+k+'</span><span class="n">'+val+'</span>'; L.appendChild(li);
+    }
+    riga('Petra, '+migliore.t.petra+' giorn'+(migliore.t.petra>1?'i':'o')+' al prezzo pieno', migliore.t.petraSolo+' JOD');
+    riga('Altri siti spuntati', siti+' JOD');
+    riga('Visto d’ingresso', VISTO+' JOD');
+    riga('Senza pass, a persona', migliore.senza+' JOD', 'tot');
+    riga('Jordan Pass '+migliore.t.nome, migliore.t.prezzo+' JOD'+(esente?' · visto incluso':' · più 40 di visto'));
+    riga('Con pass, a persona', migliore.con+' JOD', 'tot');
+  }
+  calcola();
+})();
+
+/* ═══ 10 · budget ══════════════════════════════════════════════ */
+(function(){
+  var CAMBIO=1.21;
+  var VOCI=[
+   {v:'Jordan Pass',      d:'Explorer, 2 giorni a Petra, visto d’ingresso compreso', b:'persona', min:75,  max:75,  vf:'ok'},
+   {v:'Auto a noleggio',  d:'10 giorni, categoria media, CDW e furto inclusi',       b:'auto',    min:230, max:400, vf:'est'},
+   {v:'Carburante',       d:'835 km, ~7,5 l/100 km, ottano 90 a 1,00 JOD/l',         b:'auto',    min:63,  max:85,  vf:'ok'},
+   {v:'Alloggi',          d:'9 notti in doppia, 5 strutture, campo nel deserto compreso', b:'camera', min:405, max:855, vf:'est'},
+   {v:'Vitto',            d:'colazione inclusa, un pasto di strada e una cena al giorno', b:'persona', min:180, max:450, vf:'est'},
+   {v:'Guida e navetta a Dana', d:'guida RSCN e 4×4 di rientro da Feynan',           b:'gruppo',  min:60,  max:110, vf:'chk'},
+   {v:'Jeep al Wadi Rum', d:'giro pomeridiano e full day, se non compresi nel campo', b:'persona', min:30,  max:95,  vf:'est'},
+   {v:'Mar Morto',        d:'spiaggia attrezzata, oppure day-use in hotel il venerdì', b:'persona', min:20,  max:35,  vf:'est'},
+   {v:'Ingressi fuori pass', d:'Monte Nebo 3 + San Giorgio a Madaba 1',              b:'persona', min:4,   max:4,   vf:'ok'},
+   {v:'Petra by Night',   d:'facoltativo, lunedì 16 novembre',                       b:'persona', min:0,   max:30,  vf:'ok'},
+   {v:'Mare ad Aqaba',    d:'noleggio maschera, oppure barca o battesimo sub',       b:'persona', min:15,  max:70,  vf:'est'},
+   {v:'Hammam',           d:'facoltativo, giorno 9',                                 b:'persona', min:0,   max:25,  vf:'est'},
+   {v:'Mance',            d:'guide, autisti, ristoranti',                            b:'gruppo',  min:20,  max:60,  vf:'est'},
+   {v:'SIM o eSIM',       d:'10–20 GB per 10 giorni',                                b:'persona', min:15,  max:22,  vf:'est'},
+   {v:'Extra e souvenir', d:'sapone al Mar Morto, zaatar, datteri, imprevisti',      b:'gruppo',  min:40,  max:120, vf:'est'}
+  ];
+  var ETI={persona:'a persona',auto:'per auto',camera:'a camera',gruppo:'per gruppo'};
+  var pers=2, cur='JOD';
+  var body=document.getElementById('budgetbody'), foot=document.getElementById('budgetfoot');
+  if(!body) return;
+
+  function molt(b){ return b==='persona'?pers : b==='camera'?Math.ceil(pers/2) : 1; }
+  function fmt(j){
+    var n = cur==='JOD' ? j : Math.round(j*CAMBIO);
+    return n.toLocaleString('it-IT')+' '+(cur==='JOD'?'JOD':'€');
+  }
+  function rendi(){
+    body.innerHTML=''; var tmin=0,tmax=0;
+    VOCI.forEach(function(x){
+      var k=molt(x.b), a=x.min*k, b=x.max*k; tmin+=a; tmax+=b;
+      var tr=document.createElement('tr');
+      tr.innerHTML='<td><b>'+x.v+'</b><span class="v '+x.vf+'" title="'+
+        (x.vf==='ok'?'Verificato alla fonte, agosto 2026':x.vf==='est'?'Stima dichiarata, ordine di grandezza':'Da confermare prima di partire')+'">'+
+        (x.vf==='ok'?'✓':x.vf==='est'?'~':'!')+'</span></td>'+
+        '<td style="font-size:13.5px;color:var(--ink-2)">'+x.d+'</td>'+
+        '<td style="font-size:13px;color:var(--ink-3);white-space:nowrap">'+ETI[x.b]+(k>1?' ×'+k:'')+'</td>'+
+        '<td class="num">'+fmt(a)+'</td><td class="num">'+fmt(b)+'</td>';
+      body.appendChild(tr);
+    });
+    foot.innerHTML='<tr><td colspan="3">Totale per '+pers+(pers>1?' persone':' persona')+'</td>'+
+      '<td class="num">'+fmt(tmin)+'</td><td class="num">'+fmt(tmax)+'</td></tr>'+
+      '<tr><td colspan="3" style="font-family:var(--ui);font-size:13.5px;letter-spacing:0;text-transform:none">A testa, al giorno, su 10 giorni</td>'+
+      '<td class="num">'+fmt(Math.round(tmin/pers/10))+'</td><td class="num">'+fmt(Math.round(tmax/pers/10))+'</td></tr>';
+  }
+  var out=document.getElementById('bnum');
+  document.getElementById('bmin').addEventListener('click',function(){ if(pers>1){pers--;out.textContent=pers;rendi();} });
+  document.getElementById('bplu').addEventListener('click',function(){ if(pers<8){pers++;out.textContent=pers;rendi();} });
+  [].forEach.call(document.querySelectorAll('[data-cur]'),function(b){
+    b.addEventListener('click',function(){
+      cur=b.getAttribute('data-cur');
+      [].forEach.call(document.querySelectorAll('[data-cur]'),function(o){o.setAttribute('aria-pressed',o===b?'true':'false')});
+      rendi();
+    });
+  });
+  rendi();
+})();
+
+/* ═══ 14 · valigia, con le spunte salvate sul dispositivo ══════ */
+(function(){
+  var LISTE=[
+   {t:'Documenti e prenotazioni',i:[
+     'Passaporto con validità residua di almeno 6 mesi',
+     'Jordan Pass comprato PRIMA della partenza, QR salvato offline',
+     'Patente italiana (basta per il noleggio) e carta di credito intestata al guidatore',
+     'Voucher dei 5 alloggi, scaricati offline',
+     'Conferma del campo del Wadi Rum, con scritto cosa comprende',
+     'Assicurazione sanitaria di viaggio con copertura trekking',
+     'Numero RSCN in rubrica: +962 6 461 6523',
+     'Mappe offline di tutta la Giordania (Google Maps o Maps.me)',
+     '150–200 JOD in contanti per i primi giorni',
+     'Foto del contratto di noleggio e del libretto, sul telefono'
+   ]},
+   {t:'Il trekking e il deserto',i:[
+     'Scarponcini da trekking rodati (Wadi Dana, back door di Petra, Umm Fruth)',
+     'Zaino da giornata da 20–25 litri',
+     'Tre litri d’acqua a testa per il giorno 3: non c’è una sola fonte',
+     'Bastoncini, se li usate: la discesa di 900 metri li ripaga',
+     'Frontale, per il checkpoint delle 6:15 e per il pozzo di Shobak',
+     'Occhiali avvolgenti e buff o sciarpa per la polvere della jeep',
+     'Cappello e crema solare alta: il sole di novembre inganna',
+     'Piumino leggero o pile pesante: la notte nel deserto va vicino allo zero',
+     'Guanti leggeri e berretto per l’alba a Petra e a Dana',
+     'Cerotti per vesciche, già nello zaino e non in valigia'
+   ]},
+   {t:'Il mare e il resto',i:[
+     'Costume e ciabatte da scoglio (obbligatorie al Mar Morto)',
+     'Telo in microfibra',
+     'Maschera e boccaglio, se non volete noleggiarli ad Aqaba',
+     'Doposole: il Mar Morto scotta più di quanto sembri',
+     'Pantaloni lunghi e maglie che coprano le spalle per villaggi e chiese',
+     'Un cambio decente per l’ultima cena ad Aqaba',
+     'Adattatore universale (tipo C, ma nei campi anche tipo G)',
+     'Power bank: nelle tende del deserto la corrente non è garantita',
+     'Sacchetto stagno o busta per il telefono nel wadi',
+     'Kit farmaci: antidolorifico, antidiarroico, disinfettante, sali minerali',
+     'Un libro vero, per il giorno zero ad Aqaba'
+   ]}
+  ];
+  var box=document.getElementById('clists'); if(!box) return;
+  var K='giordania2026.valigia', salvato={};
+  try{ salvato=JSON.parse(localStorage.getItem(K)||'{}') }catch(e){ salvato={} }
+  function salva(){ try{ localStorage.setItem(K,JSON.stringify(salvato)) }catch(e){} }
+
+  LISTE.forEach(function(L,li){
+    var card=document.createElement('div'); card.className='card';
+    var head=document.createElement('div'); head.className='clhead';
+    head.innerHTML='<h3 style="margin:0;font-size:17px">'+L.t+'</h3><span class="count"></span>';
+    card.appendChild(head);
+    var lista=document.createElement('div'); lista.className='cl';
+    function agg(){
+      var n=L.i.filter(function(_,ii){return salvato[li+'-'+ii]}).length;
+      head.querySelector('.count').textContent=n+'/'+L.i.length;
+    }
+    L.i.forEach(function(t,ii){
+      var id=li+'-'+ii;
+      var lab=document.createElement('label');
+      var cb=document.createElement('input'); cb.type='checkbox'; cb.checked=!!salvato[id];
+      var sp=document.createElement('span'); sp.textContent=t;
+      cb.addEventListener('change',function(){ salvato[id]=cb.checked; salva(); agg(); });
+      lab.appendChild(cb); lab.appendChild(sp); lista.appendChild(lab);
+    });
+    card.appendChild(lista);
+    var b=document.createElement('button'); b.className='reset'; b.type='button'; b.textContent='Azzera';
+    b.style.marginTop='10px';
+    b.addEventListener('click',function(){
+      L.i.forEach(function(_,ii){ delete salvato[li+'-'+ii] }); salva();
+      [].forEach.call(lista.querySelectorAll('input'),function(c){c.checked=false}); agg();
+    });
+    card.appendChild(b); box.appendChild(card); agg();
+  });
+})();
+
+/* ═══ navigazione: la sezione visibile resta accesa ════════════ */
+(function(){
+  var links=[].slice.call(document.querySelectorAll('#nav a'));
+  var secs=links.map(function(a){return document.querySelector(a.getAttribute('href'))}).filter(Boolean);
+  if(!('IntersectionObserver' in window)) return;
+  var obs=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(!e.isIntersecting) return;
+      links.forEach(function(l){ l.classList.toggle('on', l.getAttribute('href')==='#'+e.target.id) });
+    });
+  },{rootMargin:'-56px 0px -70% 0px',threshold:0});
+  secs.forEach(function(s){ obs.observe(s) });
+})();
+</script>
+
+<div class="agg" id="agg" hidden role="status">
+  <span>Nuova versione pronta</span>
+  <button class="btn sm" id="aggOra">Ricarica</button>
+</div>
+<style>
+/* L'avviso nasce con l'attributo hidden, ma una regola d'app come
+   .agg{display:flex} batte il display:none del browser: senza questa riga
+   resta a video per sempre. */
+.agg[hidden],.installa[hidden]{display:none!important}
+.agg{position:fixed;left:50%;transform:translateX(-50%);z-index:90;
+  bottom:calc(22px + env(safe-area-inset-bottom));
+  display:flex;align-items:center;gap:12px;padding:9px 12px 9px 17px;border-radius:999px;
+  background:var(--ink);color:var(--surface);box-shadow:var(--shadow);font-size:14px;font-family:var(--ui)}
+.agg button{font-family:var(--display);font-size:12px;letter-spacing:.1em;text-transform:uppercase;
+  background:none;border:1px solid color-mix(in srgb,var(--surface) 42%,transparent);
+  color:var(--surface);border-radius:7px;padding:5px 11px;cursor:pointer}
+.agg button:hover{border-color:var(--surface)}
+@media (min-width:900px){.agg{bottom:26px}}
+.installa{margin:18px 0 4px;display:flex;gap:11px;align-items:flex-start;padding:13px 15px;
+  border:1px solid color-mix(in srgb,var(--accent) 28%,transparent);
+  border-radius:var(--r);background:var(--accent-soft);color:var(--accent-2);font-size:13.5px;line-height:1.45}
+.installa b{display:block;font-family:var(--display);font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.installa button{margin-left:auto;background:none;border:none;color:inherit;opacity:.7;
+  font-size:20px;line-height:1;padding:0 4px;cursor:pointer}
+</style>
+<script>
+(function(){
+  "use strict";
+  /* Rete di sicurezza: se per qualsiasi motivo l'avviso finisse a video senza
+     che mostra() l'abbia acceso, il pulsante deve almeno ricaricare invece di
+     non fare niente. Un comando che non risponde e' peggio di nessun comando. */
+  (function(){
+    var b = document.getElementById('aggOra');
+    if (b) b.onclick = function(){ location.reload(); };
+  })();
+
+  // ── service worker: la pagina funziona anche senza campo, in palestra ──
+  //
+  // Su iPhone una PWA aperta dalla schermata Home spesso NON rifa' la
+  // navigazione quando la riapri: riprende la pagina che era in memoria. Senza
+  // navigazione il browser non controlla sw.js, e l'aggiornamento non arriva
+  // mai da solo. Per questo qui:
+  //   1. updateViaCache:'none' — sw.js non viene mai preso dalla cache HTTP;
+  //   2. reg.update() al caricamento e ogni volta che l'app torna in primo
+  //      piano (al massimo una volta al minuto);
+  //   3. si guarda anche reg.waiting, perche' l'aggiornamento puo' essersi
+  //      installato mentre la pagina non stava ascoltando: in quel caso
+  //      'updatefound' e' gia' passato e senza questo controllo l'avviso non
+  //      comparirebbe piu'.
+  if ('serviceWorker' in navigator) {
+    var REG = null, ultimo = 0;
+
+    function mostra(nuovo){
+      if (!nuovo) return;
+      var box = document.getElementById('agg');
+      if (!box || !box.hidden) return;
+      box.hidden = false;
+      document.getElementById('aggOra').onclick = function(){
+        nuovo.postMessage('attiva');
+        nuovo.addEventListener('statechange', function(){
+          if (nuovo.state === 'activated') location.reload();
+        });
+        // se per qualche motivo lo statechange non arriva, si ricarica comunque
+        setTimeout(function(){ location.reload(); }, 1500);
+      };
+    }
+    function segui(nuovo){
+      if (!nuovo) return;
+      if (nuovo.state === 'installed') return mostra(nuovo);
+      nuovo.addEventListener('statechange', function(){
+        if (nuovo.state === 'installed' && navigator.serviceWorker.controller) mostra(nuovo);
+      });
+    }
+    function controlla(){
+      if (!REG) return;
+      var ora = Date.now();
+      if (ora - ultimo < 60000) return;
+      ultimo = ora;
+      REG.update().catch(function(){ /* offline: si riprova alla prossima apertura */ });
+    }
+
+    window.addEventListener('load', function(){
+      navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' }).then(function(reg){
+        REG = reg;
+        if (reg.waiting && navigator.serviceWorker.controller) mostra(reg.waiting);
+        segui(reg.installing);
+        reg.addEventListener('updatefound', function(){ segui(reg.installing); });
+        ultimo = Date.now();
+        setTimeout(function(){ ultimo = 0; controlla(); }, 3000);
+      }).catch(function(){ /* senza service worker l'app funziona lo stesso */ });
+    });
+
+    document.addEventListener('visibilitychange', function(){
+      if (document.visibilityState === 'visible') controlla();
+    });
+    window.addEventListener('online', function(){ ultimo = 0; controlla(); });
+
+    // Quando il service worker nuovo prende il controllo, la pagina che stai
+    // guardando e' ancora quella vecchia: si ricarica da sola, una volta sola.
+    // Solo se la pagina era gia' controllata: alla primissima installazione il
+    // controllo arriva per la prima volta e non c'e' niente da aggiornare.
+    var eraControllata = !!navigator.serviceWorker.controller;
+    var ricaricato = false;
+    navigator.serviceWorker.addEventListener('controllerchange', function(){
+      if (!eraControllata || ricaricato) return;
+      ricaricato = true;
+      location.reload();
+    });
+    navigator.serviceWorker.addEventListener('message', function(ev){
+      if (ev.data && ev.data.gg === 'aggiornata' && !ricaricato) {
+        ricaricato = true;
+        setTimeout(function(){ location.reload(); }, 400);
+      }
+    });
+  }
+  // ── suggerimento d'installazione, solo su iPhone e solo se non installata ──
+  var standalone = window.matchMedia('(display-mode: standalone)').matches
+                || window.navigator.standalone === true;
+  var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+  if (!standalone && iOS && !localStorage.getItem('giordania.installa.visto')) {
+    window.addEventListener('load', function(){
+      var main = document.querySelector('main');
+      if (!main) return;
+      var el = document.createElement('div');
+      el.className = 'installa';
+      el.innerHTML = '<div><b>Mettila sulla schermata Home</b>'
+        + 'Tocca Condividi in fondo a Safari, poi "Aggiungi a Home". Si apre a schermo intero '
+        + 'e funziona senza campo: a Dana, nel Wadi Dana e dentro il Wadi Rum il segnale sparisce, '
+        + 'ed è proprio lì che il road book serve.</div>'
+        + '<button aria-label="Ho capito">&times;</button>';
+      el.querySelector('button').onclick = function(){
+        localStorage.setItem('giordania.installa.visto', '1');
+        el.remove();
+      };
+      main.insertBefore(el, main.firstChild);
+    });
+  }
+})();
+</script>
+</body>
+</html>
