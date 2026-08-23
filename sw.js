@@ -4,16 +4,6 @@ const GUSCIO = ['./', './index.html', './manifest.webmanifest',
   './icone/icona-192.png', './icone/icona-512.png',
   './icone/icona-maskable-512.png', './icone/apple-touch-icon.png'];
 
-/* Le due app stanno sullo stesso dominio: Ghisa & Grammi alla radice e il road
-   book in /giordania/. Il service worker della radice ha per forza uno scope
-   che contiene anche l'altra, quindi qui si dichiara esattamente quali
-   indirizzi sono suoi. Senza questo, aprire /giordania/ mentre e' attivo il
-   service worker della radice salvava il road book come pagina offline di
-   Ghisa & Grammi: senza campo, l'app fitness avrebbe aperto la Giordania. */
-const BASE = new URL('./', self.location).pathname;
-const MIE = new Set([BASE, BASE + 'index.html']);
-const miaNavigazione = req => MIE.has(new URL(req.url).pathname);
-
 /* Sempre dalla rete vera, mai dalla cache HTTP del browser: GitHub Pages serve
    l'HTML con un max-age breve ma non nullo, e senza no-store la pagina "nuova"
    che arrivava era ancora quella vecchia. E' il motivo per cui l'app installata
@@ -67,16 +57,15 @@ self.addEventListener('fetch', ev => {
   const req = ev.request;
   if (req.method !== 'GET' || new URL(req.url).origin !== location.origin) return;
   if (req.mode === 'navigate') {
-    if (!miaNavigazione(req)) return;   // e' una pagina dell'altra app: non la tocco
     ev.respondWith(
       dallaRete(req.url).then(r => {
         if (!r.ok) throw new Error('risposta ' + r.status);
         const copia = r.clone();
         caches.open(CACHE).then(c => c.put('./index.html', copia));
         return r;
-      }).catch(() => caches.open(CACHE).then(c => c.match('./index.html')))
+      }).catch(() => caches.match('./index.html'))
     );
     return;
   }
-  ev.respondWith(caches.open(CACHE).then(c => c.match(req)).then(r => r || fetch(req)));
+  ev.respondWith(caches.match(req).then(c => c || fetch(req)));
 });
