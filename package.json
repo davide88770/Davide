@@ -9,7 +9,8 @@
     "build:icone": "node tools/build-icone.mjs",
     "prova": "node tools/prova-dati.mjs",
     "prova:pwa": "node tools/prova-pwa.mjs",
-    "prova:convivenza": "node tools/prova-convivenza.mjs"
+    "prova:convivenza": "node tools/prova-convivenza.mjs",
+    "prova:adesso": "node tools/prova-adesso.mjs"
   },
   "devDependencies": {
     "playwright-core": "^1.49.0"

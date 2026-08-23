@@ -101,6 +101,46 @@ prima. Tre giornate su dieci l'auto non si muove.
 - Mappa a striscia sul solo corridoio della frattura, invece della carta
   nazionale in cui l'itinerario sarebbe illeggibile.
 
+## Esperienze e tavola, con la soglia come regola
+
+Due sezioni nuove, entrambe costruite sul criterio di Davide: **niente sotto 4,5**.
+
+- **Esperienze (sez. 09).** Per ogni voce: cosa è, se convenga prenotarla online
+  e il collegamento alla categoria giusta della località giusta su
+  GetYourGuide. Gli identificativi di località sono reali. **Nessun punteggio di
+  un singolo tour è dichiarato**: dalla macchina di lavoro `getyourguide.com` è
+  bloccato dal proxy di rete, quindi non ho potuto leggere le schede e non me le
+  sono inventate. Al loro posto c'è il giudizio su *quando serve un
+  intermediario* — in Giordania quasi mai, perché con l'auto e il Jordan Pass si
+  fa già tutto da soli.
+- **A tavola (sez. 10).** Dieci indirizzi con voto, posizione e cosa ordinare, e
+  un controllo che sposta la soglia fra 4,5, 4,7 e 4,9 filtrando la tabella.
+  Accanto, l'elenco di chi **non** passa.
+
+Punteggi Tripadvisor rilevati per ricerca ad agosto 2026, non leggendo le schede
+(il sito è bloccato allo stesso modo): affidabili come graduatoria, non come
+posizione esatta. Ogni riga porta il suo marcatore.
+
+**Tre correzioni al routing di partenza**, che consigliava indirizzi sotto
+soglia: *Haret Jdoudna* a Madaba sta a **4,2** (al suo posto Carob House, 4,9,
+prima di 47); *Ali Baba* ad Aqaba a **3,8** e il *Royal Yacht Club* a **4,1** (al
+loro posto Khashoka 4,9 e Gaadet Jeeran 4,8); *Floka* **risulta chiuso**. I
+consigli dentro le giornate sono stati riallineati.
+
+## La scheda «Adesso»
+
+Durante il viaggio, in cima all'itinerario, l'app dice a che punto della
+giornata si è: la voce in corso, la prossima, quanto manca al tramonto e l'ora
+che conta. Fuori dalle date fa il conto alla rovescia. Si aggiorna ogni minuto e
+al ritorno in primo piano.
+
+È logica che dipende dall'orologio e su un rendering normale non si vede mai —
+`npm run verify` gira ad agosto e trova solo il conto alla rovescia. Per questo
+c'è `npm run prova:adesso`, che sposta l'orologio del browser a cinque momenti
+veri del viaggio. Ha già trovato un errore: la voce dell'01:35 al Wadi Rum (il
+cielo dopo il tramonto della luna) risultava «già passata» alle sette di sera, e
+la scheda annunciava le stelle mentre erano ancora a tavola.
+
 ## L'app installabile
 
 Lo stesso sorgente diventa una PWA in `pwa-giordania/`, pubblicata su GitHub

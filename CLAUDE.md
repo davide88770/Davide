@@ -20,6 +20,7 @@ tools/verify.mjs                        verifica di rendering obbligatoria
 tools/prova-dati.mjs                    prova con dati seminati, obbligatoria per fitness/
 tools/prova-pwa.mjs                     prova del giro di aggiornamento della PWA
 tools/prova-convivenza.mjs              prova che le due PWA non si pestino i piedi
+tools/prova-adesso.mjs                  prova la scheda «Adesso» spostando l'orologio
 out/                                    screenshot e PDF generati (non versionato)
 ```
 
@@ -149,6 +150,18 @@ Su iPhone una PWA riaperta dalla Home spesso non rifa' la navigazione, quindi
 niente si aggiorna da solo: ci vogliono `updateViaCache:'none'`, un
 `reg.update()` al ritorno in primo piano, il controllo di `reg.waiting` e
 `cache:'no-store'` su ogni fetch del service worker.
+
+Se il documento ha una parte che **dipende dall'orologio** — la scheda
+«Adesso» del road book della Giordania — `verify` non la vede mai, perché gira
+in una data qualsiasi. Serve:
+
+```sh
+npm run prova:adesso
+```
+
+Sposta l'orologio del browser su momenti veri del viaggio e controlla che la
+scheda dica la cosa giusta. Ha trovato subito un errore che a occhio non
+esisteva: una voce dopo mezzanotte risultava già passata alle sette di sera.
 
 Da quando le app installabili sono **due sullo stesso dominio** — Ghisa & Grammi
 alla radice, il road book della Giordania in `/giordania/` — serve anche:
