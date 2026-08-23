@@ -75,21 +75,44 @@ jobs:
           echo "giordania $(wc -c < _sito/giordania/index.html) byte"
 
       - name: Aggiorna il ramo gh-pages
+        # Il sito ospita piu' app, ognuna pubblicata da un ramo diverso.
+        # Questo passo SOVRAPPONE quello appena costruito al sito gia'
+        # pubblicato invece di sostituirlo in blocco: cosi' un ramo non
+        # cancella le app degli altri. In piu' conserva la storia del ramo e
+        # non forza il push, quindi un errore resta recuperabile, e si ferma
+        # se sta per far sparire qualcosa.
         run: |
-          cd _sito
-          git init -q
-          git checkout -qb gh-pages
+          set -euo pipefail
+          touch _sito/.nojekyll
+          URL="https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          if ! git clone -q --branch gh-pages "$URL" pubblicato; then
+            mkdir -p pubblicato
+            git -C pubblicato init -q
+            git -C pubblicato checkout -qb gh-pages
+          fi
+          ( ls -A pubblicato 2>/dev/null | grep -vx '.git' || true ) | sort > prima.txt
+          cp -a _sito/. pubblicato/
+          ( ls -A pubblicato 2>/dev/null | grep -vx '.git' || true ) | sort > dopo.txt
+          echo "gia' online: $(tr '\n' ' ' < prima.txt)"
+          echo "dopo:        $(tr '\n' ' ' < dopo.txt)"
+          persi="$(comm -23 prima.txt dopo.txt || true)"
+          if [ -n "$persi" ]; then
+            echo "ERRORE: questa pubblicazione cancellerebbe: $persi"
+            exit 1
+          fi
+          cd pubblicato
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
+          if git diff --cached --quiet; then
+            echo "niente di nuovo da pubblicare"
+            exit 0
+          fi
           git commit -q -m "Pubblica le versioni installabili
 
-          Generate da tools/build-pwa.mjs a partire da
-          fitness/ghisa-e-grammi/app.html e viaggi/2026-11-giordania/roadbook.html,
-          commit ${GITHUB_SHA}.
+          Sovrapposte al sito gia' pubblicato, dal commit ${GITHUB_SHA}.
           Non modificare a mano: si rigenerano a ogni push."
-          git push -q --force \
-            "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" gh-pages
+          git push -q "$URL" gh-pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
