@@ -1,0 +1,1431 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Alpi, Soča &amp; Quarnero in viaggio</title>
+<meta name="description" content="Road trip in Slovenia e Croazia, 6–15 settembre 2026: la tappa di oggi, le tre scelte che ricalcolano chilometri e budget, mappa, frasario e valigia.">
+<meta name="theme-color" content="#E9EDEA" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#091316" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Alpi &amp; Soča">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icone/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icone/icona-192.png">
+<style>:root{color-scheme:light dark}*{box-sizing:border-box}body{margin:0}img{max-width:100%}</style>
+</head>
+<body>
+<style>
+/* ══════════════════════════════════════════════════════════════════════════
+   ALPI, SOČA & QUARNERO — app da viaggio
+   Stessi token del road book (stesso viaggio, stessa identità), ma chrome da
+   applicazione: barra sotto il pollice, aree di tocco vere, niente hover.
+   Il road book è il documento che leggi prima; questa è la cosa che tieni in
+   mano mentre guidi verso Porozina.
+   ══════════════════════════════════════════════════════════════════════════ */
+:root{
+  color-scheme:light;
+  --bg:#E9EDEA; --surface:#F7F9F6; --surface-2:#FFFFFF; --sunk:#E0E7E2;
+  --ink:#14262A; --ink-2:#4C6462; --ink-3:#75908C;
+  --line:#C9D5CF; --line-strong:#A9BCB5;
+  --accent:#0C6B72; --accent-2:#0A555B; --accent-soft:#D6E8E7;
+  --signal:#9E5C0B; --signal-soft:#F3E4CE;
+  --good:#2F6B44; --good-soft:#D9EADD;
+  --alert:#933122; --alert-soft:#F3DCD7;
+  --sea:#C6DCDE; --land:#DFE7E0; --isle:#D2DED7;
+  --shadow:0 1px 2px rgba(20,38,42,.06),0 8px 24px -12px rgba(20,38,42,.22);
+  --shadow-up:0 -1px 0 var(--line),0 -12px 32px -20px rgba(20,38,42,.35);
+  --display:Bahnschrift,"DIN Alternate","Avenir Next Condensed","Franklin Gothic Medium","Arial Narrow",system-ui,sans-serif;
+  --body:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+  --ui:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI Variable Text","Segoe UI",Roboto,system-ui,sans-serif;
+  --mono:"SF Mono","Cascadia Mono",Consolas,ui-monospace,monospace;
+  --r:12px; --r-s:9px;
+  --tab-h:62px;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#091316; --surface:#0F1E22; --surface-2:#142A2E; --sunk:#0C191C;
+    --ink:#DEE9E6; --ink-2:#94ADAA; --ink-3:#6E8A87;
+    --line:#22383D; --line-strong:#2F4A50;
+    --accent:#54CBD1; --accent-2:#7FDCE0; --accent-soft:#10353A;
+    --signal:#E3AD55; --signal-soft:#33290F;
+    --good:#71C58A; --good-soft:#122C1C;
+    --alert:#E88B7C; --alert-soft:#331914;
+    --sea:#0D2429; --land:#122229; --isle:#163034;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px -14px rgba(0,0,0,.7);
+    --shadow-up:0 -1px 0 var(--line),0 -14px 36px -22px rgba(0,0,0,.9);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#091316; --surface:#0F1E22; --surface-2:#142A2E; --sunk:#0C191C;
+  --ink:#DEE9E6; --ink-2:#94ADAA; --ink-3:#6E8A87;
+  --line:#22383D; --line-strong:#2F4A50;
+  --accent:#54CBD1; --accent-2:#7FDCE0; --accent-soft:#10353A;
+  --signal:#E3AD55; --signal-soft:#33290F;
+  --good:#71C58A; --good-soft:#122C1C;
+  --alert:#E88B7C; --alert-soft:#331914;
+  --sea:#0D2429; --land:#122229; --isle:#163034;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px -14px rgba(0,0,0,.7);
+  --shadow-up:0 -1px 0 var(--line),0 -14px 36px -22px rgba(0,0,0,.9);
+}
+
+*{box-sizing:border-box}
+:where(button,a,summary,input,[tabindex]):focus-visible{outline:2px solid var(--accent);
+  outline-offset:2px;border-radius:8px}
+@media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--ui);
+  font-size:15.5px;line-height:1.5;-webkit-font-smoothing:antialiased;
+  -webkit-text-size-adjust:100%;overflow-x:hidden}
+
+/* ── barra alta ─────────────────────────────────────────────────────────── */
+.top{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--surface) 94%,transparent);
+  backdrop-filter:blur(12px);border-bottom:1px solid var(--line);
+  padding:calc(9px + env(safe-area-inset-top)) 14px 9px;
+  display:flex;align-items:center;gap:10px}
+.brand{min-width:0;flex:1}
+.brand b{display:block;font-family:var(--display);font-size:16px;letter-spacing:.05em;
+  text-transform:uppercase;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand span{display:block;font-family:var(--display);font-size:10.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.net{flex:0 0 auto;padding:4px 10px;border-radius:999px;background:var(--signal-soft);color:var(--signal);
+  font-family:var(--display);font-size:11px;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
+.net[hidden]{display:none}
+.icobtn{flex:0 0 auto;width:40px;height:40px;border-radius:10px;border:1px solid var(--line);
+  background:var(--surface-2);color:var(--ink-2);font-size:17px;line-height:1;cursor:pointer;
+  display:flex;align-items:center;justify-content:center}
+.icobtn:active{background:var(--sunk)}
+
+main{padding:14px 14px calc(var(--tab-h) + 30px + env(safe-area-inset-bottom));
+  max-width:760px;margin:0 auto}
+.view[hidden]{display:none}
+
+/* ── barra bassa ────────────────────────────────────────────────────────── */
+.tabs{position:fixed;left:0;right:0;bottom:0;z-index:50;display:flex;
+  background:color-mix(in srgb,var(--surface) 96%,transparent);backdrop-filter:blur(12px);
+  box-shadow:var(--shadow-up);padding-bottom:env(safe-area-inset-bottom)}
+.tab{flex:1;height:var(--tab-h);border:0;background:none;cursor:pointer;color:var(--ink-3);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+  font-family:var(--display);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  padding:0 2px;position:relative}
+.tab svg{width:23px;height:23px;display:block;fill:none;stroke:currentColor;stroke-width:1.7;
+  stroke-linecap:round;stroke-linejoin:round}
+.tab svg .f{fill:currentColor;stroke:none}
+.tab[aria-selected="true"]{color:var(--accent)}
+.tab[aria-selected="true"] svg{stroke-width:2}
+.tab[aria-selected="true"]::before{content:"";position:absolute;top:0;left:22%;right:22%;
+  height:2.5px;border-radius:0 0 3px 3px;background:var(--accent)}
+.tab:focus-visible{outline:2px solid var(--accent);outline-offset:-4px;border-radius:8px}
+
+/* ── mattoni ────────────────────────────────────────────────────────────── */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:15px 16px;box-shadow:var(--shadow);margin-bottom:12px}
+.card.flat{box-shadow:none}
+h2{font-family:var(--display);font-weight:700;font-size:23px;letter-spacing:.03em;
+  text-transform:uppercase;margin:0 0 3px}
+h3{font-family:var(--display);font-size:17px;letter-spacing:.04em;text-transform:uppercase;margin:0 0 8px}
+h4{font-family:var(--display);font-size:12.5px;letter-spacing:.15em;text-transform:uppercase;
+  margin:0 0 7px;color:var(--ink-3)}
+p{margin:0 0 10px}
+p:last-child{margin-bottom:0}
+.lede{color:var(--ink-2);font-family:var(--body);font-size:15.5px;margin:0 0 14px}
+.vhead{margin:2px 0 14px}
+small{font-size:13.5px;color:var(--ink-2);line-height:1.45}
+
+.chip{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:999px;
+  font-family:var(--display);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  background:var(--sunk);color:var(--ink-2);border:1px solid var(--line);white-space:nowrap}
+.chip.acc{background:var(--accent-soft);color:var(--accent);border-color:transparent}
+.chip.sig{background:var(--signal-soft);color:var(--signal);border-color:transparent}
+.chip.good{background:var(--good-soft);color:var(--good);border-color:transparent}
+.chip.alert{background:var(--alert-soft);color:var(--alert);border-color:transparent}
+
+.note{border-left:3px solid var(--accent);background:var(--accent-soft);padding:10px 13px;
+  border-radius:0 8px 8px 0;font-size:14.5px}
+.note.sig{border-color:var(--signal);background:var(--signal-soft)}
+.note.alert{border-color:var(--alert);background:var(--alert-soft)}
+.note.good{border-color:var(--good);background:var(--good-soft)}
+.note strong{font-family:var(--display);letter-spacing:.06em;text-transform:uppercase;font-size:13px;
+  display:block;margin-bottom:2px}
+
+a.link{color:var(--accent);text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--accent) 40%,transparent)}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:.92em}
+.big{font-family:var(--display);font-variant-numeric:tabular-nums;line-height:1}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:44px;
+  padding:0 15px;border-radius:10px;border:1px solid var(--line);background:var(--surface-2);
+  color:var(--ink);font-family:var(--display);font-size:13px;letter-spacing:.1em;
+  text-transform:uppercase;text-decoration:none;cursor:pointer}
+.btn:active{background:var(--sunk)}
+.btn.pri{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.btn.wide{width:100%}
+.btnrow{display:flex;gap:8px;flex-wrap:wrap}
+.btnrow .btn{flex:1 1 auto}
+
+/* ── OGGI ───────────────────────────────────────────────────────────────── */
+.hero{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  box-shadow:var(--shadow);overflow:hidden;margin-bottom:12px}
+.hero .band{background:var(--sunk);border-bottom:1px solid var(--line);padding:11px 16px;
+  display:flex;align-items:center;justify-content:space-between;gap:10px}
+.hero .band .lab{font-family:var(--display);font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ink-3)}
+.hero .band .nav{display:flex;gap:6px}
+.hero .band button{width:34px;height:34px;border-radius:8px;border:1px solid var(--line);
+  background:var(--surface);color:var(--ink-2);cursor:pointer;font-size:15px;line-height:1}
+.hero .band button[disabled]{opacity:.35;cursor:default}
+.hero .in{padding:15px 16px}
+.hero .date{font-family:var(--display);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+.hero h2{font-size:22px;margin:5px 0 8px;text-transform:none;letter-spacing:.01em;line-height:1.15}
+.countdown{display:flex;align-items:baseline;gap:9px;margin:2px 0 6px}
+.countdown b{font-size:46px;color:var(--accent);font-family:var(--display);font-variant-numeric:tabular-nums;line-height:.9}
+.countdown span{font-family:var(--display);font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-3);white-space:nowrap}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);
+  border-top:1px solid var(--line)}
+.stats .s{background:var(--surface);padding:9px 8px;text-align:center}
+.stats .s b{display:block;font-family:var(--display);font-size:19px;line-height:1.15;font-variant-numeric:tabular-nums}
+.stats .s b.sm{font-size:16px;letter-spacing:.02em}
+.stats .s span{font-family:var(--display);font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3)}
+
+.hour{display:flex;gap:12px;align-items:flex-start;background:var(--accent-soft);
+  border-radius:var(--r);padding:12px 14px;margin-bottom:12px}
+.hour .t{font-family:var(--display);font-size:27px;color:var(--accent);font-variant-numeric:tabular-nums;line-height:1}
+.hour .x{min-width:0}
+.hour .x b{display:block;font-family:var(--display);font-size:11px;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--accent);margin-bottom:2px}
+.hour .x p{font-size:14.5px;margin:0;color:var(--ink)}
+
+/* ── timeline ───────────────────────────────────────────────────────────── */
+ol.tl{list-style:none;margin:0;padding:0}
+ol.tl li{display:grid;grid-template-columns:52px 1fr;gap:10px;padding:9px 0;
+  border-top:1px solid var(--line);position:relative}
+ol.tl li:first-child{border-top:0}
+ol.tl time{font-family:var(--display);font-size:14px;color:var(--accent);font-variant-numeric:tabular-nums;padding-top:1px}
+/* Solo il titolo dell'evento va a blocco: i <b> dentro la nota devono
+   restare grassetti in linea, non diventare titoli. */
+ol.tl li > div > b{display:block;font-size:15px;line-height:1.3}
+ol.tl li > div > small{display:block;margin-top:3px}
+ol.tl li.past{opacity:.42}
+ol.tl li.past time{color:var(--ink-3)}
+ol.tl li.now{background:var(--accent-soft);border-radius:8px;margin:0 -8px;padding:9px 8px;border-top-color:transparent}
+ol.tl li.now time{font-weight:700}
+ol.tl li .adesso{display:inline-block;margin-left:6px;font-family:var(--display);font-size:10px;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--accent);vertical-align:1px}
+
+ul.tick{list-style:none;margin:0;padding:0}
+ul.tick li{position:relative;padding-left:18px;margin-bottom:7px;font-size:14.5px}
+ul.tick li:last-child{margin-bottom:0}
+ul.tick li::before{content:"";position:absolute;left:2px;top:8px;width:6px;height:6px;
+  border-radius:50%;background:var(--accent)}
+
+/* ── giorni ─────────────────────────────────────────────────────────────── */
+.totbar{position:sticky;top:calc(58px + env(safe-area-inset-top));z-index:30;
+  background:color-mix(in srgb,var(--surface-2) 95%,transparent);backdrop-filter:blur(10px);
+  border:1px solid var(--line);border-radius:var(--r);padding:9px 12px;margin-bottom:12px;
+  display:flex;align-items:center;gap:10px;box-shadow:var(--shadow)}
+.totbar .g{flex:1;min-width:0}
+.totbar .g b{display:block;font-family:var(--display);font-size:18px;line-height:1.1;font-variant-numeric:tabular-nums}
+.totbar .g span{font-family:var(--display);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+.totbar .st{flex:0 0 auto;max-width:44%;text-align:right}
+
+details.day{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  box-shadow:var(--shadow);margin-bottom:10px;overflow:hidden;scroll-margin-top:120px}
+details.day[open]{border-color:var(--line-strong)}
+details.day > summary{list-style:none;cursor:pointer;padding:12px 14px;display:grid;
+  grid-template-columns:42px 1fr auto;gap:11px;align-items:center}
+details.day > summary::-webkit-details-marker{display:none}
+.dnum{font-family:var(--display);font-size:27px;line-height:.9;color:var(--accent);
+  font-variant-numeric:tabular-nums;text-align:center}
+.dnum span{display:block;font-size:9px;letter-spacing:.1em;color:var(--ink-3);margin-top:3px}
+.dsum{min-width:0}
+.dsum .dd{display:block;font-family:var(--display);font-size:11px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dsum .dt{display:block;font-size:15px;line-height:1.28;margin-top:1px}
+.dmeta{text-align:right;font-family:var(--display);font-variant-numeric:tabular-nums}
+.dmeta b{display:block;font-size:15px;line-height:1.15}
+.dmeta span{display:block;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.dbody{padding:0 14px 15px;border-top:1px solid var(--line);margin-top:2px;padding-top:13px}
+.barwrap{display:block;height:5px;background:var(--sunk);border-radius:3px;overflow:hidden;margin-top:7px}
+.bar{display:block;height:100%;background:var(--accent);border-radius:3px}
+.route{font-family:var(--mono);font-size:12.5px;color:var(--ink-2);background:var(--sunk);
+  border-radius:8px;padding:9px 11px;margin-bottom:11px;line-height:1.55}
+.blk{margin-top:14px}
+
+/* ── menù di scelta ─────────────────────────────────────────────────────── */
+.menu{background:var(--sunk);border-radius:var(--r);padding:13px;margin-bottom:13px}
+.menu > p{font-size:14px;color:var(--ink-2);margin:0 0 11px}
+.opt{display:block;width:100%;text-align:left;background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--r-s);padding:12px 13px;margin-bottom:8px;cursor:pointer;color:inherit;font:inherit}
+.opt:last-child{margin-bottom:0}
+.opt .oh{display:flex;align-items:center;gap:8px;margin-bottom:5px;flex-wrap:wrap}
+.opt .ot{font-family:var(--display);font-size:16px;letter-spacing:.03em;flex:1;min-width:0}
+.opt .od{font-size:14px;color:var(--ink-2);margin:0}
+.opt .ok{display:flex;gap:12px;margin-top:8px;font-family:var(--display);font-size:11.5px;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.opt[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft);box-shadow:inset 0 0 0 1px var(--accent)}
+.opt[aria-pressed="true"] .ot::after{content:" ✓";color:var(--accent)}
+
+/* ── mappa ──────────────────────────────────────────────────────────────── */
+.mapbox{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  box-shadow:var(--shadow);padding:8px;margin-bottom:12px}
+.mapscroll{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch}
+.mapscroll svg{display:block;width:100%;height:auto}
+.mapscroll[data-zoom="tutto"] svg{min-width:640px}
+.zoomrow{display:flex;gap:6px;margin-bottom:8px}
+.zoomrow button{flex:1;min-height:38px;border:1px solid var(--line);background:var(--surface-2);
+  border-radius:9px;color:var(--ink-2);font-family:var(--display);font-size:12px;letter-spacing:.09em;
+  text-transform:uppercase;cursor:pointer}
+.zoomrow button[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+.maplegend{display:flex;gap:6px 16px;flex-wrap:wrap;margin-top:9px;padding:0 4px 2px;
+  font-family:var(--display);font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3)}
+.maplegend i{display:inline-block;width:18px;height:0;border-top-width:3px;border-top-style:solid;
+  vertical-align:middle;margin-right:5px}
+.stopdot{cursor:pointer}
+.leg-dim{opacity:.2}
+
+/* ── tabelle ────────────────────────────────────────────────────────────── */
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{padding:8px 10px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{font-family:var(--display);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-3);background:var(--sunk);white-space:nowrap}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tfoot td{font-weight:700;background:var(--sunk);border-bottom:0}
+tbody tr:last-child td{border-bottom:0}
+
+/* ── pratico ────────────────────────────────────────────────────────────── */
+details.sec{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  box-shadow:var(--shadow);margin-bottom:10px;overflow:hidden}
+details.sec > summary{list-style:none;cursor:pointer;padding:15px 14px;display:flex;align-items:center;gap:10px;
+  font-family:var(--display);font-size:15px;letter-spacing:.06em;text-transform:uppercase;min-height:52px}
+details.sec > summary::-webkit-details-marker{display:none}
+details.sec > summary .sp{flex:1;min-width:0}
+/* Il segno di apertura è disegnato, non un glifo: i simboli matematici
+   cambiano larghezza da un sistema all'altro e ballano fra + e −. */
+details.sec > summary::after{content:"";flex:0 0 auto;width:11px;height:11px;
+  border-right:2px solid var(--ink-3);border-bottom:2px solid var(--ink-3);
+  transform:rotate(45deg) translate(-2px,-2px);transition:transform .18s ease}
+details.sec[open] > summary::after{transform:rotate(225deg) translate(-2px,-2px)}
+@media (prefers-reduced-motion:reduce){details.sec > summary::after{transition:none}}
+.secbody{padding:0 14px 15px;border-top:1px solid var(--line);padding-top:13px}
+
+/* Budget: a 390 px una tabella a tre colonne manda a capo ogni dettaglio,
+   quindi la voce e la cifra stanno sulla prima riga e la spiegazione sotto. */
+.bud{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--surface)}
+.bhead{display:flex;justify-content:space-between;gap:10px;padding:8px 13px;background:var(--sunk);
+  font-family:var(--display);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+.brow{display:grid;grid-template-columns:1fr auto;gap:2px 12px;padding:10px 13px;border-top:1px solid var(--line)}
+.brow .bn{font-weight:600}
+.brow .bv{font-family:var(--display);font-size:15px;font-variant-numeric:tabular-nums;white-space:nowrap;
+  text-align:right;align-self:start}
+.brow .bd{grid-column:1/-1;color:var(--ink-2);font-size:13px;line-height:1.4}
+.brow.tot{background:var(--sunk);border-top:2px solid var(--line-strong)}
+.brow.tot .bn{font-family:var(--display);letter-spacing:.06em;text-transform:uppercase;font-size:14px;align-self:center}
+.brow.tot .bv{font-size:18px;color:var(--accent)}
+.search{width:100%;min-height:44px;border:1px solid var(--line);border-radius:10px;
+  background:var(--surface-2);color:var(--ink);font:inherit;padding:0 13px;margin-bottom:10px}
+.search:focus{outline:2px solid var(--accent);outline-offset:-1px}
+.phr td{cursor:pointer}
+.phr .sl{color:var(--accent);font-weight:600}
+.phr .hr{color:var(--signal);font-weight:600}
+tr[hidden]{display:none}
+
+.sos{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:12px}
+.sos a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+  min-height:80px;border-radius:var(--r);text-decoration:none;border:1px solid var(--line);
+  background:var(--surface);padding:10px}
+.sos a b{font-family:var(--display);font-size:31px;line-height:1;font-variant-numeric:tabular-nums}
+.sos a span{font-family:var(--display);font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3);text-align:center}
+.sos a.em{grid-column:1/-1;background:var(--alert-soft);border-color:transparent}
+.sos a.em b{color:var(--alert);font-size:46px}
+
+/* ── valigia ────────────────────────────────────────────────────────────── */
+.clhead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+.clhead .count{font-family:var(--display);font-size:13px;letter-spacing:.06em;color:var(--ink-3);
+  font-variant-numeric:tabular-nums;white-space:nowrap}
+label.ck{display:flex;gap:11px;align-items:flex-start;padding:9px 2px;border-top:1px solid var(--line);
+  cursor:pointer;font-size:14.5px;line-height:1.4}
+label.ck:first-of-type{border-top:0}
+label.ck input{flex:0 0 auto;width:24px;height:24px;margin:0;accent-color:var(--accent)}
+label.ck input:checked + span{color:var(--ink-3);text-decoration:line-through}
+.prog{height:5px;background:var(--sunk);border-radius:3px;overflow:hidden;margin-bottom:4px}
+.prog i{display:block;height:100%;background:var(--good);border-radius:3px}
+
+/* ── modale frase ───────────────────────────────────────────────────────── */
+.modal{position:fixed;inset:0;z-index:70;background:color-mix(in srgb,var(--ink) 62%,transparent);
+  display:flex;align-items:center;justify-content:center;padding:22px}
+.modal[hidden]{display:none}
+.modal .box{background:var(--surface);border-radius:16px;padding:26px 22px;max-width:420px;width:100%;
+  text-align:center;box-shadow:var(--shadow)}
+.modal .it{font-family:var(--display);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+.modal .mrow{display:flex;gap:11px;align-items:baseline;justify-content:center;margin-top:15px}
+.modal .mfl{font-size:17px;line-height:1}
+.modal .l{font-family:var(--display);font-size:32px;line-height:1.2;text-wrap:balance}
+.modal .l.sl{color:var(--accent)}
+.modal .l.hr{color:var(--signal)}
+.modal .f{font-family:var(--display);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-3);margin-top:18px}
+
+.foot{text-align:center;color:var(--ink-3);font-size:12.5px;padding:18px 4px 4px;line-height:1.6}
+
+/* ── stampa: libretto da cruscotto ──────────────────────────────────────── */
+@media print{
+  :root{--shadow:none;--shadow-up:none}
+  @page{size:A4;margin:12mm 11mm}
+  body{background:#fff;font-size:10.2pt;line-height:1.4}
+  .top,.tabs,.icobtn,.hero .band .nav,.modal,.search,.btnrow,.zoomrow,.foot{display:none !important}
+  /* «Oggi» è la stessa giornata che compare in Giorni: su carta è un doppione. */
+  #view-oggi{display:none !important}
+  main{padding:0;max-width:none;display:flex;flex-direction:column}
+  .view{display:block !important;break-before:page}
+  #view-mappa{order:1;break-before:auto}
+  #view-giorni{order:2}
+  #view-pratico{order:3}
+  #view-valigia{order:4}
+  .totbar{position:static;backdrop-filter:none;break-inside:avoid}
+  /* I contenitori grandi devono poter spezzare: se li tieni interi, ogni
+     giornata più alta di mezza pagina lascia un buco. Si protegge solo
+     quello che è davvero piccolo. */
+  .card,details.day,details.sec,.hero,.tablewrap,.dbody,.secbody{box-shadow:none;
+    break-inside:auto;border-color:#bbb;margin-bottom:8px}
+  .mapbox,.note,.sos a,.hour,tr,.brow{break-inside:avoid}
+  details.day > summary,details.sec > summary{cursor:auto;break-after:avoid;break-inside:avoid}
+  details.sec > summary::after{display:none}
+  h4,h3{break-after:avoid}
+  h2{font-size:15pt;margin-bottom:6px}
+  h3{font-size:11.5pt}
+  .opt{break-inside:avoid;box-shadow:none !important}
+  ol.tl li{break-inside:avoid;padding:5px 0}
+  ol.tl li.now{background:none;margin:0;padding:5px 0}
+  ol.tl li.past{opacity:1}
+  .mapscroll{overflow:visible}
+  .mapscroll svg{min-width:0}
+  .sos a{min-height:0;break-inside:avoid}
+  a.link{border:0}
+  .note{break-inside:avoid}
+}
+</style>
+
+<header class="top">
+  <div class="brand">
+    <b>Alpi, Soča &amp; Quarnero</b>
+    <span id="brandsub">6 → 15 settembre 2026</span>
+  </div>
+  <span class="net" id="net" role="status" hidden>offline</span>
+  <button class="icobtn" id="theme" type="button" aria-label="Cambia tema">◐</button>
+</header>
+
+<main>
+  <section class="view" id="view-oggi" role="tabpanel" aria-labelledby="tab-oggi"></section>
+  <section class="view" id="view-giorni" role="tabpanel" aria-labelledby="tab-giorni" hidden></section>
+  <section class="view" id="view-mappa" role="tabpanel" aria-labelledby="tab-mappa" hidden></section>
+  <section class="view" id="view-pratico" role="tabpanel" aria-labelledby="tab-pratico" hidden></section>
+  <section class="view" id="view-valigia" role="tabpanel" aria-labelledby="tab-valigia" hidden></section>
+  <p class="foot">Road book completo e tariffe verificate ad agosto 2026 sui siti ufficiali.<br>
+  Le scelte e le spunte restano su questo telefono. <b>Per aprire la pagina serve la rete:</b>
+  dove il campo sparisce — Plitvice, Vršič, Velebit, interno di Cres — tieni a portata il PDF scaricato.</p>
+</main>
+
+<!-- Icone disegnate, non glifi di font: su iOS meta' dei simboli geometrici e
+     dei pittogrammi viene resa come emoji a colori, e la barra si sfascia. -->
+<nav class="tabs" role="tablist" aria-label="Sezioni">
+  <button class="tab" role="tab" id="tab-oggi" aria-selected="true" data-view="oggi">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.1"/><path d="M12 2.4v2.1M12 19.5v2.1M2.4 12h2.1M19.5 12h2.1M5.2 5.2l1.5 1.5M17.3 17.3l1.5 1.5M18.8 5.2l-1.5 1.5M6.7 17.3l-1.5 1.5"/></svg>Oggi</button>
+  <button class="tab" role="tab" id="tab-giorni" aria-selected="false" data-view="giorni">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="4.8" cy="6.4" r="1.5" class="f"/><circle cx="4.8" cy="12" r="1.5" class="f"/><circle cx="4.8" cy="17.6" r="1.5" class="f"/><path d="M9.6 6.4h9.6M9.6 12h9.6M9.6 17.6h9.6"/></svg>Giorni</button>
+  <button class="tab" role="tab" id="tab-mappa" aria-selected="false" data-view="mappa">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4.2 3.7 6.3v13.5L9 17.7l6 2.1 5.3-2.1V4.2L15 6.3z"/><path d="M9 4.2v13.5M15 6.3v13.5"/></svg>Mappa</button>
+  <button class="tab" role="tab" id="tab-pratico" aria-selected="false" data-view="pratico">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6.8C10.4 5.3 8.3 4.7 4.8 4.7v13.1c3.5 0 5.6.6 7.2 2.1 1.6-1.5 3.7-2.1 7.2-2.1V4.7c-3.5 0-5.6.6-7.2 2.1z"/><path d="M12 6.8v13.1"/></svg>Pratico</button>
+  <button class="tab" role="tab" id="tab-valigia" aria-selected="false" data-view="valigia">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.2" y="7.5" width="17.6" height="12.3" rx="2.3"/><path d="M8.7 7.5V5.4c0-.9.7-1.6 1.6-1.6h3.4c.9 0 1.6.7 1.6 1.6v2.1M3.2 13.3h17.6"/></svg>Valigia</button>
+</nav>
+
+<div class="modal" id="modal" hidden>
+  <div class="box">
+    <div class="it" id="m-it"></div>
+    <div class="mrow"><span class="mfl">🇸🇮</span><span class="l sl" id="m-sl"></span></div>
+    <div class="mrow"><span class="mfl">🇭🇷</span><span class="l hr" id="m-hr"></span></div>
+    <div class="f">Tocca per chiudere</div>
+  </div>
+</div>
+
+<script>
+/* ══════════════════════════════════════════════════════════════════════════
+   DATI — stessi del road book, più i campi che servono solo in viaggio:
+   l'ora che conta, il tramonto, e i costi/chilometri di ogni opzione a scelta.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+const DAYS=[
+{n:1,iso:"2026-09-06",date:"Domenica 6 settembre",short:"Dom 6",
+ title:"Castelnovo ne' Monti → Predjama → Postojna → Bohinj",
+ km:555,min:360,type:"Trasferimento + Carso",border:"IT → SI",sun:"19:47",
+ key:{t:"13:00",w:"Lo slot delle Grotte di Postojna. Tutta la giornata è costruita per arrivarci con due ore di margine su 395 km di autostrada."},
+ route:"Castelnovo n.M. › A1 Modena › A22 Verona › A4 › Trieste/Fernetti › A1 Postojna › Predjama › Lubiana › Bled › Bohinj",
+ gm:"https://www.google.com/maps/dir/Castelnovo+ne'+Monti/Trieste/Predjama+Castle/Postojna+Cave/Bohinj",
+ tl:[["06:00","Partenza","Pieno fatto la sera prima. Domenica i mezzi pesanti non circolano in Italia e Slovenia: è il giorno migliore dell'anno per fare la A4."],
+     ["08:15","Caffè","Area di servizio zona Verona–Vicenza."],
+     ["10:45","Arrivo a Postojna","395 km. Il valico di Fernetti e poi la A1 slovena: da qui in avanti si guida poco."],
+     ["11:00","Castello di Predjama","10 km di deviazione, l'unico scarto della giornata. Incastrato in una parete di roccia da 800 anni. Un'ora con audioguida."],
+     ["12:15","Pranzo a Postojna",""],
+     ["13:00","Grotte di Postojna","Slot prenotato. 3,5 km in trenino elettrico più il percorso a piedi: 1h30. Dentro ci sono 10 °C fissi — serve una felpa vera. Cerca il proteo."],
+     ["14:45","Partenza per Bohinj","148 km via Lubiana e Bled, 1h45."],
+     ["16:30","Arrivo a Bohinj, check-in",""],
+     ["17:30","Primo giro sul lago","Ribčev Laz: il ponte di pietra, la chiesa di San Giovanni Battista con gli affreschi trecenteschi, il lungolago. Due ore in piano."],
+     ["19:30","Cena","Trota del lago, funghi, selvaggina."]],
+ see:["Predjama dal basso a metà mattina, quando la roccia è ancora in ombra e il castello no","Il proteo di Postojna, che i contadini credevano un cucciolo di drago","Bohinj all'imbrunire: è dentro il Parco del Triglav, il silenzio è un'altra cosa rispetto a Bled"],
+ sleep:"<b>Bohinj, 3 notti.</b> Ribčev Laz per essere sul lago, Stara Fužina per stare a due passi dall'imbocco della Mostnica.",
+ eat:"Cucina alpina slovena: <i>ričet</i>, trota, formaggio di Bohinj. <b>Gostilna Rupa</b> a Srednja vas per la prima sera.",
+ tip:{k:"sig",t:"<strong>L'unico vincolo orario del giorno</strong>Lo slot delle Grotte è alle <em>13:00</em>: arrivando alle 10:45 hai due ore di margine su 395 km. Non prendere uno slot mattutino."}},
+
+{n:2,iso:"2026-09-07",date:"Lunedì 7 settembre",short:"Lun 7",
+ title:"Bohinj: Mostnica, Vogel e Savica",
+ km:30,min:45,type:"Escursioni",border:"—",sun:"19:45",
+ key:{t:"13:30",w:"La funivia del Vogel a metà pomeriggio, quando le nuvole di giornata si sono già alzate e il fronte del Triglav si apre pulito."},
+ route:"Ribčev Laz › Stara Fužina (Mostnica, valle di Voje) › Ukanc (Vogel) › Savica › Ribčev Laz",
+ gm:"https://www.google.com/maps/dir/Ribčev+Laz/Stara+Fužina/Ukanc/Slap+Savica/Ribčev+Laz",
+ tl:[["08:00","Gola della Mostnica","Da Stara Fužina, parcheggio ~3 €/h. Ingresso 4 € a testa, si paga all'imbocco e <b>non serve prenotare</b>. Sul sentiero si incontra subito il Ponte del Diavolo."],
+     ["09:00","Fino alla valle di Voje","Prosegui oltre la gola: prati, pareti, e la cascata di Voje da 21 metri. Andata e ritorno 2h30."],
+     ["12:00","Pranzo",""],
+     ["13:30","Funivia del Vogel","Da Ukanc. 33 € andata e ritorno, parcheggio e seggiovia per Orlova Glava inclusi. Si sale a 1.535 m."],
+     ["16:30","Cascata Savica","A due passi da Ukanc. Cinquecento gradini in mezz'ora. Un'ora in tutto."],
+     ["18:00","Bagno nel lago","L'acqua a settembre è sui 19–20 °C. La spiaggia di Ukanc è la più tranquilla."],
+     ["19:45","Tramonto a Ribčev Laz","Il punto classico è dal ponte, con la chiesa in primo piano."],
+     ["20:30","Cena",""]],
+ see:["La Mostnica scava marmitte e forme tonde nella roccia: una si chiama «l'elefante»","Il Vogel a metà pomeriggio, quando le nuvole si sono già alzate","La chiesa di San Giovanni Battista: campanile romanico, affreschi del Trecento"],
+ sleep:"Seconda notte a Bohinj. Valigia ferma.",
+ eat:"Pranzo al rifugio in cima al Vogel se la giornata è limpida, altrimenti <b>Gostilna Mihovc</b> a Stara Fužina.",
+ tip:{k:"good",t:"<strong>Perché Mostnica e non Vintgar</strong>Stessa acqua verde, stesse passerelle, ma 4 € invece di 15, nessuno slot obbligatorio e un decimo delle persone. E puoi proseguire nella valle di Voje."}},
+
+{n:3,iso:"2026-09-08",date:"Martedì 8 settembre",short:"Mar 8",
+ title:"Il giro della Soča: Vršič, Trenta, Bovec, Kozjak",
+ km:215,min:270,type:"Alta montagna",border:"—",sun:"19:43",
+ key:{t:"08:15",w:"Il passo Vršič presto, prima che il sole giri sui tornanti nord e prima che arrivino i pullman. Da Bohinj sono 78 km e un'ora e mezza, non quaranta minuti."},
+ route:"Bohinj › Bled › Jesenice › Kranjska Gora › Passo Vršič › Trenta › Bovec › Kobarid › Most na Soči › Petrovo Brdo › Bohinj",
+ gm:"https://www.google.com/maps/dir/Bohinj/Kranjska+Gora/Vršič+Pass/Izvir+Soče/Bovec/Slap+Kozjak/Kobarid/Bohinj",
+ tl:[["06:45","Partenza","Presto sul serio: il pieno va fatto la sera prima."],
+     ["08:15","Passo Vršič","Cinquanta tornanti numerati, quelli del versante nord lastricati in pietra. Alla curva 8 la Cappella Russa, costruita dai prigionieri morti in una valanga nel 1916."],
+     ["09:30","Sorgente della Soča","Da Trenta. Quaranta minuti andata e ritorno, l'ultimo tratto su cavo d'acciaio."],
+     ["11:00","Valle della Soča","Le <i>Velika korita</i> vicino a Soča, e poi Bovec. Soste brevi e frequenti: il fiume si vede dalla strada per venti chilometri."],
+     ["12:45","Cascata Kozjak","Da Kamp Koren, vicino a Kobarid. 5 € a testa, aperta fino al 31 ottobre. Venticinque minuti a piedi."],
+     ["14:30","Kobarid","Pranzo, poi il Museo di Caporetto — chi ha il biglietto di Kozjak ha lo sconto."],
+     ["17:00","Rientro per Petrovo Brdo","75 km via Most na Soči e Podbrdo: strada stretta e bellissima che chiude l'anello senza rifare il Vršič."],
+     ["18:45","Bohinj","Ultima sera in montagna."]],
+ see:["La Cappella Russa: un piccolo edificio di legno in mezzo al bosco, e la storia peggiore di questa strada","Il colore della Soča — smeraldo lattiginoso, dovuto alla farina di roccia calcarea","Kozjak: la cascata è dentro una grotta aperta, la luce ci entra da una fessura"],
+ sleep:"Terza e ultima notte a Bohinj.",
+ eat:"A Kobarid: <b>Kotlar</b> o <b>Topli Val</b>. <b>Hiša Franko</b> di Ana Roš è a due passi, ma si prenota con mesi di anticipo.",
+ tip:{k:"acc",t:"<strong>Estensione Mangart</strong>Da Bovec: Predel, poi la strada a pedaggio ambientale da 10 € fino alla sella a 2.055 m. Aggiunge ~50 km e 1h30. Prendila solo se rinunci al Museo di Caporetto, e controlla l'apertura su tnp.si."}},
+
+{n:4,iso:"2026-09-09",date:"Mercoledì 9 settembre",short:"Mer 9",
+ title:"Bohinj → Lubiana → Rastoke → Plitvice",
+ km:325,min:240,type:"Città + trasferimento",border:"SI → HR",sun:"19:39",
+ key:{t:"15:15",w:"Rastoke prima del check-in. È sulla strada, non è una deviazione: il villaggio dei mulini entra nella giornata a costo zero se non ti attardi a Lubiana."},
+ route:"Bohinj › Bled › Kranj › Lubiana › Novo Mesto › Obrežje (confine) › Zagabria › Karlovac › Slunj-Rastoke › Plitvice",
+ gm:"https://www.google.com/maps/dir/Bohinj/Ljubljana/Rastoke,+Slunj/Plitvice+Lakes+National+Park",
+ tl:[["07:30","Partenza da Bohinj","95 km, 1h20. Check-out fatto."],
+     ["09:00","Lubiana, garage","Kongresni trg o NUK II. Il centro è pedonale: si lascia l'auto e non la si tocca più."],
+     ["09:20","Il centro di Plečnik","Mercato Centrale sotto il colonnato, Triplice Ponte, piazza Prešeren, Ponte dei Draghi."],
+     ["10:45","Funicolare e castello","Sali per la torre panoramica: si vede la conca fino alle Alpi che hai appena lasciato."],
+     ["12:00","Pranzo","<b>Ribca</b> sotto il portico del mercato, o <b>Klobasarna</b> per la kranjska klobasa in piedi."],
+     ["13:00","Partenza per la Croazia","230 km. Confine di Obrežje/Bregana, poi la tangenziale di Zagabria e Karlovac."],
+     ["15:15","Rastoke (Slunj)","<b>È sulla strada.</b> Mulini costruiti sulle cascate della Slunjčica. Un'ora, ingresso ~8 €."],
+     ["16:45","Plitvice, check-in","Jezerce, Mukinje o Rakovica."],
+     ["18:30","Cena presto e preparazione","Domani si esce alle 6:40. Scarica <b>offline</b> il voucher con lo slot: al parco il segnale è debole."]],
+ see:["Il drago sul ponte, simbolo di Lubiana","Il mercato coperto di Plečnik lungo la Ljubljanica, uno dei più belli d'Europa","Rastoke: mulini ad acqua ancora incastrati dentro le cascate"],
+ sleep:"<b>Plitvice, 1 notte.</b> Dormire al parco è l'unica ragione di questa tappa: permette l'ingresso alle 7:00.",
+ eat:"Cucina continentale: agnello allo spiedo, trota della Korana, <i>štrukli</i>. Le konobe lungo la D1 sono tutte oneste.",
+ tip:{k:"alert",t:"<strong>Stasera prepara domani</strong>Voucher scaricato offline, sveglia alle 6:15, colazione pronta. Alle 7:00 all'Ingresso 2 non si arriva improvvisando."}},
+
+{n:5,iso:"2026-09-10",date:"Giovedì 10 settembre",short:"Gio 10",
+ title:"Plitvice all'alba → traghetto → Cres",
+ km:250,min:190,type:"Parco + isola",border:"—",sun:"19:37",
+ key:{t:"07:00",w:"L'ora che decide il viaggio. Le prime due ore sono le uniche in cui le passerelle sono libere e l'acqua ha la luce radente: alle 10:00 il parco è un'altra cosa."},
+ route:"Plitvice (Ingresso 2) › Otočac › A1/A6 › Fiume › Opatija › costa est dell'Istria › Brestova ⇢ traghetto ⇢ Porozina › Cres",
+ gm:"https://www.google.com/maps/dir/Plitvice+Lakes+National+Park/Brestova/Porozina/Cres",
+ tl:[["06:15","Sveglia e colazione",""],
+     ["06:45","All'Ingresso 2",""],
+     ["07:00","Dentro","Le prime due ore sono le uniche in cui le passerelle sono libere. Non è retorica."],
+     ["07:15","Programma C","Navetta ST2 › discesa a piedi tra i <b>Laghi Superiori</b> › traghetto elettrico sul Kozjak › <b>Laghi Inferiori</b> e il canyon › il <b>Veliki slap</b> da 78 metri › risalita all'Ingresso 1 › navetta ST1. Quattro-cinque ore."],
+     ["12:00","Uscita e pranzo veloce","Esci alle 12: è quello che rende sostenibile il pomeriggio."],
+     ["13:00","Partenza per il traghetto","220 km, 2h50 via Otočac, la A1 sotto il Velebit, Fiume e poi la costa orientale dell'Istria."],
+     ["16:00","Brestova","Arriva con 30–45 minuti di margine: sulla linea 334 non si prenota, si sale in ordine d'arrivo. Fai il pieno prima."],
+     ["16:30","Traversata","Venti minuti. Scendi dall'auto e mettiti a poppa: si vede tutto il Quarnaro."],
+     ["17:00","Porozina → Cres","35 km e 45 minuti di tornanti sopra il mare. Guida piano, la strada lo merita."],
+     ["18:00","Arrivo a Cres, check-in",""],
+     ["20:00","Cena sul porto","Pesce del giorno, calamari, scampi del Quarnaro."]],
+ see:["I Laghi Superiori nella prima ora, senza nessuno davanti né dietro","Il travertino di Plitvice è vivo: le barriere crescono di circa un centimetro l'anno","L'arrivo a Cres dal mare, con il paese veneziano in fondo alla baia"],
+ sleep:"<b>Cres, 4 notti.</b> Centro storico, con le facciate veneziane sul mandracchio. Si disfa la valigia una volta sola.",
+ eat:"Cres è isola di agnello oltre che di pesce: il <i>creska janjetina</i>, allevato su pascoli di salvia e salmastro.",
+ tip:{k:"sig",t:"<strong>Piano B per il traghetto</strong>Se la bora sospende la Brestova–Porozina, l'isola resta raggiungibile via il <b>ponte di Veglia</b>: Krk › Valbiska ⇢ Merag, e Merag è a 12 km da Cres."}},
+
+{n:6,iso:"2026-09-11",date:"Venerdì 11 settembre",short:"Ven 11",
+ title:"Cres ovest: Lubenice, Sveti Ivan e Valun",
+ km:50,min:75,type:"Isola",border:"—",sun:"19:35",
+ key:{t:"10:30",w:"La discesa a Sveti Ivan va cominciata entro le 10:30. Dopo, il sentiero è esposto e senz'ombra: si prende il taxi boat e non è una sconfitta."},
+ route:"Cres › Lubenice › (discesa a Sveti Ivan) › Valun › Cres",
+ gm:"https://www.google.com/maps/dir/Cres/Lubenice/Valun/Cres",
+ tl:[["09:00","Partenza per Lubenice","21 km, 30 minuti di strada interna tra muretti a secco e pecore."],
+     ["09:30","Lubenice","Venticinque abitanti su uno sperone a 378 metri a picco sul mare, abitato da oltre quattromila anni."],
+     ["10:30","Discesa a Sveti Ivan","Quaranta-cinquanta minuti di sentiero ripido, e altrettanti in salita al ritorno. <b>Scarpe chiuse, due litri d'acqua a testa, cappello.</b> In alternativa il taxi boat."],
+     ["13:00","Valun","Borgo di pescatori in fondo a una baia. Pranzo sul molo e la <i>Valunska ploča</i> nella chiesa: lapide dell'XI secolo in glagolitico e latino."],
+     ["15:00","Bagno","La spiaggia di ciottoli bianchi di Valun, o il sentiero pianeggiante verso Beach Raca."],
+     ["17:30","Rientro a Cres","Passeggiata nel borgo veneziano: la loggia, la torre dell'orologio, il mandracchio."],
+     ["19:35","Tramonto sul porto",""],
+     ["20:30","Cena",""]],
+ see:["Lubenice all'ora di pranzo, quando il vento si alza e sotto si vede il canale fino a Lošinj","La tavola glagolitica di Valun: uno dei documenti più antichi in lingua croata","Il mandracchio di Cres, un porto interno chiuso da un arco di case"],
+ sleep:"Seconda notte a Cres.",
+ eat:"<b>Konoba Bukaleta</b> a Loznati per l'agnello, o le trattorie sul porto di Cres per il pesce.",
+ tip:{k:"acc",t:"<strong>La discesa a Sveti Ivan è vera</strong>Non è una passeggiata: sentiero sassoso, esposto, senz'ombra. Se sono le 11 passate e fa caldo, prendi il taxi boat."}},
+
+{n:7,iso:"2026-09-12",date:"Sabato 12 settembre",short:"Sab 12",
+ title:"Cres selvaggia: Beli, i grifoni e le baie",
+ km:70,min:90,type:"Isola",border:"—",sun:"19:33",
+ key:{t:"10:15",w:"I grifoni si guardano fra le 10 e le 11, quando le termiche si alzano e planano sopra le falesie senza un colpo d'ala. Col caldo del pomeriggio spariscono."},
+ route:"Cres › Beli › Merag / Plaža Kruščica › Cres",
+ gm:"https://www.google.com/maps/dir/Cres/Beli,+Croatia/Merag/Cres",
+ tl:[["09:30","Partenza per Beli","31 km, 40 minuti verso nord, attraversando l'interno boscoso dell'isola."],
+     ["10:15","Beli e i grifoni","Il Centro visite Caput Insulae. Il grifone ha 2,6 metri di apertura alare e nidifica sulle falesie a picco: qui c'è il centro di recupero."],
+     ["11:30","Sentieri eco e labirinti di pietra","Percorsi brevi e segnati intorno a Beli, con i labirinti in pietra a secco degli anni Novanta."],
+     ["12:30","Spiaggia di Beli","Ciottoli, acqua profonda, quasi nessuno. Pranzo alla trattoria del paese."],
+     ["15:00","Plaža Kruščica","Da Merag, 15–20 minuti di sentiero nel bosco. Alternativa più impegnativa: <b>Mali Bok</b>, discesa ripida, scarpe da ginnastica obbligatorie."],
+     ["18:00","Rientro a Cres",""],
+     ["19:30","Sera sul mandracchio","Aperitivo, cena lunga. Nessuna fretta: domani non si smonta."]],
+ see:["I grifoni in volo sopra le falesie: si vedono anche dalla strada tra Beli e Merag","L'interno di Cres: pascoli, muretti a secco, e il lago di Vrana sotto il livello del mare","Le stelle: sull'isola l'inquinamento luminoso è quasi nullo"],
+ sleep:"Terza notte a Cres. Ne resta ancora una.",
+ eat:"Cena di pesce sul porto. Prova il <i>surlice</i>, la pasta a mano del Quarnaro, col sugo d'agnello.",
+ tip:{k:"acc",t:"<strong>Stasera si decide domani</strong>Se vuoi Osor e Lošinj, domani si parte presto e l'orario del ponte girevole va verificato stasera. Tutte le altre scelte possono aspettare la colazione."}},
+
+{n:8,iso:"2026-09-13",date:"Domenica 13 settembre",short:"Dom 13",
+ title:"Cres, giornata aperta",
+ km:60,min:90,type:"Isola · a scelta",border:"—",sun:"19:31",
+ key:{t:"08:30",w:"La colazione sul porto. È l'ora in cui si sceglie la giornata guardando il cielo e il mare — non ieri sera, non su una prenotazione."},
+ route:"Cres › a scelta: Osor e Lošinj · il mare dal mare · Vrana e Mali Bok · niente del tutto › Cres",
+ gm:"https://www.google.com/maps/dir/Cres/Osor/Mali+Lošinj/Cres",
+ menu:{id:"d8",h:"Quattro modi di usare la giornata",
+  s:"Si sceglie a colazione. Nessuna delle quattro va prenotata, e nessuna cambia dove dormi stasera. Tocca quella che hai scelto: chilometri, ore e budget si riallineano da soli.",
+  o:[{id:"losinj",tag:"Isola in più",k:"sig",t:"Osor e Lošinj",km:120,min:150,cost:[14,30],
+      d:"<b>Osor</b>: il canale scavato dai Romani che separa le due isole, e il ponte girevole che si apre a orari fissi — controlla l'orario prima di partire o resti fermo. Poi <b>Veli Lošinj</b> con Blue World, il centro per i delfini, e <b>Mali Lošinj</b>, che ha la piazza più grande della Dalmazia. È la giornata più piena e l'opposto del riposo."},
+     {id:"barca",tag:"Barca",k:"acc",t:"Il mare visto dal mare",km:25,min:40,cost:[70,130],
+      d:"Taxi boat da Cres o da Valun, oppure una barca a noleggio senza patente (sotto i 15 CV non serve). Sveti Ivan raggiunta dall'acqua invece che con quel sentiero, le grotte della costa ovest, le baie che da terra non esistono. È la cosa che a Cres si può fare e quasi altrove no."},
+     {id:"cammino",tag:"Cammino",k:"good",t:"Vrana, Orlec e Mali Bok",km:40,min:75,cost:[0,0],
+      d:"Tre ore di cammino spezzate in tre pezzi. Il <b>lago di Vrana</b> dal belvedere: acqua dolce, fondo sotto il livello del mare, disseta tutta l'isola. Poi <b>Orlec</b> e le falesie dei grifoni, e la discesa a <b>Mali Bok</b> — scarpe chiuse. Pranzo in konoba nell'interno, dove costa la metà che sul porto."},
+     {id:"zero",tag:"Riposo",k:"",t:"Giorno zero",km:0,min:0,cost:[0,0],
+      d:"Non si prende l'auto. Mercato la mattina, il bagno alla spiaggia del paese, un libro all'ombra, la siesta vera, aperitivo lungo sul mandracchio. Detto senza ironia: è il motivo per cui questa notte in più esiste."}]},
+ tl:[["08:30","Colazione sul porto","Alle otto il mandracchio è ancora dei pescatori. Si decide qui, non ieri sera."],
+     ["09:30","Si parte — o non si parte","Osor e Lošinj vogliono partire adesso; la barca si prende tra le 9 e le 10; il resto può aspettare mezzogiorno."],
+     ["13:00","Pranzo","Sul porto, in konoba nell'interno, o in una baia con quello che ti sei portato."],
+     ["16:00","Bagno","L'acqua del Quarnaro a metà settembre è ancora sui 23 °C, più calda dell'aria al mattino."],
+     ["19:31","Tramonto","Dal molo, o da Lubenice se sei rimasto a ovest: è il balcone più alto dell'isola."],
+     ["20:30","Ultima cena sull'isola","Agnello di Cres se non l'hai ancora provato, altrimenti pesce e basta."]],
+ see:["Il ponte girevole di Osor che si apre in un canale largo undici metri","Cres e Lošinj sono una sola isola tagliata in due dai Romani: il taglio è ancora lì","Il cielo notturno: a metà settembre non c'è foschia"],
+ sleep:"<b>Quarta e ultima notte a Cres.</b> Stessa struttura dal 10: quasi tutte scontano dalla terza notte in poi. Chiedilo prenotando, non all'arrivo.",
+ eat:"Se hai scelto Lošinj: <b>Bora Bar</b> a Veli Lošinj. Se sei rimasto: <b>Konoba Bukaleta</b> a Loznati, o il pesce sul mandracchio.",
+ tip:{k:"good",t:"<strong>Questa giornata è vuota apposta</strong>Tenendola sull'isola guadagni un giorno pieno e togli un cambio di base. Il prezzo è che l'Istria diventa una giornata sola, domani."}},
+
+{n:9,iso:"2026-09-14",date:"Lunedì 14 settembre",short:"Lun 14",
+ title:"Cres → traghetto → Istria → il finale che scegli",
+ km:180,min:180,type:"Traghetto + Istria",border:"HR → SI (se Pirano)",sun:"19:29",
+ key:{t:"09:45",w:"Al piazzale di Porozina con trenta minuti di margine. Sulla linea 334 non si prenota: conta solo l'ordine di arrivo, e perdere la corsa sposta tutto il pomeriggio."},
+ route:"Cres › Porozina ⇢ traghetto ⇢ Brestova › Labin › Pazin › Motovun › a scelta: Pirano | Rovigno | Pola | Abbazia",
+ gm:"https://www.google.com/maps/dir/Cres/Porozina/Brestova/Motovun/Piran",
+ menu:{id:"d9",h:"Dove finisce il viaggio",
+  s:"È l'unica scelta che va fatta prenotando, non in strada: cambia l'alloggio e la lunghezza del rientro. Fino a Motovun la giornata è identica in tutti i casi.",
+  o:[{id:"pirano",tag:"Consigliata",k:"good",t:"Pirano 🇸🇮",km:180,min:180,cost:[18,18],
+      d:"+85 km da Motovun via Buje e il confine di Dragogna, poi corridoio <b>H5 gratuito</b>. Auto al garage Fornače alle 16:30 e da lì tutto a piedi: mura veneziane (2 €), San Giorgio, le <b>saline di Sicciole</b> col sale raccolto a mano come nel Trecento, tramonto a Punta. <b>Domani il rientro è di 480 km</b>: è il finale che costa meno fatica."},
+     {id:"rovigno",tag:"La più bella",k:"acc",t:"Rovigno 🇭🇷",km:150,min:160,cost:[10,10],
+      d:"+55 km da Motovun, arrivo alle 15:30. Grisia e i vicoli degli artisti, Sant'Eufemia col campanile copia di San Marco, tramonto dal molo davanti alle isole — e soprattutto <b>Rovigno all'alba</b> domattina. Prezzo: il rientro diventa <b>600 km</b>, e va iniziato entro le 8."},
+     {id:"pola",tag:"Variante romana",k:"sig",t:"Pola 🇭🇷",km:190,min:190,cost:[20,20],
+      d:"+95 km da Motovun. L'<b>Arena</b> è tra le sei più grandi al mondo e l'unica con le torri laterali intatte; poi il Tempio di Augusto e l'Arco dei Sergi, tutti a piedi in due ore. Il rientro sale a <b>620 km</b>: la scelta più cara in chilometri, ma è l'unica cosa davvero romana del viaggio."},
+     {id:"abbazia",tag:"Piano bora",k:"alert",t:"Abbazia 🇭🇷",km:80,min:110,cost:[0,0],
+      d:"Se la bora chiude Porozina non si discute: esci dall'isola da <b>Merag ⇢ Valbiska</b>, canale riparato, poi il ponte di Veglia e la costiera. Ti fermi ad <b>Abbazia</b>: Lungomare asburgico di 12 km, ville e giardini. Niente Istria e niente Motovun, ma il rientro non dipende da nessun traghetto."}]},
+ tl:[["08:00","Colazione e check-out","Quattro notti nello stesso posto: si smonta con calma, ma non troppa."],
+     ["09:00","Partenza per Porozina","35 km, 45 minuti di tornanti sopra il mare, stavolta al contrario."],
+     ["09:45","Al piazzale di Porozina","Trenta minuti di margine. Non si prenota: si sale in ordine d'arrivo."],
+     ["10:15","Traversata","Venti minuti. Ultimo sguardo al Quarnaro da poppa."],
+     ["10:45","Sbarco a Brestova","Si entra in Istria dalla porta orientale. Labin resta sopra la strada, poi si taglia nell'interno."],
+     ["12:30","Motovun","70 km. In cima a un cono di collina sopra la valle del Quieto. Il giro delle mura è dieci minuti e vale un panorama a 360°."],
+     ["13:00","Pranzo al tartufo","Capitale del tartufo bianco d'Istria, e settembre apre la stagione. <b>Konoba Mondo</b> a Motovun; <b>Zigante</b> a Livade se vuoi il tempio."],
+     ["14:45","Qui la strada si divide","Verso nord vale la pena infilare <b>Grožnjan</b>, il borgo degli artisti, o <b>Hum</b>, il paese più piccolo del mondo."],
+     ["16:30","Check-in e città","Un pomeriggio pieno, comunque tu abbia scelto."],
+     ["19:29","Tramonto","Punta a Pirano, il molo a Rovigno, il Lungomare ad Abbazia."],
+     ["20:30","Ultima cena all'estero","A Pirano <b>Fritolin pri Cantini</b>; a Rovigno <b>Konoba Kantinon</b> o <b>Male Madlene</b>."]],
+ see:["Motovun dal basso, all'imbocco della valle: è l'immagine simbolo dell'Istria","Settembre in Istria è vendemmia — molte cantine sono aperte e si entra senza appuntamento","Se finisci a Pirano: è veneziana nell'impianto e bilingue per statuto"],
+ sleep:"<b>Ultima notte, una sola, base a scelta.</b> Pirano dentro le mura con l'auto già al garage Fornače · Rovigno città vecchia o Monte Mulini con parcheggio · Abbazia sul Lungomare. Prenotane una sola e prenotala presto.",
+ eat:"La giornata gastronomicamente più forte: tartufo a pranzo, pesce a cena. Malvasia istriana o Teran. Il sale di Sicciole è il souvenir migliore.",
+ tip:{k:"good",t:"<strong>Qui la vignetta non serve più</strong>Se scegli Pirano: da Dragogna in poi, e domani fino a Rabuiese, si viaggia solo su H5/H6 e strade locali, <em>gratuite dal 2026</em>."}},
+
+{n:10,iso:"2026-09-15",date:"Martedì 15 settembre",short:"Mar 15",
+ title:"Rientro, con una sosta a scelta",
+ km:480,min:290,type:"Rientro",border:"SI → IT",sun:"19:26",
+ key:{t:"09:00",w:"L'ultimo pieno a Capodistria, prima del confine: 15–25 centesimi al litro in meno che in Italia. Su un serbatoio pieno vale una cena."},
+ route:"Pirano › Capodistria › H5/H6 (gratuiti) › Rabuiese › Trieste › A4 › A22 › A1 › Castelnovo ne' Monti",
+ gm:"https://www.google.com/maps/dir/Piran/Trieste/Verona/Castelnovo+ne'+Monti",
+ menu:{id:"d10",h:"Cosa infilare nel rientro",
+  s:"Si sceglie in strada, secondo l'ora e la voglia. Ognuna sta dentro la giornata: quello che cambia è l'ora in cui sei a casa, non il percorso.",
+  o:[{id:"trieste",tag:"30–60 min",k:"good",t:"Trieste",km:8,min:45,cost:[0,20],
+      d:"È sulla strada e non si paga in tempo. <b>Miramare</b>: il parco sul mare è gratuito e da solo vale la sosta, il castello 10 €. Oppure piazza Unità d'Italia e mezz'ora al <b>Caffè San Marco</b>. Se hai fame vera, un <i>buffet</i> triestino: maiale bollito, cren, birra."},
+     {id:"aquileia",tag:"+1h30",k:"acc",t:"Aquileia e Palmanova",km:20,min:90,cost:[10,20],
+      d:"Poco fuori dalla A4, uscita Palmanova. La basilica di <b>Aquileia</b> ha il più grande mosaico pavimentale paleocristiano d'Occidente, 760 m² del IV secolo. <b>Palmanova</b> è una fortezza veneziana a stella con nove punte."},
+     {id:"laguna",tag:"Pranzo",k:"sig",t:"Laguna: Marano o Grado",km:30,min:75,cost:[0,0],
+      d:"Venti minuti fuori rotta dalla A4. <b>Marano Lagunare</b> è un borgo di pescatori vero, con i casoni di canna; <b>Grado</b> ha il centro storico bizantino e più scelta. È il modo migliore di far durare il viaggio un'ora in più invece di finirlo in autogrill."},
+     {id:"dritti",tag:"Niente soste",k:"",t:"Dritti a casa",km:0,min:0,cost:[0,0],
+      d:"Da Pirano sono 480 km e 4h50 di sola guida: partendo alle 8:30, con una sosta sola, si è a Castelnovo per le 15:00. Da Rovigno sono 600 km, e allora conviene partire alle 8. Dopo dieci giorni, tornare presto non è una sconfitta."}]},
+ tl:[["08:30","Partenza","Da Pirano: corridoio H5/H6 gratuito fino a Rabuiese. Da Rovigno: Umago e Dragogna, e metti in conto un'ora in più su tutto."],
+     ["09:00","Ultimo pieno prima del confine","A Capodistria. Il carburante costa 15–25 centesimi al litro in meno che in Italia."],
+     ["09:30","La sosta che hai scelto","Trieste è la più comoda perché è già sul percorso. Aquileia e la laguna vanno decise all'altezza di Monfalcone."],
+     ["11:00","A4","Si guida."],
+     ["13:00","Pranzo","Portogruaro o area di servizio dopo Padova, se non hai già mangiato in laguna."],
+     ["14:30","A4 → A22 → A1","Occhio ai cantieri sul tratto Venezia–Verona. Se il traffico è fermo, esci a Verona Sud e riprendi l'A22 più giù."],
+     ["17:00","Arrivo a Castelnovo ne' Monti","Dieci giorni, quattro basi, due traghetti, tre paesi."]],
+ see:["Miramare: il castello che Massimiliano d'Asburgo fece costruire e non riuscì mai davvero ad abitare","I mosaici di Aquileia, che per mille anni sono stati sotto il pavimento di un'altra chiesa","L'ultimo caffè triestino, che è già mezza Mitteleuropa"],
+ sleep:"—",
+ eat:"Trieste ha i <i>buffet</i>: carne di maiale bollita, cren, birra. È il modo giusto di salutare il viaggio.",
+ tip:{k:"sig",t:"<strong>Se sei partito da Rovigno</strong>Sono 120 km e un'ora in più, tutti prima di Trieste. Parti alle 8 e scegli una sosta sola, non due."}}
+];
+
+/* km e ore del giorno 10 dipendono dalla base scelta il giorno 9 */
+const FINALE={
+  pirano :{n:"Pirano",  km:480,min:290,tr:[55,75]},
+  rovigno:{n:"Rovigno", km:600,min:345,tr:[55,75]},
+  pola   :{n:"Pola",    km:620,min:360,tr:[55,75]},
+  abbazia:{n:"Abbazia", km:570,min:330,tr:[65,85]}
+};
+
+/* voci di budget che non dipendono dalle scelte — per due persone */
+const BUDGET=[
+  ["Pedaggi Italia","A1+A22+A4 andata e ritorno",75,85],
+  ["Vignetta Slovenia","e-vinjeta 7 giorni (6→12 set)",16,16],
+  ["Pedaggi Croazia","Zagabria–Karlovac, Plitvice–Fiume",30,40],
+  ["Parcheggi e garage","Lubiana, Stara Fužina, Plitvice, Cres, base finale",60,90],
+  ["Ingressi fissi (×2)","Plitvice 80, Postojna+Predjama 81, Vogel 66, Mostnica 8, Savica 16, Kozjak 10, Kobarid 16, funicolare Lubiana 20, Rastoke 16, Beli 16",330,330],
+  ["Alloggi","9 notti in doppia, 4 strutture (Cres ×4 scontate)",900,1320],
+  ["Cibo","10 giorni, colazione + pranzo leggero + cena",550,850],
+  ["Extra","Tartufo, sale di Sicciole, souvenir, imprevisti",120,250]
+];
+const CARB={lmin:6.5,lmax:7.5,pmin:1.75,pmax:1.80};
+
+const BOOK=[
+ ["alert","Subito","Plitvice, slot orario","np-plitvicka-jezera.hr","40 €/pers.","Giovedì 10/9, 07:00, Ingresso 2. Cap di 300 persone/ora: è la prenotazione che decide la riuscita del viaggio."],
+ ["alert","Subito","Alloggi, 9 notti","Booking / diretto","—","Bohinj ×3 · Plitvice ×1 · Cres ×4 · finale ×1. Sulle quattro notti a Cres chiedi lo sconto."],
+ ["sig","Entro 7 giorni","La base del 14 settembre","Booking / diretto","—","L'unica scelta degli ultimi giorni che non si può rimandare. Vedi il menù del giorno 9."],
+ ["sig","Entro 7 giorni","Postojna + Predjama","postojnska-jama.eu","40,30 €/pers.","Combinata, 10% meno dei biglietti separati. Slot grotta 13:00 di domenica 6/9: vincolante."],
+ ["acc","Prima di partire","e-vinjeta Slovenia, 7 giorni","evinjeta.dars.si","16 €/auto","Attivala dal 6/9 (valida fino al 12/9). Legata alla targa, niente adesivo."],
+ ["good","In loco","Mostnica, Vogel, Savica","Alla cassa","4 / 33 / 8 €","Nessuna prenotazione, nessuno slot. Vogel include parcheggio e seggiovia."],
+ ["good","In loco","Kozjak, Museo di Caporetto","Alla cassa","5 / 8 €","Il biglietto di Kozjak dà diritto allo sconto sul museo."],
+ ["good","In loco","Traghetti, Rastoke, campanili","Al piazzale / cassa","—","Le linee locali Jadrolinija non accettano prenotazioni auto."],
+ ["good","Il giorno stesso","La giornata del 13 su Cres","A colazione","0–130 €","Nessuna delle quattro si prenota. Il noleggio barca conviene chiederlo la sera prima al porto."],
+ ["","Facoltativo","Cena dell'ultima sera e a Kobarid","Telefono","—","Hiša Franko si prenota con mesi d'anticipo; le altre bastano il giorno prima."]
+];
+
+const METEO=[["Bohinj","19–23°","8–11°","19–20°"],["Vršič (1.611 m)","10–15°","3–6°","—"],
+ ["Valle della Soča","21–25°","11–14°","14° fiume"],["Plitvice","19–23°","8–11°","—"],
+ ["Cres / Quarnaro","24–27°","17–19°","23–24°"],["Istria / Pirano","24–27°","16–18°","23–24°"]];
+
+const PHRASES=[["Buongiorno","Dober dan","Dobar dan"],["Ciao (informale)","Živjo","Bok"],
+ ["Grazie","Hvala","Hvala"],["Per favore / prego","Prosim","Molim"],["Scusi","Oprostite","Oprostite"],
+ ["Arrivederci","Nasvidenje","Doviđenja"],["Sì / No","Ja / Ne","Da / Ne"],
+ ["Quanto costa?","Koliko stane?","Koliko košta?"],["Il conto, per favore","Račun, prosim","Račun, molim"],
+ ["Parla inglese?","Govorite angleško?","Govorite li engleski?"],["Non capisco","Ne razumem","Ne razumijem"],
+ ["Dov'è il bagno?","Kje je stranišče?","Gdje je toalet?"],["Una birra, per favore","Eno pivo, prosim","Jedno pivo, molim"],
+ ["Un caffè","Ena kava","Jedna kava"],["Pesce / carne","Riba / meso","Riba / meso"],
+ ["Sentiero / cascata","Pot / slap","Staza / slap"],["Traghetto","Trajekt","Trajekt"],
+ ["Uscita / ingresso","Izhod / vhod","Izlaz / ulaz"],["Salute! (brindisi)","Na zdravje!","Živjeli!"],
+ ["Aiuto","Na pomoč","Upomoć"],["Dove si paga?","Kje se plača?","Gdje se plaća?"],
+ ["Ho prenotato","Imam rezervacijo","Imam rezervaciju"],["A che ora?","Ob kateri uri?","U koliko sati?"],
+ ["Il traghetto parte?","Ali trajekt vozi?","Vozi li trajekt?"],["Acqua, per favore","Vodo, prosim","Vodu, molim"]];
+
+const LISTS=[
+ {t:"Documenti e prenotazioni",i:["Carta d'identità valida per l'espatrio o passaporto","Patente, libretto, certificato assicurativo","Tessera Sanitaria–TEAM (retro azzurro)","Voucher Plitvice 07:00 Ingresso 2, scaricato OFFLINE","Voucher Postojna + Predjama, slot 13:00 del 6/9","e-vinjeta 7 giorni attivata sulla targa","Conferme dei 4 alloggi (9 notti), offline","Base dell'ultima notte scelta e prenotata (Pirano / Rovigno / Pola / Abbazia)","Mappe Google di Slovenia e Croazia scaricate","App Jadrolinija installata","Orari del ponte girevole di Osor, se pensate a Lošinj","100–150 € in contanti"]},
+ {t:"Auto",i:["Controllo gomme, pressione e freni (c'è il Vršič)","Giubbotto catarifrangente nell'abitacolo","Triangolo","Kit di primo soccorso (obbligatorio in Croazia)","Set lampadine di scorta","Supporto e caricatore per telefono","Telo parasole","Sacchetto rifiuti e salviette","Ruotino o kit riparazione forature"]},
+ {t:"In valigia",i:["Scarpe da trekking (Mostnica, Kozjak, Plitvice, discesa a Sveti Ivan)","Sandali o scarpette da scoglio","Pile o felpa pesante: 10 °C nelle grotte, meno sul Vršič","Giacca antipioggia leggera","Costume e telo in microfibra","Cappello e occhiali da sole","Crema solare alta","Zaino piccolo + 2 borracce (per Sveti Ivan servono davvero)","Bastoncini da trekking se li usi","Un abito decente per l'ultima cena","Un libro vero, per il giorno zero a Cres","Power bank","Repellente antizanzare (Bohinj e Plitvice)","Binocolo per i grifoni di Beli","Farmaci personali, antidolorifico, cerotti"]}
+];
+
+/* ══════════════════════════════════════════════════════════════════════════
+   STATO — scelte e spunte. La chiave della checklist è la stessa del road
+   book, così le spunte fatte sul documento si ritrovano qui e viceversa.
+   ══════════════════════════════════════════════════════════════════════════ */
+const CKEY='alpisocaquarnero2026';
+const SKEY='alpisocaquarnero2026-scelte';
+let ticks={}, choices={d8:null,d9:null,d10:null};
+try{ticks=JSON.parse(localStorage.getItem(CKEY)||'{}')||{}}catch(e){ticks={}}
+try{Object.assign(choices,JSON.parse(localStorage.getItem(SKEY)||'{}')||{})}catch(e){}
+const saveTicks=()=>{try{localStorage.setItem(CKEY,JSON.stringify(ticks))}catch(e){}};
+const saveChoices=()=>{try{localStorage.setItem(SKEY,JSON.stringify(choices))}catch(e){}};
+
+/* ── calcolo, mai a occhio ──────────────────────────────────────────────── */
+const optOf=(dayN,id)=>{const d=DAYS.find(x=>x.n===dayN);return d&&d.menu?d.menu.o.find(o=>o.id===id):null;};
+const hm=m=>Math.floor(m/60)+'h'+String(m%60).padStart(2,'0');
+const nkm=v=>v.toLocaleString('it-IT');
+
+function dayKm(d){
+  if(d.n===8) {const o=optOf(8,choices.d8); return o?o.km:d.km;}
+  if(d.n===9) {const o=optOf(9,choices.d9); return o?o.km:d.km;}
+  if(d.n===10){const f=choices.d9?FINALE[choices.d9].km:d.km;
+               const o=optOf(10,choices.d10); return f+(o?o.km:0);}
+  return d.km;
+}
+function dayMin(d){
+  if(d.n===8) {const o=optOf(8,choices.d8); return o?o.min:d.min;}
+  if(d.n===9) {const o=optOf(9,choices.d9); return o?o.min:d.min;}
+  if(d.n===10){return choices.d9?FINALE[choices.d9].min:d.min;}
+  return d.min;
+}
+const totKm  =()=>DAYS.reduce((s,d)=>s+dayKm(d),0);
+const totMin =()=>DAYS.reduce((s,d)=>s+dayMin(d),0);
+const scelte =()=>['d8','d9','d10'].filter(k=>choices[k]).length;
+
+function budget(){
+  const km=totKm(), rows=[];
+  const cmin=Math.round(km*CARB.lmin/100*CARB.pmin), cmax=Math.round(km*CARB.lmax/100*CARB.pmax);
+  const dec=n=>String(n).replace('.',',');
+  rows.push(['<b>Carburante</b>',nkm(km)+' km · '+dec(CARB.lmin)+'–'+dec(CARB.lmax)+' l/100 km · '
+    +dec(CARB.pmin)+'–'+dec(CARB.pmax.toFixed(2))+' €/l',cmin,cmax]);
+  const tr=choices.d9?FINALE[choices.d9].tr:[55,75];
+  BUDGET.forEach(r=>{
+    rows.push(['<b>'+r[0]+'</b>',r[1],r[2],r[3]]);
+    if(r[0]==='Pedaggi Croazia') rows.push(['<b>Traghetti</b>',
+      choices.d9==='abbazia'?'Brestova⇢Porozina + Merag⇢Valbiska (più lunga)':'2 traversate, auto + 2 passeggeri',tr[0],tr[1]]);
+  });
+  let smin=0,smax=0,det=[];
+  const o8=optOf(8,choices.d8), o9=optOf(9,choices.d9), o10=optOf(10,choices.d10);
+  if(o8){smin+=o8.cost[0];smax+=o8.cost[1];det.push('13 set: '+o8.t)}
+  if(o9){smin+=o9.cost[0];smax+=o9.cost[1];det.push('finale: '+o9.t.replace(/\s*[🇸🇮🇭🇷]+$/,''))}
+  if(o10){smin+=o10.cost[0];smax+=o10.cost[1];det.push('rientro: '+o10.t)}
+  rows.push(['<b>Ingressi a scelta</b> (×2)',
+    det.length?det.join(' · '):'Nessuna scelta fatta: intervallo pieno, da giorno zero + Abbazia a barca + Pola',
+    det.length?smin:0, det.length?smax:150]);
+  return {rows,tot:[rows.reduce((s,r)=>s+r[2],0),rows.reduce((s,r)=>s+r[3],0)]};
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   VISTE
+   ══════════════════════════════════════════════════════════════════════════ */
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
+const D0=new Date(2026,8,6), D1=new Date(2026,8,15);
+const today=()=>{const n=new Date();return new Date(n.getFullYear(),n.getMonth(),n.getDate());};
+function dayIndexOggi(){
+  const t=today(), diff=Math.round((t-D0)/86400000);
+  if(diff<0) return {stato:'prima',mancano:-diff,idx:0};
+  if(diff>9) return {stato:'dopo',idx:9};
+  return {stato:'durante',idx:diff};
+}
+let vista=dayIndexOggi().idx;
+
+/* ── OGGI ───────────────────────────────────────────────────────────────── */
+function renderOggi(){
+  const st=dayIndexOggi(), d=DAYS[vista], reale=(st.stato==='durante'&&vista===st.idx);
+  let head='';
+  if(st.stato==='prima'&&vista===0){
+    const aperte=LISTS[0].i.filter((_,ii)=>!ticks['0-'+ii]).length;
+    head='<div class="countdown"><b>'+st.mancano+'</b><span>giorni alla partenza</span></div>'
+      +'<p style="font-size:14.5px;color:var(--ink-2);margin:0 0 4px">Si parte '+DAYS[0].date.toLowerCase()
+      +' alle 06:00. Restano <b>'+aperte+'</b> voci aperte fra documenti e prenotazioni.</p>';
+  } else if(st.stato==='dopo'&&vista===9){
+    head='<p style="font-size:14.5px;color:var(--ink-2);margin:0 0 4px">Il viaggio è finito. '
+      +nkm(totKm())+' km, '+hm(totMin())+' di guida, quattro basi, due traghetti, tre paesi.</p>';
+  }
+  const tl=d.tl.map((t,i)=>{
+    let cls='';
+    if(reale){
+      const now=new Date(), mnow=now.getHours()*60+now.getMinutes();
+      const m=+t[0].slice(0,2)*60 + +t[0].slice(3);
+      const nx=d.tl[i+1]?(+d.tl[i+1][0].slice(0,2)*60 + +d.tl[i+1][0].slice(3)):1440;
+      if(mnow>=nx) cls='past'; else if(mnow>=m) cls='now';
+    }
+    return '<li class="'+cls+'"><time>'+t[0]+'</time><div><b>'+t[1]
+      +(cls==='now'?'<span class="adesso">adesso</span>':'')+'</b>'
+      +(t[2]?'<small>'+t[2]+'</small>':'')+'</div></li>';
+  }).join('');
+
+  const o9=optOf(9,choices.d9);
+  $('#view-oggi').innerHTML=
+   '<div class="hero">'
+    +'<div class="band"><span class="lab">'+(reale?'Oggi · tappa':'Tappa')+' '+d.n+' di 10</span>'
+      +'<span class="nav"><button type="button" id="prevd" aria-label="Giorno precedente"'+(vista===0?' disabled':'')+'>‹</button>'
+      +'<button type="button" id="nextd" aria-label="Giorno successivo"'+(vista===9?' disabled':'')+'>›</button></span></div>'
+    +'<div class="in"><div class="date">'+d.date+'</div>'
+      +'<h2>'+d.title+'</h2>'+head
+      +'<div class="btnrow" style="margin-top:11px">'
+        +'<a class="btn pri" href="'+d.gm+'" target="_blank" rel="noopener">Rotta in Maps ↗</a>'
+        +'<button class="btn" type="button" data-goto="'+d.n+'">Scheda completa</button></div></div>'
+    +'<div class="stats">'
+      +'<div class="s"><b>'+nkm(dayKm(d))+'</b><span>km oggi</span></div>'
+      +'<div class="s"><b>'+hm(dayMin(d))+'</b><span>guida</span></div>'
+      +'<div class="s"><b>'+d.sun+'</b><span>tramonto</span></div>'
+      +'<div class="s"><b class="sm">'+d.border.split(' (')[0].replace(/\s*→\s*/,'→')+'</b><span>confine</span></div>'
+    +'</div></div>'
+
+   +'<div class="hour"><div class="t">'+d.key.t+'</div><div class="x"><b>L\'ora che conta</b><p>'+d.key.w+'</p></div></div>'
+
+   +(d.menu?'<div class="card"><h4>Scelta del giorno</h4><p style="font-size:14.5px;margin:0 0 10px">'
+      +(choices[d.menu.id]?'Hai scelto <b>'+optOf(d.n,choices[d.menu.id]).t+'</b>.':'Non hai ancora scelto. '+d.menu.s)
+      +'</p><button class="btn wide" type="button" data-goto="'+d.n+'">'
+      +(choices[d.menu.id]?'Cambia scelta':'Scegli ora')+'</button></div>':'')
+
+   +'<div class="card"><h4>Programma</h4><ol class="tl">'+tl+'</ol></div>'
+
+   +'<div class="card"><h4>Da non perdere</h4><ul class="tick">'+d.see.map(s=>'<li>'+s+'</li>').join('')+'</ul></div>'
+   +'<div class="card"><h4>Stanotte</h4><p style="font-size:14.5px">'+d.sleep+'</p>'
+     +(d.n===9&&o9?'<p style="font-size:14.5px;margin-top:8px"><b>Scelto: '+o9.t+'.</b></p>':'')+'</div>'
+   +'<div class="note '+d.tip.k+'">'+d.tip.t+'</div>';
+
+  const p=$('#prevd'), n=$('#nextd');
+  if(p) p.onclick=()=>{if(vista>0){vista--;renderOggi();}};
+  if(n) n.onclick=()=>{if(vista<9){vista++;renderOggi();}};
+  $('#view-oggi').querySelectorAll('[data-goto]').forEach(b=>{
+    b.onclick=()=>apriGiorno(+b.dataset.goto);
+  });
+}
+
+/* ── GIORNI ─────────────────────────────────────────────────────────────── */
+function renderGiorni(){
+  const maxKm=Math.max.apply(null,DAYS.map(dayKm));
+  const cards=DAYS.map(d=>{
+    const km=dayKm(d), mn=dayMin(d);
+    const menu=d.menu?'<div class="menu"><h4 style="margin-bottom:4px">'+d.menu.h+'</h4><p>'+d.menu.s+'</p>'
+      +d.menu.o.map(o=>'<button class="opt" type="button" data-m="'+d.menu.id+'" data-o="'+o.id+'" '
+        +'aria-pressed="'+(choices[d.menu.id]===o.id)+'">'
+        +'<span class="oh"><span class="chip '+(o.k||'')+'">'+o.tag+'</span><span class="ot">'+o.t+'</span></span>'
+        +'<p class="od">'+o.d+'</p>'
+        +'<span class="ok"><span>'+(o.km?o.km+' km':'0 km')+'</span><span>'+(o.min?hm(o.min):'—')+'</span>'
+        +'<span>'+(o.cost[1]?(o.cost[0]===o.cost[1]?o.cost[0]+' €':o.cost[0]+'–'+o.cost[1]+' €'):'gratis')+'</span></span>'
+        +'</button>').join('')
+      +'</div>':'';
+    return '<details class="day" id="day'+d.n+'">'
+      +'<summary><span class="dnum">'+String(d.n).padStart(2,'0')+'<span>tappa</span></span>'
+      +'<span class="dsum"><span class="dd">'+d.short+' · '+d.type+'</span><span class="dt">'+d.title+'</span>'
+      +'<span class="barwrap"><span class="bar" style="width:'+Math.max(3,Math.round(km/maxKm*100))+'%"></span></span></span>'
+      +'<span class="dmeta"><b>'+nkm(km)+'</b><span>km</span><b style="margin-top:4px">'+hm(mn)+'</b><span>guida</span></span></summary>'
+      +'<div class="dbody">'
+        +'<div class="route">'+d.route+'</div>'
+        +'<div class="btnrow" style="margin-bottom:12px">'
+          +'<a class="btn pri" href="'+d.gm+'" target="_blank" rel="noopener">Rotta in Maps ↗</a>'
+          +'<button class="btn" type="button" data-oggi="'+d.n+'">Vedi come «oggi»</button></div>'
+        +menu
+        +'<div class="hour" style="margin-bottom:12px"><div class="t">'+d.key.t+'</div>'
+          +'<div class="x"><b>L\'ora che conta</b><p>'+d.key.w+'</p></div></div>'
+        +'<h4>Programma · tramonto '+d.sun+'</h4><ol class="tl">'
+        +d.tl.map(t=>'<li><time>'+t[0]+'</time><div><b>'+t[1]+'</b>'+(t[2]?'<small>'+t[2]+'</small>':'')+'</div></li>').join('')
+        +'</ol>'
+        +'<div class="blk"><h4>Da non perdere</h4><ul class="tick">'+d.see.map(s=>'<li>'+s+'</li>').join('')+'</ul></div>'
+        +'<div class="blk"><h4>Dove dormire</h4><p style="font-size:14.5px">'+d.sleep+'</p></div>'
+        +'<div class="blk"><h4>A tavola</h4><p style="font-size:14.5px">'+d.eat+'</p></div>'
+        +'<div class="blk note '+d.tip.k+'">'+d.tip.t+'</div>'
+      +'</div></details>';
+  }).join('');
+
+  $('#view-giorni').innerHTML=
+    '<div class="vhead"><h2>Giorno per giorno</h2>'
+    +'<p class="lede">Orari con soste, parcheggio e code già dentro. Tocca una tappa per aprirla; '
+    +'gli ultimi tre giorni hanno un menù al posto del programma fisso.</p></div>'
+    +'<div class="totbar" id="totbar"></div>'+cards;
+
+  $('#view-giorni').querySelectorAll('.opt').forEach(b=>{
+    b.onclick=e=>{e.preventDefault();
+      const m=b.dataset.m, o=b.dataset.o;
+      choices[m]=(choices[m]===o)?null:o;
+      saveChoices(); ridisegna();
+      const el=document.getElementById('day'+(m==='d8'?8:m==='d9'?9:10));
+      if(el){el.open=true;el.scrollIntoView({block:'nearest'});}
+    };
+  });
+  $('#view-giorni').querySelectorAll('[data-oggi]').forEach(b=>{
+    b.onclick=()=>{vista=+b.dataset.oggi-1;renderOggi();mostra('oggi');window.scrollTo(0,0);};
+  });
+  renderTot();
+}
+
+function renderTot(){
+  const el=$('#totbar'); if(!el) return;
+  const n=scelte(), km=totKm(), mn=totMin();
+  const f=choices.d9?FINALE[choices.d9].n:null;
+  el.innerHTML='<div class="g"><b>'+nkm(km)+' km</b><span>'+(n===3?'totale esatto':'con i riferimenti')+'</span></div>'
+    +'<div class="g"><b>'+hm(mn)+'</b><span>sola guida</span></div>'
+    +'<div class="st"><span class="chip '+(n===3?'good':n?'sig':'')+'">'
+    +(f?f:(n?n+'/3 scelte':'0/3 scelte'))+'</span></div>';
+}
+
+const dolce=()=>matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth';
+function apriGiorno(n){
+  mostra('giorni');
+  const el=document.getElementById('day'+n);
+  if(el){el.open=true;setTimeout(()=>el.scrollIntoView({behavior:dolce(),block:'start'}),40);}
+}
+
+/* ── MAPPA ──────────────────────────────────────────────────────────────── */
+const COAST=[[14.10,43.30],[13.90,43.42],[13.51,43.62],[13.20,43.75],[12.90,43.92],[12.57,44.06],[12.40,44.25],
+ [12.25,44.42],[12.28,44.70],[12.32,44.95],[12.28,45.10],[12.42,45.28],[12.34,45.44],[12.60,45.55],[12.90,45.62],
+ [13.10,45.68],[13.40,45.72],[13.58,45.78],[13.75,45.72],[13.77,45.65],[13.73,45.55],[13.62,45.52],[13.57,45.53],
+ [13.50,45.45],[13.58,45.35],[13.57,45.28],[13.60,45.20],[13.63,45.08],[13.66,44.95],[13.85,44.87],[13.90,44.79],
+ [14.03,44.98],[14.12,45.09],[14.20,45.20],[14.31,45.34],[14.44,45.33],[14.58,45.30],[14.70,45.22],[14.90,44.99],
+ [15.06,44.75],[15.20,44.60],[15.44,44.29],[15.47,44.22],[15.30,44.16],[15.23,44.12],[15.35,44.03],[15.45,43.94],
+ [15.70,43.83],[15.89,43.73],[15.92,43.59],[16.10,43.52],[16.25,43.51],[16.44,43.51],[16.69,43.44],[17.02,43.29]];
+
+const LEGS=[
+ {k:'out',p:[[10.40,44.43],[10.93,44.65],[10.99,45.44],[11.55,45.55],[12.83,45.78],[13.78,45.65],[13.87,45.71],[14.20,45.78],[14.13,45.82],[14.20,45.78],[14.51,46.06],[14.36,46.24],[14.11,46.37],[13.88,46.28]]},
+ {k:'exc',p:[[13.88,46.28],[13.90,46.31],[13.83,46.27],[13.88,46.28]]},
+ {k:'exc',p:[[13.88,46.28],[14.11,46.37],[14.06,46.44],[13.79,46.48],[13.75,46.43],[13.72,46.36],[13.55,46.34],[13.58,46.25],[13.74,46.14],[13.96,46.19],[13.88,46.28]]},
+ {k:'out',p:[[13.88,46.28],[14.11,46.37],[14.36,46.24],[14.51,46.06],[15.17,45.80],[15.69,45.85],[15.98,45.81],[15.55,45.49],[15.58,45.11],[15.62,44.87]]},
+ {k:'out',p:[[15.62,44.87],[15.24,44.87],[14.80,45.40],[14.44,45.33],[14.31,45.34],[14.23,45.15]]},
+ {k:'sea',p:[[14.23,45.15],[14.30,45.13]]},
+ {k:'out',p:[[14.30,45.13],[14.38,45.05],[14.41,44.96]]},
+ {k:'exc',p:[[14.41,44.96],[14.34,44.90],[14.30,44.87],[14.36,44.92],[14.41,44.96],[14.36,45.06],[14.41,44.96]]},
+ {k:'exc',f:'losinj',p:[[14.41,44.96],[14.39,44.80],[14.39,44.69],[14.44,44.60],[14.47,44.53],[14.39,44.69],[14.41,44.96]]},
+ {k:'back',f:'istria',p:[[14.41,44.96],[14.38,45.05],[14.30,45.13]]},
+ {k:'sea',f:'istria',p:[[14.30,45.13],[14.23,45.15]]},
+ {k:'back',f:'istria',p:[[14.23,45.15],[14.12,45.09],[13.94,45.24],[13.83,45.34]]},
+ {k:'back',f:'pirano',p:[[13.83,45.34],[13.66,45.41],[13.60,45.47],[13.57,45.53]]},
+ {k:'alt',f:'rovigno',p:[[13.83,45.34],[13.72,45.28],[13.64,45.08]]},
+ {k:'alt',f:'rovigno',p:[[13.64,45.08],[13.60,45.23],[13.55,45.40],[13.57,45.53]]},
+ {k:'alt',f:'pola',p:[[13.83,45.34],[13.78,45.18],[13.85,44.87]]},
+ {k:'alt',f:'pola',p:[[13.85,44.87],[13.66,44.95],[13.63,45.08],[13.57,45.28],[13.57,45.53]]},
+ {k:'alt',f:'abbazia',p:[[14.41,44.96],[14.53,44.99],[14.53,45.05],[14.58,45.14],[14.57,45.26],[14.44,45.33],[14.31,45.34]]},
+ {k:'back',p:[[13.57,45.53],[13.73,45.55],[13.78,45.65],[13.40,45.72],[12.83,45.78],[11.55,45.55],[10.99,45.44],[10.40,44.43]]}
+];
+
+const STOPS=[
+ {n:'Castelnovo',lon:10.40,lat:44.43,d:1,a:'start',dx:9,dy:14},
+ {n:'Trieste',lon:13.78,lat:45.65,d:10,a:'middle',dx:0,dy:-11,s:1},
+ {n:'Postojna',lon:14.20,lat:45.78,d:1,a:'start',dx:10,dy:-4},
+ {n:'Bohinj',lon:13.88,lat:46.28,d:2,a:'end',dx:-10,dy:-4},
+ {n:'Vršič',lon:13.75,lat:46.43,d:3,a:'middle',dx:0,dy:-11,s:1},
+ {n:'Kobarid',lon:13.58,lat:46.25,d:3,a:'end',dx:-9,dy:4,s:1},
+ {n:'Lubiana',lon:14.51,lat:46.06,d:4,a:'start',dx:10,dy:5},
+ {n:'Rastoke',lon:15.58,lat:45.11,d:4,a:'start',dx:10,dy:-3,s:1},
+ {n:'Plitvice',lon:15.62,lat:44.87,d:5,a:'start',dx:10,dy:8},
+ {n:'Brestova',lon:14.23,lat:45.15,d:5,a:'end',dx:-9,dy:-4,s:1},
+ {n:'Cres',lon:14.41,lat:44.96,d:6,a:'start',dx:10,dy:5},
+ {n:'Lubenice',lon:14.30,lat:44.87,d:6,a:'end',dx:-9,dy:-6,s:1},
+ {n:'Beli',lon:14.36,lat:45.06,d:7,a:'end',dx:-9,dy:-3,s:1},
+ {n:'Osor',lon:14.39,lat:44.69,d:8,a:'start',dx:9,dy:4,s:1},
+ {n:'Lošinj',lon:14.47,lat:44.53,d:8,a:'start',dx:9,dy:4,s:1},
+ {n:'Motovun',lon:13.83,lat:45.34,d:9,a:'end',dx:-10,dy:2},
+ {n:'Pirano',lon:13.57,lat:45.53,d:9,a:'end',dx:-10,dy:-4},
+ {n:'Rovigno',lon:13.64,lat:45.08,d:9,a:'end',dx:-10,dy:4,s:1},
+ {n:'Pola',lon:13.85,lat:44.87,d:9,a:'middle',dx:0,dy:17,s:1},
+ {n:'Abbazia',lon:14.31,lat:45.34,d:9,a:'start',dx:8,dy:-6,s:1}
+];
+
+/* Due inquadrature: la mappa si apre su dove il viaggio succede davvero
+   (otto giornate su dieci stanno fra il Triglav e il Quarnaro), e l'altra
+   mostra anche il trasferimento dall'Appennino. */
+const ZOOM={
+  viaggio:{lon:[13.02,16.20],lat:[44.22,46.70]},
+  tutto  :{lon:[10.18,16.20],lat:[44.18,46.78]}
+};
+let zoom='viaggio';
+function viewBoxOf(z){
+  const kx=147.05, ky=209.4, L=ZOOM[z];
+  const x=(L.lon[0]-9.8)*kx, y=(46.9-L.lat[1])*ky;
+  return [x, y, (L.lon[1]-L.lon[0])*kx, (L.lat[1]-L.lat[0])*ky]
+    .map(v=>v.toFixed(1)).join(' ');
+}
+
+function renderMappa(){
+  $('#view-mappa').innerHTML=
+    '<div class="vhead"><h2>La rotta</h2>'
+    +'<p class="lede">Mappa schematica su coordinate reali, disegnata dai dati delle tappe. '
+    +'Tocca un punto per aprire la sua giornata. Se hai scelto il finale, il suo ramo si accende e gli altri si spengono.</p></div>'
+    +'<div class="mapbox">'
+    +'<div class="zoomrow">'
+      +'<button type="button" data-z="viaggio" aria-pressed="'+(zoom==='viaggio')+'">Slovenia e Quarnaro</button>'
+      +'<button type="button" data-z="tutto" aria-pressed="'+(zoom==='tutto')+'">Tutto il viaggio</button>'
+    +'</div>'
+    +'<div class="mapscroll" data-zoom="'+zoom+'">'
+    +'<svg id="map" viewBox="'+viewBoxOf(zoom)+'" role="img" aria-label="Mappa del percorso da Castelnovo ne\' Monti alle Alpi Giulie, Plitvice, l\'isola di Cres e l\'Istria"></svg>'
+    +'</div><div class="maplegend">'
+    +'<span><i style="border-color:var(--accent)"></i>Andata (1–5)</span>'
+    +'<span><i style="border-color:var(--signal);border-top-style:dashed"></i>Rientro (9–10)</span>'
+    +'<span><i style="border-color:var(--signal);border-top-style:dotted;opacity:.65"></i>Finali alternativi</span>'
+    +'<span><i style="border-color:var(--good);border-top-style:dotted"></i>Traghetto</span>'
+    +'<span><i style="border-color:var(--ink-3);border-top-style:dotted"></i>Escursioni</span>'
+    +'</div></div>'
+    +'<div class="card" id="mapinfo"></div>';
+  $('#view-mappa').querySelectorAll('.zoomrow button').forEach(b=>{
+    b.onclick=()=>{zoom=b.dataset.z;renderMappa();};
+  });
+  disegnaMappa(); renderMapInfo();
+}
+
+function disegnaMappa(){
+  const map=$('#map'); if(!map) return;
+  map.textContent='';
+  const B={lonMin:9.8,latMax:46.9}, kx=147.05, ky=209.4;
+  const P=([lon,lat])=>[(lon-B.lonMin)*kx,(B.latMax-lat)*ky];
+  const path=pts=>pts.map((p,i)=>(i?'L':'M')+P(p).map(v=>v.toFixed(1)).join(' ')).join(' ');
+  const SVG='http://www.w3.org/2000/svg';
+  const el=(n,a)=>{const e=document.createElementNS(SVG,n);for(const k in a)e.setAttribute(k,a[k]);return e;};
+
+  map.appendChild(el('rect',{x:0,y:0,width:1000,height:628,fill:'var(--sea)'}));
+  map.appendChild(el('path',{d:path(COAST.concat([[17.70,43.28],[17.70,46.95],[9.75,46.95],[9.75,43.30]]))+' Z',
+    fill:'var(--land)',stroke:'var(--line-strong)','stroke-width':1.1,'stroke-linejoin':'round'}));
+
+  [[14.60,45.05,.16,.22,0],[14.42,44.85,.08,.36,10],[14.76,44.75,.06,.13,30],[15.05,44.45,.06,.30,35],[14.95,44.02,.06,.24,40]]
+  .forEach(([lon,lat,rx,ry,rot])=>{
+    const [x,y]=P([lon,lat]);
+    map.appendChild(el('ellipse',{cx:x.toFixed(1),cy:y.toFixed(1),rx:(rx*kx).toFixed(1),ry:(ry*ky).toFixed(1),
+      transform:'rotate('+rot+' '+x.toFixed(1)+' '+y.toFixed(1)+')',fill:'var(--isle)',stroke:'var(--line-strong)','stroke-width':.8}));
+  });
+
+  [['ITALIA',11.15,45.85,0],['SLOVENIJA',14.95,46.60,0],['HRVATSKA',15.72,45.42,0],['ADRIATICO',14.30,44.30,-40]]
+  .forEach(([t,lon,lat,rot])=>{
+    const [x,y]=P([lon,lat]);
+    const n=el('text',{x:x.toFixed(1),y:y.toFixed(1),fill:'var(--ink-3)','font-family':'var(--display)','font-size':15,
+      'letter-spacing':'4','text-anchor':'middle',opacity:.6,transform:'rotate('+rot+' '+x.toFixed(1)+' '+y.toFixed(1)+')'});
+    n.textContent=t;map.appendChild(n);
+  });
+
+  const style={out:{stroke:'var(--accent)','stroke-width':3.4,opacity:.95},
+               back:{stroke:'var(--signal)','stroke-width':3,'stroke-dasharray':'9 6',opacity:.9},
+               sea:{stroke:'var(--good)','stroke-width':3.5,'stroke-dasharray':'1 6',opacity:1},
+               alt:{stroke:'var(--signal)','stroke-width':2,'stroke-dasharray':'2 6',opacity:.65},
+               exc:{stroke:'var(--ink-3)','stroke-width':2,'stroke-dasharray':'2 5',opacity:.8}};
+  const f9=choices.d9, f8=choices.d8;
+  LEGS.forEach(l=>{
+    let k=l.k, cls='';
+    if(f9){
+      if(l.f==='istria'){ if(f9==='abbazia') cls='leg-dim'; }
+      else if(l.f&&FINALE[l.f]){ if(l.f===f9){k='back';} else cls='leg-dim'; }
+    }
+    if(l.f==='losinj'&&f8&&f8!=='losinj') cls='leg-dim';
+    const p=el('path',Object.assign({d:path(l.p),fill:'none','stroke-linecap':'round','stroke-linejoin':'round'},style[k]));
+    if(cls) p.setAttribute('class',cls);
+    map.appendChild(p);
+  });
+
+  STOPS.forEach(st=>{
+    const [x,y]=P([st.lon,st.lat]);
+    const scelto=f9&&((st.n==='Pirano'&&f9==='pirano')||(st.n==='Rovigno'&&f9==='rovigno')
+      ||(st.n==='Pola'&&f9==='pola')||(st.n==='Abbazia'&&f9==='abbazia'));
+    const g=el('g',{class:'stopdot',role:'link',tabindex:'0','aria-label':st.n+', tappa '+st.d});
+    g.appendChild(el('circle',{class:'hit',cx:x,cy:y,r:17,fill:'transparent'}));
+    g.appendChild(el('circle',{cx:x,cy:y,r:(st.s&&!scelto)?3.4:6.5,
+      fill:scelto?'var(--accent)':((st.s)?'var(--ink-3)':'var(--surface)'),
+      stroke:scelto?'var(--accent)':((st.s)?'var(--ink-3)':'var(--accent)'),'stroke-width':st.s&&!scelto?1:3}));
+    const t=el('text',{x:(x+st.dx).toFixed(1),y:(y+st.dy).toFixed(1),'text-anchor':st.a,
+      'font-family':'var(--display)','font-size':(st.s&&!scelto)?13:15.5,'letter-spacing':'.6',
+      fill:scelto?'var(--accent)':((st.s)?'var(--ink-3)':'var(--ink)'),
+      'paint-order':'stroke',stroke:'var(--land)','stroke-width':3.5,'stroke-linejoin':'round'});
+    t.textContent=st.n; g.appendChild(t);
+    const ti=el('title'); ti.textContent=st.n+' — tappa '+st.d; g.appendChild(ti);
+    const go=()=>apriGiorno(st.d);
+    g.addEventListener('click',go);
+    g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go();}});
+    map.appendChild(g);
+  });
+
+  // Nell'inquadratura stretta Castelnovo resta fuori: si segna dove esce.
+  if(zoom==='viaggio'){
+    const [x,y]=P([13.06,45.97]);
+    const t=el('text',{x:x.toFixed(1),y:y.toFixed(1),'text-anchor':'start','font-family':'var(--display)',
+      'font-size':13,'letter-spacing':'.5',fill:'var(--ink-3)','paint-order':'stroke',
+      stroke:'var(--land)','stroke-width':3.5,'stroke-linejoin':'round'});
+    t.textContent='← Castelnovo n.M., 395 km';
+    map.appendChild(t);
+  }
+}
+
+function renderMapInfo(){
+  const el=$('#mapinfo'); if(!el) return;
+  const f=choices.d9?FINALE[choices.d9]:null, o8=optOf(8,choices.d8);
+  el.innerHTML='<h4>Il percorso, come l\'hai scelto</h4>'
+   +'<p style="font-size:14.5px">'
+   +(f?'Finale a <b>'+f.n+'</b>: il giorno 10 vale '+nkm(f.km)+' km e '+hm(f.min)+'. ':'Finale non ancora scelto: la mappa mostra tutti e quattro i rami. ')
+   +(o8?'Il 13 settembre hai scelto <b>'+o8.t+'</b>'+(o8.km?' ('+o8.km+' km).':' — niente auto.'):'Il 13 settembre è ancora aperto.')
+   +'</p>'
+   +'<p style="font-size:14.5px;margin-bottom:0"><b>'+nkm(totKm())+' km</b> in totale, <b>'+hm(totMin())+'</b> di sola guida. '
+   +'Aggiungi il 15–20% per soste, parcheggio e carburante.</p>';
+}
+
+/* ── PRATICO ────────────────────────────────────────────────────────────── */
+function renderPratico(){
+  const b=budget();
+  const eur=(a,c)=>a===c?nkm(a)+' €':nkm(a)+'–'+nkm(c)+' €';
+  const bud='<div class="bud"><div class="bhead"><span>Voce</span><span>Minimo – comodo</span></div>'
+    +b.rows.map(r=>'<div class="brow"><span class="bn">'+r[0]+'</span><span class="bv">'+eur(r[2],r[3])+'</span>'
+      +'<small class="bd">'+r[1]+'</small></div>').join('')
+    +'<div class="brow tot"><span class="bn">Totale per due</span><span class="bv">'+eur(b.tot[0],b.tot[1])+'</span></div></div>';
+
+  const km=totKm();
+  const prenot='<div class="tablewrap"><table><thead><tr><th>Quando</th><th>Cosa</th><th class="num">Costo</th></tr></thead><tbody>'
+    +BOOK.map(r=>'<tr><td><span class="chip '+r[0]+'">'+r[1]+'</span></td>'
+      +'<td><b>'+r[2]+'</b><br><small>'+r[3]+' — '+r[5]+'</small></td><td class="num">'+r[4]+'</td></tr>').join('')
+    +'</tbody></table></div>';
+
+  const meteo='<div class="tablewrap"><table><thead><tr><th>Zona</th><th class="num">Giorno</th><th class="num">Notte</th><th class="num">Acqua</th></tr></thead><tbody>'
+    +METEO.map(r=>'<tr><td>'+r[0]+'</td><td class="num">'+r[1]+'</td><td class="num">'+r[2]+'</td><td class="num">'+r[3]+'</td></tr>').join('')
+    +'</tbody></table></div>';
+
+  const phr='<input class="search" id="phrq" type="search" placeholder="Cerca una parola…" aria-label="Cerca nel frasario">'
+    +'<div class="tablewrap"><table class="phr" id="phrt"><thead><tr><th>Italiano</th><th>🇸🇮 Sloveno</th><th>🇭🇷 Croato</th></tr></thead><tbody>'
+    +PHRASES.map((p,i)=>'<tr data-i="'+i+'"><td>'+p[0]+'</td><td class="sl">'+p[1]+'</td><td class="hr">'+p[2]+'</td></tr>').join('')
+    +'</tbody></table></div>'
+    +'<p style="font-size:13.5px;color:var(--ink-2);margin-top:10px">Tocca una riga per ingrandirla e mostrarla a qualcuno. '
+    +'<span class="mono">č</span> = c di <i>cena</i> · <span class="mono">š</span> = sc di <i>scena</i> · '
+    +'<span class="mono">ž</span> = j di <i>jour</i> · <span class="mono">j</span> = i · <span class="mono">c</span> = z di <i>zucchero</i>. '
+    +'Quindi <i>Vršič</i> «Vershìc», <i>Bohinj</i> «Bòhin», <i>Cres</i> «Zres».</p>';
+
+  const sos='<div class="sos">'
+    +'<a class="em" href="tel:112"><b>112</b><span>Emergenza unica · IT SI HR<br>ambulanza · pompieri · soccorso alpino e in mare</span></a>'
+    +'<a href="tel:1987"><b>1987</b><span>Soccorso stradale<br>AMZS · HAK</span></a>'
+    +'<a href="tel:113"><b>113</b><span>Polizia 🇸🇮</span></a>'
+    +'<a href="tel:192"><b>192</b><span>Polizia 🇭🇷</span></a>'
+    +'<a href="tel:195"><b>195</b><span>Soccorso in mare 🇭🇷</span></a>'
+    +'</div>'
+    +'<p style="font-size:14px"><b>Dall\'estero</b> anteponi il prefisso: +386 Slovenia, +385 Croazia. '
+    +'HAK dà anche lo stato dei traghetti e delle chiusure per bora.</p>'
+    +'<p style="font-size:14px;margin-bottom:0"><b>Salute:</b> Tessera Sanitaria–TEAM per le cure pubbliche urgenti. '
+    +'Farmacia: <i>lekarna</i> in sloveno, <i>ljekarna</i> in croato. Su Cres la farmacia è solo a Cres città.</p>';
+
+  const sec=(id,tit,body,open)=>'<details class="sec"'+(open?' open':'')+' id="sec-'+id+'">'
+    +'<summary><span class="sp">'+tit+'</span></summary><div class="secbody">'+body+'</div></details>';
+
+  $('#view-pratico').innerHTML=
+    '<div class="vhead"><h2>Pratico</h2><p class="lede">Quello che serve sapere mentre sei in strada. '
+    +'Budget e chilometri si ricalcolano da soli sulle scelte che hai fatto: qui sotto ci sono i numeri veri, non l\'intervallo.</p></div>'
+    +sec('budget','Budget per due · '+nkm(b.tot[0])+'–'+nkm(b.tot[1])+' €',
+      '<p style="font-size:14px;color:var(--ink-2)">Auto a benzina, standard medio, un pasto al ristorante al giorno. '
+      +'Il carburante è calcolato sui '+nkm(km)+' km effettivi di questa configurazione, non su una stima fissa.</p>'+bud,true)
+    +sec('traghetti','I due traghetti · linea 334',
+      '<p><b>Brestova ⇢ Porozina · giovedì 10, imbarco 16:30.</b> 5,2 km, 20 minuti. Frequenza circa ogni ora e mezza dalle 05:30. '
+      +'Arriva alle 16:00: <b>non si prenota</b>, conta solo l\'ordine di arrivo al piazzale. Fai il pieno prima, su Cres i distributori sono pochi.</p>'
+      +'<p><b>Porozina ⇢ Brestova · lunedì 14, imbarco 10:15.</b> Partenza da Cres città alle 09:00. '
+      +'Passeggero 4,40 €; per l\'auto metti a budget 25–30 € a traversata con due passeggeri. Biglietteria al piazzale, carta accettata.</p>'
+      +'<div class="note sig"><strong>Se si alza la bora</strong>La Brestova–Porozina può essere sospesa. L\'alternativa che non chiude quasi mai: '
+      +'<b>Merag ⇢ Valbiska → ponte di Veglia</b>, canale più riparato, e Merag è a 12 km da Cres. Al ritorno ti porta dritto ad Abbazia — '
+      +'che è infatti il piano bora del finale. Controlla la sera prima su <a class="link" href="https://hak.hr" target="_blank" rel="noopener">hak.hr</a>.</div>')
+    +sec('prenot','Da prenotare, in quest\'ordine',prenot)
+    +sec('auto','L\'auto, i documenti, i soldi',
+      '<ul class="tick">'
+      +'<li><b>Slovenia:</b> vignetta obbligatoria su autostrade e superstrade, multa da 300 a 800 €. Ti serve solo nei giorni 1 e 4.</li>'
+      +'<li><b>Corridoio costiero gratuito:</b> dal 2026 le superstrade H5 e H6 sono libere fino a 3,5 t. È il percorso dei giorni 9 e 10 se scegli Pirano.</li>'
+      +'<li><b>Croazia:</b> nessuna vignetta, si ritira il ticket e si paga all\'uscita. In settembre niente maggiorazione estiva.</li>'
+      +'<li><b>Fari accesi:</b> obbligatori tutto l\'anno anche di giorno in Slovenia.</li>'
+      +'<li><b>Alcol:</b> 0,5 g/l, ma 0,0 sotto i 24 anni in Croazia e per i neopatentati in Slovenia.</li>'
+      +'<li><b>Dotazioni:</b> giubbotto catarifrangente nell\'abitacolo e triangolo ovunque; in Croazia anche kit di primo soccorso e lampadine.</li>'
+      +'<li><b>Vršič:</b> stretto, lastricato, 50 tornanti. Marce basse in discesa, non i freni.</li>'
+      +'<li><b>Moneta:</b> euro in entrambi. 100–150 € in contanti per parcheggi, traghetti e konobe di campagna.</li>'
+      +'<li><b>Offline:</b> scarica le mappe. A Plitvice, sul Vršič, sul Velebit e nell\'interno di Cres il segnale sparisce.</li></ul>')
+    +sec('parch','Parcheggi, uno per base',
+      '<ul class="tick">'
+      +'<li><b>Lubiana:</b> garage Kongresni trg o NUK II, ~2–3 €/h. Centro pedonale.</li>'
+      +'<li><b>Stara Fužina:</b> ~3 €/h ai margini del paese.</li>'
+      +'<li><b>Vogel:</b> incluso nel biglietto della funivia.</li>'
+      +'<li><b>Plitvice:</b> agli ingressi 1 e 2, ~2 €/h, non inclusi nel biglietto.</li>'
+      +'<li><b>Cres:</b> sul porto a pagamento in stagione; con quattro notti chiedi il posto riservato prima di prenotare.</li>'
+      +'<li><b>Rovigno:</b> Valdibora, a nord della città vecchia. <b>Pirano:</b> garage Fornače + navetta gratuita. <b>Abbazia:</b> lungo la statale sopra il centro.</li></ul>')
+    +sec('meteo','Meteo e mare a settembre',meteo
+      +'<p style="font-size:14px;margin-top:10px">I rischi reali sono i temporali pomeridiani sulle Giulie e la <b>bora</b> sul Quarnaro. '
+      +'Sul Vršič e al Vogel porta uno strato in più: a 1.600 m ci sono dieci gradi meno che sul lago.</p>')
+    +sec('piani','Piani B, se il tempo gira',
+      '<ul class="tick">'
+      +'<li><b>Giulie:</b> inverti il giorno 2 col giorno 3 — la valle della Soča regge la pioggia molto meglio dell\'alta quota.</li>'
+      +'<li><b>Al posto di Postojna:</b> le Grotte di San Canziano (Škocjan), UNESCO, a mezz\'ora.</li>'
+      +'<li><b>Plitvice sotto la pioggia:</b> cascate più potenti e metà della gente. È l\'unica cosa che non va rimandata.</li>'
+      +'<li><b>Cres il 13:</b> la giornata più elastica, non è prenotato niente. Se piove: Osor, le konobe dell\'interno, il Centro di Beli, o il giorno zero.</li>'
+      +'<li><b>Il finale:</b> con brutto tempo Pirano regge meglio di Rovigno — più piccola, più coperta.</li></ul>')
+    +sec('frasario','Frasario',phr)
+    +sec('sos','Numeri utili',sos);
+
+  const q=$('#phrq');
+  if(q) q.addEventListener('input',()=>{
+    const v=q.value.trim().toLowerCase();
+    $('#phrt').querySelectorAll('tbody tr').forEach(tr=>{
+      tr.hidden = v ? !tr.textContent.toLowerCase().includes(v) : false;
+    });
+  });
+  const t=$('#phrt');
+  if(t) t.querySelectorAll('tbody tr').forEach(tr=>{
+    tr.onclick=()=>{const p=PHRASES[+tr.dataset.i];
+      $('#m-it').textContent=p[0];$('#m-sl').textContent=p[1];$('#m-hr').textContent=p[2];
+      $('#modal').hidden=false;};
+  });
+}
+
+/* ── VALIGIA ────────────────────────────────────────────────────────────── */
+function renderValigia(){
+  const cards=LISTS.map((L,li)=>{
+    const n=L.i.filter((_,ii)=>ticks[li+'-'+ii]).length;
+    return '<div class="card" data-l="'+li+'">'
+      +'<div class="clhead"><h3 style="margin:0">'+L.t+'</h3><span class="count">'+n+'/'+L.i.length+'</span></div>'
+      +'<div class="prog"><i style="width:'+Math.round(n/L.i.length*100)+'%"></i></div>'
+      +L.i.map((txt,ii)=>'<label class="ck"><input type="checkbox" data-l="'+li+'" data-i="'+ii+'"'
+        +(ticks[li+'-'+ii]?' checked':'')+'><span>'+esc(txt)+'</span></label>').join('')
+      +'<div class="btnrow" style="margin-top:11px"><button class="btn" type="button" data-reset="'+li+'">Azzera</button></div>'
+      +'</div>';
+  }).join('');
+  const tot=LISTS.reduce((s,L)=>s+L.i.length,0);
+  const fat=LISTS.reduce((s,L,li)=>s+L.i.filter((_,ii)=>ticks[li+'-'+ii]).length,0);
+  $('#view-valigia').innerHTML=
+    '<div class="vhead"><h2>Valigia</h2><p class="lede">'+fat+' voci su '+tot+'. '
+    +'Le spunte restano su questo dispositivo e sono le stesse del road book: se hai già spuntato lì, le ritrovi qui.</p></div>'+cards;
+
+  $('#view-valigia').querySelectorAll('input[type=checkbox]').forEach(cb=>{
+    cb.onchange=()=>{ticks[cb.dataset.l+'-'+cb.dataset.i]=cb.checked;saveTicks();renderValigia();};
+  });
+  $('#view-valigia').querySelectorAll('[data-reset]').forEach(b=>{
+    b.onclick=()=>{const li=b.dataset.reset;LISTS[li].i.forEach((_,ii)=>delete ticks[li+'-'+ii]);saveTicks();renderValigia();};
+  });
+}
+
+/* ── orchestrazione ─────────────────────────────────────────────────────── */
+function ridisegna(){renderOggi();renderGiorni();renderMappa();renderPratico();}
+
+/* Ogni scheda si ricorda dove l'avevi lasciata: tornare su Pratico dopo aver
+   guardato la mappa non deve farti riscorrere mezza pagina. */
+const scrollDi={}; let corrente='oggi';
+function mostra(v){
+  scrollDi[corrente]=window.scrollY;
+  corrente=v;
+  document.querySelectorAll('.tab').forEach(t=>t.setAttribute('aria-selected',String(t.dataset.view===v)));
+  document.querySelectorAll('.view').forEach(s=>{s.hidden = (s.id!=='view-'+v);});
+  window.scrollTo({top:scrollDi[v]||0,behavior:'instant'});
+  try{localStorage.setItem('asq-scheda',JSON.stringify({v:v,g:new Date().toDateString()}))}catch(e){}
+}
+document.querySelectorAll('.tab').forEach(t=>{t.onclick=()=>mostra(t.dataset.view);});
+
+/* Senza campo l'app si apre lo stesso, ma è giusto dirlo: gli orari dei
+   traghetti e il meteo che leggi sono quelli scritti, non quelli di adesso. */
+(function(){
+  const n=$('#net'), agg=()=>{n.hidden=navigator.onLine!==false;};
+  addEventListener('online',agg); addEventListener('offline',agg); agg();
+})();
+
+$('#theme').onclick=()=>{
+  const cur=document.documentElement.getAttribute('data-theme');
+  const scuro = cur ? cur==='dark' : matchMedia('(prefers-color-scheme:dark)').matches;
+  const next = scuro?'light':'dark';
+  document.documentElement.setAttribute('data-theme',next);
+  try{localStorage.setItem('asq-tema',next)}catch(e){}
+};
+try{const t=localStorage.getItem('asq-tema'); if(t) document.documentElement.setAttribute('data-theme',t);}catch(e){}
+
+$('#modal').onclick=()=>{$('#modal').hidden=true;};
+addEventListener('keydown',e=>{if(e.key==='Escape') $('#modal').hidden=true;});
+
+/* stampa: tutto aperto, tutte le viste visibili, niente chrome */
+let statoStampa=null;
+addEventListener('beforeprint',()=>{
+  statoStampa={
+    view:[...document.querySelectorAll('.view')].map(s=>s.hidden),
+    det:[...document.querySelectorAll('details')].map(d=>d.open),
+    modal:$('#modal').hidden
+  };
+  document.querySelectorAll('.view').forEach(s=>s.hidden=false);
+  document.querySelectorAll('details').forEach(d=>d.open=true);
+  $('#modal').hidden=true;
+});
+addEventListener('afterprint',()=>{
+  if(!statoStampa) return;
+  document.querySelectorAll('.view').forEach((s,i)=>s.hidden=statoStampa.view[i]);
+  document.querySelectorAll('details').forEach((d,i)=>d.open=statoStampa.det[i]);
+  $('#modal').hidden=statoStampa.modal;
+  statoStampa=null;
+});
+
+/* avvio */
+(function(){
+  const st=dayIndexOggi();
+  $('#brandsub').textContent = st.stato==='prima'
+    ? '6 → 15 settembre 2026 · fra '+st.mancano+' giorni'
+    : st.stato==='durante' ? 'Tappa '+(st.idx+1)+' di 10 · '+DAYS[st.idx].short
+    : '6 → 15 settembre 2026 · concluso';
+  ridisegna();
+  renderValigia();
+  const d=DAYS[st.idx];
+  const ap=document.getElementById('day'+d.n); if(ap) ap.open=true;
+  // Riapre sulla scheda dove l'avevi lasciata, ma solo nella stessa giornata:
+  // un giorno nuovo si apre su Oggi, che è il motivo per cui esiste.
+  try{
+    const s=JSON.parse(localStorage.getItem('asq-scheda')||'null');
+    if(s&&s.v&&s.v!=='oggi'&&s.g===new Date().toDateString()) mostra(s.v);
+  }catch(e){}
+})();
+</script>
+
+<style>
+.installa{margin:0 0 16px;display:flex;gap:11px;align-items:flex-start;padding:13px 15px;
+  border-radius:var(--r,12px);background:var(--accent-soft);color:var(--accent-text,var(--accent));
+  font-size:13.5px;line-height:1.45}
+.installa b{display:block;font-family:var(--display);font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.installa button{margin-left:auto;background:none;border:0;color:inherit;opacity:.7;
+  font-size:20px;line-height:1;padding:0 4px;cursor:pointer}
+@media print{.installa{display:none !important}}
+</style>
+<script>
+(function(){
+  "use strict";
+  // ── service worker: la pagina si apre anche senza campo ──
+  // Nessun avviso di aggiornamento: qui non c'e' niente da salvare prima di
+  // ricaricare — le scelte e le spunte stanno in localStorage, e la pagina e'
+  // un file unico senza pezzi caricati a parte. La versione nuova entra da
+  // sola alla riapertura, e chi usa l'app non deve dare permessi a nessuno.
+  if ('serviceWorker' in navigator) {
+    // Quando l'app installata riprende una pagina gia' aperta non c'e' nessuna
+    // navigazione, quindi il contenuto vecchio resterebbe li' anche con la
+    // versione nuova gia' attiva. Qui la pagina si ricarica da sola appena il
+    // service worker nuovo prende il controllo.
+    var primo = navigator.serviceWorker.controller && navigator.serviceWorker.controller.scriptURL;
+    var giaFatto = false;
+    navigator.serviceWorker.addEventListener('controllerchange', function(){
+      var ora = navigator.serviceWorker.controller && navigator.serviceWorker.controller.scriptURL;
+      // Ricarica solo se a cambiare e' la versione dello STESSO service
+      // worker. Alla prima apertura il controller passa da niente (o da
+      // quello dell'app alla radice, che ha scope su tutto il dominio) a
+      // questo: li' la pagina e' gia' quella giusta e ricaricare e' solo un
+      // lampeggio inutile.
+      if (giaFatto || !primo || ora !== primo) { primo = ora; return; }
+      giaFatto = true;
+      location.reload();
+    });
+    window.addEventListener('load', function(){
+      navigator.serviceWorker.register('sw.js').then(function(reg){
+        // Cerca la versione nuova quando l'app torna in primo piano: e' il
+        // momento in cui una pagina rimasta aperta per ore va aggiornata.
+        // Solo con rete.
+        document.addEventListener('visibilitychange', function(){
+          if (document.visibilityState === 'visible' && navigator.onLine !== false) {
+            reg.update().catch(function(){});
+          }
+        });
+      }).catch(function(){ /* senza service worker l'app funziona lo stesso */ });
+    });
+  }
+  // Impronta della versione, per sapere sempre cosa si sta guardando
+  window.addEventListener('load', function(){
+    var f = document.querySelector('.foot');
+    if (!f) return;
+    var s = document.createElement('span');
+    s.style.cssText = 'display:block;margin-top:6px;opacity:.65;font-variant-numeric:tabular-nums';
+    s.textContent = 'versione d4bbcc4d45';
+    f.appendChild(s);
+  });
+  // ── suggerimento d'installazione, solo su iPhone e solo se non installata ──
+  var standalone = window.matchMedia('(display-mode: standalone)').matches
+                || window.navigator.standalone === true;
+  var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+  if (!standalone && iOS && !localStorage.getItem('asq.installa.visto')) {
+    window.addEventListener('load', function(){
+      var main = document.querySelector('main');
+      if (!main) return;
+      var el = document.createElement('div');
+      el.className = 'installa';
+      el.innerHTML = '<div><b>Mettila sulla schermata Home</b>'
+        + 'Tocca Condividi in fondo a Safari, poi "Aggiungi a Home". Si apre a schermo intero e <b>funziona senza campo</b> — a Plitvice alle 7:00, sul Vršič e nell\'interno di Cres, dove il segnale non c\'è.</div>'
+        + '<button aria-label="Ho capito">&times;</button>';
+      el.querySelector('button').onclick = function(){
+        localStorage.setItem('asq.installa.visto', '1');
+        el.remove();
+      };
+      main.insertBefore(el, main.firstChild);
+    });
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1B3439"/><stop offset="1" stop-color="#071215"/>
+    </linearGradient>
+    <filter id="d"><feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#000" flood-opacity=".38"/></filter>
+    <!-- una punta della rosa: due facce, come se prendesse luce da sinistra -->
+    <g id="punta">
+      <polygon points="256,92 224,256 256,256" fill="#DEE9E6"/>
+      <polygon points="256,92 288,256 256,256" fill="#6E9296"/>
+    </g>
+    <g id="puntina">
+      <polygon points="256,148 234,256 256,256" fill="#A6C2C3"/>
+      <polygon points="256,148 278,256 256,256" fill="#4E7276"/>
+    </g>
+  </defs>
+
+  <rect width="512" height="512" fill="url(#g)"/>
+
+  <!-- il quadrante -->
+  <circle cx="256" cy="256" r="202" fill="none" stroke="#38585D" stroke-width="7"/>
+  <circle cx="256" cy="256" r="186" fill="none" stroke="#38585D" stroke-width="2" opacity=".7"/>
+  <!-- le trentadue tacche della rosa nautica -->
+  <g>
+    <line x1="256.0" y1="88.0" x2="256.0" y2="70.0" stroke="#7FA3A6" stroke-width="3.2" opacity="0.85" stroke-linecap="round"/>
+    <line x1="290.3" y1="83.4" x2="292.3" y2="73.6" stroke="#7FA3A6" stroke-width="1.6" opacity="0.45" stroke-linecap="round"/>
+    <line x1="323.4" y1="93.4" x2="327.2" y2="84.2" stroke="#7FA3A6" stroke-width="1.6" opacity="0.45" stroke-linecap="round"/>
+    <line x1="353.8" y1="109.7" x2="359.3" y2="101.3" stroke="#7FA3A6" stroke-width="1.6" opacity="0.45" stroke-linecap="round"/>
+    <line x1="380.5" y1="131.5" x2="387.5" y2="124.5" stroke="#7FA3A6" stroke-width="1.6" opacity="0.45" stroke-linecap="round"/>
+    <line x1="402.3" y1="158.2" x2="410.7" y2="152.7" stroke="#7FA3A6" stroke-width="1.6" opacity="0.45" stroke-linecap="round"/>
+    <line x1="418.6" y1="188.6" x2="427.8" y2="184.8" stroke="#7FA3A6" stroke-width="1.6" opacity="0.45" stroke-linecap="round"/>
+    <line x1="428.6" y1="221.7" x2="438.4" y2="219.7" stroke="#7FA3A6" stroke-width="1.6" opacity="0.45" stroke-linecap="round"/>
+    <line x1="424.0" y1="256.0" x2="442.0" y2="256.0" stroke="#7FA3A6" stroke-width="3.2" opacity="0.85" stroke-linecap="round"/>
+    <line x1="428.6" y1="290.3" x2="438.4" y2="292.3" stroke="#7FA3A6" stroke-width="1.6" opacity="0.45" stroke-linecap="round"/>
+    <line x1="418.6" y1="323.4" x2="427.8" y2="327.2" stroke="#7FA3A6" stroke-width="1.6" opacity="0.45" stroke-linecap="round"/>
+    <line x1="402.3" y1="353.8" x2="410.7" y2="359.3" stroke="#7FA3A6" stroke-width="1.6" opacity="0.45" stroke-linecap="round"/>
+    <line x1="380.5" y1="380.5" x2="387.5" y2="387.5" stroke="#7FA3A6" stroke-width="1.6" opacity="0.45" stroke-linecap="round"/>
+    <line x1="353.8" y1="402.3" x2="359.3" y2="410.7" stroke="#7FA3A6" stroke-width="1.6" opacity="0.45" stroke-linecap="round"/>
+    <line x1="323.4" y1="418.6" x2="327.2" y2="427.8" stroke="#7FA3A6" stroke-width="1.6" opacity="0.45" stroke-linecap="round"/>
+    <line x1="290.3" y1="428.6" x2="292.3" y2="438.4" stroke="#7FA3A6" stroke-width="1.6" opacity="0.45" stroke-linecap="round"/>
+    <line x1="256.0" y1="424.0" x2="256.0" y2="442.0" stroke="#7FA3A6" stroke-width="3.2" opacity="0.85" stroke-linecap="round"/>
+    <line x1="221.7" y1="428.6" x2="219.7" y2="438.4" stroke="#7FA3A6" stroke-width="1.6" opacity="0.45" stroke-linecap="round"/>
+    <line x1="188.6" y1="418.6" x2="184.8" y2="427.8" stroke="#7FA3A6" stroke-width="1.6" opacity="0.45" stroke-linecap="round"/>
+    <line x1="158.2" y1="402.3" x2="152.7" y2="410.7" stroke="#7FA3A6" stroke-width="1.6" opacity="0.45" stroke-linecap="round"/>
+    <line x1="131.5" y1="380.5" x2="124.5" y2="387.5" stroke="#7FA3A6" stroke-width="1.6" opacity="0.45" stroke-linecap="round"/>
+    <line x1="109.7" y1="353.8" x2="101.3" y2="359.3" stroke="#7FA3A6" stroke-width="1.6" opacity="0.45" stroke-linecap="round"/>
+    <line x1="93.4" y1="323.4" x2="84.2" y2="327.2" stroke="#7FA3A6" stroke-width="1.6" opacity="0.45" stroke-linecap="round"/>
+    <line x1="83.4" y1="290.3" x2="73.6" y2="292.3" stroke="#7FA3A6" stroke-width="1.6" opacity="0.45" stroke-linecap="round"/>
+    <line x1="88.0" y1="256.0" x2="70.0" y2="256.0" stroke="#7FA3A6" stroke-width="3.2" opacity="0.85" stroke-linecap="round"/>
+    <line x1="83.4" y1="221.7" x2="73.6" y2="219.7" stroke="#7FA3A6" stroke-width="1.6" opacity="0.45" stroke-linecap="round"/>
+    <line x1="93.4" y1="188.6" x2="84.2" y2="184.8" stroke="#7FA3A6" stroke-width="1.6" opacity="0.45" stroke-linecap="round"/>
+    <line x1="109.7" y1="158.2" x2="101.3" y2="152.7" stroke="#7FA3A6" stroke-width="1.6" opacity="0.45" stroke-linecap="round"/>
+    <line x1="131.5" y1="131.5" x2="124.5" y2="124.5" stroke="#7FA3A6" stroke-width="1.6" opacity="0.45" stroke-linecap="round"/>
+    <line x1="158.2" y1="109.7" x2="152.7" y2="101.3" stroke="#7FA3A6" stroke-width="1.6" opacity="0.45" stroke-linecap="round"/>
+    <line x1="188.6" y1="93.4" x2="184.8" y2="84.2" stroke="#7FA3A6" stroke-width="1.6" opacity="0.45" stroke-linecap="round"/>
+    <line x1="221.7" y1="83.4" x2="219.7" y2="73.6" stroke="#7FA3A6" stroke-width="1.6" opacity="0.45" stroke-linecap="round"/>
+  </g>
+
+  <g filter="url(#d)">
+    <!-- le quattro mezze direzioni, più corte -->
+    <use href="#puntina" transform="rotate(45 256 256)"/>
+    <use href="#puntina" transform="rotate(135 256 256)"/>
+    <use href="#puntina" transform="rotate(225 256 256)"/>
+    <use href="#puntina" transform="rotate(315 256 256)"/>
+    <!-- est, sud, ovest -->
+    <use href="#punta" transform="rotate(90 256 256)"/>
+    <use href="#punta" transform="rotate(180 256 256)"/>
+    <use href="#punta" transform="rotate(270 256 256)"/>
+    <!-- il nord è l'unico punto di colore -->
+    <polygon points="256,92 224,256 256,256" fill="#54CBD1"/>
+    <polygon points="256,92 288,256 256,256" fill="#0C6B72"/>
+    <!-- mozzo -->
+    <circle cx="256" cy="256" r="27" fill="#0B1D21" stroke="#DEE9E6" stroke-width="6"/>
+    <circle cx="256" cy="256" r="7" fill="#54CBD1"/>
+  </g>
+</svg>

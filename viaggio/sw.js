@@ -1,5 +1,5 @@
-/* Ghisa & Grammi — service worker, versione 40c25ad073 */
-const CACHE = 'ghisa-e-grammi-40c25ad073';
+/* Alpi, Soča & Quarnero — service worker, versione d4bbcc4d45 */
+const CACHE = 'viaggio-d4bbcc4d45';
 const GUSCIO = ['./', './index.html', './manifest.webmanifest',
   './icone/icona-192.png', './icone/icona-512.png',
   './icone/icona-maskable-512.png', './icone/apple-touch-icon.png'];
@@ -13,7 +13,7 @@ const mio = p => p === BASE || p === BASE + 'index.html';
 // Le vecchie versioni da buttare sono solo le proprie: le cache delle altre
 // app dello stesso dominio vanno lasciate stare, o si cancellano il guscio
 // offline a vicenda a ogni aggiornamento.
-const miaCache = k => k.startsWith('ghisa-e-grammi-');
+const miaCache = k => k.startsWith('viaggio-');
 
 // skipWaiting: la versione nuova prende il posto della vecchia senza chiedere
 // niente. Si puo' fare senza rischi perche' la pagina e' un file unico, senza
