@@ -423,6 +423,28 @@ estesa, dove il capo lungo del femorale è più corto. Tutto il lavoro in
 allungamento sul femorale resta sullo stacco romeno — per questo è pesante e
 compare in tutte e due le schede.
 
+### Se un giorno salti, la seduta si sposta
+
+Sopra ogni seduta c'è **Sposta a un altro giorno**. Scegli un giorno e la seduta
+ci va: esercizi, serie già registrate, sostituzioni e nota si spostano tutti
+insieme. Il giorno di partenza smette di dire «allenati» e dice dove è finita la
+seduta, quindi **non conta come saltato**.
+
+Compaiono **solo i giorni liberi**: due sedute nello stesso giorno non hanno
+senso, e il piano ne lascia tre liberi a settimana (mercoledì, sabato,
+domenica). Se vuoi comunque accorpare, resta **Cambia seduta** sul giorno che
+preferisci.
+
+Dal giorno di partenza si annulla quando vuoi, e **annullare riporta indietro
+tutto**, comprese le serie compilate nel frattempo sul giorno nuovo. La prima
+versione le buttava via: `serieValida` non considera valida una serie con dentro
+il solo carico e non ancora le ripetizioni, e il codice cancellava il giorno di
+destinazione. Ora l'annullamento non decide più cosa tenere — riporta indietro
+e basta. `tools/prova-dati.mjs` verifica i due rami di render a ogni giro.
+
+Nello stato: sul giorno di partenza `spostata: '<data>'`, su quello di arrivo
+`manuale: true` e `spostataDa: '<data>'`.
+
 ### Riscrivere il testo di un esercizio
 
 Dentro ogni esercizio, accanto a **Sostituisci**, c'è **Testo**: riscrive *nome*,
@@ -725,6 +747,16 @@ npm run prova:pwa                                # giro di aggiornamento dell'ap
 
 ## Storico
 
+- **v42** — **se un giorno non ti alleni, la seduta si sposta.** Bottone *Sposta
+  a un altro giorno* sopra la seduta: scegli un giorno libero e ci va tutto —
+  esercizi, serie già registrate, sostituzioni, nota. Il giorno di partenza dice
+  dove è finita invece di restare lì come saltato, e si annulla quando vuoi.
+  Compaiono solo i giorni liberi, perché due sedute nello stesso giorno non
+  hanno senso. Un bug trovato dalla prova prima di pubblicare: annullando, i
+  carichi scritti sul giorno nuovo sparivano — `serieValida` non considera valida
+  una serie col solo carico e senza ripetizioni, e il codice cancellava il giorno
+  di destinazione. Ora annullare riporta indietro tutto senza decidere cosa
+  tenere. Il caso è entrato in `tools/prova-dati.mjs`.
 - **v41** — nella **4 sedute** ogni muscolo del braccio ha ora **i due estremi
   della curva in ogni seduta**, 2 serie ciascuno. Tricipite: *french press ai
   cavi overhead* (lunedì) e *french press manubri su panca inclinata* (giovedì)
