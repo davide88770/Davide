@@ -108,6 +108,33 @@ const rinominato = await page.$$eval('#selEx option', os =>
   os.filter(o => o.value === 'Panca inclinata manubri 30°' && o.textContent.trim() === 'Inclinata — 30 gradi netti').length);
 if (!rinominato) { console.error('  ERRORE  il testo riscritto non arriva al selettore dei progressi'); process.exit(1); }
 
+/* Seduta spostata: il giorno di partenza non deve piu' proporre l'allenamento
+   ma dire dov'e' finito, e quello di arrivo deve mostrarla con la nota. E'
+   uno stato che tocca sessioneDi, log e due rami di render diversi. */
+const sposta = await page.evaluate(() => {
+  const st = JSON.parse(localStorage.getItem('ghisaegrammi.v1'));
+  const oggi = new Date(); const iso = t => new Date(t).toISOString().slice(0, 10);
+  const d = new Date(oggi); while (d.getDay() !== 1) d.setDate(d.getDate() + 1);   // un lunedi' futuro
+  const da = iso(d), a = iso(new Date(d.getTime() + 2 * 864e5));                    // -> mercoledi', libero
+  st.sess[da] = { sid: null, tipo: 'base', set: {}, piu: {}, sost: {}, nota: '', spostata: a, mod: Date.now() };
+  st.sess[a] = { sid: 't_upperA', tipo: 'base', set: { 0: [{ kg: '80', rep: '5', ok: 1 }] }, piu: {}, sost: {},
+    nota: '', manuale: true, spostataDa: da, mod: Date.now() };
+  localStorage.setItem('ghisaegrammi.v1', JSON.stringify(st));
+  return { da, a };
+});
+await page.goto(url); await page.waitForTimeout(200);
+/* S.ui.data non sta in localStorage: la data riparte sempre da oggi, quindi si
+   sposta a mano sulla giornata che interessa. */
+await page.evaluate(d => { S.ui.data = d; vai('workout'); }, sposta.da);
+await page.waitForTimeout(300);
+const origine = await page.$eval('#view-workout', n => n.textContent.replace(/\s+/g, ' '));
+if (!/l.hai spostata a/.test(origine)) { console.error('  ERRORE  il giorno di partenza non dice dove e\' finita la seduta'); process.exit(1); }
+await page.evaluate(d => { S.ui.data = d; vai('workout'); }, sposta.a);
+await page.waitForTimeout(300);
+const arrivo = await page.$eval('#view-workout', n => n.textContent.replace(/\s+/g, ' '));
+if (!/Spostata qui da/.test(arrivo) || !/Upper A/.test(arrivo)) {
+  console.error('  ERRORE  il giorno di arrivo non mostra la seduta spostata'); process.exit(1); }
+
 /* Cambia programmazione e tipo di settimana: sono i due interruttori che
    ricalcolano tutto. */
 await page.click('#tab-piano'); await page.waitForTimeout(200);
@@ -127,6 +154,7 @@ console.log(`  seminate  ${seminato.sedute} sedute · ${seminato.serie} serie ·
 console.log(`  schede    ${Object.entries(conta).map(([k, v]) => `${k} ${v} card`).join(' · ')}`);
 console.log(`  esercizi  ${esercizi} voci nel selettore dei progressi`);
 console.log('  testi     nome riscritto mostrato, storico ancora legato al nome del piano');
+console.log('  sposta    giorno di partenza e di arrivo coerenti dopo lo spostamento');
 if (errori.length) {
   console.error(`\n${errori.length} errori:`);
   for (const e of errori) console.error('  ✗ ' + e);
