@@ -15,7 +15,7 @@
 <link rel="apple-touch-icon" href="icone/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="192x192" href="icone/icona-192.png">
 <style>:root{color-scheme:light dark}*{box-sizing:border-box}body{margin:0}img{max-width:100%}</style>
-<script>window.__GG_BUILD='08864553a5';</script>
+<script>window.__GG_BUILD='608627c5ec';</script>
 </head>
 <body>
 <style>
@@ -1425,7 +1425,7 @@ const CONS_FONTI = [
 /* Versione dell'app. Serve a sapere, dal telefono, se quello che hai davanti e'
    l'ultima versione: la PWA installata puo' restare indietro se iOS non rifa'
    la navigazione. Il numero si alza a ogni pubblicazione. */
-const VERSIONE = { n:'v41', data:'21 agosto 2026', nota:'4 sedute: braccia ai due estremi della curva, ogni gruppo sul riferimento' };
+const VERSIONE = { n:'v42', data:'21 agosto 2026', nota:'Se un giorno salta, la seduta si sposta su un giorno libero' };
 
 const ATTREZZI = [
   ['Rack, bilanciere, panca regolabile', 1, 'Panca piana, stacco romeno, curl bilanciere, military press, panca inclinata per croci, curl e rematore col petto appoggiato'],
@@ -1790,9 +1790,21 @@ const giorniDi = f => {
 };
 function sessioneDi(d,f){
   const L = S.sess[d];
-  if(L && L.manuale && SESS[L.sid]) return SESS[L.sid];   // seduta spostata a mano
+  /* Giornata spostata: qui non si allena piu' niente, la seduta e' finita
+     altrove. Si controlla prima di tutto il resto. */
+  if(L && L.spostata) return null;
+  if(L && L.manuale && SESS[L.sid]) return SESS[L.sid];   // seduta scelta o accolta a mano
   const id = giorniDi(f)[dalISO(d).getDay()];
   return id ? SESS[id] : null;
+}
+/* Un giorno e' libero se il piano non ci mette niente, non ci hai spostato
+   niente e non ci hai gia' registrato serie. */
+function giornoLibero(d, f){
+  const L = S.sess[d];
+  if(L && Object.values(L.set||{}).some(r => (r||[]).some(serieValida))) return false;
+  if(L && L.manuale && SESS[L.sid]) return false;
+  if(L && L.spostata) return false;
+  return !giorniDi(f)[dalISO(d).getDay()];
 }
 const sedutePossibili = f => [1,2,3,4,5,6,0].map(g => giorniDi(f)[g])
   .filter((id,i,a) => id && a.indexOf(id) === i).map(id => SESS[id]);
@@ -2289,6 +2301,12 @@ function renderOggi(){
          <div class="t"><b>${esc(s.nome)}${s.opz?' · opzionale':''}</b>
            <span>${s.ex.length} esercizi · ~${s.durata} min · ${st.fatte>0 ? `${st.fatte} di ${st.totali} serie fatte` : 'da iniziare'}</span></div>
        </button>`
+    : (S.sess[d]||{}).spostata
+    ? `<button class="bigcta" data-vai-giorno="${esc((S.sess[d]||{}).spostata)}">
+         <div class="go">${ICO.check}</div>
+         <div class="t"><b>Seduta spostata</b>
+           <span>La fai ${esc(dataLunga((S.sess[d]||{}).spostata))} · questo giorno non conta come saltato</span></div>
+       </button>`
     : `<div class="card pad"><div class="eyebrow">Oggi</div>
          <div style="font-family:var(--display);font-size:22px;letter-spacing:.02em;text-transform:uppercase">Riposo</div>
          <p class="small muted" style="margin:6px 0 0">Bici zona 2 (125-140 bpm), 35-40 min. Se il peso è fermo da 2 settimane, aggiungi un’uscita <em>prima</em> di tagliare le calorie.</p></div>`;
@@ -2380,12 +2398,21 @@ function renderWorkout(){
   const d = S.ui.data, f = faseDi(d), s = sessioneDi(d,f), tipo = tipoSettDi(d);
   const box = $('#view-workout');
   if(!s){
-    box.innerHTML = `<div class="card"><div class="empty">${ICO.info}
-      <p><b>${esc(dataLunga(d))}</b> è un giorno di riposo in ${esc(f.split)}. Bici zona 2 e mobilità.</p>
-      <div class="row wrapf" style="justify-content:center">
-        <button class="btn solid" data-scegli="1">Allenati lo stesso</button>
-        <button class="btn ghost" data-giorno="1">Vai al giorno dopo</button>
-      </div></div></div>`;
+    const sp = (S.sess[d]||{}).spostata;
+    box.innerHTML = sp
+      ? `<div class="card"><div class="empty">${ICO.check}
+          <p>La seduta di <b>${esc(dataLunga(d))}</b> l’hai spostata a <b>${esc(dataLunga(sp))}</b>.
+            Questo giorno non conta come saltato.</p>
+          <div class="row wrapf" style="justify-content:center">
+            <button class="btn solid" data-vai-giorno="${esc(sp)}">Vai a ${esc(dataCorta(sp))}</button>
+            <button class="btn ghost" data-annulla-sposta="1">Annulla lo spostamento</button>
+          </div></div></div>`
+      : `<div class="card"><div class="empty">${ICO.info}
+          <p><b>${esc(dataLunga(d))}</b> è un giorno di riposo in ${esc(f.split)}. Bici zona 2 e mobilità.</p>
+          <div class="row wrapf" style="justify-content:center">
+            <button class="btn solid" data-scegli="1">Allenati lo stesso</button>
+            <button class="btn ghost" data-giorno="1">Vai al giorno dopo</button>
+          </div></div></div>`;
     return;
   }
   const L = log(d);
@@ -2440,8 +2467,10 @@ function renderWorkout(){
       </div>
       <span class="chip line">${st.fatte}/${st.totali} serie</span>
       <button class="btn sm ghost" data-scegli="1">Cambia seduta</button>
+      <button class="btn sm ghost" data-sposta="1">Sposta a un altro giorno</button>
     </div>
-    ${(S.sess[d]||{}).manuale ? `<p class="tiny" style="margin:9px 0 0;color:var(--accent-text)">Seduta scelta a mano: il piano per oggi prevedeva ${esc((SESS[giorniDi(f)[dalISO(d).getDay()]]||{}).nome || 'riposo')}.</p>` : ''}
+    ${(S.sess[d]||{}).spostataDa ? `<p class="tiny" style="margin:9px 0 0;color:var(--accent-text)">Spostata qui da <b>${esc(dataLunga((S.sess[d]||{}).spostataDa))}</b>.</p>`
+      : (S.sess[d]||{}).manuale ? `<p class="tiny" style="margin:9px 0 0;color:var(--accent-text)">Seduta scelta a mano: il piano per oggi prevedeva ${esc((SESS[giorniDi(f)[dalISO(d).getDay()]]||{}).nome || 'riposo')}.</p>` : ''}
     <p class="small muted" style="margin:11px 0 0">${esc(INTENSITA_RIV[tipo] || '')}</p>
     ${tipo==='deload' ? `<div class="sug" style="border-color:var(--warn);background:var(--warn-soft);color:var(--warn-text)"><b>Deload</b>Carico invariato, −40% di serie, stessa frequenza, 7 giorni. Si toglie volume, non intensità: è la fatica del sistema nervoso che va smaltita, e quella si accumula col volume. Mai saltarlo.</div>` : ''}
     ${tipo==='peak' ? `<div class="sug"><b>Widowmaker</b>Una sola serie da 20 rep con un peso da 10-12, su un isolamento sicuro (sissy squat, laterali, curl, leg curl). Ultima serie della sessione, mai sui compound.</div>` : ''}
@@ -3671,6 +3700,69 @@ document.addEventListener('click', ev => {
     toast('Widowmaker: 20 rep con un peso da 10-12, ultima serie della sessione.');
     return;
   }
+  const vg = el('[data-vai-giorno]');
+  if(vg){ S.ui.data = vg.dataset.vaiGiorno; salva(); vai('workout'); return; }
+
+  if(el('[data-annulla-sposta]')){
+    const d = S.ui.data, L = S.sess[d];
+    if(L && L.spostata){
+      const t = L.spostata, T = S.sess[t];
+      /* Annullare vuol dire riportare indietro TUTTO quello che sta sul giorno
+         di destinazione, non decidere se cancellarlo. Un campo con dentro solo
+         il carico e non ancora le ripetizioni resta un dato tuo: la prima
+         versione lo buttava via, perche' serieValida lo considera incompleto. */
+      if(T && T.spostataDa === d){
+        L.set = T.set || {}; L.piu = T.piu || {};
+        L.sost = T.sost || {}; L.nota = T.nota || '';
+        delete S.sess[t];
+      }
+      delete L.spostata; delete L.manuale; L.mod = Date.now();
+      APERTI.clear(); salva(); vai('workout'); toast('Spostamento annullato');
+    }
+    return;
+  }
+
+  if(el('[data-sposta]')){
+    const d = S.ui.data, f = faseDi(d), s0 = sessioneDi(d,f);
+    if(!s0) return;
+    /* Si puo' spostare solo su un giorno LIBERO: due sedute nello stesso giorno
+       non hanno senso, e il piano ne lascia tre liberi a settimana. */
+    const liberi = [];
+    for(let k = -3; k <= 14 && liberi.length < 8; k++){
+      if(k === 0) continue;
+      const t = piuGiorni(d, k);
+      if(t < oggiISO() && k < 0) continue;
+      if(giornoLibero(t, faseDi(t))) liberi.push(t);
+    }
+    apriSheet('Sposta “' + s0.nome + '”', `
+      <p class="tiny muted" style="margin:0 0 14px">La seduta di <b>${esc(dataLunga(d))}</b> si sposta al giorno che
+        scegli, e quel giorno smette di contare come saltato. Compaiono solo i <b>giorni liberi</b>: due sedute nello
+        stesso giorno non hanno senso, e il piano te ne lascia tre liberi a settimana.</p>
+      ${liberi.length ? `<div class="ed">${liberi.map(t => `<button class="edrow" data-dest="${esc(t)}" style="width:100%;text-align:left;cursor:pointer">
+        <div class="tx"><b>${esc(dataLunga(t))}</b>
+          <span>${t === piuGiorni(d,1) ? 'il giorno dopo' : t === piuGiorni(d,-1) ? 'il giorno prima' : 'libero'} · ${esc(s0.nome)}, ${s0.ex.length} esercizi, ~${s0.durata} min</span></div></button>`).join('')}</div>`
+        : `<p class="small" style="margin:0">Nei prossimi giorni non c’è nessuno slot libero: sono tutti già occupati
+           da una seduta o da serie che hai registrato. Se vuoi accorpare, usa <b>Cambia seduta</b> sul giorno che
+           preferisci.</p>`}
+      <p class="tiny muted" style="margin:14px 0 0">Puoi annullare quando vuoi dal giorno di partenza. Le serie già
+        registrate non si perdono mai.</p>`, sh => {
+      sh.querySelectorAll('[data-dest]').forEach(b => b.onclick = () => {
+        const t = b.dataset.dest;
+        const L = log(d);
+        const T = log(t);
+        T.sid = s0.id; T.manuale = true; T.spostataDa = d;
+        T.tipo = L.tipo || tipoSettDi(t);
+        T.set = L.set || {}; T.piu = L.piu || {}; T.sost = L.sost || {}; T.nota = L.nota || '';
+        T.mod = Date.now();
+        L.set = {}; L.piu = {}; L.sost = {}; L.spostata = t; L.manuale = false; L.mod = Date.now();
+        APERTI.clear(); salva(); chiudiSheet();
+        S.ui.data = t; vai('workout');
+        toast('Spostata a ' + dataLunga(t));
+      });
+    });
+    return;
+  }
+
   if(el('[data-scegli]')){
     const f = faseDi(S.ui.data), prevista = giorniDi(f)[dalISO(S.ui.data).getDay()];
     apriSheet('Quale seduta?', `<div class="ed">
@@ -3941,10 +4033,6 @@ vai(S.ui.tab && ['oggi','workout','dieta','progressi','piano'].includes(S.ui.tab
   <button class="btn sm" id="aggOra">Ricarica</button>
 </div>
 <style>
-/* L'avviso nasce con l'attributo hidden, ma una regola d'app come
-   .agg{display:flex} batte il display:none del browser: senza questa riga
-   resta a video per sempre. */
-.agg[hidden],.installa[hidden]{display:none!important}
 .agg{position:fixed;left:50%;transform:translateX(-50%);z-index:90;
   bottom:calc(var(--tab-h) + 22px + env(safe-area-inset-bottom));
   display:flex;align-items:center;gap:12px;padding:9px 12px 9px 17px;border-radius:999px;
@@ -3959,14 +4047,6 @@ vai(S.ui.tab && ['oggi','workout','dieta','progressi','piano'].includes(S.ui.tab
 <script>
 (function(){
   "use strict";
-  /* Rete di sicurezza: se per qualsiasi motivo l'avviso finisse a video senza
-     che mostra() l'abbia acceso, il pulsante deve almeno ricaricare invece di
-     non fare niente. Un comando che non risponde e' peggio di nessun comando. */
-  (function(){
-    var b = document.getElementById('aggOra');
-    if (b) b.onclick = function(){ location.reload(); };
-  })();
-
   // ── service worker: la pagina funziona anche senza campo, in palestra ──
   //
   // Su iPhone una PWA aperta dalla schermata Home spesso NON rifa' la
