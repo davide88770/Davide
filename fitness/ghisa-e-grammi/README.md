@@ -107,7 +107,64 @@ scritta anche dentro l'app, in fondo alla sezione Piano):
   ("riduci il riso a 130 g", "togli il riso serale"). L'app usa quel menù e
   mostra i TIP.
 
-## Le due schede
+## Le tre programmazioni
+
+Due da quattro sedute e una da tre, con l'interruttore in Piano. Lo storico dei
+carichi vale su tutte e tre: **nessun esercizio del full body è nuovo**, sono
+tutti già presenti nelle altre due, quindi passando da una all'altra non riparti
+da zero su niente.
+
+| | 4 sedute Top | 4 sedute | 3 full body |
+|---|---|---|---|
+| Giorni | Lun · Mar · Gio · Ven | Lun · Mar · Gio · Ven | Lun · Mer · Ven |
+| Serie dirette | 73 | 68 | **50** |
+| Minuti a settimana | 227 | 229 | **160** |
+| Seduta più lunga | 69 min | 63 min | **54 min** |
+| A cosa serve | spingere | coprire tutto | **tenere** |
+
+### La "3 full body" — la scheda jolly
+
+Non è una versione ridotta delle altre: ha **un obiettivo diverso**. Serve a
+tenere quello che hai costruito quando i quattro giorni non ci sono — settimane
+storte, periodi di lavoro pesante, viaggi. 50 serie, il 68% del volume della Top
+nel 70% del tempo, e nessuna seduta sopra i 54 minuti.
+
+È **sopra la soglia di mantenimento con margine**: la letteratura sul dosaggio
+minimo mostra che circa un terzo del volume abituale conserva la massa per
+settimane, purché carico e vicinanza al cedimento non scendano. Per questo qui
+si taglia il volume e mai l'intensità — i compound restano pesanti e i range non
+si allargano.
+
+**Struttura**, presa dal full body 3× pubblicato di Nippard: ogni seduta apre con
+un compound pesante e il **pattern ruota** — cerniera lunedì, accosciata
+mercoledì, pressa venerdì — poi una spinta, poi una tirata, poi isolamento, coi
+range che salgono dentro la seduta.
+
+**Gambe a 3×, parte alta a 2×.** Non è una svista: a 6 serie settimanali di
+petto, spalmarle su tre giorni vuol dire 2 serie a seduta, cioè pagare tre
+riscaldamenti e tre set-up per lo stesso volume. A questo dosaggio il 2× costa
+meno tempo a parità di stimolo.
+
+**Ogni esercizio che dipende da una macchina ha l'alternativa da viaggio scritta
+nella nota**: in vacanza hack squat, pressa, lat machine e cavi non ci sono, e la
+scheda deve restare eseguibile lo stesso.
+
+| | Lunedì · Full A | Mercoledì · Full B | Venerdì · Full C |
+|---|---|---|---|
+| | 17 serie · 54 min | 15 serie · 54 min | 18 serie · 52 min |
+| Pesante | Stacco romeno 3×5-7 | Hack squat 3×6-8 | Pressa 3×8-12 |
+| Spinta | Military manubri 3×6-8 | Panca piana 3×6-8 | Panca inclinata 3×8-12 |
+| Tirata | Lat unilaterale 3×8-12 | Rematore busto app. 3×8-12 | Rematore gomiti alti 3×10-15 |
+| Gambe | Sissy squat 2×10-15 | Leg curl manubri 2×12-15 | Nordico 2×5-8 |
+| Resto | Curl + push-down (superset) 2+2 · Crunch cavo 2 | Alzate laterali 2 · D'Annunzio 2 | Curl hammer + overhead (superset) 2+2 · Calf 3 |
+
+Volume: petto 6 · dorso 6 · trapezi 3 · spalle 5 · bicipiti 4 · tricipiti 4 ·
+accosciata 8 · femorali 7 · polpacci 3 · addome 4 = **50**. Le braccia sono a 4
+dirette ma **8,5 frazionali**, e sono comunque il doppio delle 3 serie che dà
+l'originale di Nippard: il superset di antagonisti è quello che le tiene su
+senza allungare la seduta.
+
+## Le due schede da quattro sedute
 
 Tutte e due da **quattro sedute**, e sono due priorità diverse, non due livelli.
 
@@ -747,6 +804,21 @@ npm run prova:pwa                                # giro di aggiornamento dell'ap
 
 ## Storico
 
+- **v43** — **terza programmazione: 3 full body**, Lun · Mer · Ven. È la scheda
+  jolly, non una Top ridotta: 50 serie in 160 minuti, nessuna seduta sopra i 54,
+  e l'obiettivo è *tenere* invece di costruire — sopra la soglia di mantenimento
+  con margine, col volume tagliato e l'intensità intatta. Struttura dal full body
+  3× pubblicato di Nippard (compound pesante che apre col pattern che ruota, poi
+  spinta, tirata, isolamento, range crescenti); selezione e tetto delle 3 serie
+  da Rabasco; superset di antagonisti sulle braccia, che le porta a 4 serie
+  contro le 3 dell'originale di Nippard senza allungare la seduta. Gambe a 3×,
+  parte alta a 2× — a 6 serie settimanali il 3× costa tre set-up per lo stesso
+  volume. **Ogni esercizio che dipende da una macchina ha l'alternativa da
+  viaggio nella nota.** Nessun esercizio è nuovo: lo storico dei carichi vale su
+  tutte e tre le schede. Confronto in Programmazione esteso a tre colonne, con
+  quella del full body non colorata di proposito. Corretti due residui: il toast
+  della Top diceva ancora «Lun Mar Gio Sab» e il confronto «Due schede da quattro
+  sedute, nessuna terza via».
 - **v42** — **se un giorno non ti alleni, la seduta si sposta.** Bottone *Sposta
   a un altro giorno* sopra la seduta: scegli un giorno libero e ci va tutto —
   esercizi, serie già registrate, sostituzioni, nota. Il giorno di partenza dice
