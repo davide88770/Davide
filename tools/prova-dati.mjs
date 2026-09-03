@@ -138,7 +138,7 @@ if (!/Spostata qui da/.test(arrivo) || !/Upper A/.test(arrivo)) {
 /* Cambia programmazione e tipo di settimana: sono i due interruttori che
    ricalcolano tutto. */
 await page.click('#tab-piano'); await page.waitForTimeout(200);
-for (const p of ['rivista4', 'top']) {
+for (const p of ['rivista4', 'full', 'top']) {
   await page.click(`[data-prog="${p}"]`);
   await page.waitForTimeout(200);
 }

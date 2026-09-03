@@ -15,7 +15,7 @@
 <link rel="apple-touch-icon" href="icone/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="192x192" href="icone/icona-192.png">
 <style>:root{color-scheme:light dark}*{box-sizing:border-box}body{margin:0}img{max-width:100%}</style>
-<script>window.__GG_BUILD='608627c5ec';</script>
+<script>window.__GG_BUILD='4abc4373bf';</script>
 </head>
 <body>
 <style>
@@ -433,7 +433,7 @@ label.fld>span{font-family:var(--display);font-size:11px;letter-spacing:.14em;te
 .vcmp .ff{color:var(--ink-3)}
 .vcmp.head{border-bottom:1px solid var(--line-2);padding-bottom:5px}
 .vcmp.head span{font-family:var(--display);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
-.cmp4{display:grid;grid-template-columns:1fr 44px 44px 40px;gap:6px;align-items:center;
+.cmp4{display:grid;grid-template-columns:1fr 42px 42px 42px 38px;gap:5px;align-items:center;
   padding:7px 0;border-bottom:1px solid var(--line);font-size:14.5px}
 .cmp4:last-of-type{border-bottom:0}
 .cmp4 .g{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -917,8 +917,109 @@ SESS.q_lowerB = { id:'q_lowerB', nome:'Lower B', gg:'Venerdì', durata:56, rivis
 /* Lun Upper A · Mar Lower A · Gio Upper B · Ven Lower B. Mercoledi', sabato e domenica liberi. */
 const GIORNI_RIVISTI_4 = {1:'q_upperA',2:'q_lowerA',4:'q_upperB',5:'q_lowerB'};
 
+/* ---------- SCHEDA "3 FULL BODY" ----------
+   La scheda jolly: quando i quattro giorni non ci sono, in viaggio, o in una
+   settimana storta. NON e' una versione ridotta delle altre due, e' una scheda
+   con un altro obiettivo: TENERE quello che hai costruito, non aggiungerne.
+
+   Volume settimanale in serie dirette:
+     petto 6 · dorso 6 · trapezi 3 · spalle 5 · bicipiti 4 · tricipiti 4
+     accosciata 8 · femorali 7 · polpacci 3 · addome 4   = 50
+
+   Sono il 68% delle 73 della Top in 160 minuti contro 227, e nessuna seduta
+   supera i 54. E' sopra la soglia di mantenimento con margine: la letteratura
+   sul dosaggio minimo mostra che un terzo circa del volume abituale conserva
+   la massa per settimane, purche' il carico e la vicinanza al cedimento non
+   scendano. Per questo i compound restano pesanti e i range non si allargano:
+   si taglia il volume, mai l'intensita'.
+
+   Struttura, dal full body 3x pubblicato di Nippard: ogni seduta apre con un
+   compound pesante e il pattern RUOTA (cerniera lunedi', accosciata mercoledi',
+   pressa venerdi'), poi una spinta, poi una tirata, poi isolamento, coi range
+   che salgono dentro la seduta.
+
+   Gambe a 3x, parte alta a 2x. Non e' una svista: a 6 serie settimanali di
+   petto, spalmarle su tre giorni vuol dire 2 serie a seduta, cioe' pagare tre
+   riscaldamenti e tre set-up per lo stesso volume. A questo dosaggio il 2x
+   costa meno tempo a parita' di stimolo.
+
+   Ogni esercizio che dipende da una macchina si porta dietro l'ALTERNATIVA
+   scritta nella nota: in vacanza hack squat, pressa, lat machine e cavi non
+   ci sono, e la scheda deve restare eseguibile lo stesso. */
+SESS.fb_a = { id:'fb_a', nome:'Full A', gg:'Lunedì', durata:54, rivista:1, full:1,
+  focus:'Cerniera d’anca pesante · Spinta verticale · Tirata verticale · Braccia in superset', ex:[
+  e('Romanian deadlift bilanciere','femorali',3,'5–7','RIR 1–2 · FORZA',240,{ernia:1,
+    cue:'La barra scorre lungo la coscia · squeeze del gluteo in cima · schiena neutra · espira salendo',
+    note:'Apre la settimana ed è l’unica alzata pesante di catena posteriore. In vacanza: stacco a gambe tese coi manubri, stesse serie.'}),
+  e('Military press manubri — seduto','spalle',3,'6–8','RIR 1–2',180,{p:1,
+    cue:'Schienale a 80-85° · manubri all’altezza delle orecchie in basso · ESPIRA salendo · mai Valsalva',
+    note:'Serve solo una panca regolabile e due manubri: si trova ovunque.'}),
+  e('Lat machine unilaterale — maniglia','dorso',3,'8–12','+ Rest-pause',120,{uni:1,
+    cue:'Una maniglia sola, un braccio per volta · lascia salire la scapola in cima · tira il gomito verso il fianco',
+    note:'Senza lat machine: trazioni, anche assistite con l’elastico, 3×6-8.'}),
+  e('Sissy squat','quad',2,'10–15','+ Rest-pause',120,{ernia:1,p:1,
+    cue:'Disco al petto quando ci arrivi · mano al montante · talloni alzati · eccentrica 3 sec',
+    note:'A corpo libero funziona ovunque: è l’esercizio di gambe che non dipende da niente.'}),
+  e('Curl ai cavi dietro il corpo — Bayesian','bicipiti',2,'10–12','Superset',0,{p:1,
+    cue:'Carrucola bassa, braccio dietro la linea del corpo · gomito fermo · eccentrica 3 sec · subito dopo, senza recupero, il tricipite',
+    note:'Senza cavi: curl coi manubri su panca inclinata, che mette il braccio dietro il busto allo stesso modo.'}),
+  e('Push-down alla corda','tricipiti',2,'10–12','Superset + Drop set',120,{p:1,
+    cue:'Gomiti fermi ai fianchi · separa le mani in fondo',
+    note:'Le braccia sono in superset di antagonisti: è il modo di tenerle a 4 serie a settimana senza allungare la seduta. Senza cavi: french press coi manubri.'}),
+  e('Crunch al cavo alto','core',2,'10–15','+ Rest-pause',90,{ernia:1,
+    cue:'In ginocchio sotto la carrucola alta, corda dietro la nuca · arrotola il busto · ESPIRA chiudendo',
+    note:'Senza cavi: D’Annunzio crunch, o crunch a terra con un disco al petto.'})
+]};
+SESS.fb_b = { id:'fb_b', nome:'Full B', gg:'Mercoledì', durata:54, rivista:1, full:1,
+  focus:'Accosciata pesante · Spinta orizzontale · Tirata orizzontale · Addome', ex:[
+  e('Hack squat — piede basso','quad',3,'6–8','RIR 1–2 · FORZA',240,{ernia:1,
+    cue:'Discesa 2–3 sec · fermo 1 sec in basso · ESPIRA nella salita · mai Valsalva',
+    note:'In vacanza: pressa se c’è, altrimenti squat goblet col manubrio più pesante che trovi, 3×10-12.'}),
+  e('Panca piana bilanciere','petto',3,'6–8','RIR 1–2',210,{
+    cue:'Presa 1,5× spalle · gomiti 45° · scapole retratte · fermi rack · fermo 1 sec in basso',
+    note:'Range più alto che nelle altre schede: qui la panca non è l’alzata di forza della settimana, e 6-8 costa meno recupero. Senza bilanciere: panca coi manubri.'}),
+  e('Rematore manubri — busto appoggiato','dorso',3,'8–12','+ Rest-pause',150,{
+    cue:'Panca inclinata a 30-40° · petto appoggiato · tira i gomiti indietro lungo i fianchi',
+    note:'Basta una panca inclinabile e due manubri. Col petto appoggiato la schiena bassa non entra: è anche la versione giusta con l’ernia.'}),
+  e('Leg curl sdraiato — manubri','femorali',2,'12–15','+ Drop set',120,{p:1,
+    cue:'Prono sulla panca · manubrio stretto fra i piedi · non sollevare i fianchi · eccentrica 3 sec',
+    note:'Se c’è il leg curl a macchina, usa quello: è più facile da caricare.'}),
+  e('Alzate laterali ai cavi','spalle',2,'12–15','+ Rest-pause',90,{p:1,wm:1,uni:1,
+    cue:'Cavo basso dal lato opposto, un braccio per volta · gomito guida · stop a 90°',
+    note:'Senza cavi: alzate sdraiato di fianco sulla panca inclinata, che caricano in basso come il cavo.'}),
+  e('D’Annunzio crunch','core',2,'10–15','+ Rest-pause',90,{ernia:1,
+    cue:'Gambe bloccate sotto un appoggio, busto che scende oltre il bordo · eccentrica 3 sec · ESPIRA salendo, mai in apnea',
+    note:'Va bene qualunque appoggio che blocchi le caviglie: la lat machine, un lettino, il bordo di una panca con qualcuno che tiene.'})
+]};
+SESS.fb_c = { id:'fb_c', nome:'Full C', gg:'Venerdì', durata:52, rivista:1, full:1,
+  focus:'Accosciata a range alto · Spinta inclinata · Trapezi · Braccia · Polpacci', ex:[
+  e('Pressa — piede alto e largo','quad',3,'8–12','+ Drop set',180,{
+    cue:'Piedi molto in alto · spingi sui talloni · scendi profondo, è lì che il gluteo si allunga',
+    note:'La terza dose di accosciata, a range alto e senza carico sulla colonna. In vacanza: hack squat, o affondi camminati coi manubri.'}),
+  e('Panca inclinata manubri 30°','petto',3,'8–12','+ Drop set',150,{
+    cue:'Angolo 30° · gomiti 60–70° · scendi fino allo stretch completo · pausa 1 sec',
+    note:'Panca e manubri: nessuna palestra ne è sprovvista.'}),
+  e('Rematore manubri gomiti alti — trapezi','trapezi',3,'10–15','+ Rest-pause',120,{
+    cue:'Panca inclinata a 30-40°, petto appoggiato · presa larga · tira coi gomiti ALTI · squeeze delle scapole 1 sec',
+    note:'L’unica dose di trapezio della settimana, e l’unico rematore della giornata.'}),
+  e('Leg curl nordico','femorali',2,'5–8','Eccentrica lenta',150,{
+    cue:'Caviglie bloccate sotto un appoggio · scendi in 4-5 sec tenendo anca e busto in linea',
+    note:'Non serve nessuna macchina: bastano le caviglie bloccate. È l’esercizio di femorali che funziona ovunque.'}),
+  e('Curl hammer manubri','bicipiti',2,'10–12','Superset',0,{p:1,
+    cue:'Presa neutra · gomiti fermi ai fianchi · niente oscillazione · subito dopo, senza recupero, il tricipite'}),
+  e('Tricipite overhead — corda','tricipiti',2,'10–12','Superset + Rest-pause',90,{p:1,
+    cue:'Corda alla carrucola bassa, di spalle · gomiti fermi sopra la testa · stretch massimo',
+    note:'Senza cavi: french press con un manubrio a due mani, seduto.'}),
+  e('Calf raise in piedi','polpacci',3,'8–12','+ Rest-pause',90,{
+    cue:'Ginocchio dritto · su un rialzo o un disco · pausa 2" in basso · no rimbalzo',
+    note:'Basta un gradino e un manubrio in mano.'})
+]};
+
+/* Lun Full A · Mer Full B · Ven Full C. Quattro giorni liberi. */
+const GIORNI_FULL = {1:'fb_a',3:'fb_b',5:'fb_c'};
+
 /* Lun Upper A · Mar Lower A · Gio Upper B · Ven Lower B.
-   Mercoledi', sabato e domenica liberi. Forza all'inizio, volume alla fine. */
+   Mercoledi\', sabato e domenica liberi. Forza all\'inizio, volume alla fine. */
 const GIORNI_TOP = {1:'t_upperA',2:'t_lowerA',4:'t_upperB',5:'t_lowerB'};
 
 /* ── FASI ───────────────────────────────────────────────────────────────── */
@@ -932,19 +1033,19 @@ const FASI = [
     settimane:['base','deload'], dieta:'trans',
     nota:'Il peso risale di 1-2 kg nelle prime 2 settimane: è reidratazione e glicogeno, non grasso. Non ridurre le calorie.' },
   { id:'accumulo', n:3, nome:'Accumulo', periodo:'Novembre 2025 – Gennaio 2026', da:'2025-11-16', a:'2026-01-31',
-    durata:'8 settimane', split:'4 sedute', obiettivo:'+200 kcal · costruzione volume',
+    durata:'8 settimane', split:'4 o 3 sedute', obiettivo:'+200 kcal · costruzione volume',
     settimane:['base','peak','deload'], dieta:'bulk', kcal:'2.850 kcal',
     nota:'Condizione per accumulare: ≤83 kg con ≤13% BF. A 84 kg ~14% surplus conservativo +100-150 kcal. Sopra 85 kg ~15%: continua il cut.' },
   { id:'intensificazione', n:4, nome:'Intensificazione', periodo:'Febbraio – Marzo 2026', da:'2026-02-01', a:'2026-03-31',
-    durata:'8 settimane', split:'4 sedute', obiettivo:'+300 kcal · carichi massimali della stagione',
+    durata:'8 settimane', split:'4 o 3 sedute', obiettivo:'+300 kcal · carichi massimali della stagione',
     settimane:['base','peak','deload'], dieta:'bulk', kcal:'2.950 kcal',
     nota:'RIR 0-1 quasi sempre · rest-pause sistematico sull’isolamento.' },
   { id:'peak', n:5, nome:'Peak', periodo:'Aprile – Maggio 2026', da:'2026-04-01', a:'2026-05-31',
-    durata:'6 settimane', split:'4 sedute', obiettivo:'+350 kcal · massimo stimolo annuale',
+    durata:'6 settimane', split:'4 o 3 sedute', obiettivo:'+350 kcal · massimo stimolo annuale',
     settimane:['base','peak','deload'], dieta:'bulk', kcal:'3.000 kcal',
     nota:'Widowmaker su un isolamento sicuro per sessione: sissy squat, laterali, curl, leg curl. Mai sui compound.' },
   { id:'recomp', n:6, nome:'Recomp / Cut finale', periodo:'Giugno – Settembre 2026', da:'2026-06-01', a:'2026-09-30',
-    durata:'12-16 settimane', split:'4 sedute', obiettivo:'82-83 kg · ~10-11% BF',
+    durata:'12-16 settimane', split:'4 o 3 sedute', obiettivo:'82-83 kg · ~10-11% BF',
     settimane:['base','peak','deload'], dieta:'recomp', recomp:1,
     nota:'Carichi del peak mantenuti integralmente: l’allenamento non cambia, cambia solo la nutrizione. Qui misuri il risultato dell’intero anno.' }
 ];
@@ -1280,7 +1381,8 @@ const MOB_DI = { cut_push:'push', tr_push:'push', pu_push:'push', rv_push:'push'
   cut_legs:'legs', tr_legs:'legs', pu_legs:'legs', pu_legs2:'legs', rv_legs:'legs', rv_legs2:'legs',
   pu_upper:'upper', rv_upper:'upper', cut_sab:'upper', tr_sab:'upper',
   rv_lower:'lower', q_lowerA:'legs', q_lowerB:'lower', q_upperA:'upperfz', q_upperB:'upper',
-  t_upperA:'upperfz', t_lowerA:'legs', t_upperB:'upper', t_lowerB:'lower' };
+  t_upperA:'upperfz', t_lowerA:'legs', t_upperB:'upper', t_lowerB:'lower',
+  fb_a:'legs', fb_b:'upperfz', fb_c:'lower' };
 /* Stretching post-sessione, 8 minuti obbligatori (pag. 36-37) */
 const STRETCHING = [
   ['Petto','Braccio appoggiato al muro a 90°, corpo ruotato lontano, 2 lati','30" × 2',['push']],
@@ -1425,7 +1527,7 @@ const CONS_FONTI = [
 /* Versione dell'app. Serve a sapere, dal telefono, se quello che hai davanti e'
    l'ultima versione: la PWA installata puo' restare indietro se iOS non rifa'
    la navigazione. Il numero si alza a ogni pubblicazione. */
-const VERSIONE = { n:'v42', data:'21 agosto 2026', nota:'Se un giorno salta, la seduta si sposta su un giorno libero' };
+const VERSIONE = { n:'v43', data:'23 agosto 2026', nota:'Terza programmazione: 3 full body, la scheda jolly' };
 
 const ATTREZZI = [
   ['Rack, bilanciere, panca regolabile', 1, 'Panca piana, stacco romeno, curl bilanciere, military press, panca inclinata per croci, curl e rematore col petto appoggiato'],
@@ -1483,11 +1585,11 @@ const IMPREVISTI = [
    mantenimento, poi si costruisce piano. */
 FASI.push(
   { id:'ripristino', n:7, nome:'Ripristino', periodo:'Ottobre 2026', da:'2026-10-01', a:'2026-10-31',
-    durata:'4 settimane', split:'4 sedute', obiettivo:'Torna a mantenimento · recupero ormonale',
+    durata:'4 settimane', split:'4 o 3 sedute', obiettivo:'Torna a mantenimento · recupero ormonale',
     settimane:['base','deload'], dieta:'ripristino',
     nota:'Calorie riportate a mantenimento con +100-150 kcal a settimana, non in un colpo. I carichi restano quelli del recomp e il volume non cambia: RIR 1-2, niente cedimento sui compound. Il peso sale di 1-2 kg nelle prime due settimane — è acqua e glicogeno dopo mesi di deficit, non grasso. Non tagliare.' },
   { id:'costruzione', n:8, nome:'Costruzione lean', periodo:'Novembre 2026 – Febbraio 2027', da:'2026-11-01', a:'2027-02-28',
-    durata:'12-16 settimane', split:'4 sedute', obiettivo:'+0,25/0,35 kg a settimana',
+    durata:'12-16 settimane', split:'4 o 3 sedute', obiettivo:'+0,25/0,35 kg a settimana',
     settimane:['base','peak','deload'], dieta:'costruzione',
     nota:'Surplus contenuto: +150-200 kcal. Sopra 0,4 kg a settimana per due settimane consecutive stai facendo grasso, non muscolo: −100 kcal. Fermo per due settimane: +100 kcal solo nei giorni di allenamento. Partire da qui con 10-11% di grasso è la condizione migliore che avrai per costruire.' }
 );
@@ -1760,7 +1862,7 @@ function carica(){
         /* Le programmazioni tolte (piano originale, PPL + full body e la vecchia
            scheda da 5 sedute) tornano sulla "4 sedute Top". Le giornate gia'
            registrate restano leggibili: quelle sedute sono nell'archivio. */
-        if(S.ui.prog !== 'top' && S.ui.prog !== 'rivista4') S.ui.prog = 'top';
+        if(!['top','rivista4','full'].includes(S.ui.prog)) S.ui.prog = 'top';
         if(!S.testi || typeof S.testi !== 'object' || Array.isArray(S.testi)) S.testi = {};
       }
     }
@@ -1786,7 +1888,7 @@ function faseDi(d){
    le fasi dalla 3 in poi. Cut e transizione restano come sono. */
 const giorniDi = f => {
   if(f.ppl3) return GIORNI_RIVISTI_PPL3;   /* cut e transizione, fasi 1-2 */
-  return S.ui.prog === 'rivista4' ? GIORNI_RIVISTI_4 : GIORNI_TOP;
+  return S.ui.prog === 'full' ? GIORNI_FULL : S.ui.prog === 'rivista4' ? GIORNI_RIVISTI_4 : GIORNI_TOP;
 };
 function sessioneDi(d,f){
   const L = S.sess[d];
@@ -3032,38 +3134,56 @@ function renderPiano(){
     const upper = !f.ppl3;
     if(!upper) return `<div class="card"><div class="hd"><h2>Programmazione</h2><span class="chip line sp">cut · ppl 3×</span></div>
       <div class="bd"><p class="small muted" style="margin:0">In questa fase vale lo split a tre giorni del cut, non le
-        due schede da 4 sedute: quelle partono dalla fase 3 in poi.</p></div></div>`;
-    const A = volumePrevisto(GIORNI_TOP), B = volumePrevisto(GIORNI_RIVISTI_4);
+        tre programmazioni: quelle partono dalla fase 3 in poi.</p></div></div>`;
+    const A = volumePrevisto(GIORNI_TOP), B = volumePrevisto(GIORNI_RIVISTI_4), C = volumePrevisto(GIORNI_FULL);
     const fuori = sopraSoglia(giorniDi(f));
     const durA = Object.values(GIORNI_TOP).map(id => SESS[id].durata);
     const durB = Object.values(GIORNI_RIVISTI_4).map(id => SESS[id].durata);
+    const durC = Object.values(GIORNI_FULL).map(id => SESS[id].durata);
+    const somma = d => d.reduce((x,y) => x+y, 0);
+    /* La colonna del full body non si colora sul riferimento: quella scheda
+       punta a tenere, non ad arrivarci, e segnarla in rosso direbbe una cosa
+       falsa. Si colorano solo le due schede da quattro sedute. */
     const riga = g => {
-      const a = A.per[g]||0, b = B.per[g]||0, o = VOL_OBIETTIVO[g];
+      const a = A.per[g]||0, b = B.per[g]||0, c = C.per[g]||0, o = VOL_OBIETTIVO[g];
       const col = x => o === undefined ? 'var(--ink-2)' : (x === o ? 'var(--good-text)' : (x < o ? 'var(--crit-text)' : 'var(--accent-text)'));
       return `<div class="cmp4"><span class="g">${GRUPPI[g]}</span>
         <b style="color:${col(a)}">${a}</b><b style="color:${col(b)}">${b}</b>
+        <b style="color:var(--ink-3)">${c}</b>
         <span class="w">${o === undefined ? '—' : o}</span></div>`;
     };
     return `<div class="card">
-      <div class="hd"><h2>Programmazione</h2><span class="chip good sp">${S.ui.prog==='rivista4'?'4 sedute':'4 sedute Top'}</span></div>
+      <div class="hd"><h2>Programmazione</h2><span class="chip good sp">${({top:'4 sedute Top', rivista4:'4 sedute', full:'3 full body'})[S.ui.prog]}</span></div>
       <div class="bd stack">
         <div class="seg" role="group" aria-label="Programmazione">
-          <button data-prog="top" aria-pressed="${S.ui.prog==='top'}">4 sedute Top</button>
+          <button data-prog="top" aria-pressed="${S.ui.prog==='top'}">4 Top</button>
           <button data-prog="rivista4" aria-pressed="${S.ui.prog==='rivista4'}">4 sedute</button>
+          <button data-prog="full" aria-pressed="${S.ui.prog==='full'}">3 full body</button>
         </div>
-        <p class="small muted" style="margin:0">Due schede da quattro sedute, nessuna terza via.
-          La <b>4 sedute Top</b> è Lun · Mar · Gio · Sab, ${A.tot} serie dirette, con le due giornate di
-          <b>forza</b> in testa alla settimana e le due di <b>volume</b> in coda. La <b>4 sedute</b> è
-          Lun · Mar · Gio · Ven, ${B.tot} serie, costruita sul volume di riferimento gruppo per gruppo.
-          Le sedute stanno fra ${Math.min(...durA,...durB)} e ${Math.max(...durA,...durB)} minuti.</p>
-        <div class="cmp4 head"><span class="g">Gruppo</span><span>Top</span><span>4 sed.</span><span class="w">obiett.</span></div>
+        <p class="small muted" style="margin:0">Due schede da quattro sedute e una da tre.
+          La <b>4 sedute Top</b> è Lun · Mar · Gio · Ven, ${A.tot} serie dirette, con le due giornate di
+          <b>forza</b> in testa alla settimana e le due di <b>volume</b> in coda. La <b>4 sedute</b> gli stessi
+          giorni, ${B.tot} serie, costruita sul volume di riferimento gruppo per gruppo. Il <b>3 full body</b> è
+          Lun · Mer · Ven, ${C.tot} serie in ${somma(durC)} minuti contro i ${somma(durA)} della Top: è la scheda
+          <b>jolly</b>, per le settimane storte e per i viaggi.</p>
+        <div class="cmp4 head"><span class="g">Gruppo</span><span>Top</span><span>4 sed.</span><span>full</span><span class="w">obiett.</span></div>
         ${['petto','dorso','trapezi','spalle','bicipiti','tricipiti','quad','femorali','gluteo','polpacci','core'].map(riga).join('')}
         <p class="tiny muted" style="margin:0">Serie <b>dirette</b> a settimana, contro il volume di riferimento.
           Verde quando il numero è quello, rosso sotto, azzurro sopra. La <b>4 sedute Top</b> ha ${A.tot} serie
           dirette e niente in rosso: femorali, accosciata, spalle e polpacci sopra il riferimento, tutto il resto in
           bersaglio. La <b>4 sedute</b> ne ha ${B.tot} e sta <b>esattamente sul riferimento su ogni gruppo</b>:
           nessuna riga sotto, nessuna sopra. Sono due modi diversi di essere completi — una eccede dove serve
-          spingere, l’altra centra il bersaglio e basta.</p>
+          spingere, l’altra centra il bersaglio e basta. Il <b>3 full body</b> sta sotto quasi ovunque, e la sua
+          colonna non è colorata apposta: quella scheda non punta ad arrivare al riferimento, punta a
+          <b>tenere</b> — segnarla in rosso direbbe una cosa falsa.</p>
+        <div class="backup" style="background:var(--accent-soft);color:var(--accent-text)">${ICO.info}
+          <span>Il <b>3 full body</b> è la scheda <b>jolly</b>: settimane storte, periodi di lavoro pesante,
+          viaggi. ${C.tot} serie in ${somma(durC)} minuti — il ${Math.round(C.tot/A.tot*100)}% del volume della Top
+          nel ${Math.round(somma(durC)/somma(durA)*100)}% del tempo, e nessuna seduta sopra i
+          ${Math.max(...durC)} minuti. È sopra la soglia di mantenimento con margine: circa un terzo del volume
+          abituale basta a conservare la massa per settimane, purché carico e vicinanza al cedimento non
+          scendano — per questo qui si taglia il volume e mai l’intensità. Ogni esercizio che dipende da una
+          macchina ha l’<b>alternativa da viaggio</b> scritta nella sua nota.</span></div>
         <div class="backup" style="background:var(--good-soft);color:var(--good-text)">${ICO.check}
           <span>Da v36 la <b>4 sedute Top</b> non ha <b>nessun gruppo sotto il riferimento</b>, e rispetta tutti e
           cinque i vincoli del piano, tetto delle tre serie per esercizio compreso. Dove sta sopra è voluto:
@@ -3550,8 +3670,9 @@ document.addEventListener('click', ev => {
 
   const pg = el('[data-prog]');
   if(pg){ S.ui.prog = pg.dataset.prog; APERTI.clear(); salva(); render();
-    toast({ top:'4 sedute Top · Lun Mar Gio Sab · forza poi volume',
-            rivista4:'4 sedute · Upper e Lower alternati' }[pg.dataset.prog]); return; }
+    toast({ top:'4 sedute Top · Lun Mar Gio Ven · forza poi volume',
+            rivista4:'4 sedute · Upper e Lower alternati',
+            full:'3 full body · Lun Mer Ven · la scheda jolly' }[pg.dataset.prog]); return; }
 
   const tk = el('[data-tick]');
   if(tk){
