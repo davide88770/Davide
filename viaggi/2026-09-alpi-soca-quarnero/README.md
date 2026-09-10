@@ -176,36 +176,40 @@ sezione non hanno più icona, e il segno di apertura è un chevron in CSS.
 
 ### Rotazione per il maltempo (11 settembre 2026, in viaggio)
 
-Previsioni brutte per venerdì 11, che nel piano originale era la giornata più
-esposta di tutte: Lubenice e la discesa a Sveti Ivan, sentiero ripido e
-senz'ombra. Le tre giornate sull'isola sono state **ruotate**, non scambiate:
+Previsioni verificate sul bollettino croato per venerdì 11: pioggia e rovesci
+temporaleschi sull'Adriatico settentrionale, localmente forti, **avviso giallo
+per il vento su tutto l'Adriatico e arancione sulla regione di Fiume** per
+pioggia e temporali. La fase intensa è data fra la notte di giovedì e la
+mattina di venerdì. Sabato nuvoloso ma senza temporali, domenica in prevalenza
+sereno.
 
-| | Prima | Adesso |
-|---|---|---|
-| **Ven 11** | Cres ovest: Lubenice, Sveti Ivan, Valun | **Osor e Lošinj** — musei e borghi, quasi tutto al coperto |
-| **Sab 12** | Beli e i grifoni | invariato |
-| **Dom 13** | giornata aperta, quattro scelte | **Cres ovest** — spostata in fondo, ad aspettare il sole |
+Le tre giornate sull'isola sono state **ruotate** su questa forma:
 
-Uno scambio 11↔12 non sarebbe servito: anche Beli vuole le termiche, e con la
-pioggia i grifoni non volano. La giornata di Lošinj è invece l'unica davvero a
-prova di pioggia — Apoxyomenos, Collezione archeologica di Osor, Blue World,
-borghi e konobe — e nel piano originale era una delle quattro opzioni del 13.
-La giornata aperta della domenica ha fatto da ammortizzatore: era nata per
-questo.
+| | Prima | Adesso | Perché |
+|---|---|---|---|
+| **Ven 11** | Cres ovest: Lubenice, Sveti Ivan, Valun | **Cres a piedi**, 30 km | Temporali e vento: si resta a piedi in paese, l'auto non si muove |
+| **Sab 12** | Beli e i grifoni | **Osor, Nerezine e i porti di Lošinj**, 120 km | Nuvoloso ma asciutto: la giornata giusta per guidare e vedere paesi |
+| **Dom 13** | giornata aperta, quattro scelte | **Cres ovest**, 50 km | Sereno: l'unica giornata che il sole lo richiede davvero |
 
-**Il vincolo che ha deciso l'ordine:** la Collezione archeologica di Osor è
-aperta **martedì–sabato 9:00–15:00 fino al 14 settembre, chiusa domenica e
-lunedì**. Rimandare Osor a domenica voleva dire trovarla chiusa. Verificato
-sugli orari del Museo di Lošinj. Il ponte girevole di Osor apre alle **9:00 e
-alle 17:00**, e mentre passano le barche la strada è chiusa.
+Uno scambio 11↔12 non sarebbe bastato: anche Beli vuole le termiche, e con la
+pioggia i grifoni non volano. Beli è la cosa che ha ceduto — resta come
+alternativa del pomeriggio dell'11 se schiarisce, e dentro l'opzione «Vrana,
+Orlec e Mali Bok» del 13.
 
-Aggiunti anche: un blocco **«Se piove»** su ognuna delle tre giornate d'isola,
-e una sezione **«Se piove sull'isola»** in Pratico con quello che è aperto al
-coperto, i borghi che con la pioggia migliorano, e cosa non fare bagnato (le
-discese a Sveti Ivan e Mali Bok).
+**Niente musei.** La prima versione di questa rotazione era costruita su
+Apoxyomenos, Collezione archeologica di Osor e Blue World. Davide ha fatto
+notare che non è il loro genere: rifatta su borghi, porti, la strada interna e
+le konobe. Gli unici orari che restano nel documento sono quelli che
+riguardano cose che *succedono* — il ponte girevole di Osor alle 9:00 e alle
+17:00.
 
-La rotazione **non costa chilometri**: 2.275 km sono esattamente quelli che il
-piano originale dava scegliendo Lošinj il 13. Cambia solo quando.
+Aggiunti un blocco di piano meteo su ognuna delle tre giornate d'isola (con il
+titolo che cambia: sull'11 è «Se invece si alza») e la sezione **«Se piove
+sull'isola»** in Pratico: quello che regge bagnato, i paesi che con la pioggia
+migliorano, e cosa non fare — le discese a Sveti Ivan e Mali Bok, e contare su
+un traghetto con la bora forte.
+
+Totale di riferimento dopo la rotazione: **2.235 km e 30h45**.
 
 ### Numeri, ricalcolati a codice
 
@@ -215,7 +219,7 @@ combinazioni:
 
 | Scelte (13 · 14 · 15) | km | Guida |
 |---|---|---|
-| nessuna (riferimenti, dopo la rotazione) | 2.275 | 31h30 |
+| nessuna (riferimenti, dopo la rotazione) | 2.235 | 30h45 |
 | giorno zero · Pirano · dritti a casa | 2.155 | 29h00 |
 | giorno zero · Abbazia · dritti a casa | **2.145** | 28h30 |
 | barca · Rovigno · Trieste | 2.278 | 30h15 |
