@@ -174,6 +174,39 @@ a colori**: pesi e colori diversi in una barra che dovrebbe essere monocroma.
 Ora le cinque icone sono SVG disegnati con lo stesso tratto, i titoli di
 sezione non hanno più icona, e il segno di apertura è un chevron in CSS.
 
+### Rotazione per il maltempo (11 settembre 2026, in viaggio)
+
+Previsioni brutte per venerdì 11, che nel piano originale era la giornata più
+esposta di tutte: Lubenice e la discesa a Sveti Ivan, sentiero ripido e
+senz'ombra. Le tre giornate sull'isola sono state **ruotate**, non scambiate:
+
+| | Prima | Adesso |
+|---|---|---|
+| **Ven 11** | Cres ovest: Lubenice, Sveti Ivan, Valun | **Osor e Lošinj** — musei e borghi, quasi tutto al coperto |
+| **Sab 12** | Beli e i grifoni | invariato |
+| **Dom 13** | giornata aperta, quattro scelte | **Cres ovest** — spostata in fondo, ad aspettare il sole |
+
+Uno scambio 11↔12 non sarebbe servito: anche Beli vuole le termiche, e con la
+pioggia i grifoni non volano. La giornata di Lošinj è invece l'unica davvero a
+prova di pioggia — Apoxyomenos, Collezione archeologica di Osor, Blue World,
+borghi e konobe — e nel piano originale era una delle quattro opzioni del 13.
+La giornata aperta della domenica ha fatto da ammortizzatore: era nata per
+questo.
+
+**Il vincolo che ha deciso l'ordine:** la Collezione archeologica di Osor è
+aperta **martedì–sabato 9:00–15:00 fino al 14 settembre, chiusa domenica e
+lunedì**. Rimandare Osor a domenica voleva dire trovarla chiusa. Verificato
+sugli orari del Museo di Lošinj. Il ponte girevole di Osor apre alle **9:00 e
+alle 17:00**, e mentre passano le barche la strada è chiusa.
+
+Aggiunti anche: un blocco **«Se piove»** su ognuna delle tre giornate d'isola,
+e una sezione **«Se piove sull'isola»** in Pratico con quello che è aperto al
+coperto, i borghi che con la pioggia migliorano, e cosa non fare bagnato (le
+discese a Sveti Ivan e Mali Bok).
+
+La rotazione **non costa chilometri**: 2.275 km sono esattamente quelli che il
+piano originale dava scegliendo Lošinj il 13. Cambia solo quando.
+
 ### Numeri, ricalcolati a codice
 
 Il totale non è più una tabella scritta a mano: si calcola sommando le
@@ -182,7 +215,7 @@ combinazioni:
 
 | Scelte (13 · 14 · 15) | km | Guida |
 |---|---|---|
-| nessuna (riferimenti) | 2.215 | 30h30 |
+| nessuna (riferimenti, dopo la rotazione) | 2.275 | 31h30 |
 | giorno zero · Pirano · dritti a casa | 2.155 | 29h00 |
 | giorno zero · Abbazia · dritti a casa | **2.145** | 28h30 |
 | barca · Rovigno · Trieste | 2.278 | 30h15 |
