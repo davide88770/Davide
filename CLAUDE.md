@@ -68,6 +68,23 @@ qualcosa di veloce, lo dirà lui.
   giorno, tabella distanze e progressive, mappa, budget, prenotazioni,
   checklist, footer. Aggiornali tutti insieme e **ricontrolla i totali a
   calcolo**, non a occhio.
+- **Attrazioni a pagamento: dì sempre cosa si vede gratis.** Se una cosa ha un
+  biglietto, il documento deve dire *quali* biglietti esistono (spesso sono
+  due: quello del comune e quello privato), quanto valgono davvero, e se lo
+  stesso colpo d'occhio si prende da fuori senza pagare. Le **ricostruzioni**
+  vanno dichiarate come tali. Riscontro dal campo, settembre 2026: Rastoke era
+  scritta come «un'ora, ingresso ~8 €» e si è rivelata un borgo-museo privato
+  che delude, mentre le cascate coi mulini si vedono benissimo dal ponte,
+  gratis.
+- **Preferisci le cose vive alle esposizioni.** A parità di posto, un rifugio
+  di animali, una falesia con i grifoni o un cantiere che lavora battono un
+  museo. Sempre dallo stesso viaggio: il santuario degli orsi di Kuterevo, a
+  quindici chilometri dalla rotta, è stato il momento più bello di una
+  giornata — e non era nell'itinerario; i musei proposti per una giornata di
+  pioggia sono stati invece rifiutati in blocco.
+- **Prevedi il tempo che avanza.** Ogni giornata di trasferimento dovrebbe
+  proporre il proprio candidato per l'ora libera, invece di lasciare che sia
+  chi viaggia a cercarselo.
 - **Sii onesto sui compromessi.** Se una scelta fa perdere qualcosa, scrivilo
   nel documento e diglielo nella risposta.
 

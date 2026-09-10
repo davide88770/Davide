@@ -16,7 +16,7 @@ in mano mentre si guida. Vedi [In viaggio: l'app](#in-viaggio-lapp) più sotto.
 ## In sintesi
 
 10 giorni · 9 notti · **4 basi** · ~2.215 km · 30h30 di guida · 2 traghetti ·
-3 paesi. Budget stimato per due: **2.396–3.496 €**.
+3 paesi. Budget stimato per due: **2.379–3.479 €**.
 
 | Notti | Date | Base | |
 |---|---|---|---|
@@ -238,7 +238,63 @@ disallinearlo dal suo Artifact pubblicato.
 Sul budget, l'app calcola il carburante sui chilometri effettivi
 (6,5–7,5 l/100 km a 1,75–1,80 €/l) invece di usare un valore fisso: sulla
 configurazione di riferimento sono 252–299 € contro i 245–300 € del road book,
-e il totale per due passa da 2.396–3.496 € a **2.388–3.505 €**.
+e il totale per due, dopo aver tolto Rastoke dagli ingressi, sta su **2.373–3.491 €**.
+
+## Riscontri dal viaggio
+
+Raccolti da Davide **in viaggio**, il 10 settembre 2026, a metà itinerario.
+Applicati subito a road book e app, non solo annotati.
+
+### Rastoke non valeva il biglietto
+
+> «il paesino non ne valeva la pena di pagare 8 € a testa per vedere la
+> ricostruzione di un paesino "finto", meglio vederlo da fuori e vedere le
+> cascate dalla strada senza pagare»
+
+Errore mio, e doppio. A Rastoke si paga due volte: **5 €** il camminamento del
+paese (ponte nuovo + passerella *Vodene tajne* nel canyon della Korana) e
+**~8 € a testa** il borgo-museo privato, che è la ricostruzione che ha
+deluso. Il road book scriveva «un'ora, ingresso ~8 €» **senza distinguere le
+due cose e senza dire che il colpo d'occhio migliore è gratis**, dal ponte e
+dalla strada.
+
+Corretto in entrambi i documenti: mezz'ora dal ponte, non un'ora dentro.
+Rastoke tolta anche dalla riga «Ingressi fissi» del budget (−16 € su due).
+
+### Il santuario degli orsi di Kuterevo mancava
+
+> «Oggi abbiamo aggiunto noi visto che avevamo tempo ma si poteva comunque
+> includere perché unico e spettacolare la visita al bear sanctuary
+> veramente emozionante»
+
+Buco vero nell'itinerario. Il **Velebitsko utočište za mlade medvjede** di
+Kuterevo sta **quindici chilometri sopra Otočac**, cioè in mezzo alla tratta
+Plitvice → traghetto del giorno 5: era sulla strada e non l'avevo visto.
+Primo rifugio croato per orsetti orfani, aperto nel 2002, tenuto da
+volontari, offerta libera. Non è uno zoo e non è un museo — che è
+esattamente il tipo di cosa che interessa a loro.
+
+Aggiunto al giorno 5 di road book e app, con il costo onesto: circa 1h30 col
+giro, quindi si punta al traghetto successivo invece di rincorrere quello
+prima.
+
+### Cosa ne ricavo per i prossimi giri
+
+- **Attrazioni ricostruite: mai a scatola chiusa.** Se una cosa è un borgo
+  "riportato com'era", va detto nel documento, e va detto se la stessa cosa
+  si vede gratis da fuori.
+- **Animali veri prima di esposizioni.** Vale anche a ritroso: i musei
+  dell'11 settembre erano stati bocciati con la stessa logica, i grifoni di
+  Beli no. Nel Quarnaro, per loro, il registro giusto è quello vivo.
+- **Il tempo che avanza va previsto.** Avevano tempo e hanno aggiunto da soli:
+  il documento dovrebbe proporre lui il candidato, per ogni giornata di
+  trasferimento.
+
+### Sull'app
+
+«Utile ma migliorabile» — i dettagli arrivano a fine vacanza. Da chiedere
+allora: cosa si cerca e non si trova, cosa si guarda più spesso, e se le
+schede sono nell'ordine giusto.
 
 ## Storico
 

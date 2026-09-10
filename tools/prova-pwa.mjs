@@ -60,6 +60,14 @@ controlla(man.display === 'standalone' && man.icone.every(s => s === 200),
   `manifest e ${man.icone.length} icone raggiungibili`);
 
 // ── 3. via la rete: entrambe si riaprono ──────────────────────────────────
+// Si fotografano prima i conteggi con la rete, e poi si pretende che offline
+// siano identici: cosi' la prova non va aggiornata ogni volta che l'itinerario
+// cambia una tappa.
+const conRete = await p.evaluate(() => ({
+  schede: document.querySelectorAll('.tab').length,
+  giornate: document.querySelectorAll('details.day').length,
+  fermate: document.querySelectorAll('.stopdot').length,
+}));
 console.log('\nSenza rete');
 await ctx.setOffline(true);
 await p.reload();
@@ -70,7 +78,9 @@ const v = await p.evaluate(() => ({
   fermate: document.querySelectorAll('.stopdot').length,
   spia: !document.getElementById('net').hidden,
 }));
-controlla(v.schede === 5 && v.giornate === 10 && v.fermate === 20, 'il viaggio si apre completo');
+controlla(v.schede === conRete.schede && v.giornate === conRete.giornate
+  && v.fermate === conRete.fermate && v.fermate > 0,
+  `il viaggio si apre completo (${v.schede} schede, ${v.giornate} giornate, ${v.fermate} fermate)`);
 controlla(v.spia, 'la spia "offline" si accende');
 await g.reload();
 await g.waitForTimeout(600);

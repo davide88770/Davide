@@ -1,0 +1,15 @@
+import { chromium } from 'playwright-core';
+import fs from 'node:fs';
+const CHROME='/opt/pw-browsers/chromium-1194/chrome-linux/chrome';
+const OUT='/tmp/claude-0/-home-user-Davide/f746a13e-d53b-5dcf-9a8c-0d476550360f/scratchpad';
+const body=fs.readFileSync('viaggi/2026-09-alpi-soca-quarnero/app-mobile.html','utf8');
+fs.writeFileSync(OUT+'/t.html','<!doctype html><html><head><meta charset="utf8"><style>body{margin:0}</style></head><body>'+body+'</body></html>');
+const b=await chromium.launch({executablePath:CHROME});
+const p=await b.newPage({viewport:{width:390,height:1100}});
+p.on('pageerror',e=>console.log('ERRORE',e.message));
+await p.goto('file://'+OUT+'/t.html'); await p.waitForTimeout(400);
+await p.click('#tab-mappa'); await p.waitForTimeout(400);
+await p.screenshot({path:OUT+'/mappa-k.png'});
+console.log('budget:', await p.evaluate(()=>budget().tot.join('–')+' €'));
+console.log('totale:', await p.evaluate(()=>DAYS.reduce((s,d)=>s+dayKm(d),0)+' km '+hm(DAYS.reduce((s,d)=>s+dayMin(d),0))));
+await b.close();
