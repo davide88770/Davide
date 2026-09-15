@@ -777,6 +777,26 @@ sola, non fa niente**. A parità di volume settimanale la frequenza doppia non
 batte quella singola in modo rilevabile. Il motivo per spezzare resta, ma è il
 volume per seduta.
 
+## Se l'app sembra aver perso i progressi
+
+Dalla **v44** la scheda Oggi mostra un avviso in alto quando trova giornate
+registrate con sedute che quella versione non conosce. Vuol dire quasi sempre
+una cosa sola: **l'app installata è tornata indietro a una versione vecchia.**
+
+I carichi **non sono persi** — restano in `localStorage` sotto la stessa chiave
+`ghisaegrammi.v1`, e un build vecchio li ignora senza riscriverli. Cosa fare:
+
+1. Chiudere l'app e riaprirla dal browser su `davide88770.github.io/Davide`,
+   aspettando l'avviso di aggiornamento.
+2. **Non** esportare e reimportare un backup fatto dalla versione vecchia: non
+   serve e rischia di sovrascrivere quello buono.
+
+La causa è sempre la stessa: un altro ramo del repo che ricostruisce questa app
+dal proprio checkout e ne sovrascrive `index.html` su `gh-pages`. Dalla v44 il
+workflow di *questo* ramo rifiuta di pubblicare una versione più vecchia di
+quella già online, ma **ogni ramo ha la propria copia del workflow**: finché gli
+altri non sono allineati, il problema può ripresentarsi da lì.
+
 ## Verificato
 
 Tre script, tutti obbligatori prima di pubblicare:
@@ -804,6 +824,21 @@ npm run prova:pwa                                # giro di aggiornamento dell'ap
 
 ## Storico
 
+- **v44** — **il 15 settembre l'app installata è tornata indietro a un build
+  precedente alla v17** e sembrava aver perso tutti i progressi. Non era vero:
+  quella versione non conosceva gli id delle sedute (`t_*`, `q_*`, `rv_*`),
+  quindi le giornate registrate erano illeggibili, non cancellate — verificato
+  caricando lo stato attuale nel build vecchio: 35 sedute dentro, 35 fuori,
+  carichi intatti. **Causa:** il workflow di un altro ramo ricostruisce anche
+  Ghisa & Grammi dal proprio checkout, che ha una copia vecchia di `app.html`, e
+  ne sovrascrive `index.html` alla radice di `gh-pages`. Il controllo esistente
+  guardava solo i file *cancellati*, non quelli *sovrascritti*. Tre interventi:
+  `gh-pages` ripristinato alla v43 a mano, senza toccare le altre app; guardia
+  nel workflow che rifiuta di pubblicare una versione più vecchia di quella
+  online (e blocca anche un build così vecchio da non avere la costante
+  `VERSIONE`); e in app un **avviso** che conta le giornate registrate con
+  sedute sconosciute e spiega che i carichi ci sono ancora, invece di lasciare
+  la schermata vuota.
 - **v43** — **terza programmazione: 3 full body**, Lun · Mer · Ven. È la scheda
   jolly, non una Top ridotta: 50 serie in 160 minuti, nessuna seduta sopra i 54,
   e l'obiettivo è *tenere* invece di costruire — sopra la soglia di mantenimento
