@@ -7,8 +7,9 @@ name: Pubblica le PWA
 #   /            Ghisa & Grammi   (allenamento e alimentazione)
 #   /giordania/  La Grande Frattura (road book, novembre 2026)
 #
-# La radice non si tocca: e' il percorso da cui l'app fitness e' gia' stata
-# installata sul telefono, e cambiarlo la scollegherebbe.
+# Da questo ramo si pubblica SOLTANTO /giordania/. La radice ospita l'app di
+# allenamento, che viene pubblicata dal suo ramo: qui non si tocca, ne' per
+# spostarla ne' per ricostruirla.
 # Nessuna impostazione da toccare: Pages si e' attivato con la creazione del
 # ramo, e questo workflow si limita ad aggiornarne il contenuto.
 
@@ -16,9 +17,7 @@ on:
   push:
     branches: [claude/artifact-code-session-g1s37q, claude/travel-app-premium-7pz1bq, main]
     paths:
-      - 'fitness/ghisa-e-grammi/app.html'
       - 'viaggi/2026-11-giordania/roadbook.html'
-      - 'pwa/icone/**'
       - 'pwa-giordania/icone/**'
       - 'tools/build-pwa.mjs'
       - 'tools/app-pwa.mjs'
@@ -49,29 +48,27 @@ jobs:
         run: |
           rm -rf _sito
           mkdir -p _sito/giordania
-          cp -r pwa/. _sito/
+          # NON si copia pwa/ nella radice. La copia di
+          # fitness/ghisa-e-grammi/app.html su questo ramo e' vecchia, e
+          # pubblicarla riporta indietro l'app installata sul telefono: il
+          # 15 settembre 2026 e' tornata a un build precedente alla v17, che
+          # non riconosce gli id delle sedute registrate e sembrava aver perso
+          # tutti i carichi. Il controllo piu' sotto non se n'era accorto
+          # perche' guarda i file CANCELLATI, non quelli sovrascritti.
           cp -r pwa-giordania/. _sito/giordania/
           touch _sito/.nojekyll
 
       - name: Controlla che siano pagine sensate
         run: |
-          test -s _sito/index.html
-          test -s _sito/manifest.webmanifest
-          test -s _sito/sw.js
           test -s _sito/giordania/index.html
           test -s _sito/giordania/manifest.webmanifest
           test -s _sito/giordania/sw.js
-          grep -q 'Ghisa' _sito/index.html
           grep -q 'Grande Frattura' _sito/giordania/index.html
-          grep -q 'serviceWorker' _sito/index.html
           grep -q 'serviceWorker' _sito/giordania/index.html
-          # le due app devono avere cache distinte, o si sovrascrivono a vicenda
-          grep -q "CACHE = 'ghisa-e-grammi-" _sito/sw.js
+          # la cache deve essere solo la sua, o si sovrascrive con l'altra app
           grep -q "CACHE = 'giordania-"      _sito/giordania/sw.js
-          # e ciascun service worker deve rispondere solo alle proprie pagine
-          grep -q 'miaNavigazione' _sito/sw.js
+          # e il service worker deve rispondere solo alle proprie pagine
           grep -q 'miaNavigazione' _sito/giordania/sw.js
-          echo "radice    $(wc -c < _sito/index.html) byte"
           echo "giordania $(wc -c < _sito/giordania/index.html) byte"
 
       - name: Aggiorna il ramo gh-pages
@@ -120,6 +117,6 @@ jobs:
         run: |
           sito="https://${GITHUB_REPOSITORY_OWNER}.github.io/${GITHUB_REPOSITORY#*/}"
           {
-            echo "- Ghisa & Grammi: ${sito}/"
             echo "- La Grande Frattura: ${sito}/giordania/"
+            echo "- (Ghisa & Grammi su ${sito}/ non viene toccata da questo ramo)"
           } >> $GITHUB_STEP_SUMMARY
