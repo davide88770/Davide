@@ -61,6 +61,32 @@ jobs:
             git -C pubblicato checkout -qb gh-pages
           fi
           ( ls -A pubblicato 2>/dev/null | grep -vx '.git' || true ) | sort > prima.txt
+
+          # Il controllo sotto guarda solo i file CANCELLATI. Non bastava: un
+          # ramo che ricostruisce Ghisa & Grammi dal proprio checkout vecchio
+          # SOVRASCRIVE index.html con un build precedente, non lo cancella, e
+          # passava liscio. E' successo davvero: l'app installata e' tornata a
+          # una versione pre-v17, che non conosceva gli id delle sedute
+          # registrate e sembrava aver perso tutti i carichi.
+          # Qui si confronta la versione online con quella che si sta per
+          # pubblicare, e non si scende mai di versione.
+          ver() { grep -o "VERSIONE = { n:'v[0-9]\+'" "$1" 2>/dev/null | head -1 | grep -o '[0-9]\+' || true; }
+          online="$(ver pubblicato/index.html)"; nuova="$(ver pwa/index.html)"
+          echo "Ghisa & Grammi: online v${online:-?} · in pubblicazione v${nuova:-?}"
+          if [ -n "$online" ] && [ -z "$nuova" ]; then
+            # Il build in arrivo e' talmente vecchio da non avere nemmeno la
+            # costante VERSIONE: e' il caso che ha rotto l'app installata.
+            echo "ERRORE: online c'e' la v$online e questo ramo pubblicherebbe un build senza versione,"
+            echo "cioe' precedente alla v17. Allinea fitness/ghisa-e-grammi/app.html su questo ramo."
+            exit 1
+          fi
+          if [ -n "$online" ] && [ -n "$nuova" ] && [ "$online" -gt "$nuova" ]; then
+            echo "ERRORE: online c'e' la v$online e questo ramo pubblicherebbe la v$nuova."
+            echo "Questo ramo ha una copia vecchia di fitness/ghisa-e-grammi/app.html."
+            echo "Allinealo, oppure togli la build di Ghisa & Grammi dal suo workflow."
+            exit 1
+          fi
+
           cp -a pwa/. pubblicato/
           ( ls -A pubblicato 2>/dev/null | grep -vx '.git' || true ) | sort > dopo.txt
           echo "gia' online: $(tr '\n' ' ' < prima.txt)"

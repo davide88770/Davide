@@ -1509,7 +1509,7 @@ const CONS_FONTI = [
 /* Versione dell'app. Serve a sapere, dal telefono, se quello che hai davanti e'
    l'ultima versione: la PWA installata puo' restare indietro se iOS non rifa'
    la navigazione. Il numero si alza a ogni pubblicazione. */
-const VERSIONE = { n:'v43', data:'23 agosto 2026', nota:'Terza programmazione: 3 full body, la scheda jolly' };
+const VERSIONE = { n:'v44', data:'15 settembre 2026', nota:'Avviso quando l’app è tornata indietro e non sa leggere le giornate registrate' };
 
 const ATTREZZI = [
   ['Rack, bilanciere, panca regolabile', 1, 'Panca piana, stacco romeno, curl bilanciere, military press, panca inclinata per croci, curl e rematore col petto appoggiato'],
@@ -1971,6 +1971,26 @@ function serieLog(d, i, n){
    a far partire il recupero e a segnare l'avanzamento, non a salvare. */
 const serieValida = r => !!r && (r.ok || (+r.kg > 0 && +r.rep > 0));
 
+/* ── giornate che questa versione non sa leggere ─────────────────────────
+   Il 15 settembre 2026 il ramo gh-pages e' stato sovrascritto dal build di un
+   altro ramo, precedente alla v17: quella versione non conosceva gli id delle
+   sedute (t_*, q_*, rv_*), quindi tutte le giornate registrate sparivano dalla
+   vista e l'app sembrava svuotata dei carichi. I dati erano intatti, solo
+   illeggibili — ma dall'app non si capiva, e sembrava una perdita.
+   Adesso lo dice. Se un giorno ti ritrovi davanti una versione vecchia, il
+   messaggio ti spiega cosa sta succedendo prima che tu pensi di aver perso
+   tutto. */
+function sedutePerse(){
+  const ids = new Set(), giorni = [];
+  for(const [d,L] of Object.entries(S.sess || {})){
+    if(!L || !L.sid || SESS[L.sid]) continue;
+    const conCarichi = Object.values(L.set || {}).some(r => (r||[]).some(serieValida));
+    if(!conCarichi) continue;
+    ids.add(L.sid); giorni.push(d);
+  }
+  return { n: giorni.length, ids: [...ids], dal: giorni.sort()[0], al: giorni.sort().slice(-1)[0] };
+}
+
 /* ── testi riscritti da te ───────────────────────────────────────────────
    Nome, tecnica e nota di ogni esercizio si possono riscrivere. La chiave e'
    SEMPRE il nome originale del piano, mai quello nuovo: cosi' rinominare un
@@ -2395,7 +2415,21 @@ function renderOggi(){
          <div style="font-family:var(--display);font-size:22px;letter-spacing:.02em;text-transform:uppercase">Riposo</div>
          <p class="small muted" style="margin:6px 0 0">Bici zona 2 (125-140 bpm), 35-40 min. Se il peso è fermo da 2 settimane, aggiungi un’uscita <em>prima</em> di tagliare le calorie.</p></div>`;
 
+  const perse = sedutePerse();
+  const avvisoPerse = perse.n ? `<div class="card pad" style="background:var(--warn-soft);color:var(--warn-text);border-color:var(--warn)">
+    <div class="row" style="gap:10px;align-items:flex-start">${ICO.alert}
+      <div><b class="small">${perse.n} giornate registrate non sono leggibili da questa versione</b>
+        <p class="small" style="margin:6px 0 0">Vanno dal ${esc(dataCorta(perse.dal))} al ${esc(dataCorta(perse.al))} e usano
+          sedute che questa versione dell’app non conosce (${esc(perse.ids.join(', '))}). <b>I carichi non sono persi:</b>
+          sono in memoria, solo non visualizzabili. Vuol dire quasi sempre che l’app installata è tornata indietro a una
+          versione vecchia.</p>
+        <p class="small" style="margin:6px 0 0">Cosa fare: chiudi l’app, riaprila dal browser su
+          <b>davide88770.github.io/Davide</b> e aspetta l’avviso di aggiornamento. <b>Non esportare e non reimportare</b>
+          un backup da questa versione: non serve, e rischi di sovrascrivere quello buono.</p>
+      </div></div></div>` : '';
+
   $('#view-oggi').innerHTML = `
+  ${avvisoPerse}
   <div class="hero">
     <div class="datenav noprint">
       <button class="iconbtn" data-giorno="-1" aria-label="Giorno precedente">${ICO.prev}</button>
