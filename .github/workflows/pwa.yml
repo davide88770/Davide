@@ -5,9 +5,11 @@ name: Pubblica le PWA
 # Nessuna impostazione da toccare: Pages si e' attivato con la creazione del
 # ramo, e questo workflow si limita ad aggiornarne il contenuto.
 #
-# La cartella pwa/ diventa la radice del sito, quindi:
-#   pwa/          -> /            Ghisa & Grammi
+# La cartella pwa/ diventa la radice del sito. Da questo ramo si pubblica
+# SOLTANTO il viaggio:
 #   pwa/viaggio/  -> /viaggio/    Alpi, Soca & Quarnero
+# La radice / ospita Ghisa & Grammi, che viene pubblicata dal suo ramo e qui
+# non si tocca.
 
 on:
   push:
@@ -16,7 +18,6 @@ on:
       - claude/alpi-soca-quarnero-mobile-8xceuf
       - main
     paths:
-      - 'fitness/ghisa-e-grammi/app.html'
       - 'viaggi/2026-09-alpi-soca-quarnero/app-mobile.html'
       - 'pwa/**/icone/**'
       - 'tools/build-pwa.mjs'
@@ -46,7 +47,7 @@ jobs:
 
       - name: Controlla che siano pagine sensate
         run: |
-          for d in pwa pwa/viaggio; do
+          for d in pwa/viaggio; do
             test -s "$d/index.html"
             test -s "$d/manifest.webmanifest"
             test -s "$d/sw.js"
@@ -56,13 +57,10 @@ jobs:
             test -s "$d/icone/icona-maskable-512.png"
             echo "$d/index.html $(wc -c < "$d/index.html") byte"
           done
-          grep -q 'Ghisa' pwa/index.html
           grep -q 'Quarnero' pwa/viaggio/index.html
           # Ogni service worker deve ripulire solo le proprie cache e servire
           # solo il proprio indice: sotto lo stesso dominio vivono due app.
-          grep -q "startsWith('ghisa-e-grammi-')" pwa/sw.js
           grep -q "startsWith('viaggio-')" pwa/viaggio/sw.js
-          grep -q 'mio(url.pathname)' pwa/sw.js
           grep -q 'mio(url.pathname)' pwa/viaggio/sw.js
 
       - name: Aggiorna il ramo gh-pages
@@ -81,6 +79,18 @@ jobs:
             git -C pubblicato init -q
             git -C pubblicato checkout -qb gh-pages
           fi
+
+          # Ghisa & Grammi NON si pubblica da questo ramo. La copia di
+          # fitness/ghisa-e-grammi/app.html che sta qui e' vecchia: pubblicarla
+          # riporta indietro l'app installata sul telefono, che smette di
+          # riconoscere le sedute registrate e sembra aver perso tutti i
+          # carichi. Il 15 settembre 2026 e' successo davvero, e il controllo
+          # sotto non se n'era accorto perche' guarda solo i file CANCELLATI,
+          # non quelli sovrascritti.
+          # Questo ramo pubblica soltanto pwa/viaggio/.
+          rm -f  pwa/index.html pwa/manifest.webmanifest pwa/sw.js
+          rm -rf pwa/icone
+
           ( ls -A pubblicato 2>/dev/null | grep -vx '.git' || true ) | sort > prima.txt
           cp -a pwa/. pubblicato/
           ( ls -A pubblicato 2>/dev/null | grep -vx '.git' || true ) | sort > dopo.txt
@@ -119,5 +129,5 @@ jobs:
       - name: Dove stanno
         run: |
           sito="https://${GITHUB_REPOSITORY_OWNER}.github.io/${GITHUB_REPOSITORY#*/}"
-          echo "Ghisa & Grammi: $sito/"          >> $GITHUB_STEP_SUMMARY
           echo "Alpi, Soca & Quarnero: $sito/viaggio/" >> $GITHUB_STEP_SUMMARY
+          echo "(Ghisa & Grammi su $sito/ non viene toccata da questo ramo)" >> $GITHUB_STEP_SUMMARY
