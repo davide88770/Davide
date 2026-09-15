@@ -70,10 +70,12 @@ jobs:
           # registrate e sembrava aver perso tutti i carichi.
           # Qui si confronta la versione online con quella che si sta per
           # pubblicare, e non si scende mai di versione.
+          # Se pwa/index.html non esiste, questo ramo non pubblica Ghisa &
+          # Grammi e non c'e' niente da confrontare: si tira dritto.
           ver() { grep -o "VERSIONE = { n:'v[0-9]\+'" "$1" 2>/dev/null | head -1 | grep -o '[0-9]\+' || true; }
           online="$(ver pubblicato/index.html)"; nuova="$(ver pwa/index.html)"
           echo "Ghisa & Grammi: online v${online:-?} · in pubblicazione v${nuova:-?}"
-          if [ -n "$online" ] && [ -z "$nuova" ]; then
+          if [ -f pwa/index.html ] && [ -n "$online" ] && [ -z "$nuova" ]; then
             # Il build in arrivo e' talmente vecchio da non avere nemmeno la
             # costante VERSIONE: e' il caso che ha rotto l'app installata.
             echo "ERRORE: online c'e' la v$online e questo ramo pubblicherebbe un build senza versione,"
