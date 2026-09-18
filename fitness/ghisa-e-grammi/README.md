@@ -110,16 +110,18 @@ scritta anche dentro l'app, in fondo alla sezione Piano):
 ## Le tre programmazioni
 
 Due da quattro sedute e una da tre, con l'interruttore in Piano. Lo storico dei
-carichi vale su tutte e tre: **nessun esercizio del full body è nuovo**, sono
-tutti già presenti nelle altre due, quindi passando da una all'altra non riparti
-da zero su niente.
+carichi vale su tutte e tre, perché è legato al **nome dell'esercizio**, non
+alla scheda: passando da una all'altra tutto quello che hai registrato continua
+a valere. Dalla **v46** vale anche al contrario — una scheda riscritta non
+riscrive il passato, perché ogni serie registrata si porta dietro il nome che
+l'esercizio aveva quel giorno.
 
 | | 4 sedute Top | 4 sedute | 3 full body |
 |---|---|---|---|
 | Giorni | Lun · Mar · Gio · Ven | Lun · Mar · Gio · Ven | Lun · Mer · Ven |
-| Serie dirette | 73 | 61 | **50** |
-| Minuti a settimana | 227 | 227 | **160** |
-| Seduta più lunga | 69 min | 65 min | **54 min** |
+| Serie dirette | 78 | 61 | **50** |
+| Minuti a settimana | 248 | 227 | **160** |
+| Seduta più lunga | 71 min | 65 min | **54 min** |
 | Serie per esercizio | 2-3 | **2, salvo eccezioni** | 2-3 |
 | A cosa serve | spingere | tirare ogni serie a fondo | **tenere** |
 
@@ -242,24 +244,72 @@ tutte e quattro le sedute:
 3. **L'unico esercizio di braccio che quel giorno porta tutto il muscolo** —
    push-down a un braccio, overhead a un braccio, curl bilanciere.
 
-Dalla **v36 la Top non ha nessun gruppo sotto il riferimento**, e rispetta tutti
-e cinque i vincoli del piano — tetto delle tre serie per esercizio compreso.
-Dove sta sopra è voluto: **femorali 11 contro 9 di accosciata** è il rapporto
-che Nippard ed Emmerich tengono sulle gambe (fino alla v33 era rovesciato, 7
-contro 11), e **spalle 8** perché il deltoide laterale sta a 5 serie su due
-giorni — a 3 su uno solo era il punto più debole della scheda.
+Dalla **v36 la Top non ha nessun gruppo sotto il riferimento**, e dalla **v46**
+è stata ricalibrata come mix delle due: tiene il suo impianto — volume alto, tre
+alzate di forza, superset antagonisti — e si prende dalla "4 sedute" le quattro
+cose che lì funzionavano meglio.
+
+**Cosa è entrato dalla 4 sedute**
+
+1. **Il deltoide posteriore.** Era il buco vero: **zero serie dirette** su tre
+   versioni della scheda. Ora 4, in superset con le alzate laterali, due volte a
+   settimana. In superset perché laterale e posteriore sono due capi diversi che
+   non competono: il tempo in più è solo quello di lavoro.
+2. **Un curl per seduta bassa, a braccia fresche.** Prima tutti e quattro i curl
+   arrivavano dopo sei serie di tirate. Ora i due più pesanti — bilanciere e
+   cavo dietro il corpo — stanno nelle giornate di gamba.
+3. **Una regola di cedimento dichiarata**, non implicita: **RIR 1** sulle alzate
+   di forza, **cedimento tecnico** su tutto il resto. Prima era un generico
+   «RIR 0-2» che lasciava decidere ogni volta.
+4. **Tre esercizi migliori a parità di posto**: pressa a piede alto e basso
+   *alternati*, curl martello su panca *inclinata*, overhead a *un braccio* al
+   cavo basso.
+
+**Cosa è restato della Top:** le tre alzate di forza del lunedì e del martedì,
+il rematore coi gomiti alti come unica dose di trapezio, **due vettori di petto
+veri** (panca piana e inclinata, non due inclinate come nell'altra scheda), la
+tirata verticale e quella orizzontale in tutte e due le sedute alte, i superset
+antagonisti sulle braccia.
+
+**Nessun nome nuovo:** i tre esercizi arrivati esistono già nella "4 sedute",
+quindi lo storico dei carichi si porta dietro tutto.
+
+| Gruppo | Riferimento | 4 sedute Top (v46) | 4 sedute (v45) |
+|---|---|---|---|
+| Petto | 8 | **8** | 9 |
+| Dorso | 8 | **8** | 7 |
+| Trapezi | 3 | **3** | 2 |
+| Spalle | 7 | 12 | **7** |
+| Bicipiti | 8 | **8** | 7 |
+| Tricipiti | 8 | **8** | 6 |
+| Accosciata | 8 | 10 | **8** |
+| Leg curl + stacco | 9 | 11 | 7 |
+| Polpacci | 3 | 4 | 4 |
+| Addome | 6 | **6** | 4 |
+| **Totale** | **68** | **78** | **61** |
+
+**Spalle 12 non è un errore, ed è il numero che va letto per esteso: anteriore
+3, laterale 5, posteriore 4.** Il riferimento di 7 trattava la spalla come un
+muscolo solo. Sono tre: l'anteriore prende già molto dalle spinte — per questo
+il military resta a 3 serie e non sale — mentre laterale e posteriore sono i due
+che senza lavoro diretto non crescono. **Femorali 11 contro 10 di accosciata** è
+il rapporto che Nippard ed Emmerich tengono sulle gambe (fino alla v33 era
+rovesciato, 7 contro 11).
 
 | | 4 sedute Top | 4 sedute |
 |---|---|---|
 | Giorni | Lun Upper A · Mar Lower A · Gio Upper B · Ven Lower B | Lun Upper A · Mar Lower A · Gio Upper B · Ven Lower B |
 | Liberi | Mercoledì, sabato, domenica | Mercoledì, sabato, domenica |
-| Esercizi per seduta | 6-9 | 6-7 |
-| Serie per seduta | 14-22 | 14-17 |
-| Durate | 69, 58, 56, 44 min | 65, 58, 51, 53 min |
+| Esercizi per seduta | 7-9 | 6-7 |
+| Serie per seduta | 17-22 | 14-17 |
+| Serie a settimana | 78 | 61 |
+| Durate | 71, 65, 58, 54 min | 65, 58, 51, 53 min |
+| Minuti a settimana | 248 | 227 |
 | Serie per esercizio | 2-3 | 2, tranne le tre eccezioni sopra |
-| Vicinanza al cedimento | RIR 0-2 | cedimento tecnico su tutto, salvo l'alzata di forza a RIR 1 |
-| Braccia | 4 esercizi × 2 serie, in superset, nelle sedute alte | 1 esercizio × 3 serie per muscolo per seduta, bicipiti nelle basse |
-| Superset | 8 esercizi | nessuno |
+| Vicinanza al cedimento | RIR 1 sulle alzate di forza, cedimento tecnico sul resto | idem |
+| Bicipiti | 2 curl nelle sedute basse (fresche) + 2 in superset nelle alte | 2 curl nelle sedute basse |
+| Deltoide posteriore | 4 serie, 2× | 2 serie, 1× |
+| Superset | 8 esercizi (braccia e spalle) | nessuno |
 
 Le durate sono calcolate, non stimate: serie × (45 secondi di lavoro + recupero
 previsto), 75 secondi per gli esercizi a un arto per volta, più mezzo minuto per
@@ -267,83 +317,94 @@ la serie finale intensificata. Riscaldamento e stretching fuori dal conto.
 
 ### La "4 sedute Top", seduta per seduta
 
-**Upper A — Lunedì · 22 serie · forza**
+**Upper A — Lunedì · 9 esercizi · 22 serie · 71 min · forza**
 
 | Esercizio | Serie × rip | Tecnica | Rec. |
 |---|---|---|---|
-| Panca piana bilanciere | 3 × 4-6 | RIR 1-2 · forza | 240 s |
-| Trazioni zavorate / Lat machine singola | 3 × 6-8 | RIR 1-2 · forza | 180 s |
-| Military press seduto | 3 × 5-7 | RIR 1-2 · forza | 210 s |
+| Panca piana bilanciere | 3 × 4-6 | RIR 1 · forza | 240 s |
+| Trazioni zavorate / Lat machine singola | 3 × 6-8 | RIR 1 · forza | 180 s |
+| Military press — seduto | 3 × 5-7 | RIR 1 · forza | 210 s |
 | Rematore manubri gomiti alti (trapezi) | 3 × 10-15 | + Rest-pause | 150 s |
-| Alzate laterali sdraiato — panca inclinata | 2 × 10-12 | + Rest-pause | 90 s |
-| Curl bilanciere — allungamento | 2 × 8-10 | Superset A + Drop set | — |
+| Alzate laterali sdraiato — panca inclinata | 2 × 10-12 | Superset C | — |
+| Alzate posteriori al cavo alto | 2 × 15-20 | Superset C + Rest-pause | 120 s |
+| Curl martello su panca inclinata | 2 × 10-12 | Superset A | — |
 | Push-down alla corda | 2 × 10-12 | Superset A + Drop set | 120 s |
-| Curl ai cavi dietro il corpo — Bayesian | 2 × 10-12 | Superset B | — |
-| Tricipite overhead corda | 2 × 10-12 | Superset B + Rest-pause | 90 s |
+| Tricipite overhead — corda | 2 × 10-12 | + Rest-pause | 90 s |
 
-**Lower A — Martedì · 16 serie · forza**
+**Lower A — Martedì · 7 esercizi · 18 serie · 65 min · forza**
 
 | Esercizio | Serie × rip | Tecnica | Rec. |
 |---|---|---|---|
-| Hack squat piede basso | 3 × 5-8 | RIR 1-2 · forza | 240 s |
-| Romanian deadlift | 3 × 6-8 | RIR 1-2 · forza | 240 s |
+| Hack squat — piede basso | 3 × 5-8 | RIR 1 · forza | 240 s |
+| Romanian deadlift bilanciere | 3 × 6-8 | RIR 1 · forza | 240 s |
 | Sissy squat | 2 × 10-15 | + Rest-pause | 150 s |
 | Leg curl manubri / pulley | 3 × 12-15 | + Drop set | 120 s |
 | Calf raise in piedi | 2 × 8-12 | + Rest-pause | 120 s |
+| Curl bilanciere — focus allungamento | 2 × 8-10 | + Drop set | 150 s |
 | D'Annunzio crunch | 3 × 10-15 | + Rest-pause | 90 s |
 
-**Upper B — Giovedì · 21 serie · volume**
+**Upper B — Giovedì · 9 esercizi · 21 serie · 58 min · volume**
 
 | Esercizio | Serie × rip | Tecnica | Rec. |
 |---|---|---|---|
 | Panca inclinata manubri 30° | 3 × 8-12 | + Drop set | 150 s |
 | Pulley basso — presa neutra | 3 × 8-12 | + Rest-pause | 150 s |
 | Lat machine unilaterale — maniglia | 2 × 10-12 | + Rest-pause | 120 s |
-| Croci manubri | 2 × 10-12 | RIR 0-1 + Allungamento | 120 s |
-| Alzate laterali ai cavi | 3 × 12-15 | + Drop set | 90 s |
-| Curl hammer manubri | 2 × 10-12 | Superset A | — |
-| Push-down triangolo largo | 2 × 10-12 | Superset A + Drop set | 120 s |
-| Curl manubri su panca inclinata | 2 × 8-10 | Superset B | — |
-| Tricipite overhead — 2ª freq. | 2 × 12-15 | Superset B + Rest-pause | 90 s |
+| Croci manubri | 2 × 10-12 | + Allungamento | 120 s |
+| Alzate laterali ai cavi | 3 × 12-15 | Superset C | — |
+| Alzate posteriori al cavo alto | 2 × 15-20 | Superset C + Rest-pause | 90 s |
+| Curl manubri su panca inclinata | 2 × 8-10 | Superset A | — |
+| Push-down — triangolo largo | 2 × 10-12 | Superset A + Drop set | 120 s |
+| Overhead a un braccio — cavo basso | 2 × 10-12 | + Rest-pause | 120 s |
 
-**Lower B — Venerdì · 14 serie · volume**
+**Lower B — Venerdì · 7 esercizi · 17 serie · 54 min · volume**
 
 | Esercizio | Serie × rip | Tecnica | Rec. |
 |---|---|---|---|
+| Pressa — piede alto e basso alternati | 3 × 8-12 | + Drop set | 180 s |
 | Stacco a gambe tese — manubri | 2 × 10-12 | RIR 1-2 | 180 s |
-| Pressa piede alto | 2 × 10-12 | + Drop set | 180 s |
 | Sissy squat — eccentrica 5 sec | 2 × 8-10 | Eccentrica lenta | 150 s |
-| Leg curl sdraiato manubri | 3 × 12-15 | + Drop set | 120 s |
+| Leg curl sdraiato — manubri | 3 × 12-15 | + Drop set | 120 s |
 | Calf pressa | 2 × 12-15 | + Rest-pause | 90 s |
-| Crunch cavo alto | 3 × 10-15 | + Rest-pause | 90 s |
+| Curl ai cavi dietro il corpo — Bayesian | 2 × 10-12 | + Drop set | 150 s |
+| Crunch al cavo alto | 3 × 10-15 | + Rest-pause | 90 s |
+
+**I tre esercizi usciti dalla Top:** curl hammer in piedi, tricipite overhead a
+due mani (2ª frequenza), pressa a piede alto fisso. Restano leggibili nei
+grafici: dalla v46 ogni serie registrata si porta dietro il nome che
+l'esercizio aveva quel giorno.
 
 ### Le tecniche, e perché stanno dove stanno
 
-- **Superset solo sulle braccia, e solo fra antagonisti.** Curl + tricipite
-  nell'Upper A, hammer + push-down e curl EZ + overhead nell'Upper B. Non
-  competono per lo stesso muscolo, quindi il secondo non parte penalizzato, e
-  la coda della seduta si chiude in metà tempo senza perdere tensione. Mai
-  superset sui compound pesanti: lì il recupero pieno *è* l'allenamento.
+- **Superset fra muscoli che non competono.** Sulle braccia fra antagonisti —
+  curl + push-down in tutte e due le sedute alte — e, dalla v46, sulle spalle
+  fra capi diversi: alzate laterali + alzate posteriori. Il secondo esercizio
+  non parte penalizzato, e la coda della seduta si chiude in metà tempo senza
+  perdere tensione. Mai superset sui compound pesanti: lì il recupero pieno *è*
+  l'allenamento.
 - **Drop set dove il carico si può togliere in tre secondi.** Manubri, cavi,
   pressa. Sull'ultima serie, mai su tutte.
-- **Rest-pause dove il drop set non si può fare** — Yates, sissy, calf, addome.
-- **Quattro esercizi di braccia da 2 serie per seduta**, non due da 3. Stesso
-  tempo, ma due angoli in più: sul bicipite il bilanciere per il carico e il
-  cavo dietro il corpo per la tensione dove il braccio è allungato (col
-  bilanciere, a braccia distese, il momento è quasi zero proprio lì); sul
-  tricipite l'overhead in allungamento e il push-down in accorciamento.
+- **Rest-pause dove il drop set non si può fare** — rematore, sissy, calf,
+  addome, alzate posteriori.
+- **I due curl più pesanti nelle sedute basse.** Bilanciere il martedì, cavo
+  dietro il corpo il venerdì: lì il bicipite arriva senza le sei serie di
+  tirate che aveva davanti fino alla v45. Gli altri due restano in superset
+  nelle sedute alte — martello su panca inclinata il lunedì, manubri su panca
+  inclinata il giovedì.
 - **Eccentrica da 5 secondi** sul sissy del venerdì (2 serie): è lo stesso esercizio del
   martedì, e la differenza di esecuzione è quello che lo rende un secondo
   stimolo invece che una ripetizione.
-- **Niente tecniche sulle cinque alzate di forza.** Lì si sale di carico, e
-  basta.
+- **Niente tecniche sulle alzate di forza.** Lì si sale di carico, e basta.
 
 ### L'alzata di forza in testa a ogni seduta
 
 Ogni seduta apre con un'alzata pesante, subito dopo la mobilità, con recuperi da
 tre a quattro minuti e un range basso in cui l'unica variabile che si muove è il
-carico. Nella Top sono cinque (panca, trazioni zavorate, military, hack squat,
-stacco romeno) e stanno tutte nelle due giornate di lunedì e martedì.
+carico. Nella Top sono cinque (panca piana, trazioni zavorate, military, hack
+squat, stacco romeno) e stanno tutte nelle due giornate di lunedì e martedì.
+**Lì non si va a cedimento: RIR 1.** Sulla forza la vicinanza al cedimento non
+aggiunge niente e costa articolazioni e sistema nervoso (Robinson 2024); è
+sull'isolamento che il cedimento fa il lavoro.
 
 ### La "4 sedute", seduta per seduta
 
@@ -431,7 +492,10 @@ progressi, sotto il nome vecchio.
 7. Carico massimo dove il muscolo è lungo; i due estremi della curva sul
    tricipite; una tirata verticale e una orizzontale.
 
-La **Top** li rispetta tutti, tetto delle tre serie per esercizio compreso.
+La **Top** rispetta il tetto delle tre serie per esercizio e tutti gli altri
+tranne il quinto, che dalla **v46** rompe anche lei: un curl per giornata di
+gamba, per gli stessi motivi dell'altra scheda. Sul sesto sta larga di
+proposito sulle spalle, e il perché è scritto sopra.
 
 La **4 sedute** dalla v45 ne rompe tre, tutti dichiarati:
 
@@ -491,9 +555,9 @@ La meta-regressione sul volume **per singola seduta** (2025) colloca intorno a
 **11 serie frazionali** il punto oltre il quale, nella stessa sessione, le serie
 in più sullo stesso muscolo non mostrano un vantaggio rilevabile. L'app lo
 controlla a ogni apertura e lo dice in chiaro nella scheda Programmazione.
-Tutte e tre le programmazioni sono sotto soglia su tutti i gruppi: nella
-4 sedute, dalla v45, il massimo è **5,5 serie frazionali** in una singola
-seduta.
+Tutte e tre le programmazioni sono sotto soglia su tutti i gruppi. Il massimo
+è **8,5 serie frazionali** — le spalle nell'Upper A della Top — contro le 11
+della soglia; nella 4 sedute il massimo è 5,5.
 
 ### Le sedute archiviate
 
@@ -834,6 +898,34 @@ sola, non fa niente**. A parità di volume settimanale la frequenza doppia non
 batte quella singola in modo rilevabile. Il motivo per spezzare resta, ma è il
 volume per seduta.
 
+## Lo storico non si riscrive
+
+Il log salva le serie **per indice** dentro la seduta (`set: {0:[…], 1:[…]}`),
+e fino alla v45 il **nome** veniva letto dalla definizione viva della scheda. La
+conseguenza: riscrivere una scheda riscriveva anche il passato. Dopo la v45 le
+serie di panca piana registrate a luglio comparivano nel grafico della panca
+inclinata, perché quell'indice ora ospitava un altro esercizio. I carichi erano
+giusti, l'etichetta no — ed è peggio che perderli, perché sembrano veri.
+
+Dalla **v46**:
+
+- ogni serie registrata si porta dietro il nome che l'esercizio aveva quel
+  giorno (`L.nomi[i]`), scritto nel momento in cui spunti la serie o digiti un
+  valore;
+- due **fotografie congelate** degli indici di prima (`NOMI_STORICI`, una per le
+  sedute della "4 sedute" fino al 18/09/2026 e una per quelle della Top) rimettono
+  il nome giusto su tutto quello che era già registrato. La procedura gira
+  all'apertura e dopo ogni import, una volta sola;
+- i grafici e il selettore leggono il nome congelato, non quello di oggi.
+
+Effetto collaterale utile: una giornata registrata resta leggibile anche se
+quella seduta oggi ha meno esercizi, o se l'id della seduta non esiste più in
+nessuna programmazione.
+
+`tools/prova-dati.mjs` semina cinque giornate vecchie sugli indici che hanno
+cambiato esercizio e fallisce se una di loro finisce sotto il nome sbagliato.
+Togliendo la migrazione, la prova fallisce — è stata verificata così.
+
 ## Se l'app sembra aver perso i progressi
 
 Dalla **v44** la scheda Oggi mostra un avviso in alto quando trova giornate
@@ -879,13 +971,35 @@ npm run prova:pwa                                # giro di aggiornamento dell'ap
   JS. È la prova che mancava: `verify` gira su un profilo vuoto, e con il
   profilo vuoto metà dell'app non viene mai eseguita — è così che due bug sono
   passati per due versioni.
-- **Volumi e durate della v45 ricalcolati eseguendo il codice**, non letti dalle
-  tabelle: 61 serie dirette, 17+15+14+15 per seduta, durate dichiarate
-  65/58/51/53 identiche a quelle calcolate, massimo 5,5 serie frazionali per
-  gruppo in una seduta.
+- **Volumi e durate ricalcolati eseguendo il codice**, non letti dalle tabelle.
+  4 sedute: 61 serie dirette, 17+15+14+15, durate 65/58/51/53. Top v46: 78 serie
+  dirette, 22+18+21+17, durate 71/65/58/54. In tutti i casi la durata dichiarata
+  coincide con quella calcolata, e il massimo per gruppo in una singola seduta è
+  8,5 serie frazionali contro le 11 della soglia.
+- **Cinque giornate vecchie seminate sugli indici che hanno cambiato esercizio**
+  (`npm run prova`): ognuna deve comparire nei grafici col nome che aveva
+  allora, e nessuna sotto il nome che oggi occupa quell'indice. Togliendo la
+  migrazione la prova fallisce — verificato.
 
 ## Storico
 
+- **v46** — **la «4 sedute Top» ricalibrata come mix delle due**, e una
+  correzione allo storico che valeva più della scheda. *Lo storico*: il log
+  salva le serie per indice e il nome veniva letto dalla definizione viva, così
+  la riscrittura della v45 aveva ri-etichettato le giornate vecchie delle
+  `q_*` — la panca piana finiva nel grafico della panca inclinata. Ora ogni
+  serie si porta dietro il suo nome, e due fotografie congelate degli indici di
+  prima rimettono a posto quello che era già registrato. *La scheda*: entra il
+  **deltoide posteriore** (4 serie, 2×, in superset con le laterali — prima era
+  a zero, il buco più grande della Top), i due curl più pesanti passano alle
+  **sedute basse** dove le braccia arrivano fresche, la regola di cedimento
+  diventa esplicita (**RIR 1** sulle alzate di forza, **cedimento tecnico** sul
+  resto) e tre esercizi lasciano il posto alla versione migliore della "4
+  sedute": pressa a piede alto e basso alternati, curl martello su panca
+  inclinata, overhead a un braccio. Nessun nome nuovo, quindi nessuno storico
+  che riparte. Volume da 73 a **78 serie**, durate 71, 65, 58 e 54 minuti — il
+  venerdì non è più mezzo vuoto. Spalle 12, che va letto come anteriore 3,
+  laterale 5, posteriore 4.
 - **v45** — **la «4 sedute» rifatta sull'elenco dettato da Davide il 18
   settembre, con la regola delle due serie.** Ogni esercizio sta a **2 serie**,
   quasi tutte portate al **cedimento tecnico**, e la seconda è quasi sempre
