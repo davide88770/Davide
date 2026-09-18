@@ -55,7 +55,8 @@ const seminato = await page.evaluate(() => {
     testi: { 'Panca inclinata manubri 30°': { n: 'Inclinata — 30 gradi netti', cue: 'Fermo 2 sec in basso', nota: 'Nota mia.' } } };
   const nEs = { rv_push: 5, rv_pull: 5, rv_legs: 4, rv_upper: 6, rv_lower: 5,
                 t_upperA: 9, t_lowerA: 6, t_upperB: 9, t_lowerB: 6,
-                q_upperA: 7, q_lowerA: 6, q_upperB: 6, q_lowerB: 7 };
+                q_upperA: 7, q_lowerA: 6, q_upperB: 6, q_lowerB: 7,
+                t_upperA: 9, t_lowerA: 7, t_upperB: 9, t_lowerB: 7 };
   let sedute = 0, serie = 0;
   for (let i = 27; i >= 0; i--) {
     const dt = new Date(oggi.getTime() - i * 864e5), d = iso(dt);
@@ -135,6 +136,54 @@ const arrivo = await page.$eval('#view-workout', n => n.textContent.replace(/\s+
 if (!/Spostata qui da/.test(arrivo) || !/Upper A/.test(arrivo)) {
   console.error('  ERRORE  il giorno di arrivo non mostra la seduta spostata'); process.exit(1); }
 
+/* LO STORICO NON SI RISCRIVE.
+   Il log salva le serie per INDICE dentro la seduta, e fino alla v45 il nome
+   veniva letto dalla definizione viva: riscrivere una scheda riscriveva anche
+   il passato, e le serie di panca piana finivano nel grafico della panca
+   inclinata. Qui si semina una giornata VECCHIA senza nomi congelati e si
+   controlla che il grafico la etichetti come la scheda era ALLORA, non come e'
+   adesso. Gli indici scelti sono quelli che hanno cambiato esercizio. */
+const ATTESI = [
+  // sid, data, indice, nome che quel giorno aveva davvero
+  ['t_upperA', 5, 'Curl bilanciere — focus allungamento', 'Alzate posteriori al cavo alto'],
+  ['t_upperB', 5, 'Curl hammer manubri',                  'Alzate posteriori al cavo alto'],
+  ['t_lowerB', 0, 'Stacco a gambe tese — manubri',        'Pressa — piede alto e basso alternati'],
+  ['q_upperA', 0, 'Panca piana bilanciere',               'Panca inclinata bilanciere'],
+  ['q_upperB', 2, 'Pullover ai cavi — carrucola alta',    'Lat machine presa stretta']
+];
+await page.evaluate(attesi => {
+  const st = JSON.parse(localStorage.getItem('ghisaegrammi.v1'));
+  attesi.forEach(([sid, i], k) => {
+    const d = '2026-0' + (3 + k) + '-09';   // ben prima del 18/09/2026
+    st.sess[d] = { sid, tipo: 'base', set: { [i]: [{ kg: '42.5', rep: '9', rir: 1, ok: 1 }] },
+      piu: {}, sost: {}, nota: '', mod: Date.now() };
+  });
+  localStorage.setItem('ghisaegrammi.v1', JSON.stringify(st));
+}, ATTESI);
+await page.goto(url); await page.waitForTimeout(250);
+await page.click('#tab-progressi'); await page.waitForTimeout(250);
+const voci = await page.$$eval('#selEx option', os => os.map(o => o.value));
+for (const [sid, i, vero, adesso] of ATTESI) {
+  if (!voci.includes(vero)) {
+    console.error(`  ERRORE  ${sid}[${i}]: lo storico ha perso «${vero}»`); process.exit(1); }
+  if (voci.includes(adesso)) {
+    console.error(`  ERRORE  ${sid}[${i}]: una serie vecchia e' finita sotto «${adesso}», che oggi occupa quell'indice`);
+    process.exit(1); }
+}
+/* E una registrata OGGI deve invece prendere il nome di oggi. */
+const oggiNome = await page.evaluate(() => {
+  const d = new Date().toISOString().slice(0, 10);
+  S.sess[d] = { sid: 't_upperA', tipo: 'base', set: { 5: [{ kg: '10', rep: '15', ok: 1 }] },
+    piu: {}, sost: {}, nomi: { 5: SESS.t_upperA.ex[5].n }, nota: '', mod: Date.now() };
+  salva(); return SESS.t_upperA.ex[5].n;
+});
+await page.waitForTimeout(400);          // salva() e' rimandato di 220 ms
+await page.goto(url); await page.waitForTimeout(250);
+await page.click('#tab-progressi'); await page.waitForTimeout(250);
+const voci2 = await page.$$eval('#selEx option', os => os.map(o => o.value));
+if (!voci2.includes(oggiNome)) {
+  console.error(`  ERRORE  una serie registrata oggi non compare sotto «${oggiNome}»`); process.exit(1); }
+
 /* Cambia programmazione e tipo di settimana: sono i due interruttori che
    ricalcolano tutto. */
 await page.click('#tab-piano'); await page.waitForTimeout(200);
@@ -155,6 +204,7 @@ console.log(`  schede    ${Object.entries(conta).map(([k, v]) => `${k} ${v} card
 console.log(`  esercizi  ${esercizi} voci nel selettore dei progressi`);
 console.log('  testi     nome riscritto mostrato, storico ancora legato al nome del piano');
 console.log('  sposta    giorno di partenza e di arrivo coerenti dopo lo spostamento');
+console.log(`  storico   ${ATTESI.length} giornate vecchie etichettate com'erano allora, non come sono adesso`);
 if (errori.length) {
   console.error(`\n${errori.length} errori:`);
   for (const e of errori) console.error('  ✗ ' + e);
