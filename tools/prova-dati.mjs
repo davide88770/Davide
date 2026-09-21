@@ -56,7 +56,7 @@ const seminato = await page.evaluate(() => {
   const nEs = { rv_push: 5, rv_pull: 5, rv_legs: 4, rv_upper: 6, rv_lower: 5,
                 t_upperA: 9, t_lowerA: 6, t_upperB: 9, t_lowerB: 6,
                 q_upperA: 7, q_lowerA: 6, q_upperB: 6, q_lowerB: 7,
-                t_upperA: 9, t_lowerA: 7, t_upperB: 9, t_lowerB: 7 };
+                t_upperA: 8, t_lowerA: 8, t_upperB: 8, t_lowerB: 8 };
   let sedute = 0, serie = 0;
   for (let i = 27; i >= 0; i--) {
     const dt = new Date(oggi.getTime() - i * 864e5), d = iso(dt);
@@ -144,30 +144,37 @@ if (!/Spostata qui da/.test(arrivo) || !/Upper A/.test(arrivo)) {
    controlla che il grafico la etichetti come la scheda era ALLORA, non come e'
    adesso. Gli indici scelti sono quelli che hanno cambiato esercizio. */
 const ATTESI = [
-  // sid, data, indice, nome che quel giorno aveva davvero
-  ['t_upperA', 5, 'Curl bilanciere — focus allungamento', 'Alzate posteriori al cavo alto'],
-  ['t_upperB', 5, 'Curl hammer manubri',                  'Alzate posteriori al cavo alto'],
-  ['t_lowerB', 0, 'Stacco a gambe tese — manubri',        'Pressa — piede alto e basso alternati'],
-  ['q_upperA', 0, 'Panca piana bilanciere',               'Panca inclinata bilanciere'],
-  ['q_upperB', 2, 'Pullover ai cavi — carrucola alta',    'Lat machine presa stretta']
+  // sid, indice, data, nome che quel giorno aveva davvero, nome che oggi occupa quell'indice
+  ['t_upperA', 5, '2026-03-09', 'Curl bilanciere — focus allungamento', 'Alzate posteriori al cavo alto'],
+  ['t_upperB', 5, '2026-04-09', 'Curl hammer manubri',                  'Alzate posteriori al cavo alto'],
+  ['t_lowerB', 0, '2026-05-09', 'Stacco a gambe tese — manubri',        'Pressa — piede alto e basso alternati'],
+  ['t_lowerA', 5, '2026-06-09', 'D’Annunzio crunch',                    'Curl bilanciere — focus allungamento'],
+  // questa cade FRA la v46 e la v47: verifica la fotografia piu' recente
+  ['t_lowerA', 6, '2026-09-19', 'D’Annunzio crunch',                    'Curl ai cavi dietro il corpo — Bayesian'],
+  ['q_upperA', 0, '2026-07-09', 'Panca piana bilanciere',               'Panca inclinata bilanciere'],
+  ['q_upperB', 2, '2026-07-16', 'Pullover ai cavi — carrucola alta',    'Lat machine presa stretta']
 ];
 await page.evaluate(attesi => {
   const st = JSON.parse(localStorage.getItem('ghisaegrammi.v1'));
-  attesi.forEach(([sid, i], k) => {
-    const d = '2026-0' + (3 + k) + '-09';   // ben prima del 18/09/2026
+  for (const [sid, i, d] of attesi)
     st.sess[d] = { sid, tipo: 'base', set: { [i]: [{ kg: '42.5', rep: '9', rir: 1, ok: 1 }] },
       piu: {}, sost: {}, nota: '', mod: Date.now() };
-  });
   localStorage.setItem('ghisaegrammi.v1', JSON.stringify(st));
 }, ATTESI);
 await page.goto(url); await page.waitForTimeout(250);
-await page.click('#tab-progressi'); await page.waitForTimeout(250);
-const voci = await page.$$eval('#selEx option', os => os.map(o => o.value));
-for (const [sid, i, vero, adesso] of ATTESI) {
-  if (!voci.includes(vero)) {
-    console.error(`  ERRORE  ${sid}[${i}]: lo storico ha perso «${vero}»`); process.exit(1); }
-  if (voci.includes(adesso)) {
-    console.error(`  ERRORE  ${sid}[${i}]: una serie vecchia e' finita sotto «${adesso}», che oggi occupa quell'indice`);
+/* Si interroga lo storico PER QUELLA DATA, non la presenza del nome in
+   generale: lo stesso esercizio puo' comparire in altre giornate seminate, e
+   un controllo globale direbbe di si' per il motivo sbagliato. */
+const esito = await page.evaluate(attesi => attesi.map(([sid, i, d, vero, adesso]) => ({
+  sid, i, d, vero, adesso,
+  trovato:    storico(vero).some(g => g.d === d),
+  malEtichettato: storico(adesso).some(g => g.d === d)
+})), ATTESI);
+for (const r of esito) {
+  if (!r.trovato) {
+    console.error(`  ERRORE  ${r.sid}[${r.i}] del ${r.d}: lo storico ha perso «${r.vero}»`); process.exit(1); }
+  if (r.malEtichettato) {
+    console.error(`  ERRORE  ${r.sid}[${r.i}] del ${r.d}: una serie vecchia e' finita sotto «${r.adesso}», che oggi occupa quell'indice`);
     process.exit(1); }
 }
 /* E una registrata OGGI deve invece prendere il nome di oggi. */
@@ -179,10 +186,13 @@ const oggiNome = await page.evaluate(() => {
 });
 await page.waitForTimeout(400);          // salva() e' rimandato di 220 ms
 await page.goto(url); await page.waitForTimeout(250);
-await page.click('#tab-progressi'); await page.waitForTimeout(250);
-const voci2 = await page.$$eval('#selEx option', os => os.map(o => o.value));
-if (!voci2.includes(oggiNome)) {
+const oggiOk = await page.evaluate(n => {
+  const d = new Date().toISOString().slice(0, 10);
+  return storico(n).some(g => g.d === d);
+}, oggiNome);
+if (!oggiOk) {
   console.error(`  ERRORE  una serie registrata oggi non compare sotto «${oggiNome}»`); process.exit(1); }
+await page.click('#tab-progressi'); await page.waitForTimeout(250);
 
 /* Cambia programmazione e tipo di settimana: sono i due interruttori che
    ricalcolano tutto. */
