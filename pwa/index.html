@@ -15,7 +15,7 @@
 <link rel="apple-touch-icon" href="icone/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="192x192" href="icone/icona-192.png">
 <style>:root{color-scheme:light dark}*{box-sizing:border-box}body{margin:0}img{max-width:100%}</style>
-<script>window.__GG_BUILD='c36e012927';</script>
+<script>window.__GG_BUILD='5b3a30bd2a';</script>
 </head>
 <body>
 <style>
@@ -803,9 +803,9 @@ SESS.t_lowerA = { id:'t_lowerA', nome:'Lower A', gg:'Martedì', durata:71, rivis
     note:'L’estensione dell’anca col femorale allungato, e l’unico lavoro pesante di catena posteriore.'}),
   e('Sissy squat','quad',2,'10–15','Ced. tecnico + Rest-pause',150,{ernia:1,p:1,
     cue:'Disco al petto quando ci arrivi · mano al montante per stabilizzarti · talloni alzati · eccentrica 3 sec'}),
-  e('Leg curl manubri / pulley','femorali',3,'12–15','Ced. tecnico + Drop set',120,{p:1,
-    cue:'Prono sulla panca, manubrio stretto fra i piedi, oppure caviglie alla fettuccia del pulley basso · non sollevare i fianchi · eccentrica 3 sec',
-    note:'L’unico leg curl della giornata.'}),
+  e('Leg curl su panca — cavo basso','femorali',3,'12–15','Ced. tecnico + Drop set',90,{p:1,uni:1,
+    cue:'SEDUTO sulla panca rivolto alla carrucola bassa, scivolato fino al bordo: coscia appoggiata, ginocchio che sporge appena · fettuccia alla caviglia, una gamba per volta · parti a gamba quasi distesa e porta il tallone indietro SOTTO la panca · eccentrica 3 sec · sull’ultima serie drop set',
+    note:'Ha preso il posto del leg curl col manubrio fra i piedi, che aveva tre difetti: ti fermava la presa dei piedi e non il femorale, la resistenza era massima in alto dove il muscolo è corto e quasi zero in basso dove è lungo, e a terra il bacino compensava. Ma soprattutto questo è SEDUTO: l’anca a 90° tiene il capo lungo allungato, ed è l’unica cosa che in questa palestra mancava del tutto. Maeo e colleghi (2021) hanno misurato circa una volta e mezza l’ipertrofia del leg curl da seduto rispetto a quello sdraiato, a parità di volume e carico relativo. Se il montaggio non ti viene per via dello spazio sotto la panca, ripiega su quello in piedi — ma provalo, perché è il guadagno più grosso disponibile sui femorali. Recupero 90 secondi perché lavorando una gamba per volta l’altra serie è già la pausa.'}),
   e('Calf raise in piedi','polpacci',2,'8–12','Ced. tecnico + Rest-pause',120,{
     cue:'Ginocchio dritto · su un rialzo o un disco · pausa 2" in basso · no rimbalzo'}),
   e('Curl bilanciere — focus allungamento','bicipiti',2,'8–10','Ced. tecnico + Drop set',150,{p:1,
@@ -852,9 +852,9 @@ SESS.t_lowerB = { id:'t_lowerB', nome:'Lower B', gg:'Venerdì', durata:59, rivis
     note:'La seconda cerniera d’anca della settimana, più leggera di quella del martedì. Ha preso il posto dell’hip thrust, che caricava il gluteo dove è più corto.'}),
   e('Sissy squat — eccentrica 5 sec','quad',2,'8–10','Eccentrica lenta',150,{ernia:1,p:1,
     cue:'Discesa contata a 5 secondi, risalita come viene · talloni alzati · disco al petto solo se le 8 pulite ci sono già'}),
-  e('Leg curl sdraiato — manubri','femorali',3,'12–15','Ced. tecnico + Drop set',120,{p:1,
-    cue:'Prono sulla panca · manubrio stretto fra i piedi · non sollevare i fianchi · eccentrica 3 sec',
-    note:'L’unico leg curl della giornata. Coi tre del martedì i femorali arrivano a 11 contro 10 di quadricipite: è il rapporto che Nippard ed Emmerich tengono sulle gambe.'}),
+  e('Leg curl in piedi — cavo basso','femorali',3,'12–15','Ced. tecnico + Drop set',90,{p:1,uni:1,
+    cue:'In piedi di fronte alla carrucola bassa, una mano al montante · fettuccia alla caviglia, una gamba per volta · coscia ferma e anca NEUTRA, non portarla indietro · tallone al gluteo · eccentrica 3 sec · sull’ultima serie drop set',
+    note:'La dose ad anca ESTESA, tre giorni dopo quella ad anca flessa del martedì: insieme coprono il femorale a tutti e due gli angoli, che è quello che nessuna combinazione di stacchi e leg curl sdraiati riusciva a fare. Al cavo la tensione c’è per l’intero arco, il carico sale di un piastrino alla volta e una gamba per volta toglie la compensazione. Coi tre del martedì i femorali arrivano a 11 contro 10 di quadricipite: è il rapporto che Nippard ed Emmerich tengono sulle gambe.'}),
   e('Calf pressa','polpacci',2,'12–15','Ced. tecnico + Rest-pause',90,{
     cue:'Solo le punte sulla pedana della pressa · ginocchia quasi tese · pausa 2" in basso · range completo'}),
   e('Curl manubri su panca inclinata','bicipiti',2,'8–10','Ced. tecnico + Drop set',120,{p:1,
@@ -1585,18 +1585,18 @@ const CONS_FONTI = [
 /* Versione dell'app. Serve a sapere, dal telefono, se quello che hai davanti e'
    l'ultima versione: la PWA installata puo' restare indietro se iOS non rifa'
    la navigazione. Il numero si alza a ogni pubblicazione. */
-const VERSIONE = { n:'v47', data:'21 settembre 2026', nota:'Top: tricipiti nelle sedute alte, bicipiti nelle basse' };
+const VERSIONE = { n:'v48', data:'25 settembre 2026', nota:'I due leg curl passano al cavo basso: seduto e in piedi' };
 
 const ATTREZZI = [
   ['Rack, bilanciere, panca regolabile', 1, 'Panca piana, stacco romeno, curl bilanciere, military press, panca inclinata per croci, curl e rematore col petto appoggiato'],
-  ['Manubri', 1, 'Panca inclinata, croci, military press seduto, curl hammer e inclinato, rematore coi gomiti alti e col busto appoggiato, stacco a gambe tese, leg curl sdraiato'],
+  ['Manubri', 1, 'Panca inclinata, croci, military press seduto, curl hammer e inclinato, rematore coi gomiti alti e col busto appoggiato, stacco a gambe tese. Il leg curl col manubrio fra i piedi resta solo nella “4 sedute”: nella Top, dalla v48, lo fa la fettuccia al cavo'],
   ['Lat machine — carrucola alta', 1, 'Lat machine unilaterale, pullover ai cavi, push-down alla corda e col triangolo, crunch al cavo alto, e il pad blocca le caviglie per nordico e D’Annunzio crunch'],
-  ['Pulley basso — carrucola bassa', 1, 'Pulley basso presa neutra, tricipite overhead con la corda, alzate laterali ai cavi, curl Bayesian dietro il corpo, curl hammer, leg curl alla fettuccia'],
+  ['Pulley basso — carrucola bassa', 1, 'Pulley basso presa neutra, tricipite overhead con la corda, alzate laterali ai cavi, curl Bayesian dietro il corpo, curl hammer, e — con la fettuccia da caviglia — i due leg curl della Top, seduto su panca e in piedi'],
   ['Pressa e hack squat, macchinario unico', 1, 'Hack squat piede basso, pressa piede alto, calf alla pressa: stessa macchina, una riconfigurazione a seduta'],
   ['Sbarra per trazioni', 1, 'Trazioni zavorate, la tirata pesante della “4 sedute Top”. Nella “4 sedute” la verticale la fa la lat machine a un braccio, con più range'],
   ['Parallele / dip station', 1, 'Dip zavorrate come esercizio di petto nella 4 sedute, dalla v45: col busto avanti sono l’unico vettore di spinta che non sia una panca inclinata. Come esercizio di tricipite restano fuori, perché caricano il capo lungo in accorciamento'],
   ['Leg extension', 0, 'Sostituita dal sissy squat zavorrato'],
-  ['Leg curl, seduto o sdraiato a macchina', 0, 'Sostituito dal leg curl nordico e dal leg curl sdraiato coi manubri'],
+  ['Leg curl, seduto o sdraiato a macchina', 0, 'Non serve più: dalla v48 la fettuccia al pulley basso fa il leg curl SEDUTO su panca (anca flessa, che era il buco vero) e quello in piedi (anca estesa). Nella “4 sedute” resta la versione col manubrio fra i piedi'],
   ['Stazione a cavi con carrucola regolabile', 0, 'Le croci ai cavi sono diventate croci coi manubri su panca inclinata']
 ];
 
@@ -2124,6 +2124,7 @@ function exDi(sess, i, d){
      v44 = le quattro sedute della "4 sedute" come erano fino al 18/09/2026
      v45 = le quattro sedute della "4 sedute Top" come erano fino al 18/09/2026
      v46 = le stesse, come erano fra il 18 e il 21/09/2026
+     v47 = le due sedute basse della Top, fra il 21 e il 25/09/2026
    Una fotografia si aggiunge solo quando si riscrive una scheda ANCORA
    NON congelata, cioe' quando esiste gente che ha registrato serie senza che
    il nome fosse gia' salvato accanto. Dalla v46 in poi il nome si salva
@@ -2141,6 +2142,10 @@ const NOMI_STORICI = {
     t_upperB:['Panca inclinata manubri 30°','Pulley basso — presa neutra','Lat machine unilaterale — maniglia','Croci manubri','Alzate laterali ai cavi','Curl hammer manubri','Push-down — triangolo largo','Curl manubri su panca inclinata','Tricipite overhead — 2ª frequenza'],
     t_lowerB:['Stacco a gambe tese — manubri','Pressa — piede alto e largo','Sissy squat — eccentrica 5 sec','Leg curl sdraiato — manubri','Calf pressa','Crunch al cavo alto']
   },
+  v47:{
+    t_lowerA:['Hack squat — piede basso','Romanian deadlift bilanciere','Sissy squat','Leg curl manubri / pulley','Calf raise in piedi','Curl bilanciere — focus allungamento','Curl ai cavi dietro il corpo — Bayesian','D’Annunzio crunch'],
+    t_lowerB:['Pressa — piede alto e basso alternati','Stacco a gambe tese — manubri','Sissy squat — eccentrica 5 sec','Leg curl sdraiato — manubri','Calf pressa','Curl manubri su panca inclinata','Curl martello su panca inclinata','Crunch al cavo alto']
+  },
   v46:{
     t_upperA:['Panca piana bilanciere','Trazioni zavorate / Lat machine singola','Military press — seduto','Rematore manubri gomiti alti — trapezi','Alzate laterali sdraiato — panca inclinata','Alzate posteriori al cavo alto','Curl martello su panca inclinata','Push-down alla corda','Tricipite overhead — corda'],
     t_lowerA:['Hack squat — piede basso','Romanian deadlift bilanciere','Sissy squat','Leg curl manubri / pulley','Calf raise in piedi','Curl bilanciere — focus allungamento','D’Annunzio crunch'],
@@ -2153,6 +2158,7 @@ const NOMI_STORICI = {
    nome e' salvato accanto alla serie e la fotografia non serve nemmeno. */
 const CONGELA_DAL = '2026-09-18';   /* v45 sulla "4 sedute", v46 sulla Top */
 const CONGELA_V47 = '2026-09-21';   /* tricipiti in alto e bicipiti in basso */
+const CONGELA_V48 = '2026-09-25';   /* i due leg curl passano al cavo basso */
 function congelaNomi(){
   for(const [d,L] of Object.entries(S.sess || {})){
     if(!L || !L.sid) continue;
@@ -2166,6 +2172,7 @@ function congelaNomi(){
        e' gia' salvato accanto alla serie, quindi questo ramo non si usa. */
     const foto = d < CONGELA_DAL  ? (NOMI_STORICI.v44[L.sid] || NOMI_STORICI.v45[L.sid] || null)
                : d < CONGELA_V47  ? (NOMI_STORICI.v46[L.sid] || null)
+               : d < CONGELA_V48  ? (NOMI_STORICI.v47[L.sid] || null)
                : null;
     const viva = SESS[L.sid];
     for(const i of fatte){
@@ -3474,7 +3481,9 @@ function renderPiano(){
         è il muscolo a cui il pre-affaticamento da compound dà fastidio meno. Da qui anche la seconda
         dose di dorso del giovedì, che non può essere un rematore: <b>lat machine a un braccio</b> in tutte e due —
         il range è più ampio e la scapola sale davvero, cosa che con la barra a due mani non succede. E da qui i due
-        <b>leg curl separati</b> sulle due giornate di gamba, e i <b>trapezi tutti in una seduta sola</b>.</p>
+        <b>leg curl separati</b> sulle due giornate di gamba — dalla <b>v48</b>, nella Top, uno <b>seduto</b> e uno
+        <b>in piedi</b> al cavo basso, cioè ad anca flessa ed estesa: non è varietà, sono i due angoli in cui il capo
+        lungo del femorale si allena davvero — e i <b>trapezi tutti in una seduta sola</b>.</p>
       <p class="small" style="margin:0"><b>5. Da due a tre serie per esercizio, mai di più.</b> Il volume si alza
         aggiungendo un esercizio, non serie allo stesso: dalla quarta o quinta serie consecutiva sullo stesso
         movimento la tensione che riesci a produrre è già scesa, e quelle serie le fai ma non allenano. Tutte le sedute
@@ -3614,18 +3623,23 @@ function renderPiano(){
           <p class="tiny muted" style="margin:2px 0 0">${esc(uso)}</p></div>
       </div>`).join('')}
       <p class="tiny muted" style="margin:0">Le tre macchine in fondo non le hai, e le schede non le usano. Le
-        sostituzioni non sono ripieghi: il sissy squat zavorrato fa lo stesso lavoro della leg extension col retto
-        femorale allungato, il nordico è la flessione del ginocchio più dura che esista senza macchina, e per le croci
+        sostituzioni non sono ripieghi: il sissy squat zavorrato batte la leg extension sul retto femorale, perché
+        alla leg extension sei seduto e l’anca flessa lo accorcia proprio dove vorresti allungarlo; la fettuccia al
+        pulley basso fa un leg curl seduto vero, che è la cosa che mancava; e per le croci
         il manubrio è più duro proprio in basso, dove il petto è allungato — che è la parte che conta. Le
         <b>parallele</b> sono rimaste ferme fino alla v44: come esercizio di tricipite non servono, perché l’overhead
         alla corda carica il capo lungo dove è allungato e le dip dove è corto. Dalla <b>v45</b> lavorano nella
         <b>4 sedute</b>, ma come esercizio di <em>petto</em>: col busto inclinato in avanti sono l’unico vettore di
         spinta che non sia una panca inclinata.</p>
-      <div class="backup" style="background:var(--warn-soft);color:var(--warn-text)">${ICO.alert}
-        <span>Quello che <b>non</b> si recupera: il leg curl con l’anca flessa. Il nordico e il leg curl sdraiato
-        lavorano ad anca estesa, dove il capo lungo del femorale è più corto. Il lavoro in allungamento sul femorale
-        resta tutto sullo stacco romeno — per questo è un’alzata di forza pesante in tutte e tre le
-        programmazioni.</span></div>
+      <div class="backup" style="background:var(--good-soft);color:var(--good-text)">${ICO.check}
+        <span>Il <b>leg curl con l’anca flessa</b> era il buco dichiarato di questa palestra: nordico, leg curl
+        sdraiato e stacchi lavorano tutti ad anca <em>estesa</em>, dove il capo lungo del femorale è già corto da
+        quel lato. Dalla <b>v48</b> è chiuso, e senza comprare una macchina: <b>leg curl seduto sulla panca alla
+        carrucola bassa</b>, coscia appoggiata e ginocchio oltre il bordo, una gamba per volta. È la differenza più
+        grande misurata in quest’area — Maeo e colleghi (2021) hanno trovato circa <b>una volta e mezza</b>
+        l’ipertrofia del leg curl da seduto rispetto a quello sdraiato, a parità di volume e carico relativo. Il
+        venerdì la versione <b>in piedi</b> copre l’anca estesa, e i due angoli sono coperti tutti e
+        due.</span></div>
     </div>
   </div>
 
