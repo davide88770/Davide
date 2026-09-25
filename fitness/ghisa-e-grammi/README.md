@@ -353,7 +353,7 @@ la serie finale intensificata. Riscaldamento e stretching fuori dal conto.
 | Hack squat — piede basso | 3 × 5-8 | RIR 1 · forza | 240 s |
 | Romanian deadlift bilanciere | 3 × 6-8 | RIR 1 · forza | 240 s |
 | Sissy squat | 2 × 10-15 | + Rest-pause | 150 s |
-| Leg curl manubri / pulley | 3 × 12-15 | + Drop set | 120 s |
+| Leg curl su panca — cavo basso | 3 × 12-15 | + Drop set | 90 s |
 | Calf raise in piedi | 2 × 8-12 | + Rest-pause | 120 s |
 | Curl bilanciere — focus allungamento | 2 × 8-10 | + Drop set | 150 s |
 | Curl ai cavi dietro il corpo — Bayesian | 2 × 10-12 | + Rest-pause | 120 s |
@@ -379,7 +379,7 @@ la serie finale intensificata. Riscaldamento e stretching fuori dal conto.
 | Pressa — piede alto e basso alternati | 3 × 8-12 | + Drop set | 180 s |
 | Stacco a gambe tese — manubri | 2 × 10-12 | RIR 1-2 | 180 s |
 | Sissy squat — eccentrica 5 sec | 2 × 8-10 | Eccentrica lenta | 150 s |
-| Leg curl sdraiato — manubri | 3 × 12-15 | + Drop set | 120 s |
+| Leg curl in piedi — cavo basso | 3 × 12-15 | + Drop set | 90 s |
 | Calf pressa | 2 × 12-15 | + Rest-pause | 90 s |
 | Curl manubri su panca inclinata | 2 × 8-10 | + Drop set | 120 s |
 | Curl martello su panca inclinata | 2 × 10-12 | + Rest-pause | 120 s |
@@ -615,13 +615,32 @@ A parità di volume conta *dove* l'esercizio è più duro rispetto a dove il mus
   anca lavora già in allungamento sullo stacco romeno e sulla pressa profonda, e
   al posto suo lo stacco romeno è diventato un'alzata di forza vera.
 - **Sissy squat zavorrato** al posto della leg extension che non c'è: il retto
-  femorale lavora allungato dall'anca estesa.
+  femorale lavora allungato dall'anca estesa. Non è un ripiego — è *meglio*
+  della macchina, perché alla leg extension si è seduti e l'anca flessa
+  accorcia il retto femorale proprio dove vorresti allungarlo.
+- **Leg curl seduto su panca al cavo basso** (v48): vedi sotto.
 
-Un limite dichiarato: il leg curl con l'**anca flessa** non è recuperabile con
-questa attrezzatura. Nordico e leg curl sdraiato lavorano entrambi ad anca
-estesa, dove il capo lungo del femorale è più corto. Tutto il lavoro in
-allungamento sul femorale resta sullo stacco romeno — per questo è pesante e
-compare in tutte e due le schede.
+#### Il limite che c'era, e come si è chiuso
+
+Fino alla v47 qui c'era scritto che il leg curl con l'**anca flessa** non era
+recuperabile con questa attrezzatura: nordico, leg curl sdraiato e stacchi
+lavorano tutti ad anca estesa, dove il capo lungo del femorale è già corto da
+quel lato.
+
+Era il buco più grosso rimasto, ed è anche l'area in cui la ricerca è più
+netta: **Maeo e colleghi (2021)** hanno confrontato leg curl da seduto contro
+sdraiato a parità di volume e carico relativo, e il seduto ha prodotto **circa
+una volta e mezza l'ipertrofia** sui capi biarticolari.
+
+Dalla **v48** è chiuso senza comprare niente: **fettuccia da caviglia al pulley
+basso**, seduti sulla panca rivolti alla carrucola, coscia appoggiata e
+ginocchio oltre il bordo, una gamba per volta, tallone che va indietro sotto la
+panca. L'anca sta a 90°. Il venerdì la versione **in piedi** copre l'anca
+estesa, così i due angoli sono coperti tutti e due.
+
+Resta un limite minore: la versione seduta dipende da quanto spazio c'è sotto
+la panca. Se il montaggio non viene, il ripiego è la versione in piedi in tutte
+e due le giornate — comunque molto meglio del manubrio fra i piedi.
 
 ### Se un giorno salti, la seduta si sposta
 
@@ -1005,6 +1024,19 @@ npm run prova:pwa                                # giro di aggiornamento dell'ap
 
 ## Storico
 
+- **v48** — **i due leg curl della Top passano al cavo basso**, perché quello
+  col manubrio fra i piedi non dava stimolo: ti ferma la presa dei piedi e non
+  il femorale, la resistenza è massima in alto dove il muscolo è corto e quasi
+  zero in basso dove è lungo, e da proni il bacino compensa. Il martedì diventa
+  **leg curl seduto su panca alla carrucola bassa** — ed è molto più di una
+  sostituzione, perché con l'anca a 90° chiude il **buco dichiarato** di questa
+  palestra, il leg curl ad anca flessa (Maeo 2021: circa una volta e mezza
+  l'ipertrofia rispetto allo sdraiato). Il venerdì diventa **leg curl in piedi**
+  alla stessa carrucola, che copre l'anca estesa. Una gamba per volta tutti e
+  due, recupero 90 secondi perché la serie sull'altra gamba è già la pausa.
+  Volume, serie e durate **identici**: 78 serie dirette, 69/71/56/59 minuti.
+  Serve la fettuccia da caviglia. Nella "4 sedute" il leg curl col manubrio
+  resta com'era.
 - **v47** — **nella «4 sedute Top» le braccia sono divise del tutto: tricipiti
   nelle due sedute alte, bicipiti nelle due basse**, due esercizi per muscolo
   per seduta. Fino alla v46 ogni seduta alta aveva ancora un curl in superset;

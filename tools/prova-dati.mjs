@@ -149,13 +149,23 @@ const ATTESI = [
   ['t_upperB', 5, '2026-04-09', 'Curl hammer manubri',                  'Alzate posteriori al cavo alto'],
   ['t_lowerB', 0, '2026-05-09', 'Stacco a gambe tese — manubri',        'Pressa — piede alto e basso alternati'],
   ['t_lowerA', 5, '2026-06-09', 'D’Annunzio crunch',                    'Curl bilanciere — focus allungamento'],
-  // questa cade FRA la v46 e la v47: verifica la fotografia piu' recente
+  // queste due cadono fra una riscrittura e l'altra: verificano le fotografie recenti
   ['t_lowerA', 6, '2026-09-19', 'D’Annunzio crunch',                    'Curl ai cavi dietro il corpo — Bayesian'],
+  ['t_lowerA', 3, '2026-08-16', 'Leg curl manubri / pulley',            'Leg curl su panca — cavo basso'],
+  ['t_lowerB', 3, '2026-09-23', 'Leg curl sdraiato — manubri',          'Leg curl in piedi — cavo basso'],
   ['q_upperA', 0, '2026-07-09', 'Panca piana bilanciere',               'Panca inclinata bilanciere'],
   ['q_upperB', 2, '2026-07-16', 'Pullover ai cavi — carrucola alta',    'Lat machine presa stretta']
 ];
+/* Una data per riga: due righe sullo stesso giorno si sovrascriverebbero, e la
+   prova fallirebbe per il motivo sbagliato. */
+const dateAttesi = ATTESI.map(r => r[2]);
+if (new Set(dateAttesi).size !== dateAttesi.length) {
+  console.error('  ERRORE  due righe di ATTESI condividono la stessa data'); process.exit(1); }
 await page.evaluate(attesi => {
   const st = JSON.parse(localStorage.getItem('ghisaegrammi.v1'));
+  for (const [sid, i, d] of attesi) {
+    if (st.sess[d]) throw new Error('la data ' + d + ' e\' gia\' occupata dalla semina principale');
+  }
   for (const [sid, i, d] of attesi)
     st.sess[d] = { sid, tipo: 'base', set: { [i]: [{ kg: '42.5', rep: '9', rir: 1, ok: 1 }] },
       piu: {}, sost: {}, nota: '', mod: Date.now() };
