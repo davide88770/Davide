@@ -13,7 +13,13 @@ viaggi/<anno-mese-slug>/README.md       sintesi, vincoli veri, storico versioni
 fitness/<slug>/app.html                 sorgente dell'Artifact
 fitness/<slug>/README.md                sintesi, scelte di trascrizione, storico
 fitness/<slug>/verify.json              selettori e giro delle viste per la verifica
+viaggi/<anno-mese-slug>/app-mobile.html app da viaggio: stessi dati, chrome da
+                                        applicazione. Il blocco 1 del sorgente
+                                        è il viaggio, il 2 è il motore
 tools/verify.mjs                        verifica di rendering obbligatoria
+tools/prova-conti.mjs                   ricalcolo dei totali, obbligatorio
+tools/prova-adesso.mjs                  prova della scheda «Oggi» a orologio spostato
+tools/prova-pwa.mjs                     prova del giro di aggiornamento della PWA
 out/                                    screenshot e PDF generati (non versionato)
 ```
 
@@ -85,6 +91,12 @@ qualcosa di veloce, lo dirà lui.
 - **Prevedi il tempo che avanza.** Ogni giornata di trasferimento dovrebbe
   proporre il proprio candidato per l'ora libera, invece di lasciare che sia
   chi viaggia a cercarselo.
+- **La luce si calcola, non si copia.** Alba, ora d'oro, tramonto e crepuscolo
+  si ricavano in JavaScript dalla latitudine e dalla longitudine del posto
+  dove si dorme quella sera. La tabella scritta a mano del primo road book era
+  sbagliata di dieci-diciotto minuti su tutte le giornate, e non se n'era
+  accorto nessuno: quando metà delle giornate è costruita sulla luce radente,
+  un quarto d'ora è la differenza fra esserci e arrivare dopo.
 - **Sii onesto sui compromessi.** Se una scelta fa perdere qualcosa, scrivilo
   nel documento e diglielo nella risposta.
 
@@ -129,6 +141,34 @@ cambiano. Controlla come minimo:
 Errori trovati solo così, in passato: regole CSS troppo larghe che
 trasformavano i grassetti del testo in titoli; etichette sovrapposte sulla
 mappa. A occhio non si vedevano.
+
+### Per le app da viaggio, `verify` non basta
+
+`verify` apre la pagina a una data qualunque e con le scelte vuote: metà del
+codice non viene mai eseguito. Servono anche:
+
+```sh
+npm run prova:conti  viaggi/<cartella>/app-mobile.html
+npm run prova:adesso viaggi/<cartella>/app-mobile.html
+```
+
+- **`prova:conti`** è il controllo 6 fatto a macchina: prova **tutte** le
+  combinazioni di scelte dei menù e verifica che il totale dei chilometri sia
+  la somma delle giornate, che il budget sia la somma delle sue righe, che gli
+  ingressi siano la somma dei biglietti accesi per il numero di persone, e che
+  il numero stampato sulla barra dei totali, sulla mappa e in «Oggi» sia lo
+  stesso. Ha già trovato un arrotondamento che faceva ballare il budget di un
+  euro rispetto al registro dei biglietti.
+- **`prova:adesso`** sposta l'orologio del browser a momenti veri del viaggio
+  e controlla cosa dice la scheda «Oggi»: il conto alla rovescia prima della
+  partenza, la voce in corso e quella dopo durante, il riepilogo alla fine. E
+  soprattutto la **mezzanotte con l'app aperta**: un'app installata sul
+  telefono resta aperta per giorni e la pagina non ricarica, quindi senza un
+  riallineamento a ogni minuto e a ogni ritorno in primo piano al risveglio
+  mostra ancora il giorno prima.
+
+Perché l'app serva anche a chi la rilegge l'anno dopo, queste due prove vanno
+rifatte a ogni modifica dei dati, non solo del codice.
 
 ## Consegna
 

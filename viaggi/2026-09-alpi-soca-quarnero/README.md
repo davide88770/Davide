@@ -1,22 +1,23 @@
 # Alpi, Soča & Quarnero
 
 Road trip in Slovenia e Croazia, **6–15 settembre 2026**, partenza e rientro da
-Castelnovo ne' Monti.
+Castelnovo ne' Monti. Viaggio **fatto**: da settembre 2026 questa cartella
+contiene anche i riscontri dal campo.
 
-**Artifact:** <https://claude.ai/code/artifact/fac61cfd-bb6d-466a-97fc-e508a9785d8c>
-**Sorgente:** [`roadbook.html`](roadbook.html)
-
-Accanto al road book c'è l'**app da viaggio**, la stessa materia ma da tenere
-in mano mentre si guida. Vedi [In viaggio: l'app](#in-viaggio-lapp) più sotto.
-
-**App installabile:** <https://davide88770.github.io/Davide/viaggio/>
-**Artifact:** <https://claude.ai/code/artifact/6d313e18-d2ba-46e7-b92b-777728ae408b>
-**Sorgente:** [`app-mobile.html`](app-mobile.html) · **Verifica:** `npm run verify viaggi/2026-09-alpi-soca-quarnero/app-mobile.html`
+| | |
+|---|---|
+| **Road book** (il documento che leggi prima) | [`roadbook.html`](roadbook.html) → <https://claude.ai/code/artifact/fac61cfd-bb6d-466a-97fc-e508a9785d8c> |
+| **App da viaggio** (quella che tieni in mano) | [`app-mobile.html`](app-mobile.html) → <https://claude.ai/code/artifact/6d313e18-d2ba-46e7-b92b-777728ae408b> |
+| **App installabile** (PWA, funziona senza campo) | <https://davide88770.github.io/davide/viaggio/> |
 
 ## In sintesi
 
-10 giorni · 9 notti · **4 basi** · ~2.215 km · 30h30 di guida · 2 traghetti ·
-3 paesi. Budget stimato per due: **2.379–3.479 €**.
+10 giorni · 9 notti · **4 basi** · **2.235 km** · **30h45** di sola guida ·
+2 traghetti · 3 paesi. Budget per due: **2.373–3.491 €**, che diventano
+**2.391–3.359 €** scegliendo Lubenice il 13, Pirano il 14 e il rientro diretto.
+
+Tutti i numeri sopra sono **calcolati dal codice**, non scritti a mano:
+`npm run prova:conti` li rifà in tutte le 125 combinazioni di scelte possibili.
 
 | Notti | Date | Base | |
 |---|---|---|---|
@@ -32,274 +33,121 @@ quattro notti**: il 13 settembre non si smonta, e tutta l'Istria si fa in una
 giornata sola il 14.
 
 Gli ultimi tre giorni non hanno un programma fisso ma un **menù di scelta**,
-con l'indicazione esplicita di quando si decide:
-
-- **13 set** — quattro modi di usare la giornata su Cres (Osor e Lošinj · il
-  mare in barca · Vrana, Orlec e Mali Bok · giorno zero). Si sceglie a
-  colazione, non si prenota niente.
-- **14 set** — dove finisce il viaggio dopo il traghetto. Unica scelta che va
-  fatta prenotando, perché cambia l'alloggio e la lunghezza del rientro:
-  Pirano 480 km, Rovigno 600, Pola 620, Abbazia 570.
-- **15 set** — cosa infilare nel rientro. Si sceglie in strada.
+con l'indicazione esplicita di quando si decide: a colazione il 13, prenotando
+il 14, in strada il 15.
 
 ## Vincoli veri
 
 - **Plitvice**: slot orario contingentato a 300 persone/ora. Serve il 10/9 alle
-  **07:00, Ingresso 2**, prenotato con settimane di anticipo. È la prenotazione
-  da cui dipende la riuscita del viaggio.
+  **07:00, Ingresso 2**, prenotato con settimane di anticipo.
 - **Postojna**: slot grotta alle **13:00 del 6/9**, vincolante.
 - **Traghetti Jadrolinija linea 334**: non si prenotano, si sale in ordine di
   arrivo. Con la bora la Brestova–Porozina può essere sospesa; l'alternativa è
   Merag ⇢ Valbiska e il ponte di Veglia.
-- **Vignetta slovena**: la settimanale da 16 € basta, perché l'autostrada serve
-  solo nei giorni 1 e 4 e al rientro il corridoio costiero H5/H6 è gratuito.
+- **Vignetta slovena**: la settimanale da 16 € basta.
 
-## In viaggio: l'app
+## Riscontri dal campo (settembre 2026)
 
-`app-mobile.html` — sorgente dell'Artifact, verifica in
-`app-mobile.verify.json`. Il road book è il documento che si legge alla
-scrivania; questa è la cosa che si tiene in mano sul traghetto. Cinque schede
-sotto il pollice: **Oggi · Giorni · Mappa · Pratico · Valigia**.
+Stanno anche dentro l'app, nella sezione «Riscontri dal campo» di Pratico.
 
-Cosa fa che il documento non fa:
+- **Rastoke, corretto.** Il road book diceva «un'ora, ingresso ~8 €». Sul posto
+  i biglietti sono **due** — ~5 € il camminamento del comune, ~8 € a testa un
+  borgo-museo privato — e quello a pagamento è una ricostruzione che delude. Le
+  cascate coi mulini si vedono meglio **dal ponte, gratis**. Nel registro dei
+  biglietti dell'app la voce è ora spenta di default.
+- **Kuterevo, aggiunto.** Il rifugio per orsi orfani sopra Otočac non era in
+  programma: lo hanno aggiunto loro, avendo tempo, ed è stata la cosa più bella
+  della giornata. Da qui viene la regola nuova: **ogni giornata propone il suo
+  candidato per l'ora che avanza**.
+- **Mostnica invece di Vintgar**: confermata. Stessa acqua, 4 € invece di 15.
+- **Musei nelle giornate di pioggia**: rifiutati in blocco. Il piano maltempo è
+  stato riscritto su paesi, porti, strade interne e konobe.
+- **Quattro notti a Cres**: la scelta strutturale che ha retto meglio. Il giorno
+  del temporale è costato zero perché non c'era niente da smontare.
 
-- **Sa che giorno è.** Prima della partenza conta i giorni e dice quante voci
-  restano aperte fra documenti e prenotazioni; durante il viaggio apre la
-  tappa di oggi e marca sulla timeline l'evento in corso con l'orologio vero.
-  Frecce per sbirciare avanti e indietro.
-- **L'ora che conta, esplicita.** Ogni giornata dichiara in testa l'ora attorno
-  a cui è costruita — le 7:00 di Plitvice, le 13:00 di Postojna, le 9:45 al
-  piazzale di Porozina, le 8:30 della colazione in cui si sceglie.
-- **Le tre scelte si fanno davvero.** I menù del 13, del 14 e del 15 sono
-  bottoni. Ogni opzione porta i suoi chilometri, le sue ore e il suo costo, e
-  toccandola si riallineano da soli: totale del viaggio, ore di guida, riga
-  del carburante e degli ingressi nel budget, ramo acceso sulla mappa. La
-  scelta resta salvata sul telefono.
-- **Mappa a due inquadrature.** Di default è centrata su Slovenia e Quarnaro,
-  dove stanno otto giornate su dieci, perché a 390 px la vista completa rende
-  le etichette illeggibili. La seconda inquadratura mostra anche il
-  trasferimento dall'Appennino.
-- **Frasario cercabile**, e ogni frase si ingrandisce a tutto schermo per
-  mostrarla a qualcuno. **Numeri utili** come pulsanti `tel:`.
-- **Valigia condivisa col road book**: stessa chiave `localStorage`, quindi le
-  spunte fatte sul documento si ritrovano nell'app e viceversa.
-- **Stampa**: il PDF esce come libretto da cruscotto, 24 pagine A4 — mappa,
-  dieci giornate, pratico, e le tre checklist con le caselle da barrare a
-  penna. La scheda «Oggi» in stampa è soppressa perché duplica una giornata.
-- **Riprende dove eri**: ricorda l'ultima scheda aperta e la posizione dello
-  scorrimento di ognuna. Un giorno nuovo però riapre su «Oggi», che è il
-  motivo per cui quella scheda esiste.
-- **Dice quando sei senza campo**, con una spia in alto: l'app si apre lo
-  stesso, ma gli orari che leggi sono quelli scritti, non quelli di adesso.
+## L'app, cosa fa
 
-### Installabile, e offline sul serio
+Cinque schede, barra sotto il pollice, stato salvato su `localStorage` (le
+spunte sono **le stesse del road book**).
 
-`https://davide88770.github.io/Davide/viaggio/` — icona sulla schermata Home,
-schermo intero, e si **apre senza rete**. È la differenza che conta su questo
-itinerario: il road book stesso avverte che il segnale sparisce a Plitvice,
-sul Vršič, sul Velebit e nell'interno di Cres, che sono esattamente i posti in
-cui la vorresti aprire. Sull'Artifact questo non è possibile — gira in un
-iframe su claude.ai e non può registrare un service worker.
+- **Oggi** — la giornata in corso, con la voce di programma in corso e quella
+  dopo («fra 25 min»), la barra della luce, l'ora che conta e il candidato per
+  l'ora che avanza. Si riallinea ogni minuto e a ogni ritorno in primo piano:
+  la mezzanotte cambia giornata anche con l'app rimasta aperta.
+- **Giorni** — le dieci giornate, i tre menù di scelta, i totali che si
+  riallineano a ogni tocco.
+- **Mappa** — SVG su coordinate reali, cliccabile nei due sensi, più il
+  **profilo altimetrico** del viaggio (dal livello del mare ai 1.611 m del
+  Vršič, due volte).
+- **Pratico** — budget con il numero di persone e il prezzo alla pompa che
+  muovi tu; **registro dei biglietti** (quali esistono, quanto valgono, cosa si
+  vede gratis); 19 indirizzi a tavola con i filtri; **almanacco della luce**;
+  riscontri dal campo; traghetti, prenotazioni, auto, parcheggi, piani B,
+  frasario, numeri utili.
+- **Valigia** — 36 voci, tre liste, progressione.
 
-Si costruisce dal sorgente, che resta l'unica fonte di verità:
+### La luce è calcolata
+
+Alba, ora d'oro, tramonto e crepuscolo civile si ricavano con l'algoritmo NOAA
+dalla latitudine e dalla longitudine del posto dove si dorme quella sera — e se
+scegli il finale, dalla base che hai scelto. Verificato su riferimenti noti
+(Roma 21 giugno 20:49, Londra 6 settembre 19:38, Milano 20 marzo 18:35).
+
+**Ha trovato un errore vero**: i tramonti scritti a mano nel road book erano
+sbagliati di 10–18 minuti su tutte le giornate (6 set: 19:47 scritto, **19:35**
+reale; 13 set: 19:31 scritto, **19:19** reale). Corretti in entrambi i file.
+
+## Riusare l'app per un altro viaggio
+
+Il sorgente è diviso in due blocchi dichiarati:
+
+1. **`1 · IL VIAGGIO`** — `VIAGGIO`, `DAYS`, `BIGLIETTI`, `TAVOLA`, `PROFILO`,
+   `BUDGET`, `BOOK`, `METEO`, `PHRASES`, `LISTS`, `RISCONTRI` e la geografia
+   (`COAST`, `LEGS`, `STOPS`). È l'unica parte da riscrivere.
+2. **`2 · MOTORE`** — da lì in giù non si nomina nessun posto: proiezione della
+   mappa, calcolo della luce, totali, budget, viste. Non si tocca.
+
+Per una destinazione nuova:
 
 ```sh
-node tools/build-icone.mjs pwa/viaggio/icone   # solo se cambia l'icona
-node tools/build-pwa.mjs viaggio               # oppure senza argomenti, tutte
+cp viaggi/2026-09-alpi-soca-quarnero/app-mobile.html viaggi/<nuovo>/app-mobile.html
+cp viaggi/2026-09-alpi-soca-quarnero/app-mobile.verify.json viaggi/<nuovo>/
+# riscrivi il blocco 1, poi:
+npm run verify       viaggi/<nuovo>/app-mobile.html
+npm run prova:conti  viaggi/<nuovo>/app-mobile.html
+npm run prova:adesso viaggi/<nuovo>/app-mobile.html
 ```
 
-Il ramo `gh-pages` serve l'intera cartella `pwa/`, quindi l'app fitness sta
-alla radice e questa in `/viaggio/`. Convivere sullo stesso dominio ha due
-trappole, tutte e due trovate eseguendo la prova offline e non leggendo il
-codice:
+Cosa guardare nel blocco 1:
 
-- il service worker alla radice ha **scope su tutto il sito** e intercettava
-  anche le navigazioni verso `/viaggio/`, salvandosi quella pagina come
-  proprio guscio offline. Ora ogni service worker tratta solo il proprio
-  indice;
-- l'`activate` cancellava **tutte** le cache dell'origine per ripulire le
-  versioni vecchie, quindi ogni aggiornamento di un'app azzerava l'offline
-  dell'altra. Ora ognuno cancella solo le cache col proprio prefisso.
-
-L'icona è una rosa dei venti a trentadue tacche nella palette del road book,
-con il nord in teal: `pwa/viaggio/icone/icona.svg`.
-
-`npm run prova:pwa` mette alla prova tutto questo per davvero: serve le due
-app da un server locale, le installa, stacca la rete, verifica che si riaprano
-entrambe con le scelte salvate, e controlla che una versione nuova si attivi
-da sola senza chiedere niente.
-
-### Niente avviso di aggiornamento: entra da sola
-
-La prima versione mostrava un banner «Nuova versione — Aggiorna». Compariva
-anche quando non doveva: alla prima apertura di `/viaggio/` su un telefono che
-aveva già aperto l'app alla radice, perché quel service worker ha scope su
-tutto il dominio e quindi `navigator.serviceWorker.controller` era **già**
-valorizzato prima che quello del viaggio si registrasse.
-
-Sistemata la guardia, è saltata fuori la domanda giusta: **a cosa serve
-chiedere il permesso?** Qui non c'è niente da salvare prima di ricaricare —
-le scelte e le spunte stanno in `localStorage`, e la pagina è un file unico
-senza pezzi caricati a parte che potrebbero non combaciare. Quindi il banner è
-stato tolto del tutto: il service worker fa `skipWaiting()` in installazione,
-la versione nuova prende il posto della vecchia da sola, e il contenuto
-aggiornato si vede alla riapertura. Chi usa l'app non deve dare permessi a
-nessuno.
-
-Tolto il banner restava però un buco: **l'app installata riprende la pagina
-già aperta**, senza nessuna navigazione, quindi il contenuto vecchio poteva
-restare in vista anche con la versione nuova già attiva. Ora la pagina si
-ricarica da sola appena il service worker nuovo prende il controllo
-(`controllerchange`), e solo quando a cambiare è la versione dello *stesso*
-service worker — alla prima apertura il controller passa da quello della
-radice a questo, e lì ricaricare sarebbe solo un lampeggio inutile.
-
-Due dettagli che completano il quadro:
-
-- la navigazione usa `fetch(url, {cache:'reload'})`. GitHub Pages serve con
-  `max-age=600`: senza saltare la cache HTTP del browser si continuerebbe a
-  vedere la pagina vecchia per dieci minuti dopo la pubblicazione;
-- in fondo alla pagina c'è l'**impronta della versione** (`versione 574aef…`),
-  così si sa sempre quale build si sta guardando invece di indovinarlo.
-
-La prova del repo gira su un server con le stesse intestazioni di GitHub
-Pages e riproduce esattamente questo caso: app aperta e ferma sulla versione
-vecchia, pubblicazione della nuova, e nessuno che navighi o confermi niente.
-
-### Icone disegnate, non glifi
-
-La barra delle schede e i titoli di «Pratico» usavano simboli da font
-(`⛴ ⚠ ✚ ☼ ◉ ⚑`). Su iOS buona parte di quei caratteri viene resa come **emoji
-a colori**: pesi e colori diversi in una barra che dovrebbe essere monocroma.
-Ora le cinque icone sono SVG disegnati con lo stesso tratto, i titoli di
-sezione non hanno più icona, e il segno di apertura è un chevron in CSS.
-
-### Rotazione per il maltempo (11 settembre 2026, in viaggio)
-
-Previsioni verificate sul bollettino croato per venerdì 11: pioggia e rovesci
-temporaleschi sull'Adriatico settentrionale, localmente forti, **avviso giallo
-per il vento su tutto l'Adriatico e arancione sulla regione di Fiume** per
-pioggia e temporali. La fase intensa è data fra la notte di giovedì e la
-mattina di venerdì. Sabato nuvoloso ma senza temporali, domenica in prevalenza
-sereno.
-
-Le tre giornate sull'isola sono state **ruotate** su questa forma:
-
-| | Prima | Adesso | Perché |
-|---|---|---|---|
-| **Ven 11** | Cres ovest: Lubenice, Sveti Ivan, Valun | **Cres a piedi**, 30 km | Temporali e vento: si resta a piedi in paese, l'auto non si muove |
-| **Sab 12** | Beli e i grifoni | **Osor, Nerezine e i porti di Lošinj**, 120 km | Nuvoloso ma asciutto: la giornata giusta per guidare e vedere paesi |
-| **Dom 13** | giornata aperta, quattro scelte | **Cres ovest**, 50 km | Sereno: l'unica giornata che il sole lo richiede davvero |
-
-Uno scambio 11↔12 non sarebbe bastato: anche Beli vuole le termiche, e con la
-pioggia i grifoni non volano. Beli è la cosa che ha ceduto — resta come
-alternativa del pomeriggio dell'11 se schiarisce, e dentro l'opzione «Vrana,
-Orlec e Mali Bok» del 13.
-
-**Niente musei.** La prima versione di questa rotazione era costruita su
-Apoxyomenos, Collezione archeologica di Osor e Blue World. Davide ha fatto
-notare che non è il loro genere: rifatta su borghi, porti, la strada interna e
-le konobe. Gli unici orari che restano nel documento sono quelli che
-riguardano cose che *succedono* — il ponte girevole di Osor alle 9:00 e alle
-17:00.
-
-Aggiunti un blocco di piano meteo su ognuna delle tre giornate d'isola (con il
-titolo che cambia: sull'11 è «Se invece si alza») e la sezione **«Se piove
-sull'isola»** in Pratico: quello che regge bagnato, i paesi che con la pioggia
-migliorano, e cosa non fare — le discese a Sveti Ivan e Mali Bok, e contare su
-un traghetto con la bora forte.
-
-Totale di riferimento dopo la rotazione: **2.235 km e 30h45**.
-
-### Numeri, ricalcolati a codice
-
-Il totale non è più una tabella scritta a mano: si calcola sommando le
-giornate con le opzioni scelte. Verificato eseguendo il codice su cinque
-combinazioni:
-
-| Scelte (13 · 14 · 15) | km | Guida |
-|---|---|---|
-| nessuna (riferimenti, dopo la rotazione) | 2.235 | 30h45 |
-| giorno zero · Pirano · dritti a casa | 2.155 | 29h00 |
-| giorno zero · Abbazia · dritti a casa | **2.145** | 28h30 |
-| barca · Rovigno · Trieste | 2.278 | 30h15 |
-| Lošinj · Pola · laguna | **2.455** | 32h50 |
-
-La riga senza scelte dà esattamente i 2.215 km e le 30h30 del road book: le
-due fonti partono dallo stesso posto.
-
-**Da correggere nel road book alla prossima pubblicazione.** L'intervallo
-«2.155–2.475 km» stampato nella sezione *Quadro chilometrico* è stimato a
-occhio. Il minimo vero è **2.145 km** (giorno zero + finale ad Abbazia, che
-accorcia il giorno 9 a 80 km) e il massimo vero è **2.455 km** (Lošinj + Pola
-+ deviazione in laguna). Il road book non è stato toccato per non
-disallinearlo dal suo Artifact pubblicato.
-
-Sul budget, l'app calcola il carburante sui chilometri effettivi
-(6,5–7,5 l/100 km a 1,75–1,80 €/l) invece di usare un valore fisso: sulla
-configurazione di riferimento sono 252–299 € contro i 245–300 € del road book,
-e il totale per due, dopo aver tolto Rastoke dagli ingressi, sta su **2.373–3.491 €**.
-
-## Riscontri dal viaggio
-
-Raccolti da Davide **in viaggio**, il 10 settembre 2026, a metà itinerario.
-Applicati subito a road book e app, non solo annotati.
-
-### Rastoke non valeva il biglietto
-
-> «il paesino non ne valeva la pena di pagare 8 € a testa per vedere la
-> ricostruzione di un paesino "finto", meglio vederlo da fuori e vedere le
-> cascate dalla strada senza pagare»
-
-Errore mio, e doppio. A Rastoke si paga due volte: **5 €** il camminamento del
-paese (ponte nuovo + passerella *Vodene tajne* nel canyon della Korana) e
-**~8 € a testa** il borgo-museo privato, che è la ricostruzione che ha
-deluso. Il road book scriveva «un'ora, ingresso ~8 €» **senza distinguere le
-due cose e senza dire che il colpo d'occhio migliore è gratis**, dal ponte e
-dalla strada.
-
-Corretto in entrambi i documenti: mezz'ora dal ponte, non un'ora dentro.
-Rastoke tolta anche dalla riga «Ingressi fissi» del budget (−16 € su due).
-
-### Il santuario degli orsi di Kuterevo mancava
-
-> «Oggi abbiamo aggiunto noi visto che avevamo tempo ma si poteva comunque
-> includere perché unico e spettacolare la visita al bear sanctuary
-> veramente emozionante»
-
-Buco vero nell'itinerario. Il **Velebitsko utočište za mlade medvjede** di
-Kuterevo sta **quindici chilometri sopra Otočac**, cioè in mezzo alla tratta
-Plitvice → traghetto del giorno 5: era sulla strada e non l'avevo visto.
-Primo rifugio croato per orsetti orfani, aperto nel 2002, tenuto da
-volontari, offerta libera. Non è uno zoo e non è un museo — che è
-esattamente il tipo di cosa che interessa a loro.
-
-Aggiunto al giorno 5 di road book e app, con il costo onesto: circa 1h30 col
-giro, quindi si punta al traghetto successivo invece di rincorrere quello
-prima.
-
-### Cosa ne ricavo per i prossimi giri
-
-- **Attrazioni ricostruite: mai a scatola chiusa.** Se una cosa è un borgo
-  "riportato com'era", va detto nel documento, e va detto se la stessa cosa
-  si vede gratis da fuori.
-- **Animali veri prima di esposizioni.** Vale anche a ritroso: i musei
-  dell'11 settembre erano stati bocciati con la stessa logica, i grifoni di
-  Beli no. Nel Quarnaro, per loro, il registro giusto è quello vivo.
-- **Il tempo che avanza va previsto.** Avevano tempo e hanno aggiunto da soli:
-  il documento dovrebbe proporre lui il candidato, per ogni giornata di
-  trasferimento.
-
-### Sull'app
-
-«Utile ma migliorabile» — i dettagli arrivano a fine vacanza. Da chiedere
-allora: cosa si cerca e non si trova, cosa si guarda più spesso, e se le
-schede sono nell'ordine giusto.
+- `VIAGGIO.chiave` — prefisso di tutto quello che si salva. Se è la stessa del
+  road book, le spunte sono condivise.
+- `VIAGGIO.tz` e `lat`/`lon` di ogni giornata — servono al calcolo della luce.
+- `VIAGGIO.bbox` — il riquadro della mappa: la proiezione e la scala verticale
+  si ricavano da lì, non ci sono più costanti magiche.
+- `menu.modo` — `"aggiunge"` se l'opzione aggiunge chilometri alla giornata
+  (una sosta), altrimenti sostituisce. Un'opzione con `applica` cambia una
+  **altra** giornata: è il caso del finale che decide la lunghezza del rientro.
+- `BIGLIETTI[].conta` — `false` se quel biglietto è già dentro il costo di
+  un'opzione a scelta, così non viene contato due volte.
+- `PROFILO` — progressive in chilometri e quote reali; `l:1` sui punti da
+  etichettare, `f:1` su quelli che non si guidano (funivie).
 
 ## Storico
 
+- **v3 — definitiva.** Luce calcolata (NOAA) al posto dei tramonti scritti a
+  mano, e tre tramonti corretti anche nel road book. Registro dei biglietti con
+  l'alternativa gratuita di ognuno, che ora **genera** la voce «ingressi» del
+  budget. Budget con persone e prezzo alla pompa regolabili. Profilo
+  altimetrico. 19 indirizzi a tavola con filtri. Almanacco della luce.
+  Riscontri dal campo. «Se avanza un'ora» su ogni giornata. «Oggi» viva, che
+  mostra la prossima voce e supera la mezzanotte da sola. Dati separati dal
+  motore, per riusarla. Service worker indurito: `updateViaCache:'none'`,
+  `cache:'no-store'` ovunque, controllo di `reg.waiting`. Due prove nuove:
+  `prova:conti` e `prova:adesso`.
+- **v2.1** — rotazione per il maltempo dell'11 settembre, Rastoke corretto,
+  Kuterevo aggiunto, piano pioggia riscritto senza musei.
 - **v2** — quarta notte a Cres, finale a scelta, menù di scelta sugli ultimi
-  tre giorni. Da 5 basi a 4, da 2.280 a 2.215 km. Rimossi dal percorso
-  principale Parenzo e la Basilica Eufrasiana, che restano come variante.
+  tre giorni. Da 5 basi a 4.
 - **v1** — versione ibrida: Postojna il giorno 1, Lubiana al posto del rientro
   su Mangart, Rastoke sulla rotta, vignetta da 7 giorni.

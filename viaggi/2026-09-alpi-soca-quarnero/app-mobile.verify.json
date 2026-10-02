@@ -19,7 +19,14 @@
     "frasi": ".phr tbody tr",
     "spunte": "label.ck input",
     "card": ".card",
-    "tabelle": "table"
+    "tabelle": "table",
+    "biglietti": ".bg",
+    "tavola": ".tv",
+    "almanacco": ".al",
+    "riscontri": ".ri",
+    "luce": "svg.luce",
+    "profilo": "#prof path",
+    "passi": ".sp"
   },
   "richiesti": [
     "tab",
@@ -30,6 +37,13 @@
     "tratte",
     "sezioni",
     "frasi",
-    "spunte"
+    "spunte",
+    "biglietti",
+    "tavola",
+    "almanacco",
+    "riscontri",
+    "luce",
+    "profilo",
+    "passi"
   ]
 }

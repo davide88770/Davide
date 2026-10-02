@@ -342,7 +342,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 <section id="itinerario">
   <div class="sechead">
     <h2>Giorno per giorno</h2>
-    <p>Orari con soste, parcheggio e code già dentro. Il tramonto va da 19:47 (6 set) a 19:26 (15 set). Gli ultimi tre giorni hanno un <b>menù di scelta</b> al posto di un programma fisso: il 13 si decide a colazione, il 14 si decide prenotando, il 15 si decide in strada.</p>
+    <p>Orari con soste, parcheggio e code già dentro. Il tramonto va da 19:35 (6 set, a Bohinj) a 19:19 (13 set, a Cres), calcolato per ogni base: a settembre si perdono due minuti di luce al giorno e scendendo verso sud si perde anche in longitudine. Gli ultimi tre giorni hanno un <b>menù di scelta</b> al posto di un programma fisso: il 13 si decide a colazione, il 14 si decide prenotando, il 15 si decide in strada.</p>
   </div>
   <div class="pills" id="pills"></div>
   <div id="days"></div>
@@ -775,7 +775,7 @@ const DAYS=[
      ["14:45","Partenza per Bohinj","148 km via Lubiana e Bled, 1h45."],
      ["16:30","Arrivo a Bohinj, check-in",""],
      ["17:30","Primo giro sul lago","Ribčev Laz: il ponte di pietra, la chiesa di San Giovanni Battista con gli affreschi trecenteschi, il lungolago. Due ore in piano."],
-     ["19:30","Cena","Trota del lago, funghi, selvaggina. Tramonto alle 19:47."]],
+     ["19:30","Cena","Trota del lago, funghi, selvaggina. Tramonto alle 19:35."]],
  see:["Predjama dal basso a metà mattina, quando la roccia è ancora in ombra e il castello no","Il proteo di Postojna, che i contadini credevano un cucciolo di drago","Bohinj all'imbrunire: è dentro il Parco del Triglav, il silenzio è un'altra cosa rispetto a Bled"],
  sleep:"<b>Bohinj, 3 notti.</b> Ribčev Laz per essere sul lago, Stara Fužina per stare a due passi dall'imbocco della Mostnica. Riferimenti: Hotel Bohinj, Bohinj ECO Hotel, Hotel Jezero, o un apartma privato.",
  eat:"Cucina alpina slovena: <i>ričet</i>, trota, formaggio di Bohinj. <b>Gostilna Rupa</b> a Srednja vas è il posto giusto per la prima sera.",
@@ -790,7 +790,7 @@ const DAYS=[
      ["13:30","Funivia del Vogel","Da Ukanc. 33 € andata e ritorno, parcheggio e seggiovia per Orlova Glava inclusi. Si sale a 1.535 m e si apre il fronte del Triglav con il lago sotto: è il panorama migliore delle Giulie senza camminare."],
      ["16:30","Cascata Savica","A due passi da Ukanc. Cinquecento gradini in mezz'ora, la cascata esce a A dalla parete. Un'ora in tutto."],
      ["18:00","Bagno nel lago","L'acqua a settembre è sui 19–20 °C. La spiaggia di Ukanc è la più tranquilla."],
-     ["19:45","Tramonto a Ribčev Laz","Il punto classico è dal ponte, con la chiesa in primo piano."],
+     ["19:33","Tramonto a Ribčev Laz","Il punto classico è dal ponte, con la chiesa in primo piano."],
      ["20:30","Cena",""]],
  see:["La Mostnica scava marmitte e forme tonde nella roccia: una si chiama «l'elefante»","Il Vogel a metà pomeriggio, quando le nuvole di giornata si sono già alzate","La chiesa di San Giovanni Battista: campanile romanico, affreschi del Trecento"],
  sleep:"Seconda notte a Bohinj. Valigia ferma.",
@@ -859,7 +859,7 @@ const DAYS=[
      ["13:00","Valun","Borgo di pescatori in fondo a una baia. Pranzo sul molo e la <i>Valunska ploča</i> nella chiesa: una lapide dell'XI secolo scritta in glagolitico e in latino."],
      ["15:00","Bagno","La spiaggia di ciottoli bianchi di Valun, o il sentiero pianeggiante che parte dal porticciolo verso Beach Raca."],
      ["17:30","Rientro a Cres","Passeggiata nel borgo veneziano: la loggia, la torre dell'orologio, il mandracchio."],
-     ["19:35","Tramonto sul porto",""],
+     ["19:22","Tramonto sul porto",""],
      ["20:30","Cena",""]],
  see:["Lubenice all'ora di pranzo, quando il vento si alza e sotto si vede tutto il canale fino a Lošinj","La tavola glagolitica di Valun: uno dei documenti più antichi in lingua croata","Il mandracchio di Cres, un porto interno chiuso da un arco di case"],
  sleep:"Seconda notte a Cres.",
@@ -894,7 +894,7 @@ const DAYS=[
      ["09:30","Si parte — o non si parte","Osor e Lošinj vogliono partire adesso; la barca si prende tra le 9 e le 10; il resto può aspettare mezzogiorno."],
      ["13:00","Pranzo","Sul porto, in konoba nell'interno, o in una baia con quello che ti sei portato."],
      ["16:00","Bagno","L'acqua del Quarnaro a metà settembre è ancora sui 23 °C, più calda dell'aria al mattino. È il mese migliore dell'anno per farlo."],
-     ["19:31","Tramonto","Dal molo, o da Lubenice se sei rimasto a ovest: è il balcone più alto dell'isola."],
+     ["19:19","Tramonto","Dal molo, o da Lubenice se sei rimasto a ovest: è il balcone più alto dell'isola."],
      ["20:30","Ultima cena sull'isola","Stasera sì che è l'ultima. Agnello di Cres se non l'hai ancora provato, altrimenti pesce e basta."]],
  see:["Il ponte girevole di Osor che si apre e lascia passare le barche in un canale largo undici metri","Cres e Lošinj sono una sola isola tagliata in due dai Romani per accorciare la rotta: il taglio è ancora lì","Il cielo notturno: sull'isola l'inquinamento luminoso è quasi nullo e a metà settembre non c'è foschia"],
  sleep:"<b>Quarta e ultima notte a Cres.</b> Stessa struttura dal 10: quattro notti nello stesso posto sono anche la voce che fa risparmiare di più, e quasi tutte le strutture applicano uno sconto dalla terza in poi. Chiedilo prenotando, non all'arrivo.",
@@ -919,7 +919,7 @@ const DAYS=[
      ["13:00","Pranzo al tartufo","Capitale del tartufo bianco d'Istria, e settembre apre la stagione. <b>Konoba Mondo</b> a Motovun, piccola e ottima; <b>Zigante</b> a Livade se vuoi il tempio."],
      ["14:45","Qui la strada si divide","Pirano a nord-ovest, Rovigno a sud-ovest, Pola a sud. Verso nord vale la pena infilare <b>Grožnjan</b>, il borgo degli artisti, o <b>Hum</b>, il paese più piccolo del mondo con trenta abitanti."],
      ["16:30","Check-in e città","Un pomeriggio pieno, comunque tu abbia scelto."],
-     ["19:29","Tramonto","Punta a Pirano, il molo a Rovigno, il Lungomare ad Abbazia."],
+     ["19:20","Tramonto","Punta a Pirano, il molo a Rovigno, il Lungomare ad Abbazia."],
      ["20:30","Ultima cena all'estero","A Pirano: <b>Fritolin pri Cantini</b>, si ordina al banco ed è ottimo. A Rovigno: <b>Konoba Kantinon</b> per il pesce, <b>Male Madlene</b> per i piccoli piatti."]],
  see:["Motovun dal basso, all'imbocco della valle: è l'immagine simbolo dell'Istria","Settembre in Istria è vendemmia — molte cantine sono aperte e in attività, e si entra senza appuntamento","Se finisci a Pirano: è veneziana nell'impianto e bilingue per statuto, l'italiano è lingua ufficiale e si parla davvero"],
  sleep:"<b>Ultima notte, una sola, base a scelta.</b> <b>Pirano</b> dentro le mura con l'auto già al garage Fornače (Hotel Piran sul mare, Art Hotel Tartini in piazza, Max Piran) · <b>Rovigno</b> città vecchia a scale o Monte Mulini con parcheggio (Hotel Adriatic, Casa Garzotto, Hotel Lone) · <b>Abbazia</b> sul Lungomare (Hotel Milenij, Amadria Park). Prenotane una sola e prenotala presto.",

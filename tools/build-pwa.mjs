@@ -128,7 +128,24 @@ function costruisci(id) {
       location.reload();
     });
     window.addEventListener('load', function(){
-      navigator.serviceWorker.register('sw.js').then(function(reg){
+      // updateViaCache:'none': sw.js non viene MAI preso dalla cache HTTP.
+      // GitHub Pages lo serve con max-age, e senza questo il browser puo'
+      // continuare a controllare una copia vecchia del service worker: la
+      // versione nuova esiste sul server e sul telefono non arriva mai.
+      navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' }).then(function(reg){
+        // L'aggiornamento puo' essersi installato mentre questa pagina non
+        // stava ascoltando — tipico dell'app riaperta dalla Home. In quel caso
+        // resta li' in attesa: gli si dice di attivarsi subito.
+        if (reg.waiting && navigator.serviceWorker.controller) reg.waiting.postMessage('attiva');
+        reg.addEventListener('updatefound', function(){
+          var n = reg.installing;
+          if (!n) return;
+          n.addEventListener('statechange', function(){
+            if (n.state === 'installed' && navigator.serviceWorker.controller) n.postMessage('attiva');
+          });
+        });
+        // Anche al ritorno del campo, non solo al ritorno in primo piano.
+        window.addEventListener('online', function(){ reg.update().catch(function(){}); });
         // Cerca la versione nuova quando l'app torna in primo piano: e' il
         // momento in cui una pagina rimasta aperta per ore va aggiornata.
         // Solo con rete.
@@ -218,9 +235,18 @@ const miaCache = k => k.startsWith('${id}-');
 // niente. Si puo' fare senza rischi perche' la pagina e' un file unico, senza
 // pezzi caricati a parte che potrebbero non combaciare; il contenuto nuovo si
 // vede alla riapertura.
+// cache:'no-store' su OGNI richiesta del service worker: la cache HTTP del
+// browser e' il punto in cui un aggiornamento si perde per ore. Vale per il
+// guscio quanto per la pagina.
+const dallaRete = u => fetch(u, { cache: 'no-store', credentials: 'same-origin' });
+
 self.addEventListener('install', ev => {
-  ev.waitUntil(caches.open(CACHE).then(c => c.addAll(GUSCIO)).then(() => self.skipWaiting()));
+  ev.waitUntil(caches.open(CACHE)
+    .then(c => Promise.all(GUSCIO.map(u => dallaRete(u).then(r => r.ok && c.put(u, r)).catch(() => {}))))
+    .then(() => self.skipWaiting()));
 });
+// La pagina puo' chiedere di far entrare subito una versione rimasta in attesa.
+self.addEventListener('message', ev => { if (ev.data === 'attiva') self.skipWaiting(); });
 self.addEventListener('activate', ev => {
   ev.waitUntil(caches.keys()
     .then(k => Promise.all(k.filter(x => miaCache(x) && x !== CACHE).map(x => caches.delete(x))))
@@ -235,11 +261,9 @@ self.addEventListener('fetch', ev => {
   if (req.method !== 'GET' || url.origin !== location.origin) return;
   if (req.mode === 'navigate') {
     if (!mio(url.pathname)) return;
-    // cache:'reload' salta la cache HTTP del browser: GitHub Pages serve con
-    // max-age=600, e senza questo per dieci minuti si continuerebbe a vedere
-    // la pagina vecchia anche con la versione nuova gia' pubblicata.
     ev.respondWith(
-      fetch(url.href, { cache: 'reload', credentials: 'same-origin' }).then(r => {
+      dallaRete(url.href).then(r => {
+        if (!r.ok) throw new Error('risposta ' + r.status);
         const copia = r.clone();
         caches.open(CACHE).then(c => c.put('./index.html', copia));
         return r;
