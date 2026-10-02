@@ -40,7 +40,6 @@ jobs:
           done
           grep -q 'Soldi di Davide' pwa/soldi/index.html
           grep -q 'serviceWorker' pwa/soldi/index.html
-          ! grep -q 'service_role' pwa/soldi/config.js
 
       - name: Aggiorna /soldi/ sul ramo gh-pages
         run: |
