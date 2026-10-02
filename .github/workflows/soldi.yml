@@ -1,0 +1,86 @@
+name: Pubblica Soldi
+
+# Ricostruisce "Soldi" (finanze/soldi/) e la pubblica in /soldi/ sul ramo
+# gh-pages, accanto alle altre app del sito. Tocca SOLO la cartella soldi/:
+# Ghisa & Grammi e i road book restano come sono.
+
+on:
+  push:
+    branches: [claude/dazzling-rubin-84u6yx, claude/artifact-code-session-g1s37q, main]
+    paths:
+      - 'finanze/soldi/**'
+      - 'tools/build-soldi.mjs'
+      - '.github/workflows/soldi.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pubblica-soldi
+  cancel-in-progress: false
+
+jobs:
+  pubblica:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Costruisci Soldi
+        run: node tools/build-soldi.mjs
+
+      - name: Controlla che sia una pagina sensata
+        run: |
+          for f in index.html sw.js manifest.webmanifest config.js vendor/chart.umd.js vendor/supabase.js icone/apple-touch-icon.png; do
+            test -s "pwa/soldi/$f" || { echo "manca pwa/soldi/$f"; exit 1; }
+          done
+          grep -q 'Soldi di Davide' pwa/soldi/index.html
+          grep -q 'serviceWorker' pwa/soldi/index.html
+          ! grep -q 'service_role' pwa/soldi/config.js
+
+      - name: Aggiorna /soldi/ sul ramo gh-pages
+        run: |
+          set -euo pipefail
+          URL="https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git clone -q --branch gh-pages "$URL" pubblicato
+
+          # Mai tornare indietro di versione: un ramo vecchio che ripubblica
+          # riporterebbe sul telefono un'app superata.
+          ver() { grep -o "__SOLDI_V=[0-9]\+" "$1" 2>/dev/null | head -1 | grep -o '[0-9]\+' || true; }
+          online="$(ver pubblicato/soldi/index.html)"; nuova="$(ver pwa/soldi/index.html)"
+          echo "Soldi: online v${online:-nessuna} · in pubblicazione v${nuova}"
+          if [ -n "$online" ] && [ "$online" -gt "$nuova" ]; then
+            echo "ERRORE: online c'e' la v$online, questo ramo pubblicherebbe la v$nuova."
+            exit 1
+          fi
+
+          rm -rf pubblicato/soldi
+          cp -a pwa/soldi pubblicato/soldi
+          rm -f pubblicato/soldi/vercel.json
+          cd pubblicato
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A soldi
+          # solo soldi/ puo' cambiare
+          if git diff --cached --name-only | grep -v '^soldi/'; then
+            echo "ERRORE: la pubblicazione toccherebbe file fuori da soldi/"; exit 1
+          fi
+          if git diff --cached --quiet; then echo "niente di nuovo da pubblicare"; exit 0; fi
+          git commit -q -m "Pubblica Soldi v${nuova}
+
+          Dal commit ${GITHUB_SHA}. Non modificare a mano: si rigenera a ogni push."
+          # se un'altra app ha pubblicato nel frattempo, ci si rimette in coda
+          for i in 1 2 3; do
+            git push -q "$URL" gh-pages && exit 0
+            sleep $((i * 5)); git pull -q --rebase "$URL" gh-pages
+          done
+          exit 1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Dove sta
+        run: echo "https://${GITHUB_REPOSITORY_OWNER}.github.io/${GITHUB_REPOSITORY#*/}/soldi/" >> $GITHUB_STEP_SUMMARY

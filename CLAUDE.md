@@ -16,6 +16,10 @@ fitness/<slug>/verify.json              selettori e giro delle viste per la veri
 tools/verify.mjs                        verifica di rendering obbligatoria
 tools/prova-dati.mjs                    prova con dati seminati, obbligatoria per fitness/
 tools/prova-pwa.mjs                     prova del giro di aggiornamento della PWA
+finanze/soldi/app.html                  sorgente dell'app del budget (PWA + Supabase)
+finanze/soldi/README.md                 configurazione Supabase, scelte, storico
+tools/build-soldi.mjs                   costruisce pwa/soldi/ (pubblicata in /soldi/)
+tools/prova-soldi.mjs                   prova con finto Supabase e due dispositivi
 out/                                    screenshot e PDF generati (non versionato)
 ```
 
@@ -145,6 +149,11 @@ Su iPhone una PWA riaperta dalla Home spesso non rifa' la navigazione, quindi
 niente si aggiorna da solo: ci vogliono `updateViaCache:'none'`, un
 `reg.update()` al ritorno in primo piano, il controllo di `reg.waiting` e
 `cache:'no-store'` su ogni fetch del service worker.
+
+Per **Soldi** (`finanze/soldi/`) la prova è una sola e copre tutto, sync
+compreso: `npm run build:soldi && npm run prova:soldi`. Il repo è pubblico:
+niente dati personali nel sorgente (importi, stipendi, nomi), stanno solo
+nell'account Supabase.
 
 ## Consegna
 

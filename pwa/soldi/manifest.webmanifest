@@ -1,0 +1,37 @@
+{
+  "id": "./",
+  "name": "Soldi di Davide",
+  "short_name": "Soldi",
+  "description": "Il budget personale di Davide: entrate, spese, conti, patrimonio.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F3F5F8",
+  "theme_color": "#1E5EFF",
+  "lang": "it",
+  "categories": [
+    "finance",
+    "productivity"
+  ],
+  "icons": [
+    {
+      "src": "icone/icona-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icone/icona-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icone/icona-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

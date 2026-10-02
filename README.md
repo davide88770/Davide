@@ -10,6 +10,12 @@ della pagina e le sue note.
 |---|---|---|
 | [Alpi, Soča & Quarnero](viaggi/2026-09-alpi-soca-quarnero/) — Slovenia e Croazia | 6–15 set 2026 | [apri](https://claude.ai/code/artifact/fac61cfd-bb6d-466a-97fc-e508a9785d8c) |
 
+## App
+
+| App | Cosa fa | Dove |
+|---|---|---|
+| [Soldi di Davide](finanze/soldi/) | Budget personale, installabile, dati su Supabase | [davide88770.github.io/Davide/soldi/](https://davide88770.github.io/Davide/soldi/) |
+
 ## Com'è fatto un road book
 
 Un solo file HTML, senza dipendenze esterne: la piattaforma degli Artifact

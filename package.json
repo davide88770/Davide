@@ -2,13 +2,15 @@
   "name": "roadbook",
   "private": true,
   "type": "module",
-  "description": "Road book di viaggio e app di allenamento pubblicati come Artifact",
+  "description": "Road book di viaggio, app di allenamento e app del budget",
   "scripts": {
     "verify": "node tools/verify.mjs",
     "build:pwa": "node tools/build-pwa.mjs",
     "build:icone": "node tools/build-icone.mjs",
     "prova": "node tools/prova-dati.mjs",
-    "prova:pwa": "node tools/prova-pwa.mjs"
+    "prova:pwa": "node tools/prova-pwa.mjs",
+    "build:soldi": "node tools/build-soldi.mjs",
+    "prova:soldi": "node tools/prova-soldi.mjs"
   },
   "devDependencies": {
     "playwright-core": "^1.49.0"
