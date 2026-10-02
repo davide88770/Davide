@@ -1,5 +1,5 @@
-/* Alpi, Soča & Quarnero — service worker, versione 7097189d98 */
-const CACHE = 'viaggio-7097189d98';
+/* Alpi, Soča & Quarnero — service worker, versione cb5f57d251 */
+const CACHE = 'viaggio-cb5f57d251';
 const GUSCIO = ['./', './index.html', './manifest.webmanifest',
   './icone/icona-192.png', './icone/icona-512.png',
   './icone/icona-maskable-512.png', './icone/apple-touch-icon.png'];

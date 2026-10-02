@@ -379,7 +379,7 @@ button.inline{background:none;border:0;padding:0;font:inherit;font-size:13.5px;c
 
 /* ── la barra della luce ────────────────────────────────────────────────── */
 .lucebox{border-top:1px solid var(--line);padding:11px 16px 13px;background:var(--surface)}
-svg.luce{display:block;width:100%;height:auto;max-height:46px;overflow:visible}
+svg.luce{display:block;width:100%;height:auto;max-height:46px;overflow:visible;margin-top:9px}
 .lucetxt{font-size:13px;color:var(--ink-2);margin:7px 0 0;line-height:1.45}
 .dbody .lucebox{border:1px solid var(--line);border-radius:var(--r);padding:11px 13px 12px;margin-bottom:12px}
 ol.tl li.next{background:var(--sunk);border-radius:8px;margin:0 -8px;padding:9px 8px}
@@ -1295,11 +1295,15 @@ function barraLuce(d,oggi){
   const X=m=>(2+(Math.max(T0,Math.min(T1,m))-T0)/(T1-T0)*(W-4));
   const r=(a,b,f,o)=>(a==null||b==null)?'':'<rect x="'+X(a).toFixed(1)+'" y="9" width="'
     +Math.max(0,X(b)-X(a)).toFixed(1)+'" height="13" fill="'+f+'"'+(o?' opacity="'+o+'"':'')+'/>';
-  const tacca=(m,col,lab)=>{const x=X(m).toFixed(1);
+  /* L'etichetta sta sotto la barra; se le due tacche sono vicine, quella
+     dell'ora che conta sale sopra, o i due testi si sovrappongono e non si
+     legge piu' niente. Succede proprio nel momento in cui la barra serve:
+     quando «adesso» e' l'ora che conta. */
+  const tacca=(m,col,lab,sopra)=>{const x=X(m).toFixed(1);
     return '<path d="M'+x+' 6V25" stroke="'+col+'" stroke-width="1.6"/>'
-      +'<text x="'+x+'" y="33" text-anchor="middle" font-size="8.6" fill="'+col+'"'
+      +'<text x="'+x+'" y="'+(sopra?-1:33)+'" text-anchor="middle" font-size="8.6" fill="'+col+'"'
       +' font-family="var(--display)" letter-spacing=".4">'+lab+'</text>';};
-  let g='<svg class="luce" viewBox="0 0 '+W+' 36" role="img" aria-label="Luce del '
+  let g='<svg class="luce" viewBox="0 -9 '+W+' 45" role="img" aria-label="Luce del '
     +d.date.toLowerCase()+' a '+L.posto.n+': alba '+hhmm(L.alba)+', tramonto '+hhmm(L.tram)
     +', fine del crepuscolo '+hhmm(L.civT)+'">'
     +'<rect x="2" y="9" width="'+(W-4)+'" height="13" rx="2" fill="var(--sunk)"/>'
@@ -1311,9 +1315,11 @@ function barraLuce(d,oggi){
     +' fill="var(--ink-3)" font-family="var(--mono)">'+hhmm(L.alba)+'</text>'
     +'<text x="'+X(L.tram).toFixed(1)+'" y="7" text-anchor="middle" font-size="8.6"'
     +' fill="var(--ink-3)" font-family="var(--mono)">'+hhmm(L.tram)+'</text>';
-  g+=tacca(mins(d.key.t),'var(--accent)',d.key.t);
-  if(oggi){const n=new Date(), m=n.getHours()*60+n.getMinutes();
-    if(m>=T0&&m<=T1) g+=tacca(m,'var(--alert)','adesso');}
+  const ora=new Date(), mOra=ora.getHours()*60+ora.getMinutes();
+  const adesso=oggi&&mOra>=T0&&mOra<=T1;
+  g+=tacca(mins(d.key.t),'var(--accent)',d.key.t,
+    adesso&&Math.abs(X(mins(d.key.t))-X(mOra))<36);
+  if(adesso) g+=tacca(mOra,'var(--alert)','adesso');
   return g+'</svg>';
 }
 /* Una voce di programma dopo mezzanotte appartiene alla notte dopo: senza
@@ -2130,7 +2136,7 @@ window.__BIGLIETTO=id=>{pref.big[id]=!pref.big[id];savePref();ridisegna();};
     if (!f) return;
     var s = document.createElement('span');
     s.style.cssText = 'display:block;margin-top:6px;opacity:.65;font-variant-numeric:tabular-nums';
-    s.textContent = 'versione 7097189d98';
+    s.textContent = 'versione cb5f57d251';
     f.appendChild(s);
   });
   // ── suggerimento d'installazione, solo su iPhone e solo se non installata ──
