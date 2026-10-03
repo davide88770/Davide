@@ -61,14 +61,48 @@ tutte le combinazioni di scelte.
 Sta anche dentro l'app, in Pratico → «Da fare, prima di partire», e come
 checklist spuntabile in Valigia.
 
-1. Riprenotare la notte del 15 a Hanoi.
-2. Decidere come andare da Hoi An all'aeroporto di Da Nang il 24.
+1. Decidere come andare da Hoi An all'aeroporto di Da Nang il 24.
+2. **Hue → Hoi An il 21: tenere la limousine o passare al treno?** Il biglietto
+   è rimborsabile fino al 20 novembre.
 3. Farsi confermare da Halise prezzo e punto di presa del van (orario e molo
    già comunicati il 3 ottobre).
-4. Chiedere a Peony il pick-up a Hanoi del 16, con il nome dell'albergo nuovo.
+4. Pagare a Peony il van per la baia, 40 USD: il link lo mandano loro.
 5. Chiedere a HK Buslines il transfer per il bus notturno del 19, 24 ore prima.
 6. Verificare l'ingresso in Vietnam sul sito dell'ambasciata.
 7. Patente internazionale, se si vuole lo scooter a Sa Pa e a Tam Coc.
+
+### Due correzioni del 3 ottobre
+
+**La notte del 15 a Hanoi.** Il Golden Rooster era prenotato per il 15–16
+novembre **2027**. Cancellato gratis e sostituito con l'**Hanoi Silk Crown
+Boutique Hotel & Spa**, 20 Phố Hàng Cân, Hoàn Kiếm — conferma 5210368751,
+Camera Queen Superior, colazione inclusa, 1.080.000 VND (~36 €) da pagare in
+struttura, cancellabile gratis fino all'11 novembre.
+
+**Hue → Hoi An non è un treno.** Il road book costruiva la giornata 12 sul
+treno del passo di Hai Van. La conferma 12Go del biglietto **AATZ5888** dice
+invece *«VIP Limousine 28»* di **G8 Sapa Open Tour**: un van su strada, diretto
+da davanti alla stazione di Hue fino a 70 Nguyen Thi Minh Khai, senza cambio a
+Da Nang, e con ogni probabilità dentro il tunnel invece che sopra il valico.
+Il biglietto è rimborsabile **fino al 20 novembre alle 14:45**: la giornata è
+stata riscritta su quello che è prenotato davvero, e l'alternativa in treno
+(SE fino a Da Nang + Grab) è registrata come scelta con una scadenza.
+
+### Il vincolo sull'albergo del 15
+
+La camera da riprenotare va presa **dentro l'Old Quarter di Hanoi**, non
+genericamente in centro. La mail di Peony del 3 ottobre lo scrive due volte:
+il transfer *è escluso* dal prezzo della crociera e *«**applied in Hanoi Old
+Quarter only**»* — 20 USD a testa sola andata, 35 andata e ritorno, da
+prenotare tre giorni prima. Fuori dall'Old Quarter il van non passa.
+
+Due conseguenze registrate nell'app: il van da Hanoi **non era compreso** (il
+budget diceva «incluso», ora sono 40 USD in due nella riga dei trasferimenti) e
+la richiesta di transfer già inviata **cita il Golden Rooster**, quindi va
+corretta appena l'albergo nuovo è fissato.
+
+Peony vende anche **Halong → Ninh Binh a 25 USD a testa** (o ~150 USD in auto
+privata): è il piano B se il van di Halise non si conferma.
 
 ## L'app
 
@@ -130,6 +164,15 @@ riscrivono quelli, non il codice.
 - **v2.1** — 3 ottobre 2026. Il **van dal molo di Tuan Chau a Tam Coc è
   organizzato**: l'orario vero di sbarco — 11:30 al Lotto 34 — è stato
   comunicato a Halise. Resta da farsi confermare prezzo e punto di presa.
+- **v3 — definitiva.** 3 ottobre 2026. La notte del 15 a Hanoi è prenotata
+  all'**Hanoi Silk Crown**, nel Quartiere Vecchio come richiede il van di
+  Peony, e l'indirizzo è già stato comunicato a Danny. Rilette tutte le
+  conferme in casella una per una: ne è uscito che il biglietto Hue → Hoi An
+  **non è il treno del passo di Hai Van** ma una limousine su strada, e la
+  giornata 12 è stata riscritta di conseguenza. Corretto anche il van di Peony
+  da Hanoi, che era segnato come incluso e invece costa 40 USD. Verificati e
+  trascritti i dettagli veri dei due minivan 12Go, del bus notturno (*Lower
+  Single Cabin*, HK Buslines) e del Silk Crown.
   Riallineati la giornata 9, il registro delle prenotazioni, la lista delle
   cose da fare, i riscontri e due voci del calendario. Restano aperte due cose:
   la notte del 15 a Hanoi e il trasferimento del 24.
