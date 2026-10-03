@@ -1,5 +1,5 @@
-/* Alpi, Soča & Quarnero — service worker, versione b63018ab0f */
-const CACHE = 'viaggio-b63018ab0f';
+/* Vietnam 2026 — service worker, versione 7cf7d1a7cd */
+const CACHE = 'vietnam-7cf7d1a7cd';
 const GUSCIO = ['./', './index.html', './manifest.webmanifest',
   './icone/icona-192.png', './icone/icona-512.png',
   './icone/icona-maskable-512.png', './icone/apple-touch-icon.png'];
@@ -13,7 +13,7 @@ const mio = p => p === BASE || p === BASE + 'index.html';
 // Le vecchie versioni da buttare sono solo le proprie: le cache delle altre
 // app dello stesso dominio vanno lasciate stare, o si cancellano il guscio
 // offline a vicenda a ogni aggiornamento.
-const miaCache = k => k.startsWith('viaggio-');
+const miaCache = k => k.startsWith('vietnam-');
 
 // skipWaiting: la versione nuova prende il posto della vecchia senza chiedere
 // niente. Si puo' fare senza rischi perche' la pagina e' un file unico, senza
