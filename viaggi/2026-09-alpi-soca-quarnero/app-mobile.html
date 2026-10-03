@@ -328,6 +328,22 @@ tr[hidden]{display:none}
 .sos a.em{grid-column:1/-1;background:var(--alert-soft);border-color:transparent}
 .sos a.em b{color:var(--alert);font-size:46px}
 
+/* ── scadenze ───────────────────────────────────────────────────────────── */
+.scl{display:flex;flex-direction:column;gap:9px}
+.sc{display:grid;grid-template-columns:54px 1fr;gap:12px;background:var(--surface);
+  border:1px solid var(--line);border-left-width:3px;border-radius:var(--r);padding:11px 12px}
+.sc.alert{border-left-color:var(--alert)}
+.sc.sig{border-left-color:var(--signal)}
+.sc.good{border-left-color:var(--good)}
+.sc.fatta{opacity:.42;border-left-color:var(--line)}
+.scq{display:flex;flex-direction:column;align-items:center;text-align:center;gap:3px}
+.scq time{font-family:var(--display);font-size:11.5px;line-height:1.2;letter-spacing:.05em;
+  text-transform:uppercase;color:var(--ink-2)}
+.scq span{font-family:var(--display);font-size:14px;color:var(--accent);font-variant-numeric:tabular-nums}
+.scx{min-width:0}
+.scx > b{display:block;font-size:14.5px;line-height:1.3;margin-bottom:4px}
+.scx p{font-size:13.5px;line-height:1.45;color:var(--ink-2);margin:0}
+
 /* ── spostamenti ────────────────────────────────────────────────────────── */
 /* La striscia del prossimo spostamento sta sopra tutto, in «Oggi»: è la prima
    cosa che si legge aprendo l'app. A tre ore dalla partenza cambia colore,
@@ -553,7 +569,7 @@ details.sec > summary .sp2{flex:1;min-width:0}
   .bgq,.bgg{padding-left:0;padding-right:0}
   .bg.off{background:none}
   .bgtot{break-inside:avoid;border-top:1.5px solid #999}
-  .tv,.al,.ri,.lucebox,.sp,.spo{break-inside:avoid}
+  .tv,.al,.ri,.lucebox,.sp,.spo,.sc{break-inside:avoid}
   /* Sulla carta il telefono non si tocca: resta il numero, in chiaro. */
   a.telb{background:none;color:inherit;padding:0;min-height:0;border-radius:0}
   .profscroll{overflow:visible}
@@ -1840,6 +1856,40 @@ function renderMapInfo(){
 /* ── PRATICO ────────────────────────────────────────────────────────────── */
 const VERD={si:['good','Da prendere'],forse:['sig','Si valuta'],no:['alert','Meglio no']};
 
+/* ── Scadenze ──────────────────────────────────────────────────────────
+   Le date entro cui bisogna aver fatto qualcosa, o entro cui si può ancora
+   disdire senza pagare. Non stanno nel programma perché non succedono in
+   viaggio: succedono prima, a casa, e sono quelle che si dimenticano. Se il
+   viaggio non dichiara SCADENZE la sezione non esiste. */
+const HASCAD = typeof SCADENZE!=='undefined' && SCADENZE.length>0;
+const MESI=['gen','feb','mar','apr','mag','giu','lug','ago','set','ott','nov','dic'];
+const GG=['dom','lun','mar','mer','gio','ven','sab'];
+const dataScad=s=>new Date(+s.iso.slice(0,4),+s.iso.slice(5,7)-1,+s.iso.slice(8,10),
+                           +(s.ora||'23:59').slice(0,2),+(s.ora||'23:59').slice(3,5));
+function prossimaScadenza(){
+  if(!HASCAD) return null;
+  const n=Date.now();
+  for(const s of SCADENZE){const t=dataScad(s).getTime();
+    if(t>=n) return {s:s,fra:Math.round((t-n)/60000)};}
+  return null;
+}
+function bloccoScadenze(){
+  const ora=Date.now();
+  const riga=s=>{
+    const d=dataScad(s), fatta=d.getTime()<ora;
+    return '<div class="sc '+(s.k||'sig')+(fatta?' fatta':'')+'">'
+      +'<div class="scq"><time>'+GG[d.getDay()]+' '+d.getDate()+'<br>'+MESI[d.getMonth()]+'</time>'
+      +'<span>'+(s.ora||'')+'</span></div>'
+      +'<div class="scx"><b>'+s.t+'</b><p>'+s.c+'</p></div></div>';
+  };
+  const p=prossimaScadenza();
+  return '<p class="sub">'+(VIAGGIO.scadenzeNota||'Le date entro cui bisogna aver fatto qualcosa. '
+      +'Le condizioni di cancellazione sono copiate dalle conferme, non stimate.')+'</p>'
+    +(p?'<p class="sub" style="margin-top:-4px"><b>La prossima:</b> '+p.s.t+', fra '+fraQuanto(p.fra)+'.</p>'
+       :'<p class="sub" style="margin-top:-4px"><b>Non ne resta nessuna aperta.</b></p>')
+    +'<div class="scl">'+SCADENZE.map(riga).join('')+'</div>';
+}
+
 /* ── Spostamenti ─────────────────────────────────────────────────────────
    Tutto quello che ha un'ora di partenza e un codice, uno sotto l'altro: è
    la risposta alla domanda che torna venti volte in un viaggio — «a che ora
@@ -2057,6 +2107,12 @@ function renderPratico(){
     +'<summary><span class="sp2">'+tit+'</span></summary><div class="secbody">'+body+'</div></details>';
 
   const BLOCCHI={
+    scadenze:()=>{ if(!HASCAD) return '';
+      /* aperta da sola solo quando la prima scadenza è vicina: a tre mesi
+         dalla partenza è rumore, a dieci giorni è la cosa che conta */
+      const p=prossimaScadenza();
+      return sec('scad','Scadenze e check-in · '+SCADENZE.length,bloccoScadenze(),
+        !!(p && p.fra < 14400)); },
     spostamenti:()=>HASPOST?sec('spost',(VIAGGIO.spostTit||'Spostamenti')+' · '+SPOSTAMENTI.length
       +' con un orario',bloccoSpostamenti(),true):'',
     budget:()=>sec('budget','Budget · '+nkm(b.tot[0])+'–'+nkm(b.tot[1])+' €',notaBudget+stepbar+bud,!HASPOST),

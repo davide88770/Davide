@@ -328,6 +328,22 @@ tr[hidden]{display:none}
 .sos a.em{grid-column:1/-1;background:var(--alert-soft);border-color:transparent}
 .sos a.em b{color:var(--alert);font-size:46px}
 
+/* ── scadenze ───────────────────────────────────────────────────────────── */
+.scl{display:flex;flex-direction:column;gap:9px}
+.sc{display:grid;grid-template-columns:54px 1fr;gap:12px;background:var(--surface);
+  border:1px solid var(--line);border-left-width:3px;border-radius:var(--r);padding:11px 12px}
+.sc.alert{border-left-color:var(--alert)}
+.sc.sig{border-left-color:var(--signal)}
+.sc.good{border-left-color:var(--good)}
+.sc.fatta{opacity:.42;border-left-color:var(--line)}
+.scq{display:flex;flex-direction:column;align-items:center;text-align:center;gap:3px}
+.scq time{font-family:var(--display);font-size:11.5px;line-height:1.2;letter-spacing:.05em;
+  text-transform:uppercase;color:var(--ink-2)}
+.scq span{font-family:var(--display);font-size:14px;color:var(--accent);font-variant-numeric:tabular-nums}
+.scx{min-width:0}
+.scx > b{display:block;font-size:14.5px;line-height:1.3;margin-bottom:4px}
+.scx p{font-size:13.5px;line-height:1.45;color:var(--ink-2);margin:0}
+
 /* ── spostamenti ────────────────────────────────────────────────────────── */
 /* La striscia del prossimo spostamento sta sopra tutto, in «Oggi»: è la prima
    cosa che si legge aprendo l'app. A tre ore dalla partenza cambia colore,
@@ -553,7 +569,7 @@ details.sec > summary .sp2{flex:1;min-width:0}
   .bgq,.bgg{padding-left:0;padding-right:0}
   .bg.off{background:none}
   .bgtot{break-inside:avoid;border-top:1.5px solid #999}
-  .tv,.al,.ri,.lucebox,.sp,.spo{break-inside:avoid}
+  .tv,.al,.ri,.lucebox,.sp,.spo,.sc{break-inside:avoid}
   /* Sulla carta il telefono non si tocca: resta il numero, in chiaro. */
   a.telb{background:none;color:inherit;padding:0;min-height:0;border-radius:0}
   .profscroll{overflow:visible}
@@ -668,6 +684,10 @@ const VIAGGIO={
   /* le parole che il motore non può indovinare */
   finaleNota:'Il viaggio \u00e8 finito. {km} km fra aria e terra, {h} di spostamenti, due voli '
     +'intercontinentali, un bus notturno, un treno sul passo di Hai Van e una notte in barca.',
+  scadenzeNota:'Le date entro cui bisogna aver fatto qualcosa, o entro cui si pu\u00f2 ancora disdire '
+    +'senza pagare. Le condizioni sono copiate dalle conferme, non stimate. <b>Attenzione all\'ora:</b> '
+    +'Booking scrive \u00ab23:59\u00bb ma in <b>ora del Vietnam</b>, che sono le <b>17:59 in Italia</b> \u2014 sei ore '
+    +'in meno di quelle che sembrano. Dall\'11 novembre siete l\u00ec e il problema non c\'\u00e8 pi\u00f9.',
   profiloAria:'Profilo altimetrico degli spostamenti via terra, dal livello del mare ai 1.550 metri di Sa Pa',
   spostTit:'Spostamenti',
   spostNota:'Ogni spostamento con un orario, in fila: ora, da dove si parte, codice del biglietto e, dove '
@@ -1059,7 +1079,7 @@ const BUDGET=[
   ["Volo interno VietJet","VJ514 Da Nang–Hanoi, 2 persone con bagaglio. <i>Importo non riportato</i>",80,140,"fisso"],
   ["Trasferimenti già pagati","2 minivan per Sa Pa 51 € · bus notturno Tam Coc–Hue 37 € · treno Hue–Hoi An 22 € · taxi da Noi Bai 9 €",119,119,"fisso"],
   ["Trasferimenti da pagare","Van Hanoi→baia 40 USD · van crociera→Tam Coc ~25 € · Hoi An→Da Nang · taxi a Sa Pa · Grab in città",100,150,"fisso"],
-  ["Alloggi confermati","Hoi An 212 € (pagato) · Hanoi 129 € · Sa Pa 92 € · Hanoi 15/11 36 € · Hue 34 € · Noi Bai 27 €",530,530,"fisso"],
+  ["Alloggi confermati","Hoi An 211,85 € gi\u00e0 pagati, pi\u00f9 <b>8.821.330 VND</b> da pagare in struttura: Hanoi 3.554.880 · Sa Pa 2.521.440 · Hanoi 15/11 1.080.000 · Hue 930.010 · Noi Bai 735.000. Al cambio di ~30.000 VND/\u20ac",506,506,"fisso"],
   ["Alloggio da pagare in loco","Halise Home a Tam Coc, prenotato fuori da Booking",25,40,"fisso"],
   ["Crociera Peony, 2 notti","Pensione completa e attività incluse. <i>Importo non riportato nella conferma</i>",250,400,"fisso"],
   ["Cibo e bevande","16 giorni, a testa. In Vietnam si mangia benissimo con poco: il grosso sono le bevande",160,280,"pp"],
@@ -1253,6 +1273,76 @@ const RISCONTRI=[
   c:"Era prenotato per il <b>10–11 gennaio 2027</b>. Modificato stamattina alle 06:01: ora è 24 → 25 novembre 2026, che è la notte giusta prima del volo delle 08:15."}
 ];
 
+/* ── Scadenze ────────────────────────────────────────────────────────────
+   Le date entro cui bisogna fare qualcosa, o entro cui si può ancora
+   disdire senza pagare. Non sono nel programma perché non succedono in
+   viaggio: succedono prima, a casa, e sono quelle che si dimenticano.
+   Le condizioni di cancellazione sono copiate dalle conferme, non stimate. */
+const SCADENZE=[
+ {iso:'2026-10-31',ora:'09:00',k:'sig',t:'Dieci giorni prima: passaporto, visto, eSIM, assicurazione',
+  c:'Le cose senza una scadenza stampata, ma che il 9 novembre \u00e8 tardi per farle. <b>Passaporto</b>: valido sei mesi oltre l\'ingresso, quindi non deve scadere prima dell\'<b>11 maggio 2027</b>. <b>Ingresso in Vietnam</b>: riverificare l\'esenzione sul sito dell\'ambasciata. <b>eSIM</b> Viettel o Vinaphone, attivata prima di partire. <b>Assicurazione</b> medico-bagaglio con anticipo spese. <b>Banca</b>: avvisare del viaggio, perch\u00e9 The Chum accetta solo carta e l\'Airport Classic solo Visa e Mastercard. <b>Patente internazionale</b>, se volete lo scooter.'},
+ {iso:'2026-11-08',ora:'10:30',k:'sig',t:'Si apre il check-in online Etihad per l\'andata',
+  c:'EY82 e EY432, codice <b>9T6U9F</b>. Etihad apre il check-in <b>48 ore prima</b> secondo il suo sito — alcune fonti terze dicono 30 ore, quindi se non è ancora aperto si riprova — e lo chiude <b>un\'ora prima</b> della partenza. Fatelo subito: i posti sono già assegnati, ma la carta d\'imbarco sul telefono toglie una coda a Malpensa.'},
+ {iso:'2026-11-09',ora:'23:59',k:'alert',t:'Ultimo giorno per disdire il Serene Central senza pagare',
+  c:'Conferma 6158389407. Dal 10 novembre a mezzanotte scatta l\'addebito della prima notte, <b>1.777.440 VND</b>. <i>L\'hotel scrive che il saldo si paga in anticipo con bonifico e che vi contatteranno: se arriva quella richiesta, verificatela chiamando il +84 24 3203 0128, non rispondendo alla mail.</i>'},
+ {iso:'2026-11-10',ora:'19:00',k:'alert',t:'Ultimo rimborso del minivan per Sa Pa',
+  c:'12GO33251058. Dopo le 19:00 del 10 novembre il biglietto non si rimborsa più.'},
+ {iso:'2026-11-10',ora:'23:59',k:'alert',t:'Ultimo giorno per disdire la Maison de Lao Chai',
+  c:'Conferma 6309631840. Dall\'11 novembre si paga tutto, <b>2.521.440 VND</b>.'},
+ {iso:'2026-11-11',ora:'23:59',k:'alert',t:'Ultimo giorno per disdire il Silk Crown, e per pagare Peony',
+  c:'<b>Silk Crown</b> (conferma 5210368751): dal 12 novembre si paga tutto, 1.080.000 VND. <b>Peony</b> scrive che il pagamento si fa <b>entro cinque giorni dal check-in</b>, cioè entro l\'11: se il link non è arrivato, sollecitatelo a Danny.'},
+ {iso:'2026-11-13',ora:'12:00',k:'sig',t:'Ultimo giorno utile per prenotare il van di Peony',
+  c:'Il transfer condiviso Hanoi → baia <b>va prenotato almeno tre giorni prima</b>, e la partenza è il 16. Indirizzo già comunicato: Hanoi Silk Crown, 20 Phố Hàng Cân.'},
+ {iso:'2026-11-16',ora:'21:30',k:'alert',t:'Ultimo rimborso del bus notturno',
+  c:'AATZ2552, HK Buslines. Dopo le 21:30 del 16 novembre non si rimborsa più.'},
+ {iso:'2026-11-16',ora:'23:59',k:'alert',t:'Ultimo giorno per disdire The Chum a Hue',
+  c:'Conferma 6039302548. Dal 17 novembre si paga tutto, <b>930.010 VND</b>. <b>Qui non si pagano contanti</b>: solo carta.'},
+ {iso:'2026-11-18',ora:'10:00',k:'sig',t:'Chiedere a HK Buslines il transfer per il bus di domani',
+  c:'WhatsApp <b>+84 798 149 095</b>. Il pick-up dall\'hotel è gratuito per i clienti 12Go ma <b>va chiesto almeno 24 ore prima</b>, e il bus parte il 19 alle 21:30. Dite che siete a Halise Home, Tam Coc.'},
+ {iso:'2026-11-20',ora:'14:45',k:'sig',t:'Ultimo rimborso della limousine per Hoi An',
+  c:'AATZ5888. È anche il momento oltre il quale non si può più cambiare idea e passare al treno fino a Da Nang — che comunque richiederebbe un secondo mezzo, perché Hoi An non ha stazione.'},
+ {iso:'2026-11-20',ora:'23:59',k:'alert',t:'Ultimo giorno per disdire l\'hotel dell\'aeroporto',
+  c:'Airport Classic Hotel 2, conferma 5403083248. Dal 21 novembre si paga tutto, <b>735.000 VND</b>. Accetta solo Visa e Mastercard.'},
+ {iso:'2026-11-23',ora:'08:15',k:'sig',t:'Si apre il check-in online Etihad per il ritorno',
+  c:'EY433 e EY79, codice <b>9T6U9F</b>. Quarantotto ore prima dell\'EY433 delle 08:15. <b>Fatelo da Hoi An, con il wifi dell\'hotel</b>: il 24 siete in movimento tutto il giorno e il 25 vi alzate alle cinque.'},
+ {iso:'2026-11-23',ora:'16:55',k:'sig',t:'Si apre il check-in online VietJet',
+  c:'VJ514, codice <b>5EVNMY</b>. VietJet apre <b>24 ore prima</b> e chiude 60 minuti prima; i banchi all\'aeroporto chiudono <b>40 minuti</b> prima. Avete due bagagli da stiva, quindi al banco ci si passa comunque.'}
+];
+
+/* ── Scadenze ──────────────────────────────────────────────────────────
+   Le date entro cui bisogna aver fatto qualcosa, o entro cui si può ancora
+   disdire senza pagare. Non stanno nel programma perché non succedono in
+   viaggio: succedono prima, a casa, e sono quelle che si dimenticano. Se il
+   viaggio non dichiara SCADENZE la sezione non esiste. */
+const HASCAD = typeof SCADENZE!=='undefined' && SCADENZE.length>0;
+const MESI=['gen','feb','mar','apr','mag','giu','lug','ago','set','ott','nov','dic'];
+const GG=['dom','lun','mar','mer','gio','ven','sab'];
+const dataScad=s=>new Date(+s.iso.slice(0,4),+s.iso.slice(5,7)-1,+s.iso.slice(8,10),
+                           +(s.ora||'23:59').slice(0,2),+(s.ora||'23:59').slice(3,5));
+function prossimaScadenza(){
+  if(!HASCAD) return null;
+  const n=Date.now();
+  for(const s of SCADENZE){const t=dataScad(s).getTime();
+    if(t>=n) return {s:s,fra:Math.round((t-n)/60000)};}
+  return null;
+}
+function bloccoScadenze(){
+  const ora=Date.now();
+  const riga=s=>{
+    const d=dataScad(s), fatta=d.getTime()<ora;
+    return '<div class="sc '+(s.k||'sig')+(fatta?' fatta':'')+'">'
+      +'<div class="scq"><time>'+GG[d.getDay()]+' '+d.getDate()+'<br>'+MESI[d.getMonth()]+'</time>'
+      +'<span>'+(s.ora||'')+'</span></div>'
+      +'<div class="scx"><b>'+s.t+'</b><p>'+s.c+'</p></div></div>';
+  };
+  const p=prossimaScadenza();
+  return '<p class="sub">'+(VIAGGIO.scadenzeNota||'Le date entro cui bisogna aver fatto qualcosa. '
+      +'Le condizioni di cancellazione sono copiate dalle conferme, non stimate.')+'</p>'
+    +(p?'<p class="sub" style="margin-top:-4px"><b>La prossima:</b> '+p.s.t+', fra '+fraQuanto(p.fra)+'.</p>'
+       :'<p class="sub" style="margin-top:-4px"><b>Non ne resta nessuna aperta.</b></p>')
+    +'<div class="scl">'+SCADENZE.map(riga).join('')+'</div>';
+}
+
 /* ── Spostamenti ─────────────────────────────────────────────────────────
    Tutto quello che ha un orario e un biglietto, in fila. È la sezione da
    aprire quando ci si chiede «a che ora si parte e da dove»: i dati sono gli
@@ -1306,7 +1396,7 @@ const SPOSTAMENTI=[
    viaggio e solo di questo. Gli «Spostamenti» stanno per primi e aperti:
    nove volte su dieci l'app si apre per sapere a che ora si parte. */
 const PRATICO=[
- '@spostamenti','@budget','@biglietti','@tavola','@luce','@prenot','@riscontri',
+ '@scadenze','@spostamenti','@budget','@biglietti','@tavola','@luce','@prenot','@riscontri',
  {id:'docs',t:'Visto, documenti, soldi',b:
    '<ul class="tick">'
   +'<li><b>Visto: non serve.</b> Gli italiani entrano in esenzione per soggiorni fino a <b>45 giorni</b>; '
@@ -2321,6 +2411,12 @@ function renderPratico(){
     +'<summary><span class="sp2">'+tit+'</span></summary><div class="secbody">'+body+'</div></details>';
 
   const BLOCCHI={
+    scadenze:()=>{ if(!HASCAD) return '';
+      /* aperta da sola solo quando la prima scadenza è vicina: a tre mesi
+         dalla partenza è rumore, a dieci giorni è la cosa che conta */
+      const p=prossimaScadenza();
+      return sec('scad','Scadenze e check-in · '+SCADENZE.length,bloccoScadenze(),
+        !!(p && p.fra < 14400)); },
     spostamenti:()=>HASPOST?sec('spost',(VIAGGIO.spostTit||'Spostamenti')+' · '+SPOSTAMENTI.length
       +' con un orario',bloccoSpostamenti(),true):'',
     budget:()=>sec('budget','Budget · '+nkm(b.tot[0])+'–'+nkm(b.tot[1])+' €',notaBudget+stepbar+bud,!HASPOST),

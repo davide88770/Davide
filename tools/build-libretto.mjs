@@ -224,7 +224,26 @@ function mappa(){
    +E(VIAGGIO.notaKm||'')+'</p>');
 }
 
-/* ---- 3. spostamenti ---- */
+/* ---- 3. scadenze ---- */
+if(typeof SCADENZE!=='undefined' && SCADENZE.length){
+  const M=['gen','feb','mar','apr','mag','giu','lug','ago','set','ott','nov','dic'];
+  const G=['dom','lun','mar','mer','gio','ven','sab'];
+  let r='';
+  for(const x of SCADENZE){
+    const d=new Date(+x.iso.slice(0,4),+x.iso.slice(5,7)-1,+x.iso.slice(8,10));
+    r+='<tr><td class="n"><b>'+G[d.getDay()]+' '+d.getDate()+' '+M[d.getMonth()]+'</b>'
+      +(x.ora?'<br>'+E(x.ora):'')+'</td>'
+      +'<td><input type="checkbox" disabled style="margin-right:3mm;vertical-align:1px"><b>'+E(x.t)+'</b>'
+      +'<br><span class="sub">'+x.c+'</span></td></tr>';
+  }
+  pag('<h2>Scadenze</h2>'
+   +'<p class="sub">Le date entro cui bisogna aver fatto qualcosa, o entro cui si pu\u00f2 ancora '
+   +'disdire senza pagare. Succedono tutte <b>prima di partire</b>, e sono quelle che si dimenticano. '
+   +'Le condizioni sono copiate dalle conferme.</p>'
+   +'<table><thead><tr><th style="width:24mm">Entro</th><th>Cosa</th></tr></thead><tbody>'+r+'</tbody></table>');
+}
+
+/* ---- 3b. spostamenti ---- */
 if(typeof SPOSTAMENTI!=='undefined' && SPOSTAMENTI.length){
   let r='';
   for(const s of SPOSTAMENTI){
