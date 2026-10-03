@@ -640,7 +640,7 @@ const VIAGGIO={
   carburante:false,
   budgetNota:'Per due persone, sedici giorni. ',
   riscontriNota:'Quello che resta aperto, e quello che è già stato corretto. '
-    +'Le prime tre voci sono le uniche cose che mancano al viaggio.',
+    +'Le prime due voci sono le uniche cose che mancano al viaggio.',
   traghetti:[0,0], tragNota:'—', sceltaMax:90,
   rifFinale:'Hoi An',
   bbox:{lon:[101.8,110.6],lat:[14.4,23.8]},
@@ -872,12 +872,12 @@ const DAYS=[
  km:175,min:180,type:"Trasferimento",border:"—",
  luogo:"Tam Coc",lat:20.2166,lon:105.9385,quota:"dal mare ai 10 m della pianura carsica",
  libera:"Arrivando alle 14:30 l'ora che avanza c'è: la <b>Bich Dong Pagoda</b> è a tre chilometri da Halise, chiude alle 17:00 ed è una pagoda in tre piani incastrata dentro la montagna. Con lo scooter sono dieci minuti.",
- key:{t:"11:30",w:"Lo sbarco è alle <b>11:30 al Lotto 34 di Tuan Chau</b> — confermato da Peony. È l'ora da dire a Halise per il van: non le 14:00 che diceva il programma."},
+ key:{t:"11:30",w:"Lo sbarco è alle <b>11:30 al Lotto 34 di Tuan Chau</b> — confermato da Peony, e <b>comunicato a Halise</b> il 3 ottobre. Non le 14:00 che diceva il programma."},
  route:"Baia di Lan Ha › Lotto 34, Tuan Chau › minivan (175 km) › Halise Home, Tam Coc",
  gm:"https://www.google.com/maps/dir/Tuan+Chau+Marina/Tam+Coc,+Ninh+Binh",
  tl:[["07:00","Ultima alba a bordo","Colazione mentre si rientra."],
      ["11:30","Sbarco al Lotto 34","Stesso molo dell'imbarco. Il van di Halise vi aspetta lì."],
-     ["11:45","Minivan per Tam Coc","175 km, circa tre ore. <b>Da organizzare con Halise</b>, dicendo molo e orario."],
+     ["11:45","Minivan per Tam Coc","175 km, circa tre ore. Organizzato con Halise: molo e orario già comunicati."],
      ["14:30","Halise Home, Tam Coc","Camera con vista lago, dal 18 al 19. È un posto nella giungla: semplice, autentico, e qualche insetto ci sta."],
      ["15:00","Scooter","Si chiede a Halise. Da qui in poi tutto si fa su due ruote: Ninh Binh è piatta e le distanze sono corte."],
      ["15:30","Bich Dong Pagoda","Tre livelli scavati nella roccia, uno sopra l'altro. <b>Chiude alle 17:00.</b>"],
@@ -887,7 +887,7 @@ const DAYS=[
  pioggia:"Tam Coc sotto la pioggia si gira male, perché tutto si fa in scooter. Il ripiego è la <b>pagoda di Bai Dinh</b>, che è enorme e in gran parte coperta, oppure anticipare il giro in barca di Trang An, che si fa comunque con l'ombrello e con meno gente.",
  sleep:"<b>Halise Home, 1 notte.</b> Camera vista lago, prenotata direttamente. <i>Nota dal programma: posto meraviglioso ma semplice, pulizia con standard asiatici. Siete nella giungla e l'inglese è poco.</i>",
  eat:"La specialità è la <b>capra</b> — <i>dê núi</i>, di montagna — con il riso croccante. Le botteghe lungo la via di Tam Coc la fanno tutte.",
- tip:{k:"alert",t:"<strong>L'orario da dire a Halise</strong>Peony ha confermato per email: sbarco alle <b>11:30 al Lotto 34 di Tuan Chau</b>. Il programma ipotizzava le 14:00 — se avete già dato quell'ora, correggetela, o il van arriva con tre ore di ritardo."}},
+ tip:{k:"good",t:"<strong>Il van è organizzato</strong>Peony ha confermato per email lo sbarco alle <b>11:30 al Lotto 34 di Tuan Chau</b>, e l'orario è stato dato a Halise il 3 ottobre — il programma ipotizzava le 14:00, che avrebbe fatto arrivare il van con tre ore di ritardo. Resta solo da <b>farsi confermare per iscritto prezzo e punto di presa</b>, e da riconfermarlo la sera prima dalla barca."}},
 
 {n:10,iso:"2026-11-19",date:"Giovedì 19 novembre",short:"Gio 19",
  title:"Trang An, Mua Caves, e il bus della notte",
@@ -1071,7 +1071,7 @@ const CARB={lmin:0,lmax:0,pmin:0,pmax:0};
 /* ── Da prenotare e già prenotato ────────────────────────────────────── */
 const BOOK=[
  ["alert","Da fare","La notte del 15 a Hanoi","Booking","25–45 €","<b>Il Golden Rooster è prenotato per il 15 novembre 2027, non 2026.</b> Serve una camera per la notte fra il 15 e il 16 novembre 2026, meglio a Hoan Kiem: domattina la crociera vi prende in albergo."],
- ["alert","Da fare","Van dalla crociera a Tam Coc","Halise, diretto","~25 €","Sbarco alle <b>11:30 al Lotto 34 di Tuan Chau</b>, confermato da Peony. È l'orario da dare a Halise."],
+ ["sig","Da confermare","Van dalla crociera a Tam Coc","Halise, diretto","~25 €","Orario e molo <b>comunicati a Halise il 3 ottobre</b>: sbarco 11:30 al Lotto 34 di Tuan Chau. Manca la conferma scritta di prezzo e punto di presa."],
  ["alert","Da fare","Hoi An → aeroporto di Da Nang","Grab o bus","2–20 €","Il 24 pomeriggio, 30 km e un'ora con il traffico. Da decidere prima di partire."],
  ["sig","Da chiedere","Pick-up della crociera a Hanoi","Chat Booking","incluso","Peony viene a prendervi la mattina del 16: va detto loro il nome dell'albergo — che cambia, visto che la notte del 15 va riprenotata."],
  ["sig","Da chiedere","Transfer per il bus notturno","WhatsApp +84 798 149 095","gratis","HK Buslines fa il pick-up dagli hotel di Tam Coc per i clienti 12Go, ma <b>va chiesto almeno 24 ore prima</b>."],
@@ -1117,7 +1117,7 @@ const PHRASES=[["Buongiorno","Xin chào","sin ciào"],["Grazie","Cảm ơn","cam
  ["Ho prenotato","Tôi đã đặt trước","toi da dat truɐc"],["A che ora?","Mấy giờ?","mai giɐ"]];
 
 const LISTS=[
- {t:"Da fare prima di partire",i:["<b>Riprenotare la notte del 15 novembre a Hanoi</b> (il Golden Rooster è per il 2027)","<b>Dire a Halise l'orario vero di sbarco: 11:30 al Lotto 34 di Tuan Chau</b>","<b>Decidere come andare da Hoi An all'aeroporto di Da Nang il 24</b>","Chiedere a Peony il pick-up a Hanoi la mattina del 16, con il nome dell'albergo nuovo","Chiedere a Peony il programma dettagliato dei tre giorni","Chiedere a HK Buslines il transfer per il bus notturno del 19 (WhatsApp, 24 ore prima)","Verificare l'ingresso in Vietnam sul sito dell'ambasciata","Richiedere la patente internazionale, se volete lo scooter","Assicurazione medico-bagaglio","Decidere se anticipare il taxi dell'11 (ora è alle 12:00, si atterra alle 06:10)"]},
+ {t:"Da fare prima di partire",i:["<b>Riprenotare la notte del 15 novembre a Hanoi</b> (il Golden Rooster è per il 2027)","Farsi confermare da Halise il van per Tam Coc, prezzo compreso (orario e molo già comunicati)","<b>Decidere come andare da Hoi An all'aeroporto di Da Nang il 24</b>","Chiedere a Peony il pick-up a Hanoi la mattina del 16, con il nome dell'albergo nuovo","Chiedere a Peony il programma dettagliato dei tre giorni","Chiedere a HK Buslines il transfer per il bus notturno del 19 (WhatsApp, 24 ore prima)","Verificare l'ingresso in Vietnam sul sito dell'ambasciata","Richiedere la patente internazionale, se volete lo scooter","Assicurazione medico-bagaglio","Decidere se anticipare il taxi dell'11 (ora è alle 12:00, si atterra alle 06:10)"]},
  {t:"Documenti e prenotazioni",i:["Passaporto valido almeno 6 mesi oltre il rientro","Carte d'imbarco Etihad A/R, codice 9T6U9F","Biglietto VietJet VJ514, codice 5EVNMY","Voucher Booking: Serene, Maison de Lao Chai, Chum, Signature, Airport Classic","Biglietti 12Go: minivan ×2, bus notturno, treno — scaricati OFFLINE","Conferma Peony Cruises e contatto WhatsApp di Danny Do","Conferma Halise Home","Assicurazione di viaggio, numero di polizza","Patente internazionale, se la prendete","Contanti in euro da cambiare, e una carta senza commissioni","Copia di tutto su telefono e una copia cartacea separata"]},
  {t:"Nello zaino",i:["<b>Zaino, non valigia</b>: sei spostamenti con scale, van e bus","Zaino piccolo per Sa Pa (il grande resta a Hanoi)","Scarpe da trekking chiuse (Sa Pa, Mua Caves, My Son)","Sandali o ciabatte","Impermeabile leggero e copri-zaino: a Hue e Hoi An novembre è stagione di piogge","Felpa o pile: a Sa Pa di notte si va sotto i 10 °C","Costume e telo microfibra (baia, An Bang)","Borsa o sacca waterproof per la baia","Repellente antizanzare","Crema solare","Power bank e adattatore (prese A/C, 220 V)","Torcia o frontale (Halise è nella giungla)","Tappi per le orecchie, per il bus notturno","Un cambio decente per le cene"]},
  {t:"Salute e farmacia",i:["Farmaci personali con la ricetta","Antidiarroico e fermenti lattici","Antidolorifico e antipiretico","Cerotti e disinfettante","Gel disinfettante per le mani","Collirio (lo smog di Hanoi)","Pastiglie per il mal d'auto: i tornanti per Sa Pa sono seicento","Zanzariera da viaggio, se dormite con la finestra aperta a Tam Coc"]}
@@ -1238,14 +1238,14 @@ const PROFILO=[
 const RISCONTRI=[
  {q:'no',t:'La notte del 15 a Hanoi non è prenotata',d:'trovato il 3 ottobre 2026',
   c:"Il Golden Rooster Hotel risulta prenotato per il <b>15–16 novembre 2027</b>, non 2026: lo dicono la conferma Booking («arrivo lunedì 15 novembre 2027») e il messaggio dell'hotel stesso. Il 15 novembre 2026 è una domenica, il 2027 un lunedì. <b>Tornando da Sa Pa alle 20:00 non avete una camera.</b> Va riprenotata, meglio a Hoan Kiem: la mattina dopo la crociera vi viene a prendere in albergo."},
- {q:'no',t:'Il van dalla crociera a Tam Coc',d:'da organizzare con Halise',
-  c:"Peony ha confermato per email: <b>sbarco alle 11:30 al Lotto 34 di Tuan Chau</b>. Il programma ipotizzava le 14:00. È l'orario e il posto da dare a Halise per il minivan — e se avete già dato le 14:00, va corretto."},
  {q:'no',t:'Hoi An → aeroporto di Da Nang, il 24',d:'da decidere',
   c:"Trenta chilometri, un'ora con il traffico del pomeriggio, volo alle 16:55. Grab costa 15–20 €, il bus pubblico un paio di euro ma ci mette il doppio e parte dal centro. <b>Va deciso prima, non il 24 all'uscita dell'hotel.</b>"},
  {q:'forse',t:"L'ingresso in Vietnam",d:'da verificare sul sito ufficiale',
   c:"Il programma rimanda a viaggiaresicuri.it e non entra nel merito. L'esenzione dal visto per gli italiani esiste per i soggiorni brevi e il vostro è di quindici giorni, ma <b>viene rinnovata periodicamente e va controllata</b>. È l'unica cosa che, se sbagliata, ferma il viaggio al gate."},
  {q:'forse',t:'Il taxi dell\'11 è alle 12:00, si atterra alle 06:10',d:'da decidere',
   c:"Fra uscita dai controlli e partenza restano quasi cinque ore a Noi Bai. Il check-in al Serene è dalle 14:00, quindi la logica c'è — ma gli zaini si possono lasciare in reception e il Quartiere Vecchio si gira anche la mattina. Se volete anticipare, si scrive a Booking."},
+ {q:'si',t:'Il van dalla crociera a Tam Coc',d:'detto a Halise il 3 ottobre 2026',
+  c:"Peony ha confermato per email lo <b>sbarco alle 11:30 al Lotto 34 di Tuan Chau</b> — il programma ipotizzava le 14:00 — e l'orario vero è stato comunicato a Halise, che organizza il minivan. 175 km, circa tre ore, arrivo a Tam Coc verso le 14:30. <b>Resta da farsi confermare per iscritto prezzo e punto di presa</b>, e da riconfermare la sera prima dalla barca."},
  {q:'si',t:'Il volo di rientro è cambiato',d:'2 ottobre 2026',
   c:"Etihad ha spostato l'EY433 del 25 novembre: parte alle <b>08:15</b> invece che alle 07:40 e arriva ad Abu Dhabi alle 12:40. La coincidenza EY79 per Milano resta alle 14:20: <b>1h40 di scalo</b>, stesso terminal. Si fa, ma senza margine."},
  {q:'si',t:"L'hotel dell'aeroporto è stato corretto",d:'3 ottobre 2026',
@@ -1278,7 +1278,7 @@ const SPOSTAMENTI=[
   tel:'+84984749958',n:'<b>Il pick-up in albergo va concordato prima</b>, dicendo il nome dell\'hotel.'},
  {iso:'2026-11-18',ora:'11:30',i:'⛴',g:9,t:'Sbarco → Tam Coc',
   da:'Lotto 34, Tuan Chau',a:'Halise Home, verso le 14:30',cod:'—',
-  n:'<b>Van da organizzare con Halise</b>, dicendo molo e orario. 175 km, circa tre ore.'},
+  n:'Van organizzato con Halise: molo e orario comunicati il 3 ottobre. 175 km, circa tre ore.'},
  {iso:'2026-11-19',ora:'21:30',i:'🚌',g:10,t:'Bus notturno → Hue',
   da:'Tam Coc Agency',a:'35 Nguyen Cong Tru, 06:30',cod:'AATZ2552',
   tel:'+84798149095',n:'<b>Esserci 30–45 minuti prima.</b> Il transfer dall\'hotel va chiesto 24 ore prima su WhatsApp.'},

@@ -54,7 +54,7 @@ tutte le combinazioni di scelte.
 - **EY433 del 25 novembre** — spostato da 07:40 a **08:15**. La coincidenza ad
   Abu Dhabi scende a 1h40.
 - **Fine crociera** — il programma ipotizzava le 14:00, Peony ha confermato
-  **11:30 al Lotto 34 di Tuan Chau**. È l'orario da dare a Halise.
+  **11:30 al Lotto 34 di Tuan Chau**. Comunicato a Halise il 3 ottobre.
 
 ## Cosa resta da fare
 
@@ -62,8 +62,9 @@ Sta anche dentro l'app, in Pratico → «Da fare, prima di partire», e come
 checklist spuntabile in Valigia.
 
 1. Riprenotare la notte del 15 a Hanoi.
-2. Organizzare con Halise il van dal molo di Tuan Chau a Tam Coc (sbarco 11:30).
-3. Decidere come andare da Hoi An all'aeroporto di Da Nang il 24.
+2. Decidere come andare da Hoi An all'aeroporto di Da Nang il 24.
+3. Farsi confermare da Halise prezzo e punto di presa del van (orario e molo
+   già comunicati il 3 ottobre).
 4. Chiedere a Peony il pick-up a Hanoi del 16, con il nome dell'albergo nuovo.
 5. Chiedere a HK Buslines il transfer per il bus notturno del 19, 24 ore prima.
 6. Verificare l'ingresso in Vietnam sul sito dell'ambasciata.
@@ -126,3 +127,9 @@ riscrivono quelli, non il codice.
   la stagione delle piogge nel Centro e i piani B se il treno o il volo del 24
   saltano. `prova:adesso` controlla anche la striscia del prossimo
   spostamento, e sa verificare che una cosa **non** ci sia.
+- **v2.1** — 3 ottobre 2026. Il **van dal molo di Tuan Chau a Tam Coc è
+  organizzato**: l'orario vero di sbarco — 11:30 al Lotto 34 — è stato
+  comunicato a Halise. Resta da farsi confermare prezzo e punto di presa.
+  Riallineati la giornata 9, il registro delle prenotazioni, la lista delle
+  cose da fare, i riscontri e due voci del calendario. Restano aperte due cose:
+  la notte del 15 a Hanoi e il trasferimento del 24.
