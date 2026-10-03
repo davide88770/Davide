@@ -133,6 +133,23 @@ piano. A tre ore dalla partenza la striscia diventa ambra.
 Gli stessi tredici movimenti sono anche sul Google Calendar di Davide, con il
 prefisso `VN · ` per trovarli e cancellarli in blocco.
 
+### Il libretto di carta
+
+```sh
+npm run libretto viaggi/2026-11-vietnam/app-mobile.html
+```
+
+Produce `out/2026-11-vietnam/libretto.pdf`: **27 pagine A4** impaginate per la
+carta, non la stampa dell'app. L'ordine è quello di consultazione — copertina
+con la mappa e i numeri d'emergenza, il viaggio in una pagina, gli spostamenti,
+le prenotazioni, poi giorno per giorno (due giornate per pagina, programma a
+sinistra ed essenziale a destra), pratico, biglietti e budget, frasario, numeri
+utili e le quattro liste da spuntare.
+
+I dati non sono riscritti: il generatore taglia dal sorgente dell'app il blocco
+che va da `const VIAGGIO={` fino alla barra della luce e lo esegue. Il libretto
+non può stampare un orario diverso da quello che l'app mostra.
+
 ### Metterla sulla home
 
 L'app installabile sta su <https://davide88770.github.io/Davide/vietnam/>.

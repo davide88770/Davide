@@ -24,6 +24,7 @@ tools/verify.mjs                        verifica di rendering obbligatoria
 tools/prova-conti.mjs                   ricalcolo dei totali, obbligatorio
 tools/prova-adesso.mjs                  prova della scheda «Oggi» a orologio spostato
 tools/prova-pwa.mjs                     prova del giro di aggiornamento della PWA
+tools/build-libretto.mjs                il libretto di carta, dai dati dell'app
 out/                                    screenshot e PDF generati (non versionato)
 ```
 
@@ -203,6 +204,28 @@ non solo i conteggi.
 tutti i token CSS — la mappa era un rettangolo nero — e `verify` è passato lo
 stesso, perché guarda errori JS, sbordature e conteggi. Prima di consegnare,
 **guarda almeno uno screenshot** di `out/<cartella>/<nome>/`.
+
+### Il libretto di carta
+
+Il PDF che esce da `verify` è la stampa dell'app: va bene per archiviare, non
+per consultare in mezzo a un aeroporto. Per la versione da portarsi dietro c'è
+un documento a parte, impaginato per la carta:
+
+```sh
+npm run libretto viaggi/<cartella>/app-mobile.html
+```
+
+**Non riscrive nessun dato.** Taglia dal sorgente dell'app il blocco che va da
+`const VIAGGIO={` fino alla barra della luce — i dati del viaggio più i calcoli
+puri — e lo esegue in pagina: così il libretto non può stampare un orario
+diverso da quello che l'app mostra a schermo. Tutto quello che viene dopo nel
+sorgente è disegno a schermo, e qui non serve.
+
+L'ordine delle pagine è quello di consultazione, non quello del racconto:
+copertina con la mappa e i numeri d'emergenza, **il viaggio in una pagina**,
+**spostamenti**, **prenotazioni**, poi giorno per giorno, pratico, biglietti e
+budget, frasario, numeri utili e le liste da spuntare. Le prime quattro pagine
+sono quelle che si aprono venti volte; il resto si legge una volta.
 
 ## Consegna
 
