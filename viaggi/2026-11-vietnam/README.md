@@ -61,13 +61,14 @@ tutte le combinazioni di scelte.
 Sta anche dentro l'app, in Pratico → «Da fare, prima di partire», e come
 checklist spuntabile in Valigia.
 
-1. Decidere come andare da Hoi An all'aeroporto di Da Nang il 24.
-2. **Hue → Hoi An il 21: tenere la limousine o passare al treno?** Il biglietto
-   è rimborsabile fino al 20 novembre.
-3. Farsi confermare da Halise prezzo e punto di presa del van (orario e molo
+1. Decidere come andare da Hoi An all'aeroporto di Da Nang il 24. **È l'unica
+   decisione rimasta aperta.**
+2. Farsi confermare da Halise prezzo e punto di presa del van (orario e molo
    già comunicati il 3 ottobre).
-4. Pagare a Peony il van per la baia, 40 USD: il link lo mandano loro.
-5. Chiedere a HK Buslines il transfer per il bus notturno del 19, 24 ore prima.
+3. Pagare a Peony il van per la baia, 40 USD: il link lo mandano loro.
+4. Chiedere a HK Buslines il transfer per il bus notturno del 19, 24 ore prima.
+5. Chiedere all'autista della limousine del 21 se passa dal valico di Hai Van
+   o dal tunnel.
 6. Verificare l'ingresso in Vietnam sul sito dell'ambasciata.
 7. Patente internazionale, se si vuole lo scooter a Sa Pa e a Tam Coc.
 
@@ -84,9 +85,14 @@ treno del passo di Hai Van. La conferma 12Go del biglietto **AATZ5888** dice
 invece *«VIP Limousine 28»* di **G8 Sapa Open Tour**: un van su strada, diretto
 da davanti alla stazione di Hue fino a 70 Nguyen Thi Minh Khai, senza cambio a
 Da Nang, e con ogni probabilità dentro il tunnel invece che sopra il valico.
-Il biglietto è rimborsabile **fino al 20 novembre alle 14:45**: la giornata è
-stata riscritta su quello che è prenotato davvero, e l'alternativa in treno
-(SE fino a Da Nang + Grab) è registrata come scelta con una scadenza.
+La giornata è stata riscritta su quello che è prenotato davvero, e **la
+limousine si tiene**: Hoi An non ha una stazione. La ferrovia arriva a Da Nang
+e restano trenta chilometri da fare con un secondo mezzo, quindi il treno
+avrebbe voluto dire scendere alle 17:00 con gli zaini e ricominciare — un
+cambio che il piano originale aveva già dentro, scritto in piccolo nella riga
+delle 17:00. Si rinuncia ai quaranta minuti di passo a strapiombo, che a
+novembre nel Centro sono comunque una lotteria di pioggia. Il treno SE fino a
+Da Nang più un Grab resta scritto come piano B, se la limousine salta.
 
 ### Il vincolo sull'albergo del 15
 
@@ -172,7 +178,9 @@ riscrivono quelli, non il codice.
   giornata 12 è stata riscritta di conseguenza. Corretto anche il van di Peony
   da Hanoi, che era segnato come incluso e invece costa 40 USD. Verificati e
   trascritti i dettagli veri dei due minivan 12Go, del bus notturno (*Lower
-  Single Cabin*, HK Buslines) e del Silk Crown.
+  Single Cabin*, HK Buslines) e del Silk Crown. La limousine si tiene: Hoi An
+  non ha una stazione, quindi anche il treno avrebbe richiesto un cambio a Da
+  Nang. Resta una sola decisione aperta, il trasferimento del 24.
   Riallineati la giornata 9, il registro delle prenotazioni, la lista delle
   cose da fare, i riscontri e due voci del calendario. Restano aperte due cose:
   la notte del 15 a Hanoi e il trasferimento del 24.
