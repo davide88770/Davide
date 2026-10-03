@@ -189,6 +189,16 @@ il lessico delle etichette («in viaggio» invece di «guida»), la scala del
 disegno della mappa, la legenda e le inquadrature, le parole dei verdetti, e
 `carburante:false` per i viaggi in cui non si guida.
 
+Il motore **non nomina nessun posto**, nemmeno nel testo delle sezioni:
+l'ordine e il contenuto della scheda «Pratico» stanno in `PRATICO` (`'@nome'`
+chiama un blocco generato, un oggetto `{id,t,b}` è una sezione scritta a mano)
+e i numeri di emergenza in `SOS`. La regola è nata da un errore vero: la prima
+versione dell'app Vietnam mostrava i traghetti della linea 334, la vignetta
+slovena e il Vršič, perché quelle sezioni erano scritte dentro il motore. Le
+prove non se ne sono accorte — `verify` conta gli elementi, non li legge.
+Quando aggiungi una destinazione, **leggi la scheda «Pratico» renderizzata**,
+non solo i conteggi.
+
 **`verify` non vede i colori.** Una volta un `<style>` duplicato ha azzerato
 tutti i token CSS — la mappa era un rettangolo nero — e `verify` è passato lo
 stesso, perché guarda errori JS, sbordature e conteggi. Prima di consegnare,

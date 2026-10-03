@@ -101,6 +101,12 @@ for (const c of casi) {
     const t = await testo(page, sel);
     if (!re.test(t)) problemi.push(`[${c.nome}] ${sel}: «${t.slice(0, 90)}» non contiene ${re}`);
   }
+  /* «assenti»: quello che a quell'ora NON deve esserci. Serve per la striscia
+     del prossimo spostamento, che a viaggio finito deve sparire e non
+     mostrare il primo volo dell'anno dopo. */
+  for (const sel of (c.assenti ?? [])) {
+    if (await page.$(sel)) problemi.push(`[${c.nome}] ${sel} non dovrebbe esserci`);
+  }
   console.log(`  ${c.nome.padEnd(30)} ok`);
   await page.close();
 }

@@ -328,6 +328,57 @@ tr[hidden]{display:none}
 .sos a.em{grid-column:1/-1;background:var(--alert-soft);border-color:transparent}
 .sos a.em b{color:var(--alert);font-size:46px}
 
+/* ── spostamenti ────────────────────────────────────────────────────────── */
+/* La striscia del prossimo spostamento sta sopra tutto, in «Oggi»: è la prima
+   cosa che si legge aprendo l'app. A tre ore dalla partenza cambia colore,
+   perché a quel punto non è più un'informazione, è un promemoria. */
+.prox{background:var(--surface);border:1px solid var(--accent);border-radius:var(--r);
+  box-shadow:var(--shadow);margin-bottom:12px;overflow:hidden}
+.prox.urg{border-color:var(--signal)}
+.proxh{display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:9px 14px;background:var(--accent-soft)}
+.prox.urg .proxh{background:var(--signal-soft)}
+.proxh span{font-family:var(--display);font-size:10.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-3)}
+.proxh b{font-family:var(--display);font-size:15px;letter-spacing:.04em;color:var(--accent);
+  font-variant-numeric:tabular-nums;white-space:nowrap}
+.prox.urg .proxh b{color:var(--signal)}
+.proxb{display:flex;gap:11px;align-items:flex-start;padding:12px 14px 2px}
+.proxb .pi{font-size:23px;line-height:1.1;flex:0 0 auto}
+.proxb .px{min-width:0}
+.proxb .px > b{display:block;font-size:15.5px;line-height:1.25}
+.proxb .pd{font-size:13.5px;color:var(--ink-2);margin-top:3px;line-height:1.35}
+.proxb .pd em{font-style:normal;font-family:var(--display);color:var(--ink);
+  font-variant-numeric:tabular-nums}
+.proxf{display:flex;flex-wrap:wrap;align-items:center;gap:9px 14px;padding:10px 14px 12px}
+
+/* Il numero da chiamare è un bersaglio da dito, non un pezzo di testo. */
+a.telb{display:inline-flex;align-items:center;min-height:38px;padding:0 13px;
+  border-radius:19px;background:var(--good-soft);color:var(--good);text-decoration:none;
+  font-family:var(--display);font-size:13.5px;letter-spacing:.03em;white-space:nowrap}
+
+/* L'elenco: ora e giorno a sinistra in colonna fissa, così gli orari si
+   leggono in verticale senza cercarli dentro il testo. */
+.spol{display:flex;flex-direction:column;gap:10px}
+.spo{display:grid;grid-template-columns:56px 1fr;gap:12px;border:1px solid var(--line);
+  border-radius:var(--r);padding:11px 12px;background:var(--surface)}
+.spo.fatto{opacity:.48}
+.spq{display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center}
+.spq .si{font-size:20px;line-height:1.1}
+.spq time{font-family:var(--display);font-size:16px;color:var(--accent);
+  font-variant-numeric:tabular-nums;line-height:1}
+.spq .sd{font-family:var(--display);font-size:9.5px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink-3)}
+.sx{min-width:0}
+.sx > b{display:block;font-size:15px;line-height:1.3;margin-bottom:5px}
+.sr{display:grid;grid-template-columns:24px 1fr;gap:7px;font-size:13.5px;line-height:1.35}
+.sr > span{font-family:var(--display);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--ink-3);padding-top:3px}
+.sr em{font-style:normal;color:var(--ink-2)}
+.sk{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin-top:8px}
+.sn{font-size:13.5px;line-height:1.45;color:var(--ink-2);margin:8px 0 0;
+  padding-top:8px;border-top:1px solid var(--line)}
+
 /* ── valigia ────────────────────────────────────────────────────────────── */
 .clhead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
 .clhead .count{font-family:var(--display);font-size:13px;letter-spacing:.06em;color:var(--ink-3);
@@ -502,7 +553,9 @@ details.sec > summary .sp2{flex:1;min-width:0}
   .bgq,.bgg{padding-left:0;padding-right:0}
   .bg.off{background:none}
   .bgtot{break-inside:avoid;border-top:1.5px solid #999}
-  .tv,.al,.ri,.lucebox,.sp{break-inside:avoid}
+  .tv,.al,.ri,.lucebox,.sp,.spo{break-inside:avoid}
+  /* Sulla carta il telefono non si tocca: resta il numero, in chiaro. */
+  a.telb{background:none;color:inherit;padding:0;min-height:0;border-radius:0}
   .profscroll{overflow:visible}
   .profscroll svg{width:100%}
   svg.luce{max-height:34px}
@@ -595,7 +648,17 @@ const VIAGGIO={
          [15.05,44.45,.06,.30,35],[14.95,44.02,.06,.24,40]],
   etichette:[['ITALIA',11.15,45.85,0],['SLOVENIJA',14.95,46.60,0],
              ['HRVATSKA',15.72,45.42,0],['ADRIATICO',14.30,44.30,-40]],
-  fuori:{at:[13.06,45.97],t:'← Castelnovo n.M., 395 km'}
+  fuori:{at:[13.06,45.97],t:'← Castelnovo n.M., 395 km'},
+  /* le parole che il motore non può indovinare */
+  finaleNota:'Il viaggio è finito. {km} km, {h} di guida, quattro basi, due traghetti, tre paesi.',
+  budgetNota:'Auto a benzina, standard medio, un pasto al ristorante al giorno. ',
+  profiloAria:'Profilo altimetrico del viaggio, dal livello del mare ai 1.611 metri del passo Vr\u0161i\u010d',
+  meteoTit:'Meteo e mare a settembre',
+  meteoNota:'I rischi reali sono i temporali pomeridiani sulle Giulie e la <b>bora</b> sul Quarnaro. '
+    +'Sul Vr\u0161i\u010d e al Vogel porta uno strato in pi\u00f9: a 1.600 m ci sono dieci gradi meno che sul lago.',
+  notaFrasario:'<span class="mono">\u010d</span> = c di <i>cena</i> \u00b7 <span class="mono">\u0161</span> = sc di <i>scena</i> \u00b7 '
+    +'<span class="mono">\u017e</span> = j di <i>jour</i> \u00b7 <span class="mono">j</span> = i \u00b7 <span class="mono">c</span> = z di <i>zucchero</i>. '
+    +'Quindi <i>Vr\u0161i\u010d</i> \u00abVersh\u00ecc\u00bb, <i>Bohinj</i> \u00abB\u00f2hin\u00bb, <i>Cres</i> \u00abZres\u00bb.'
 };
 
 const DAYS=[
@@ -1047,6 +1110,80 @@ const RISCONTRI=[
  {q:'si',t:'Quattro notti a Cres',d:'10–14 settembre 2026',
   c:"La scelta strutturale che ha retto meglio: valigia ferma, niente check-in, e il giorno del temporale è costato zero perché non c'era niente da smontare."}
 ];
+/* ── La scheda «Pratico» ─────────────────────────────────────────────────
+   L'ordine delle sezioni e il testo di quelle scritte a mano. '@nome' chiama
+   un blocco generato dal motore, un oggetto {id,t,b} è una sezione di questo
+   viaggio e solo di questo. */
+const PRATICO=[
+ '@budget','@biglietti','@tavola','@luce',
+ {id:'traghetti',t:'I due traghetti · linea 334',b:
+   '<p><b>Brestova ⇢ Porozina · giovedì 10, imbarco 16:30.</b> 5,2 km, 20 minuti. Frequenza circa ogni ora e mezza dalle 05:30. '
+  +'Arriva alle 16:00: <b>non si prenota</b>, conta solo l\'ordine di arrivo al piazzale. Fai il pieno prima, su Cres i distributori sono pochi.</p>'
+  +'<p><b>Porozina ⇢ Brestova · lunedì 14, imbarco 10:15.</b> Partenza da Cres città alle 09:00. '
+  +'Passeggero 4,40 €; per l\'auto metti a budget 25–30 € a traversata con due passeggeri. Biglietteria al piazzale, carta accettata.</p>'
+  +'<div class="note sig"><strong>Se si alza la bora</strong>La Brestova–Porozina può essere sospesa. L\'alternativa che non chiude quasi mai: '
+  +'<b>Merag ⇢ Valbiska → ponte di Veglia</b>, canale più riparato, e Merag è a 12 km da Cres. Al ritorno ti porta dritto ad Abbazia — '
+  +'che è infatti il piano bora del finale. Controlla la sera prima su <a class="link" href="https://hak.hr" target="_blank" rel="noopener">hak.hr</a>.</div>'},
+ '@prenot','@riscontri',
+ {id:'auto',t:'L\'auto, i documenti, i soldi',b:
+   '<ul class="tick">'
+  +'<li><b>Slovenia:</b> vignetta obbligatoria su autostrade e superstrade, multa da 300 a 800 €. Ti serve solo nei giorni 1 e 4.</li>'
+  +'<li><b>Corridoio costiero gratuito:</b> dal 2026 le superstrade H5 e H6 sono libere fino a 3,5 t. È il percorso dei giorni 9 e 10 se scegli Pirano.</li>'
+  +'<li><b>Croazia:</b> nessuna vignetta, si ritira il ticket e si paga all\'uscita. In settembre niente maggiorazione estiva.</li>'
+  +'<li><b>Fari accesi:</b> obbligatori tutto l\'anno anche di giorno in Slovenia.</li>'
+  +'<li><b>Alcol:</b> 0,5 g/l, ma 0,0 sotto i 24 anni in Croazia e per i neopatentati in Slovenia.</li>'
+  +'<li><b>Dotazioni:</b> giubbotto catarifrangente nell\'abitacolo e triangolo ovunque; in Croazia anche kit di primo soccorso e lampadine.</li>'
+  +'<li><b>Vršič:</b> stretto, lastricato, 50 tornanti. Marce basse in discesa, non i freni.</li>'
+  +'<li><b>Moneta:</b> euro in entrambi. 100–150 € in contanti per parcheggi, traghetti e konobe di campagna.</li>'
+  +'<li><b>Offline:</b> scarica le mappe. A Plitvice, sul Vršič, sul Velebit e nell\'interno di Cres il segnale sparisce.</li></ul>'},
+ {id:'parch',t:'Parcheggi, uno per base',b:
+   '<ul class="tick">'
+  +'<li><b>Lubiana:</b> garage Kongresni trg o NUK II, ~2–3 €/h. Centro pedonale.</li>'
+  +'<li><b>Stara Fužina:</b> ~3 €/h ai margini del paese.</li>'
+  +'<li><b>Vogel:</b> incluso nel biglietto della funivia.</li>'
+  +'<li><b>Plitvice:</b> agli ingressi 1 e 2, ~2 €/h, non inclusi nel biglietto.</li>'
+  +'<li><b>Cres:</b> sul porto a pagamento in stagione; con quattro notti chiedi il posto riservato prima di prenotare.</li>'
+  +'<li><b>Rovigno:</b> Valdibora, a nord della città vecchia. <b>Pirano:</b> garage Fornače + navetta gratuita. <b>Abbazia:</b> lungo la statale sopra il centro.</li></ul>'},
+ {id:'pioggia',t:'Se piove sull\'isola',b:
+   '<p style="font-size:14px;color:var(--ink-2)">Cres con il brutto tempo non è una giornata persa: è l\'unica in cui i borghi '
+  +'sono vuoti e la strada interna, con la nuvola bassa sui muretti a secco, è più bella che col sole.</p>'
+  +'<h4>Quello che regge bagnato</h4>'
+  +'<ul class="tick">'
+  +'<li><b>Cres città</b> — si gira quasi tutta sotto i portici e le gronde: il mandracchio, la loggia veneziana, la torre dell\'orologio, le porte.</li>'
+  +'<li><b>Osor</b> — settanta abitanti dove ce n\'erano migliaia, il canale romano largo undici metri e il ponte girevole, che <b>apre alle 9:00 e alle 17:00</b>: mentre passano le barche la strada è chiusa.</li>'
+  +'<li><b>Veli Lošinj e Mali Lošinj</b> — due porti veneziani con le case colorate addosso all\'acqua, e i portici della piazza più grande della Dalmazia per ripararsi.</li>'
+  +'<li><b>Le konobe dell\'interno</b> — Loznati (<b>Bukaleta</b>), Dragozetići, Predošćica: al caldo, e costano la metà del porto. L\'agnello di Cres è lì.</li>'
+  +'<li><b>Il bosco della Tramuntana</b>, sopra Beli — sentieri brevi e riparati fra i lecci, e appena smette di piovere è la cosa più bella dell\'isola. Le voliere dei grifoni sono lì accanto.</li>'
+  +'<li><b>Valun, Martinšćica, Orlec, Nerezine, Ustrine</b> — paesi da attraversare e in cui fermarsi mezz\'ora, senza programma.</li>'
+  +'<li><b>Il lago di Vrana</b> dal belvedere: acqua dolce sotto il livello del mare, e si guarda anche restando in macchina.</li>'
+  +'</ul>'
+  +'<div class="note alert"><strong>Cosa non fare bagnato</strong>La discesa a <b>Sveti Ivan</b> e quella a <b>Mali Bok</b>: sentieri sassosi, '
+  +'ripidi ed esposti, senza appigli. Con le pietre bagnate non sono un ripiego, sono un rischio — meglio il taxi boat, o si rimanda. '
+  +'E con la bora forte <b>i traghetti possono essere sospesi</b>: controlla su hak.hr o sull\'app Jadrolinija prima di contare su una traversata.</div>'},
+ {id:'piani',t:'Piani B, se il tempo gira',b:
+   '<ul class="tick">'
+  +'<li><b>Giulie:</b> inverti il giorno 2 col giorno 3 — la valle della Soča regge la pioggia molto meglio dell\'alta quota.</li>'
+  +'<li><b>Al posto di Postojna:</b> le Grotte di San Canziano (Škocjan), UNESCO, a mezz\'ora.</li>'
+  +'<li><b>Plitvice sotto la pioggia:</b> cascate più potenti e metà della gente. È l\'unica cosa che non va rimandata.</li>'
+  +'<li><b>Cres il 13:</b> la giornata più elastica, non è prenotato niente. Se piove: Osor, le konobe dell\'interno, il Centro di Beli, o il giorno zero.</li>'
+  +'<li><b>Il finale:</b> con brutto tempo Pirano regge meglio di Rovigno — più piccola, più coperta.</li></ul>'},
+ '@frasario','@sos'
+];
+
+/* ── Numeri utili ──────────────────────────────────────────────────────── */
+const SOS={n:[
+ ['112','Emergenza unica · IT SI HR<br>ambulanza · pompieri · soccorso alpino e in mare','em'],
+ ['1987','Soccorso stradale<br>AMZS · HAK'],
+ ['113','Polizia 🇸🇮'],
+ ['192','Polizia 🇭🇷'],
+ ['195','Soccorso in mare 🇭🇷']
+],note:
+  '<p class="sub"><b>Dall\'estero</b> anteponi il prefisso: +386 Slovenia, +385 Croazia. '
+ +'HAK dà anche lo stato dei traghetti e delle chiusure per bora.</p>'
+ +'<p class="sub" style="margin-bottom:0"><b>Salute:</b> Tessera Sanitaria–TEAM per le cure pubbliche urgenti. '
+ +'Farmacia: <i>lekarna</i> in sloveno, <i>ljekarna</i> in croato. Su Cres la farmacia è solo a Cres città.</p>'};
+
+
 const COAST=[[14.10,43.30],[13.90,43.42],[13.51,43.62],[13.20,43.75],[12.90,43.92],[12.57,44.06],[12.40,44.25],
  [12.25,44.42],[12.28,44.70],[12.32,44.95],[12.28,45.10],[12.42,45.28],[12.34,45.44],[12.60,45.55],[12.90,45.62],
  [13.10,45.68],[13.40,45.72],[13.58,45.78],[13.75,45.72],[13.77,45.65],[13.73,45.55],[13.62,45.52],[13.57,45.53],
@@ -1338,8 +1475,10 @@ function renderOggi(){
       +'<p class="sub">Si parte '+DAYS[0].date.toLowerCase()+' alle '+DAYS[0].tl[0][0]
       +'. Restano <b>'+aperte+'</b> voci aperte fra documenti e prenotazioni.</p>';
   } else if(st.stato==='dopo'&&vista===NG-1){
-    head='<p class="sub">Il viaggio è finito. '+nkm(totKm())+' km, '+hm(totMin())
-      +' di guida, quattro basi, due traghetti, tre paesi.</p>';
+    /* La frase di chiusura nomina basi, traghetti e paesi: è del viaggio,
+       non del motore. {km} e {h} li riempie il calcolo. */
+    head='<p class="sub">'+(VIAGGIO.finaleNota||'Il viaggio è finito. {km} km, {h} in viaggio.')
+      .replace('{km}',nkm(totKm())).replace('{h}',hm(totMin()))+'</p>';
   }
   const pr=reale?prossima(d):null;
   const tl=d.tl.map((t,i)=>{
@@ -1357,7 +1496,8 @@ function renderOggi(){
 
   const o=scelta(d);
   $('#view-oggi').innerHTML=
-   '<div class="hero">'
+   cardProssimo()
+   +'<div class="hero">'
     +'<div class="band"><span class="lab">'+(reale?'Oggi · tappa':'Tappa')+' '+d.n+' di '+NG+'</span>'
       +'<span class="nav"><button type="button" id="prevd" aria-label="Giorno precedente"'+(vista===0?' disabled':'')+'>‹</button>'
       +'<button type="button" id="nextd" aria-label="Giorno successivo"'+(vista===NG-1?' disabled':'')+'>›</button></span></div>'
@@ -1399,6 +1539,10 @@ function renderOggi(){
   if(p) p.onclick=()=>{if(vista>0){vista--;renderOggi();}};
   if(n) n.onclick=()=>{if(vista<NG-1){vista++;renderOggi();}};
   $('#view-oggi').querySelectorAll('[data-goto]').forEach(b=>{b.onclick=()=>apriGiorno(+b.dataset.goto);});
+  const sp=$('#view-oggi').querySelector('[data-spost]');
+  if(sp) sp.onclick=()=>{mostra('pratico');
+    const d=document.getElementById('sec-spost');
+    if(d){d.open=true;d.scrollIntoView({block:'start'});}};
 }
 
 /* ── GIORNI ─────────────────────────────────────────────────────────────── */
@@ -1534,7 +1678,7 @@ function renderMappa(){
     +'<div class="card" id="mapinfo"></div>'
     +'<div class="mapbox"><h4 style="padding:4px 4px 8px">Profilo delle quote<span class="scrollhint">scorri →</span></h4>'
     +'<div class="profscroll"><svg id="prof" viewBox="0 0 1000 300" role="img" '
-    +'aria-label="Profilo altimetrico del viaggio, dal livello del mare ai 1.611 metri del passo Vršič"></svg></div>'
+    +'aria-label="'+(VIAGGIO.profiloAria||'Profilo altimetrico del viaggio')+'"></svg></div>'
     +'<p class="sub" style="padding:8px 4px 2px">'+(VIAGGIO.profiloNota
       ||'Quote reali dei punti del percorso di riferimento (finale a '+VIAGGIO.rifFinale+', rientro '
         +'senza soste): le scelte spostano i chilometri, non la forma della montagna. Il punto '
@@ -1624,8 +1768,8 @@ function disegnaMappa(){
 }
 
 /* Il profilo: la quota lungo il percorso. Dice in un colpo d'occhio una cosa
-   che la tabella dei chilometri non dice — che in dieci giorni si passa dal
-   livello del mare ai 1.611 metri del Vršič e ritorno, due volte. */
+   che la tabella dei chilometri non dice — quante volte si sale e si scende
+   davvero. Le quote stanno in PROFILO, nel blocco del viaggio. */
 function disegnaProfilo(){
   const svg=$('#prof'); if(!svg) return;
   svg.textContent='';
@@ -1696,6 +1840,84 @@ function renderMapInfo(){
 /* ── PRATICO ────────────────────────────────────────────────────────────── */
 const VERD={si:['good','Da prendere'],forse:['sig','Si valuta'],no:['alert','Meglio no']};
 
+/* ── Spostamenti ─────────────────────────────────────────────────────────
+   Tutto quello che ha un'ora di partenza e un codice, uno sotto l'altro: è
+   la risposta alla domanda che torna venti volte in un viaggio — «a che ora
+   si parte, da dove, e chi chiamo se non arriva» — senza girare sedici
+   schede. Se il viaggio non dichiara SPOSTAMENTI la sezione non esiste e
+   non cambia nient'altro. */
+const HASPOST = typeof SPOSTAMENTI!=='undefined' && SPOSTAMENTI.length>0;
+const dataOra=s=>new Date(+s.iso.slice(0,4),+s.iso.slice(5,7)-1,+s.iso.slice(8,10),
+                          +s.ora.slice(0,2),+s.ora.slice(3,5));
+const telHref=t=>'tel:'+String(t).replace(/[^0-9+]/g,'');
+/* «Fra quanto», in parole corte: i giorni quando sono tanti, i minuti
+   quando l'ora è vicina. Un conto alla rovescia in minuti a dieci giorni
+   dalla partenza non lo legge nessuno. */
+function fraQuanto(min){
+  if(min<1) return 'un attimo';
+  if(min<60) return min+' min';
+  const g=Math.floor(min/1440), h=Math.floor((min%1440)/60), m=min%60;
+  if(g>0) return g+(g===1?' giorno':' giorni')+(h?' e '+h+' h':'');
+  return h+'h'+String(m).padStart(2,'0');
+}
+function prossimoSpost(){
+  if(!HASPOST) return null;
+  const n=Date.now();
+  for(const s of SPOSTAMENTI){const t=dataOra(s).getTime();
+    if(t>=n) return {s:s,fra:Math.round((t-n)/60000)};}
+  return null;
+}
+/* La striscia in cima a «Oggi»: il prossimo spostamento è l'unica cosa che
+   non si può sbagliare, quindi sta sopra tutto il resto e si riallinea con
+   l'orologio dell'app, ogni minuto. */
+function cardProssimo(){
+  const p=prossimoSpost(); if(!p) return '';
+  const s=p.s, d=DAYS.find(x=>x.n===s.g);
+  return '<div class="prox'+(p.fra<=180?' urg':'')+'">'
+    +'<div class="proxh"><span>Prossimo spostamento</span><b>fra '+fraQuanto(p.fra)+'</b></div>'
+    +'<div class="proxb"><span class="pi" aria-hidden="true">'+s.i+'</span>'
+    +'<div class="px"><b>'+s.t+'</b>'
+    +'<div class="pd"><em>'+(d?d.short:s.iso)+' · '+s.ora+'</em> da '+s.da+'</div>'
+    +'<div class="pd">→ '+s.a+'</div></div></div>'
+    +'<div class="proxf">'
+    +(s.cod&&s.cod!=='—'?'<span class="mono">'+s.cod+'</span>':'')
+    +(s.tel?'<a class="telb" href="'+telHref(s.tel)+'">☎ '+s.tel+'</a>':'')
+    +'<button class="inline" type="button" data-spost="1">tutti gli spostamenti ↗</button>'
+    +'</div></div>';
+}
+function bloccoSpostamenti(){
+  const ora=Date.now();
+  const riga=s=>{
+    const d=DAYS.find(x=>x.n===s.g);
+    return '<div class="spo'+(dataOra(s).getTime()<ora?' fatto':'')+'">'
+      +'<div class="spq"><span class="si" aria-hidden="true">'+s.i+'</span>'
+      +'<time>'+s.ora+'</time><span class="sd">'+(d?d.short:s.iso)+'</span></div>'
+      +'<div class="sx"><b>'+s.t+'</b>'
+      +'<div class="sr"><span>da</span><em>'+s.da+'</em></div>'
+      +'<div class="sr"><span>a</span><em>'+s.a+'</em></div>'
+      +'<div class="sk">'
+        +(s.cod&&s.cod!=='—'?'<span class="mono">'+s.cod+'</span>':'')
+        +(s.tel?'<a class="telb" href="'+telHref(s.tel)+'">☎ '+s.tel+'</a>':'')
+        +'<button class="inline" type="button" data-goto="'+s.g+'">giorno '+s.g+' ↗</button>'
+      +'</div>'
+      +(s.n?'<p class="sn">'+s.n+'</p>':'')
+      +'</div></div>';
+  };
+  const p=prossimoSpost();
+  return '<p class="sub">'+(VIAGGIO.spostNota||'Ogni spostamento con un orario, un punto di partenza e '
+      +'un codice. Il telefono è cliccabile: tocca e chiama.')+'</p>'
+    +(p?'<p class="sub" style="margin-top:-4px"><b>Il prossimo:</b> '+p.s.t+', fra '+fraQuanto(p.fra)+'.</p>':'')
+    +'<div class="spol">'+SPOSTAMENTI.map(riga).join('')+'</div>';
+}
+
+/* ── Numeri utili ──────────────────────────────────────────────────────
+   I numeri cambiano con il paese, quindi stanno nei dati del viaggio. */
+function bloccoSos(){
+  return '<div class="sos">'+SOS.n.map(x=>'<a'+(x[2]?' class="'+x[2]+'"':'')
+      +' href="'+telHref(x[0])+'"><b>'+x[0]+'</b><span>'+x[1]+'</span></a>').join('')
+    +'</div>'+(SOS.note||'');
+}
+
 function bloccoBiglietti(){
   const conta=BIGLIETTI.filter(b=>b.conta), altrove=BIGLIETTI.filter(b=>!b.conta);
   const ing=ingressi();
@@ -1722,10 +1944,12 @@ function bloccoBiglietti(){
     +'<div class="bigl">'+conta.map(riga).join('')
     +'<div class="bgtot"><span>'+ing.n+' voci accese su '+ing.nTot+' · '+pref.persone
     +(pref.persone>1?' persone':' persona')+'</span><b>'+eu(ing.tot)+' €</b></div></div>'
-    +'<h4 style="margin-top:16px">Già contati altrove</h4>'
-    +'<p class="sub">Questi stanno dentro il costo di un\'opzione a scelta: comparirebbero due volte, '
-    +'quindi qui sono solo per memoria.</p>'
-    +'<div class="bigl">'+altrove.map(riga).join('')+'</div>';
+    +(altrove.length
+      ?'<h4 style="margin-top:16px">Già contati altrove</h4>'
+       +'<p class="sub">Questi stanno dentro il costo di un\'opzione a scelta: comparirebbero due volte, '
+       +'quindi qui sono solo per memoria.</p>'
+       +'<div class="bigl">'+altrove.map(riga).join('')+'</div>'
+      :'');
 }
 
 function bloccoTavola(){
@@ -1736,8 +1960,8 @@ function bloccoTavola(){
       +'aria-pressed="'+(pref.tavZ===z)+'">'+(z==='tutte'?'Tutte le zone':z)+'</button>').join('')
     +'<button type="button" class="pill" data-tc="1" aria-pressed="'+(!!pref.tavC)+'">Solo al coperto</button></div>'
     +'<p class="sub"><b>'+lista.length+'</b> indirizzi su '+TAVOLA.length+'. '
-    +'Nessuno è stato chiamato per verificare apertura e prezzi: sono indirizzi raccolti costruendo il road '
-    +'book e sul posto, non prenotazioni. Gli orari si controllano la mattina stessa.</p>'
+    +(VIAGGIO.tavolaNota||'Nessuno è stato chiamato per verificare apertura e prezzi: sono indirizzi raccolti '
+      +'costruendo il road book, non prenotazioni. Gli orari si controllano la mattina stessa.')+'</p>'
     +(lista.length?'<div class="tav">'+lista.map(t=>'<div class="tv">'
       +'<div class="tvh"><b>'+t.n+'</b><span class="tvf">'+fascia(t.f)+'</span></div>'
       +'<div class="tvd">'+t.dove+' · giorni '+t.g.join(', ')+'</div>'
@@ -1749,6 +1973,16 @@ function bloccoTavola(){
 }
 
 function bloccoAlmanacco(){
+  const meteo=(typeof METEO!=='undefined'&&METEO.length)
+    ? '<h4 style="margin-top:16px">'+(VIAGGIO.meteoTit||'Meteo')+'</h4>'
+      +'<div class="tablewrap"><table><thead><tr>'
+      +(VIAGGIO.meteoCol||['Zona','Giorno','Notte','Acqua'])
+        .map((c,i)=>'<th'+(i?' class="num"':'')+'>'+c+'</th>').join('')
+      +'</tr></thead><tbody>'
+      +METEO.map(r=>'<tr>'+r.map((c,i)=>'<td'+(i?' class="num"':'')+'>'+c+'</td>').join('')+'</tr>').join('')
+      +'</tbody></table></div>'
+      +(VIAGGIO.meteoNota?'<p class="sub" style="margin-top:10px">'+VIAGGIO.meteoNota+'</p>':'')
+    : '';
   return '<p class="sub">Alba, ora d\'oro, tramonto e fine del crepuscolo, <b>calcolati</b> per la latitudine '
     +'e la longitudine del posto dove si dorme quella sera — non copiati da una tabella. La tacca verde è '
     +'l\'ora che conta della giornata.</p>'
@@ -1758,9 +1992,15 @@ function bloccoAlmanacco(){
         +barraLuce(d,false)
         +'<div class="alt"><span>'+hhmm(L.alba)+'</span><span>'+hhmm(L.oroT)+'</span>'
         +'<span>'+hhmm(L.tram)+'</span><span>'+hhmm(L.civT)+'</span></div></div>';}).join('')
-    +'</div>';
+    +'</div>'+meteo;
 }
 
+/* ── La scheda «Pratico» ────────────────────────────────────────────────
+   L'ordine e le sezioni scritte a mano stanno in PRATICO, nel blocco del
+   viaggio: '@nome' chiama un blocco che genera il motore, un oggetto
+   {id,t,b} è una sezione di testo di quel viaggio. Così il motore non
+   nomina nessun posto — ed è il motivo per cui la prima versione dell'app
+   Vietnam mostrava ancora i traghetti del Quarnero. */
 function renderPratico(){
   const b=budget();
   const eur=(a,c)=>a===c?nkm(a)+' €':nkm(a)+'–'+nkm(c)+' €';
@@ -1782,13 +2022,19 @@ function renderPratico(){
     +'<div class="brow tot"><span class="bn">Totale per '+pref.persone
     +(pref.persone>1?' persone':' persona')+'</span><span class="bv">'+eur(b.tot[0],b.tot[1])+'</span></div></div>';
 
+  const notaBudget='<p class="sub">'+(VIAGGIO.budgetNota||'')
+    +(VIAGGIO.carburante===false
+      ? 'Il numero di persone lo muovi tu: cambiano ingressi e cibo, non i voli né gli alloggi. '
+        +'Dove la conferma di prenotazione non riporta l\'importo, qui c\'è un intervallo e lo dice.'
+      : 'Il carburante è calcolato sui '+nkm(totKm())+' km effettivi di questa configurazione — '
+        +nkm(Math.round(L.lmin))+'–'+nkm(Math.round(L.lmax))+' litri — non su una stima fissa. '
+        +'Persone e prezzo alla pompa li muovi tu: cambiano ingressi, cibo e carburante, non i '
+        +'pedaggi né gli alloggi.')
+    +'</p>';
+
   const prenot='<div class="tablewrap"><table><thead><tr><th>Quando</th><th>Cosa</th><th class="num">Costo</th></tr></thead><tbody>'
     +BOOK.map(r=>'<tr><td><span class="chip '+r[0]+'">'+r[1]+'</span></td>'
       +'<td><b>'+r[2]+'</b><br><small>'+r[3]+' — '+r[5]+'</small></td><td class="num">'+r[4]+'</td></tr>').join('')
-    +'</tbody></table></div>';
-
-  const meteo='<div class="tablewrap"><table><thead><tr><th>Zona</th><th class="num">Giorno</th><th class="num">Notte</th><th class="num">Acqua</th></tr></thead><tbody>'
-    +METEO.map(r=>'<tr><td>'+r[0]+'</td><td class="num">'+r[1]+'</td><td class="num">'+r[2]+'</td><td class="num">'+r[3]+'</td></tr>').join('')
     +'</tbody></table></div>';
 
   const risc='<p class="sub">'+(VIAGGIO.riscontriNota||'Quello che il viaggio ha corretto del road book.')+'</p>'
@@ -1805,98 +2051,32 @@ function renderPratico(){
     +PHRASES.map((p,i)=>'<tr data-i="'+i+'"><td>'+p[0]+'</td><td class="sl">'+p[1]+'</td><td class="hr">'+p[2]+'</td></tr>').join('')
     +'</tbody></table></div>'
     +'<p class="sub" style="margin-top:10px">Tocca una riga per ingrandirla e mostrarla a qualcuno. '
-    +'<span class="mono">č</span> = c di <i>cena</i> · <span class="mono">š</span> = sc di <i>scena</i> · '
-    +'<span class="mono">ž</span> = j di <i>jour</i> · <span class="mono">j</span> = i · <span class="mono">c</span> = z di <i>zucchero</i>. '
-    +'Quindi <i>Vršič</i> «Vershìc», <i>Bohinj</i> «Bòhin», <i>Cres</i> «Zres».</p>';
-
-  const sos='<div class="sos">'
-    +'<a class="em" href="tel:112"><b>112</b><span>Emergenza unica · IT SI HR<br>ambulanza · pompieri · soccorso alpino e in mare</span></a>'
-    +'<a href="tel:1987"><b>1987</b><span>Soccorso stradale<br>AMZS · HAK</span></a>'
-    +'<a href="tel:113"><b>113</b><span>Polizia 🇸🇮</span></a>'
-    +'<a href="tel:192"><b>192</b><span>Polizia 🇭🇷</span></a>'
-    +'<a href="tel:195"><b>195</b><span>Soccorso in mare 🇭🇷</span></a>'
-    +'</div>'
-    +'<p class="sub"><b>Dall\'estero</b> anteponi il prefisso: +386 Slovenia, +385 Croazia. '
-    +'HAK dà anche lo stato dei traghetti e delle chiusure per bora.</p>'
-    +'<p class="sub" style="margin-bottom:0"><b>Salute:</b> Tessera Sanitaria–TEAM per le cure pubbliche urgenti. '
-    +'Farmacia: <i>lekarna</i> in sloveno, <i>ljekarna</i> in croato. Su Cres la farmacia è solo a Cres città.</p>';
+    +(VIAGGIO.notaFrasario||'')+'</p>';
 
   const sec=(id,tit,body,open)=>'<details class="sec"'+(open?' open':'')+' id="sec-'+id+'">'
     +'<summary><span class="sp2">'+tit+'</span></summary><div class="secbody">'+body+'</div></details>';
 
+  const BLOCCHI={
+    spostamenti:()=>HASPOST?sec('spost',(VIAGGIO.spostTit||'Spostamenti')+' · '+SPOSTAMENTI.length
+      +' con un orario',bloccoSpostamenti(),true):'',
+    budget:()=>sec('budget','Budget · '+nkm(b.tot[0])+'–'+nkm(b.tot[1])+' €',notaBudget+stepbar+bud,!HASPOST),
+    biglietti:()=>sec('biglietti','Biglietti · cosa si paga, cosa si vede gratis',bloccoBiglietti()),
+    tavola:()=>sec('tavola','A tavola · '+TAVOLA.length+' indirizzi',bloccoTavola()),
+    luce:()=>sec('luce','La luce, giorno per giorno',bloccoAlmanacco()),
+    prenot:()=>sec('prenot',VIAGGIO.prenotTit||'Da prenotare, in quest\'ordine',prenot),
+    riscontri:()=>sec('riscontri',LEX.riscontri,risc),
+    frasario:()=>sec('frasario','Frasario',phr),
+    sos:()=>sec('sos','Numeri utili',bloccoSos())
+  };
+
   $('#view-pratico').innerHTML=
-    '<div class="vhead"><h2>Pratico</h2><p class="lede">Quello che serve sapere mentre sei in strada. '
-    +'Budget, ingressi e chilometri si ricalcolano a ogni tocco: qui sotto ci sono i numeri della '
-    +'configurazione che hai scelto, non un intervallo generico.</p></div>'
-    +sec('budget','Budget · '+nkm(b.tot[0])+'–'+nkm(b.tot[1])+' €',
-      '<p class="sub">'+(VIAGGIO.budgetNota||'Auto a benzina, standard medio, un pasto al ristorante al giorno. Il carburante è ')
-      +(VIAGGIO.carburante===false
-        ? 'Il numero di persone lo muovi tu: cambiano ingressi e cibo, non i voli né gli alloggi. '
-          +'Dove la conferma di prenotazione non riporta l\'importo, qui c\'è un intervallo e lo dice.'
-        : 'calcolato sui '+nkm(totKm())+' km effettivi di questa configurazione — '+nkm(Math.round(L.lmin))
-          +'–'+nkm(Math.round(L.lmax))+' litri — non su una stima fissa. Persone e prezzo alla pompa li muovi tu: '
-          +'cambiano ingressi, cibo e carburante, non i pedaggi né gli alloggi.')
-      +'</p>'+stepbar+bud,true)
-    +sec('biglietti','Biglietti · cosa si paga, cosa si vede gratis',bloccoBiglietti())
-    +sec('tavola','A tavola · '+TAVOLA.length+' indirizzi',bloccoTavola())
-    +sec('luce','La luce, giorno per giorno',bloccoAlmanacco()+'<h4 style="margin-top:16px">Meteo e mare a settembre</h4>'
-      +meteo+'<p class="sub" style="margin-top:10px">I rischi reali sono i temporali pomeridiani sulle Giulie e la '
-      +'<b>bora</b> sul Quarnaro. Sul Vršič e al Vogel porta uno strato in più: a 1.600 m ci sono dieci gradi '
-      +'meno che sul lago.</p>')
-    +sec('traghetti','I due traghetti · linea 334',
-      '<p><b>Brestova ⇢ Porozina · giovedì 10, imbarco 16:30.</b> 5,2 km, 20 minuti. Frequenza circa ogni ora e mezza dalle 05:30. '
-      +'Arriva alle 16:00: <b>non si prenota</b>, conta solo l\'ordine di arrivo al piazzale. Fai il pieno prima, su Cres i distributori sono pochi.</p>'
-      +'<p><b>Porozina ⇢ Brestova · lunedì 14, imbarco 10:15.</b> Partenza da Cres città alle 09:00. '
-      +'Passeggero 4,40 €; per l\'auto metti a budget 25–30 € a traversata con due passeggeri. Biglietteria al piazzale, carta accettata.</p>'
-      +'<div class="note sig"><strong>Se si alza la bora</strong>La Brestova–Porozina può essere sospesa. L\'alternativa che non chiude quasi mai: '
-      +'<b>Merag ⇢ Valbiska → ponte di Veglia</b>, canale più riparato, e Merag è a 12 km da Cres. Al ritorno ti porta dritto ad Abbazia — '
-      +'che è infatti il piano bora del finale. Controlla la sera prima su <a class="link" href="https://hak.hr" target="_blank" rel="noopener">hak.hr</a>.</div>')
-    +sec('prenot','Da prenotare, in quest\'ordine',prenot)
-    +sec('riscontri',LEX.riscontri,risc)
-    +sec('auto','L\'auto, i documenti, i soldi',
-      '<ul class="tick">'
-      +'<li><b>Slovenia:</b> vignetta obbligatoria su autostrade e superstrade, multa da 300 a 800 €. Ti serve solo nei giorni 1 e 4.</li>'
-      +'<li><b>Corridoio costiero gratuito:</b> dal 2026 le superstrade H5 e H6 sono libere fino a 3,5 t. È il percorso dei giorni 9 e 10 se scegli Pirano.</li>'
-      +'<li><b>Croazia:</b> nessuna vignetta, si ritira il ticket e si paga all\'uscita. In settembre niente maggiorazione estiva.</li>'
-      +'<li><b>Fari accesi:</b> obbligatori tutto l\'anno anche di giorno in Slovenia.</li>'
-      +'<li><b>Alcol:</b> 0,5 g/l, ma 0,0 sotto i 24 anni in Croazia e per i neopatentati in Slovenia.</li>'
-      +'<li><b>Dotazioni:</b> giubbotto catarifrangente nell\'abitacolo e triangolo ovunque; in Croazia anche kit di primo soccorso e lampadine.</li>'
-      +'<li><b>Vršič:</b> stretto, lastricato, 50 tornanti. Marce basse in discesa, non i freni.</li>'
-      +'<li><b>Moneta:</b> euro in entrambi. 100–150 € in contanti per parcheggi, traghetti e konobe di campagna.</li>'
-      +'<li><b>Offline:</b> scarica le mappe. A Plitvice, sul Vršič, sul Velebit e nell\'interno di Cres il segnale sparisce.</li></ul>')
-    +sec('parch','Parcheggi, uno per base',
-      '<ul class="tick">'
-      +'<li><b>Lubiana:</b> garage Kongresni trg o NUK II, ~2–3 €/h. Centro pedonale.</li>'
-      +'<li><b>Stara Fužina:</b> ~3 €/h ai margini del paese.</li>'
-      +'<li><b>Vogel:</b> incluso nel biglietto della funivia.</li>'
-      +'<li><b>Plitvice:</b> agli ingressi 1 e 2, ~2 €/h, non inclusi nel biglietto.</li>'
-      +'<li><b>Cres:</b> sul porto a pagamento in stagione; con quattro notti chiedi il posto riservato prima di prenotare.</li>'
-      +'<li><b>Rovigno:</b> Valdibora, a nord della città vecchia. <b>Pirano:</b> garage Fornače + navetta gratuita. <b>Abbazia:</b> lungo la statale sopra il centro.</li></ul>')
-    +sec('pioggia','Se piove sull\'isola',
-      '<p style="font-size:14px;color:var(--ink-2)">Cres con il brutto tempo non è una giornata persa: è l\'unica in cui i borghi '
-      +'sono vuoti e la strada interna, con la nuvola bassa sui muretti a secco, è più bella che col sole.</p>'
-      +'<h4>Quello che regge bagnato</h4>'
-      +'<ul class="tick">'
-      +'<li><b>Cres città</b> — si gira quasi tutta sotto i portici e le gronde: il mandracchio, la loggia veneziana, la torre dell\'orologio, le porte.</li>'
-      +'<li><b>Osor</b> — settanta abitanti dove ce n\'erano migliaia, il canale romano largo undici metri e il ponte girevole, che <b>apre alle 9:00 e alle 17:00</b>: mentre passano le barche la strada è chiusa.</li>'
-      +'<li><b>Veli Lošinj e Mali Lošinj</b> — due porti veneziani con le case colorate addosso all\'acqua, e i portici della piazza più grande della Dalmazia per ripararsi.</li>'
-      +'<li><b>Le konobe dell\'interno</b> — Loznati (<b>Bukaleta</b>), Dragozetići, Predošćica: al caldo, e costano la metà del porto. L\'agnello di Cres è lì.</li>'
-      +'<li><b>Il bosco della Tramuntana</b>, sopra Beli — sentieri brevi e riparati fra i lecci, e appena smette di piovere è la cosa più bella dell\'isola. Le voliere dei grifoni sono lì accanto.</li>'
-      +'<li><b>Valun, Martinšćica, Orlec, Nerezine, Ustrine</b> — paesi da attraversare e in cui fermarsi mezz\'ora, senza programma.</li>'
-      +'<li><b>Il lago di Vrana</b> dal belvedere: acqua dolce sotto il livello del mare, e si guarda anche restando in macchina.</li>'
-      +'</ul>'
-      +'<div class="note alert"><strong>Cosa non fare bagnato</strong>La discesa a <b>Sveti Ivan</b> e quella a <b>Mali Bok</b>: sentieri sassosi, '
-      +'ripidi ed esposti, senza appigli. Con le pietre bagnate non sono un ripiego, sono un rischio — meglio il taxi boat, o si rimanda. '
-      +'E con la bora forte <b>i traghetti possono essere sospesi</b>: controlla su hak.hr o sull\'app Jadrolinija prima di contare su una traversata.</div>')
-    +sec('piani','Piani B, se il tempo gira',
-      '<ul class="tick">'
-      +'<li><b>Giulie:</b> inverti il giorno 2 col giorno 3 — la valle della Soča regge la pioggia molto meglio dell\'alta quota.</li>'
-      +'<li><b>Al posto di Postojna:</b> le Grotte di San Canziano (Škocjan), UNESCO, a mezz\'ora.</li>'
-      +'<li><b>Plitvice sotto la pioggia:</b> cascate più potenti e metà della gente. È l\'unica cosa che non va rimandata.</li>'
-      +'<li><b>Cres il 13:</b> la giornata più elastica, non è prenotato niente. Se piove: Osor, le konobe dell\'interno, il Centro di Beli, o il giorno zero.</li>'
-      +'<li><b>Il finale:</b> con brutto tempo Pirano regge meglio di Rovigno — più piccola, più coperta.</li></ul>')
-    +sec('frasario','Frasario',phr)
-    +sec('sos','Numeri utili',sos);
+    '<div class="vhead"><h2>Pratico</h2><p class="lede">'
+    +(VIAGGIO.praticoLede||'Quello che serve sapere mentre sei in strada. Budget, ingressi e chilometri si '
+      +'ricalcolano a ogni tocco: qui sotto ci sono i numeri della configurazione che hai scelto, non un '
+      +'intervallo generico.')+'</p></div>'
+    +PRATICO.map(s=>typeof s==='string'
+      ? (BLOCCHI[s.slice(1)]?BLOCCHI[s.slice(1)]():'')
+      : sec(s.id,s.t,s.b,s.open)).join('');
 
   /* interazioni */
   const vp=$('#view-pratico');
@@ -1914,6 +2094,9 @@ function renderPratico(){
   };});
   vp.querySelectorAll('[data-tz]').forEach(x=>{x.onclick=()=>{pref.tavZ=x.dataset.tz;savePref();apriStesse(renderPratico);};});
   vp.querySelectorAll('[data-tc]').forEach(x=>{x.onclick=()=>{pref.tavC=!pref.tavC;savePref();apriStesse(renderPratico);};});
+  /* Dalla riga di uno spostamento si salta alla scheda della giornata: è il
+     giro che si fa davvero, «a che ora parte il treno» → «e poi?». */
+  vp.querySelectorAll('[data-goto]').forEach(x=>{x.onclick=()=>apriGiorno(+x.dataset.goto);});
 
   const q=$('#phrq');
   if(q) q.addEventListener('input',()=>{

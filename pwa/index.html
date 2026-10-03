@@ -2968,7 +2968,24 @@ vai(S.ui.tab && ['oggi','workout','dieta','progressi','piano'].includes(S.ui.tab
       location.reload();
     });
     window.addEventListener('load', function(){
-      navigator.serviceWorker.register('sw.js').then(function(reg){
+      // updateViaCache:'none': sw.js non viene MAI preso dalla cache HTTP.
+      // GitHub Pages lo serve con max-age, e senza questo il browser puo'
+      // continuare a controllare una copia vecchia del service worker: la
+      // versione nuova esiste sul server e sul telefono non arriva mai.
+      navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' }).then(function(reg){
+        // L'aggiornamento puo' essersi installato mentre questa pagina non
+        // stava ascoltando — tipico dell'app riaperta dalla Home. In quel caso
+        // resta li' in attesa: gli si dice di attivarsi subito.
+        if (reg.waiting && navigator.serviceWorker.controller) reg.waiting.postMessage('attiva');
+        reg.addEventListener('updatefound', function(){
+          var n = reg.installing;
+          if (!n) return;
+          n.addEventListener('statechange', function(){
+            if (n.state === 'installed' && navigator.serviceWorker.controller) n.postMessage('attiva');
+          });
+        });
+        // Anche al ritorno del campo, non solo al ritorno in primo piano.
+        window.addEventListener('online', function(){ reg.update().catch(function(){}); });
         // Cerca la versione nuova quando l'app torna in primo piano: e' il
         // momento in cui una pagina rimasta aperta per ore va aggiornata.
         // Solo con rete.
@@ -2986,7 +3003,7 @@ vai(S.ui.tab && ['oggi','workout','dieta','progressi','piano'].includes(S.ui.tab
     if (!f) return;
     var s = document.createElement('span');
     s.style.cssText = 'display:block;margin-top:6px;opacity:.65;font-variant-numeric:tabular-nums';
-    s.textContent = 'versione 40c25ad073';
+    s.textContent = 'versione b91e8c24bb';
     f.appendChild(s);
   });
   // ── suggerimento d'installazione, solo su iPhone e solo se non installata ──

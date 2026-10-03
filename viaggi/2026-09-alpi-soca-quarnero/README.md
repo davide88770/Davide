@@ -135,6 +135,11 @@ Cosa guardare nel blocco 1:
 
 ## Storico
 
+- **v3.1** — 3 ottobre 2026, solo motore. Le sezioni di testo della scheda
+  «Pratico» (traghetti, auto e documenti, parcheggi, se piove, piani B) e i
+  numeri di emergenza sono usciti dal motore e sono entrati nei dati, in
+  `PRATICO` e `SOS`: erano scritte nel codice condiviso e si erano portate
+  dietro nell'app del Vietnam. Contenuto identico, nessun numero cambiato.
 - **v3 — definitiva.** Luce calcolata (NOAA) al posto dei tramonti scritti a
   mano, e tre tramonti corretti anche nel road book. Registro dei biglietti con
   l'alternativa gratuita di ognuno, che ora **genera** la voce «ingressi» del

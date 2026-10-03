@@ -74,9 +74,23 @@ checklist spuntabile in Valigia.
 Cinque schede, stesso motore del road book alpino: **Oggi** (la giornata in
 corso, la voce di programma in corso e quella dopo, la barra della luce),
 **Giorni** (16 giornate, due menù di scelta), **Mappa** (SVG su coordinate
-reali più il profilo delle quote), **Pratico** (budget, registro dei biglietti
-con l'alternativa gratuita, 16 indirizzi a tavola, almanacco della luce, cose
-da fare, prenotazioni, frasario, numeri utili), **Valigia** (43 voci).
+reali più il profilo delle quote), **Pratico** (14 sezioni: spostamenti,
+budget, registro dei biglietti con l'alternativa gratuita, 16 indirizzi a
+tavola, almanacco della luce, cose da fare, prenotazioni, visto e soldi, come
+muoversi, salute, se piove, piani B, frasario, numeri utili), **Valigia**
+(43 voci).
+
+### Gli spostamenti, in un posto solo
+
+`SPOSTAMENTI` raccoglie i **tredici movimenti con un orario**: ora, punto di
+partenza, arrivo, codice del biglietto e, dove esiste, il numero dell'operatore
+— cliccabile. La sezione «Spostamenti» è la prima della scheda Pratico ed è
+aperta di default; il **prossimo spostamento** compare in cima a «Oggi» con il
+conto alla rovescia, che si riallinea ogni minuto e a ogni ritorno in primo
+piano. A tre ore dalla partenza la striscia diventa ambra.
+
+Gli stessi tredici movimenti sono anche sul Google Calendar di Davide, con il
+prefisso `VN · ` per trovarli e cancellarli in blocco.
 
 ### Verifica
 
@@ -99,3 +113,16 @@ riscrivono quelli, non il codice.
   configurabile («in viaggio» invece di «guida»), la scala del disegno della
   mappa, la legenda e le inquadrature dichiarate nei dati, e il budget senza
   carburante per i viaggi in cui non si guida.
+- **v2** — 3 ottobre 2026. **Spostamenti**: i tredici movimenti con un orario in
+  una sezione sola, con il telefono cliccabile, e il prossimo sempre in cima a
+  «Oggi» con il conto alla rovescia. E la correzione di un errore vero: metà
+  della scheda «Pratico» era ancora quella di *Alpi, Soča & Quarnero* —
+  traghetti della linea 334, vignetta slovena, Vršič, numeri di emergenza
+  sloveni e croati — perché quelle sezioni erano scritte dentro il motore
+  invece che nei dati. Ora l'ordine e il testo delle sezioni stanno in
+  `PRATICO`, e i numeri di emergenza in `SOS`: il motore non nomina più nessun
+  posto. Le sezioni di questo viaggio sono scritte da zero: visto (esenzione 45
+  giorni, da riverificare), đồng e bancomat, Grab e scooter, salute e dengue,
+  la stagione delle piogge nel Centro e i piani B se il treno o il volo del 24
+  saltano. `prova:adesso` controlla anche la striscia del prossimo
+  spostamento, e sa verificare che una cosa **non** ci sia.

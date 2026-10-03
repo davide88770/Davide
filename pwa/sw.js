@@ -1,5 +1,5 @@
-/* Ghisa & Grammi — service worker, versione 40c25ad073 */
-const CACHE = 'ghisa-e-grammi-40c25ad073';
+/* Ghisa & Grammi — service worker, versione b91e8c24bb */
+const CACHE = 'ghisa-e-grammi-b91e8c24bb';
 const GUSCIO = ['./', './index.html', './manifest.webmanifest',
   './icone/icona-192.png', './icone/icona-512.png',
   './icone/icona-maskable-512.png', './icone/apple-touch-icon.png'];
@@ -19,9 +19,18 @@ const miaCache = k => k.startsWith('ghisa-e-grammi-');
 // niente. Si puo' fare senza rischi perche' la pagina e' un file unico, senza
 // pezzi caricati a parte che potrebbero non combaciare; il contenuto nuovo si
 // vede alla riapertura.
+// cache:'no-store' su OGNI richiesta del service worker: la cache HTTP del
+// browser e' il punto in cui un aggiornamento si perde per ore. Vale per il
+// guscio quanto per la pagina.
+const dallaRete = u => fetch(u, { cache: 'no-store', credentials: 'same-origin' });
+
 self.addEventListener('install', ev => {
-  ev.waitUntil(caches.open(CACHE).then(c => c.addAll(GUSCIO)).then(() => self.skipWaiting()));
+  ev.waitUntil(caches.open(CACHE)
+    .then(c => Promise.all(GUSCIO.map(u => dallaRete(u).then(r => r.ok && c.put(u, r)).catch(() => {}))))
+    .then(() => self.skipWaiting()));
 });
+// La pagina puo' chiedere di far entrare subito una versione rimasta in attesa.
+self.addEventListener('message', ev => { if (ev.data === 'attiva') self.skipWaiting(); });
 self.addEventListener('activate', ev => {
   ev.waitUntil(caches.keys()
     .then(k => Promise.all(k.filter(x => miaCache(x) && x !== CACHE).map(x => caches.delete(x))))
@@ -36,11 +45,9 @@ self.addEventListener('fetch', ev => {
   if (req.method !== 'GET' || url.origin !== location.origin) return;
   if (req.mode === 'navigate') {
     if (!mio(url.pathname)) return;
-    // cache:'reload' salta la cache HTTP del browser: GitHub Pages serve con
-    // max-age=600, e senza questo per dieci minuti si continuerebbe a vedere
-    // la pagina vecchia anche con la versione nuova gia' pubblicata.
     ev.respondWith(
-      fetch(url.href, { cache: 'reload', credentials: 'same-origin' }).then(r => {
+      dallaRete(url.href).then(r => {
+        if (!r.ok) throw new Error('risposta ' + r.status);
         const copia = r.clone();
         caches.open(CACHE).then(c => c.put('./index.html', copia));
         return r;
