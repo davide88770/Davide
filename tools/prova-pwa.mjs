@@ -7,6 +7,12 @@ import http from 'node:http';
 import fs from 'node:fs';
 import path from 'node:path';
 
+/* Quale sotto-app provare: sul sito ne vivono più di una e la convivenza
+   con quella alla radice va verificata per ciascuna.
+     node tools/prova-pwa.mjs            prova /viaggio/
+     node tools/prova-pwa.mjs vietnam    prova /vietnam/            */
+const APPDIR = process.argv[2] ?? 'viaggio';
+
 const CHROME = process.env.CHROME_PATH ?? '/opt/pw-browsers/chromium-1194/chrome-linux/chrome';
 const TIPI = { '.html': 'text/html', '.js': 'text/javascript', '.json': 'application/json',
   '.webmanifest': 'application/manifest+json', '.png': 'image/png', '.svg': 'image/svg+xml' };
@@ -38,16 +44,16 @@ const g = await ctx.newPage();
 g.on('pageerror', e => errori.push('radice: ' + e.message));
 await g.goto(base + '/');
 const swG = await g.evaluate(() => navigator.serviceWorker.ready.then(r => r.active.scriptURL));
-controlla(swG.endsWith('/sw.js') && !swG.includes('viaggio'), 'service worker registrato');
+controlla(swG.endsWith('/sw.js') && !swG.includes('/' + APPDIR + '/'), 'service worker registrato');
 await g.waitForTimeout(600);
 
-// ── 2. l'app del viaggio, aperta per la prima volta ───────────────────────
+// ── 2. l'app del viaggio scelta, aperta per la prima volta ────────────────
 console.log('\nViaggio, prima apertura');
 const p = await ctx.newPage();
-p.on('pageerror', e => errori.push('viaggio: ' + e.message));
-await p.goto(base + '/viaggio/');
+p.on('pageerror', e => errori.push(APPDIR + ': ' + e.message));
+await p.goto(base + '/' + APPDIR + '/');
 const swV = await p.evaluate(() => navigator.serviceWorker.ready.then(r => r.active.scriptURL));
-controlla(swV.includes('/viaggio/sw.js'), 'service worker proprio, non quello della radice');
+controlla(swV.includes('/' + APPDIR + '/sw.js'), 'service worker proprio, non quello della radice');
 await p.waitForTimeout(900);
 controlla(await p.evaluate(() => !document.getElementById('agg')),
   'nessun avviso di aggiornamento in pagina');
@@ -80,7 +86,7 @@ const v = await p.evaluate(() => ({
 }));
 controlla(v.schede === conRete.schede && v.giornate === conRete.giornate
   && v.fermate === conRete.fermate && v.fermate > 0,
-  `il viaggio si apre completo (${v.schede} schede, ${v.giornate} giornate, ${v.fermate} fermate)`);
+  `l'app si apre completa (${v.schede} schede, ${v.giornate} giornate, ${v.fermate} fermate)`);
 controlla(v.spia, 'la spia "offline" si accende');
 await g.reload();
 await g.waitForTimeout(600);
@@ -90,27 +96,38 @@ fs.mkdirSync('out', { recursive: true });
 await p.screenshot({ path: 'out/pwa-offline.png' });
 
 // ── 4. le scelte sopravvivono ─────────────────────────────────────────────
+// Senza nominare nessuna opzione: si prende la prima del primo menù, qualunque
+// viaggio sia, e si controlla che dopo il riavvio senza rete sia ancora lì.
 await ctx.setOffline(false);
-await p.evaluate(() => { choices.d9 = 'pirano'; saveChoices(); ridisegna(); });
-await ctx.setOffline(true);
-await p.reload();
-await p.waitForTimeout(500);
 await p.click('#tab-giorni');
 await p.waitForTimeout(250);
-controlla((await p.evaluate(() => document.getElementById('totbar').textContent)).includes('Pirano'),
-  'la scelta salvata si ritrova dopo il riavvio');
+const scelta = await p.evaluate(() => {
+  const b = document.querySelector('#view-giorni .opt');
+  return b ? { m: b.dataset.m, o: b.dataset.o } : null;
+});
+if (!scelta) {
+  controlla(true, 'nessun menù di scelta in questo viaggio: niente da ricordare');
+} else {
+  await p.evaluate(x => window.__SCEGLI(x.m, x.o), scelta);
+  await ctx.setOffline(true);
+  await p.reload();
+  await p.waitForTimeout(600);
+  const dopo = await p.evaluate(() => window.__CONTI().scelte);
+  controlla(dopo[scelta.m] === scelta.o,
+    `la scelta salvata si ritrova dopo il riavvio (${scelta.m} = ${scelta.o})`);
+}
 await ctx.setOffline(false);
 
 // ── 5. una versione nuova entra da sola, con l'app aperta e ferma ─────────
 // E' il caso che conta: l'app installata riprende la pagina gia' aperta senza
 // nessuna navigazione, quindi il contenuto vecchio resterebbe li'.
 console.log('\nAggiornamento silenzioso');
-const idx = 'pwa/viaggio/index.html', sw = 'pwa/viaggio/sw.js';
+const idx = `pwa/${APPDIR}/index.html`, sw = `pwa/${APPDIR}/sw.js`;
 const idxOrig = fs.readFileSync(idx, 'utf8'), swOrig = fs.readFileSync(sw, 'utf8');
 try {
   // rimette l'app su una versione "vecchia" riconoscibile e la fa installare
   fs.writeFileSync(idx, idxOrig.replace('<main>', '<main><div id="vecchia"></div>'));
-  await p.goto(base + '/viaggio/');
+  await p.goto(base + '/' + APPDIR + '/');
   await p.evaluate(() => navigator.serviceWorker.ready);
   await p.waitForTimeout(900);
   controlla(await p.evaluate(() => !!document.getElementById('vecchia')),

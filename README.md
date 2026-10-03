@@ -9,6 +9,7 @@ della pagina e le sue note.
 | Viaggio | Date | Road book | In viaggio |
 |---|---|---|---|
 | [Alpi, Soča & Quarnero](viaggi/2026-09-alpi-soca-quarnero/) — Slovenia e Croazia | 6–15 set 2026 | [Artifact](https://claude.ai/code/artifact/fac61cfd-bb6d-466a-97fc-e508a9785d8c) | [app installabile](https://davide88770.github.io/Davide/viaggio/) · [Artifact](https://claude.ai/code/artifact/6d313e18-d2ba-46e7-b92b-777728ae408b) |
+| [Vietnam](viaggi/2026-11-vietnam/) — dal nord al centro | 10–25 nov 2026 | — | [app installabile](https://davide88770.github.io/Davide/vietnam/) |
 
 Ogni viaggio ha due deliverable: il **road book**, il documento che si legge
 prima di partire, e l'**app da viaggio**, la stessa materia riorganizzata per
@@ -49,6 +50,7 @@ generata dagli stessi sorgenti e pubblicata su GitHub Pages dal ramo
 |---|---|---|
 | Ghisa & Grammi | `fitness/ghisa-e-grammi/app.html` | <https://davide88770.github.io/Davide/> |
 | Alpi, Soča & Quarnero | `viaggi/2026-09-alpi-soca-quarnero/app-mobile.html` | <https://davide88770.github.io/Davide/viaggio/> |
+| Vietnam 2026 | `viaggi/2026-11-vietnam/app-mobile.html` | <https://davide88770.github.io/Davide/vietnam/> |
 
 ```sh
 node tools/build-pwa.mjs             # tutte

@@ -64,7 +64,14 @@ async function apri(iso) {
 }
 const testo = (page, sel) => page.$eval(sel, n => n.textContent.replace(/\s+/g, ' ').trim()).catch(() => '');
 
-const casi = [
+/* I casi sono dati, non codice: ogni viaggio mette i suoi in
+   <cartella>/<nome>.adesso.json. Senza quel file valgono questi, che sono
+   quelli del primo road book. */
+const cfgCasi = path.join(path.dirname(path.resolve(src)), path.basename(src, '.html') + '.adesso.json');
+const casi = fs.existsSync(cfgCasi)
+  ? JSON.parse(fs.readFileSync(cfgCasi, 'utf8')).casi.map(c => ({
+      ...c, attesi: c.attesi.map(([sel, re]) => [sel, new RegExp(re)]) }))
+  : [
   { iso: '2026-08-20T10:00:00', nome: 'due settimane prima',
     attesi: [['#view-oggi .countdown span', /giorni alla partenza/],
              ['#brandsub', /fra 17 giorni/], ['#view-oggi .hero .lab', /Tappa 1 di 10/]] },
@@ -83,6 +90,10 @@ const casi = [
     attesi: [['#view-oggi .in p.sub', /Il viaggio è finito/],
              ['#brandsub', /concluso/]] },
 ];
+const mezzanotte = fs.existsSync(cfgCasi)
+  ? JSON.parse(fs.readFileSync(cfgCasi, 'utf8')).mezzanotte
+  : { prima: '2026-09-08T23:58:00', dopo: '2026-09-09T00:02:00',
+      attesoPrima: 'tappa 3 di 10', attesoDopo: 'tappa 4 di 10' };
 
 for (const c of casi) {
   const page = await apri(c.iso);
@@ -96,14 +107,14 @@ for (const c of casi) {
 
 /* La mezzanotte, con l'app rimasta aperta. */
 {
-  const page = await apri('2026-09-08T23:58:00');
+  const page = await apri(mezzanotte.prima);
   const prima = await testo(page, '#view-oggi .hero .lab');
-  await page.evaluate(() => window.__ORA('2026-09-09T00:02:00'));
+  await page.evaluate(t => window.__ORA(t), mezzanotte.dopo);
   await page.evaluate(() => document.dispatchEvent(new Event('visibilitychange')));
   await page.waitForTimeout(200);
   const dopo = await testo(page, '#view-oggi .hero .lab');
-  if (!/tappa 3 di 10/.test(prima)) problemi.push(`prima di mezzanotte: «${prima}»`);
-  if (!/tappa 4 di 10/.test(dopo)) problemi.push(`dopo mezzanotte l'app mostra ancora «${dopo}»`);
+  if (!prima.includes(mezzanotte.attesoPrima)) problemi.push(`prima di mezzanotte: «${prima}»`);
+  if (!dopo.includes(mezzanotte.attesoDopo)) problemi.push(`dopo mezzanotte l'app mostra ancora «${dopo}»`);
   else console.log('  la mezzanotte con l\'app aperta   ok');
   await page.close();
 }

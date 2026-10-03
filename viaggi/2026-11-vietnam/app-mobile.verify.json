@@ -1,0 +1,49 @@
+{
+  "giroTab": [
+    "#tab-oggi",
+    "#tab-giorni",
+    "#tab-mappa",
+    "#tab-pratico",
+    "#tab-valigia"
+  ],
+  "tabFinale": "#tab-giorni",
+  "eventoStampa": "beforeprint",
+  "conta": {
+    "tab": ".tab",
+    "giornate": "details.day",
+    "tappe": "ol.tl li",
+    "opzioni": ".opt",
+    "fermate": ".stopdot",
+    "tratte": "#map path",
+    "sezioni": "details.sec",
+    "frasi": ".phr tbody tr",
+    "spunte": "label.ck input",
+    "card": ".card",
+    "tabelle": "table",
+    "biglietti": ".bg",
+    "tavola": ".tv",
+    "almanacco": ".al",
+    "riscontri": ".ri",
+    "luce": "svg.luce",
+    "profilo": "#prof path",
+    "passi": ".sp"
+  },
+  "richiesti": [
+    "tab",
+    "giornate",
+    "tappe",
+    "opzioni",
+    "fermate",
+    "tratte",
+    "sezioni",
+    "frasi",
+    "spunte",
+    "biglietti",
+    "tavola",
+    "almanacco",
+    "riscontri",
+    "luce",
+    "profilo",
+    "passi"
+  ]
+}

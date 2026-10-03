@@ -8,6 +8,7 @@ name: Pubblica le PWA
 # La cartella pwa/ diventa la radice del sito. Da questo ramo si pubblica
 # SOLTANTO il viaggio:
 #   pwa/viaggio/  -> /viaggio/    Alpi, Soca & Quarnero
+#   pwa/vietnam/  -> /vietnam/    Vietnam 2026
 # La radice / ospita Ghisa & Grammi, che viene pubblicata dal suo ramo e qui
 # non si tocca.
 
@@ -19,6 +20,7 @@ on:
       - main
     paths:
       - 'viaggi/2026-09-alpi-soca-quarnero/app-mobile.html'
+      - 'viaggi/2026-11-vietnam/app-mobile.html'
       - 'pwa/**/icone/**'
       - 'tools/build-pwa.mjs'
       - 'tools/build-icone.mjs'
@@ -47,7 +49,7 @@ jobs:
 
       - name: Controlla che siano pagine sensate
         run: |
-          for d in pwa/viaggio; do
+          for d in pwa/viaggio pwa/vietnam; do
             test -s "$d/index.html"
             test -s "$d/manifest.webmanifest"
             test -s "$d/sw.js"
@@ -58,10 +60,13 @@ jobs:
             echo "$d/index.html $(wc -c < "$d/index.html") byte"
           done
           grep -q 'Quarnero' pwa/viaggio/index.html
+          grep -q 'Vietnam' pwa/vietnam/index.html
           # Ogni service worker deve ripulire solo le proprie cache e servire
           # solo il proprio indice: sotto lo stesso dominio vivono due app.
           grep -q "startsWith('viaggio-')" pwa/viaggio/sw.js
           grep -q 'mio(url.pathname)' pwa/viaggio/sw.js
+          grep -q "startsWith('vietnam-')" pwa/vietnam/sw.js
+          grep -q 'mio(url.pathname)' pwa/vietnam/sw.js
 
       - name: Aggiorna il ramo gh-pages
         # Il sito ospita piu' app, ognuna pubblicata da un ramo diverso.
@@ -123,7 +128,10 @@ jobs:
           test -s pubblicato/index.html
           test -s pubblicato/viaggio/index.html
           test -s pubblicato/viaggio/sw.js
+          test -s pubblicato/vietnam/index.html
+          test -s pubblicato/vietnam/sw.js
           grep -q 'Quarnero' pubblicato/viaggio/index.html
+          grep -q 'Vietnam' pubblicato/vietnam/index.html
           echo "online: $(ls -A pubblicato | grep -vx '.git' | tr '\n' ' ')"
 
       - name: Dove stanno

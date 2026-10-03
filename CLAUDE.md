@@ -15,7 +15,11 @@ fitness/<slug>/README.md                sintesi, scelte di trascrizione, storico
 fitness/<slug>/verify.json              selettori e giro delle viste per la verifica
 viaggi/<anno-mese-slug>/app-mobile.html app da viaggio: stessi dati, chrome da
                                         applicazione. Il blocco 1 del sorgente
-                                        è il viaggio, il 2 è il motore
+                                        è il viaggio, il 2 è il motore —
+                                        identico in tutte le app
+viaggi/<anno-mese-slug>/app-mobile.verify.json   selettori e giro delle schede
+viaggi/<anno-mese-slug>/app-mobile.adesso.json   i momenti su cui spostare
+                                        l'orologio nella prova della scheda «Oggi»
 tools/verify.mjs                        verifica di rendering obbligatoria
 tools/prova-conti.mjs                   ricalcolo dei totali, obbligatorio
 tools/prova-adesso.mjs                  prova della scheda «Oggi» a orologio spostato
@@ -150,6 +154,7 @@ codice non viene mai eseguito. Servono anche:
 ```sh
 npm run prova:conti  viaggi/<cartella>/app-mobile.html
 npm run prova:adesso viaggi/<cartella>/app-mobile.html
+npm run prova:pwa    <nome-app>
 ```
 
 - **`prova:conti`** è il controllo 6 fatto a macchina: prova **tutte** le
@@ -167,8 +172,27 @@ npm run prova:adesso viaggi/<cartella>/app-mobile.html
   riallineamento a ogni minuto e a ogni ritorno in primo piano al risveglio
   mostra ancora il giorno prima.
 
-Perché l'app serva anche a chi la rilegge l'anno dopo, queste due prove vanno
+- **`prova:pwa`** prende il nome dell'app come argomento, perché sullo stesso
+  dominio ne vive più di una: verifica che ciascuna registri il proprio service
+  worker, si apra senza rete e non cancelli le cache delle altre.
+
+Perché l'app serva anche a chi la rilegge l'anno dopo, queste prove vanno
 rifatte a ogni modifica dei dati, non solo del codice.
+
+### Un motore solo, tanti blocchi di dati
+
+Dalla v3 di *Alpi, Soča & Quarnero* il motore (sezione 2 del sorgente) è
+**identico in tutte le app da viaggio**: una modifica va riportata in tutte, e
+quello che cambia da un viaggio all'altro si dichiara in `VIAGGIO`, non si
+scrive nel codice. Finora ci sono finiti: il fuso per giornata (serve ai voli),
+il lessico delle etichette («in viaggio» invece di «guida»), la scala del
+disegno della mappa, la legenda e le inquadrature, le parole dei verdetti, e
+`carburante:false` per i viaggi in cui non si guida.
+
+**`verify` non vede i colori.** Una volta un `<style>` duplicato ha azzerato
+tutti i token CSS — la mappa era un rettangolo nero — e `verify` è passato lo
+stesso, perché guarda errori JS, sbordature e conteggi. Prima di consegnare,
+**guarda almeno uno screenshot** di `out/<cartella>/<nome>/`.
 
 ## Consegna
 

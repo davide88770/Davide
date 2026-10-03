@@ -57,6 +57,21 @@ const APP = {
       + '<b>funziona senza campo</b> — a Plitvice alle 7:00, sul Vršič e nell\'interno di Cres, '
       + 'dove il segnale non c\'è.',
   },
+  vietnam: {
+    src: 'viaggi/2026-11-vietnam/app-mobile.html',
+    out: 'pwa/vietnam',
+    nome: 'Vietnam 2026',
+    breve: 'Vietnam',
+    chiave: 'vn',
+    tema: { chiaro: '#E9EDEA', scuro: '#091316' },
+    sfondo: '#091316',
+    categorie: ['travel', 'navigation', 'lifestyle'],
+    descrizione: 'Vietnam, 10–25 novembre 2026: sedici giornate con dentro ogni orario vero — voli, '
+      + 'minivan, treno, bus notturno e crociera — più luce calcolata, biglietti e cose da fare.',
+    installa: 'Tocca Condividi in fondo a Safari, poi "Aggiungi a Home". Si apre a schermo intero e '
+      + '<b>funziona senza campo</b> — nella valle di Sa Pa, sul bus notturno e in mezzo alla baia, '
+      + 'dove il segnale non c\'è.',
+  },
 };
 
 const amp = s => s.replace(/&/g, '&amp;');

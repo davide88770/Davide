@@ -195,7 +195,9 @@ a.link{color:var(--accent);text-decoration:none;border-bottom:1px solid color-mi
   border-radius:var(--r);padding:12px 14px;margin-bottom:12px}
 .hour .t{font-family:var(--display);font-size:27px;color:var(--accent);font-variant-numeric:tabular-nums;line-height:1}
 .hour .x{min-width:0}
-.hour .x b{display:block;font-family:var(--display);font-size:11px;letter-spacing:.15em;
+/* Solo l'etichetta va in maiuscoletto: i <b> dentro il testo dell'ora che
+   conta devono restare grassetti in linea, non diventare titoli. */
+.hour .x > b{display:block;font-family:var(--display);font-size:11px;letter-spacing:.15em;
   text-transform:uppercase;color:var(--accent);margin-bottom:2px}
 .hour .x p{font-size:14.5px;margin:0;color:var(--ink)}
 
@@ -600,8 +602,11 @@ const VIAGGIO={
   /* la mappa: riquadro, inquadrature, chiusura del poligono di terraferma,
      isole, nomi dei paesi e il cartello di chi resta fuori inquadratura */
   bbox:{lon:[9.8,16.6],lat:[43.9,46.9]},
-  zoom:{viaggio:{lon:[13.02,16.20],lat:[44.22,46.70]},
-        tutto  :{lon:[10.18,16.20],lat:[44.18,46.78]}},
+  zoom:{viaggio:{t:'Slovenia e Quarnaro',lon:[13.02,16.20],lat:[44.22,46.70]},
+        tutto  :{t:'Tutto il viaggio',lon:[10.18,16.20],lat:[44.18,46.78],largo:1}},
+  legenda:[['Andata','var(--accent)'],['Rientro','var(--signal)','dashed'],
+           ['Finali alternativi','var(--signal)','dotted','.65'],
+           ['Traghetto','var(--good)','dotted'],['Escursioni','var(--ink-3)','dotted']],
   chiusura:[[17.70,43.28],[17.70,46.95],[9.75,46.95],[9.75,43.30]],
   isole:[[14.60,45.05,.16,.22,0],[14.42,44.85,.08,.36,10],[14.76,44.75,.06,.13,30],
          [15.05,44.45,.06,.30,35],[14.95,44.02,.06,.24,40]],
@@ -1194,10 +1199,13 @@ function litri(){
 function budget(){
   const km=totKm(), rows=[], L=litri();
   const dec=n=>String(n).replace('.',',');
-  rows.push(['Carburante',nkm(km)+' km · '+dec(CARB.lmin)+'–'+dec(CARB.lmax)+' l/100 km · '
-    +eu(L.pmin)+(L.pmin===L.pmax?' €/l':'–'+eu(L.pmax)+' €/l')
-    +(pref.litro!=null?' (prezzo impostato da te)':''),
-    Math.round(L.lmin*L.pmin),Math.round(L.lmax*L.pmax)]);
+  /* Un viaggio in cui non si guida non ha una voce carburante: si dichiara
+     VIAGGIO.carburante:false e la riga, con il suo passo passo, sparisce. */
+  if(VIAGGIO.carburante!==false)
+    rows.push(['Carburante',nkm(km)+' km · '+dec(CARB.lmin)+'–'+dec(CARB.lmax)+' l/100 km · '
+      +eu(L.pmin)+(L.pmin===L.pmax?' €/l':'–'+eu(L.pmax)+' €/l')
+      +(pref.litro!=null?' (prezzo impostato da te)':''),
+      Math.round(L.lmin*L.pmin),Math.round(L.lmax*L.pmax)]);
   const tr=applicato(DAYS[NG-1].n);
   BUDGET.forEach(r=>{
     const mult=r[4]==='pp'?pref.persone:1;
@@ -1230,7 +1238,9 @@ function budget(){
    Verificato su riferimenti noti: Roma 21 giugno 20:49, Londra 6 settembre
    19:38, Milano 20 marzo 18:35. */
 const RAD=Math.PI/180;
-function sole(iso,lat,lon){
+/* tz: una giornata puo' dichiarare un fuso diverso da quello del viaggio —
+   il giorno del volo si parte da un paese e si arriva in un altro. */
+function sole(iso,lat,lon,tz){
   const p=iso.split('-').map(Number);
   const jd=Date.UTC(p[0],p[1]-1,p[2])/86400000+2440587.5, t=(jd-2451545)/36525;
   const L0=(280.46646+t*(36000.76983+t*0.0003032))%360;
@@ -1244,7 +1254,7 @@ function sole(iso,lat,lon){
   const eqt=4*(y*Math.sin(2*L0*RAD)-2*x*Math.sin(M*RAD)
     +4*x*y*Math.sin(M*RAD)*Math.cos(2*L0*RAD)-0.5*y*y*Math.sin(4*L0*RAD)
     -1.25*x*x*Math.sin(2*M*RAD))/RAD;
-  const noon=720-4*lon-eqt+VIAGGIO.tz*60;
+  const noon=720-4*lon-eqt+(tz==null?VIAGGIO.tz:tz)*60;
   const arco=z=>{const c=(Math.cos(z*RAD)-Math.sin(lat*RAD)*Math.sin(dec*RAD))
       /(Math.cos(lat*RAD)*Math.cos(dec*RAD));
     return (c>1||c<-1)?null:Math.acos(c)/RAD*4;};
@@ -1260,19 +1270,21 @@ const mins=s=>+s.slice(0,2)*60 + +s.slice(3,5);
    quella. */
 function postoDi(d){
   const o=scelta(d);
-  if(o&&o.lat!=null) return {n:o.breve||o.t,lat:o.lat,lon:o.lon,scelto:true};
-  return {n:d.luogo,lat:d.lat,lon:d.lon,scelto:false};
+  if(o&&o.lat!=null) return {n:o.breve||o.t,lat:o.lat,lon:o.lon,tz:o.tz,scelto:true};
+  return {n:d.luogo,lat:d.lat,lon:d.lon,tz:d.tz,scelto:false};
 }
 const luceCache={};
 function luceDi(d){
-  const p=postoDi(d), k=d.iso+'|'+p.lat+'|'+p.lon;
-  if(!luceCache[k]) luceCache[k]=Object.assign({posto:p},sole(d.iso,p.lat,p.lon));
+  const p=postoDi(d), k=d.iso+'|'+p.lat+'|'+p.lon+'|'+(p.tz==null?'':p.tz);
+  if(!luceCache[k]) luceCache[k]=Object.assign({posto:p},sole(d.iso,p.lat,p.lon,p.tz));
   return luceCache[k];
 }
 
 /* ══════════════════════════════════════════════════════════════════════════
    VISTE
    ══════════════════════════════════════════════════════════════════════════ */
+const LEX=Object.assign({kmGiorno:'km oggi',durata:'guida',durataTot:'sola guida',
+  conf:'confine',riscontri:'Riscontri dal campo'},VIAGGIO.lessico||{});
 const $=s=>document.querySelector(s);
 const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
 const D0=new Date(+DAYS[0].iso.slice(0,4),+DAYS[0].iso.slice(5,7)-1,+DAYS[0].iso.slice(8,10));
@@ -1372,10 +1384,10 @@ function renderOggi(){
         +'<a class="btn pri" href="'+d.gm+'" target="_blank" rel="noopener">Rotta in Maps ↗</a>'
         +'<button class="btn" type="button" data-goto="'+d.n+'">Scheda completa</button></div></div>'
     +'<div class="stats">'
-      +'<div class="s"><b>'+nkm(dayKm(d))+'</b><span>km oggi</span></div>'
-      +'<div class="s"><b>'+hm(dayMin(d))+'</b><span>guida</span></div>'
+      +'<div class="s"><b>'+nkm(dayKm(d))+'</b><span>'+LEX.kmGiorno+'</span></div>'
+      +'<div class="s"><b>'+hm(dayMin(d))+'</b><span>'+LEX.durata+'</span></div>'
       +'<div class="s"><b>'+hhmm(L.tram)+'</b><span>tramonto</span></div>'
-      +'<div class="s"><b class="sm">'+d.border.split(' (')[0].replace(/\s*→\s*/,'→')+'</b><span>confine</span></div>'
+      +'<div class="s"><b class="sm">'+d.border.split(' (')[0].replace(/\s*→\s*/,'→')+'</b><span>'+LEX.conf+'</span></div>'
     +'</div>'
     +'<div class="lucebox">'+barraLuce(d,reale)
       +'<p class="lucetxt">Luce a <b>'+L.posto.n+'</b>'+(L.posto.scelto?' (la base che hai scelto)':'')
@@ -1425,7 +1437,7 @@ function renderGiorni(){
       +'<summary><span class="dnum">'+String(d.n).padStart(2,'0')+'<span>tappa</span></span>'
       +'<span class="dsum"><span class="dd">'+d.short+' · '+d.type+'</span><span class="dt">'+d.title+'</span>'
       +'<span class="barwrap"><span class="bar" style="width:'+Math.max(3,Math.round(km/maxKm*100))+'%"></span></span></span>'
-      +'<span class="dmeta"><b>'+nkm(km)+'</b><span>km</span><b style="margin-top:4px">'+hm(mn)+'</b><span>guida</span></span></summary>'
+      +'<span class="dmeta"><b>'+nkm(km)+'</b><span>km</span><b style="margin-top:4px">'+hm(mn)+'</b><span>'+LEX.durata+'</span></span></summary>'
       +'<div class="dbody">'
         +'<div class="route">'+d.route+'</div>'
         +'<div class="btnrow" style="margin-bottom:12px">'
@@ -1485,7 +1497,7 @@ function renderTot(){
   const ap=applicato(DAYS[NG-1].n);
   const f=MENUS.map(d=>scelta(d)).filter(o=>o&&o.applica).map(o=>o.breve)[0];
   el.innerHTML='<div class="g"><b>'+nkm(km)+' km</b><span>'+(n===MENUS.length?'totale esatto':'con i riferimenti')+'</span></div>'
-    +'<div class="g"><b>'+hm(mn)+'</b><span>sola guida</span></div>'
+    +'<div class="g"><b>'+hm(mn)+'</b><span>'+LEX.durataTot+'</span></div>'
     +'<div class="st"><span class="chip '+(n===MENUS.length?'good':n?'sig':'')+'">'
     +(f?f:(n+'/'+MENUS.length+' scelte'))+'</span></div>';
 }
@@ -1527,25 +1539,23 @@ function renderMappa(){
     +'ramo si accende e gli altri si spengono.</p></div>'
     +'<div class="mapbox">'
     +'<div class="zoomrow">'
-      +'<button type="button" data-z="viaggio" aria-pressed="'+(zoom==='viaggio')+'">Slovenia e Quarnaro</button>'
-      +'<button type="button" data-z="tutto" aria-pressed="'+(zoom==='tutto')+'">Tutto il viaggio</button>'
+      +Object.keys(VIAGGIO.zoom).map(k=>'<button type="button" data-z="'+k+'" aria-pressed="'
+        +(zoom===k)+'">'+VIAGGIO.zoom[k].t+'</button>').join('')
     +'</div>'
-    +'<div class="mapscroll" data-zoom="'+zoom+'">'
+    +'<div class="mapscroll" data-largo="'+(VIAGGIO.zoom[zoom].largo?1:0)+'">'
     +'<svg id="map" viewBox="'+viewBoxOf(zoom)+'" role="img" aria-label="Mappa del percorso"></svg>'
     +'</div><div class="maplegend">'
-    +'<span><i style="border-color:var(--accent)"></i>Andata</span>'
-    +'<span><i style="border-color:var(--signal);border-top-style:dashed"></i>Rientro</span>'
-    +'<span><i style="border-color:var(--signal);border-top-style:dotted;opacity:.65"></i>Finali alternativi</span>'
-    +'<span><i style="border-color:var(--good);border-top-style:dotted"></i>Traghetto</span>'
-    +'<span><i style="border-color:var(--ink-3);border-top-style:dotted"></i>Escursioni</span>'
+    +VIAGGIO.legenda.map(l=>'<span><i style="border-color:'+l[1]
+      +(l[2]?';border-top-style:'+l[2]:'')+(l[3]?';opacity:'+l[3]:'')+'"></i>'+l[0]+'</span>').join('')
     +'</div></div>'
     +'<div class="card" id="mapinfo"></div>'
     +'<div class="mapbox"><h4 style="padding:4px 4px 8px">Profilo delle quote<span class="scrollhint">scorri →</span></h4>'
     +'<div class="profscroll"><svg id="prof" viewBox="0 0 1000 300" role="img" '
     +'aria-label="Profilo altimetrico del viaggio, dal livello del mare ai 1.611 metri del passo Vršič"></svg></div>'
-    +'<p class="sub" style="padding:8px 4px 2px">Quote reali dei punti del percorso di riferimento '
-    +'(finale a '+VIAGGIO.rifFinale+', rientro senza soste): le scelte spostano i chilometri, non la forma '
-    +'della montagna. Il punto tratteggiato è la funivia, che non si guida.</p></div>';
+    +'<p class="sub" style="padding:8px 4px 2px">'+(VIAGGIO.profiloNota
+      ||'Quote reali dei punti del percorso di riferimento (finale a '+VIAGGIO.rifFinale+', rientro '
+        +'senza soste): le scelte spostano i chilometri, non la forma della montagna. Il punto '
+        +'tratteggiato è la funivia, che non si guida.')+'</p></div>';
   $('#view-mappa').querySelectorAll('.zoomrow button').forEach(b=>{
     b.onclick=()=>{zoom=b.dataset.z;renderMappa();};
   });
@@ -1558,6 +1568,10 @@ const svgEl=(n,a)=>{const e=document.createElementNS(SVGNS,n);for(const k in a)e
 function disegnaMappa(){
   const map=$('#map'); if(!map) return;
   map.textContent='';
+  /* Una mappa che sta tutta nello schermo viene rimpicciolita parecchio:
+     i nomi e i tratti si scrivono più grandi in unità di disegno, così a
+     390 px restano leggibili. */
+  const SC=VIAGGIO.mappaScala||1;
   const path=pts=>pts.map((p,i)=>(i?'L':'M')+PT(p).map(v=>v.toFixed(1)).join(' ')).join(' ');
   const el=svgEl;
 
@@ -1572,16 +1586,18 @@ function disegnaMappa(){
   });
   VIAGGIO.etichette.forEach(([t,lon,lat,rot])=>{
     const [x,y]=PT([lon,lat]);
-    const n=el('text',{x:x.toFixed(1),y:y.toFixed(1),fill:'var(--ink-3)','font-family':'var(--display)','font-size':15,
-      'letter-spacing':'4','text-anchor':'middle',opacity:.6,transform:'rotate('+rot+' '+x.toFixed(1)+' '+y.toFixed(1)+')'});
+    const n=el('text',{x:x.toFixed(1),y:y.toFixed(1),fill:'var(--ink-3)','font-family':'var(--display)','font-size':(15*SC).toFixed(1),
+      'letter-spacing':(4*SC).toFixed(1),'text-anchor':'middle',opacity:.6,transform:'rotate('+rot+' '+x.toFixed(1)+' '+y.toFixed(1)+')'});
     n.textContent=t;map.appendChild(n);
   });
 
-  const style={out:{stroke:'var(--accent)','stroke-width':3.4,opacity:.95},
-               back:{stroke:'var(--signal)','stroke-width':3,'stroke-dasharray':'9 6',opacity:.9},
-               sea:{stroke:'var(--good)','stroke-width':3.5,'stroke-dasharray':'1 6',opacity:1},
-               alt:{stroke:'var(--signal)','stroke-width':2,'stroke-dasharray':'2 6',opacity:.65},
-               exc:{stroke:'var(--ink-3)','stroke-width':2,'stroke-dasharray':'2 5',opacity:.8}};
+  const w=v=>(v*SC).toFixed(2), dash=(a,b)=>(a*SC).toFixed(1)+' '+(b*SC).toFixed(1);
+  const style={out:{stroke:'var(--accent)','stroke-width':w(3.4),opacity:.95},
+               back:{stroke:'var(--signal)','stroke-width':w(3),'stroke-dasharray':dash(9,6),opacity:.9},
+               sea:{stroke:'var(--good)','stroke-width':w(3.5),'stroke-dasharray':dash(1,6),opacity:1},
+               alt:{stroke:'var(--signal)','stroke-width':w(2),'stroke-dasharray':dash(2,6),opacity:.65},
+               exc:{stroke:'var(--ink-3)','stroke-width':w(2),'stroke-dasharray':dash(2,5),opacity:.8},
+               aria:{stroke:'var(--ink-3)','stroke-width':w(2.2),'stroke-dasharray':dash(11,7),opacity:.75}};
   const fin=finale();
   LEGS.forEach(l=>{
     let k=l.k, cls='';
@@ -1598,14 +1614,14 @@ function disegnaMappa(){
     const [x,y]=PT([st.lon,st.lat]);
     const scelto=!!(fin&&st.fin===fin.id);
     const g=el('g',{class:'stopdot',role:'link',tabindex:'0','aria-label':st.n+', tappa '+st.d});
-    g.appendChild(el('circle',{cx:x,cy:y,r:17,fill:'transparent'}));
-    g.appendChild(el('circle',{cx:x,cy:y,r:(st.s&&!scelto)?3.4:6.5,
+    g.appendChild(el('circle',{cx:x,cy:y,r:(17*SC).toFixed(1),fill:'transparent'}));
+    g.appendChild(el('circle',{cx:x,cy:y,r:w((st.s&&!scelto)?3.4:6.5),
       fill:scelto?'var(--accent)':((st.s)?'var(--ink-3)':'var(--surface)'),
-      stroke:scelto?'var(--accent)':((st.s)?'var(--ink-3)':'var(--accent)'),'stroke-width':st.s&&!scelto?1:3}));
-    const t=el('text',{x:(x+st.dx).toFixed(1),y:(y+st.dy).toFixed(1),'text-anchor':st.a,
-      'font-family':'var(--display)','font-size':(st.s&&!scelto)?13:15.5,'letter-spacing':'.6',
+      stroke:scelto?'var(--accent)':((st.s)?'var(--ink-3)':'var(--accent)'),'stroke-width':w(st.s&&!scelto?1:3)}));
+    const t=el('text',{x:(x+st.dx*SC).toFixed(1),y:(y+st.dy*SC).toFixed(1),'text-anchor':st.a,
+      'font-family':'var(--display)','font-size':w((st.s&&!scelto)?13:15.5),'letter-spacing':(0.6*SC).toFixed(1),
       fill:scelto?'var(--accent)':((st.s)?'var(--ink-3)':'var(--ink)'),
-      'paint-order':'stroke',stroke:'var(--land)','stroke-width':3.5,'stroke-linejoin':'round'});
+      'paint-order':'stroke',stroke:'var(--land)','stroke-width':w(3.5),'stroke-linejoin':'round'});
     t.textContent=st.n; g.appendChild(t);
     const ti=el('title'); ti.textContent=st.n+' — tappa '+st.d; g.appendChild(ti);
     const go=()=>apriGiorno(st.d);
@@ -1617,8 +1633,8 @@ function disegnaMappa(){
   if(zoom==='viaggio'&&VIAGGIO.fuori){
     const [x,y]=PT(VIAGGIO.fuori.at);
     const t=el('text',{x:x.toFixed(1),y:y.toFixed(1),'text-anchor':'start','font-family':'var(--display)',
-      'font-size':13,'letter-spacing':'.5',fill:'var(--ink-3)','paint-order':'stroke',
-      stroke:'var(--land)','stroke-width':3.5,'stroke-linejoin':'round'});
+      'font-size':w(13),'letter-spacing':(0.5*SC).toFixed(1),fill:'var(--ink-3)','paint-order':'stroke',
+      stroke:'var(--land)','stroke-width':w(3.5),'stroke-linejoin':'round'});
     t.textContent=VIAGGIO.fuori.t;
     map.appendChild(t);
   }
@@ -1654,7 +1670,10 @@ function disegnaProfilo(){
     'stroke-linejoin':'round','stroke-linecap':'round'}));
 
   PROFILO.filter(p=>p.f).forEach(p=>{
-    svg.appendChild(el('path',{d:'M'+X(p.km).toFixed(1)+' '+Y(p.q).toFixed(1)+'V'+Y(525).toFixed(1),
+    /* Il raccordo scende fino alla strada più vicina, qualunque sia la sua
+       quota: è una funivia, non un tratto che si percorre. */
+    const base=strada.reduce((a,b)=>Math.abs(b.km-p.km)<Math.abs(a.km-p.km)?b:a).q;
+    svg.appendChild(el('path',{d:'M'+X(p.km).toFixed(1)+' '+Y(p.q).toFixed(1)+'V'+Y(base).toFixed(1),
       stroke:'var(--ink-3)','stroke-width':1.4,'stroke-dasharray':'3 4'}));
     svg.appendChild(el('circle',{cx:X(p.km).toFixed(1),cy:Y(p.q).toFixed(1),r:3.6,
       fill:'var(--surface)',stroke:'var(--ink-3)','stroke-width':1.8}));
@@ -1682,13 +1701,13 @@ function renderMapInfo(){
   el.innerHTML='<h4>Il percorso, come l\'hai scelto</h4>'
    +'<p class="sub">'
    +(fin?'Finale a <b>'+fin.breve+'</b>: l\'ultima giornata vale '+nkm(ap.km)+' km e '+hm(ap.min)+'. '
-        :'Finale non ancora scelto: la mappa mostra tutti i rami. ')
+        :(MENUS.some(d=>d.menu.o.some(o=>o.lat!=null))?'Finale non ancora scelto: la mappa mostra tutti i rami. ':''))
    +(altre.length?altre.map(x=>'Il '+x.d.short+' hai scelto <b>'+(x.o.breve||x.o.t)+'</b>'
        +(x.o.km?' ('+x.o.km+' km)':' — niente auto')).join('. ')+'.'
      :'Le altre giornate a scelta sono ancora aperte.')
    +'</p>'
-   +'<p class="sub" style="margin-bottom:0"><b>'+nkm(totKm())+' km</b> in totale, <b>'+hm(totMin())+'</b> di sola guida. '
-   +'Aggiungi il 15–20% per soste, parcheggio e carburante.</p>';
+   +'<p class="sub" style="margin-bottom:0"><b>'+nkm(totKm())+' km</b> in totale, <b>'+hm(totMin())+'</b> '+LEX.durataTot+'. '
+   +(VIAGGIO.notaKm||'Aggiungi il 15–20% per soste, parcheggio e carburante.')+'</p>';
 }
 
 /* ── PRATICO ────────────────────────────────────────────────────────────── */
@@ -1769,9 +1788,10 @@ function renderPratico(){
     +(extra||'')+'</div>';
   const stepbar='<div class="stepbar">'
     +step('p','Persone',pref.persone)
-    +step('l','Prezzo alla pompa',pref.litro!=null?eu(pref.litro)+' €/l':eu(CARB.pmin)+'–'+eu(CARB.pmax)+' €/l',
-      pref.litro!=null?'<button class="inline" type="button" data-st="lx">torna ai dati</button>'
-        :'<span class="spn">dai dati del road book</span>')
+    +(VIAGGIO.carburante===false?''
+      :step('l','Prezzo alla pompa',pref.litro!=null?eu(pref.litro)+' €/l':eu(CARB.pmin)+'–'+eu(CARB.pmax)+' €/l',
+        pref.litro!=null?'<button class="inline" type="button" data-st="lx">torna ai dati</button>'
+          :'<span class="spn">dai dati del road book</span>'))
     +'</div>';
   const bud='<div class="bud"><div class="bhead"><span>Voce</span><span>Minimo – comodo</span></div>'
     +b.rows.map(r=>'<div class="brow"><span class="bn">'+r[0]+'</span><span class="bv">'+eur(r[2],r[3])+'</span>'
@@ -1788,11 +1808,13 @@ function renderPratico(){
     +METEO.map(r=>'<tr><td>'+r[0]+'</td><td class="num">'+r[1]+'</td><td class="num">'+r[2]+'</td><td class="num">'+r[3]+'</td></tr>').join('')
     +'</tbody></table></div>';
 
-  const risc='<p class="sub">Quello che il viaggio ha corretto del road book. Sta qui perché la prossima '
-    +'volta serve più di qualunque altra sezione.</p>'
+  const risc='<p class="sub">'+(VIAGGIO.riscontriNota||'Quello che il viaggio ha corretto del road book.')+'</p>'
     +RISCONTRI.map(r=>{const v=VERD[r.q]||['',''];
+      /* Le parole del verdetto cambiano con il viaggio: prima di partire sono
+         cose da fare, al ritorno sono cose corrette. */
+      const P=VIAGGIO.verdetti||{si:'Confermato',no:'Corretto',forse:'Da rivedere'};
       return '<div class="ri"><div class="rih"><span class="chip '+v[0]+'">'
-        +(r.q==='si'?'Confermato':r.q==='no'?'Corretto':'Da rivedere')+'</span><b>'+r.t+'</b>'
+        +(P[r.q]||'')+'</span><b>'+r.t+'</b>'
         +'<span class="rid">'+r.d+'</span></div><p class="sub">'+r.c+'</p></div>';}).join('');
 
   const phr='<input class="search" id="phrq" type="search" placeholder="Cerca una parola…" aria-label="Cerca nel frasario">'
@@ -1824,10 +1846,14 @@ function renderPratico(){
     +'Budget, ingressi e chilometri si ricalcolano a ogni tocco: qui sotto ci sono i numeri della '
     +'configurazione che hai scelto, non un intervallo generico.</p></div>'
     +sec('budget','Budget · '+nkm(b.tot[0])+'–'+nkm(b.tot[1])+' €',
-      '<p class="sub">Auto a benzina, standard medio, un pasto al ristorante al giorno. Il carburante è '
-      +'calcolato sui '+nkm(totKm())+' km effettivi di questa configurazione — '+nkm(Math.round(L.lmin))
-      +'–'+nkm(Math.round(L.lmax))+' litri — non su una stima fissa. Persone e prezzo alla pompa li muovi tu: '
-      +'cambiano ingressi, cibo e carburante, non i pedaggi né gli alloggi.</p>'+stepbar+bud,true)
+      '<p class="sub">'+(VIAGGIO.budgetNota||'Auto a benzina, standard medio, un pasto al ristorante al giorno. Il carburante è ')
+      +(VIAGGIO.carburante===false
+        ? 'Il numero di persone lo muovi tu: cambiano ingressi e cibo, non i voli né gli alloggi. '
+          +'Dove la conferma di prenotazione non riporta l\'importo, qui c\'è un intervallo e lo dice.'
+        : 'calcolato sui '+nkm(totKm())+' km effettivi di questa configurazione — '+nkm(Math.round(L.lmin))
+          +'–'+nkm(Math.round(L.lmax))+' litri — non su una stima fissa. Persone e prezzo alla pompa li muovi tu: '
+          +'cambiano ingressi, cibo e carburante, non i pedaggi né gli alloggi.')
+      +'</p>'+stepbar+bud,true)
     +sec('biglietti','Biglietti · cosa si paga, cosa si vede gratis',bloccoBiglietti())
     +sec('tavola','A tavola · '+TAVOLA.length+' indirizzi',bloccoTavola())
     +sec('luce','La luce, giorno per giorno',bloccoAlmanacco()+'<h4 style="margin-top:16px">Meteo e mare a settembre</h4>'
@@ -1843,7 +1869,7 @@ function renderPratico(){
       +'<b>Merag ⇢ Valbiska → ponte di Veglia</b>, canale più riparato, e Merag è a 12 km da Cres. Al ritorno ti porta dritto ad Abbazia — '
       +'che è infatti il piano bora del finale. Controlla la sera prima su <a class="link" href="https://hak.hr" target="_blank" rel="noopener">hak.hr</a>.</div>')
     +sec('prenot','Da prenotare, in quest\'ordine',prenot)
-    +sec('riscontri','Riscontri dal campo',risc)
+    +sec('riscontri',LEX.riscontri,risc)
     +sec('auto','L\'auto, i documenti, i soldi',
       '<ul class="tick">'
       +'<li><b>Slovenia:</b> vignetta obbligatoria su autostrade e superstrade, multa da 300 a 800 €. Ti serve solo nei giorni 1 e 4.</li>'
@@ -2136,7 +2162,7 @@ window.__BIGLIETTO=id=>{pref.big[id]=!pref.big[id];savePref();ridisegna();};
     if (!f) return;
     var s = document.createElement('span');
     s.style.cssText = 'display:block;margin-top:6px;opacity:.65;font-variant-numeric:tabular-nums';
-    s.textContent = 'versione cb5f57d251';
+    s.textContent = 'versione b63018ab0f';
     f.appendChild(s);
   });
   // ── suggerimento d'installazione, solo su iPhone e solo se non installata ──

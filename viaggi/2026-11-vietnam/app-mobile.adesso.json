@@ -1,0 +1,29 @@
+{
+  "casi": [
+    { "iso": "2026-10-20T10:00:00", "nome": "tre settimane prima",
+      "attesi": [["#view-oggi .countdown span", "giorni alla partenza"],
+                 ["#brandsub", "fra 21 giorni"],
+                 ["#view-oggi .hero .lab", "Tappa 1 di 16"]] },
+    { "iso": "2026-11-10T08:00:00", "nome": "la mattina della partenza",
+      "attesi": [["#view-oggi .hero .lab", "Oggi · tappa 1 di 16"],
+                 ["#view-oggi ol.tl li.now", "A Malpensa"],
+                 ["#view-oggi ol.tl li.next", "EY82.*fra 2h30"]] },
+    { "iso": "2026-11-13T07:30:00", "nome": "sul minivan per Sa Pa",
+      "attesi": [["#view-oggi .hero .lab", "Oggi · tappa 4 di 16"],
+                 ["#view-oggi ol.tl li.now", "Limousine van per Sa Pa"],
+                 ["#brandsub", "Tappa 4 di 16"]] },
+    { "iso": "2026-11-21T14:20:00", "nome": "poco prima del treno di Hai Van",
+      "attesi": [["#view-oggi ol.tl li.now", "Alla stazione di Hue"],
+                 ["#view-oggi ol.tl li.next", "Treno per Da Nang.*fra 25 min"]] },
+    { "iso": "2026-11-19T22:00:00", "nome": "sul bus notturno",
+      "attesi": [["#view-oggi .hero .lab", "Oggi · tappa 10 di 16"],
+                 ["#view-oggi ol.tl li.now", "Bus notturno per Hue"]] },
+    { "iso": "2026-12-01T12:00:00", "nome": "a viaggio finito",
+      "attesi": [["#view-oggi .in p.sub", "Il viaggio è finito"],
+                 ["#brandsub", "concluso"]] }
+  ],
+  "mezzanotte": {
+    "prima": "2026-11-15T23:58:00", "dopo": "2026-11-16T00:02:00",
+    "attesoPrima": "tappa 6 di 16", "attesoDopo": "tappa 7 di 16"
+  }
+}

@@ -1,5 +1,22 @@
-<title>Alpi, Soča &amp; Quarnero in viaggio</title>
-
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Vietnam in viaggio</title>
+<meta name="description" content="Vietnam, 10–25 novembre 2026: sedici giornate con dentro ogni orario vero — voli, minivan, treno, bus notturno e crociera — più luce calcolata, biglietti e cose da fare.">
+<meta name="theme-color" content="#E9EDEA" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#091316" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Vietnam">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icone/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icone/icona-192.png">
+<style>:root{color-scheme:light dark}*{box-sizing:border-box}body{margin:0}img{max-width:100%}</style>
+</head>
+<body>
 <style>
 /* ══════════════════════════════════════════════════════════════════════════
    ALPI, SOČA & QUARNERO — app da viaggio
@@ -259,7 +276,7 @@ details.day > summary::-webkit-details-marker{display:none}
   box-shadow:var(--shadow);padding:8px;margin-bottom:12px}
 .mapscroll{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch}
 .mapscroll svg{display:block;width:100%;height:auto}
-.mapscroll[data-zoom="tutto"] svg{min-width:640px}
+.mapscroll[data-largo="1"] svg{min-width:640px}
 .zoomrow{display:flex;gap:6px;margin-bottom:8px}
 .zoomrow button{flex:1;min-height:38px;border:1px solid var(--line);background:var(--surface-2);
   border-radius:9px;color:var(--ink-2);font-family:var(--display);font-size:12px;letter-spacing:.09em;
@@ -517,8 +534,8 @@ details.sec > summary .sp2{flex:1;min-width:0}
 
 <header class="top">
   <div class="brand">
-    <b>Alpi, Soča &amp; Quarnero</b>
-    <span id="brandsub">6 → 15 settembre 2026</span>
+    <b>Vietnam</b>
+    <span id="brandsub">10 → 25 novembre 2026</span>
   </div>
   <span class="net" id="net" role="status" hidden>offline</span>
   <button class="icobtn" id="theme" type="button" aria-label="Cambia tema">◐</button>
@@ -530,10 +547,10 @@ details.sec > summary .sp2{flex:1;min-width:0}
   <section class="view" id="view-mappa" role="tabpanel" aria-labelledby="tab-mappa" hidden></section>
   <section class="view" id="view-pratico" role="tabpanel" aria-labelledby="tab-pratico" hidden></section>
   <section class="view" id="view-valigia" role="tabpanel" aria-labelledby="tab-valigia" hidden></section>
-  <p class="foot">Tariffe verificate ad agosto 2026 sui siti ufficiali; i riscontri dal campo sono di
-  settembre 2026. Luce, chilometri, ore e budget sono <b>calcolati</b>, non trascritti.<br>
-  Scelte, spunte e preferenze restano su questo dispositivo. <b>Installata dalla schermata Home si apre
-  anche senza campo</b>; aperta nel browser, alla prima apertura la rete serve.</p>
+  <p class="foot">Orari e codici presi dalle conferme di prenotazione, non stimati. Attività e consigli
+  dall'itinerario personalizzato di Samira Vicinanza — theoceanomads.com — del 2 ottobre 2026.<br>
+  Luce, chilometri e budget sono <b>calcolati</b>. Spunte e preferenze restano su questo dispositivo.
+  <b>Installata dalla schermata Home si apre anche senza campo.</b></p>
 </main>
 
 <!-- Icone disegnate, non glifi di font: su iOS meta' dei simboli geometrici e
@@ -554,553 +571,681 @@ details.sec > summary .sp2{flex:1;min-width:0}
 <div class="modal" id="modal" hidden>
   <div class="box">
     <div class="it" id="m-it"></div>
-    <div class="mrow"><span class="mfl">🇸🇮</span><span class="l sl" id="m-sl"></span></div>
-    <div class="mrow"><span class="mfl">🇭🇷</span><span class="l hr" id="m-hr"></span></div>
+    <div class="mrow"><span class="mfl">🇻🇳</span><span class="l sl" id="m-sl"></span></div>
+    <div class="mrow"><span class="mfl">🗣</span><span class="l hr" id="m-hr"></span></div>
     <div class="f">Tocca per chiudere</div>
   </div>
 </div>
 
+
 <script>
 /* ══════════════════════════════════════════════════════════════════════════
    1 · IL VIAGGIO — l'unico blocco da riscrivere per una destinazione nuova.
-   Tutto quello che segue nella sezione 2 è motore: non nomina nessun posto e
-   non va toccato. Per un viaggio nuovo servono, in ordine: VIAGGIO, DAYS,
-   BIGLIETTI, TAVOLA, PROFILO, BUDGET, BOOK, METEO, PHRASES, LISTS, RISCONTRI
-   e la geografia (COAST, LEGS, STOPS).
+   Tutto quello che segue nella sezione 2 è motore: non nomina nessun posto.
+
+   Fonti: le conferme di prenotazione nella casella di Davide (Etihad, VietJet,
+   Booking, 12Go, SeatOS, Peony Cruises) e l'itinerario personalizzato di
+   Samira Vicinanza — theoceanomads.com — del 2 ottobre 2026. Gli orari qui
+   dentro sono quelli dei biglietti, non stime.
    ══════════════════════════════════════════════════════════════════════════ */
 const VIAGGIO={
-  nome:'Alpi, Soča & Quarnero',
-  sub:'6 → 15 settembre 2026',
-  /* prefisso di tutto quello che si salva: è la stessa chiave del road book,
-     così le spunte fatte sul documento si ritrovano qui */
-  chiave:'alpisocaquarnero2026',
-  tz:2,                 // fuso in ore, per il calcolo della luce (CEST)
+  nome:'Vietnam',
+  sub:'10 → 25 novembre 2026',
+  chiave:'vietnam2026',
+  tz:7,                 // ICT. Le giornate di volo dichiarano il loro fuso
   persone:2,
-  alba:240,             // una voce di programma prima delle 4:00 è della notte dopo
-  lingue:['🇸🇮 Sloveno','🇭🇷 Croato'],
-  traghetti:[55,75],    // costo delle traversate se il finale non è ancora scelto
-  tragNota:'2 traversate, auto + 2 passeggeri',
-  sceltaMax:150,        // tetto degli ingressi a scelta finché non si sceglie
-  rifFinale:'Pirano',   // il finale su cui è disegnato il profilo altimetrico
-  /* la mappa: riquadro, inquadrature, chiusura del poligono di terraferma,
-     isole, nomi dei paesi e il cartello di chi resta fuori inquadratura */
-  bbox:{lon:[9.8,16.6],lat:[43.9,46.9]},
-  zoom:{viaggio:{t:'Slovenia e Quarnaro',lon:[13.02,16.20],lat:[44.22,46.70]},
-        tutto  :{t:'Tutto il viaggio',lon:[10.18,16.20],lat:[44.18,46.78],largo:1}},
-  legenda:[['Andata','var(--accent)'],['Rientro','var(--signal)','dashed'],
-           ['Finali alternativi','var(--signal)','dotted','.65'],
-           ['Traghetto','var(--good)','dotted'],['Escursioni','var(--ink-3)','dotted']],
-  chiusura:[[17.70,43.28],[17.70,46.95],[9.75,46.95],[9.75,43.30]],
-  isole:[[14.60,45.05,.16,.22,0],[14.42,44.85,.08,.36,10],[14.76,44.75,.06,.13,30],
-         [15.05,44.45,.06,.30,35],[14.95,44.02,.06,.24,40]],
-  etichette:[['ITALIA',11.15,45.85,0],['SLOVENIJA',14.95,46.60,0],
-             ['HRVATSKA',15.72,45.42,0],['ADRIATICO',14.30,44.30,-40]],
-  fuori:{at:[13.06,45.97],t:'← Castelnovo n.M., 395 km'}
+  alba:240,
+  lingue:['🇻🇳 Vietnamita','Si legge'],
+  /* In Vietnam non si guida: si vola, si prende il minivan, il treno e il bus
+     notturno. Le parole dell'interfaccia lo dicono. */
+  lessico:{kmGiorno:'km oggi',durata:'in viaggio',durataTot:'di spostamenti',conf:'volo',
+           riscontri:'Da fare, prima di partire'},
+  /* Qui non si guida: niente carburante, niente prezzo alla pompa. */
+  carburante:false,
+  budgetNota:'Per due persone, sedici giorni. ',
+  riscontriNota:'Quello che resta aperto, e quello che è già stato corretto. '
+    +'Le prime tre voci sono le uniche cose che mancano al viaggio.',
+  traghetti:[0,0], tragNota:'—', sceltaMax:90,
+  rifFinale:'Hoi An',
+  bbox:{lon:[101.8,110.6],lat:[14.4,23.8]},
+  zoom:{viaggio:{t:'Tutto il viaggio',lon:[102.6,110.2],lat:[15.0,23.3]},
+        nord   :{t:'Il giro del nord',lon:[103.2,108.4],lat:[19.5,22.9]}},
+  mappaScala:1.9,
+  verdetti:{si:'Risolto',no:'Da fare',forse:'Da decidere'},
+  notaKm:'Comprende i voli: 19.000 km sono quelli in aria, 2.500 via terra.',
+  profiloNota:'Solo gli spostamenti via terra: i voli non hanno un profilo. Dal delta del Fiume '
+    +'Rosso ai 1.550 m di Sa Pa e ritorno, poi giù lungo la costa fino a Hoi An. Il punto '
+    +'tratteggiato è la funivia del Fansipan, che non si percorre.',
+  legenda:[['Via terra','var(--accent)'],['Bus notturno e treno','var(--signal)','dashed'],
+           ['In barca','var(--good)','dotted'],['Volo','var(--ink-3)','dashed','.75'],
+           ['Escursioni','var(--ink-3)','dotted']],
+  /* Chiusura del poligono di terraferma: COAST finisce sulla costa cinese, da
+     lì si gira a nord e a ovest attorno all'inquadratura. Il Golfo del
+     Tonchino resta fuori dal poligono, cioè resta mare. */
+  chiusura:[[110.8,24.2],[101.5,24.2],[101.5,13.5]],
+  isole:[[109.75,19.15,.92,.62,-15],[107.06,20.80,.11,.07,25],[107.20,20.72,.07,.05,20],
+         [106.60,20.65,.05,.04,0]],
+  etichette:[['VIỆT NAM',105.00,19.20,-72],['LAOS',103.60,19.60,0],
+             ['CINA',104.60,23.20,0],['TONCHINO',108.05,19.55,-24],
+             ['HAINAN',109.62,19.15,0],['MAR CINESE',109.35,16.40,-72]],
+  fuori:{at:[103.00,22.95],t:'← Milano, 9.400 km'}
 };
 
+/* ── Le sedici giornate ──────────────────────────────────────────────────
+   km = distanza percorsa quel giorno, voli compresi · min = tempo in
+   movimento · luogo/lat/lon = dove si dorme (per il calcolo della luce) ·
+   tz = fuso di quella sera, se diverso da quello del viaggio. */
 const DAYS=[
-{n:1,iso:"2026-09-06",date:"Domenica 6 settembre",short:"Dom 6",
- title:"Castelnovo ne' Monti → Predjama → Postojna → Bohinj",
- km:555,min:360,type:"Trasferimento + Carso",border:"IT → SI",
- luogo:"Bohinj",lat:46.2833,lon:13.8833,quota:"700 m a Castelnovo → 555 a Postojna → 525 al lago",
- libera:"Il lungolago da Ribčev Laz verso Ukanc, piano e senza meta. Mezz'ora e sei già fuori dal paese: è il modo giusto di atterrare in montagna dopo 555 km.",
- key:{t:"13:00",w:"Lo slot delle Grotte di Postojna. Tutta la giornata è costruita per arrivarci con due ore di margine su 395 km di autostrada."},
- route:"Castelnovo n.M. › A1 Modena › A22 Verona › A4 › Trieste/Fernetti › A1 Postojna › Predjama › Lubiana › Bled › Bohinj",
- gm:"https://www.google.com/maps/dir/Castelnovo+ne'+Monti/Trieste/Predjama+Castle/Postojna+Cave/Bohinj",
- tl:[["06:00","Partenza","Pieno fatto la sera prima. Domenica i mezzi pesanti non circolano in Italia e Slovenia: è il giorno migliore dell'anno per fare la A4."],
-     ["08:15","Caffè","Area di servizio zona Verona–Vicenza."],
-     ["10:45","Arrivo a Postojna","395 km. Il valico di Fernetti e poi la A1 slovena: da qui in avanti si guida poco."],
-     ["11:00","Castello di Predjama","10 km di deviazione, l'unico scarto della giornata. Incastrato in una parete di roccia da 800 anni. Un'ora con audioguida."],
-     ["12:15","Pranzo a Postojna",""],
-     ["13:00","Grotte di Postojna","Slot prenotato. 3,5 km in trenino elettrico più il percorso a piedi: 1h30. Dentro ci sono 10 °C fissi — serve una felpa vera. Cerca il proteo."],
-     ["14:45","Partenza per Bohinj","148 km via Lubiana e Bled, 1h45."],
-     ["16:30","Arrivo a Bohinj, check-in",""],
-     ["17:30","Primo giro sul lago","Ribčev Laz: il ponte di pietra, la chiesa di San Giovanni Battista con gli affreschi trecenteschi, il lungolago. Due ore in piano."],
-     ["19:30","Cena","Trota del lago, funghi, selvaggina."]],
- see:["Predjama dal basso a metà mattina, quando la roccia è ancora in ombra e il castello no","Il proteo di Postojna, che i contadini credevano un cucciolo di drago","Bohinj all'imbrunire: è dentro il Parco del Triglav, il silenzio è un'altra cosa rispetto a Bled"],
- sleep:"<b>Bohinj, 3 notti.</b> Ribčev Laz per essere sul lago, Stara Fužina per stare a due passi dall'imbocco della Mostnica.",
- eat:"Cucina alpina slovena: <i>ričet</i>, trota, formaggio di Bohinj. <b>Gostilna Rupa</b> a Srednja vas per la prima sera.",
- tip:{k:"sig",t:"<strong>L'unico vincolo orario del giorno</strong>Lo slot delle Grotte è alle <em>13:00</em>: arrivando alle 10:45 hai due ore di margine su 395 km. Non prendere uno slot mattutino."}},
+{n:1,iso:"2026-11-10",date:"Martedì 10 novembre",short:"Mar 10",
+ title:"Malpensa → Abu Dhabi, e poi di nuovo in aria",
+ km:4600,min:360,type:"Volo",border:"IT → AE",
+ luogo:"Abu Dhabi",lat:24.43,lon:54.65,tz:4,quota:"da 211 m di Malpensa a 27 m di Abu Dhabi",
+ libera:"Le quattro ore ad Abu Dhabi non sono un buco, sono l'unico momento del viaggio in cui non si deve fare niente. Il Terminal A ha docce a pagamento e divani veri: un'ora di sonno lì vale il doppio di quella in volo.",
+ key:{t:"10:30",w:"Il decollo da Malpensa. Al check-in bisogna esserci entro le 08:00: è un volo intercontinentale e il bagaglio da stiva è uno a testa, 20 kg."},
+ route:"Malpensa T1 › EY82 › Abu Dhabi Zayed T A › EY432 › (Hanoi, domani mattina)",
+ gm:"https://www.google.com/maps/dir/Malpensa+Airport/Zayed+International+Airport",
+ tl:[["07:30","A Malpensa, Terminal 1","Etihad, banchi check-in. <b>Codice 9T6U9F.</b> Posti 37H e 37J."],
+     ["10:30","EY82 · Malpensa → Abu Dhabi","Airbus A350-1000, 6 ore esatte. Si atterra che è già sera."],
+     ["19:30","Abu Dhabi, Terminal A","Scalo di 1h20 in area di transito: non si esce e non si ritira il bagaglio, che viaggia fino a Hanoi."],
+     ["20:50","EY432 · Abu Dhabi → Hanoi","Boeing 787-9, 6h20 di notte. Posti 30H e 30J. <b>Si dorme: domani la giornata comincia all'alba.</b>"]],
+ see:["Il Golfo Persico dall'alto all'ora del tramonto, se il posto è dal lato giusto","Zayed International è uno degli aeroporti più nuovi del mondo: vale i venti minuti di giro","L'ultima cena europea è a bordo — da domani si mangia con le bacchette"],
+ sleep:"<b>In aria.</b> Nessun albergo: si dorme sul 787 fra Abu Dhabi e Hanoi.",
+ eat:"Due pasti a bordo. In transito ad Abu Dhabi, il caffè arabo con i datteri — è l'unico assaggio degli Emirati che fate.",
+ tip:{k:"alert",t:"<strong>Il bagaglio e la carta d'imbarco</strong>Il bagaglio è registrato fino a <b>Hanoi</b>: non si ritira ad Abu Dhabi. Scarica le carte d'imbarco di <b>entrambe</b> le tratte prima di partire, e tieni il passaporto a portata: all'arrivo a Noi Bai serve con la pratica d'ingresso già in mano."}},
 
-{n:2,iso:"2026-09-07",date:"Lunedì 7 settembre",short:"Lun 7",
- title:"Bohinj: Mostnica, Vogel e Savica",
- km:30,min:45,type:"Escursioni",border:"—",
- luogo:"Bohinj",lat:46.2833,lon:13.8833,quota:"525 m del lago → 1.535 m in cima al Vogel",
- libera:"Il pontile di Ribčev Laz per il bagno delle sei: l'acqua è a 19–20 °C e la spiaggia di Ukanc è vuota. Se invece piove, la chiesa di Sant'Elena a Bohinjska Bistrica.",
- key:{t:"13:30",w:"La funivia del Vogel a metà pomeriggio, quando le nuvole di giornata si sono già alzate e il fronte del Triglav si apre pulito."},
- route:"Ribčev Laz › Stara Fužina (Mostnica, valle di Voje) › Ukanc (Vogel) › Savica › Ribčev Laz",
- gm:"https://www.google.com/maps/dir/Ribčev+Laz/Stara+Fužina/Ukanc/Slap+Savica/Ribčev+Laz",
- tl:[["08:00","Gola della Mostnica","Da Stara Fužina, parcheggio ~3 €/h. Ingresso 4 € a testa, si paga all'imbocco e <b>non serve prenotare</b>. Sul sentiero si incontra subito il Ponte del Diavolo."],
-     ["09:00","Fino alla valle di Voje","Prosegui oltre la gola: prati, pareti, e la cascata di Voje da 21 metri. Andata e ritorno 2h30."],
-     ["12:00","Pranzo",""],
-     ["13:30","Funivia del Vogel","Da Ukanc. 33 € andata e ritorno, parcheggio e seggiovia per Orlova Glava inclusi. Si sale a 1.535 m."],
-     ["16:30","Cascata Savica","A due passi da Ukanc. Cinquecento gradini in mezz'ora. Un'ora in tutto."],
-     ["18:00","Bagno nel lago","L'acqua a settembre è sui 19–20 °C. La spiaggia di Ukanc è la più tranquilla."],
-     ["19:33","Tramonto a Ribčev Laz","Il punto classico è dal ponte, con la chiesa in primo piano. L'ora d'oro comincia alle 18:54."],
-     ["20:30","Cena",""]],
- see:["La Mostnica scava marmitte e forme tonde nella roccia: una si chiama «l'elefante»","Il Vogel a metà pomeriggio, quando le nuvole si sono già alzate","La chiesa di San Giovanni Battista: campanile romanico, affreschi del Trecento"],
- sleep:"Seconda notte a Bohinj. Valigia ferma.",
- eat:"Pranzo al rifugio in cima al Vogel se la giornata è limpida, altrimenti <b>Gostilna Mihovc</b> a Stara Fužina.",
- tip:{k:"good",t:"<strong>Perché Mostnica e non Vintgar</strong>Stessa acqua verde, stesse passerelle, ma 4 € invece di 15, nessuno slot obbligatorio e un decimo delle persone. E puoi proseguire nella valle di Voje."}},
+{n:2,iso:"2026-11-11",date:"Mercoledì 11 novembre",short:"Mer 11",
+ title:"Hanoi: il Quartiere Vecchio e il lago",
+ km:4935,min:440,type:"Arrivo + città",border:"AE → VN",
+ luogo:"Hanoi",lat:21.0285,lon:105.8542,quota:"16 m — Hanoi sta sul delta, è piatta",
+ libera:"Se il taxi vi lascia in albergo e la camera non è pronta: il <b>caffè all'uovo</b> da Note Cafe o Giang, dieci minuti a piedi dal Serene. È la prima cosa vietnamita che si fa, e si fa seduti.",
+ key:{t:"12:00",w:"Il taxi privato all'aeroporto. L'autista aspetta nella hall arrivi con il cartello «Davide Mammi», e ha il numero del volo: se uscite prima, chiamatelo. <i>Fra atterraggio e partenza ci sono quasi sei ore: vedi la nota in fondo.</i>"},
+ route:"Noi Bai T2 › taxi privato (35 km) › Serene Central Hotel, Hoan Kiem › Quartiere Vecchio › lago Hoan Kiem › Ta Hien",
+ gm:"https://www.google.com/maps/dir/Noi+Bai+International+Airport/106+Hang+Bong,+Hoan+Kiem,+Hanoi",
+ tl:[["06:10","Atterraggio a Noi Bai, Terminal 2","EY432. Controlli, ritiro bagagli: conta un'ora buona."],
+     ["07:15","SIM e contanti","SIM o eSIM al banco in arrivi, e il primo cambio o prelievo. Da qui in avanti servono contanti quasi ovunque."],
+     ["12:00","Taxi privato per il centro","Prenotazione <b>860124030</b>, 35 km, ~45 minuti, 9,13 € già pagati. Targhetta con il tuo nome nella hall arrivi."],
+     ["13:00","Serene Central Hotel","106 Hàng Bông, Hoàn Kiếm. <b>Check-in dalle 14:00</b>: se siete in anticipo si lasciano gli zaini in reception e si esce."],
+     ["14:30","Il Quartiere Vecchio","Trentasei strade, ognuna storicamente di un mestiere: la seta, lo stagno, il bambù, la carta votiva. Ci si perde apposta."],
+     ["16:30","Lago Hoan Kiem","Il <b>tempio Ngoc Son</b> sull'isolotto, il <b>ponte Cau The Huc</b> rosso lacca. Al tramonto si riempie di gente che fa ginnastica."],
+     ["19:00","Ta Hien Corner","La strada della birra: sgabelli di plastica sul marciapiede, <i>bia hoi</i> alla spina a pochi centesimi. Si mangia e si guarda passare la città."],
+     ["21:30","A letto presto","Sono trentotto ore che siete svegli, meno il poco dormito in volo."]],
+ see:["Il traffico di Hanoi visto dal marciapiede: non si attraversa aspettando un varco, si cammina piano e costante e i motorini ti girano attorno","Il lago Hoan Kiem all'imbrunire, quando le luci si accendono sul ponte rosso","Il bia hoi di Ta Hien: la birra più economica del mondo, spillata ogni mattina e finita ogni sera"],
+ sleep:"<b>Serene Central Hotel, 2 notti.</b> 106 Hàng Bông, Hoàn Kiếm — dentro il Quartiere Vecchio, si va ovunque a piedi. Tel +84 24 3203 0128. Colazione inclusa.",
+ eat:"<b>Bia Phố Cổ Tạ Hiện</b> o qualunque insegna della stessa via. Primo <i>phở</i>: a Hanoi è di manzo, <i>phở bò</i>, e si mangia a colazione.",
+ tip:{k:"sig",t:"<strong>Le sei ore fra atterraggio e taxi</strong>Atterri alle <b>06:10</b> e il taxi è prenotato per le <b>12:00</b>: fra uscita dai controlli e partenza restano quasi cinque ore in aeroporto. Il check-in al Serene è dalle 14:00, quindi la logica c'è — ma se preferite entrare in città e lasciare gli zaini in reception, l'autista si può anticipare scrivendo a Booking. <b>Decisione da prendere prima di partire, non in aeroporto.</b>"}},
 
-{n:3,iso:"2026-09-08",date:"Martedì 8 settembre",short:"Mar 8",
- title:"Il giro della Soča: Vršič, Trenta, Bovec, Kozjak",
- km:215,min:270,type:"Alta montagna",border:"—",
- luogo:"Bohinj",lat:46.2833,lon:13.8833,quota:"525 → 1.611 m del Vršič → 234 m a Kobarid → 803 m di Petrovo Brdo",
- libera:"Il ponte di Napoleone sulla Soča, appena fuori Kobarid: si parcheggia al ponte, si scende sul greto, e l'acqua è di quel colore lì. Gratis, venti minuti, e vale più del museo se il museo non vi chiama.",
- key:{t:"08:15",w:"Il passo Vršič presto, prima che il sole giri sui tornanti nord e prima che arrivino i pullman. Da Bohinj sono 78 km e un'ora e mezza, non quaranta minuti."},
- route:"Bohinj › Bled › Jesenice › Kranjska Gora › Passo Vršič › Trenta › Bovec › Kobarid › Most na Soči › Petrovo Brdo › Bohinj",
- gm:"https://www.google.com/maps/dir/Bohinj/Kranjska+Gora/Vršič+Pass/Izvir+Soče/Bovec/Slap+Kozjak/Kobarid/Bohinj",
- tl:[["06:45","Partenza","Presto sul serio: il pieno va fatto la sera prima."],
-     ["08:15","Passo Vršič","Cinquanta tornanti numerati, quelli del versante nord lastricati in pietra. Alla curva 8 la Cappella Russa, costruita dai prigionieri morti in una valanga nel 1916."],
-     ["09:30","Sorgente della Soča","Da Trenta. Quaranta minuti andata e ritorno, l'ultimo tratto su cavo d'acciaio."],
-     ["11:00","Valle della Soča","Le <i>Velika korita</i> vicino a Soča, e poi Bovec. Soste brevi e frequenti: il fiume si vede dalla strada per venti chilometri."],
-     ["12:45","Cascata Kozjak","Da Kamp Koren, vicino a Kobarid. 5 € a testa, aperta fino al 31 ottobre. Venticinque minuti a piedi."],
-     ["14:30","Kobarid","Pranzo, poi il Museo di Caporetto — chi ha il biglietto di Kozjak ha lo sconto."],
-     ["17:00","Rientro per Petrovo Brdo","75 km via Most na Soči e Podbrdo: strada stretta e bellissima che chiude l'anello senza rifare il Vršič."],
-     ["18:45","Bohinj","Ultima sera in montagna."]],
- see:["La Cappella Russa: un piccolo edificio di legno in mezzo al bosco, e la storia peggiore di questa strada","Il colore della Soča — smeraldo lattiginoso, dovuto alla farina di roccia calcarea","Kozjak: la cascata è dentro una grotta aperta, la luce ci entra da una fessura"],
- sleep:"Terza e ultima notte a Bohinj.",
- eat:"A Kobarid: <b>Kotlar</b> o <b>Topli Val</b>. <b>Hiša Franko</b> di Ana Roš è a due passi, ma si prenota con mesi di anticipo.",
- tip:{k:"acc",t:"<strong>Estensione Mangart</strong>Da Bovec: Predel, poi la strada a pedaggio ambientale da 10 € fino alla sella a 2.055 m. Aggiunge ~50 km e 1h30. Prendila solo se rinunci al Museo di Caporetto, e controlla l'apertura su tnp.si."}},
+{n:3,iso:"2026-11-12",date:"Giovedì 12 novembre",short:"Gio 12",
+ title:"Hanoi a piedi: pagode, cittadella e la Train Street",
+ km:15,min:60,type:"Città",border:"—",
+ luogo:"Hanoi",lat:21.0285,lon:105.8542,quota:"16 m, tutto in piano",
+ libera:"La <b>Train Street</b> una seconda volta, all'ora giusta. La mattina si passa a chiedere nei bar a che ora passa il treno; se l'orario cade nel pomeriggio, si torna — ed è l'unica cosa di Hanoi che non assomiglia a nient'altro.",
+ key:{t:"07:30",w:"Il Mausoleo di Ho Chi Minh apre alle 7:30 e <b>chiude alle 10:30</b>, punto. È l'unica cosa della giornata con una finestra vera: tutto il resto apre fino al pomeriggio."},
+ route:"Quartiere Vecchio › Mausoleo › Chua Mot Cot › Palazzo Presidenziale › Tempio della Letteratura › Cittadella imperiale › Train Street › Ta Hien",
+ gm:"https://www.google.com/maps/dir/Hoan+Kiem+Lake/Ho+Chi+Minh+Mausoleum/Temple+of+Literature/Imperial+Citadel+of+Thang+Long/Hanoi+Train+Street",
+ tl:[["07:00","Colazione e Train Street, primo passaggio","Si passa a chiedere nei bar <b>a che ora passa il treno oggi</b>. Gli orari cambiano e li sanno solo lì."],
+     ["07:45","Mausoleo di Ho Chi Minh","Gratis, ma <b>chiude alle 10:30</b>. Fila, silenzio, braccia lungo i fianchi, niente foto. Chiuso il lunedì e il venerdì."],
+     ["09:00","Pagoda Chua Mot Cot","La pagoda su un pilastro solo, in mezzo a una vasca: un loto di pietra. Gratis, 7–18."],
+     ["09:30","Palazzo Presidenziale","Il giallo coloniale francese e, dietro, la casa su palafitte dove Ho Chi Minh preferiva vivere. ~1,50 €, 7:30–11:00 e 13:30–16:00."],
+     ["10:30","Tempio della Letteratura","La prima università del Vietnam, 1070. Cinque cortili in fila e le stele dei dottori sulle tartarughe di pietra. ~1 €, 8–17."],
+     ["12:30","Pranzo","<b>Cai Man Bistro</b>, o <i>bun cha</i> in una qualunque bottega: maiale alla brace nel brodo agrodolce. È il piatto di Hanoi."],
+     ["14:00","Cittadella imperiale di Thang Long","UNESCO, ~4 €, 8–17. Mille anni di potere vietnamita su un unico pezzo di terra, e sotto il bunker della guerra."],
+     ["16:00","Pagoda di Tran Quoc","La più antica della città, sul lago dell'Ovest, su una lingua di terra. Gratis, 8–16: <b>è la prima che chiude</b>."],
+     ["17:30","Caffè all'uovo","<b>Note Cafe</b> o Giang: tuorlo montato con latte condensato sopra il caffè, caldo. Sembra uno zabaione e in origine era un ripiego di guerra, quando il latte non si trovava."],
+     ["19:30","Train Street, al passaggio giusto","Si entra solo su invito di un bar: ti fanno sedere, ordini, e il treno passa a cinquanta centimetri. Se vi dicono che è chiusa, spesso vuol dire «consumate qualcosa»."]],
+ see:["Le stele sulle tartarughe al Tempio della Letteratura: 82 lastre con i nomi dei laureati dal 1442","Il bunker sotto la Cittadella, da cui si comandò la difesa di Hanoi","Il treno che passa fra le case, e la gente che ritira le sedie trenta secondi prima"],
+ pioggia:"Novembre a Hanoi è asciutto e fresco, ma se piove la giornata regge quasi intera: il Tempio della Letteratura e la Cittadella hanno padiglioni coperti, il Museo di Etnografia è al chiuso e vale, e i caffè del Quartiere Vecchio sono fatti apposta per aspettare che smetta.",
+ sleep:"Seconda notte al Serene Central. Zaini fermi.",
+ eat:"<i>Bun cha</i> a pranzo, <i>cha ca</i> la sera — pesce al curcuma e aneto, si finisce di cuocerlo al tavolo. In via Cha Ca lo fanno da un secolo.",
+ tip:{k:"sig",t:"<strong>Il Mausoleo potrebbe essere chiuso</strong>Oltre al lunedì e al venerdì, il Mausoleo ha una <b>chiusura annuale per manutenzione</b> che cade spesso fra settembre e novembre. Il 12 è giovedì, quindi il giorno va bene, ma <b>verificatelo la sera prima</b> in albergo. Se è chiuso non cambia niente: la giornata ha altre otto tappe."}},
 
-{n:4,iso:"2026-09-09",date:"Mercoledì 9 settembre",short:"Mer 9",
- title:"Bohinj → Lubiana → Rastoke → Plitvice",
- km:325,min:240,type:"Città + trasferimento",border:"SI → HR",
- luogo:"Plitvice",lat:44.8806,lon:15.6156,quota:"525 → 295 m a Lubiana → 580 m a Plitvice",
- libera:"Mezz'ora in più sotto il colonnato del mercato di Plečnik, lungo la Ljubljanica. Oppure, arrivando presto a Plitvice: la Korana a Rakovica, dove si fa il bagno nel fiume.",
- key:{t:"15:15",w:"Rastoke prima del check-in. È sulla strada, non è una deviazione — ma vale mezz'ora dal ponte, non un'ora dentro a pagamento: le cascate coi mulini si vedono meglio da fuori."},
- route:"Bohinj › Bled › Kranj › Lubiana › Novo Mesto › Obrežje (confine) › Zagabria › Karlovac › Slunj-Rastoke › Plitvice",
- gm:"https://www.google.com/maps/dir/Bohinj/Ljubljana/Rastoke,+Slunj/Plitvice+Lakes+National+Park",
- tl:[["07:30","Partenza da Bohinj","95 km, 1h20. Check-out fatto."],
-     ["09:00","Lubiana, garage","Kongresni trg o NUK II. Il centro è pedonale: si lascia l'auto e non la si tocca più."],
-     ["09:20","Il centro di Plečnik","Mercato Centrale sotto il colonnato, Triplice Ponte, piazza Prešeren, Ponte dei Draghi."],
-     ["10:45","Funicolare e castello","Sali per la torre panoramica: si vede la conca fino alle Alpi che hai appena lasciato."],
-     ["12:00","Pranzo","<b>Ribca</b> sotto il portico del mercato, o <b>Klobasarna</b> per la kranjska klobasa in piedi."],
-     ["13:00","Partenza per la Croazia","230 km. Confine di Obrežje/Bregana, poi la tangenziale di Zagabria e Karlovac."],
-     ["15:15","Rastoke (Slunj)","<b>Guardala da fuori.</b> I mulini sulle cascate della Slunjčica si vedono dal ponte e dalla strada, gratis, ed è lì che sta il colpo d'occhio. Dentro si paga due volte: 5 € il camminamento del paese, ~8 € a testa il borgo-museo privato, che è una ricostruzione e delude. Mezz'ora dal ponte, non un'ora dentro."],
-     ["16:45","Plitvice, check-in","Jezerce, Mukinje o Rakovica."],
-     ["18:30","Cena presto e preparazione","Domani si esce alle 6:40. Scarica <b>offline</b> il voucher con lo slot: al parco il segnale è debole."]],
- see:["Il drago sul ponte, simbolo di Lubiana","Il mercato coperto di Plečnik lungo la Ljubljanica, uno dei più belli d'Europa","Rastoke dal ponte: i mulini incastrati dentro le cascate, che è tutto quello che serve vedere"],
- sleep:"<b>Plitvice, 1 notte.</b> Dormire al parco è l'unica ragione di questa tappa: permette l'ingresso alle 7:00.",
- eat:"Cucina continentale: agnello allo spiedo, trota della Korana, <i>štrukli</i>. Le konobe lungo la D1 sono tutte oneste.",
- tip:{k:"alert",t:"<strong>Stasera prepara domani</strong>Voucher scaricato offline, sveglia alle 6:15, colazione pronta. Alle 7:00 all'Ingresso 2 non si arriva improvvisando."}},
+{n:4,iso:"2026-11-13",date:"Venerdì 13 novembre",short:"Ven 13",
+ title:"Hanoi → Sa Pa, su in montagna",
+ km:320,min:360,type:"Trasferimento",border:"—",
+ luogo:"Sa Pa",lat:22.3364,lon:103.8438,quota:"da 16 m a 1.550 m di Sa Pa, poi giù a 1.100 m di Lao Chai",
+ libera:"Il pomeriggio a Lao Chai è già il programma: si cammina venti minuti fuori dalla homestay e si è in mezzo alle risaie a terrazza, senza guida e senza biglietto. A novembre sono dorate, non verdi — il raccolto è appena finito.",
+ key:{t:"07:00",w:"Il minivan parte dalla <b>Hanoi Opera House</b> alle 7:00 precise, e l'operatore chiede di esserci <b>30 minuti prima</b>. Dal Serene sono 15 minuti a piedi o 5 in Grab."},
+ route:"Serene Central › Hanoi Opera House › limousine van (6h) › 03 Nguyen Chi Thanh, Sa Pa › taxi › Maison de Lao Chai",
+ gm:"https://www.google.com/maps/dir/Hanoi+Opera+House/Sa+Pa/Lao+Chai",
+ tl:[["06:00","Check-out e colazione","Lo zaino grande si può <b>lasciare al Serene</b>: si torna a Hanoi domenica sera e si dorme di nuovo in centro. A Sa Pa basta uno zaino piccolo."],
+     ["06:30","Alla Hanoi Opera House","Punto d'imbarco: Nhà hát Lớn, 1 Tràng Tiền. <b>Essere lì 30 minuti prima.</b> Prenotazione 12GO33251058."],
+     ["07:00","Limousine van per Sa Pa","Golink Sao Vang, 6 ore con una sosta. Massimo 10 kg a testa. Autostrada fino a Lao Cai, poi la salita."],
+     ["13:00","Arrivo a Sa Pa, 03 Nguyen Chi Thanh","Si scende in centro a Sa Pa. <b>Qui Grab non prende</b>: si prende un taxi alla fermata — chiedere il prezzo prima — oppure si concorda il pick-up con la homestay via chat Booking."],
+     ["13:40","Maison de Lao Chai","Lao Chải 06, nella valle sotto Sa Pa. Check-in 13:00–21:00. Tel +84 91 220 5154."],
+     ["15:00","La valle, a piedi","Si esce e si cammina. Terrazze, bufali, i villaggi H'Mong. Non serve una guida per questo: serve per domani."],
+     ["18:00","Si organizza il trekking di domani","Si chiede alla struttura o si scrive <b>su WhatsApp</b> alle guide del villaggio: hanno poco internet e le email non le leggono."],
+     ["19:30","Cena in homestay","Cucina di montagna: maiale affumicato, germogli di bambù, riso dei terrazzamenti."]],
+ see:["Le risaie a terrazza di Lao Chai e Ta Van, scavate a mano in secoli, a novembre color paglia","Le donne H'Mong con il cesto sulla schiena che camminano per chilometri sul ciglio della strada","Il silenzio: dopo due giorni di clacson di Hanoi, questo è il motivo per cui si sale quassù"],
+ pioggia:"Sa Pa a novembre è spesso dentro la nuvola, e non è un problema: la nebbia sulle terrazze è l'immagine che cercate. Quello che la pioggia rovina è il <b>sentiero</b>, che diventa argilla scivolosa. Con il bagnato il trekking di domani si fa con le guide (conoscono il tracciato buono) o si rimanda al pomeriggio.",
+ sleep:"<b>Maison de Lao Chai, 2 notti.</b> Camera matrimoniale superior con terrazza sul giardino, colazione inclusa. Conferma 6309631840.",
+ eat:"Si mangia dove si dorme: nella valle non ci sono alternative, e va benissimo così. In centro a Sa Pa, il <i>thang co</i> e la grigliata sono da strada.",
+ tip:{k:"alert",t:"<strong>Lo zaino grande resta a Hanoi</strong>Si torna al Serene Central domenica sera: non ha senso portare tutto su per sei ore di tornanti, e il van ha un limite di <b>10 kg a testa</b>. Chiedete il deposito al check-out: lo fanno tutti e non si paga."}},
 
-{n:5,iso:"2026-09-10",date:"Giovedì 10 settembre",short:"Gio 10",
- title:"Plitvice all'alba → traghetto → Cres",
- km:250,min:190,type:"Parco + isola",border:"—",
- luogo:"Cres",lat:44.9578,lon:14.4089,quota:"580 m di Plitvice → 720 m a Kuterevo → livello del mare a Cres",
- libera:"Kuterevo, ed è esattamente come è andata: l'ora che avanzava è diventata la cosa più bella della giornata. Se ne avanza ancora, salendo da Porozina c'è Beli.",
- key:{t:"07:00",w:"L'ora che decide il viaggio. Le prime due ore sono le uniche in cui le passerelle sono libere e l'acqua ha la luce radente: alle 10:00 il parco è un'altra cosa."},
- route:"Plitvice (Ingresso 2) › Otočac › A1/A6 › Fiume › Opatija › costa est dell'Istria › Brestova ⇢ traghetto ⇢ Porozina › Cres",
- gm:"https://www.google.com/maps/dir/Plitvice+Lakes+National+Park/Brestova/Porozina/Cres",
- tl:[["06:15","Sveglia e colazione",""],
-     ["06:45","All'Ingresso 2",""],
-     ["07:00","Dentro","Le prime due ore sono le uniche in cui le passerelle sono libere. Non è retorica."],
-     ["07:15","Programma C","Navetta ST2 › discesa a piedi tra i <b>Laghi Superiori</b> › traghetto elettrico sul Kozjak › <b>Laghi Inferiori</b> e il canyon › il <b>Veliki slap</b> da 78 metri › risalita all'Ingresso 1 › navetta ST1. Quattro-cinque ore."],
-     ["12:00","Uscita e pranzo veloce","Esci alle 12: è quello che rende sostenibile il pomeriggio."],
-     ["13:00","Partenza per il traghetto","220 km, 2h50 via Otočac, la A1 sotto il Velebit, Fiume e poi la costa orientale dell'Istria."],
-     ["13:30","Orsi di Kuterevo","<b>Aggiunto sul posto, e da tenere.</b> Quindici chilometri sopra Otočac, sul versante del Velebit: il primo rifugio croato per orsetti orfani, dal 2002, tenuto da volontari. Non è uno zoo e non è un museo — sono animali veri che non potrebbero tornare liberi. Un'ora scarsa, offerta libera. <i>Costa circa 1h30 col giro: si punta al traghetto dopo, non a quello prima.</i>"],
-     ["16:00","Brestova","Arriva con 30–45 minuti di margine: sulla linea 334 non si prenota, si sale in ordine d'arrivo. Fai il pieno prima."],
-     ["16:30","Traversata","Venti minuti. Scendi dall'auto e mettiti a poppa: si vede tutto il Quarnaro."],
-     ["17:00","Porozina → Cres","35 km e 45 minuti di tornanti sopra il mare. Guida piano, la strada lo merita."],
-     ["18:00","Arrivo a Cres, check-in",""],
-     ["20:00","Cena sul porto","Pesce del giorno, calamari, scampi del Quarnaro."]],
- see:["I Laghi Superiori nella prima ora, senza nessuno davanti né dietro","Il travertino di Plitvice è vivo: le barriere crescono di circa un centimetro l'anno","L'arrivo a Cres dal mare, con il paese veneziano in fondo alla baia","Gli orsi di Kuterevo: la cosa più emozionante della giornata, e non era in programma"],
- sleep:"<b>Cres, 4 notti.</b> Centro storico, con le facciate veneziane sul mandracchio. Si disfa la valigia una volta sola.",
- eat:"Cres è isola di agnello oltre che di pesce: il <i>creska janjetina</i>, allevato su pascoli di salvia e salmastro.",
- tip:{k:"good",t:"<strong>Kuterevo vale la deviazione</strong>Quindici chilometri da Otočac, offerta libera, e resta la cosa che ricordi della giornata. Costa circa un'ora e mezza: se lo infili, punta al traghetto successivo invece di rincorrere quello prima. <em>Piano B traghetto:</em> se la bora sospende la Brestova–Porozina, l'isola resta raggiungibile via il <b>ponte di Veglia</b>: Krk › Valbiska ⇢ Merag, e Merag è a 12 km da Cres."}},
+{n:5,iso:"2026-11-14",date:"Sabato 14 novembre",short:"Sab 14",
+ title:"Sa Pa: la giornata nelle valli",
+ km:25,min:60,type:"Montagna · a scelta",border:"—",
+ luogo:"Sa Pa",lat:22.3364,lon:103.8438,quota:"1.100 → 1.600 m, a seconda di cosa scegliete",
+ libera:"Il mercato di Sa Pa town nel tardo pomeriggio, se scendete in centro: tessuti indaco, erbe medicinali, e nessuna delle due cose è messa lì per voi.",
+ key:{t:"08:30",w:"L'ora in cui si parte, qualunque cosa abbiate scelto. A novembre la nuvola sale dalla valle verso mezzogiorno: le prime tre ore sono quelle con la vista."},
+ menu:{id:"d5",h:"Tre modi di usare la giornata a Sa Pa",
+  s:"Si decide la sera prima, scrivendo su WhatsApp alla guida o alla struttura. Tocca quella che hai scelto: chilometri, ore e budget si riallineano da soli.",
+  o:[{id:"trekking",tag:"Consigliata",k:"good",t:"Trekking con le donne del villaggio",km:12,min:60,cost:[30,50],
+      d:"Da Lao Chai a <b>Ta Van</b> lungo il fiume Muong Hoa, o la salita a <b>Ta Phin</b> dai Dao Rossi. Cinque o sei ore a passo lento, con una donna H'Mong o Dao che vi porta dentro casa sua e vi spiega le terrazze mentre ci camminate in mezzo. <b>È il motivo per cui si viene a Sa Pa</b>, e i soldi restano nella valle invece che a un'agenzia. Si organizza via WhatsApp: hanno poco internet e le email non le vedono."},
+     {id:"scooter",tag:"Autonomia",k:"acc",t:"Le valli in scooter",km:60,min:150,cost:[8,14],
+      d:"Scooter noleggiato in centro a Sa Pa: la strada per <b>Ta Van</b> e <b>Ban Ho</b>, il passo <b>Tram Ton</b> — il più alto del Vietnam carrozzabile, 1.900 m — e la cascata d'Argento. Si vede il triplo del territorio e si decide tutto sul momento. <b>Serve la patente A più quella internazionale</b>: senza, l'assicurazione non copre e la polizia multa."},
+     {id:"fansipan",tag:"Aggiunta mia",k:"sig",t:"Fansipan, il tetto dell'Indocina",km:20,min:90,cost:[70,90],
+      d:"<i>Non è nel programma di Samira: è una proposta mia.</i> La funivia da Sa Pa sale a <b>3.143 m</b> in venti minuti — è una delle più lunghe al mondo. In cima c'è un complesso di templi nuovi, parecchio costruito, e con la nuvola non si vede niente. <b>Prendetela solo se il cielo è aperto la mattina presto</b>, e sappiate che costa quanto tutto il resto della giornata messo insieme."}]},
+ tl:[["07:30","Colazione guardando la valle",""],
+     ["08:30","Si parte","Con la guida, con lo scooter o verso la funivia: l'ora è la stessa."],
+     ["12:30","Pranzo","In cammino si mangia a casa di qualcuno o in una bottega di Ta Van; in scooter, a Ban Ho."],
+     ["15:00","Rientro con calma","Il pomeriggio la nuvola sale e la vista si chiude: è il momento giusto per tornare."],
+     ["17:00","Sa Pa town, se ne avete voglia","Mercato, caffè con vista, e la chiesa di pietra francese in piazza."],
+     ["19:30","Ultima cena in valle",""]],
+ see:["Una casa H'Mong da dentro: il focolare per terra, il mais appeso a seccare, nessun camino","Il fiume Muong Hoa che taglia la valle, con le terrazze che salgono per trecento metri su tutti e due i lati","I bufali d'acqua che tornano da soli la sera, senza nessuno che li accompagni"],
+ pioggia:"Con il bagnato il sentiero per Ta Van diventa argilla: ci si va <b>solo con la guida</b>, che sa dove mettere i piedi, e con scarpe chiuse. Lo scooter invece no: strada stretta, bagnata e con i camion. La funivia va anche sotto la pioggia, ma in cima non si vede niente ed è buttare settanta euro.",
+ sleep:"Seconda e ultima notte alla Maison de Lao Chai.",
+ eat:"Pranzo dentro il trekking, se l'avete scelto: è compreso quasi sempre, chiedetelo prima. Altrimenti in valle si mangia a Ta Van.",
+ tip:{k:"good",t:"<strong>Perché il trekking con le guide del villaggio</strong>Costa come un'escursione di agenzia ma i soldi restano nella valle, si entra in case vere e si cammina su sentieri che da soli non trovereste. <b>Si prenota via WhatsApp la sera prima</b>, non via email. Scarpe chiuse, acqua, e cento dong piccoli per i tessuti: compreranno da voi tanto quanto voi da loro."}},
 
-{n:6,iso:"2026-09-11",date:"Venerdì 11 settembre",short:"Ven 11",
- title:"Il giorno del temporale: Cres a piedi",
- km:30,min:45,type:"Isola · giorno lento",border:"—",
- luogo:"Cres",lat:44.9578,lon:14.4089,quota:"livello del mare tutto il giorno",
- libera:"Se smette: Beli, 31 km, il bosco della Tramuntana appena piovuto — è il momento in cui quel bosco è più bello. Se non smette: la konoba di Loznati e un pomeriggio lungo, che su dieci giorni ci sta.",
- key:{t:"15:00",w:"L'ora in cui si guarda fuori. I temporali sono dati soprattutto fra la notte e la mattina: se nel pomeriggio si alza, restano tre ore di luce buone per Valun o per Beli. Se non si alza, non forzare — è l'unico giorno del viaggio che si può buttare via senza perdere niente."},
- route:"Cres a piedi › (se si alza) Valun o Beli › Cres",
- gm:"https://www.google.com/maps/dir/Cres/Valun/Cres",
- tl:[["08:30","Colazione lunga","Con questo tempo non c'è niente da rincorrere. È il giorno in cui il viaggio rallenta apposta."],
-     ["09:30","Cres a piedi","Il <b>mandracchio</b>, il porto interno chiuso da un arco di case, e poi la loggia veneziana, la torre dell'orologio, le porte della città. Si gira quasi tutto sotto i portici e le gronde."],
-     ["11:00","Caffè sul porto","Guardare il canale che si increspa fino a Lošinj è metà del programma, e non è una battuta."],
-     ["12:30","Pranzo lungo","Agnello di Cres o <i>surlice</i> col sugo. In konoba si sta al caldo e si spende la metà che sul molo."],
-     ["15:00","Si guarda il cielo","Se ha smesso: <b>Valun</b>, 12 km e mezz'ora, il borgo in fondo alla baia. Oppure <b>Beli</b>, 31 km a nord, il paese sullo sperone e le voliere dei grifoni."],
-     ["16:30","Fuori, se si può","A Valun il molo e la chiesa; a Beli il bosco della Tramuntana, che con la pioggia appena finita è la cosa più bella dell'isola."],
-     ["19:00","Rientro",""],
-     ["20:00","Cena","Pesce sul mandracchio se ha smesso, konoba se no."]],
- see:["Cres sotto la pioggia: le case si chiudono attorno al mandracchio e il paese diventa un cortile","Il Quarnaro col vento, dal molo: il canale si increspa fino a Lošinj e i traghetti si vedono faticare","L'interno dell'isola con la nuvola bassa — muretti a secco, pecore e nessuno"],
- pTit:"Se invece si alza",
- pioggia:"Questa <i>è</i> la giornata del maltempo, quindi il piano B è al contrario. Se schiarisce nel pomeriggio: <b>Beli</b> (31 km) per il bosco della Tramuntana e i grifoni nelle voliere, oppure <b>Valun</b> (12 km) per il molo e la baia. Se schiarisce già a mezzogiorno, si può anche anticipare la giornata di domani e scambiarle.",
- sleep:"Seconda notte a Cres. Valigia ferma, e oggi non si sposta neanche l'auto.",
- eat:"<b>Konoba Bukaleta</b> a Loznati per l'agnello — 8 km, e con la pioggia è il posto giusto. In paese, le trattorie del mandracchio.",
- tip:{k:"alert",t:"<strong>Allerta arancione sulla regione di Fiume</strong>Pioggia, temporali anche forti e raffiche, con avviso giallo per il vento su tutto l'Adriatico. Con la bora forte <b>le linee dei traghetti possono essere sospese</b>: se stai pensando a Lošinj o a spostarti, controlla prima su hak.hr o sull'app Jadrolinija. E occhio all'acqua ferma sulle strade dell'interno."}},
+{n:6,iso:"2026-11-15",date:"Domenica 15 novembre",short:"Dom 15",
+ title:"Sa Pa → Hanoi, e una notte di passaggio",
+ km:320,min:360,type:"Trasferimento",border:"—",
+ luogo:"Hanoi",lat:21.0285,lon:105.8542,quota:"da 1.100 m giù a 16 m",
+ libera:"Arrivando alle 20:00 resta una sera sola: il lago Hoan Kiem illuminato è a dieci minuti a piedi, e la domenica <b>il Quartiere Vecchio è chiuso al traffico</b> — è l'unica sera in cui Hanoi si attraversa senza motorini.",
+ key:{t:"14:00",w:"Il van di ritorno parte da <b>03 Nguyen Chi Thanh</b> a Sa Pa alle 14:00, e anche qui chiedono di esserci mezz'ora prima. La mattina è libera, il pomeriggio no."},
+ route:"Maison de Lao Chai › taxi › 03 Nguyen Chi Thanh, Sa Pa › limousine van (6h) › Hanoi Opera House › albergo in centro",
+ gm:"https://www.google.com/maps/dir/Lao+Chai/Sa+Pa/Hanoi+Opera+House",
+ tl:[["08:00","Mattina libera in valle","L'ultima camminata, o il secondo caffè sulla terrazza. Non c'è fretta fino a mezzogiorno."],
+     ["11:00","Check-out","La partenza dalla Maison è entro le 11:00–11:30."],
+     ["12:30","Pranzo a Sa Pa town","Si sale in centro con il taxi concordato, e si mangia lì vicino al punto d'imbarco."],
+     ["13:30","A 03 Nguyen Chi Thanh","Mezz'ora di margine, come chiede l'operatore. Prenotazione 12GO33251059."],
+     ["14:00","Limousine van per Hanoi","Golink Sao Vang, 6 ore. Si arriva che è buio."],
+     ["20:00","Hanoi Opera House","Si scende in centro. L'albergo è a pochi minuti."],
+     ["20:30","Check-in e zaino grande","Si recupera il bagaglio lasciato giovedì."],
+     ["21:00","Cena rapida e a letto","Domani si parte per la baia in mattinata."]],
+ see:["La discesa da Sa Pa a Lao Cai: trecento tornanti e il passaggio dalla montagna alla pianura in due ore","Il Quartiere Vecchio pedonale della domenica sera, con le famiglie in mezzo alla strada","Hanoi di notte dal finestrino, che dopo due giorni di valle sembra un'altra dimensione"],
+ pioggia:"Giornata in gran parte dentro un van: la pioggia non toglie niente. Semmai rallenta la discesa su Lao Cai, quindi se piove forte mettete in conto mezz'ora in più e avvisate l'albergo.",
+ sleep:"<b>⚠️ Hanoi, 1 notte — DA RIPRENOTARE.</b> La prenotazione fatta al Golden Rooster Hotel risulta per il <b>15–16 novembre 2027</b>, non 2026: per questa notte non c'è nessuna camera. Vedi «Da fare» in Pratico.",
+ eat:"Si arriva tardi e stanchi: una ciotola di <i>phở</i> in una bottega aperta fino a mezzanotte è esattamente la cosa giusta.",
+ tip:{k:"alert",t:"<strong>Questa notte non è prenotata</strong>Il Golden Rooster è stato prenotato per il <b>15 novembre 2027</b>. Serve una camera a Hanoi per la notte fra il 15 e il 16 novembre <b>2026</b> — meglio in centro, Hoan Kiem, perché domani mattina la crociera vi viene a prendere in albergo e deve sapere dove."}},
 
-{n:7,iso:"2026-09-12",date:"Sabato 12 settembre",short:"Sab 12",
- title:"Osor, Nerezine e i porti di Lošinj",
- km:120,min:150,type:"Isola · paesi e porti",border:"—",
- luogo:"Cres",lat:44.9578,lon:14.4089,quota:"livello del mare, con il colle sopra Osor a 180 m",
- libera:"Punta Križa e la pineta in fondo a Lošinj, venti chilometri oltre Osor. Oppure il cantiere di barche di legno a Nerezine, che lavora ancora e si guarda dal cancello.",
- key:{t:"09:00",w:"Il ponte girevole di Osor si apre alle 9:00 e alle 17:00, e mentre passano le barche la strada è chiusa: undici metri di canale scavati dai Romani che si aprono in mezzo alla città. O sei lì a vederlo, o ci arrivi dopo."},
- route:"Cres › Osor › Nerezine › Mali Lošinj › Veli Lošinj › Osor › Cres",
- gm:"https://www.google.com/maps/dir/Cres/Osor/Nerezine/Mali+Lošinj/Veli+Lošinj/Cres",
- tl:[["08:30","Partenza per Osor","35 km, 40 minuti di strada interna fra muretti a secco. Col cielo basso è la strada più bella dell'isola."],
-     ["09:10","Osor","Settanta abitanti in una città che ne ha avuti migliaia. Si gira in mezz'ora ed è tutta pietra: il canale, il ponte che si è appena aperto, la piazza, le mura. Non c'è niente da fare se non esserci."],
-     ["10:15","Nerezine","Paese ai piedi dell'Osoršćica, il monte dell'isola. Il porticciolo e il cantiere dove si fanno ancora le barche di legno."],
-     ["11:15","Mali Lošinj","La piazza più grande della Dalmazia e le case dei capitani, gialle e rosa attorno al porto. Caffè sotto i portici e giro senza meta: è una città che si guarda camminando."],
-     ["13:00","Pranzo sul porto","Pesce se il cielo si è aperto, agnello se è ancora chiuso."],
-     ["14:45","Veli Lošinj","<b>Il porto più bello dell'arcipelago</b>: piccolo, veneziano, le case addosso a un'ansa d'acqua larga come una piazza, e la torre sopra."],
-     ["16:15","Rientro con soste","<b>Sveti Jakov</b> e <b>Ustrine</b> sulla strada; <b>Punta Križa</b> e i suoi pini se c'è tempo e sole."],
-     ["17:00","Di nuovo il ponte di Osor","Si riapre alle 17:00: se capiti lì lo vedi girare la seconda volta."],
-     ["18:30","Cres",""],
-     ["20:00","Cena sul mandracchio",""]],
- see:["Il taglio di Osor: Cres e Lošinj sono una sola isola, segata in due dai Romani per accorciare la rotta, e il taglio è ancora lì","Veli Lošinj: un porto grande come una piazza, con le case colorate che ci cadono dentro","La strada interna Cres–Osor: quaranta chilometri di muretti a secco, pecore e nessuno"],
- pioggia:"La giornata regge anche bagnata: sono paesi e porti, si sta parecchio in macchina e i portici di Mali Lošinj coprono. Saltano solo <b>Punta Križa</b> e qualunque idea di salire sull'Osoršćica.",
- sleep:"Terza notte a Cres. Ne resta ancora una.",
- eat:"A Mali Lošinj i portici della piazza; a Veli Lošinj <b>Bora Bar</b> sul porticciolo. Prova il <i>surlice</i>, la pasta a mano del Quarnaro, col sugo d'agnello.",
- tip:{k:"sig",t:"<strong>Il pieno prima di partire</strong>Su Cres e Lošinj i distributori sono pochi e chiudono presto: si fa il pieno a Cres città stamattina, non a Osor nel pomeriggio. E l'orario del ponte girevole è 9:00 e 17:00 — se arrivi alle 9:05 aspetti che passino le barche."}},
+{n:7,iso:"2026-11-16",date:"Lunedì 16 novembre",short:"Lun 16",
+ title:"Hanoi → Baia di Ha Long, imbarco",
+ km:165,min:210,type:"Trasferimento + mare",border:"—",
+ luogo:"Baia di Ha Long",lat:20.90,lon:107.05,quota:"livello del mare",
+ libera:"Il pomeriggio a bordo è già tempo libero organizzato: kayak, una grotta, il bagno dal ponte. Se avanza davvero, la poppa al tramonto con qualcosa da bere è il posto migliore della barca.",
+ key:{t:"11:15",w:"Il check-in della crociera è alle <b>11:15 al Lotto 34 di Tuan Chau</b>, confermato da Peony per email. Il pick-up in albergo va chiesto a loro via chat Booking <b>dicendo il nome dell'hotel</b>: partono da Hanoi in mattinata."},
+ route:"Hanoi › limousine van della crociera (165 km) › porto di Tuan Chau, Lotto 34 › imbarco › Baia di Ha Long",
+ gm:"https://www.google.com/maps/dir/Hanoi/Tuan+Chau+Marina,+Ha+Long",
+ tl:[["07:30","Colazione e check-out",""],
+     ["08:00","Pick-up in albergo","Organizzato dalla crociera: il van passa a prendervi. <b>Va concordato in anticipo via chat Booking, dicendo il nome dell'albergo.</b>"],
+     ["11:15","Lotto 34, Tuan Chau","Check-in della crociera. Peony Cruises, conferma 9800672634863520599."],
+     ["12:30","A bordo, pranzo","Si salpa mangiando. Da qui in poi tre giorni di pensione completa."],
+     ["15:00","Kayak e grotte","Nel pomeriggio si entra fra i faraglioni: kayak o barchino a remi, e una grotta carsica."],
+     ["17:30","Tramonto dal ponte","Il momento per cui si fanno due notti invece di una: le barche da un giorno a quest'ora sono già tornate."],
+     ["19:00","Cena a bordo","Pesce, frutti di mare, e la baia nera fuori dall'oblò."]],
+ see:["I faraglioni di calcare che escono dall'acqua come denti: sono quasi duemila","Il silenzio della baia la sera, quando le barche da giornata sono rientrate","Il bagno dal ponte, se il tempo tiene: a novembre l'acqua è ancora sui 23 °C"],
+ pioggia:"La crociera va con qualunque tempo, ma con <b>vento forte le autorità possono fermare le barche</b>: succede qualche giorno all'anno, soprattutto in inverno. Se capita, Peony riprogramma o rimborsa — ed è il motivo per cui il loro numero WhatsApp va salvato prima di partire.",
+ sleep:"<b>Peony Cruises, 2 notti a bordo</b> (16–18 novembre). Pensione completa, attività incluse. Contatto: Danny Do, WhatsApp +84 984 749 958.",
+ eat:"Tutto incluso: colazione, pranzo e cena a bordo, tre giorni. Le bevande no — quelle si pagano, e non costano poco.",
+ tip:{k:"sig",t:"<strong>Due cose da chiedere a Peony, adesso</strong>Primo: il <b>pick-up dall'albergo di Hanoi</b>, che va concordato via chat Booking dicendo il nome dell'hotel — e che cambia, visto che la notte del 15 va riprenotata. Secondo: il <b>programma dettagliato dei tre giorni</b>, che mandano se lo chiedi e che dice quali attività sono comprese."}},
 
-{n:8,iso:"2026-09-13",date:"Domenica 13 settembre",short:"Dom 13",
- title:"Cres ovest: Lubenice, Sveti Ivan e Valun",
- km:50,min:75,type:"Isola · a scelta",border:"—",
- luogo:"Cres",lat:44.9578,lon:14.4089,quota:"livello del mare → 378 m di Lubenice",
- libera:"Il bagno a Valun fino al tramonto, o Martinšćica sull'altra baia: dieci chilometri di strada interna e non c'è nessuno.",
- key:{t:"10:30",w:"La discesa a Sveti Ivan va cominciata entro le 10:30. Dopo, il sentiero è esposto e senz'ombra: si prende il taxi boat e non è una sconfitta."},
- route:"Cres › Lubenice › (discesa a Sveti Ivan) › Valun › Cres",
- gm:"https://www.google.com/maps/dir/Cres/Lubenice/Valun/Cres",
- menu:{id:"d8",h:"Quattro modi di usare l'ultima giornata",
-  s:"Questa giornata è stata spostata qui apposta, per aspettare il bel tempo. Se è arrivato, la prima è quella giusta. Tocca quella che hai scelto: chilometri, ore e budget si riallineano da soli.",
-  o:[{id:"ovest",tag:"Se c'è il sole",k:"good",t:"Lubenice, Sveti Ivan e Valun",km:50,min:75,cost:[0,0],
-      d:"<b>Lubenice</b>: venticinque abitanti su uno sperone a 378 metri a picco sul mare, abitato da oltre quattromila anni, con una chiesa gotica dall'acustica da concerto. Poi la <b>discesa a Sveti Ivan</b>, quaranta-cinquanta minuti di sentiero ripido fino a una delle spiagge più belle dell'Adriatico — e altrettanti in salita. Chiusura a <b>Valun</b>, borgo di pescatori con la <i>Valunska ploča</i> dell'XI secolo dentro la chiesa. È la giornata che vuole il sole, ed è per questo che sta in fondo."},
-     {id:"barca",tag:"Barca",k:"acc",t:"Il mare visto dal mare",km:25,min:40,cost:[70,130],
-      d:"Taxi boat da Cres o da Valun, oppure una barca a noleggio senza patente (sotto i 15 CV non serve). Sveti Ivan raggiunta dall'acqua invece che con quel sentiero, le grotte della costa ovest, le baie che da terra non esistono. È la cosa che a Cres si può fare e quasi altrove no — ma vuole mare calmo, non solo cielo sereno."},
-     {id:"cammino",tag:"Cammino",k:"good",t:"Vrana, Orlec e Mali Bok",km:40,min:75,cost:[0,0],
-      d:"Tre ore di cammino spezzate in tre pezzi. Il <b>lago di Vrana</b> dal belvedere: acqua dolce, fondo sotto il livello del mare, disseta tutta l'isola. Poi <b>Orlec</b> e le falesie dei grifoni, e la discesa a <b>Mali Bok</b> — scarpe chiuse. Pranzo in konoba nell'interno, dove costa la metà che sul porto."},
-     {id:"zero",tag:"Riposo",k:"",t:"Giorno zero",km:0,min:0,cost:[0,0],
-      d:"Non si prende l'auto. Mercato la mattina, il bagno alla spiaggia del paese, un libro all'ombra, la siesta vera, aperitivo lungo sul mandracchio. Detto senza ironia: è il motivo per cui questa notte in più esiste, e con tre giorni di isola alle spalle è la scelta che si difende da sola."}]},
- tl:[["09:00","Partenza per Lubenice","21 km, 30 minuti di strada interna tra muretti a secco e pecore."],
-     ["09:30","Lubenice","Venticinque abitanti su uno sperone a 378 metri a picco sul mare, abitato da oltre quattromila anni."],
-     ["10:30","Discesa a Sveti Ivan","Quaranta-cinquanta minuti di sentiero ripido, e altrettanti in salita al ritorno. <b>Scarpe chiuse, due litri d'acqua a testa, cappello.</b> In alternativa il taxi boat."],
-     ["13:00","Valun","Borgo di pescatori in fondo a una baia. Pranzo sul molo e la <i>Valunska ploča</i> nella chiesa: lapide dell'XI secolo in glagolitico e latino."],
-     ["15:00","Bagno","La spiaggia di ciottoli bianchi di Valun, o il sentiero pianeggiante verso Beach Raca."],
-     ["17:30","Rientro a Cres","Passeggiata nel borgo veneziano: la loggia, la torre dell'orologio, il mandracchio."],
-     ["19:19","Tramonto","Dal molo, o da Lubenice: è il balcone più alto dell'isola. Da qui in poi hai mezz'ora di crepuscolo, non di più."],
-     ["20:30","Ultima cena sull'isola","Agnello di Cres se non l'hai ancora provato, altrimenti pesce e basta."]],
- see:["Lubenice all'ora di pranzo, quando il vento si alza e sotto si vede il canale fino a Lošinj","La tavola glagolitica di Valun: uno dei documenti più antichi in lingua croata","Il mandracchio di Cres, un porto interno chiuso da un arco di case"],
- pioggia:"Lubenice si vede lo stesso — la chiesa gotica, il borgo, il vento — ma <b>la discesa a Sveti Ivan no</b>: sassi bagnati su un sentiero esposto e senza appigli. Ripiego: <b>Cres città a piedi</b>, la loggia, il mandracchio sotto i portici, le chiese, e una konoba lunga nell'interno. Oppure la scelta «Giorno zero», che con la pioggia diventa quella ovvia.",
- sleep:"<b>Quarta e ultima notte a Cres.</b> Stessa struttura dal 10: quasi tutte scontano dalla terza notte in poi.",
- eat:"<b>Konoba Bukaleta</b> a Loznati per l'agnello, o le trattorie sul porto di Cres per il pesce.",
- tip:{k:"acc",t:"<strong>La discesa a Sveti Ivan è vera</strong>Non è una passeggiata: sentiero sassoso, esposto, senz'ombra. Se sono le 11 passate e fa caldo — o se ha piovuto e le pietre sono bagnate — prendi il taxi boat e goditi la spiaggia invece di conquistarla."}},
+{n:8,iso:"2026-11-17",date:"Martedì 17 novembre",short:"Mar 17",
+ title:"Lan Ha e Cat Ba, la parte vuota della baia",
+ km:60,min:0,type:"Mare",border:"—",
+ luogo:"Baia di Lan Ha",lat:20.78,lon:107.05,quota:"livello del mare",
+ libera:"Il tai chi all'alba sul ponte: lo fanno su quasi tutte le barche verso le 6:30, ed è ridicolo e bellissimo. Chi non lo fa, guarda la nebbia alzarsi dall'acqua.",
+ key:{t:"06:30",w:"L'alba sulla baia, dal ponte. È l'unica ora in cui l'acqua è ferma e la foschia sta ancora bassa fra i faraglioni — ed è il motivo per cui si dorme a bordo."},
+ route:"Baia di Ha Long › Baia di Lan Ha › isola di Cat Ba › villaggi di pescatori galleggianti › rientro verso Tuan Chau",
+ gm:"https://www.google.com/maps/search/Lan+Ha+Bay",
+ tl:[["06:30","Alba e tai chi sul ponte","Caffè, e la baia che si scopre piano."],
+     ["08:00","Verso Lan Ha","La baia a sud, dentro il parco di Cat Ba: meno barche, più silenzio. È la ragione della seconda notte."],
+     ["10:00","Kayak fra i faraglioni","Dentro le grotte-tunnel che si aprono solo con la marea giusta."],
+     ["12:30","Pranzo a bordo",""],
+     ["14:00","Cat Ba o il villaggio galleggiante","A seconda del programma: l'isola a piedi o in bici, oppure le case di pescatori ancorate in mezzo all'acqua, con i cani sui pontili."],
+     ["17:30","Secondo tramonto","Da un'ancora diversa da ieri sera."],
+     ["19:00","Cena e serata a bordo","Qualche barca fa pesca ai calamari dopo cena: vale la mezz'ora."]],
+ see:["Lan Ha senza barche attorno: la differenza vera fra una crociera di un giorno e una di due notti","I villaggi galleggianti, che si sono svuotati ma non del tutto: qualche famiglia è rimasta","La pesca ai calamari con la lampada, dalla poppa, dopo cena"],
+ pioggia:"È la giornata che regge meglio il brutto tempo di tutto il viaggio: si sta a bordo, al coperto, e con la nebbia la baia è più bella che con il sole. Saltano solo il kayak e il bagno.",
+ sleep:"Seconda notte a bordo. Non si smonta niente.",
+ eat:"Colazione, pranzo e cena a bordo. Spesso c'è un corso di <i>nem</i> — gli involtini — il pomeriggio: è un modo gentile per riempire l'ora morta.",
+ tip:{k:"good",t:"<strong>La seconda notte è la differenza</strong>Chi fa una notte sola vede la baia principale con altre cinquanta barche. Con due notti si arriva a <b>Lan Ha e Cat Ba</b>, dove le barche sono poche. È la scelta più azzeccata dell'intero itinerario."}},
 
-{n:9,iso:"2026-09-14",date:"Lunedì 14 settembre",short:"Lun 14",
- title:"Cres → traghetto → Istria → il finale che scegli",
- km:180,min:180,type:"Traghetto + Istria",border:"HR → SI (se Pirano)",
- luogo:"Pirano",lat:45.5283,lon:13.5683,quota:"livello del mare → 277 m di Motovun → di nuovo il mare",
- libera:"Grožnjan, il borgo degli artisti, o Hum, il paese più piccolo del mondo: sono entrambi sulla strada fra Motovun e il confine. A Pirano, le saline di Sicciole all'ora del tramonto.",
- key:{t:"09:45",w:"Al piazzale di Porozina con trenta minuti di margine. Sulla linea 334 non si prenota: conta solo l'ordine di arrivo, e perdere la corsa sposta tutto il pomeriggio."},
- route:"Cres › Porozina ⇢ traghetto ⇢ Brestova › Labin › Pazin › Motovun › a scelta: Pirano | Rovigno | Pola | Abbazia",
- gm:"https://www.google.com/maps/dir/Cres/Porozina/Brestova/Motovun/Piran",
- menu:{id:"d9",h:"Dove finisce il viaggio",
-  s:"È l'unica scelta che va fatta prenotando, non in strada: cambia l'alloggio e la lunghezza del rientro. Fino a Motovun la giornata è identica in tutti i casi.",
-  o:[{id:"pirano",tag:"Consigliata",k:"good",t:"Pirano 🇸🇮",km:180,min:180,cost:[18,18],breve:"Pirano",lat:45.5283,lon:13.5683,
-      applica:{giorno:10,km:480,min:290,tr:[55,75]},
-      d:"+85 km da Motovun via Buje e il confine di Dragogna, poi corridoio <b>H5 gratuito</b>. Auto al garage Fornače alle 16:30 e da lì tutto a piedi: mura veneziane (2 €), San Giorgio, le <b>saline di Sicciole</b> col sale raccolto a mano come nel Trecento, tramonto a Punta. <b>Domani il rientro è di 480 km</b>: è il finale che costa meno fatica."},
-     {id:"rovigno",tag:"La più bella",k:"acc",t:"Rovigno 🇭🇷",km:150,min:160,cost:[10,10],breve:"Rovigno",lat:45.0811,lon:13.6387,
-      applica:{giorno:10,km:600,min:345,tr:[55,75]},
-      d:"+55 km da Motovun, arrivo alle 15:30. Grisia e i vicoli degli artisti, Sant'Eufemia col campanile copia di San Marco, tramonto dal molo davanti alle isole — e soprattutto <b>Rovigno all'alba</b> domattina. Prezzo: il rientro diventa <b>600 km</b>, e va iniziato entro le 8."},
-     {id:"pola",tag:"Variante romana",k:"sig",t:"Pola 🇭🇷",km:190,min:190,cost:[20,20],breve:"Pola",lat:44.8666,lon:13.8496,
-      applica:{giorno:10,km:620,min:360,tr:[55,75]},
-      d:"+95 km da Motovun. L'<b>Arena</b> è tra le sei più grandi al mondo e l'unica con le torri laterali intatte; poi il Tempio di Augusto e l'Arco dei Sergi, tutti a piedi in due ore. Il rientro sale a <b>620 km</b>: la scelta più cara in chilometri, ma è l'unica cosa davvero romana del viaggio."},
-     {id:"abbazia",tag:"Piano bora",k:"alert",t:"Abbazia 🇭🇷",km:80,min:110,cost:[0,0],breve:"Abbazia",lat:45.3378,lon:14.3053,
-      applica:{giorno:10,km:570,min:330,tr:[65,85],
-        trNota:'Brestova⇢Porozina + Merag⇢Valbiska, la traversata più lunga'},
-      d:"Se la bora chiude Porozina non si discute: esci dall'isola da <b>Merag ⇢ Valbiska</b>, canale riparato, poi il ponte di Veglia e la costiera. Ti fermi ad <b>Abbazia</b>: Lungomare asburgico di 12 km, ville e giardini. Niente Istria e niente Motovun, ma il rientro non dipende da nessun traghetto."}]},
- tl:[["08:00","Colazione e check-out","Quattro notti nello stesso posto: si smonta con calma, ma non troppa."],
-     ["09:00","Partenza per Porozina","35 km, 45 minuti di tornanti sopra il mare, stavolta al contrario."],
-     ["09:45","Al piazzale di Porozina","Trenta minuti di margine. Non si prenota: si sale in ordine d'arrivo."],
-     ["10:15","Traversata","Venti minuti. Ultimo sguardo al Quarnaro da poppa."],
-     ["10:45","Sbarco a Brestova","Si entra in Istria dalla porta orientale. Labin resta sopra la strada, poi si taglia nell'interno."],
-     ["12:30","Motovun","70 km. In cima a un cono di collina sopra la valle del Quieto. Il giro delle mura è dieci minuti e vale un panorama a 360°."],
-     ["13:00","Pranzo al tartufo","Capitale del tartufo bianco d'Istria, e settembre apre la stagione. <b>Konoba Mondo</b> a Motovun; <b>Zigante</b> a Livade se vuoi il tempio."],
-     ["14:45","Qui la strada si divide","Verso nord vale la pena infilare <b>Grožnjan</b>, il borgo degli artisti, o <b>Hum</b>, il paese più piccolo del mondo."],
-     ["16:30","Check-in e città","Un pomeriggio pieno, comunque tu abbia scelto."],
-     ["19:20","Tramonto","Punta a Pirano, il molo a Rovigno, il Lungomare ad Abbazia."],
-     ["20:30","Ultima cena all'estero","A Pirano <b>Fritolin pri Cantini</b>; a Rovigno <b>Konoba Kantinon</b> o <b>Male Madlene</b>."]],
- see:["Motovun dal basso, all'imbocco della valle: è l'immagine simbolo dell'Istria","Settembre in Istria è vendemmia — molte cantine sono aperte e si entra senza appuntamento","Se finisci a Pirano: è veneziana nell'impianto e bilingue per statuto"],
- sleep:"<b>Ultima notte, una sola, base a scelta.</b> Pirano dentro le mura con l'auto già al garage Fornače · Rovigno città vecchia o Monte Mulini con parcheggio · Abbazia sul Lungomare. Prenotane una sola e prenotala presto.",
- eat:"La giornata gastronomicamente più forte: tartufo a pranzo, pesce a cena. Malvasia istriana o Teran. Il sale di Sicciole è il souvenir migliore.",
- tip:{k:"good",t:"<strong>Qui la vignetta non serve più</strong>Se scegli Pirano: da Dragogna in poi, e domani fino a Rabuiese, si viaggia solo su H5/H6 e strade locali, <em>gratuite dal 2026</em>."}},
+{n:9,iso:"2026-11-18",date:"Mercoledì 18 novembre",short:"Mer 18",
+ title:"Sbarco e discesa a Tam Coc",
+ km:175,min:180,type:"Trasferimento",border:"—",
+ luogo:"Tam Coc",lat:20.2166,lon:105.9385,quota:"dal mare ai 10 m della pianura carsica",
+ libera:"Arrivando alle 14:30 l'ora che avanza c'è: la <b>Bich Dong Pagoda</b> è a tre chilometri da Halise, chiude alle 17:00 ed è una pagoda in tre piani incastrata dentro la montagna. Con lo scooter sono dieci minuti.",
+ key:{t:"11:30",w:"Lo sbarco è alle <b>11:30 al Lotto 34 di Tuan Chau</b> — confermato da Peony. È l'ora da dire a Halise per il van: non le 14:00 che diceva il programma."},
+ route:"Baia di Lan Ha › Lotto 34, Tuan Chau › minivan (175 km) › Halise Home, Tam Coc",
+ gm:"https://www.google.com/maps/dir/Tuan+Chau+Marina/Tam+Coc,+Ninh+Binh",
+ tl:[["07:00","Ultima alba a bordo","Colazione mentre si rientra."],
+     ["11:30","Sbarco al Lotto 34","Stesso molo dell'imbarco. Il van di Halise vi aspetta lì."],
+     ["11:45","Minivan per Tam Coc","175 km, circa tre ore. <b>Da organizzare con Halise</b>, dicendo molo e orario."],
+     ["14:30","Halise Home, Tam Coc","Camera con vista lago, dal 18 al 19. È un posto nella giungla: semplice, autentico, e qualche insetto ci sta."],
+     ["15:00","Scooter","Si chiede a Halise. Da qui in poi tutto si fa su due ruote: Ninh Binh è piatta e le distanze sono corte."],
+     ["15:30","Bich Dong Pagoda","Tre livelli scavati nella roccia, uno sopra l'altro. <b>Chiude alle 17:00.</b>"],
+     ["18:00","Tam Coc Night Market","Il mercato serale e la via pedonale: spiedini, birra, souvenir."],
+     ["20:00","Cena","In paese o da Halise."]],
+ see:["Il passaggio dal mare alla pianura: gli stessi faraglioni di Ha Long, ma in mezzo alle risaie — per questo la chiamano «la baia di Ha Long a terra»","La Bich Dong, che è dentro la montagna e non davanti","Le capre di Ninh Binh, che stanno sulle pareti verticali e si mangiano"],
+ pioggia:"Tam Coc sotto la pioggia si gira male, perché tutto si fa in scooter. Il ripiego è la <b>pagoda di Bai Dinh</b>, che è enorme e in gran parte coperta, oppure anticipare il giro in barca di Trang An, che si fa comunque con l'ombrello e con meno gente.",
+ sleep:"<b>Halise Home, 1 notte.</b> Camera vista lago, prenotata direttamente. <i>Nota dal programma: posto meraviglioso ma semplice, pulizia con standard asiatici. Siete nella giungla e l'inglese è poco.</i>",
+ eat:"La specialità è la <b>capra</b> — <i>dê núi</i>, di montagna — con il riso croccante. Le botteghe lungo la via di Tam Coc la fanno tutte.",
+ tip:{k:"alert",t:"<strong>L'orario da dire a Halise</strong>Peony ha confermato per email: sbarco alle <b>11:30 al Lotto 34 di Tuan Chau</b>. Il programma ipotizzava le 14:00 — se avete già dato quell'ora, correggetela, o il van arriva con tre ore di ritardo."}},
 
-{n:10,iso:"2026-09-15",date:"Martedì 15 settembre",short:"Mar 15",
- title:"Rientro, con una sosta a scelta",
- km:480,min:290,type:"Rientro",border:"SI → IT",
- luogo:"Castelnovo",lat:44.4333,lon:10.4,quota:"livello del mare → 700 m di Castelnovo ne' Monti",
- libera:"La sosta di oggi è già il menù qui sotto. Se avanza anche a quella, il Caffè San Marco a Trieste sta aperto fino a mezzanotte.",
- key:{t:"09:00",w:"L'ultimo pieno a Capodistria, prima del confine: 15–25 centesimi al litro in meno che in Italia. Su un serbatoio pieno vale una cena."},
- route:"Pirano › Capodistria › H5/H6 (gratuiti) › Rabuiese › Trieste › A4 › A22 › A1 › Castelnovo ne' Monti",
- gm:"https://www.google.com/maps/dir/Piran/Trieste/Verona/Castelnovo+ne'+Monti",
- menu:{id:"d10",modo:"aggiunge",h:"Cosa infilare nel rientro",
-  s:"Si sceglie in strada, secondo l'ora e la voglia. Ognuna sta dentro la giornata: quello che cambia è l'ora in cui sei a casa, non il percorso.",
-  o:[{id:"trieste",tag:"30–60 min",k:"good",t:"Trieste",km:8,sosta:45,cost:[0,20],
-      d:"È sulla strada e non si paga in tempo. <b>Miramare</b>: il parco sul mare è gratuito e da solo vale la sosta, il castello 10 €. Oppure piazza Unità d'Italia e mezz'ora al <b>Caffè San Marco</b>. Se hai fame vera, un <i>buffet</i> triestino: maiale bollito, cren, birra."},
-     {id:"aquileia",tag:"+1h30",k:"acc",t:"Aquileia e Palmanova",km:20,sosta:90,cost:[10,20],
-      d:"Poco fuori dalla A4, uscita Palmanova. La basilica di <b>Aquileia</b> ha il più grande mosaico pavimentale paleocristiano d'Occidente, 760 m² del IV secolo. <b>Palmanova</b> è una fortezza veneziana a stella con nove punte."},
-     {id:"laguna",tag:"Pranzo",k:"sig",t:"Laguna: Marano o Grado",km:30,sosta:75,cost:[0,0],
-      d:"Venti minuti fuori rotta dalla A4. <b>Marano Lagunare</b> è un borgo di pescatori vero, con i casoni di canna; <b>Grado</b> ha il centro storico bizantino e più scelta. È il modo migliore di far durare il viaggio un'ora in più invece di finirlo in autogrill."},
-     {id:"dritti",tag:"Niente soste",k:"",t:"Dritti a casa",km:0,sosta:0,cost:[0,0],
-      d:"Da Pirano sono 480 km e 4h50 di sola guida: partendo alle 8:30, con una sosta sola, si è a Castelnovo per le 15:00. Da Rovigno sono 600 km, e allora conviene partire alle 8. Dopo dieci giorni, tornare presto non è una sconfitta."}]},
- tl:[["08:30","Partenza","Da Pirano: corridoio H5/H6 gratuito fino a Rabuiese. Da Rovigno: Umago e Dragogna, e metti in conto un'ora in più su tutto."],
-     ["09:00","Ultimo pieno prima del confine","A Capodistria. Il carburante costa 15–25 centesimi al litro in meno che in Italia."],
-     ["09:30","La sosta che hai scelto","Trieste è la più comoda perché è già sul percorso. Aquileia e la laguna vanno decise all'altezza di Monfalcone."],
-     ["11:00","A4","Si guida."],
-     ["13:00","Pranzo","Portogruaro o area di servizio dopo Padova, se non hai già mangiato in laguna."],
-     ["14:30","A4 → A22 → A1","Occhio ai cantieri sul tratto Venezia–Verona. Se il traffico è fermo, esci a Verona Sud e riprendi l'A22 più giù."],
-     ["17:00","Arrivo a Castelnovo ne' Monti","Dieci giorni, quattro basi, due traghetti, tre paesi."]],
- see:["Miramare: il castello che Massimiliano d'Asburgo fece costruire e non riuscì mai davvero ad abitare","I mosaici di Aquileia, che per mille anni sono stati sotto il pavimento di un'altra chiesa","L'ultimo caffè triestino, che è già mezza Mitteleuropa"],
+{n:10,iso:"2026-11-19",date:"Giovedì 19 novembre",short:"Gio 19",
+ title:"Trang An, Mua Caves, e il bus della notte",
+ km:610,min:600,type:"Natura + bus notturno",border:"—",
+ luogo:"Ninh Binh",lat:20.2500,lon:105.9700,quota:"10 m, e 500 gradini di Mua Caves",
+ libera:"Il tramonto da <b>Mua Caves</b>, in cima ai 500 gradini. È l'ora giusta e il programma la indica: la pianura carsica tutta arancione, e sotto il fiume che fa l'ansa. Ci si sta mezz'ora senza dire niente.",
+ key:{t:"08:00",w:"<b>Trang An appena apre.</b> È un giro in barca a remi di tre ore dentro le grotte allagate, remato da una signora del posto: alle 8:00 non c'è fila, alle 11:00 ce n'è un'ora."},
+ route:"Halise › Bai Dinh › Trang An › Mua Caves › Halise (zaini) › Tam Coc Agency › bus notturno per Hue",
+ gm:"https://www.google.com/maps/dir/Tam+Coc/Bai+Dinh+Pagoda/Trang+An+Scenic+Landscape+Complex/Hang+Mua",
+ tl:[["07:00","Colazione e check-out","<b>Gli zaini restano in reception</b>: si riparte solo stasera alle 21:30."],
+     ["07:45","Bai Dinh Pagoda","Il complesso buddhista più grande del Sud-est asiatico. Gratis, due o tre ore se lo si fa tutto — oppure un'ora e via, che basta."],
+     ["10:30","Trang An","<b>La cosa più bella del viaggio in terraferma.</b> UNESCO. Alla biglietteria si sceglie il percorso: tre ore in barca a remi, ~9–12 € a testa, dentro nove grotte allagate e fra i templi."],
+     ["14:00","Pranzo","Capra e riso croccante in una delle botteghe sulla strada."],
+     ["15:30","Mua Caves","~4 €. <b>Prima di salire, il giardino con la passerella e i loti sulla destra</b> — il programma insiste, e ha ragione. Poi i 500 gradini."],
+     ["17:00","Il tramonto dalla cima","Il punto panoramico più bello della zona. Si scende con la luce che se ne va."],
+     ["19:00","Rientro a Halise, zaini e doccia","Chiedete se potete usare un bagno dopo il check-out: lo concedono quasi sempre."],
+     ["21:00","Alla Tam Coc Agency","<b>Essere lì 30–45 minuti prima.</b> HK Buslines offre il transfer dall'hotel: va chiesto almeno 24 ore prima su WhatsApp (+84 798 149 095)."],
+     ["21:30","Bus notturno per Hue","Cabina bassa singola, 9 ore. Prenotazione AATZ2552. Bagaglio: una valigia più una borsa a testa."]],
+ see:["Trang An dalla barca: la signora rema con i piedi, e nelle grotte bisogna abbassare la testa davvero","I loti sotto Mua Caves, che quasi tutti saltano perché guardano in su","La pianura all'ultima luce dall'alto: è l'immagine che resta di Ninh Binh"],
+ pioggia:"Trang An si fa anche con la pioggia — si è in barca, con il cappello di paglia — e con meno gente. Mua Caves no: 500 gradini di pietra bagnata e ripida, e in cima non si vede niente. Con il brutto si raddoppia su Bai Dinh, che è coperto.",
+ sleep:"<b>Sul bus notturno.</b> Cabina singola bassa, lenzuolo e coperta forniti. Partenza 21:30, arrivo a Hue alle 06:30.",
+ eat:"Mangiate <b>prima</b> di salire: sul bus non si mangia e le soste sono brevi. Una bottiglia d'acqua a testa e nient'altro di liquido, che il bagno è quello che è.",
+ tip:{k:"sig",t:"<strong>Il transfer per il bus</strong>HK Buslines fa il <b>pick-up gratuito dagli hotel</b> di Ninh Binh e Tam Coc per i clienti 12Go, ma <b>va chiesto almeno 24 ore prima</b> su WhatsApp (+84 798 149 095). Se non lo chiedete, dovete arrivare da soli alla Tam Coc Agency per le 21:00."}},
+
+{n:11,iso:"2026-11-20",date:"Venerdì 20 novembre",short:"Ven 20",
+ title:"Hue: la cittadella e la città proibita",
+ km:10,min:30,type:"Città imperiale",border:"—",
+ luogo:"Hue",lat:16.4637,lon:107.5909,quota:"10 m, sulle due rive del Fiume dei Profumi",
+ libera:"Il <b>ponte Thanh Toan</b>, sette chilometri fuori città in scooter: un ponte coperto giapponese del Settecento sopra un canale, con il mercato del paese attorno. Il programma lo mette come alternativa — con l'arrivo alle 6:30 ci sta anche oggi.",
+ key:{t:"06:30",w:"L'arrivo del bus. Siete a Hue con una giornata intera davanti e la camera non pronta fino alle 14:00: si lasciano gli zaini al Chum e si esce. <b>È la giornata più lunga del viaggio, sfruttatela.</b>"},
+ route:"Arrivo bus a 35 Nguyen Cong Tru › The Chum Boutique (zaini) › Cittadella e Città Proibita › Fiume dei Profumi › Pagoda Thien Mu",
+ gm:"https://www.google.com/maps/dir/Hue/Imperial+City,+Hue/Thien+Mu+Pagoda",
+ tl:[["06:30","Arrivo a Hue","Il bus lascia a 35 Nguyen Cong Tru. Il Chum Boutique è in centro, 07 Trương Định."],
+     ["07:00","Zaini in reception e colazione","Check-in solo dalle 14:00: si lascia tutto e si va. Una <i>bun bo Hue</i> a colazione è il modo locale di cominciare."],
+     ["08:30","Cittadella imperiale","Dieci chilometri di mura, un fossato, e dentro la <b>Città Proibita Purpurea</b>: quella dei Nguyen, bombardata nel 1968 e in parte ricostruita. Tre ore buone."],
+     ["12:30","Pranzo in centro",""],
+     ["14:00","Check-in al Chum","07 Trương Định, Phường Vĩnh Ninh. Tel +84 70 537 1111. Conferma 6039302548."],
+     ["15:30","Pagoda Thien Mu","Sulla riva del Fiume dei Profumi, la torre ottagonale a sette piani che è il simbolo di Hue. Dentro c'è l'automobile del monaco Thich Quang Duc."],
+     ["17:30","Il fiume al tramonto","A piedi lungo la riva, o in barca-drago se vi va la cosa turistica — che qui però è piacevole."],
+     ["19:30","Cena","Hue è considerata la capitale gastronomica del Vietnam: era cucina di corte, e si vede dalle porzioni piccole e dai piatti tanti."]],
+ see:["La Città Proibita: metà rovina e metà ricostruzione, e la differenza si vede — è la storia del Novecento vietnamita in un cortile","L'automobile alla Thien Mu: è quella con cui Thich Quang Duc andò a Saigon nel 1963 per darsi fuoco","La cucina di Hue, che è un'altra cosa rispetto al nord: più piccante, più elaborata, porzioni da assaggio"],
+ pioggia:"Novembre è il mese più piovoso a Hue, e va messo in conto: è la coda dei tifoni. La cittadella si gira comunque — ci sono padiglioni ovunque — ma con l'acqua forte conviene invertire, e fare prima i musei e le tombe imperiali al coperto. <b>Impermeabile e copri-zaino qui servono davvero.</b>",
+ sleep:"<b>The Chum Boutique, 1 notte.</b> 07 Trương Định, in pieno centro. Camera matrimoniale deluxe. <i>Colazione non inclusa.</i>",
+ eat:"<b>Bun bo Hue</b> a colazione — la zuppa piccante di manzo e maiale, la cosa migliore della città. E i <i>banh beo</i>, tortini di riso al vapore serviti in ciotoline da una decina alla volta.",
+ tip:{k:"acc",t:"<strong>Arrivare alle 6:30 è un vantaggio</strong>Avete una giornata piena invece che mezza. La cittadella alle 8:30 è quasi vuota e la luce è bassa — alle 11 ci sono i pullman e trentadue gradi. <b>Non andate a dormire in albergo appena arrivati</b>: perdereste la parte migliore."}},
+
+{n:12,iso:"2026-11-21",date:"Sabato 21 novembre",short:"Sab 21",
+ title:"Il convento, poi il treno del passo di Hai Van",
+ km:130,min:190,type:"Treno panoramico",border:"—",
+ luogo:"Hoi An",lat:15.8801,lon:108.3380,quota:"da 10 m al passo di Hai Van a 500 m, giù a 3 m di Hoi An",
+ libera:"Hoi An la sera è l'ora che avanza, ed è il momento migliore: le lanterne si accendono verso le 18:30 e il giro in barca sul Thu Bon costa pochi euro. Si arriva alle 17:55, giusto in tempo.",
+ key:{t:"14:45",w:"Il treno da <b>Hue Railway Station</b>. Il tratto Hue–Da Nang è considerato uno dei percorsi ferroviari più belli del mondo: passa il <b>passo di Hai Van</b> a picco sul mare. <b>Sedetevi sul lato destro</b> nel senso di marcia."},
+ route:"Hue › Tu Hieu Pagoda › Hue Railway Station › treno sul passo di Hai Van › Da Nang › navetta › 70 Nguyen Thi Minh Khai, Hoi An",
+ gm:"https://www.google.com/maps/dir/Tu+Hieu+Pagoda/Hue+Railway+Station/Hoi+An",
+ tl:[["07:30","Colazione e zaini in reception","Check-out entro le 12:00, ma gli zaini si lasciano."],
+     ["08:30","Tu Hieu Pagoda","<b>La visita speciale della giornata.</b> Convento buddhista attivo, con i monaci che ci vivono davvero. È il monastero di <b>Thich Nhat Hanh</b>, dove è tornato a morire. Pochi turisti, pini, silenzio."],
+     ["11:00","Thanh Toan, se avanza tempo","Il ponte coperto a sette chilometri, in scooter o taxi."],
+     ["12:30","Pranzo e recupero zaini",""],
+     ["14:15","Alla stazione di Hue","Mezz'ora di margine. Biglietto <b>AATZ5888</b>, due persone."],
+     ["14:45","Treno per Da Nang","Si costeggia la laguna, poi la salita al <b>passo di Hai Van</b>: il treno va a strapiombo sul mare, dentro e fuori dalle gallerie. È la parte che vale il biglietto."],
+     ["17:00","Da Nang","Si cambia: una navetta porta a Hoi An, 30 km."],
+     ["17:55","70 Nguyen Thi Minh Khai, Hoi An","Arrivo. The Signature è a dieci minuti."],
+     ["18:30","Check-in e lanterne","21 La Hối, Minh An, dentro la città vecchia. Tel +84 70 359 9969. <b>Le lanterne si accendono adesso.</b>"],
+     ["20:00","Giro in barca sul Thu Bon","Al buio, con le lanterne di carta sull'acqua. È kitsch e funziona lo stesso."]],
+ see:["Il passo di Hai Van dal treno: la linea di confine climatico fra nord e sud del Vietnam, e si sente — di là piove, di qua spesso no","Tu Hieu: un convento vero, con i monaci che spazzano i vialetti e nessuno che vende niente","Hoi An alla prima sera: la città vecchia senza auto, illuminata solo dalle lanterne"],
+ pioggia:"Il treno va comunque, e con la pioggia il passo è drammatico invece che bello — ma i finestrini si appannano. A Hoi An novembre è ancora stagione delle piogge e il fiume può uscire: se succede, la città vecchia si gira in barca, letteralmente, e lo fanno tutti.",
+ sleep:"<b>The Signature Hoi An, 3 notti</b> (21→24). 21 La Hối, Minh An, dentro la città vecchia. Colazione inclusa. <b>Già pagato, non rimborsabile.</b>",
+ eat:"Hoi An ha tre piatti suoi: <b>cao lau</b> (noodle spessi, si fanno solo qui con l'acqua di un pozzo preciso), <b>white rose</b> (ravioli di gamberi) e il <b>banh mi</b>, che qui è il migliore del paese.",
+ tip:{k:"good",t:"<strong>Il lato destro del treno</strong>Nel senso di marcia Hue → Da Nang, il mare sta a <b>destra</b>. Sono quaranta minuti di passo a strapiombo: se il posto assegnato è dall'altra parte, in quel tratto quasi tutti si alzano e stanno al finestrino, ed è normale."}},
+
+{n:13,iso:"2026-11-22",date:"Domenica 22 novembre",short:"Dom 22",
+ title:"Hoi An: la città vecchia, a piedi",
+ km:12,min:30,type:"Città · UNESCO",border:"—",
+ luogo:"Hoi An",lat:15.8801,lon:108.3380,quota:"3 m sul livello del mare",
+ libera:"<b>Tra Que</b>, il villaggio degli orti, tre chilometri a nord: ci si va in bici la mattina presto e si vedono i contadini che lavorano le aiuole di erbe con l'acqua del pozzo. Il programma lo mette come opzionale: fatelo all'alba o non fatelo.",
+ key:{t:"06:30",w:"Il mercato di Hoi An all'apertura. Alle 6:30 è il mercato della gente del posto; alle 9:00 è il mercato dei turisti. Due cose diverse nello stesso posto."},
+ route:"Tra Que › mercato › città vecchia: Ponte Giapponese, Hoi Quan Phuoc Kien, Tan Ky, Phung Hung › mercato notturno",
+ gm:"https://www.google.com/maps/dir/Tra+Que+Vegetable+Village/Hoi+An+Ancient+Town/Japanese+Covered+Bridge",
+ tl:[["06:30","Tra Que e il mercato","In bici, che quasi tutti gli alloggi prestano. Poi il mercato quando è ancora dei locali."],
+     ["09:00","Biglietto della città vecchia","Un biglietto unico dà diritto a entrare in <b>cinque</b> dei monumenti. Si compra ai chioschi all'ingresso della zona pedonale."],
+     ["09:30","Hoi Quan Phuoc Kien","La sala della congregazione cinese del Fujian: un cortile dopo l'altro, draghi di ceramica, bastoncini d'incenso a spirale appesi al soffitto che bruciano per settimane."],
+     ["11:00","Tan Ky e Phung Hung","Due case di mercanti di due secoli fa, ancora abitate dalle stesse famiglie. Si vede il segno delle alluvioni sui muri, anno per anno."],
+     ["12:30","Cao lau","Il piatto che esiste solo qui. Si mangia nelle botteghe, non nei ristoranti con la vetrina."],
+     ["15:00","La città vecchia senza programma","Il <b>Ponte Giapponese</b> del Cinquecento, le sartorie, i banchi di lanterne. Si cammina e basta."],
+     ["18:30","Mercato notturno sul fiume","Lanterne, street food, souvenir. Sulla riva opposta rispetto alla città vecchia."],
+     ["20:30","Cena","Qui si cena tardi e all'aperto."]],
+ see:["Le spirali d'incenso appese nella sala del Fujian, che bruciano per settimane","I segni delle alluvioni dentro le case dei mercanti, con l'anno scritto accanto: a Hoi An il fiume entra in casa regolarmente","Il Ponte Giapponese, che è sulla banconota da 20.000 dong"],
+ pioggia:"È la città che meglio sopporta la pioggia di tutto il viaggio: le case dei mercanti sono al coperto, le sale delle congregazioni hanno i cortili con le tettoie, le sartorie sono il passatempo locale per i giorni d'acqua. Se il fiume si alza, la città vecchia si visita in barca e fa parte dell'esperienza.",
+ sleep:"Seconda notte al Signature. Zaini fermi fino al 24.",
+ eat:"<b>Banh mi Phuong</b> o <b>Madam Khanh</b> per il panino, le botteghe di <i>cao lau</i> per il piatto locale, e la birra fresca al banco. A Hoi An si mangia benissimo spendendo pochissimo.",
+ tip:{k:"acc",t:"<strong>Il biglietto della città vecchia</strong>Non è un ingresso alla città — che è libera — ma un carnet che dà diritto a entrare in <b>cinque monumenti a scelta</b> fra una ventina. Camminare per le strade, attraversare il Ponte Giapponese e mangiare non richiede nulla. Comprate il carnet solo se volete entrare nelle case: ne valgono tre o quattro."}},
+
+{n:14,iso:"2026-11-23",date:"Lunedì 23 novembre",short:"Lun 23",
+ title:"Il giorno a scelta",
+ km:40,min:90,type:"A scelta",border:"—",
+ luogo:"Hoi An",lat:15.8801,lon:108.3380,quota:"3 m, o 700 m se salite alle Marble Mountain",
+ libera:"L'<b>alba sul Thu Bon</b> fino alla foce di Cua Dai, a vedere i pescatori che scaricano. È nel programma come opzionale del 24, ma oggi ci sta meglio: domani mattina si fa il check-out.",
+ key:{t:"08:00",w:"L'ora in cui si parte, qualunque cosa abbiate scelto — a parte il giorno zero. My Son con la luce del mattino e senza i pullman da Da Nang è un'altra cosa rispetto a mezzogiorno."},
+ menu:{id:"d14",h:"Quattro modi di usare l'ultima giornata piena",
+  s:"Il programma lascia questa giornata deliberatamente aperta. Si sceglie a colazione: nessuna delle quattro si prenota il giorno prima, tranne la meditazione.",
+  o:[{id:"myson",tag:"Storia",k:"good",t:"My Son e le Marble Mountain",km:80,min:180,cost:[20,36],
+      d:"<b>My Son</b>: il santuario Cham, torri di mattoni rossi del VII–XIII secolo in una valle chiusa, UNESCO. È quello che resta di un regno induista che è stato qui mille anni — bombardato nel '69 e mai del tutto ricostruito, il che lo rende più forte. Al ritorno le <b>Marble Mountain</b>, cinque colli di marmo con grotte-tempio dentro, sopra Da Nang. Ci si va in Grab o con un tour."},
+     {id:"bici",tag:"Campagna",k:"acc",t:"In bici per la campagna",km:30,min:150,cost:[10,25],
+      d:"Fuori da Hoi An, dentro le risaie e i villaggi: l'<b>isola di Cam Kim</b> oltre il ponte, con gli intagliatori del legno, oppure la pista verso la spiaggia di An Bang. Pianura assoluta, si pedala senza fatica, e in mezz'ora si è dove non c'è nessuno. Le bici le prestano quasi tutti gli alloggi."},
+     {id:"meditazione",tag:"Da prenotare",k:"sig",t:"Una giornata di meditazione",km:20,min:60,cost:[40,70],
+      d:"Mezza giornata o giornata intera in un centro di meditazione della zona, nella tradizione di Thich Nhat Hanh — la stessa del convento visto a Hue. È l'unica cosa di questa giornata che <b>va prenotata in anticipo</b>, almeno il giorno prima."},
+     {id:"zero",tag:"Riposo",k:"",t:"Giorno zero a Hoi An",km:0,min:0,cost:[0,0],
+      d:"Niente. La spiaggia di <b>An Bang</b> in bici (quattro chilometri), un lettino, il pesce alla griglia sulla sabbia e il ritorno al tramonto. Oppure una giornata di sartoria: a Hoi An un abito su misura si fa in ventiquattro ore, e questo è l'ultimo giorno utile per ritirarlo. <b>Dopo tredici giorni di spostamenti, è la scelta che si difende da sola.</b>"}]},
+ tl:[["07:30","Colazione al Signature",""],
+     ["08:00","Si parte","Con il tour, con la bici o per niente."],
+     ["12:30","Pranzo","Dove vi trovate: a My Son c'è poco, portatevi qualcosa."],
+     ["16:00","Rientro a Hoi An","Il pomeriggio in città o in spiaggia."],
+     ["18:00","L'ultima sera di lanterne","Domani si parte: questa è l'ultima sera vera del viaggio."],
+     ["20:00","Cena","Qualcosa che non avete ancora provato — cao lau, white rose, o il pesce al mercato."]],
+ see:["My Son all'apertura, con la nebbia ancora fra le torri e lo spettacolo di danza Cham alle 9:30","Le grotte-tempio dentro le Marble Mountain, con i Buddha illuminati da un foro nel soffitto","Cam Kim: quindici minuti di ponte e sei in un altro secolo"],
+ pioggia:"My Son con la pioggia diventa fango e le torri non si godono. La bici neanche. Restano la sartoria, il mercato e la giornata lunga nei caffè — che a Hoi An, con il rumore della pioggia sulle tegole, non è affatto un ripiego.",
+ sleep:"Terza e ultima notte al Signature.",
+ eat:"Se non l'avete ancora fatto: un corso di cucina. A Hoi An si fanno al mercato più orto più fornelli, durano mezza giornata e sono il souvenir migliore.",
+ tip:{k:"sig",t:"<strong>Se scegliete la meditazione, prenotate oggi</strong>È l'unica delle quattro che non si improvvisa: i centri chiedono almeno un giorno di preavviso. Le altre tre si decidono a colazione."}},
+
+{n:15,iso:"2026-11-24",date:"Martedì 24 novembre",short:"Mar 24",
+ title:"Hoi An → Da Nang → Hanoi",
+ km:660,min:200,type:"Volo interno",border:"—",
+ luogo:"Noi Bai",lat:21.2187,lon:105.8042,quota:"dal livello del mare ai 16 m di Hanoi",
+ libera:"La mattina è tutta libera: il check-out è a mezzogiorno e il volo è alle 16:55. L'<b>isola di Cam Kim</b> oltre il ponte, o la foce di Cua Dai all'alba — entrambe nel programma, entrambe a quindici minuti.",
+ key:{t:"14:30",w:"All'aeroporto di Da Nang. È un volo nazionale: basta un'ora e mezza, ma da Hoi An ci vuole <b>un'ora di strada</b> e il traffico del pomeriggio è reale. <b>Partite da Hoi An entro le 13:30.</b>"},
+ route:"Hoi An › (30 km) › aeroporto di Da Nang › VJ514 › Hanoi Noi Bai › Airport Classic Hotel 2",
+ gm:"https://www.google.com/maps/dir/Hoi+An/Da+Nang+International+Airport",
+ tl:[["08:00","L'ultima mattina","Cam Kim, la foce del Thu Bon, o semplicemente la città vecchia prima che si svegli."],
+     ["12:00","Check-out","Gli zaini si lasciano in reception se volete ancora un giro."],
+     ["13:30","Partenza per Da Nang","<b>30 km, un'ora con il traffico.</b> Grab o il bus pubblico, che costa pochissimo e ci mette di più. <i>Da prenotare o decidere: vedi «Da fare».</i>"],
+     ["14:30","Aeroporto di Da Nang","Check-in VietJet. Prenotazione <b>5EVNMY</b>, posti 11B e 11C, un bagaglio da stiva da 20 kg a testa."],
+     ["16:55","VJ514 · Da Nang → Hanoi","1h20 di volo."],
+     ["18:15","Noi Bai","Si atterra al terminal nazionale. L'albergo è a due chilometri."],
+     ["19:00","Airport Classic Hotel 2","Số 8 Võ Nguyên Giáp, Sóc Sơn. Tel +84 97 830 0357. Conferma 5403083248. <b>Chiedete la navetta</b>: quasi tutti gli hotel di Noi Bai la fanno gratis."],
+     ["20:00","Ultima cena vietnamita","In zona aeroporto non c'è molto: l'hotel ha il ristorante, ed è l'opzione sensata."]],
+ see:["Hoi An all'alba, prima che aprano i negozi: è la stessa città e sembra un'altra","La costa del Vietnam centrale dal finestrino, nei primi minuti dopo il decollo","L'ultima ciotola di phở, che da domani non è più la stessa cosa"],
+ pioggia:"Giornata di trasferimenti: la pioggia non toglie niente, ma fa rallentare la strada per Da Nang. Con l'acqua forte partite da Hoi An <b>mezz'ora prima</b>.",
+ sleep:"<b>Airport Classic Hotel 2, 1 notte.</b> A due chilometri dal terminal. Colazione inclusa. <i>Date corrette dopo la modifica del 3 ottobre: 24 → 25 novembre 2026.</i>",
+ eat:"Ultima occasione. Se avanzano dong, è il momento di spenderli: in aeroporto il cambio è pessimo.",
+ tip:{k:"alert",t:"<strong>Il trasferimento a Da Nang non è prenotato</strong>È l'unico spostamento del viaggio ancora da fissare, insieme al van della crociera. Grab da Hoi An all'aeroporto costa sui 15–20 €, il bus pubblico un paio di euro ma ci mette il doppio. <b>Decidete prima di partire</b>: il 24 pomeriggio non è il momento di cercare un passaggio."}},
+
+{n:16,iso:"2026-11-25",date:"Mercoledì 25 novembre",short:"Mer 25",
+ title:"Hanoi → Abu Dhabi → Malpensa",
+ km:9500,min:865,type:"Rientro",border:"VN → IT",
+ luogo:"Castelnovo",lat:44.4333,lon:10.4000,tz:1,quota:"dai 16 m di Hanoi ai 700 m di casa",
+ libera:"Le due ore ad Abu Dhabi al ritorno sono poche: con l'arrivo alle 12:40 e la ripartenza alle 14:20 c'è giusto il tempo del transito. Non contateci per altro.",
+ key:{t:"08:15",w:"Il volo di rientro, <b>riprogrammato</b>: non più alle 07:40 ma alle 08:15. All'aeroporto per le 06:00 — dall'Airport Classic Hotel 2 sono cinque minuti, ma il check-in internazionale a Noi Bai è lento."},
+ route:"Airport Classic Hotel 2 › Noi Bai T2 › EY433 › Abu Dhabi › EY79 › Malpensa T1 › casa",
+ gm:"https://www.google.com/maps/dir/Noi+Bai+International+Airport/Malpensa+Airport",
+ tl:[["05:00","Sveglia e navetta","Due chilometri, ma a quest'ora si fa con la navetta dell'hotel. Chiedetela la sera prima."],
+     ["06:00","Noi Bai, Terminal 2","Check-in Etihad, codice 9T6U9F. Posti 30H e 30J."],
+     ["08:15","EY433 · Hanoi → Abu Dhabi","<b>Orario cambiato il 2 ottobre</b>: era 07:40. Boeing 787-9, 7h25."],
+     ["12:40","Abu Dhabi","Transito di 1h40, stesso Terminal A. <b>Non c'è margine</b>: si va diretti al gate."],
+     ["14:20","EY79 · Abu Dhabi → Malpensa","Airbus A321neo, 7 ore. Posti 31D e 31E."],
+     ["18:20","Malpensa, Terminal 1","Ritiro bagagli e si torna a casa. Sedici giorni, cinque voli, due minivan, un treno, un bus notturno e due notti in barca."]],
+ see:["L'ultimo sguardo al delta del Fiume Rosso dal finestrino, se si decolla verso est","Il tramonto in volo sopra l'Asia centrale, che a quest'ora e a quest'altitudine dura due ore","Il cambio di stagione all'atterraggio: a Malpensa a fine novembre fa dieci gradi"],
  sleep:"—",
- eat:"Trieste ha i <i>buffet</i>: carne di maiale bollita, cren, birra. È il modo giusto di salutare il viaggio.",
- tip:{k:"sig",t:"<strong>Se sei partito da Rovigno</strong>Sono 120 km e un'ora in più, tutti prima di Trieste. Parti alle 8 e scegli una sosta sola, non due."}}
+ eat:"Due pasti a bordo. Il caffè vietnamita all'aeroporto di Noi Bai, prima di imbarcarsi: l'ultimo vero.",
+ tip:{k:"alert",t:"<strong>La coincidenza di Abu Dhabi è stretta</strong>Con il nuovo orario arrivate alle <b>12:40</b> e il volo per Milano parte alle <b>14:20</b>: un'ora e quaranta, dentro lo stesso terminal. Si fa, è la stessa compagnia e il bagaglio è registrato fino a Milano — ma se l'EY433 parte in ritardo, è Etihad che deve riproteggervi. Tenete il codice <b>9T6U9F</b> a portata."}}
 ];
+
+/* ── Budget ──────────────────────────────────────────────────────────────
+   Per due persone. L'ultimo campo dice come si comporta la voce: «fisso» non
+   cambia col numero di persone, «pp» è a testa. Dove la conferma non riporta
+   l'importo lo dico, invece di inventarlo.
+   Cambi usati: 1 € ≈ 27.500 VND, 1 € ≈ 38 THB (ottobre 2026). */
 const BUDGET=[
-  ["Pedaggi Italia","A1+A22+A4 andata e ritorno",75,85,"fisso"],
-  ["Vignetta Slovenia","e-vinjeta 7 giorni (6→12 set)",16,16,"fisso"],
-  ["Pedaggi Croazia","Zagabria–Karlovac, Plitvice–Fiume",30,40,"traghetti"],
-  ["Parcheggi e garage","Lubiana, Stara Fužina, Plitvice, Cres, base finale",60,90,"fisso"],
-  ["Alloggi","9 notti in doppia, 4 strutture (Cres ×4 scontate)",900,1320,"fisso"],
-  ["Cibo","10 giorni, colazione + pranzo leggero + cena, a testa",275,425,"pp"],
-  ["Extra","Tartufo, sale di Sicciole, souvenir, imprevisti",120,250,"fisso"]
+  ["Voli Etihad A/R","Milano–Abu Dhabi–Hanoi e ritorno, 2 persone. <i>Prenotati il 20/9, l'importo non è nella conferma</i>",1100,1500,"fisso"],
+  ["Volo interno VietJet","VJ514 Da Nang–Hanoi, 2 persone con bagaglio. <i>Importo non riportato</i>",80,140,"fisso"],
+  ["Trasferimenti già pagati","2 minivan per Sa Pa 51 € · bus notturno Tam Coc–Hue 37 € · treno Hue–Hoi An 22 € · taxi da Noi Bai 9 €",119,119,"fisso"],
+  ["Trasferimenti da pagare","Van crociera→Tam Coc, Hoi An→Da Nang, taxi a Sa Pa, Grab in città",60,110,"fisso"],
+  ["Alloggi confermati","Hoi An 212 € (pagato) · Hanoi 129 € · Sa Pa 92 € · Hue 34 € · Noi Bai 27 €",494,494,"fisso"],
+  ["Alloggi da sistemare","Halise a Tam Coc + <b>la notte del 15 a Hanoi, da riprenotare</b>",50,90,"fisso"],
+  ["Crociera Peony, 2 notti","Pensione completa e attività incluse. <i>Importo non riportato nella conferma</i>",250,400,"fisso"],
+  ["Cibo e bevande","16 giorni, a testa. In Vietnam si mangia benissimo con poco: il grosso sono le bevande",160,280,"pp"],
+  ["Scooter, SIM, extra","Noleggi a Sa Pa e Tam Coc, SIM o eSIM, mance, souvenir, sartoria a Hoi An",70,160,"fisso"]
 ];
-const CARB={lmin:6.5,lmax:7.5,pmin:1.75,pmax:1.80};
+const CARB={lmin:0,lmax:0,pmin:0,pmax:0};
 
+/* ── Da prenotare e già prenotato ────────────────────────────────────── */
 const BOOK=[
- ["alert","Subito","Plitvice, slot orario","np-plitvicka-jezera.hr","40 €/pers.","Giovedì 10/9, 07:00, Ingresso 2. Cap di 300 persone/ora: è la prenotazione che decide la riuscita del viaggio."],
- ["alert","Subito","Alloggi, 9 notti","Booking / diretto","—","Bohinj ×3 · Plitvice ×1 · Cres ×4 · finale ×1. Sulle quattro notti a Cres chiedi lo sconto."],
- ["sig","Entro 7 giorni","La base del 14 settembre","Booking / diretto","—","L'unica scelta degli ultimi giorni che non si può rimandare. Vedi il menù del giorno 9."],
- ["sig","Entro 7 giorni","Postojna + Predjama","postojnska-jama.eu","40,30 €/pers.","Combinata, 10% meno dei biglietti separati. Slot grotta 13:00 di domenica 6/9: vincolante."],
- ["acc","Prima di partire","e-vinjeta Slovenia, 7 giorni","evinjeta.dars.si","16 €/auto","Attivala dal 6/9 (valida fino al 12/9). Legata alla targa, niente adesivo."],
- ["good","In loco","Mostnica, Vogel, Savica","Alla cassa","4 / 33 / 8 €","Nessuna prenotazione, nessuno slot. Vogel include parcheggio e seggiovia."],
- ["good","In loco","Kozjak, Museo di Caporetto","Alla cassa","5 / 8 €","Il biglietto di Kozjak dà diritto allo sconto sul museo."],
- ["good","In loco","Traghetti, Rastoke, campanili","Al piazzale / cassa","—","Le linee locali Jadrolinija non accettano prenotazioni auto."],
- ["good","Il giorno stesso","La giornata del 13 su Cres","A colazione","0–130 €","Nessuna delle quattro si prenota. Il noleggio barca conviene chiederlo la sera prima al porto."],
- ["","Facoltativo","Cena dell'ultima sera e a Kobarid","Telefono","—","Hiša Franko si prenota con mesi d'anticipo; le altre bastano il giorno prima."]
+ ["alert","Da fare","La notte del 15 a Hanoi","Booking","25–45 €","<b>Il Golden Rooster è prenotato per il 15 novembre 2027, non 2026.</b> Serve una camera per la notte fra il 15 e il 16 novembre 2026, meglio a Hoan Kiem: domattina la crociera vi prende in albergo."],
+ ["alert","Da fare","Van dalla crociera a Tam Coc","Halise, diretto","~25 €","Sbarco alle <b>11:30 al Lotto 34 di Tuan Chau</b>, confermato da Peony. È l'orario da dare a Halise."],
+ ["alert","Da fare","Hoi An → aeroporto di Da Nang","Grab o bus","2–20 €","Il 24 pomeriggio, 30 km e un'ora con il traffico. Da decidere prima di partire."],
+ ["sig","Da chiedere","Pick-up della crociera a Hanoi","Chat Booking","incluso","Peony viene a prendervi la mattina del 16: va detto loro il nome dell'albergo — che cambia, visto che la notte del 15 va riprenotata."],
+ ["sig","Da chiedere","Transfer per il bus notturno","WhatsApp +84 798 149 095","gratis","HK Buslines fa il pick-up dagli hotel di Tam Coc per i clienti 12Go, ma <b>va chiesto almeno 24 ore prima</b>."],
+ ["sig","Da verificare","Ingresso in Vietnam","esteri.it / ambasciata","—","Il programma rimanda a viaggiaresicuri.it. L'esenzione dal visto per gli italiani viene rinnovata periodicamente: <b>va controllata prima di partire</b>."],
+ ["sig","Da valutare","Patente internazionale","Motorizzazione","~30 €","Serve per lo scooter a Sa Pa e a Tam Coc. Si richiede alla Motorizzazione e ci vogliono settimane."],
+ ["good","Fatto","Voli Etihad A/R","Codice 9T6U9F","—","MXP 10/11 → HAN · HAN 25/11 → MXP. <b>L'EY433 del 25 è stato spostato alle 08:15.</b> Posti 37H/37J, 30H/30J, 31D/31E."],
+ ["good","Fatto","Volo interno Da Nang → Hanoi","Codice 5EVNMY","—","VJ514 del 24/11, 16:55–18:15. Posti 11B e 11C, un bagaglio da stiva a testa."],
+ ["good","Fatto","Taxi privato da Noi Bai","Booking 860124030","9,13 € pagati","11/11 alle 12:00, 35 km fino al Serene. Meet & Greet con il numero di volo."],
+ ["good","Fatto","Serene Central Hotel, Hanoi","Conferma 6158389407","129 €","11 → 13 novembre, 2 notti, colazione inclusa. 106 Hàng Bông, tel +84 24 3203 0128."],
+ ["good","Fatto","Minivan Hanoi → Sa Pa","12GO33251058","~24 €","13/11, Hanoi Opera House 07:00 → Sa Pa 13:00. Esserci 30 minuti prima."],
+ ["good","Fatto","Maison de Lao Chai, Sa Pa","Conferma 6309631840","92 €","13 → 15 novembre, 2 notti, colazione inclusa. Lao Chải 06, tel +84 91 220 5154."],
+ ["good","Fatto","Minivan Sa Pa → Hanoi","12GO33251059","~27 €","15/11, Sa Pa 14:00 → Hanoi Opera House 20:00."],
+ ["good","Fatto","Peony Cruises, Baia di Ha Long","Conferma 9800672634863520599","—","16 → 18 novembre, 2 notti. Check-in 11:15 e sbarco 11:30 al Lotto 34 di Tuan Chau. Danny Do, WhatsApp +84 984 749 958."],
+ ["good","Fatto","Halise Home, Tam Coc","Diretto","—","18 → 19 novembre, camera vista lago. Prenotato fuori da Booking."],
+ ["good","Fatto","Bus notturno Tam Coc → Hue","AATZ2552","~37 €","19/11 alle 21:30 → 20/11 alle 06:30. Cabina bassa singola, HK Buslines."],
+ ["good","Fatto","The Chum Boutique, Hue","Conferma 6039302548","34 €","20 → 21 novembre, 1 notte. 07 Trương Định, tel +84 70 537 1111. <i>Colazione non inclusa.</i>"],
+ ["good","Fatto","Treno Hue → Hoi An","AATZ5888","21,87 €","21/11, Hue Railway Station 14:45 → 70 Nguyen Thi Minh Khai 17:55. Il passo di Hai Van."],
+ ["good","Fatto","The Signature Hoi An","Conferma 890180385629827714","211,85 € pagati","21 → 24 novembre, 3 notti, colazione inclusa. 21 La Hối, tel +84 70 359 9969. <b>Non rimborsabile.</b>"],
+ ["good","Fatto","Airport Classic Hotel 2, Noi Bai","Conferma 5403083248","27 €","24 → 25 novembre, 1 notte. Số 8 Võ Nguyên Giáp, tel +84 97 830 0357. <i>Date corrette il 3 ottobre.</i>"]
 ];
 
-const METEO=[["Bohinj","19–23°","8–11°","19–20°"],["Vršič (1.611 m)","10–15°","3–6°","—"],
- ["Valle della Soča","21–25°","11–14°","14° fiume"],["Plitvice","19–23°","8–11°","—"],
- ["Cres / Quarnaro","24–27°","17–19°","23–24°"],["Istria / Pirano","24–27°","16–18°","23–24°"]];
+const METEO=[["Hanoi","20–25°","17–19°","—"],["Sa Pa (1.550 m)","13–18°","8–11°","—"],
+ ["Baia di Ha Long","20–24°","17–19°","22–23°"],["Ninh Binh","21–25°","17–20°","—"],
+ ["Hue","22–26°","19–21°","23–24°"],["Hoi An / Da Nang","23–28°","21–23°","24–25°"]];
 
-const PHRASES=[["Buongiorno","Dober dan","Dobar dan"],["Ciao (informale)","Živjo","Bok"],
- ["Grazie","Hvala","Hvala"],["Per favore / prego","Prosim","Molim"],["Scusi","Oprostite","Oprostite"],
- ["Arrivederci","Nasvidenje","Doviđenja"],["Sì / No","Ja / Ne","Da / Ne"],
- ["Quanto costa?","Koliko stane?","Koliko košta?"],["Il conto, per favore","Račun, prosim","Račun, molim"],
- ["Parla inglese?","Govorite angleško?","Govorite li engleski?"],["Non capisco","Ne razumem","Ne razumijem"],
- ["Dov'è il bagno?","Kje je stranišče?","Gdje je toalet?"],["Una birra, per favore","Eno pivo, prosim","Jedno pivo, molim"],
- ["Un caffè","Ena kava","Jedna kava"],["Pesce / carne","Riba / meso","Riba / meso"],
- ["Sentiero / cascata","Pot / slap","Staza / slap"],["Traghetto","Trajekt","Trajekt"],
- ["Uscita / ingresso","Izhod / vhod","Izlaz / ulaz"],["Salute! (brindisi)","Na zdravje!","Živjeli!"],
- ["Aiuto","Na pomoč","Upomoć"],["Dove si paga?","Kje se plača?","Gdje se plaća?"],
- ["Ho prenotato","Imam rezervacijo","Imam rezervaciju"],["A che ora?","Ob kateri uri?","U koliko sati?"],
- ["Il traghetto parte?","Ali trajekt vozi?","Vozi li trajekt?"],["Acqua, per favore","Vodo, prosim","Vodu, molim"]];
+/* ── Frasario ──────────────────────────────────────────────────────────
+   Il vietnamita è tonale: la stessa sillaba detta con sei intonazioni
+   diverse vuol dire sei cose diverse. La terza colonna è una resa
+   approssimativa all'italiana — serve a farsi capire, non a parlare bene. */
+const PHRASES=[["Buongiorno","Xin chào","sin ciào"],["Grazie","Cảm ơn","cam ɐn"],
+ ["Per favore","Làm ơn","lam ɐn"],["Scusi","Xin lỗi","sin lòi"],
+ ["Sì / No","Vâng / Không","vang / khong"],["Quanto costa?","Bao nhiêu tiền?","bao nhiêu tien"],
+ ["Troppo caro","Đắt quá","dat quà"],["Il conto, per favore","Tính tiền","tin tien"],
+ ["Parla inglese?","Có nói tiếng Anh không?","co noi tien an khong"],
+ ["Non capisco","Tôi không hiểu","toi khong hiểu"],
+ ["Dov'è il bagno?","Nhà vệ sinh ở đâu?","nia ve sin ɐ dau"],
+ ["Una birra","Một bia","mot bia"],["Caffè con latte condensato","Cà phê sữa","ca fe sũa"],
+ ["Senza ghiaccio","Không đá","khong dà"],["Non piccante","Không cay","khong cai"],
+ ["Sono vegetariano","Tôi ăn chay","toi an ciai"],["Acqua","Nước","nuɐc"],
+ ["Buonissimo","Ngon quá","ngon quà"],["Salute! (brindisi)","Một hai ba, dô!","mot hai ba, iô"],
+ ["Aiuto","Cứu tôi","kuu toi"],["Stazione / aeroporto","Ga / sân bay","ga / san bai"],
+ ["Albergo","Khách sạn","khac san"],["Quanto manca?","Còn bao xa?","con bao sa"],
+ ["Ho prenotato","Tôi đã đặt trước","toi da dat truɐc"],["A che ora?","Mấy giờ?","mai giɐ"]];
 
 const LISTS=[
- {t:"Documenti e prenotazioni",i:["Carta d'identità valida per l'espatrio o passaporto","Patente, libretto, certificato assicurativo","Tessera Sanitaria–TEAM (retro azzurro)","Voucher Plitvice 07:00 Ingresso 2, scaricato OFFLINE","Voucher Postojna + Predjama, slot 13:00 del 6/9","e-vinjeta 7 giorni attivata sulla targa","Conferme dei 4 alloggi (9 notti), offline","Base dell'ultima notte scelta e prenotata (Pirano / Rovigno / Pola / Abbazia)","Mappe Google di Slovenia e Croazia scaricate","App Jadrolinija installata","Orari del ponte girevole di Osor, se pensate a Lošinj","100–150 € in contanti"]},
- {t:"Auto",i:["Controllo gomme, pressione e freni (c'è il Vršič)","Giubbotto catarifrangente nell'abitacolo","Triangolo","Kit di primo soccorso (obbligatorio in Croazia)","Set lampadine di scorta","Supporto e caricatore per telefono","Telo parasole","Sacchetto rifiuti e salviette","Ruotino o kit riparazione forature"]},
- {t:"In valigia",i:["Scarpe da trekking (Mostnica, Kozjak, Plitvice, discesa a Sveti Ivan)","Sandali o scarpette da scoglio","Pile o felpa pesante: 10 °C nelle grotte, meno sul Vršič","Giacca antipioggia leggera","Costume e telo in microfibra","Cappello e occhiali da sole","Crema solare alta","Zaino piccolo + 2 borracce (per Sveti Ivan servono davvero)","Bastoncini da trekking se li usi","Un abito decente per l'ultima cena","Un libro vero, per il giorno zero a Cres","Power bank","Repellente antizanzare (Bohinj e Plitvice)","Binocolo per i grifoni di Beli","Farmaci personali, antidolorifico, cerotti"]}
+ {t:"Da fare prima di partire",i:["<b>Riprenotare la notte del 15 novembre a Hanoi</b> (il Golden Rooster è per il 2027)","<b>Dire a Halise l'orario vero di sbarco: 11:30 al Lotto 34 di Tuan Chau</b>","<b>Decidere come andare da Hoi An all'aeroporto di Da Nang il 24</b>","Chiedere a Peony il pick-up a Hanoi la mattina del 16, con il nome dell'albergo nuovo","Chiedere a Peony il programma dettagliato dei tre giorni","Chiedere a HK Buslines il transfer per il bus notturno del 19 (WhatsApp, 24 ore prima)","Verificare l'ingresso in Vietnam sul sito dell'ambasciata","Richiedere la patente internazionale, se volete lo scooter","Assicurazione medico-bagaglio","Decidere se anticipare il taxi dell'11 (ora è alle 12:00, si atterra alle 06:10)"]},
+ {t:"Documenti e prenotazioni",i:["Passaporto valido almeno 6 mesi oltre il rientro","Carte d'imbarco Etihad A/R, codice 9T6U9F","Biglietto VietJet VJ514, codice 5EVNMY","Voucher Booking: Serene, Maison de Lao Chai, Chum, Signature, Airport Classic","Biglietti 12Go: minivan ×2, bus notturno, treno — scaricati OFFLINE","Conferma Peony Cruises e contatto WhatsApp di Danny Do","Conferma Halise Home","Assicurazione di viaggio, numero di polizza","Patente internazionale, se la prendete","Contanti in euro da cambiare, e una carta senza commissioni","Copia di tutto su telefono e una copia cartacea separata"]},
+ {t:"Nello zaino",i:["<b>Zaino, non valigia</b>: sei spostamenti con scale, van e bus","Zaino piccolo per Sa Pa (il grande resta a Hanoi)","Scarpe da trekking chiuse (Sa Pa, Mua Caves, My Son)","Sandali o ciabatte","Impermeabile leggero e copri-zaino: a Hue e Hoi An novembre è stagione di piogge","Felpa o pile: a Sa Pa di notte si va sotto i 10 °C","Costume e telo microfibra (baia, An Bang)","Borsa o sacca waterproof per la baia","Repellente antizanzare","Crema solare","Power bank e adattatore (prese A/C, 220 V)","Torcia o frontale (Halise è nella giungla)","Tappi per le orecchie, per il bus notturno","Un cambio decente per le cene"]},
+ {t:"Salute e farmacia",i:["Farmaci personali con la ricetta","Antidiarroico e fermenti lattici","Antidolorifico e antipiretico","Cerotti e disinfettante","Gel disinfettante per le mani","Collirio (lo smog di Hanoi)","Pastiglie per il mal d'auto: i tornanti per Sa Pa sono seicento","Zanzariera da viaggio, se dormite con la finestra aperta a Tam Coc"]}
 ];
 
-/* ── Biglietti: quali esistono, quanto valgono, cosa si vede gratis ───────
-   Nata da un riscontro sul campo: a Rastoke il documento diceva «ingresso
-   ~8 €» e in realta' i biglietti sono due — quello del comune e quello di un
-   borgo-museo privato — mentre il colpo d'occhio vero si prende dal ponte,
-   gratis. Da allora ogni cosa a pagamento dichiara anche la sua versione
-   gratuita, e il totale degli ingressi non è più un numero scritto a mano:
-   è la somma di quello che decidete di prendere.
-   p = euro a persona · v = verdetto · conta: se entra nel totale o se è già
-   contato altrove (dentro il costo di un'opzione a scelta). */
+/* ── Biglietti: quali esistono, quanto valgono, cosa si vede gratis ───── */
 const BIGLIETTI=[
- {id:'postojna',g:1,n:'Postojna + Predjama, combinata',p:40.30,v:'si',on:true,conta:true,
-  quali:'Combinata delle due: 10% in meno dei biglietti separati. Slot grotta vincolante.',
-  gratis:"La gola sotto Predjama e il castello incastrato nella parete si vedono dal parcheggio e dalla strada. Dentro la grotta, invece, non c'è modo di sbirciare: o si paga o si salta."},
- {id:'mostnica',g:2,n:'Gola della Mostnica',p:4,v:'si',on:true,conta:true,
-  quali:'Si paga all\'imbocco, nessuno slot. Il parcheggio a Stara Fužina e\' a parte, ~3 €/h.',
-  gratis:"Il Ponte del Diavolo si vede dalla strada senza entrare, e la valle di Voje oltre la gola è libera. Ma quattro euro per quell'acqua sono il biglietto meglio speso del viaggio."},
- {id:'vogel',g:2,n:'Funivia del Vogel',p:33,v:'si',on:true,conta:true,
-  quali:'Andata e ritorno, parcheggio e seggiovia per Orlova Glava inclusi.',
-  gratis:"Niente: o si paga, o si salgono mille metri a piedi. L'alternativa gratuita vera è un'altra giornata — la Mostnica e il lago."},
- {id:'savica',g:2,n:'Cascata Savica',p:8,v:'forse',on:true,conta:true,
-  quali:'Biglietto unico alla cassa del sentiero.',
-  gratis:"Nulla di equivalente: il sentiero e la passerella sono dentro il recinto. Otto euro per cinquecento gradini e una cascata a forma di A: se la giornata è già piena, è la prima cosa che si taglia."},
- {id:'kozjak',g:3,n:'Cascata Kozjak',p:5,v:'si',on:true,conta:true,
-  quali:'Alla cassa di Kamp Koren. Dà diritto allo sconto sul Museo di Caporetto.',
-  gratis:"La Soča si vede dalla strada per venti chilometri e non si paga: le Velika korita, i ponti, il greto. Kozjak però è una cascata dentro una grotta aperta, e quello lì non c'è altrove."},
- {id:'kobarid',g:3,n:'Museo di Caporetto',p:8,v:'forse',on:true,conta:true,
-  quali:'Con il biglietto di Kozjak si paga meno. È un museo, non una collezione di cimeli.',
-  gratis:"Il ponte di Napoleone sulla Soča e il sacrario italiano sul colle di San Antonio: si arriva in auto, si entra, non si paga niente. Se i musei non vi dicono nulla, questa è la versione all'aperto della stessa storia."},
- {id:'funicolare',g:4,n:'Funicolare del castello di Lubiana',p:10,v:'forse',on:true,conta:true,
-  quali:'Andata e ritorno, oppure solo salita. La torre panoramica è un biglietto a parte.',
-  gratis:"Al castello si sale a piedi in un quarto d'ora dal mercato, per un sentiero in mezzo al verde, e il cortile è libero. La funicolare compra dieci minuti, non una vista."},
- {id:'beli',g:6,n:'Centro dei grifoni, Beli',p:8,v:'forse',on:true,conta:true,
-  quali:'Le voliere degli uccelli non più liberabili e il centro visite.',
-  gratis:"I grifoni in volo si vedono dal sentiero sopra Beli e dalle falesie di Orlec senza pagare — col binocolo, meglio che dalla voliera. Il biglietto serve se volete vederli da vicino e sostenere il centro."},
- {id:'plitvice',g:5,n:'Plitvice, slot 07:00',p:40,v:'si',on:true,conta:true,
-  quali:"Settembre è alta stagione. Il parcheggio non è incluso. L'ingresso alle 7:00 costa come quello alle 11:00.",
-  gratis:"Niente, e va bene così: è l'unico biglietto del viaggio che non si discute. La differenza non la fa il prezzo, la fa l'ora."},
- {id:'kuterevo',g:5,n:'Rifugio degli orsi di Kuterevo',p:0,v:'si',on:true,conta:true,
-  quali:'Non è un biglietto: è un\'offerta libera, raccolta da volontari.',
-  gratis:"Tutto, formalmente. Ma è il posto in cui lasciare qualcosa ha più senso di tutto il viaggio: cinque o dieci euro a testa sono il minimo decente."},
- {id:'rastoke',g:4,n:'Rastoke, il borgo-museo privato',p:8,v:'no',on:false,conta:true,
-  quali:'Attenzione: a Rastoke i biglietti sono <b>due</b>. ~5 € il camminamento sulle passerelle del paese, ~8 € a testa il borgo-museo privato.',
-  gratis:"I mulini incastrati nelle cascate della Slunjčica si vedono dal ponte di Slunj e dalla strada, gratis, ed è lì che sta il colpo d'occhio. <b>Verificato sul posto, settembre 2026:</b> il borgo a pagamento è una ricostruzione e delude. Mezz'ora dal ponte, e via."},
- {id:'mura',g:9,n:'Mura veneziane di Pirano',p:2,v:'si',on:false,conta:false,
-  quali:'Due euro, biglietteria all\'ingresso delle mura.',
-  gratis:"La piazza Tartini, San Giorgio e Punta non si pagano. Dalle mura però si vede l'istmo intero: due euro è il miglior rapporto del viaggio. <i>Già dentro il costo del finale Pirano.</i>"},
- {id:'saline',g:9,n:'Saline di Sicciole',p:7,v:'forse',on:false,conta:false,
-  quali:'Parco naturale, biglietto al centro visite di Fontanigge.',
-  gratis:"La strada fra i bacini, con le vasche a fior d'acqua e le cataste di sale, si percorre senza pagare. Il biglietto serve per il museo del sale e i sentieri interni. <i>Già dentro il costo del finale Pirano.</i>"},
- {id:'arena',g:9,n:'Arena di Pola',p:10,v:'si',on:false,conta:false,
-  quali:'Biglietto dell\'anfiteatro; il Tempio di Augusto è a parte, due euro.',
-  gratis:"L'Arena da fuori è intera, e di sera illuminata: è l'unico anfiteatro al mondo con le torri laterali in piedi, e quelle si vedono dalla strada. <i>Già dentro il costo del finale Pola.</i>"}
+ {id:'mausoleo',g:3,n:'Mausoleo di Ho Chi Minh',p:0,v:'si',on:true,conta:true,
+  quali:'Gratis. Apre 7:30 e <b>chiude alle 10:30</b>. Chiuso il lunedì e il venerdì, più una chiusura annuale per manutenzione che cade spesso in autunno.',
+  gratis:"Tutto. Si paga solo con la fila e con il contegno: braccia lungo i fianchi, niente foto, niente cappello. Il museo accanto invece si paga, e si può saltare."},
+ {id:'motcot',g:3,n:'Pagoda Chua Mot Cot',p:0,v:'si',on:true,conta:true,
+  quali:'Gratis, 7–18. È a due passi dal Mausoleo: si fanno insieme.',
+  gratis:"Tutto. È piccola — una pagoda su un pilastro solo in mezzo a una vasca — e si vede in dieci minuti."},
+ {id:'presidenziale',g:3,n:'Palazzo Presidenziale e casa su palafitte',p:1.5,v:'forse',on:true,conta:true,
+  quali:'~1,50 € a testa. Orari spezzati: 7:30–11:00 e 13:30–16:00.',
+  gratis:"Il palazzo giallo coloniale si vede benissimo dal viale, e il giardino è attraversabile. Il biglietto serve per entrare nella casa su palafitte dietro, che è la parte che racconta qualcosa."},
+ {id:'letteratura',g:3,n:'Tempio della Letteratura',p:1.2,v:'si',on:true,conta:true,
+  quali:'~1,20 € a testa, 8–17. Un biglietto solo per i cinque cortili.',
+  gratis:"Niente: è recintato. Ma a un euro e venti per la prima università del Vietnam, fondata nel 1070, non c'è discussione."},
+ {id:'cittadella-hn',g:3,n:'Cittadella imperiale di Thang Long',p:4,v:'si',on:true,conta:true,
+  quali:'~4 € a testa, 8–17. UNESCO. Il bunker della guerra è compreso.',
+  gratis:"La porta monumentale si vede dalla strada. Dentro però c'è il bunker da cui si comandò la difesa di Hanoi nel '72, e quello vale il biglietto da solo."},
+ {id:'tranquoc',g:3,n:'Pagoda di Tran Quoc',p:0,v:'si',on:true,conta:true,
+  quali:'Gratis, 8–16: <b>è la prima che chiude</b>, mettetela prima del tramonto e non dopo.',
+  gratis:"Tutto. È la pagoda più antica di Hanoi, su una lingua di terra nel lago dell'Ovest."},
+ {id:'trangan',g:10,n:'Trang An, giro in barca',p:10.5,v:'si',on:true,conta:true,
+  quali:'Alla biglietteria si sceglie fra tre percorsi, ~9–12 € a testa, circa 3 ore. Il prezzo è per posto in barca, remata da una persona del posto.',
+  gratis:"Niente di paragonabile — e qui non si discute: è la cosa più bella del viaggio in terraferma. Se volete solo il paesaggio senza barca, la strada fra Tam Coc e Bai Dinh attraversa lo stesso scenario gratis."},
+ {id:'mua',g:10,n:'Mua Caves',p:4,v:'si',on:true,conta:true,
+  quali:'~4 € a testa. 500 gradini fino in cima, sempre aperto in orario diurno.',
+  gratis:"Il giardino con la passerella e i loti alla base, sulla destra prima della salita, è dentro il biglietto ma quasi tutti lo saltano. Dall'esterno non si vede nulla: il punto è la cima."},
+ {id:'baidinh',g:10,n:'Pagoda di Bai Dinh',p:0,v:'si',on:true,conta:true,
+  quali:"Ingresso gratis. Si paga solo la navetta elettrica interna, ~2 € — il complesso è enorme e a piedi sono chilometri.",
+  gratis:"Tutto, se avete gambe. La navetta fa risparmiare un'ora di asfalto, non si perde niente a farne a meno."},
+ {id:'bichdong',g:9,n:'Bich Dong Pagoda',p:0,v:'si',on:true,conta:true,
+  quali:'Gratis. <b>Chiude alle 17:00.</b> Il parcheggio dello scooter si paga pochi centesimi.',
+  gratis:"Tutto. Tre pagode una sopra l'altra, scavate nella montagna, a tre chilometri da Halise."},
+ {id:'cittadella-hue',g:11,n:'Cittadella imperiale di Hue',p:7,v:'si',on:true,conta:true,
+  quali:'~7 € a testa per la Cittadella e la Città Proibita. Le <b>tombe imperiali</b> fuori città sono biglietti a parte, ~4 € ciascuna.',
+  gratis:"Il giro esterno delle mura e del fossato, dieci chilometri, non si paga ed è bellissimo in scooter. Ma la Città Proibita dentro è il motivo per cui si viene a Hue."},
+ {id:'thienmu',g:11,n:'Pagoda Thien Mu',p:0,v:'si',on:true,conta:true,
+  quali:'Gratis. Sul Fiume dei Profumi, 4 km dal centro.',
+  gratis:"Tutto, compresa l'automobile di Thich Quang Duc nel cortile sul retro — che è la cosa che si ricorda."},
+ {id:'tuhieu',g:12,n:'Tu Hieu Pagoda',p:0,v:'si',on:true,conta:true,
+  quali:"Gratis, offerta libera. È un convento attivo: si entra in silenzio e non si fotografano i monaci.",
+  gratis:"Tutto. Lasciate qualcosa nella cassetta: è un monastero vero, non un sito."},
+ {id:'hoian-carnet',g:13,n:'Città vecchia di Hoi An, carnet',p:4.5,v:'forse',on:true,conta:true,
+  quali:'~4,50 € a testa per un carnet che dà diritto a entrare in <b>cinque</b> monumenti su una ventina.',
+  gratis:"<b>Camminare per la città vecchia, attraversare il Ponte Giapponese e mangiare non costa niente.</b> Il carnet serve solo per entrare nelle case dei mercanti e nelle sale delle congregazioni — che sono quattro o cinque, e valgono."},
+ {id:'fansipan',g:5,n:'Funivia del Fansipan',p:35,v:'forse',on:false,conta:false,
+  quali:'~35 € a testa andata e ritorno, più la cremagliera per gli ultimi metri.',
+  gratis:"Il passo di Tram Ton, a 1.900 m, si raggiunge in scooter gratis e dà la stessa vista sulla valle. <i>Già dentro il costo dell'opzione «Fansipan» del giorno 5.</i>"},
+ {id:'myson',g:14,n:'My Son',p:7,v:'si',on:false,conta:false,
+  quali:'~7 € a testa, compreso lo spettacolo di danza Cham del mattino.',
+  gratis:"Niente: è un sito recintato. <i>Già dentro il costo dell'opzione «My Son e Marble Mountain» del giorno 14.</i>"},
+ {id:'marble',g:14,n:'Marble Mountain',p:3,v:'forse',on:false,conta:false,
+  quali:"~3 € a testa, più ~0,60 € per l'ascensore che salta la scalinata.",
+  gratis:"I laboratori di scultura ai piedi delle colline si attraversano liberamente. <i>Già dentro il costo dell'opzione del giorno 14.</i>"}
 ];
 
-/* ── A tavola: dove si mangia, e cosa regge la pioggia ────────────────────
-   f = fascia di prezzo (1 konoba · 2 trattoria · 3 ristorante vero)
-   al coperto = ci si sta dentro, serve il giorno che piove
-   Nessuno di questi è stato chiamato: sono indirizzi raccolti costruendo il
-   road book e sul posto, non prenotazioni. Gli orari si controllano la
-   mattina stessa. */
+/* ── A tavola ────────────────────────────────────────────────────────────
+   f = fascia (1 bottega di strada · 2 trattoria · 3 ristorante)
+   Indirizzi raccolti dal programma di Samira e dalle guide: nessuno è stato
+   chiamato. In Vietnam non serve prenotare quasi mai. */
 const TAVOLA=[
- {n:'Gostilna Rupa',dove:'Srednja vas, Bohinj',g:[1,2,3],z:'Giulie',f:2,coperto:true,pren:true,
-  c:'Cucina alpina vera: <i>ričet</i>, selvaggina, trota. È la prima sera, quella in cui si capisce di essere arrivati.'},
- {n:'Gostilna Mihovc',dove:'Stara Fužina',g:[2,3],z:'Giulie',f:1,coperto:true,pren:false,
-  c:"A due passi dall'imbocco della Mostnica: si scende dal sentiero e si mangia. Porzioni da montagna."},
- {n:'Rifugio in cima al Vogel',dove:'Vogel, 1.535 m',g:[2],z:'Giulie',f:1,coperto:true,pren:false,
-  c:'Solo se la giornata è limpida — si mangia per la vista, non per il piatto. Minestra, salsiccia, strudel.'},
- {n:'Kotlar',dove:'Kobarid',g:[3],z:'Soča',f:3,coperto:true,pren:true,
-  c:'Pesce di fiume e di mare fatto bene, nel paese di Ana Roš. Si prenota il giorno prima.'},
- {n:'Topli Val',dove:'Kobarid',g:[3],z:'Soča',f:3,coperto:true,pren:true,
-  c:"L'altra tavola buona di Kobarid, dentro l'Hotel Hvala. Carta dei vini della valle."},
- {n:'Hiša Franko',dove:'Staro selo, Kobarid',g:[3],z:'Soča',f:3,coperto:true,pren:true,
-  c:'Tre stelle, Ana Roš. <b>Si prenota con mesi di anticipo</b>: se non lo avete fatto, non è un piano B.'},
- {n:'Ribca',dove:'Mercato di Plečnik, Lubiana',g:[4],z:'Lubiana',f:1,coperto:true,pren:false,
-  c:'Sotto il portico del mercato, sulla Ljubljanica: pesce fritto e birra, in piedi o al banco. Veloce e giusto.'},
- {n:'Klobasarna',dove:'Ciril-Metodov trg, Lubiana',g:[4],z:'Lubiana',f:1,coperto:false,pren:false,
-  c:'Kranjska klobasa e <i>ričet</i> in dieci minuti, due tavoli e via. Il pranzo del giorno in cui si deve ripartire.'},
- {n:'Konobe lungo la D1',dove:'Plitvice, Rakovica, Mukinje',g:[4,5],z:'Plitvice',f:1,coperto:true,pren:false,
-  c:'Agnello allo spiedo, trota della Korana, <i>štrukli</i>. Sono tutte oneste e si cena presto, che è quello che serve la sera prima delle 7:00.'},
- {n:'Konoba Bukaleta',dove:'Loznati, 8 km da Cres',g:[6,7,8],z:'Cres',f:2,coperto:true,pren:true,
-  c:"L'agnello di Cres dove si fa: pascolo di salvia e salmastro. <b>È anche il posto giusto del giorno di pioggia</b> — si sta dentro e costa la metà del porto."},
- {n:'Trattorie del mandracchio',dove:'Cres città',g:[5,6,7,8],z:'Cres',f:2,coperto:false,pren:false,
-  c:'Pesce del giorno, calamari, scampi del Quarnaro, con i tavoli sul porto interno. Col vento si sta scomodi.'},
- {n:'Konobe dell\'interno',dove:'Dragozetići, Predošćica, Orlec',g:[6,7,8],z:'Cres',f:1,coperto:true,pren:false,
-  c:'Dove si mangia la metà che sul molo: <i>surlice</i> col sugo d\'agnello, formaggio di pecora, vino della casa.'},
- {n:'Bora Bar',dove:'Veli Lošinj',g:[7],z:'Lošinj',f:2,coperto:false,pren:false,
-  c:'Sul porticciolo più bello dell\'arcipelago. Si mangia guardando l\'ansa d\'acqua larga come una piazza.'},
- {n:'Portici della piazza',dove:'Mali Lošinj',g:[7],z:'Lošinj',f:2,coperto:true,pren:false,
-  c:'La piazza più grande della Dalmazia, e i portici coprono: è il pranzo che regge anche col cielo chiuso.'},
- {n:'Konoba Mondo',dove:'Motovun',g:[9],z:'Istria',f:3,coperto:true,pren:true,
-  c:'Tartufo bianco appena sotto la porta della città. Settembre apre la stagione. Pochi tavoli: prenotare.'},
- {n:'Zigante',dove:'Livade',g:[9],z:'Istria',f:3,coperto:true,pren:true,
-  c:'Il tempio del tartufo istriano, otto chilometri sotto Motovun. Più caro e più scenografico di Mondo.'},
- {n:'Fritolin pri Cantini',dove:'Pirano',g:[9],z:'Finale',f:1,coperto:false,pren:false,
-  c:'Si ordina al banco, si paga, si mangia pesce fritto al tavolo di legno. L\'ultima cena senza cerimonie.'},
- {n:'Konoba Kantinon',dove:'Rovigno',g:[9],z:'Finale',f:2,coperto:true,pren:true,
-  c:'Pesce dell\'Adriatico in una sala alta, a due passi dal porto. Se il finale è Rovigno, è qui.'},
- {n:'Buffet triestino',dove:'Trieste',g:[10],z:'Rientro',f:1,coperto:true,pren:false,
-  c:'Maiale bollito, cren, birra, in piedi al banco. È il modo giusto di salutare il viaggio, e dura venti minuti.'}
+ {n:'Bia Phố Cổ Tạ Hiện',dove:'Ta Hien, Hanoi',g:[2,3],z:'Hanoi',f:1,coperto:false,pren:false,
+  c:'Sgabelli di plastica sul marciapiede e <i>bia hoi</i> alla spina, spillata ogni mattina. Si mangia spiedini e si guarda passare la strada.'},
+ {n:'Bun cha, qualunque bottega',dove:'Quartiere Vecchio, Hanoi',g:[2,3],z:'Hanoi',f:1,coperto:true,pren:false,
+  c:'Maiale alla brace in un brodo agrodolce con le erbe. <b>È il piatto di Hanoi</b>, si mangia a pranzo e costa due euro.'},
+ {n:'Cha Ca, via Cha Ca',dove:'Hanoi',g:[3],z:'Hanoi',f:2,coperto:true,pren:false,
+  c:'Pesce alla curcuma e aneto che si finisce di cuocere al tavolo, su un fornelletto. Lo fanno in quella via da un secolo.'},
+ {n:'Cai Man Bistro',dove:'Hanoi',g:[3],z:'Hanoi',f:2,coperto:true,pren:false,
+  c:'Indicato dal programma per pranzo o cena: cucina vietnamita in versione ordinata, buona per la sera in cui si è stanchi.'},
+ {n:'Note Cafe',dove:'Hanoi',g:[2,3],z:'Hanoi',f:1,coperto:true,pren:false,
+  c:'Il <b>caffè all\'uovo</b>: tuorlo montato con latte condensato sopra il caffè caldo. Nato come ripiego quando il latte non si trovava.'},
+ {n:'Homestay Maison de Lao Chai',dove:'Lao Chai, Sa Pa',g:[4,5],z:'Sa Pa',f:1,coperto:true,pren:false,
+  c:'Si mangia dove si dorme, perché nella valle non c\'è altro: maiale affumicato, germogli di bambù, riso dei terrazzamenti.'},
+ {n:'Grigliate del mercato',dove:'Sa Pa town',g:[5],z:'Sa Pa',f:1,coperto:false,pren:false,
+  c:'Spiedini sulla brace all\'aperto e <i>thang co</i>, la zuppa H\'Mong. Da strada, con il freddo di montagna.'},
+ {n:'A bordo, Peony Cruises',dove:'Baia di Ha Long',g:[7,8,9],z:'Ha Long',f:2,coperto:true,pren:false,
+  c:'Pensione completa inclusa per tre giorni: pesce, frutti di mare, e spesso un corso di involtini il pomeriggio. <b>Le bevande si pagano a parte.</b>'},
+ {n:'Capra di montagna',dove:'Tam Coc, Ninh Binh',g:[9,10],z:'Ninh Binh',f:1,coperto:true,pren:false,
+  c:'<i>Dê núi</i> con il riso croccante: le capre stanno sulle pareti verticali e si mangiano. Le botteghe lungo la via di Tam Coc la fanno tutte.'},
+ {n:'Bun bo Hue',dove:'Hue, ovunque',g:[11],z:'Hue',f:1,coperto:true,pren:false,
+  c:'La zuppa piccante di manzo e maiale, con i noodle spessi. <b>Si mangia a colazione</b> ed è la cosa migliore della città.'},
+ {n:'Banh beo e banh khoai',dove:'Hue',g:[11,12],z:'Hue',f:1,coperto:true,pren:false,
+  c:'Cucina di corte in porzioni da assaggio: tortini di riso al vapore serviti dieci alla volta in ciotoline.'},
+ {n:'Banh mi Phuong',dove:'Hoi An',g:[12,13,14,15],z:'Hoi An',f:1,coperto:false,pren:false,
+  c:'Il panino più famoso del Vietnam. C\'è coda e vale la coda. In alternativa <b>Madam Khanh</b>, a due strade.'},
+ {n:'Cao lau, botteghe della città vecchia',dove:'Hoi An',g:[12,13,14],z:'Hoi An',f:1,coperto:true,pren:false,
+  c:'Noodle spessi che <b>si fanno solo qui</b>, con l\'acqua di un pozzo preciso. Nei ristoranti con la vetrina è peggio che nelle botteghe.'},
+ {n:'Mercato notturno sul fiume',dove:'Hoi An, riva sud',g:[13,14],z:'Hoi An',f:1,coperto:false,pren:false,
+  c:'White rose, spiedini, dolci di riso, e le lanterne. Si cena camminando.'},
+ {n:'An Bang Beach',dove:'4 km da Hoi An',g:[14],z:'Hoi An',f:2,coperto:false,pren:false,
+  c:'Pesce alla griglia sulla sabbia, lettino incluso se consumate. Ci si va in bici in venti minuti.'},
+ {n:'Ristorante dell\'hotel',dove:'Airport Classic, Noi Bai',g:[15],z:'Noi Bai',f:2,coperto:true,pren:false,
+  c:'In zona aeroporto non c\'è altro. Per l\'ultima cena va benissimo, e si cena presto perché domani la sveglia è alle 5.'}
 ];
 
-/* ── Profilo altimetrico ──────────────────────────────────────────────────
-   Quote reali dei punti del percorso, con la progressiva in chilometri.
-   È il percorso di riferimento (finale a Pirano, niente soste nel rientro):
-   le scelte spostano i chilometri, non la forma della montagna. */
+/* ── Profilo delle quote ─────────────────────────────────────────────────
+   Solo gli spostamenti via terra: i voli non hanno un profilo. Progressive
+   in chilometri dal primo giorno a Hanoi. */
 const PROFILO=[
- {km:0,q:700,n:'Castelnovo',g:1,l:1},{km:160,q:34,n:'Modena',g:1},
- {km:290,q:59,n:'Verona',g:1},{km:395,q:555,n:'Postojna',g:1,l:1},
- {km:450,q:295,n:'Lubiana',g:1},{km:520,q:501,n:'Bled',g:1},
- {km:555,q:525,n:'Bohinj',g:1,l:1},{km:570,q:1535,n:'Vogel',g:2,l:1,f:1},
- {km:585,q:525,n:'Bohinj',g:2},{km:663,q:1611,n:'Vršič',g:3,l:1},
- {km:700,q:460,n:'Bovec',g:3},{km:715,q:234,n:'Kobarid',g:3,l:1},
- {km:760,q:803,n:'Petrovo Brdo',g:3},{km:800,q:525,n:'Bohinj',g:3},
- {km:895,q:295,n:'Lubiana',g:4},{km:1020,q:122,n:'Zagabria',g:4},
- {km:1095,q:245,n:'Rastoke',g:4,l:1},{km:1125,q:580,n:'Plitvice',g:5,l:1},
- {km:1165,q:460,n:'Otočac',g:5},{km:1180,q:720,n:'Kuterevo',g:5,l:1},
- {km:1230,q:500,n:'Velebit',g:5},{km:1290,q:10,n:'Fiume',g:5},
- {km:1340,q:5,n:'Brestova',g:5,l:1},{km:1375,q:5,n:'Cres',g:5,l:1},
- {km:1440,q:180,n:'Osor',g:7,l:1},{km:1465,q:5,n:'Mali Lošinj',g:7,l:1},
- {km:1525,q:5,n:'Cres',g:7},{km:1546,q:378,n:'Lubenice',g:8,l:1},
- {km:1575,q:5,n:'Cres',g:8},{km:1615,q:5,n:'Brestova',g:9},
- {km:1685,q:277,n:'Motovun',g:9,l:1},{km:1755,q:2,n:'Pirano',g:9,l:1},
- {km:1790,q:2,n:'Trieste',g:10,l:1},{km:2060,q:59,n:'Verona',g:10},
- {km:2235,q:700,n:'Castelnovo',g:10,l:1}
+ {km:0,q:16,n:'Hanoi',g:2,l:1},{km:150,q:60,n:'Viet Tri',g:4},
+ {km:265,q:90,n:'Lao Cai',g:4},{km:300,q:1550,n:'Sa Pa',g:4,l:1},
+ {km:320,q:1100,n:'Lao Chai',g:4},{km:330,q:3143,n:'Fansipan',g:5,l:1,f:1},
+ {km:360,q:1550,n:'Sa Pa',g:6},{km:640,q:16,n:'Hanoi',g:6,l:1},
+ {km:700,q:8,n:'Hai Duong',g:7},{km:805,q:2,n:'Ha Long',g:7,l:1},
+ {km:880,q:4,n:'Hai Phong',g:9},{km:980,q:10,n:'Tam Coc',g:9,l:1},
+ {km:1010,q:60,n:'Trang An',g:10},{km:1150,q:12,n:'Thanh Hoa',g:10},
+ {km:1330,q:8,n:'Ha Tinh',g:10},{km:1450,q:6,n:'Dong Hoi',g:10},
+ {km:1540,q:10,n:'Hue',g:11,l:1},{km:1600,q:500,n:'Hai Van',g:12,l:1},
+ {km:1640,q:5,n:'Da Nang',g:12},{km:1670,q:3,n:'Hoi An',g:12,l:1},
+ {km:1700,q:5,n:'Da Nang',g:15,l:1}
 ];
 
-/* ── Riscontri dal campo ──────────────────────────────────────────────────
-   Quello che il viaggio ha corretto del road book. Sta nell'app perché la
-   prossima volta serve più di qualunque altra sezione. */
+/* ── Da fare, prima di partire ───────────────────────────────────────── */
 const RISCONTRI=[
- {q:'no',t:'Rastoke a pagamento',d:'11 settembre 2026',
-  c:"Il road book diceva «un'ora, ingresso ~8 €». Sul posto: i biglietti sono due, e quello da 8 € è un borgo-museo privato, una ricostruzione che delude. Le cascate coi mulini si vedono meglio dal ponte, gratis. <b>Nell'app il biglietto è ora spento per default</b> e il totale ingressi è scalato di 16 €."},
- {q:'si',t:'Gli orsi di Kuterevo',d:'10 settembre 2026',
-  c:"Non era in programma: lo abbiamo aggiunto noi perché c'era tempo. Quindici chilometri sopra Otočac, offerta libera, volontari, orsi orfani veri. <b>È stata la cosa più bella della giornata.</b> Da qui viene la regola nuova: ogni giornata di trasferimento propone il suo candidato per l'ora che avanza, invece di lasciare che la cerchiate voi."},
- {q:'si',t:'Mostnica invece di Vintgar',d:'7 settembre 2026',
-  c:'Confermato: stessa acqua, 4 € invece di 15, nessuno slot, un decimo delle persone, e si prosegue nella valle di Voje. Scelta da ripetere.'},
- {q:'forse',t:'I musei nelle giornate di pioggia',d:'11 settembre 2026',
-  c:"Rifiutati in blocco. Il piano per il maltempo è stato riscritto su paesi, porti, strade interne e konobe — e ha funzionato meglio dell'originale."},
- {q:'si',t:'Quattro notti a Cres',d:'10–14 settembre 2026',
-  c:"La scelta strutturale che ha retto meglio: valigia ferma, niente check-in, e il giorno del temporale è costato zero perché non c'era niente da smontare."}
+ {q:'no',t:'La notte del 15 a Hanoi non è prenotata',d:'trovato il 3 ottobre 2026',
+  c:"Il Golden Rooster Hotel risulta prenotato per il <b>15–16 novembre 2027</b>, non 2026: lo dicono la conferma Booking («arrivo lunedì 15 novembre 2027») e il messaggio dell'hotel stesso. Il 15 novembre 2026 è una domenica, il 2027 un lunedì. <b>Tornando da Sa Pa alle 20:00 non avete una camera.</b> Va riprenotata, meglio a Hoan Kiem: la mattina dopo la crociera vi viene a prendere in albergo."},
+ {q:'no',t:'Il van dalla crociera a Tam Coc',d:'da organizzare con Halise',
+  c:"Peony ha confermato per email: <b>sbarco alle 11:30 al Lotto 34 di Tuan Chau</b>. Il programma ipotizzava le 14:00. È l'orario e il posto da dare a Halise per il minivan — e se avete già dato le 14:00, va corretto."},
+ {q:'no',t:'Hoi An → aeroporto di Da Nang, il 24',d:'da decidere',
+  c:"Trenta chilometri, un'ora con il traffico del pomeriggio, volo alle 16:55. Grab costa 15–20 €, il bus pubblico un paio di euro ma ci mette il doppio e parte dal centro. <b>Va deciso prima, non il 24 all'uscita dell'hotel.</b>"},
+ {q:'forse',t:"L'ingresso in Vietnam",d:'da verificare sul sito ufficiale',
+  c:"Il programma rimanda a viaggiaresicuri.it e non entra nel merito. L'esenzione dal visto per gli italiani esiste per i soggiorni brevi e il vostro è di quindici giorni, ma <b>viene rinnovata periodicamente e va controllata</b>. È l'unica cosa che, se sbagliata, ferma il viaggio al gate."},
+ {q:'forse',t:'Il taxi dell\'11 è alle 12:00, si atterra alle 06:10',d:'da decidere',
+  c:"Fra uscita dai controlli e partenza restano quasi cinque ore a Noi Bai. Il check-in al Serene è dalle 14:00, quindi la logica c'è — ma gli zaini si possono lasciare in reception e il Quartiere Vecchio si gira anche la mattina. Se volete anticipare, si scrive a Booking."},
+ {q:'si',t:'Il volo di rientro è cambiato',d:'2 ottobre 2026',
+  c:"Etihad ha spostato l'EY433 del 25 novembre: parte alle <b>08:15</b> invece che alle 07:40 e arriva ad Abu Dhabi alle 12:40. La coincidenza EY79 per Milano resta alle 14:20: <b>1h40 di scalo</b>, stesso terminal. Si fa, ma senza margine."},
+ {q:'si',t:"L'hotel dell'aeroporto è stato corretto",d:'3 ottobre 2026',
+  c:"Era prenotato per il <b>10–11 gennaio 2027</b>. Modificato stamattina alle 06:01: ora è 24 → 25 novembre 2026, che è la notte giusta prima del volo delle 08:15."}
 ];
-const COAST=[[14.10,43.30],[13.90,43.42],[13.51,43.62],[13.20,43.75],[12.90,43.92],[12.57,44.06],[12.40,44.25],
- [12.25,44.42],[12.28,44.70],[12.32,44.95],[12.28,45.10],[12.42,45.28],[12.34,45.44],[12.60,45.55],[12.90,45.62],
- [13.10,45.68],[13.40,45.72],[13.58,45.78],[13.75,45.72],[13.77,45.65],[13.73,45.55],[13.62,45.52],[13.57,45.53],
- [13.50,45.45],[13.58,45.35],[13.57,45.28],[13.60,45.20],[13.63,45.08],[13.66,44.95],[13.85,44.87],[13.90,44.79],
- [14.03,44.98],[14.12,45.09],[14.20,45.20],[14.31,45.34],[14.44,45.33],[14.58,45.30],[14.70,45.22],[14.90,44.99],
- [15.06,44.75],[15.20,44.60],[15.44,44.29],[15.47,44.22],[15.30,44.16],[15.23,44.12],[15.35,44.03],[15.45,43.94],
- [15.70,43.83],[15.89,43.73],[15.92,43.59],[16.10,43.52],[16.25,43.51],[16.44,43.51],[16.69,43.44],[17.02,43.29]];
 
+/* ── Geografia ───────────────────────────────────────────────────────────
+   COAST traccia la costa da sud a nord lungo il Vietnam, poi piega a est
+   lungo la costa cinese del Golfo del Tonchino. VIAGGIO.chiusura chiude il
+   poligono passando da nord e da ovest, così la terraferma resta terraferma
+   e il golfo resta mare. */
+const COAST=[
+ [109.20,13.50],[109.26,14.10],[109.16,14.70],[109.00,15.05],[108.84,15.32],
+ [108.66,15.52],[108.48,15.72],[108.38,15.88],[108.30,15.98],[108.25,16.06],
+ [108.14,16.14],[107.98,16.26],[107.80,16.40],[107.62,16.56],[107.38,16.72],
+ [107.14,16.92],[106.96,17.10],[106.74,17.34],[106.52,17.60],[106.32,17.86],
+ [106.16,18.10],[106.02,18.34],[105.92,18.58],[105.80,18.84],[105.84,19.10],
+ [105.92,19.38],[105.96,19.64],[106.06,19.86],[106.18,20.02],[106.32,20.16],
+ [106.48,20.30],[106.58,20.46],[106.72,20.60],[106.88,20.76],[107.02,20.86],
+ [107.22,20.96],[107.42,21.02],[107.62,21.12],[107.82,21.32],[107.96,21.52],
+ [108.10,21.62],[108.42,21.66],[108.82,21.60],[109.12,21.46],[109.44,21.46],
+ [109.72,21.30],[110.02,21.14],[110.42,21.00],[110.62,20.84]
+];
+
+/* Le tratte. Il Vietnam si percorre quasi tutto sulla stessa dorsale: la
+   strada di andata verso Sa Pa e quella di ritorno sono la stessa, quindi si
+   disegna una volta sola. */
 const LEGS=[
- {k:'out',p:[[10.40,44.43],[10.93,44.65],[10.99,45.44],[11.55,45.55],[12.83,45.78],[13.78,45.65],[13.87,45.71],[14.20,45.78],[14.13,45.82],[14.20,45.78],[14.51,46.06],[14.36,46.24],[14.11,46.37],[13.88,46.28]]},
- {k:'exc',p:[[13.88,46.28],[13.90,46.31],[13.83,46.27],[13.88,46.28]]},
- {k:'exc',p:[[13.88,46.28],[14.11,46.37],[14.06,46.44],[13.79,46.48],[13.75,46.43],[13.72,46.36],[13.55,46.34],[13.58,46.25],[13.74,46.14],[13.96,46.19],[13.88,46.28]]},
- {k:'out',p:[[13.88,46.28],[14.11,46.37],[14.36,46.24],[14.51,46.06],[15.17,45.80],[15.69,45.85],[15.98,45.81],[15.55,45.49],[15.58,45.11],[15.62,44.87]]},
- {k:'out',p:[[15.62,44.87],[15.24,44.87],[14.80,45.40],[14.44,45.33],[14.31,45.34],[14.23,45.15]]},
- {k:'sea',p:[[14.23,45.15],[14.30,45.13]]},
- {k:'out',p:[[14.30,45.13],[14.38,45.05],[14.41,44.96]]},
- {k:'exc',p:[[14.41,44.96],[14.34,44.90],[14.30,44.87],[14.36,44.92],[14.41,44.96],[14.36,45.06],[14.41,44.96]]},
- {k:'exc',p:[[14.41,44.96],[14.39,44.80],[14.39,44.69],[14.44,44.60],[14.47,44.53],[14.39,44.69],[14.41,44.96]]},
- {k:'back',no:'abbazia',p:[[14.41,44.96],[14.38,45.05],[14.30,45.13]]},
- {k:'sea',no:'abbazia',p:[[14.30,45.13],[14.23,45.15]]},
- {k:'back',no:'abbazia',p:[[14.23,45.15],[14.12,45.09],[13.94,45.24],[13.83,45.34]]},
- {k:'back',f:'pirano',p:[[13.83,45.34],[13.66,45.41],[13.60,45.47],[13.57,45.53]]},
- {k:'alt',f:'rovigno',p:[[13.83,45.34],[13.72,45.28],[13.64,45.08]]},
- {k:'alt',f:'rovigno',p:[[13.64,45.08],[13.60,45.23],[13.55,45.40],[13.57,45.53]]},
- {k:'alt',f:'pola',p:[[13.83,45.34],[13.78,45.18],[13.85,44.87]]},
- {k:'alt',f:'pola',p:[[13.85,44.87],[13.66,44.95],[13.63,45.08],[13.57,45.28],[13.57,45.53]]},
- {k:'alt',f:'abbazia',p:[[14.41,44.96],[14.53,44.99],[14.53,45.05],[14.58,45.14],[14.57,45.26],[14.44,45.33],[14.31,45.34]]},
- {k:'back',p:[[13.57,45.53],[13.73,45.55],[13.78,45.65],[13.40,45.72],[12.83,45.78],[11.55,45.55],[10.99,45.44],[10.40,44.43]]}
+ {k:'aria',p:[[105.80,23.60],[105.8042,21.2187]]},
+ {k:'out', p:[[105.8042,21.2187],[105.8542,21.0285]]},
+ {k:'out', p:[[105.8542,21.0285],[105.40,21.32],[104.87,21.72],[104.30,22.10],[103.97,22.49],[103.8438,22.3364]]},
+ {k:'exc', p:[[103.8438,22.3364],[103.78,22.30],[103.84,22.26],[103.8438,22.3364]]},
+ {k:'out', p:[[105.8542,21.0285],[106.30,20.98],[106.70,20.88],[106.98,20.92]]},
+ {k:'sea', p:[[106.98,20.92],[107.12,20.86],[107.10,20.74],[106.96,20.78],[106.98,20.92]]},
+ {k:'out', p:[[106.98,20.92],[106.60,20.72],[106.25,20.50],[105.98,20.30],[105.9385,20.2166]]},
+ {k:'exc', p:[[105.9385,20.2166],[105.88,20.28],[105.92,20.24],[105.9385,20.2166]]},
+ {k:'back',p:[[105.9385,20.2166],[105.80,19.80],[105.78,19.35],[105.90,18.80],[106.10,18.30],
+              [106.45,17.75],[106.85,17.25],[107.25,16.80],[107.5909,16.4637]]},
+ {k:'back',p:[[107.5909,16.4637],[107.85,16.30],[108.10,16.15],[108.22,16.05],[108.3380,15.8801]]},
+ {k:'exc', p:[[108.3380,15.8801],[108.20,15.82],[108.12,15.77]]},
+ {k:'aria',p:[[108.22,16.05],[107.60,17.60],[106.70,19.40],[105.8042,21.2187]]},
+ {k:'aria',p:[[105.8042,21.2187],[105.80,23.60]]}
 ];
 
 const STOPS=[
- {n:'Castelnovo',lon:10.40,lat:44.43,d:1,a:'start',dx:9,dy:14},
- {n:'Trieste',lon:13.78,lat:45.65,d:10,a:'middle',dx:0,dy:-11,s:1},
- {n:'Postojna',lon:14.20,lat:45.78,d:1,a:'start',dx:10,dy:-4},
- {n:'Bohinj',lon:13.88,lat:46.28,d:2,a:'end',dx:-10,dy:-4},
- {n:'Vršič',lon:13.75,lat:46.43,d:3,a:'middle',dx:0,dy:-11,s:1},
- {n:'Kobarid',lon:13.58,lat:46.25,d:3,a:'end',dx:-9,dy:4,s:1},
- {n:'Lubiana',lon:14.51,lat:46.06,d:4,a:'start',dx:10,dy:5},
- {n:'Rastoke',lon:15.58,lat:45.11,d:4,a:'start',dx:10,dy:-3,s:1},
- {n:'Plitvice',lon:15.62,lat:44.87,d:5,a:'start',dx:10,dy:8},
- {n:'Kuterevo',lon:15.06,lat:44.83,d:5,a:'end',dx:-9,dy:8,s:1},
- {n:'Brestova',lon:14.23,lat:45.15,d:5,a:'end',dx:-9,dy:-4,s:1},
- {n:'Cres',lon:14.41,lat:44.96,d:6,a:'start',dx:10,dy:5},
- {n:'Lubenice',lon:14.30,lat:44.87,d:8,a:'end',dx:-9,dy:-6,s:1},
- {n:'Beli',lon:14.36,lat:45.06,d:6,a:'end',dx:-9,dy:-3,s:1},
- {n:'Osor',lon:14.39,lat:44.69,d:7,a:'start',dx:9,dy:4,s:1},
- {n:'Lošinj',lon:14.47,lat:44.53,d:7,a:'start',dx:9,dy:4,s:1},
- {n:'Motovun',lon:13.83,lat:45.34,d:9,a:'end',dx:-10,dy:2},
- {n:'Pirano',lon:13.57,lat:45.53,d:9,a:'end',dx:-10,dy:-4,fin:'pirano'},
- {n:'Rovigno',lon:13.64,lat:45.08,d:9,a:'end',dx:-10,dy:4,s:1,fin:'rovigno'},
- {n:'Pola',lon:13.85,lat:44.87,d:9,a:'middle',dx:0,dy:17,s:1,fin:'pola'},
- {n:'Abbazia',lon:14.31,lat:45.34,d:9,a:'start',dx:8,dy:-6,s:1,fin:'abbazia'}
+ {n:'Hanoi',lon:105.8542,lat:21.0285,d:2,a:'end',dx:-11,dy:-3},
+ {n:'Noi Bai',lon:105.8042,lat:21.2187,d:2,a:'start',dx:9,dy:-4,s:1},
+ {n:'Lao Cai',lon:103.97,lat:22.49,d:4,a:'start',dx:9,dy:-5,s:1},
+ {n:'Sa Pa',lon:103.8438,lat:22.3364,d:4,a:'start',dx:10,dy:7},
+ {n:'Ha Long',lon:106.98,lat:20.92,d:7,a:'start',dx:11,dy:-3},
+ {n:'Cat Ba',lon:107.05,lat:20.73,d:8,a:'start',dx:10,dy:9,s:1},
+ {n:'Tam Coc',lon:105.9385,lat:20.2166,d:9,a:'end',dx:-11,dy:4},
+ {n:'Hue',lon:107.5909,lat:16.4637,d:11,a:'end',dx:-11,dy:-3},
+ {n:'Da Nang',lon:108.22,lat:16.05,d:15,a:'end',dx:-10,dy:-2,s:1},
+ {n:'Hoi An',lon:108.3380,lat:15.8801,d:12,a:'start',dx:10,dy:9},
+ {n:'My Son',lon:108.12,lat:15.77,d:14,a:'end',dx:-9,dy:9,s:1}
 ];
-
 /* ══════════════════════════════════════════════════════════════════════════
    2 · MOTORE — da qui in giù non si nomina nessun posto: tutto viene dai dati
    di sopra. Per un viaggio nuovo si riscrive il blocco 1 e non si tocca
@@ -2073,3 +2218,102 @@ window.__BIGLIETTO=id=>{pref.big[id]=!pref.big[id];savePref();ridisegna();};
   }catch(e){}
 })();
 </script>
+
+<style>
+.installa{margin:0 0 16px;display:flex;gap:11px;align-items:flex-start;padding:13px 15px;
+  border-radius:var(--r,12px);background:var(--accent-soft);color:var(--accent-text,var(--accent));
+  font-size:13.5px;line-height:1.45}
+.installa b{display:block;font-family:var(--display);font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.installa button{margin-left:auto;background:none;border:0;color:inherit;opacity:.7;
+  font-size:20px;line-height:1;padding:0 4px;cursor:pointer}
+@media print{.installa{display:none !important}}
+</style>
+<script>
+(function(){
+  "use strict";
+  // ── service worker: la pagina si apre anche senza campo ──
+  // Nessun avviso di aggiornamento: qui non c'e' niente da salvare prima di
+  // ricaricare — le scelte e le spunte stanno in localStorage, e la pagina e'
+  // un file unico senza pezzi caricati a parte. La versione nuova entra da
+  // sola alla riapertura, e chi usa l'app non deve dare permessi a nessuno.
+  if ('serviceWorker' in navigator) {
+    // Quando l'app installata riprende una pagina gia' aperta non c'e' nessuna
+    // navigazione, quindi il contenuto vecchio resterebbe li' anche con la
+    // versione nuova gia' attiva. Qui la pagina si ricarica da sola appena il
+    // service worker nuovo prende il controllo.
+    var primo = navigator.serviceWorker.controller && navigator.serviceWorker.controller.scriptURL;
+    var giaFatto = false;
+    navigator.serviceWorker.addEventListener('controllerchange', function(){
+      var ora = navigator.serviceWorker.controller && navigator.serviceWorker.controller.scriptURL;
+      // Ricarica solo se a cambiare e' la versione dello STESSO service
+      // worker. Alla prima apertura il controller passa da niente (o da
+      // quello dell'app alla radice, che ha scope su tutto il dominio) a
+      // questo: li' la pagina e' gia' quella giusta e ricaricare e' solo un
+      // lampeggio inutile.
+      if (giaFatto || !primo || ora !== primo) { primo = ora; return; }
+      giaFatto = true;
+      location.reload();
+    });
+    window.addEventListener('load', function(){
+      // updateViaCache:'none': sw.js non viene MAI preso dalla cache HTTP.
+      // GitHub Pages lo serve con max-age, e senza questo il browser puo'
+      // continuare a controllare una copia vecchia del service worker: la
+      // versione nuova esiste sul server e sul telefono non arriva mai.
+      navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' }).then(function(reg){
+        // L'aggiornamento puo' essersi installato mentre questa pagina non
+        // stava ascoltando — tipico dell'app riaperta dalla Home. In quel caso
+        // resta li' in attesa: gli si dice di attivarsi subito.
+        if (reg.waiting && navigator.serviceWorker.controller) reg.waiting.postMessage('attiva');
+        reg.addEventListener('updatefound', function(){
+          var n = reg.installing;
+          if (!n) return;
+          n.addEventListener('statechange', function(){
+            if (n.state === 'installed' && navigator.serviceWorker.controller) n.postMessage('attiva');
+          });
+        });
+        // Anche al ritorno del campo, non solo al ritorno in primo piano.
+        window.addEventListener('online', function(){ reg.update().catch(function(){}); });
+        // Cerca la versione nuova quando l'app torna in primo piano: e' il
+        // momento in cui una pagina rimasta aperta per ore va aggiornata.
+        // Solo con rete.
+        document.addEventListener('visibilitychange', function(){
+          if (document.visibilityState === 'visible' && navigator.onLine !== false) {
+            reg.update().catch(function(){});
+          }
+        });
+      }).catch(function(){ /* senza service worker l'app funziona lo stesso */ });
+    });
+  }
+  // Impronta della versione, per sapere sempre cosa si sta guardando
+  window.addEventListener('load', function(){
+    var f = document.querySelector('.foot');
+    if (!f) return;
+    var s = document.createElement('span');
+    s.style.cssText = 'display:block;margin-top:6px;opacity:.65;font-variant-numeric:tabular-nums';
+    s.textContent = 'versione 7cf7d1a7cd';
+    f.appendChild(s);
+  });
+  // ── suggerimento d'installazione, solo su iPhone e solo se non installata ──
+  var standalone = window.matchMedia('(display-mode: standalone)').matches
+                || window.navigator.standalone === true;
+  var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+  if (!standalone && iOS && !localStorage.getItem('vn.installa.visto')) {
+    window.addEventListener('load', function(){
+      var main = document.querySelector('main');
+      if (!main) return;
+      var el = document.createElement('div');
+      el.className = 'installa';
+      el.innerHTML = '<div><b>Mettila sulla schermata Home</b>'
+        + 'Tocca Condividi in fondo a Safari, poi "Aggiungi a Home". Si apre a schermo intero e <b>funziona senza campo</b> — nella valle di Sa Pa, sul bus notturno e in mezzo alla baia, dove il segnale non c\'è.</div>'
+        + '<button aria-label="Ho capito">&times;</button>';
+      el.querySelector('button').onclick = function(){
+        localStorage.setItem('vn.installa.visto', '1');
+        el.remove();
+      };
+      main.insertBefore(el, main.firstChild);
+    });
+  }
+})();
+</script>
+</body>
+</html>
