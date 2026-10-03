@@ -135,7 +135,7 @@ prefisso `VN · ` per trovarli e cancellarli in blocco.
 
 ### Scadenze
 
-`SCADENZE` raccoglie le **quattordici date entro cui bisogna aver fatto
+`SCADENZE` raccoglie le **quindici date entro cui bisogna aver fatto
 qualcosa**: le due finestre di check-in online, i rimborsi dei biglietti 12Go
 e le cancellazioni gratuite degli alloggi, con gli importi che scattano dopo.
 Le condizioni sono copiate dalle conferme, non stimate. La sezione sta in
@@ -146,7 +146,7 @@ La trappola che ne è uscita: Booking scrive «23:59» ma in **ora del Vietnam**
 cioè le **17:59 in Italia**. Chi disdice dall'Italia la sera del 9 novembre
 pensando di avere tempo fino a mezzanotte paga la prima notte.
 
-Le stesse quattordici sono sul calendario con il prefisso `VN · ⏳`, ciascuna
+Le stesse quindici sono sul calendario con il prefisso `VN · ⏳`, ciascuna
 nel fuso giusto: ora italiana fino al 10 novembre, ora vietnamita dall'11.
 
 ### Il libretto di carta
