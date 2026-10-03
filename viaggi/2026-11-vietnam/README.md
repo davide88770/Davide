@@ -133,6 +133,38 @@ piano. A tre ore dalla partenza la striscia diventa ambra.
 Gli stessi tredici movimenti sono anche sul Google Calendar di Davide, con il
 prefisso `VN · ` per trovarli e cancellarli in blocco.
 
+### Metterla sulla home
+
+L'app installabile sta su <https://davide88770.github.io/Davide/vietnam/>.
+
+- **iPhone** — aprirla in **Safari** (non Chrome: l’installazione da Chrome su
+  iOS non la fa), poi Condividi → *Aggiungi a Home*.
+- **Android** — Chrome propone *Installa app* da solo; altrimenti menu ⋮ →
+  *Aggiungi a schermata Home*.
+
+Sulla home compare come **Vietnam**, si apre a tutto schermo senza barra del
+browser e **funziona senza rete**: il service worker tiene in cache la pagina
+intera, che è un file solo. Gli aggiornamenti arrivano da soli alla
+riapertura, senza avvisi da confermare.
+
+### L'icona
+
+`icone/icona.svg` è la giunca della baia di Ha Long fra i faraglioni: due vele
+a stecche ambra, scafo di legno, guglie calcaree con i fianchi verticali e la
+cima arrotondata — non triangoli, che darebbero una catena alpina. Poche masse
+e grandi, perché a 44 px si legge la silhouette e non il dettaglio: niente
+luna, niente onde, niente montagnine di sfondo.
+
+`icone/icona-maskable.svg` è la stessa scena al 76%, centrata, con cielo e
+acqua fino al bordo: Android ritaglia l'icona con la forma del launcher
+(cerchio, goccia, squircle) e garantisce solo il cerchio centrale all'80%, quindi quello che viene tagliato è sfondo.
+
+I PNG si rigenerano dai due SVG con:
+
+```sh
+node tools/build-icone.mjs pwa/vietnam/icone
+```
+
 ### Verifica
 
 ```sh

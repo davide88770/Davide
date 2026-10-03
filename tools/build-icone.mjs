@@ -10,7 +10,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const CHROME = process.env.CHROME_PATH ?? '/opt/pw-browsers/chromium-1194/chrome-linux/chrome';
-const CARTELLE = process.argv.length > 2 ? process.argv.slice(2) : ['pwa/icone', 'pwa/viaggio/icone'];
+const CARTELLE = process.argv.length > 2 ? process.argv.slice(2)
+  : ['pwa/icone', 'pwa/viaggio/icone', 'pwa/vietnam/icone'];
 const MISURE = [
   ['icona.svg', 'icona-192.png', 192],
   ['icona.svg', 'icona-512.png', 512],
