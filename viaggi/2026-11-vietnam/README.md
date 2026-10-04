@@ -149,6 +149,24 @@ pensando di avere tempo fino a mezzanotte paga la prima notte.
 Le stesse quindici sono sul calendario con il prefisso `VN · ⏳`, ciascuna
 nel fuso giusto: ora italiana fino al 10 novembre, ora vietnamita dall'11.
 
+### L'itinerario di Samira, completato
+
+```sh
+npm run itinerario viaggi/2026-11-vietnam/app-mobile.html
+```
+
+`out/2026-11-vietnam/itinerario.pdf`: **13 pagine A4**. È l'itinerario
+personalizzato scritto da **Samira Vicinanza** (The Ocean Nomads) — struttura,
+consigli e parole sono suoi — con al posto di ogni link fra cui scegliere il
+riquadro di quello che è stato prenotato davvero. I link che restano utili
+(assicurazione, eSIM, trekking a Sa Pa, tour di Hoi An, Revolut) sono quelli
+originali, affiliazioni comprese.
+
+Tre punti in cui le prenotazioni hanno smentito il piano, e il documento lo
+dice invece di nasconderlo: la notte del 15 **non è nello stesso hotel
+dell'andata**; la crociera finisce alle **11:30 e non alle 14:00**; il mezzo
+per Hoi An **non è un treno**.
+
 ### Lo stato del viaggio
 
 ```sh

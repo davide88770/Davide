@@ -26,6 +26,7 @@ tools/prova-adesso.mjs                  prova della scheda «Oggi» a orologio s
 tools/prova-pwa.mjs                     prova del giro di aggiornamento della PWA
 tools/build-libretto.mjs                il libretto di carta, dai dati dell'app
 tools/build-stato.mjs                   cosa manca e entro quando, da appendere
+tools/build-itinerario.mjs              l'itinerario di partenza, completato
 out/                                    screenshot e PDF generati (non versionato)
 ```
 
@@ -242,6 +243,28 @@ cose da sbrigare, tutte le scadenze in ordine, quello che è già prenotato con
 gli importi veri, gli errori trovati e corretti, e quello che resta incerto.
 Esce dagli stessi dati — registro, riscontri, scadenze, liste — tranne
 l'elenco delle incertezze, che è un giudizio e sta nel generatore.
+
+### L'itinerario di partenza, completato
+
+Quando il viaggio nasce da un itinerario scritto da qualcun altro — un travel
+designer, un'agenzia — quel documento ha un valore che non si butta: struttura,
+consigli, tono. Ma è pieno di link fra cui scegliere, e una volta scelto non
+dice più cosa c'è davvero.
+
+```sh
+npm run itinerario viaggi/<cartella>/app-mobile.html
+```
+
+Ricostruisce **quel** documento, con le sue parole e la sua impaginazione, e
+al posto di ogni «QUI» e di ogni «OPZIONE 1 / 2 / 3» mette un riquadro con
+l'alloggio o il mezzo prenotato: nome, indirizzo, date, codice di conferma,
+costo, telefono. I riquadri si costruiscono cercando il codice nel registro
+`BOOK` dell'app, quindi non possono divergere.
+
+Due regole, nel farlo: **il testo originale resta dell'autore** e la firma
+anche — si completa, non si riscrive; e dove le prenotazioni hanno **smentito**
+il piano (un orario, un hotel non disponibile) si scrive apertamente che è una
+correzione, invece di far sparire la riga.
 
 ## Consegna
 

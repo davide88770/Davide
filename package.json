@@ -11,7 +11,8 @@
     "prova:conti": "node tools/prova-conti.mjs",
     "prova:adesso": "node tools/prova-adesso.mjs",
     "libretto": "node tools/build-libretto.mjs",
-    "stato": "node tools/build-stato.mjs"
+    "stato": "node tools/build-stato.mjs",
+    "itinerario": "node tools/build-itinerario.mjs"
   },
   "devDependencies": {
     "playwright-core": "^1.49.0"
