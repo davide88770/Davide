@@ -10,7 +10,8 @@
     "prova:pwa": "node tools/prova-pwa.mjs",
     "prova:conti": "node tools/prova-conti.mjs",
     "prova:adesso": "node tools/prova-adesso.mjs",
-    "libretto": "node tools/build-libretto.mjs"
+    "libretto": "node tools/build-libretto.mjs",
+    "stato": "node tools/build-stato.mjs"
   },
   "devDependencies": {
     "playwright-core": "^1.49.0"

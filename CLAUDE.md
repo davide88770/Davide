@@ -25,6 +25,7 @@ tools/prova-conti.mjs                   ricalcolo dei totali, obbligatorio
 tools/prova-adesso.mjs                  prova della scheda «Oggi» a orologio spostato
 tools/prova-pwa.mjs                     prova del giro di aggiornamento della PWA
 tools/build-libretto.mjs                il libretto di carta, dai dati dell'app
+tools/build-stato.mjs                   cosa manca e entro quando, da appendere
 out/                                    screenshot e PDF generati (non versionato)
 ```
 
@@ -226,6 +227,21 @@ copertina con la mappa e i numeri d'emergenza, **il viaggio in una pagina**,
 **spostamenti**, **prenotazioni**, poi giorno per giorno, pratico, biglietti e
 budget, frasario, numeri utili e le liste da spuntare. Le prime quattro pagine
 sono quelle che si aprono venti volte; il resto si legge una volta.
+
+### Lo stato del viaggio
+
+Il libretto si porta in viaggio; questo si guarda **prima**, e il giorno della
+partenza si butta:
+
+```sh
+npm run stato viaggi/<cartella>/app-mobile.html
+```
+
+Quattro pagine A4 con le caselle da spuntare: le decisioni ancora aperte, le
+cose da sbrigare, tutte le scadenze in ordine, quello che è già prenotato con
+gli importi veri, gli errori trovati e corretti, e quello che resta incerto.
+Esce dagli stessi dati — registro, riscontri, scadenze, liste — tranne
+l'elenco delle incertezze, che è un giudizio e sta nel generatore.
 
 ## Consegna
 

@@ -149,6 +149,17 @@ pensando di avere tempo fino a mezzanotte paga la prima notte.
 Le stesse quindici sono sul calendario con il prefisso `VN · ⏳`, ciascuna
 nel fuso giusto: ora italiana fino al 10 novembre, ora vietnamita dall'11.
 
+### Lo stato del viaggio
+
+```sh
+npm run stato viaggi/2026-11-vietnam/app-mobile.html
+```
+
+`out/2026-11-vietnam/stato.pdf`: **quattro pagine A4** da stampare e
+appendere, con le caselle da spuntare. Decisioni aperte, cose da sbrigare,
+le quindici scadenze in ordine, il prenotato con gli importi veri, gli errori
+corretti e le incertezze dichiarate. Si rigenera a ogni cambiamento.
+
 ### Il libretto di carta
 
 ```sh
