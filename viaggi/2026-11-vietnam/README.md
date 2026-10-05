@@ -155,12 +155,25 @@ nel fuso giusto: ora italiana fino al 10 novembre, ora vietnamita dall'11.
 npm run itinerario viaggi/2026-11-vietnam/app-mobile.html
 ```
 
-`out/2026-11-vietnam/itinerario.pdf`: **13 pagine A4**. È l'itinerario
+`out/2026-11-vietnam/itinerario.pdf`: **18 pagine A4**. È l'itinerario
 personalizzato scritto da **Samira Vicinanza** (The Ocean Nomads) — struttura,
 consigli e parole sono suoi — con al posto di ogni link fra cui scegliere il
 riquadro di quello che è stato prenotato davvero. I link che restano utili
 (assicurazione, eSIM, trekking a Sa Pa, tour di Hoi An, Revolut) sono quelli
 originali, affiliazioni comprese.
+
+Dalla v2 è rifatto anche **nell'aspetto**, non solo nei contenuti: fondo di
+lino e curve pallide, logo, Poppins nei quattro pesi, copertina e collage,
+fasce grigie del programma, foto al vivo in fondo alla pagina, citazione e
+firma. Gli originali stanno in `itinerario-assets/` — font con licenza OFL e
+le foto di Samira ridotte per la stampa, **nel repo solo perché il documento
+si possa rigenerare**: non vanno ripubblicate altrove, ed è il motivo per cui
+questo documento **non** è un Artifact.
+
+Le giornate che non stanno in una A4 continuano sulla pagina dopo con la
+stessa testatina e la dicitura «segue» (giorni 3-5, 10-11, 14-15), invece di
+sbordare su una pagina senza fondo né foto. Il generatore misura ogni pagina
+e avvisa se supera i 297 mm.
 
 Tre punti in cui le prenotazioni hanno smentito il piano, e il documento lo
 dice invece di nasconderlo: la notte del 15 **non è nello stesso hotel
