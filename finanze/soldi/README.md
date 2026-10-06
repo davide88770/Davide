@@ -201,6 +201,14 @@ schermata Home.
 
 ## Storico
 
+- **v2** (ottobre 2026) — ritmo mensile al posto di quello giornaliero.
+  L'avviso «Non registri movimenti da N giorni» lascia il posto a quello
+  sull'import del mese: dal 4 (l'estratto Amex arriva il 3) ricorda di
+  importare il mese scorso, diventa giallo dopo il 6 e rosso dopo il 10, e
+  dice cosa manca (Revolut, Amex, o entrambi; Amex solo se la carta è stata
+  usata negli ultimi tre mesi). Il pulsante «Importa» apre direttamente
+  l'import. Il bonus Amex non dà più falsi allarmi a metà mese quando le spese
+  non sono ancora importate: a fine mese ricorda di guardare l'app Amex.
 - **v1** (2 ottobre 2026) — prima versione installabile: Supabase con login
   via email (link + codice), coda offline, tempo reale, PWA su GitHub Pages,
   librerie e font in locale, default senza dati personali.

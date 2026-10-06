@@ -201,6 +201,36 @@ sezione('A. Senza Supabase configurato (solo questo dispositivo)');
   await p.reload(); await p.waitForLoadState('networkidle');
   ok(await p.evaluate(() => TX.length === 1 && TX[0].amt === 12.5), 'il movimento resta dopo il ricaricamento');
   ok(!(await p.isVisible('#uOut')), 'niente "Esci" senza account');
+
+  // avviso dell'import mensile, con la data simulata
+  const avviso = async (giorno, tx) => {
+    await p.clock.setFixedTime(new Date(`2026-11-${String(giorno).padStart(2, '0')}T21:00:00`));
+    return p.evaluate(tx => { TX = clean(tx); const a = getAlerts().find(x => x.b && x.b[1] === 'imp'); return a ? `${a.c || 'giallo'}|${a.t}|${a.d}` : ''; }, tx);
+  };
+  const man = { id: 't1790000000000aaaa', type: 'out', amt: 5, acc: 'trad', date: '2026-10-10', cat: 'Altro', det: 'x' };
+  const rev = { id: 'iabc', type: 'out', amt: 9, acc: 'rev', date: '2026-10-12', cat: 'Ristoranti' };
+  const amex = { id: 'idef', type: 'out', amt: 9, acc: 'trad', pay: 'amex', date: '2026-10-20', cat: 'Viaggi' };
+  const amexMano = { ...man, id: 't1790000000001aaaa', pay: 'amex' };
+  ok(await avviso(3, [man]) === '', 'il 3 del mese: nessun avviso di import');
+  let r = await avviso(4, [man]);
+  ok(r.startsWith('blue|È il momento di importare ottobre') && r.includes('Manca: Revolut.'), `il 4: «${r.split('|').slice(1).join(' — ')}»`);
+  r = await avviso(5, [man, amexMano]);
+  ok(r.includes('Manca: Revolut e Amex'), 'con la carta Amex usata: chiede entrambi');
+  r = await avviso(8, [man, amexMano, rev]);
+  ok(r.startsWith('giallo|Import di ottobre non ancora fatto') && r.includes('Manca: Amex.'), `l'8, solo Revolut importato: «${r.split('|')[1]}», manca Amex`);
+  r = await avviso(12, [man, amexMano, rev]);
+  ok(r.startsWith('red|'), 'dopo il 10: avviso rosso');
+  ok(await avviso(12, [man, amexMano, rev, amex]) === '', 'importati entrambi: nessun avviso');
+  ok(await p.evaluate(() => !getAlerts().some(a => /Non registri movimenti/.test(a.t))), 'sparito il vecchio "Non registri movimenti da N giorni"');
+  await p.evaluate(() => { S.goals.amexStart = '2026-11'; TX = clean([]); });
+  await p.clock.setFixedTime(new Date('2026-11-12T21:00:00'));
+  ok(await p.evaluate(() => !getAlerts().some(a => /Bonus Amex/.test(a.t))), 'bonus Amex a metà mese senza spese importate: nessun falso allarme');
+  await p.clock.setFixedTime(new Date('2026-11-26T21:00:00'));
+  ok(await p.evaluate(() => getAlerts().some(a => a.c === 'blue' && /controlla la spesa del mese/.test(a.t))), 'a fine mese: richiamo a guardare l\'app Amex');
+  await p.clock.setFixedTime(new Date('2026-11-05T21:00:00'));
+  await p.evaluate(() => { S.goals.amexStart = ''; TX = clean([{ id: 't1790000000000aaaa', type: 'out', amt: 5, acc: 'trad', date: '2026-10-10', cat: 'Altro', det: 'x' }]); cur = new Date(2026, 10, 1); render(); });
+  await p.click('#alerts button[data-al="imp"]');
+  ok(await p.isVisible('#impModal') && await p.evaluate(() => view === 'tx'), 'il pulsante "Importa" apre l\'import dell\'estratto conto');
   await ctx.close();
 }
 
@@ -272,31 +302,40 @@ await B.fill('#lgCode', '123456');
 ok(await attendi(async () => (await B.evaluate(() => TX.length)) === attesi), 'il secondo dispositivo scarica tutti i movimenti');
 ok(await attendi(() => B.evaluate(() => rtOk)), 'anche B è in ascolto');
 
+// Chromium rallenta i timer della pagina che non è in primo piano (fino a uno
+// scatto al secondo): come nella realtà, si porta davanti il dispositivo che
+// si sta usando. Quello in background riceve comunque, solo più lento.
+const davanti = async P => { await P.bringToFront(); await P.waitForTimeout(50); };
 // aggiunta su A
+await davanti(A);
 await A.click('#tabs button[data-v="tx"]');
 await A.click('#fab'); await A.fill('#tAmt', '23.40');
 await A.click('#tCat .chip[data-v="Ristoranti"]'); await A.fill('#tNote', 'pizza prova');
 await A.click('#tSave');
-const nuovo = await A.evaluate(() => TX.find(t => t.note === 'pizza prova')?.id);
-ok(!!nuovo && await attendi(() => A.evaluate(id => !!document.querySelector(`.tx[data-id="${id}"]`), nuovo), 300), 'A: il movimento compare subito nella lista');
+let nuovo; await attendi(async () => (nuovo = await A.evaluate(() => TX.find(t => t.note === 'pizza prova')?.id)), 3000);
+ok(!!nuovo && await attendi(() => A.evaluate(id => !!document.querySelector(`.tx[data-id="${id}"]`), nuovo), 1500), 'A: il movimento compare nella lista entro 1,5 s');
 ok(await attendi(() => B.evaluate(id => TX.some(t => t.id === id && t.amt === 23.4), nuovo)), 'B: il movimento arriva in tempo reale');
 // modifica su B
+await davanti(B);
 await B.click('#tabs button[data-v="tx"]');
 await B.click(`.tx[data-id="${nuovo}"]`); await B.fill('#tAmt', '31'); await B.click('#tSave');
 ok(await attendi(() => A.evaluate(id => TX.find(t => t.id === id)?.amt === 31, nuovo)), 'modifica fatta su B: A la vede');
 
 ok(await attendi(() => A.evaluate(id => document.querySelector(`.tx[data-id="${id}"] .amt`)?.textContent.includes('31'), nuovo)), 'A: la lista si ridisegna da sola');
 // eliminazione su A
+await davanti(A);
 await A.click(`.tx[data-id="${nuovo}"]`); await A.click('#tDel'); await A.click('#askYes');
 ok(await attendi(() => B.evaluate(id => !TX.some(t => t.id === id), nuovo)), 'eliminazione fatta su A: sparisce anche da B');
 ok(!DB.transactions.has(UTENTE.id + '|' + nuovo), 'e dal server');
 // impostazioni su B
+await davanti(B);
 await B.click('#goSet');
 await B.fill('#sBud input[data-b="Ristoranti"]', '345');
 ok(await attendi(() => A.evaluate(() => S.budget.Ristoranti === 345), 8000), 'budget cambiato su B: arriva su A');
 
 // ── 4. funzioni dell'app ──
 sezione('4. Import CSV, ricorrenti, avvisi, Aggiorna saldo, grafici');
+await davanti(A);
 const csv = 'Type,Product,Started Date,Completed Date,Description,Amount,Fee,Currency,State,Balance\n'
   + 'CARD_PAYMENT,Current,2026-09-20 10:00:00,2026-09-20 11:00:00,Esselunga Milano,-54.30,0,EUR,COMPLETED,100\n'
   + 'CARD_PAYMENT,Current,2026-09-21 10:00:00,2026-09-21 11:00:00,Trattoria da Mario,-38.00,0,EUR,COMPLETED,60\n'

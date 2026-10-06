@@ -22,7 +22,7 @@
 <script src="vendor/chart.umd.js"></script>
 <script src="vendor/supabase.js"></script>
 <script src="config.js"></script>
-<script>window.__SOLDI_BUILD='sviluppo';window.__SOLDI_V=1;</script>
+<script>window.__SOLDI_BUILD='sviluppo';window.__SOLDI_V=2;</script>
 <style>
 @font-face{font-family:Manrope;font-style:normal;font-display:swap;font-weight:200 800;src:url(vendor/manrope-latin-wght-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 @font-face{font-family:Manrope;font-style:normal;font-display:swap;font-weight:200 800;src:url(vendor/manrope-latin-ext-wght-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
@@ -732,15 +732,26 @@ async function applyRec(){
 
 
 /* ---------- avvisi ---------- */
+/* L'import del mese scorso è fatto se ci sono movimenti IMPORTATI (id "i…",
+   quelli inseriti a mano sono "t…") con data nel mese scorso: su Revolut, e
+   tra le spese Amex se la carta è stata usata negli ultimi tre mesi. */
+function importStatus(now){
+  const p=new Date(now.getFullYear(),now.getMonth()-1,1),pk=key(p.getFullYear(),p.getMonth());
+  const da=new Date(now.getFullYear(),now.getMonth()-3,1),dk=key(da.getFullYear(),da.getMonth())+'-01';
+  const imp=t=>/^i/.test(t.id)&&ym(t.date)===pk;
+  const usaAmex=TX.some(t=>t.pay==='amex'&&t.date>=dk);
+  const mancano=[!TX.some(t=>imp(t)&&t.acc==='rev')&&'Revolut',usaAmex&&!TX.some(t=>imp(t)&&t.pay==='amex')&&'Amex'].filter(Boolean);
+  return{pk,mese:p.toLocaleDateString('it-IT',{month:'long'}),mancano}}
 function created(t){const m=String(t.id).match(/^t(\d{13})/);return m?+m[1]:new Date(t.date+'T12:00').getTime()}
 function daysBetween(a,b){return Math.floor((b-a)/864e5)}
 function getAlerts(){
   const A=[],now=new Date(),tk=today(),k=tk.slice(0,7),r=monthStats(k),dnow=now.getDate(),last=new Date(now.getFullYear(),now.getMonth()+1,0).getDate();
-  // 1. da quanto non registri
-  const outs=TX.filter(t=>t.type==='out');
-  if(!TX.length)A.push({c:'blue',t:'Inizia registrando i ricorrenti del mese',d:'Poi aggiungi le spese man mano, oppure importa l\'estratto conto.'});
-  else{const lastIns=Math.max(...TX.map(created));const g=daysBetween(lastIns,now.getTime());
-    if(g>=2)A.push({c:g>=5?'red':'',t:`Non registri movimenti da ${g} giorni`,d:'Apri le notifiche di Revolut e Amex e inserisci le spese, oppure importa il CSV.',b:['Aggiungi','add']})}
+  // 1. import mensile degli estratti conto (dal 4: l'estratto Amex arriva il 3)
+  if(!TX.length)A.push({c:'blue',t:'Inizia registrando i ricorrenti del mese',d:'Poi, ogni mese, importa gli estratti conto di Revolut e Amex.'});
+  else{const im=importStatus(now);
+    if(im.mancano.length&&dnow>=4){const tardi=dnow>6;
+      A.push({c:tardi?(dnow>10?'red':''):'blue',t:tardi?`Import di ${im.mese} non ancora fatto`:`È il momento di importare ${im.mese}`,
+        d:`Manca: ${im.mancano.join(' e ')}. Scarica i CSV del mese e importali (Movimenti → Importa estratto conto).`,b:['Importa','imp']})}}
   // 2. ricorrenti scaduti
   const pr=pendingRec(k).filter(x=>(x.day||1)<=dnow);
   if(pr.length)A.push({c:'',t:`${pr.length} ricorrenti di questo mese non registrati`,d:pr.map(x=>x.note||x.cat).join(', '),b:['Registra','rec']});
@@ -753,7 +764,10 @@ function getAlerts(){
     else if(sp>=bud*.8&&dnow<last-3)A.push({c:'',t:`${c.n}: sei all'${Math.round(sp/bud*100)}% del budget`,d:`Restano ${eur(bud-sp)} per ${last-dnow} giorni.`})}
   // 4. bonus Amex
   const g=S.goals;if(g.amexStart){const [sy,sm]=g.amexStart.split('-').map(Number),st=new Date(sy,sm-1,1),en=new Date(sy,sm+5,1);
-    if(now>=st&&now<en&&r.amex<g.amex){const need=g.amex-r.amex;const pace=r.amex/dnow*last;
+    // con l'import mensile, a metà mese le spese Amex di solito non ci sono
+    // ancora: niente allarme sul ritmo, solo un richiamo a guardare l'app Amex
+    if(now>=st&&now<en&&!r.amex){if(dnow>last-7)A.push({c:'blue',t:'Bonus Amex: controlla la spesa del mese',d:`Le spese Amex arrivano con l'import del mese prossimo: guarda nell'app Amex se sei a ${eur(g.amex)} entro il ${last}.`})}
+    else if(now>=st&&now<en&&r.amex<g.amex){const need=g.amex-r.amex;const pace=r.amex/dnow*last;
       if(pace<g.amex||dnow>last-7)A.push({c:dnow>last-7?'red':'',t:`Bonus Amex: mancano ${eur(need)} questo mese`,d:`Passa più spese sull'Amex entro il ${last}. Obiettivo ${eur(g.amex)} al mese.`})}}
   // 5. saldi da verificare
   const stale=['trad','rev'].filter(a=>{const f=(S.fixed||{})[a];return !f||daysBetween(new Date(f+'T12:00').getTime(),now.getTime())>30});
@@ -770,7 +784,7 @@ function renderAlerts(){
   const tb=document.querySelector('#tabs button[data-v="home"]');tb.querySelector('.nbadge')?.remove();
   const red=A.filter(a=>a.c==='red').length+A.filter(a=>a.c==='').length;if(red)tb.insertAdjacentHTML('beforeend',`<span class="nbadge">${red}</span>`)}
 document.addEventListener('click',e=>{const b=e.target.closest('[data-al]');if(!b)return;const a=b.dataset.al;
-  if(a==='add')openForm();else if(a==='bak')doBackup();else if(a==='rec'){cur=new Date(new Date().getFullYear(),new Date().getMonth(),1);applyRec()}
+  if(a==='add')openForm();else if(a==='imp'){go('tx');$('openImp').click()}else if(a==='bak')doBackup();else if(a==='rec'){cur=new Date(new Date().getFullYear(),new Date().getMonth(),1);applyRec()}
   else if(a.startsWith('acc')){if(a.includes(':'))selAcc=a.split(':')[1];go('acc')}});
 /* ---------- render ---------- */
 function render(){try{renderInner()}catch(e){console.error(e);const el=$('sync');if(el)el.textContent='Un dato non si è caricato bene: ricarica la pagina. I tuoi dati sono al sicuro.'}}
