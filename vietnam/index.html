@@ -1316,8 +1316,10 @@ const SCADENZE=[
   c:'AATZ2552, HK Buslines. Dopo le 21:30 del 16 novembre non si rimborsa più.'},
  {iso:'2026-11-16',ora:'23:59',k:'alert',t:'Ultimo giorno per disdire The Chum a Hue',
   c:'Conferma 6039302548. Dal 17 novembre si paga tutto, <b>930.010 VND</b>. <b>Qui non si pagano contanti</b>: solo carta.'},
- {iso:'2026-11-18',ora:'10:00',k:'sig',t:'Chiedere a HK Buslines il transfer per il bus di domani',
-  c:'WhatsApp <b>+84 798 149 095</b>. Il pick-up dall\'hotel è gratuito per i clienti 12Go ma <b>va chiesto almeno 24 ore prima</b>, e il bus parte il 19 alle 21:30. Dite che siete a Halise Home, Tam Coc.'},
+ {iso:'2026-11-16',ora:'09:00',k:'sig',t:'Chiedere a HK Buslines il transfer, prima di imbarcarsi',
+  c:'WhatsApp <b>+84 798 149 095</b>, prenotazione AATZ2552. Il pick-up dall\'hotel è gratuito per i clienti 12Go ma <b>va chiesto almeno 24 ore prima</b>, e il bus parte il 19 alle 21:30. Dite che siete a <b>Halise Home, Tam Coc</b>. Il termine vero è la sera del 18, ma il 17 e il 18 siete in barca con poco segnale: <b>fatelo adesso, da Hanoi</b>.'},
+ {iso:'2026-11-18',ora:'15:00',k:'alert',t:'Il transfer per il bus di domani: confermato o piano B',
+  c:'Siete appena arrivati a Halise e avete di nuovo segnale. Se HK Buslines <b>non ha risposto</b> o dice di no, chiedete a Halise di portarvi al punto di raccolta: siete in campagna e di sera Grab lì è inaffidabile. Sono pochi chilometri, <b>100–150.000 VND</b>. Accordatevi adesso, non alle otto di sera di domani: la camera la lasciate domattina.'},
  {iso:'2026-11-20',ora:'14:45',k:'sig',t:'Ultimo rimborso della limousine per Hoi An',
   c:'AATZ5888. È anche il momento oltre il quale non si può più cambiare idea e passare al treno fino a Da Nang — che comunque richiederebbe un secondo mezzo, perché Hoi An non ha stazione.'},
  {iso:'2026-11-20',ora:'23:59',k:'alert',t:'Ultimo giorno per disdire l\'hotel dell\'aeroporto',
@@ -1376,25 +1378,25 @@ const SPOSTAMENTI=[
   n:'Scalo di 1h20 in transito: non si esce e non si ritira il bagaglio.'},
  {iso:'2026-11-11',ora:'12:00',i:'🚕',g:2,t:'Taxi privato → Serene Central',
   da:'Noi Bai, hall arrivi',a:'106 Hàng Bông, Hoàn Kiếm',cod:'860124030',
-  n:'Targhetta con il tuo nome. Già pagato 9,13 €. Si atterra alle 06:10: cinque ore prima.'},
+  n:'Targhetta con il tuo nome. Già pagato 9,13 €. <b>Si atterra alle 06:10, quasi sei ore prima:</b> il transfer ha il numero del volo, quindi chiedete di anticiparlo all\'arrivo e lasciate gli zaini al Serene invece di aspettare in aeroporto.'},
  {iso:'2026-11-13',ora:'07:00',i:'🚐',g:4,t:'Minivan → Sa Pa',
   da:'Hanoi Opera House, 1 Tràng Tiền',a:'03 Nguyen Chi Thanh, 13:00',cod:'12GO33251058',
-  tel:'+84886923868',n:'<b>Esserci 30 minuti prima.</b> Massimo 10 kg a testa. Lo zaino grande resta al Serene.'},
+  tel:'+84886923868',n:'<b>Esserci 30 minuti prima</b>, cioè alle 06:30: dal Serene sono <b>1,5 km</b>, venti minuti a piedi o un Grab da 30.000 VND. Massimo 10 kg a testa. Lo zaino grande resta al Serene.'},
  {iso:'2026-11-15',ora:'14:00',i:'🚐',g:6,t:'Minivan → Hanoi',
   da:'03 Nguyen Chi Thanh, Sa Pa',a:'Hanoi Opera House, 20:00',cod:'12GO33251059',
   tel:'+84886923868',n:'<b>Esserci 30 minuti prima.</b> Check-out dalla Maison entro le 11:30.'},
  {iso:'2026-11-16',ora:'11:15',i:'⛴',g:7,t:'Check-in crociera',
   da:'Lotto 34, Tuan Chau',a:'Baia di Ha Long',cod:'9800672634863520599',
-  tel:'+84984749958',n:'Van di Peony dal Silk Crown, 20 USD a testa: indirizzo già dato, si aspetta il link di pagamento. Dal molo: il responsabile della lounge è il +84 987 671 669.'},
+  tel:'+84984749958',n:'Van di Peony dal Silk Crown, 20 USD a testa: indirizzo già dato, si aspetta il link di pagamento. <b>L\'ora del pick-up non è ancora fissata:</b> sono 165 km e due ore e mezza o tre, quindi verso le 08:00 — fatevela confermare da Danny insieme al pagamento. Dal molo: il responsabile della lounge è il +84 987 671 669.'},
  {iso:'2026-11-18',ora:'11:30',i:'⛴',g:9,t:'Sbarco → Tam Coc',
   da:'Lotto 34, Tuan Chau',a:'Halise Home, verso le 14:30',cod:'—',
   n:'Van organizzato con Halise: molo e orario comunicati il 3 ottobre. 175 km, circa tre ore.'},
  {iso:'2026-11-19',ora:'21:30',i:'🚌',g:10,t:'Bus notturno → Hue',
   da:'Tam Coc Agency',a:'35 Nguyen Cong Tru, 06:30',cod:'AATZ2552',
-  tel:'+84798149095',n:'<b>Esserci 30–45 minuti prima.</b> Lower Single Cabin, due cuccette singole. Il transfer gratuito dall\'hotel va chiesto 24 ore prima su WhatsApp.'},
+  tel:'+84798149095',n:'<b>Esserci 30–45 minuti prima.</b> Lower Single Cabin, due cuccette singole. Il transfer gratuito dall\'hotel va chiesto 24 ore prima su WhatsApp. <b>Se non rispondono</b>, fatevi portare da Halise: siete in campagna e di sera Grab lì è inaffidabile. Sono pochi chilometri, 100–150.000 VND. Accordatevi al check-in del 18, non alle otto di sera del 19: la camera l\'avete già lasciata la mattina.'},
  {iso:'2026-11-21',ora:'14:45',i:'🚐',g:12,t:'Limousine → Hoi An',
   da:'Davanti alla Hue Railway Station',a:'70 Nguyen Thi Minh Khai, 17:55',cod:'AATZ5888',
-  tel:'+84358482611',n:'<b>Non è un treno:</b> VIP Limousine 28 di G8 Sapa Open Tour, <b>diretta</b> fino a Hoi An — che non ha una stazione. Check-in 30 minuti prima, massimo 20 kg.'},
+  tel:'+84358482611',n:'<b>Non è un treno:</b> VIP Limousine 28 di G8 Sapa Open Tour, <b>diretta</b> fino a Hoi An — che non ha una stazione. Check-in 30 minuti prima, cioè <b>alle 14:15</b>: dal Chum sono 2 km, un Grab da 40.000 VND. Massimo 20 kg.'},
  {iso:'2026-11-24',ora:'13:30',i:'🚕',g:15,t:'Hoi An → aeroporto di Da Nang',
   da:'The Signature, 21 La Hối',a:'Da Nang, entro le 14:30',cod:'da prenotare',
   n:'<b>È l\'unico spostamento ancora da fissare.</b> 30 km, un\'ora col traffico. Grab 15–20 €, bus pubblico un paio di euro.'},
@@ -2707,7 +2709,7 @@ window.__BIGLIETTO=id=>{pref.big[id]=!pref.big[id];savePref();ridisegna();};
     if (!f) return;
     var s = document.createElement('span');
     s.style.cssText = 'display:block;margin-top:6px;opacity:.65;font-variant-numeric:tabular-nums';
-    s.textContent = 'versione c4026a5b57';
+    s.textContent = 'versione ea9871c381';
     f.appendChild(s);
   });
   // ── suggerimento d'installazione, solo su iPhone e solo se non installata ──
