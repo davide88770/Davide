@@ -433,8 +433,9 @@ pagF(cap('Daily schedule')+'<h1 class="giorno">GIORNO 9</h1><div class="data">19
  +'con fiori di loto situato sulla destra. Non perderlo. Ideale per pomeriggio / tramonto.</div>'
  +'<p>Rientrate, prendete gli zaini e parti dopo le 21.00 con il bus da TAM COC per HUE.</p>'
  +pren('AATZ2552','Il <b>transfer dall\'hotel è gratuito</b> per i clienti 12Go, ma va chiesto '
-   +'almeno <b>24 ore prima</b> su WhatsApp al +84 798 149 095, dicendo che siete a Halise Home. '
-   +'Esserci 30–45 minuti prima.')
+   +'almeno <b>24 ore prima</b> su WhatsApp al +84 798 149 095, dicendo che siete a Halise Home — '
+   +'meglio il 16 da Hanoi, perché il 17 e il 18 siete in barca. Se non rispondono, fatevi '
+   +'portare da Halise: di sera, in campagna, Grab lì è inaffidabile. Esserci 30–45 minuti prima.')
  +'</div>'+foto('g9c','stretta'));
 
 /* ── 11 · giorno 10-11 ─────────────────────────────────────────────── */
