@@ -297,6 +297,10 @@ pagF(cap('Daily schedule')+'<h1 class="giorno">GIORNO 1</h1><div class="data">11
  +'<span class="et" style="display:block;margin-top:7mm">Attività</span>'
  +'<ul><li>Arrivo Hanoi e taxi per hotel e check in dall\'11 al 13</li></ul>'
  +pren('6158389407')
+ +'<div class="nb"><b>Aggiunto dopo le prenotazioni.</b> Appena usciti dai controlli, '
+ +'fotografate <b>i timbri d\'ingresso di tutti e due i passaporti</b> e mandateli a Peony '
+ +'(WhatsApp +84 3848 23589). Lo chiedono per regolamento e scrivono che senza non si sale a '
+ +'bordo il 16.</div>'
  +'<ul><li>La camera sarà pronta dopo le 12/14.00. Giro per l\'Old Quartier. Pomeriggio / sera '
  +'passeggiata lungo il lago Hoan Kiem, il tempio Ngoc Son e ponte Cau The Huc.</li>'
  +'<li>Ta Hien Corner: siediti in un ristorantino sulle popolari sedioline di plastica per '
@@ -382,10 +386,11 @@ pagF(cap('Daily schedule')+'<h1 class="giorno">GIORNO 6 - 7</h1>'
    +'attività come kayak, visite alle grotte, all\'isola di Cat Ba, villaggi dei pescatori '
    +'galleggianti. '
    +'Danny Do, WhatsApp +84 984 749 958.')
- +prenLibero('Richiesto, si aspetta il pagamento','Van Peony: Hanoi → baia di Ha Long',
-   '20 USD a testa, 40 in due, sola andata. Da prenotare <b>almeno tre giorni prima</b> e '
-   +'<b>solo dall\'Old Quarter</b> — è la ragione per cui la notte del 15 è in Phố Hàng Cân. '
-   +'Richiesto per email il 3 ottobre con l\'indirizzo giusto; manca il link di pagamento.',1)
+ +prenLibero('Prenotato e pagato','Van Peony: Hanoi → baia di Ha Long',
+   'Transfer condiviso <b>diretto</b>, sola andata. <b>Ritiro al Silk Crown fra le 08:10 e le '
+   +'08:35</b>, arrivo al Lotto 34 verso le 11:30. 1.086.800 VND (~36 €) pagati il 5 ottobre. '
+   +'Il ritiro è <b>solo dall\'Old Quarter</b>: è la ragione per cui la notte del 15 è in Phố '
+   +'Hàng Cân. Danny Do, WhatsApp +84 3848 23589.')
  +'<p><b>Chiedi di inviarti il programma dettagliato delle 3 giornate</b>, se vuoi.</p>'
  +'<p>La crociera è un\'esperienza turistica ma imperdibile, e facendo 3 giorni ti addentri in '
  +'zone meno turistiche come LAN HA e CAT BA: avrai meno barche in giro rispetto a chi fa 1 '
