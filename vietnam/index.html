@@ -1094,8 +1094,8 @@ const DAYS=[
 const BUDGET=[
   ["Voli Etihad A/R","Milano–Abu Dhabi–Hanoi e ritorno, 2 persone. <i>Prenotati il 20/9, l'importo non è nella conferma</i>",1100,1500,"fisso"],
   ["Volo interno VietJet","VJ514 Da Nang–Hanoi, 2 persone con bagaglio. <i>Importo non riportato</i>",80,140,"fisso"],
-  ["Trasferimenti già pagati","2 minivan per Sa Pa 51 € · bus notturno Tam Coc–Hue 37 € · treno Hue–Hoi An 22 € · taxi da Noi Bai 9 €",119,119,"fisso"],
-  ["Trasferimenti da pagare","Van Hanoi→baia 40 USD · van crociera→Tam Coc ~25 € · Hoi An→Da Nang · taxi a Sa Pa · Grab in città",100,150,"fisso"],
+  ["Trasferimenti già pagati","2 minivan per Sa Pa 51 € · bus notturno Tam Coc–Hue 37 € · limousine Hue–Hoi An 22 € · taxi da Noi Bai 9 € · van di Peony per la baia 36 €",155,155,"fisso"],
+  ["Trasferimenti da pagare","Van crociera→Tam Coc ~25 € · Hoi An→Da Nang · taxi a Sa Pa · Grab in città",60,110,"fisso"],
   ["Alloggi confermati","Hoi An 211,85 € gi\u00e0 pagati, pi\u00f9 <b>8.821.330 VND</b> da pagare in struttura: Hanoi 3.554.880 · Sa Pa 2.521.440 · Hanoi 15/11 1.080.000 · Hue 930.010 · Noi Bai 735.000. Al cambio di ~30.000 VND/\u20ac",506,506,"fisso"],
   ["Alloggio da pagare in loco","Halise Home a Tam Coc, prenotato fuori da Booking",25,40,"fisso"],
   ["Crociera Peony, 2 notti","Pensione completa e attività incluse. <i>Importo non riportato nella conferma</i>",250,400,"fisso"],
@@ -1108,8 +1108,9 @@ const CARB={lmin:0,lmax:0,pmin:0,pmax:0};
 const BOOK=[
  ["sig","Da confermare","Van dalla crociera a Tam Coc","Halise, diretto","~25 €","Orario e molo <b>comunicati a Halise il 3 ottobre</b>: sbarco 11:30 al Lotto 34 di Tuan Chau. Manca la conferma scritta di prezzo e punto di presa."],
  ["alert","Da fare","Hoi An → aeroporto di Da Nang","Grab o bus","2–20 €","Il 24 pomeriggio, 30 km e un'ora con il traffico. Da decidere prima di partire."],
- ["sig","Richiesto","Van Hanoi → baia di Ha Long","Peony, sola andata","40 USD (~36 €)","Chiesto per email il 3 ottobre, con l'indirizzo del Silk Crown già comunicato. 20 USD a testa, <b>si aspetta il link di pagamento</b>."],
+ ["good","Fatto","Van Hanoi → baia di Ha Long","Peony, sola andata","1.086.800 VND (~36 €) pagati","<b>Pagato il 5 ottobre</b> con il link OnePay. Transfer condiviso <b>diretto</b>, 20 USD a testa più 4,5% di commissione bancaria. Ritiro al <b>Silk Crown, 20 Phố Hàng Cân, fra le 08:10 e le 08:35</b>; arrivo al Lotto 34 di Tuan Chau verso le 11:30. Confermato per email da Danny Do il 6 ottobre."],
  ["sig","Da chiedere","Transfer per il bus notturno","WhatsApp +84 798 149 095","gratis","HK Buslines fa il pick-up dagli hotel di Tam Coc per i clienti 12Go, ma <b>va chiesto almeno 24 ore prima</b>."],
+ ["sig","All'arrivo","Foto dei timbri d'ingresso a Peony","WhatsApp +84 3848 23589","—","Peony le chiede <b>per regolamento</b>: «share photos of all your Vietnam immigration entry stamps once you arrive Viet Nam». I dati dei passaporti sono già stati mandati il 3 ottobre — <b>senza, non si sale a bordo</b>. Fatelo l'11, appena usciti dai controlli a Noi Bai."],
  ["sig","Da verificare","Ingresso in Vietnam","esteri.it / ambasciata","—","Il programma rimanda a viaggiaresicuri.it. L'esenzione dal visto per gli italiani viene rinnovata periodicamente: <b>va controllata prima di partire</b>."],
  ["sig","Da valutare","Patente internazionale","Motorizzazione","~30 €","Serve per lo scooter a Sa Pa e a Tam Coc. Si richiede alla Motorizzazione e ci vogliono settimane."],
  ["good","Fatto","Voli Etihad A/R","Codice 9T6U9F","—","MXP 10/11 → HAN · HAN 25/11 → MXP. <b>L'EY433 del 25 è stato spostato alle 08:15.</b> Posti 37H/37J, 30H/30J, 31D/31E."],
@@ -1153,7 +1154,7 @@ const PHRASES=[["Buongiorno","Xin chào","sin ciào"],["Grazie","Cảm ơn","cam
  ["Ho prenotato","Tôi đã đặt trước","toi da dat truɐc"],["A che ora?","Mấy giờ?","mai giɐ"]];
 
 const LISTS=[
- {t:"Da fare prima di partire",i:["<b>Decidere come andare da Hoi An all'aeroporto di Da Nang il 24</b>","Farsi confermare da Halise il van per Tam Coc, prezzo compreso (orario e molo già comunicati)","Pagare a Peony il van per la baia, 40 USD: arriva il link","Chiedere a Peony il programma dettagliato dei tre giorni","Chiedere a HK Buslines il transfer per il bus notturno del 19 (WhatsApp, 24 ore prima)","Verificare l'ingresso in Vietnam sul sito dell'ambasciata","Richiedere la patente internazionale, se volete lo scooter","Assicurazione medico-bagaglio","Decidere se anticipare il taxi dell'11 (ora è alle 12:00, si atterra alle 06:10)"]},
+ {t:"Da fare prima di partire",i:["<b>Decidere come andare da Hoi An all'aeroporto di Da Nang il 24</b>","Farsi confermare da Halise il van per Tam Coc, prezzo compreso (orario e molo già comunicati)","Chiedere a Peony il programma dettagliato dei tre giorni","<b>All'arrivo l'11: mandare a Peony le foto dei timbri d'ingresso</b>","Chiedere a HK Buslines il transfer per il bus notturno del 19 (WhatsApp, 24 ore prima)","Verificare l'ingresso in Vietnam sul sito dell'ambasciata","Richiedere la patente internazionale, se volete lo scooter","Assicurazione medico-bagaglio","Decidere se anticipare il taxi dell'11 (ora è alle 12:00, si atterra alle 06:10)"]},
  {t:"Documenti e prenotazioni",i:["Passaporto valido almeno 6 mesi oltre il rientro","Carte d'imbarco Etihad A/R, codice 9T6U9F","Biglietto VietJet VJ514, codice 5EVNMY","Voucher Booking: Serene, Maison de Lao Chai, Chum, Signature, Airport Classic","Biglietti 12Go: minivan ×2, bus notturno, treno — scaricati OFFLINE","Conferma Peony Cruises e contatto WhatsApp di Danny Do","Conferma Halise Home","Assicurazione di viaggio, numero di polizza","Patente internazionale, se la prendete","Contanti in euro da cambiare, e una carta senza commissioni","Copia di tutto su telefono e una copia cartacea separata"]},
  {t:"Nello zaino",i:["<b>Zaino, non valigia</b>: sei spostamenti con scale, van e bus","Zaino piccolo per Sa Pa (il grande resta a Hanoi)","Scarpe da trekking chiuse (Sa Pa, Mua Caves, My Son)","Sandali o ciabatte","Impermeabile leggero e copri-zaino: a Hue e Hoi An novembre è stagione di piogge","Felpa o pile: a Sa Pa di notte si va sotto i 10 °C","Costume e telo microfibra (baia, An Bang)","Borsa o sacca waterproof per la baia","Repellente antizanzare","Crema solare","Power bank e adattatore (prese A/C, 220 V)","Torcia o frontale (Halise è nella giungla)","Tappi per le orecchie, per il bus notturno","Un cambio decente per le cene"]},
  {t:"Salute e farmacia",i:["Farmaci personali con la ricetta","Antidiarroico e fermenti lattici","Antidolorifico e antipiretico","Cerotti e disinfettante","Gel disinfettante per le mani","Collirio (lo smog di Hanoi)","Pastiglie per il mal d'auto: i tornanti per Sa Pa sono seicento","Zanzariera da viaggio, se dormite con la finestra aperta a Tam Coc"]}
@@ -1306,18 +1307,18 @@ const SCADENZE=[
   c:'12GO33251058. Dopo le 19:00 del 10 novembre il biglietto non si rimborsa più.'},
  {iso:'2026-11-10',ora:'23:59',k:'alert',t:'Ultimo giorno per disdire la Maison de Lao Chai',
   c:'Conferma 6309631840. Dall\'11 novembre si paga tutto, <b>2.521.440 VND</b>.'},
- {iso:'2026-11-11',ora:'23:59',k:'alert',t:'Ultimo giorno per disdire il Silk Crown, e per pagare Peony',
-  c:'<b>Silk Crown</b> (conferma 5210368751): dal 12 novembre si paga tutto, 1.080.000 VND. <b>Peony</b> scrive che il pagamento si fa <b>entro cinque giorni dal check-in</b>, cioè entro l\'11: se il link non è arrivato, sollecitatelo a Danny.'},
+ {iso:'2026-11-11',ora:'07:30',k:'alert',t:'Mandare a Peony le foto dei timbri d\'ingresso',
+  c:'Appena usciti dai controlli a Noi Bai, fotografate <b>i timbri d\'ingresso di tutti e due i passaporti</b> e mandateli su WhatsApp al <b>+84 3848 23589</b> o a online@peonycruises.com. Peony lo chiede per regolamento e scrive che <b>senza non si sale a bordo</b>: i dati dei passaporti sono già stati mandati il 3 ottobre, mancano solo i timbri.'},
+ {iso:'2026-11-11',ora:'23:59',k:'alert',t:'Ultimo giorno per disdire il Silk Crown',
+  c:'Conferma 5210368751: dal 12 novembre si paga tutto, <b>1.080.000 VND</b>. <i>Il van di Peony, che era l\'altra scadenza di oggi, è pagato dal 5 ottobre.</i>'},
  {iso:'2026-11-13',ora:'02:00',k:'alert',t:'Ultimo rimborso del minivan di ritorno da Sa Pa',
   c:'12GO33251059, il van del 15 che vi riporta a Hanoi. Si rimborsa fino alle <b>02:00 del 13 novembre</b> \u2014 cio\u00e8 entro la notte fra il 12 e il 13, mentre dormite a Hanoi. Rimborso THB 1.037, circa 27 \u20ac. \u00c8 l\'ultima cosa che si pu\u00f2 ancora disfare prima di salire in montagna.'},
- {iso:'2026-11-13',ora:'12:00',k:'sig',t:'Ultimo giorno utile per prenotare il van di Peony',
-  c:'Il transfer condiviso Hanoi → baia <b>va prenotato almeno tre giorni prima</b>, e la partenza è il 16. Indirizzo già comunicato: Hanoi Silk Crown, 20 Phố Hàng Cân.'},
+ {iso:'2026-11-16',ora:'09:00',k:'sig',t:'Chiedere a HK Buslines il transfer, prima di imbarcarsi',
+  c:'WhatsApp <b>+84 798 149 095</b>, prenotazione AATZ2552. Il pick-up dall\'hotel è gratuito per i clienti 12Go ma <b>va chiesto almeno 24 ore prima</b>, e il bus parte il 19 alle 21:30. Dite che siete a <b>Halise Home, Tam Coc</b>. Il termine vero è la sera del 18, ma il 17 e il 18 siete in barca con poco segnale: <b>fatelo adesso, da Hanoi</b>.'},
  {iso:'2026-11-16',ora:'21:30',k:'alert',t:'Ultimo rimborso del bus notturno',
   c:'AATZ2552, HK Buslines. Dopo le 21:30 del 16 novembre non si rimborsa più.'},
  {iso:'2026-11-16',ora:'23:59',k:'alert',t:'Ultimo giorno per disdire The Chum a Hue',
   c:'Conferma 6039302548. Dal 17 novembre si paga tutto, <b>930.010 VND</b>. <b>Qui non si pagano contanti</b>: solo carta.'},
- {iso:'2026-11-16',ora:'09:00',k:'sig',t:'Chiedere a HK Buslines il transfer, prima di imbarcarsi',
-  c:'WhatsApp <b>+84 798 149 095</b>, prenotazione AATZ2552. Il pick-up dall\'hotel è gratuito per i clienti 12Go ma <b>va chiesto almeno 24 ore prima</b>, e il bus parte il 19 alle 21:30. Dite che siete a <b>Halise Home, Tam Coc</b>. Il termine vero è la sera del 18, ma il 17 e il 18 siete in barca con poco segnale: <b>fatelo adesso, da Hanoi</b>.'},
  {iso:'2026-11-18',ora:'15:00',k:'alert',t:'Il transfer per il bus di domani: confermato o piano B',
   c:'Siete appena arrivati a Halise e avete di nuovo segnale. Se HK Buslines <b>non ha risposto</b> o dice di no, chiedete a Halise di portarvi al punto di raccolta: siete in campagna e di sera Grab lì è inaffidabile. Sono pochi chilometri, <b>100–150.000 VND</b>. Accordatevi adesso, non alle otto di sera di domani: la camera la lasciate domattina.'},
  {iso:'2026-11-20',ora:'14:45',k:'sig',t:'Ultimo rimborso della limousine per Hoi An',
@@ -1385,9 +1386,12 @@ const SPOSTAMENTI=[
  {iso:'2026-11-15',ora:'14:00',i:'🚐',g:6,t:'Minivan → Hanoi',
   da:'03 Nguyen Chi Thanh, Sa Pa',a:'Hanoi Opera House, 20:00',cod:'12GO33251059',
   tel:'+84886923868',n:'<b>Esserci 30 minuti prima.</b> Check-out dalla Maison entro le 11:30.'},
+ {iso:'2026-11-16',ora:'08:10',i:'🚐',g:7,t:'Van di Peony → Tuan Chau',
+  da:'Silk Crown, 20 Phố Hàng Cân',a:'Lotto 34, Tuan Chau, verso le 11:30',cod:'1128151350414303',
+  tel:'+84384823589',n:'<b>Ritiro fra le 08:10 e le 08:35</b>, in hotel. Transfer condiviso diretto, già pagato (1.086.800 VND). Colazione presto e zaini pronti alle 08:00.'},
  {iso:'2026-11-16',ora:'11:15',i:'⛴',g:7,t:'Check-in crociera',
   da:'Lotto 34, Tuan Chau',a:'Baia di Ha Long',cod:'9800672634863520599',
-  tel:'+84984749958',n:'Van di Peony dal Silk Crown, 20 USD a testa: indirizzo già dato, si aspetta il link di pagamento. <b>L\'ora del pick-up non è ancora fissata:</b> sono 165 km e due ore e mezza o tre, quindi verso le 08:00 — fatevela confermare da Danny insieme al pagamento. Dal molo: il responsabile della lounge è il +84 987 671 669.'},
+  tel:'+84984749958',n:'Il van di Peony arriva verso le <b>11:30</b>, un quarto d\'ora dopo l\'orario nominale di check-in: è la stessa compagnia, vi aspettano. Dal molo: il responsabile della lounge è il +84 987 671 669.'},
  {iso:'2026-11-18',ora:'11:30',i:'⛴',g:9,t:'Sbarco → Tam Coc',
   da:'Lotto 34, Tuan Chau',a:'Halise Home, verso le 14:30',cod:'—',
   n:'Van organizzato con Halise: molo e orario comunicati il 3 ottobre. 175 km, circa tre ore.'},
@@ -2709,7 +2713,7 @@ window.__BIGLIETTO=id=>{pref.big[id]=!pref.big[id];savePref();ridisegna();};
     if (!f) return;
     var s = document.createElement('span');
     s.style.cssText = 'display:block;margin-top:6px;opacity:.65;font-variant-numeric:tabular-nums';
-    s.textContent = 'versione ea9871c381';
+    s.textContent = 'versione 376ab6defc';
     f.appendChild(s);
   });
   // ── suggerimento d'installazione, solo su iPhone e solo se non installata ──
