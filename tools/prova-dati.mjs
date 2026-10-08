@@ -56,6 +56,11 @@ const ATTESI = [
   ['t_lowerB', 3, '2026-09-23', 'Leg curl sdraiato — manubri',          'Leg curl in piedi — cavo basso'],
   // questa cade fra la v48 e la v49: il sissy era ancora in scheda
   ['t_lowerB', 2, '2026-09-30', 'Sissy squat — eccentrica 5 sec',       'Leg curl in piedi — cavo basso'],
+  /* La finestra della v49 e' larga UN GIORNO SOLO (8/10/2026) e quel giorno e'
+     oggi: l'app ci crea da sola la giornata corrente appena renderizza la
+     scheda Allenamento, quindi non e' seminabile. La fotografia v49 resta nel
+     codice per simmetria, ma le serie registrate in quella finestra hanno
+     comunque il nome salvato accanto, che e' la via normale dalla v46. */
   ['q_upperA', 0, '2026-07-09', 'Panca piana bilanciere',               'Panca inclinata bilanciere'],
   ['q_upperB', 2, '2026-07-16', 'Pullover ai cavi — carrucola alta',    'Lat machine presa stretta']
 ];
@@ -78,7 +83,7 @@ const seminato = await page.evaluate(riservate => {
   const nEs = { rv_push: 5, rv_pull: 5, rv_legs: 4, rv_upper: 6, rv_lower: 5,
                 t_upperA: 9, t_lowerA: 6, t_upperB: 9, t_lowerB: 6,
                 q_upperA: 7, q_lowerA: 6, q_upperB: 6, q_lowerB: 7,
-                t_upperA: 8, t_lowerA: 8, t_upperB: 8, t_lowerB: 7 };
+                t_upperA: 8, t_lowerA: 8, t_upperB: 8, t_lowerB: 8 };
   let sedute = 0, serie = 0;
   for (let i = 27; i >= 0; i--) {
     const dt = new Date(oggi.getTime() - i * 864e5), d = iso(dt);

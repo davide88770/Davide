@@ -119,9 +119,9 @@ l'esercizio aveva quel giorno.
 | | 4 sedute Top | 4 sedute | 3 full body |
 |---|---|---|---|
 | Giorni | Lun · Mar · Gio · Ven | Lun · Mar · Gio · Ven | Lun · Mer · Ven |
-| Serie dirette | 76 | 61 | **50** |
-| Minuti a settimana | 250 | 227 | **160** |
-| Seduta più lunga | 72 min | 65 min | **54 min** |
+| Serie dirette | 77 | 61 | **50** |
+| Minuti a settimana | 253 | 227 | **160** |
+| Seduta più lunga | 69 min | 65 min | **54 min** |
 | Serie per esercizio | 2-3 | **2, salvo eccezioni** | 2-3 |
 | A cosa serve | spingere | tirare ogni serie a fondo | **tenere** |
 
@@ -299,28 +299,31 @@ quindi lo storico dei carichi si porta dietro tutto.
 | Bicipiti | 8 | **8** | 7 |
 | Tricipiti | 8 | **8** | 6 |
 | Accosciata | 8 | 10 | **8** |
-| Leg curl + stacco | 9 | **9** | 7 |
+| Leg curl + stacco | 9 | 8 | 7 |
+| Gluteo (diretto) | — | 2 | 0 |
 | Polpacci | 3 | 4 | 4 |
 | Addome | 6 | **6** | 4 |
-| **Totale** | **68** | **76** | **61** |
+| **Totale** | **68** | **77** | **61** |
 
 **Spalle 12 non è un errore, ed è il numero che va letto per esteso: anteriore
 3, laterale 5, posteriore 4.** Il riferimento di 7 trattava la spalla come un
 muscolo solo. Sono tre: l'anteriore prende già molto dalle spinte — per questo
 il military resta a 3 serie e non sale — mentre laterale e posteriore sono i due
-che senza lavoro diretto non crescono. **Femorali 9 contro 10 di accosciata**: dalla v49 il
-rapporto è praticamente uno a uno, che è dove Nippard ed Emmerich lo tengono
-(fino alla v33 era rovesciato, 7 contro 11).
+che senza lavoro diretto non crescono. **Femorali 8 contro 10 di accosciata**: dalla v50 i femorali
+sono l'unico numero in rosso, una serie sotto il riferimento, perché lo stacco
+romeno sta a 2 serie in parallelo con l'hack squat reverse. Il rapporto resta
+vicino a uno a uno, che è dove Nippard ed Emmerich lo tengono (fino alla v33
+era rovesciato, 7 contro 11).
 
 | | 4 sedute Top | 4 sedute |
 |---|---|---|
 | Giorni | Lun Upper A · Mar Lower A · Gio Upper B · Ven Lower B | Lun Upper A · Mar Lower A · Gio Upper B · Ven Lower B |
 | Liberi | Mercoledì, sabato, domenica | Mercoledì, sabato, domenica |
-| Esercizi per seduta | 7-8 | 6-7 |
-| Serie per seduta | 17-20 | 14-17 |
-| Serie a settimana | 76 | 61 |
-| Durate | 69, 72, 56, 53 min | 65, 58, 51, 53 min |
-| Minuti a settimana | 250 | 227 |
+| Esercizi per seduta | 8 | 6-7 |
+| Serie per seduta | 19-20 | 14-17 |
+| Serie a settimana | 77 | 61 |
+| Durate | 69, 67, 56, 61 min | 65, 58, 51, 53 min |
+| Minuti a settimana | 253 | 227 |
 | Serie per esercizio | 2-3 | 2, tranne le tre eccezioni sopra |
 | Vicinanza al cedimento | RIR 1 sulle alzate di forza, cedimento tecnico sul resto | idem |
 | Braccia | tricipiti in alto, bicipiti in basso, 2 esercizi per muscolo per seduta | tricipiti in alto, bicipiti in basso, 1 esercizio per muscolo per seduta |
@@ -346,13 +349,13 @@ la serie finale intensificata. Riscaldamento e stretching fuori dal conto.
 | Push-down alla corda | 2 × 10-12 | + Drop set | 120 s |
 | Tricipite overhead — corda | 2 × 10-12 | + Rest-pause | 90 s |
 
-**Lower A — Martedì · 8 esercizi · 20 serie · 72 min · forza + bicipiti**
+**Lower A — Martedì · 8 esercizi · 19 serie · 67 min · forza + bicipiti**
 
 | Esercizio | Serie × rip | Tecnica | Rec. |
 |---|---|---|---|
 | Hack squat — piede basso | 3 × 5-8 | RIR 1 · forza | 240 s |
 | Pressa — piede alto e largo | 2 × 10-12 | cedimento + Drop set | 180 s |
-| Romanian deadlift bilanciere | 3 × 6-8 | RIR 1 · forza | 240 s |
+| Romanian deadlift bilanciere | 2 × 6-8 | RIR 1 · forza | 240 s |
 | Leg curl su panca — cavo basso | 3 × 12-15 | + Drop set | 90 s |
 | Calf raise in piedi | 2 × 8-12 | + Rest-pause | 120 s |
 | Curl bilanciere — focus allungamento | 2 × 8-10 | + Drop set | 150 s |
@@ -372,12 +375,13 @@ la serie finale intensificata. Riscaldamento e stretching fuori dal conto.
 | Push-down — triangolo largo | 2 × 10-12 | + Drop set | 120 s |
 | Overhead a un braccio — cavo basso | 2 × 10-12 | + Rest-pause | 120 s |
 
-**Lower B — Venerdì · 7 esercizi · 17 serie · 53 min · volume + bicipiti**
+**Lower B — Venerdì · 8 esercizi · 19 serie · 61 min · volume + bicipiti**
 
 | Esercizio | Serie × rip | Tecnica | Rec. |
 |---|---|---|---|
 | Pressa — piede alto e largo | 3 × 8-12 | cedimento + Drop set | 180 s |
 | Hack squat — piede basso | 2 × 8-12 | cedimento + Rest-pause | 180 s |
+| Hack squat reverse | 2 × 10-12 | cedimento + Rest-pause | 180 s |
 | Leg curl in piedi — cavo basso | 3 × 12-15 | + Drop set | 90 s |
 | Calf pressa | 2 × 12-15 | + Rest-pause | 90 s |
 | Curl manubri su panca inclinata | 2 × 8-10 | + Drop set | 120 s |
@@ -416,19 +420,39 @@ indietro, il modo più economico è il **reverse nordic** — in ginocchio, anca
 estesa, discesa in 4-5 secondi, 2 serie, sette minuti.
 
 È uscito anche lo **stacco a gambe tese** del venerdì, che era la copia più
-leggera dello stacco romeno: la cerniera d'anca scende a **1× a settimana** e i
-femorali da 11 a **9 serie**, che è esattamente il numero di riferimento, con i
-due leg curl a coprire i due angoli d'anca.
+leggera dello stacco romeno.
 
-**L'hack squat reverse** (girato verso il pad, petto appoggiato) è scritto come
-alternativa nella nota della pressa del martedì. Onestà: è un ottimo esercizio
-di **gluteo** e fa lo stesso lavoro d'anca della pressa a piede alto, con un
-range più profondo — ma **non è un esercizio per i femorali**. In uno schema di
-accosciata il femorale resta quasi isometrico, ed è il motivo per cui gli squat
-non costruiscono femorali. Quelli li fanno lo stacco romeno e i due leg curl.
+### Un'estensione d'anca per giornata, dalla v50
 
-Il **martedì** è la giornata pesante (8 esercizi, 20 serie, 72 min), il
-**venerdì** quella corta e densa (7 esercizi, 17 serie, 53 min).
+| | Esercizio | Cosa carica |
+|---|---|---|
+| **Mar** | Romanian deadlift 2×6-8 RIR 1 | femorale dove è **lungo** |
+| **Ven** | Hack squat reverse 2×10-12 a cedimento | **gluteo**, anca profonda |
+
+Due serie ciascuno. L'estensione d'anca torna a **frequenza 2×** — era il buco
+aperto dall'uscita dello stacco a gambe tese — e il **gluteo** prende il suo
+primo lavoro **diretto** in questa scheda: fino alla v49 lo riceveva solo di
+riflesso da hack, pressa e stacco (9 serie frazionali, 2 dirette ora).
+
+**Il reverse hack è un esercizio di gluteo, non di femorali.** In uno schema di
+accosciata il femorale cambia poco di lunghezza e resta quasi isometrico: è il
+motivo per cui gli squat non costruiscono femorali. Quelli li fanno lo stacco
+romeno e i due leg curl. Vale la pena ripeterlo perché è la confusione più
+comune su questo esercizio.
+
+Si fa **subito dopo l'hack squat**, perché è la stessa configurazione girata di
+180°: nessuna riconfigurazione in più. L'ordine del venerdì è pressa → hack →
+reverse, cioè una sola riconfigurazione per seduta.
+
+**Il prezzo.** I femorali scendono a **8 serie**, una sotto il riferimento di 9,
+perché lo stacco romeno passa da 3 serie a 2. È l'unico numero in rosso nella
+tabella dei volumi della Top, e lo si vede nell'app. Il lavoro in allungamento
+sul femorale è la dose che rende di più, e adesso ce n'è una in meno: se un
+giorno lo si vuole indietro, **la terza serie di stacco romeno è il primo posto
+dove rimetterla**.
+
+Le quattro giornate ora pesano quasi uguale: 69, 67, 56 e 61 minuti, 8 esercizi
+e 19-20 serie ciascuna.
 
 **I tre esercizi usciti dalla Top:** curl hammer in piedi, tricipite overhead a
 due mani (2ª frequenza), pressa a piede alto fisso. Restano leggibili nei
@@ -666,6 +690,11 @@ A parità di volume conta *dove* l'esercizio è più duro rispetto a dove il mus
   non è lo stesso movimento due volte. Il piede basso manda il ginocchio avanti
   ed è un vettore di ginocchio; il piede alto e largo carica l'anca col gluteo
   allungato. Due articolazioni, una macchina.
+- **Hack squat reverse** come lavoro diretto di gluteo (v50): petto e fianchi
+  al pad, l'anca va indietro e scende profonda. È la stessa configurazione
+  dell'hack squat girata di 180°, quindi costa zero in tempo macchina. Non
+  conta come lavoro sui femorali: nello schema di accosciata il femorale resta
+  quasi isometrico.
 - **Leg curl seduto su panca al cavo basso** (v48): vedi sotto.
 
 #### Il limite che c'era, e come si è chiuso
@@ -1061,8 +1090,8 @@ npm run prova:pwa                                # giro di aggiornamento dell'ap
   profilo vuoto metà dell'app non viene mai eseguita — è così che due bug sono
   passati per due versioni.
 - **Volumi e durate ricalcolati eseguendo il codice**, non letti dalle tabelle.
-  4 sedute: 61 serie dirette, 17+15+14+15, durate 65/58/51/53. Top v49: 76 serie
-  dirette, 20+20+19+17, durate 69/72/56/53. In tutti i casi la durata dichiarata
+  4 sedute: 61 serie dirette, 17+15+14+15, durate 65/58/51/53. Top v50: 77 serie
+  dirette, 20+19+19+19, durate 69/67/56/61. In tutti i casi la durata dichiarata
   coincide con quella calcolata, e il massimo per gruppo in una singola seduta è
   8,5 serie frazionali contro le 11 della soglia.
 - **Cinque giornate vecchie seminate sugli indici che hanno cambiato esercizio**
@@ -1072,6 +1101,23 @@ npm run prova:pwa                                # giro di aggiornamento dell'ap
 
 ## Storico
 
+- **v50** — **un'estensione d'anca per giornata bassa**: stacco romeno il
+  martedì e **hack squat reverse** il venerdì, **2 serie ciascuno**. Lo stacco
+  romeno scende da 3 serie a 2; il reverse entra come esercizio vero, non più
+  come alternativa scritta in una nota. Due conseguenze buone: l'estensione
+  d'anca torna a **frequenza 2×** — era il buco aperto nella v49 dall'uscita
+  dello stacco a gambe tese — e il **gluteo** prende le sue prime **2 serie
+  dirette** in questa scheda, dopo averlo sempre ricevuto solo di riflesso (9
+  frazionali). Il reverse si fa subito dopo l'hack squat perché è la stessa
+  configurazione girata di 180°, quindi la riconfigurazione della macchina
+  resta una sola per seduta. **Prezzo dichiarato:** i femorali scendono a 8,
+  una sotto il riferimento, e diventano l'unico numero in rosso della Top — il
+  lavoro in allungamento sul femorale è la dose che rende di più, e la terza
+  serie di stacco romeno è il primo posto dove rimetterla. Volume 76 → **77
+  serie**, durate 69/**67**/56/**61**: le quattro giornate ora pesano quasi
+  uguale, 8 esercizi e 19-20 serie ciascuna. Confermato che il reverse hack è
+  un esercizio di **gluteo e non di femorali**, nella nota e nella
+  documentazione.
 - **v49** — **le sedute basse della Top ricostruite attorno a hack squat e
   pressa, in tutte e due le giornate.** Scelta di Davide: meno esercizi di
   gamba, più intensi. Il sissy squat esce, e con lui lo stacco a gambe tese del
