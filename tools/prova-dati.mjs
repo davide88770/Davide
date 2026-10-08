@@ -214,6 +214,89 @@ if (!oggiOk) {
   console.error(`  ERRORE  una serie registrata oggi non compare sotto «${oggiNome}»`); process.exit(1); }
 await page.click('#tab-progressi'); await page.waitForTimeout(250);
 
+/* TOGLI UN ESERCIZIO, TOGLI UNA SERIE, COPIA IL CARICO.
+   Tre funzioni della v51. Quella che puo' fare danno e' la prima: togliere un
+   esercizio NON deve cancellare le serie registrate — e' lo stesso errore che
+   nella v42 fece sparire un carico appena scritto annullando uno spostamento.
+   Si semina una giornata futura, si toglie l'esercizio 0 che ha dei dati, si
+   controlla che i dati ci siano ancora e che il "Rimetti" lo riporti. */
+const gTest = await page.evaluate(() => {
+  const iso = t => new Date(t).toISOString().slice(0, 10);
+  const d = new Date(); while (d.getDay() !== 2) d.setDate(d.getDate() + 1);   // un martedi' futuro
+  const g = iso(d);
+  S.sess[g] = { sid: 't_lowerA', tipo: 'base', set: { 0: [{ kg: '95', rep: '6', rir: 1, ok: 1 }] },
+    piu: {}, sost: {}, via: {}, nomi: {}, nota: '', mod: Date.now() };
+  salva(); return g;
+});
+await page.waitForTimeout(400);
+await page.evaluate(g => { S.ui.data = g; vai('workout'); }, gTest);
+await page.waitForTimeout(350);
+
+/* I tasti stanno dentro il corpo dell'esercizio: va aperto, altrimenti
+   Playwright aspetta un elemento invisibile e la prova scade. */
+await page.evaluate(() => { APERTI.add(0); renderWorkout(); }); await page.waitForTimeout(250);
+const esPrima = await page.$$eval('#view-workout details[data-ex]', n => n.length);
+await page.click('details[data-ex="0"] [data-via="0"]'); await page.waitForTimeout(350);
+const dopoVia = await page.evaluate(g => {
+  const L = S.sess[g];
+  return { es: document.querySelectorAll('#view-workout details[data-ex]').length,
+           rimetti: !!document.querySelector('[data-torna="0"]'),
+           datiVivi: ((L.set[0] || [])[0] || {}).kg };
+}, gTest);
+if (dopoVia.es !== esPrima - 1) {
+  console.error(`  ERRORE  togliendo un esercizio la lista non scende (${esPrima} -> ${dopoVia.es})`); process.exit(1); }
+if (!dopoVia.rimetti) { console.error('  ERRORE  manca il tasto Rimetti'); process.exit(1); }
+if (dopoVia.datiVivi !== '95') {
+  console.error(`  ERRORE  togliendo l'esercizio sono spariti i dati (kg = ${dopoVia.datiVivi})`); process.exit(1); }
+await page.click('[data-torna="0"]'); await page.waitForTimeout(350);
+const dopoTorna = await page.$$eval('#view-workout details[data-ex]', n => n.length);
+if (dopoTorna !== esPrima) {
+  console.error(`  ERRORE  il Rimetti non riporta l'esercizio (${dopoTorna} invece di ${esPrima})`); process.exit(1); }
+
+/* Togliere serie sotto il piano, ma non sotto una. L'esercizio 4 (calf) ne ha
+   2 previste e nessun dato: si scende a 1 e poi il tasto deve sparire. */
+await page.evaluate(() => { APERTI.add(4); renderWorkout(); }); await page.waitForTimeout(250);
+const serie0 = await page.$$eval('details[data-ex="4"] .setrow', n => n.length);
+await page.click('details[data-ex="4"] [data-piu="4:-1"]'); await page.waitForTimeout(300);
+const serie1 = await page.$$eval('details[data-ex="4"] .setrow', n => n.length);
+if (serie1 !== serie0 - 1) {
+  console.error(`  ERRORE  non si riesce a togliere una serie sotto il piano (${serie0} -> ${serie1})`); process.exit(1); }
+const ancora = await page.$('details[data-ex="4"] [data-piu="4:-1"]');
+if (serie1 === 1 && ancora) {
+  console.error('  ERRORE  con una serie sola il tasto per togliere dovrebbe sparire'); process.exit(1); }
+
+/* Copia la 1ª: scrive solo sulle serie vuote, e il carico si riporta da solo
+   sulla serie dopo quando spunti. L'esercizio 0 ha 3 serie e la 1ª compilata. */
+await page.evaluate(() => { APERTI.add(0); renderWorkout(); }); await page.waitForTimeout(250);
+await page.click('details[data-ex="0"] [data-copia="0"]'); await page.waitForTimeout(300);
+const copiato = await page.evaluate(g => (S.sess[g].set[0] || []).map(r => [r.kg, r.rep]), gTest);
+if (!copiato.every(r => r[0] === '95' && r[1] === '6')) {
+  console.error('  ERRORE  "Copia la 1ª" non ha riempito le serie vuote: ' + JSON.stringify(copiato)); process.exit(1); }
+const nonSovrascrive = await page.evaluate(async g => {
+  S.sess[g].set[0] = [{ kg: '100', rep: '5', ok: 1 }, { kg: '80', rep: '', ok: false }, { kg: '', rep: '', ok: false }];
+  renderWorkout();
+  document.querySelector('details[data-ex="0"] [data-copia="0"]').click();
+  return (S.sess[g].set[0] || []).map(r => r.kg);
+}, gTest);
+if (nonSovrascrive[1] !== '80') {
+  console.error('  ERRORE  "Copia la 1ª" ha sovrascritto una serie già compilata: ' + JSON.stringify(nonSovrascrive));
+  process.exit(1); }
+if (nonSovrascrive[2] !== '100') {
+  console.error('  ERRORE  "Copia la 1ª" non ha riempito la serie vuota: ' + JSON.stringify(nonSovrascrive));
+  process.exit(1); }
+const riporta = await page.evaluate(async g => {
+  S.sess[g].set[0] = [{ kg: '77.5', rep: '8', ok: false }, { kg: '', rep: '', ok: false }];
+  S.sess[g].piu = { 0: -1 };
+  renderWorkout();
+  document.querySelector('details[data-ex="0"] [data-tick="0:0"]').click();
+  const r = S.sess[g].set[0];
+  return { kgDopo: r[1] ? r[1].kg : null, repDopo: r[1] ? r[1].rep : null };
+}, gTest);
+if (riporta.kgDopo !== '77.5') {
+  console.error(`  ERRORE  spuntando una serie il carico non si riporta su quella dopo (${riporta.kgDopo})`); process.exit(1); }
+if (riporta.repDopo) {
+  console.error('  ERRORE  si sono riportate anche le ripetizioni: una serie non fatta risulterebbe fatta'); process.exit(1); }
+
 /* Cambia programmazione e tipo di settimana: sono i due interruttori che
    ricalcolano tutto. */
 await page.click('#tab-piano'); await page.waitForTimeout(200);
@@ -235,6 +318,8 @@ console.log(`  esercizi  ${esercizi} voci nel selettore dei progressi`);
 console.log('  testi     nome riscritto mostrato, storico ancora legato al nome del piano');
 console.log('  sposta    giorno di partenza e di arrivo coerenti dopo lo spostamento');
 console.log(`  storico   ${ATTESI.length} giornate vecchie etichettate com'erano allora, non come sono adesso`);
+console.log('  togli     esercizio via e rimesso senza perdere le serie · serie sotto il piano, mai sotto una');
+console.log('  copia     la 1ª riempie solo le serie vuote · la spunta riporta il carico, non le ripetizioni');
 if (errori.length) {
   console.error(`\n${errori.length} errori:`);
   for (const e of errori) console.error('  ✗ ' + e);
