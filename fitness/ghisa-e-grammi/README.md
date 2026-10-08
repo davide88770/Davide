@@ -120,7 +120,7 @@ l'esercizio aveva quel giorno.
 |---|---|---|---|
 | Giorni | Lun · Mar · Gio · Ven | Lun · Mar · Gio · Ven | Lun · Mer · Ven |
 | Serie dirette | 77 | 61 | **50** |
-| Minuti a settimana | 253 | 227 | **160** |
+| Minuti a settimana | 251 | 227 | **160** |
 | Seduta più lunga | 69 min | 65 min | **54 min** |
 | Serie per esercizio | 2-3 | **2, salvo eccezioni** | 2-3 |
 | A cosa serve | spingere | tirare ogni serie a fondo | **tenere** |
@@ -322,8 +322,8 @@ era rovesciato, 7 contro 11).
 | Esercizi per seduta | 8 | 6-7 |
 | Serie per seduta | 19-20 | 14-17 |
 | Serie a settimana | 77 | 61 |
-| Durate | 69, 67, 56, 61 min | 65, 58, 51, 53 min |
-| Minuti a settimana | 253 | 227 |
+| Durate | 69, 65, 56, 61 min | 65, 58, 51, 53 min |
+| Minuti a settimana | 251 | 227 |
 | Serie per esercizio | 2-3 | 2, tranne le tre eccezioni sopra |
 | Vicinanza al cedimento | RIR 1 sulle alzate di forza, cedimento tecnico sul resto | idem |
 | Braccia | tricipiti in alto, bicipiti in basso, 2 esercizi per muscolo per seduta | tricipiti in alto, bicipiti in basso, 1 esercizio per muscolo per seduta |
@@ -349,13 +349,13 @@ la serie finale intensificata. Riscaldamento e stretching fuori dal conto.
 | Push-down alla corda | 2 × 10-12 | + Drop set | 120 s |
 | Tricipite overhead — corda | 2 × 10-12 | + Rest-pause | 90 s |
 
-**Lower A — Martedì · 8 esercizi · 19 serie · 67 min · forza + bicipiti**
+**Lower A — Martedì · 8 esercizi · 19 serie · 65 min · forza + bicipiti**
 
 | Esercizio | Serie × rip | Tecnica | Rec. |
 |---|---|---|---|
 | Hack squat — piede basso | 3 × 5-8 | RIR 1 · forza | 240 s |
 | Pressa — piede alto e largo | 2 × 10-12 | cedimento + Drop set | 180 s |
-| Romanian deadlift bilanciere | 2 × 6-8 | RIR 1 · forza | 240 s |
+| Romanian deadlift — manubri | 2 × 8-10 | cedimento + Allungamento | 180 s |
 | Leg curl su panca — cavo basso | 3 × 12-15 | + Drop set | 90 s |
 | Calf raise in piedi | 2 × 8-12 | + Rest-pause | 120 s |
 | Curl bilanciere — focus allungamento | 2 × 8-10 | + Drop set | 150 s |
@@ -426,8 +426,20 @@ leggera dello stacco romeno.
 
 | | Esercizio | Cosa carica |
 |---|---|---|
-| **Mar** | Romanian deadlift 2×6-8 RIR 1 | femorale dove è **lungo** |
+| **Mar** | Romanian deadlift **coi manubri** 2×8-10 a cedimento | femorale dove è **lungo** |
 | **Ven** | Hack squat reverse 2×10-12 a cedimento | **gluteo**, anca profonda |
+
+**Perché i manubri e perché a cedimento sono la stessa decisione** (v51). Col
+bilanciere a 6-8 ripetizioni il limite lo mettono la schiena bassa e la presa,
+non il femorale: vicino al cedimento diventa un esercizio rischioso, e per
+questo stava a RIR 1. Coi manubri **ai lati** delle cosce scendi più in basso —
+la barra non ti tocca le gambe — il carico per mano è metà, e il **cedimento
+tecnico** diventa raggiungibile in sicurezza. È la condizione in cui due serie
+valgono quello che costano.
+
+La definizione conta: **la serie finisce quando la schiena inizia a cedere, non
+quando il peso non sale più.** Sull'ultima serie, parziali in allungamento —
+due o tre ripetizioni solo nella metà bassa.
 
 Due serie ciascuno. L'estensione d'anca torna a **frequenza 2×** — era il buco
 aperto dall'uscita dello stacco a gambe tese — e il **gluteo** prende il suo
@@ -451,7 +463,7 @@ sul femorale è la dose che rende di più, e adesso ce n'è una in meno: se un
 giorno lo si vuole indietro, **la terza serie di stacco romeno è il primo posto
 dove rimetterla**.
 
-Le quattro giornate ora pesano quasi uguale: 69, 67, 56 e 61 minuti, 8 esercizi
+Le quattro giornate ora pesano quasi uguale: 69, 65, 56 e 61 minuti, 8 esercizi
 e 19-20 serie ciascuna.
 
 **I tre esercizi usciti dalla Top:** curl hammer in piedi, tricipite overhead a
@@ -764,6 +776,38 @@ All'import di un backup i testi entrano **solo dove non ne hai già uno**: non
 hanno una data di modifica, quindi non sono confrontabili, e sovrascriverli
 significherebbe cambiarti un testo senza averlo toccato. Su un telefono pulito
 arrivano tutti.
+
+### Cambiare la giornata mentre la fai (v51)
+
+Tre cose, tutte valide **solo per quel giorno** e tutte reversibili. Nessuna
+cancella dati: è la regola che questo progetto ha imparato nella v42, quando
+annullare uno spostamento fece sparire un carico appena scritto.
+
+**Togli per oggi.** Un tasto su ogni esercizio lo toglie dalla giornata. Spa­
+risce dalla lista, dal conteggio delle serie, dal totale per gruppo muscolare e
+dalla scheda stampata. Le serie già registrate **restano nel log**: sotto la
+lista compare una striscia con gli esercizi togliati, quante serie hanno
+conservato e un tasto **Rimetti** che li riporta dov'erano.
+
+**− Serie.** Prima si potevano togliere solo le serie aggiunte a mano; ora si
+scende anche **sotto il numero del piano**. Il minimo è una serie — per non
+farne nessuna si toglie l'esercizio, che è una cosa diversa e si annulla in un
+tocco. L'intestazione mostra il numero di oggi col numero del piano barrato
+accanto, così si vede che è una deroga e non una modifica alla scheda. Resta la
+guardia di sempre: una riga con dei dati dentro non si butta via, la svuoti tu.
+
+**Copiare carico e ripetizioni.** Due meccanismi, perché fanno due cose
+diverse:
+
+- **Automatico, quando spunti una serie:** il carico si riporta sulla serie
+  successiva se è ancora vuota. Le **ripetizioni no**, ed è deliberato — bastano
+  carico e ripetizioni perché una serie risulti *fatta*, quindi precompilarle
+  segnerebbe come fatta una serie che non hai fatto, e l'esercizio apparirebbe
+  completo da solo.
+- **«Copia la 1ª», a mano:** scrive carico, ripetizioni e RIR della prima serie
+  compilata su **tutte le serie ancora vuote**. Non sovrascrive niente di già
+  scritto. Ha le stesse conseguenze del tasto «Ripeti» che esisteva già: è una
+  tua scelta esplicita.
 
 ### Sostituire un esercizio
 
@@ -1089,9 +1133,14 @@ npm run prova:pwa                                # giro di aggiornamento dell'ap
   JS. È la prova che mancava: `verify` gira su un profilo vuoto, e con il
   profilo vuoto metà dell'app non viene mai eseguita — è così che due bug sono
   passati per due versioni.
+- **Le tre funzioni della v51** (`npm run prova`): un esercizio togliato e
+  rimesso senza perdere le serie registrate, una serie togliata sotto il piano
+  ma non sotto una, «Copia la 1ª» che riempie solo le serie vuote, e la spunta
+  che riporta il carico ma **non** le ripetizioni. Verificate rompendo il codice
+  di proposito: la prova fallisce.
 - **Volumi e durate ricalcolati eseguendo il codice**, non letti dalle tabelle.
-  4 sedute: 61 serie dirette, 17+15+14+15, durate 65/58/51/53. Top v50: 77 serie
-  dirette, 20+19+19+19, durate 69/67/56/61. In tutti i casi la durata dichiarata
+  4 sedute: 61 serie dirette, 17+15+14+15, durate 65/58/51/53. Top v51: 77 serie
+  dirette, 20+19+19+19, durate 69/65/56/61. In tutti i casi la durata dichiarata
   coincide con quella calcolata, e il massimo per gruppo in una singola seduta è
   8,5 serie frazionali contro le 11 della soglia.
 - **Cinque giornate vecchie seminate sugli indici che hanno cambiato esercizio**
@@ -1101,6 +1150,22 @@ npm run prova:pwa                                # giro di aggiornamento dell'ap
 
 ## Storico
 
+- **v51** — **stacco romeno coi manubri**, e tre funzioni per cambiare la
+  giornata mentre la fai. *La scheda:* il Romanian deadlift passa dal bilanciere
+  ai **manubri**, 2×8-10 a **cedimento tecnico** con parziali in allungamento
+  invece di 2×6-8 a RIR 1. Le due cose sono la stessa decisione: col bilanciere
+  il limite lo mettono schiena bassa e presa, quindi vicino al cedimento era
+  rischioso; coi manubri ai lati delle cosce scendi più in basso, il carico per
+  mano è metà e il cedimento diventa raggiungibile in sicurezza. Martedì da 67
+  a **65 minuti**; volume invariato. *Le funzioni:* **Togli per oggi** su ogni
+  esercizio, con striscia di ripristino e dati conservati; **− Serie** che ora
+  scende anche sotto il numero del piano (minimo una, e il numero del piano
+  resta visibile barrato); il **carico che si riporta da solo** sulla serie dopo
+  quando spunti — le ripetizioni no, altrimenti una serie non fatta risulterebbe
+  fatta — più **«Copia la 1ª»** che riempie tutte le serie vuote. Tre prove
+  nuove in `prova-dati.mjs`, verificate rompendo il codice di proposito: la più
+  importante controlla che togliere un esercizio **non** cancelli le serie
+  registrate.
 - **v50** — **un'estensione d'anca per giornata bassa**: stacco romeno il
   martedì e **hack squat reverse** il venerdì, **2 serie ciascuno**. Lo stacco
   romeno scende da 3 serie a 2; il reverse entra come esercizio vero, non più
