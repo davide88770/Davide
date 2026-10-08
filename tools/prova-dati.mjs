@@ -44,7 +44,29 @@ await page.goto(url);
    piu' peso corporeo e pasti. Le prime due settimane stanno sulle sedute
    ARCHIVIATE della vecchia scheda da 5 giorni — e' il caso vero di chi ha uno
    storico da prima del cambio scheda — le ultime due sulla "4 sedute Top". */
-const seminato = await page.evaluate(() => {
+const ATTESI = [
+  // sid, indice, data, nome che quel giorno aveva davvero, nome che oggi occupa quell'indice
+  ['t_upperA', 5, '2026-03-09', 'Curl bilanciere — focus allungamento', 'Alzate posteriori al cavo alto'],
+  ['t_upperB', 5, '2026-04-09', 'Curl hammer manubri',                  'Alzate posteriori al cavo alto'],
+  ['t_lowerB', 0, '2026-05-09', 'Stacco a gambe tese — manubri',        'Pressa — piede alto e basso alternati'],
+  ['t_lowerA', 5, '2026-06-09', 'D’Annunzio crunch',                    'Curl bilanciere — focus allungamento'],
+  // queste due cadono fra una riscrittura e l'altra: verificano le fotografie recenti
+  ['t_lowerA', 6, '2026-09-19', 'D’Annunzio crunch',                    'Curl ai cavi dietro il corpo — Bayesian'],
+  ['t_lowerA', 3, '2026-08-16', 'Leg curl manubri / pulley',            'Leg curl su panca — cavo basso'],
+  ['t_lowerB', 3, '2026-09-23', 'Leg curl sdraiato — manubri',          'Leg curl in piedi — cavo basso'],
+  // questa cade fra la v48 e la v49: il sissy era ancora in scheda
+  ['t_lowerB', 2, '2026-09-30', 'Sissy squat — eccentrica 5 sec',       'Leg curl in piedi — cavo basso'],
+  ['q_upperA', 0, '2026-07-09', 'Panca piana bilanciere',               'Panca inclinata bilanciere'],
+  ['q_upperB', 2, '2026-07-16', 'Pullover ai cavi — carrucola alta',    'Lat machine presa stretta']
+];
+/* Le date qui sopra sono assolute, perche' ognuna deve cadere in una finestra
+   di versione precisa. La semina principale invece copre gli ULTIMI 28 GIORNI,
+   quindi col passare del tempo ci scivola sopra: le riserva e le salta. */
+const RISERVATE = ATTESI.map(r => r[2]);
+if (new Set(RISERVATE).size !== RISERVATE.length) {
+  console.error('  ERRORE  due righe di ATTESI condividono la stessa data'); process.exit(1); }
+
+const seminato = await page.evaluate(riservate => {
   const iso = t => new Date(t).toISOString().slice(0, 10);
   const oggi = new Date();
   const vecchi = { 1: 'rv_push', 2: 'rv_pull', 3: 'rv_legs', 5: 'rv_upper', 6: 'rv_lower' };
@@ -56,10 +78,11 @@ const seminato = await page.evaluate(() => {
   const nEs = { rv_push: 5, rv_pull: 5, rv_legs: 4, rv_upper: 6, rv_lower: 5,
                 t_upperA: 9, t_lowerA: 6, t_upperB: 9, t_lowerB: 6,
                 q_upperA: 7, q_lowerA: 6, q_upperB: 6, q_lowerB: 7,
-                t_upperA: 8, t_lowerA: 8, t_upperB: 8, t_lowerB: 8 };
+                t_upperA: 8, t_lowerA: 8, t_upperB: 8, t_lowerB: 7 };
   let sedute = 0, serie = 0;
   for (let i = 27; i >= 0; i--) {
     const dt = new Date(oggi.getTime() - i * 864e5), d = iso(dt);
+    if (riservate.includes(d)) continue;          // giorno riservato alla prova dello storico
     const sid = (i > 13 ? vecchi : nuovi)[dt.getDay()];
     if (!sid) continue;
     const set = {};
@@ -77,7 +100,7 @@ const seminato = await page.evaluate(() => {
   }
   localStorage.setItem('ghisaegrammi.v1', JSON.stringify(st));
   return { sedute, serie };
-});
+}, RISERVATE);
 await page.goto(url);
 
 const tab = ['#tab-oggi', '#tab-workout', '#tab-dieta', '#tab-progressi', '#tab-piano'];
@@ -143,24 +166,6 @@ if (!/Spostata qui da/.test(arrivo) || !/Upper A/.test(arrivo)) {
    inclinata. Qui si semina una giornata VECCHIA senza nomi congelati e si
    controlla che il grafico la etichetti come la scheda era ALLORA, non come e'
    adesso. Gli indici scelti sono quelli che hanno cambiato esercizio. */
-const ATTESI = [
-  // sid, indice, data, nome che quel giorno aveva davvero, nome che oggi occupa quell'indice
-  ['t_upperA', 5, '2026-03-09', 'Curl bilanciere — focus allungamento', 'Alzate posteriori al cavo alto'],
-  ['t_upperB', 5, '2026-04-09', 'Curl hammer manubri',                  'Alzate posteriori al cavo alto'],
-  ['t_lowerB', 0, '2026-05-09', 'Stacco a gambe tese — manubri',        'Pressa — piede alto e basso alternati'],
-  ['t_lowerA', 5, '2026-06-09', 'D’Annunzio crunch',                    'Curl bilanciere — focus allungamento'],
-  // queste due cadono fra una riscrittura e l'altra: verificano le fotografie recenti
-  ['t_lowerA', 6, '2026-09-19', 'D’Annunzio crunch',                    'Curl ai cavi dietro il corpo — Bayesian'],
-  ['t_lowerA', 3, '2026-08-16', 'Leg curl manubri / pulley',            'Leg curl su panca — cavo basso'],
-  ['t_lowerB', 3, '2026-09-23', 'Leg curl sdraiato — manubri',          'Leg curl in piedi — cavo basso'],
-  ['q_upperA', 0, '2026-07-09', 'Panca piana bilanciere',               'Panca inclinata bilanciere'],
-  ['q_upperB', 2, '2026-07-16', 'Pullover ai cavi — carrucola alta',    'Lat machine presa stretta']
-];
-/* Una data per riga: due righe sullo stesso giorno si sovrascriverebbero, e la
-   prova fallirebbe per il motivo sbagliato. */
-const dateAttesi = ATTESI.map(r => r[2]);
-if (new Set(dateAttesi).size !== dateAttesi.length) {
-  console.error('  ERRORE  due righe di ATTESI condividono la stessa data'); process.exit(1); }
 await page.evaluate(attesi => {
   const st = JSON.parse(localStorage.getItem('ghisaegrammi.v1'));
   for (const [sid, i, d] of attesi) {
