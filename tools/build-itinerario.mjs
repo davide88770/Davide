@@ -130,6 +130,7 @@ b,strong{font-weight:500;color:#36433F}
 .fotoriga{display:flex;gap:2mm;height:58mm;margin-top:auto;justify-content:center}
 .fotoriga > div{flex:1;max-width:96mm;background-size:cover;background-position:center}
 .pg.fitta .foto,.pg.fitta .fotoriga{height:42mm}
+.pg.fitta .banda{padding-top:6mm;padding-bottom:6mm;margin-top:7mm}
 .pg.flex{display:flex;flex-direction:column}
 /* nell'originale la fascia grigia scende fino alla striscia di foto:
    senza questo resta un vuoto chiaro in mezzo alla pagina */
@@ -306,7 +307,7 @@ pagF(cap('Daily schedule')+'<h1 class="giorno">GIORNO 1</h1><div class="data">11
  +'<li>Ta Hien Corner: siediti in un ristorantino sulle popolari sedioline di plastica per '
  +'mangiare e goditi la night life.</li>'
  +'<li>Puoi mangiare <a href="'+L.bia+'">qui</a> Bia Phố Cổ Tạ Hiện (o simili nella stessa '
- +'strada).</li></ul></div>');
+ +'strada).</li></ul></div>','fitta');
 
 /* ── 6 · giorno 2 ──────────────────────────────────────────────────── */
 pagF(cap('Daily schedule')+'<h1 class="giorno">GIORNO 2</h1><div class="data">12 NOVEMBRE</div>'
@@ -579,8 +580,8 @@ if (orfani) console.warn(`  ⚠ ${orfani} blocchi senza riscontro nel registro`)
 const sbordi = await page.evaluate(() => {
   const mm = 297 / 25.4 * 96;
   return [...document.querySelectorAll('.pg')].map((d, i) => ({
-    n: i + 1, h: Math.round(d.getBoundingClientRect().height / 96 * 25.4),
-  })).filter(x => x.h > 298);
+    n: i + 1, h: +(d.getBoundingClientRect().height / 96 * 25.4).toFixed(1),
+  })).filter(x => x.h > 297.4);
 });
 for (const x of sbordi) console.warn(`  ⚠ pagina ${x.n} alta ${x.h} mm: sborda`);
 

@@ -648,7 +648,7 @@ const VIAGGIO={
   persone:2,
   alba:240,
   lingue:['🇻🇳 Vietnamita','Si legge'],
-  /* In Vietnam non si guida: si vola, si prende il minivan, il treno e il bus
+  /* In Vietnam non si guida: si vola, si prende il van, la limousine e il bus
      notturno. Le parole dell'interfaccia lo dicono. */
   lessico:{kmGiorno:'km oggi',durata:'in viaggio',durataTot:'di spostamenti',conf:'volo',
            riscontri:'Da fare, prima di partire'},
@@ -668,7 +668,7 @@ const VIAGGIO={
   profiloNota:'Solo gli spostamenti via terra: i voli non hanno un profilo. Dal delta del Fiume '
     +'Rosso ai 1.550 m di Sa Pa e ritorno, poi giù lungo la costa fino a Hoi An. Il punto '
     +'tratteggiato è la funivia del Fansipan, che non si percorre.',
-  legenda:[['Via terra','var(--accent)'],['Bus notturno e treno','var(--signal)','dashed'],
+  legenda:[['Via terra','var(--accent)'],['Bus notturno','var(--signal)','dashed'],
            ['In barca','var(--good)','dotted'],['Volo','var(--ink-3)','dashed','.75'],
            ['Escursioni','var(--ink-3)','dotted']],
   /* Chiusura del poligono di terraferma: COAST finisce sulla costa cinese, da
@@ -683,7 +683,7 @@ const VIAGGIO={
   fuori:{at:[103.00,22.95],t:'← Milano, 9.400 km'},
   /* le parole che il motore non può indovinare */
   finaleNota:'Il viaggio \u00e8 finito. {km} km fra aria e terra, {h} di spostamenti, due voli '
-    +'intercontinentali, un bus notturno, un treno sul passo di Hai Van e una notte in barca.',
+    +'intercontinentali, un bus notturno, cinque van e due notti in barca.',
   scadenzeNota:'Le date entro cui bisogna aver fatto qualcosa, o entro cui si pu\u00f2 ancora disdire '
     +'senza pagare. Le condizioni sono copiate dalle conferme, non stimate. <b>Attenzione all\'ora:</b> '
     +'Booking scrive \u00ab23:59\u00bb ma in <b>ora del Vietnam</b>, che sono le <b>17:59 in Italia</b> \u2014 sei ore '
@@ -1058,11 +1058,11 @@ const DAYS=[
  route:"Airport Classic Hotel 2 › Noi Bai T2 › EY433 › Abu Dhabi › EY79 › Malpensa T1 › casa",
  gm:"https://www.google.com/maps/dir/Noi+Bai+International+Airport/Malpensa+Airport",
  tl:[["05:00","Sveglia e navetta","Due chilometri, ma a quest'ora si fa con la navetta dell'hotel. Chiedetela la sera prima."],
-     ["06:00","Noi Bai, Terminal 2","Check-in Etihad, codice 9T6U9F. Posti 30H e 30J."],
-     ["08:15","EY433 · Hanoi → Abu Dhabi","<b>Orario cambiato il 2 ottobre</b>: era 07:40. Boeing 787-9, 7h25."],
+     ["06:00","Noi Bai, Terminal 2","Check-in Etihad, codice 9T6U9F. <b>Posti 36H e 36J</b>, riassegnati il 9 ottobre: erano 30H/30J."],
+     ["08:15","EY433 · Hanoi → Abu Dhabi","<b>Orario cambiato il 2 ottobre</b>: era 07:40. Etihad l'ha confermato da sola il 9, non essendoci stata risposta. Boeing 787-9, 7h25."],
      ["12:40","Abu Dhabi","Transito di 1h40, stesso Terminal A. <b>Non c'è margine</b>: si va diretti al gate."],
      ["14:20","EY79 · Abu Dhabi → Malpensa","Airbus A321neo, 7 ore. Posti 31D e 31E."],
-     ["18:20","Malpensa, Terminal 1","Ritiro bagagli e si torna a casa. Sedici giorni, cinque voli, due minivan, un treno, un bus notturno e due notti in barca."]],
+     ["18:20","Malpensa, Terminal 1","Ritiro bagagli e si torna a casa. Sedici giorni, cinque voli, cinque van, un bus notturno e due notti in barca."]],
  see:["L'ultimo sguardo al delta del Fiume Rosso dal finestrino, se si decolla verso est","Il tramonto in volo sopra l'Asia centrale, che a quest'ora e a quest'altitudine dura due ore","Il cambio di stagione all'atterraggio: a Malpensa a fine novembre fa dieci gradi"],
  sleep:"—",
  eat:"Due pasti a bordo. Il caffè vietnamita all'aeroporto di Noi Bai, prima di imbarcarsi: l'ultimo vero.",
@@ -1096,7 +1096,7 @@ const BOOK=[
  ["sig","All'arrivo","Foto dei timbri d'ingresso a Peony","WhatsApp +84 3848 23589","—","Peony le chiede <b>per regolamento</b>: «share photos of all your Vietnam immigration entry stamps once you arrive Viet Nam». I dati dei passaporti sono già stati mandati il 3 ottobre — <b>senza, non si sale a bordo</b>. Fatelo l'11, appena usciti dai controlli a Noi Bai."],
  ["sig","Da verificare","Ingresso in Vietnam","esteri.it / ambasciata","—","Il programma rimanda a viaggiaresicuri.it. L'esenzione dal visto per gli italiani viene rinnovata periodicamente: <b>va controllata prima di partire</b>."],
  ["sig","Da valutare","Patente internazionale","Motorizzazione","~30 €","Serve per lo scooter a Sa Pa e a Tam Coc. Si richiede alla Motorizzazione e ci vogliono settimane."],
- ["good","Fatto","Voli Etihad A/R","Codice 9T6U9F","—","MXP 10/11 → HAN · HAN 25/11 → MXP. <b>L'EY433 del 25 è stato spostato alle 08:15.</b> Posti 37H/37J, 30H/30J, 31D/31E."],
+ ["good","Fatto","Voli Etihad A/R","Codice 9T6U9F","—","MXP 10/11 → HAN · HAN 25/11 → MXP. <b>L'EY433 del 25 è stato spostato alle 08:15</b> e Etihad l'ha confermato da sola il 9 ottobre. Posti 37H/37J · 30H/30J · <b>36H/36J</b> sull'EY433, riassegnati il 9/10 · 31D/31E."],
  ["good","Fatto","Volo interno Da Nang → Hanoi","Codice 5EVNMY","—","VJ514 del 24/11, 16:55–18:15. Posti 11B e 11C, un bagaglio da stiva a testa."],
  ["good","Fatto","Taxi privato da Noi Bai","Booking 860124030","9,13 € pagati","11/11 alle 12:00, 35 km fino al Serene. Meet & Greet con il numero di volo."],
  ["good","Fatto","Serene Central Hotel, Hanoi","Conferma 6158389407","3.554.880 VND (~118 €)","11 → 13 novembre, 2 notti, colazione inclusa. 106 Hàng Bông, tel +84 24 3203 0128. Si paga in struttura. <b>Gratis fino al 9 novembre</b>, poi una notte di penale."],
@@ -1138,7 +1138,7 @@ const PHRASES=[["Buongiorno","Xin chào","sin ciào"],["Grazie","Cảm ơn","cam
 
 const LISTS=[
  {t:"Da fare prima di partire",i:["<b>Decidere come andare da Hoi An all'aeroporto di Da Nang il 24</b>","Farsi confermare da Halise il van per Tam Coc, prezzo compreso (orario e molo già comunicati)","Chiedere a Peony il programma dettagliato dei tre giorni","<b>All'arrivo l'11: mandare a Peony le foto dei timbri d'ingresso</b>","Chiedere a HK Buslines il transfer per il bus notturno del 19 (WhatsApp, 24 ore prima)","Verificare l'ingresso in Vietnam sul sito dell'ambasciata","Richiedere la patente internazionale, se volete lo scooter","Assicurazione medico-bagaglio","Decidere se anticipare il taxi dell'11 (ora è alle 12:00, si atterra alle 06:10)"]},
- {t:"Documenti e prenotazioni",i:["Passaporto valido almeno 6 mesi oltre il rientro","Carte d'imbarco Etihad A/R, codice 9T6U9F","Biglietto VietJet VJ514, codice 5EVNMY","Voucher Booking: Serene, Maison de Lao Chai, Chum, Signature, Airport Classic","Biglietti 12Go: minivan ×2, bus notturno, treno — scaricati OFFLINE","Conferma Peony Cruises e contatto WhatsApp di Danny Do","Conferma Halise Home","Assicurazione di viaggio, numero di polizza","Patente internazionale, se la prendete","Contanti in euro da cambiare, e una carta senza commissioni","Copia di tutto su telefono e una copia cartacea separata"]},
+ {t:"Documenti e prenotazioni",i:["Passaporto valido almeno 6 mesi oltre il rientro","Carte d'imbarco Etihad A/R, codice 9T6U9F","Biglietto VietJet VJ514, codice 5EVNMY","Voucher Booking: Serene, Maison de Lao Chai, Chum, Signature, Airport Classic","Biglietti 12Go: minivan ×2, bus notturno, limousine — scaricati OFFLINE","Conferma Peony Cruises e contatto WhatsApp di Danny Do","Conferma Halise Home","Assicurazione di viaggio, numero di polizza","Patente internazionale, se la prendete","Contanti in euro da cambiare, e una carta senza commissioni","Copia di tutto su telefono e una copia cartacea separata"]},
  {t:"Nello zaino",i:["<b>Zaino, non valigia</b>: sei spostamenti con scale, van e bus","Zaino piccolo per Sa Pa (il grande resta a Hanoi)","Scarpe da trekking chiuse (Sa Pa, Mua Caves, My Son)","Sandali o ciabatte","Impermeabile leggero e copri-zaino: a Hue e Hoi An novembre è stagione di piogge","Felpa o pile: a Sa Pa di notte si va sotto i 10 °C","Costume e telo microfibra (baia, An Bang)","Borsa o sacca waterproof per la baia","Repellente antizanzare","Crema solare","Power bank e adattatore (prese A/C, 220 V)","Torcia o frontale (Halise è nella giungla)","Tappi per le orecchie, per il bus notturno","Un cambio decente per le cene"]},
  {t:"Salute e farmacia",i:["Farmaci personali con la ricetta","Antidiarroico e fermenti lattici","Antidolorifico e antipiretico","Cerotti e disinfettante","Gel disinfettante per le mani","Collirio (lo smog di Hanoi)","Pastiglie per il mal d'auto: i tornanti per Sa Pa sono seicento","Zanzariera da viaggio, se dormite con la finestra aperta a Tam Coc"]}
 ];
