@@ -1,5 +1,5 @@
-/* Soldi di Davide — service worker, v2 · 7167668cba */
-const CACHE = 'soldi-7167668cba';
+/* Soldi di Davide — service worker, v3 · 2d28ee5047 */
+const CACHE = 'soldi-2d28ee5047';
 const PREFISSO = 'soldi-';
 const GUSCIO = ['./', './config.js', './vendor/chart.umd.js', './vendor/supabase.js', './vendor/manrope-latin-wght-normal.woff2', './vendor/manrope-latin-ext-wght-normal.woff2', './icone/icona-32.png', './icone/icona-192.png', './icone/icona-512.png', './icone/apple-touch-icon.png', './manifest.webmanifest'];
 
