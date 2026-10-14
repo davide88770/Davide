@@ -108,6 +108,19 @@ const seminato = await page.evaluate(riservate => {
 }, RISERVATE);
 await page.goto(url);
 
+/* La data parte sempre da oggi, e oggi puo' essere un giorno di riposo: la
+   scheda Allenamento sarebbe legittimamente vuota e la prova fallirebbe per il
+   calendario invece che per un bug. Si sposta sul primo giorno con una seduta. */
+await page.evaluate(() => {
+  const oggi = new Date().toISOString().slice(0, 10);
+  for (let k = 0; k < 8; k++) {
+    const d = piuGiorni(oggi, k);
+    if (sessioneDi(d, faseDi(d))) { S.ui.data = d; break; }
+  }
+  render();
+});
+await page.waitForTimeout(300);
+
 const tab = ['#tab-oggi', '#tab-workout', '#tab-dieta', '#tab-progressi', '#tab-piano'];
 const conta = {};
 for (const t of tab) {
@@ -297,10 +310,53 @@ if (riporta.kgDopo !== '77.5') {
 if (riporta.repDopo) {
   console.error('  ERRORE  si sono riportate anche le ripetizioni: una serie non fatta risulterebbe fatta'); process.exit(1); }
 
+/* LE ALTERNATIVE DELLA 3 PPL.
+   Un tocco su un'alternativa deve sostituire l'esercizio per quel giorno, e i
+   nomi proposti devono esistere gia' altrove: e' il punto della funzione — lo
+   storico dei carichi si porta dietro tutto invece di ripartire da zero. */
+const altTest = await page.evaluate(() => {
+  const iso = t => new Date(t).toISOString().slice(0, 10);
+  const esistenti = new Set();
+  for (const s of Object.values(SESS)) for (const x of s.ex) esistenti.add(x.n);
+  const orfane = [];
+  for (const id of ['p_push', 'p_pull', 'p_legs'])
+    for (const x of SESS[id].ex)
+      for (const a of (x.alt || [])) if (!esistenti.has(a)) orfane.push(id + ' · ' + x.n + ' → ' + a);
+  const quante = ['p_push', 'p_pull', 'p_legs']
+    .reduce((n, id) => n + SESS[id].ex.reduce((m, x) => m + (x.alt || []).length, 0), 0);
+  /* Si passa alla PPL e si va su un lunedi' LONTANO: i lunedi' vicini li usa
+     gia' la prova dello spostamento, e un giorno con "spostata" non mostra
+     nessuna seduta — la prova fallirebbe per il motivo sbagliato. */
+  S.ui.prog = 'ppl';
+  const o = new Date(Date.now() + 35 * 864e5); while (o.getDay() !== 1) o.setDate(o.getDate() + 1);
+  const g = iso(o);
+  S.ui.data = g; salva(); vai('workout');
+  return { orfane, quante, g, atteso: SESS.p_push.ex[0].alt[0] };
+});
+if (altTest.orfane.length) {
+  console.error('  ERRORE  alternative che non esistono in nessuna scheda: ' + altTest.orfane.join(', '));
+  process.exit(1); }
+await page.waitForTimeout(350);
+await page.evaluate(() => { APERTI.add(0); renderWorkout(); }); await page.waitForTimeout(250);
+const chip = await page.$('details[data-ex="0"] [data-alt="0:0"]');
+if (!chip) { console.error('  ERRORE  le alternative non compaiono nella card'); process.exit(1); }
+await chip.click(); await page.waitForTimeout(350);
+const dopoAlt = await page.evaluate(g => {
+  const L = S.sess[g];
+  return { nome: (L.sost || {})[0] ? L.sost[0].n : null,
+           mostrato: document.querySelector('details[data-ex="0"] .nm b').textContent.trim() };
+}, altTest.g);
+if (dopoAlt.nome !== altTest.atteso) {
+  console.error(`  ERRORE  l'alternativa non e' stata applicata (${dopoAlt.nome} invece di ${altTest.atteso})`);
+  process.exit(1); }
+if (dopoAlt.mostrato !== altTest.atteso) {
+  console.error(`  ERRORE  la card mostra ancora "${dopoAlt.mostrato}"`); process.exit(1); }
+await page.evaluate(() => { S.ui.prog = 'top'; salva(); });
+
 /* Cambia programmazione e tipo di settimana: sono i due interruttori che
    ricalcolano tutto. */
 await page.click('#tab-piano'); await page.waitForTimeout(200);
-for (const p of ['rivista4', 'full', 'top']) {
+for (const p of ['rivista4', 'ppl', 'full', 'top']) {
   await page.click(`[data-prog="${p}"]`);
   await page.waitForTimeout(200);
 }
@@ -320,6 +376,7 @@ console.log('  sposta    giorno di partenza e di arrivo coerenti dopo lo spostam
 console.log(`  storico   ${ATTESI.length} giornate vecchie etichettate com'erano allora, non come sono adesso`);
 console.log('  togli     esercizio via e rimesso senza perdere le serie · serie sotto il piano, mai sotto una');
 console.log('  copia     la 1ª riempie solo le serie vuote · la spunta riporta il carico, non le ripetizioni');
+console.log(`  altern.   ${altTest.quante} alternative nella 3 PPL, tutte con un nome che esiste già · un tocco le applica`);
 if (errori.length) {
   console.error(`\n${errori.length} errori:`);
   for (const e of errori) console.error('  ✗ ' + e);

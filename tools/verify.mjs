@@ -87,6 +87,13 @@ for (const v of VIEWS) {
   await page.goto(url, { waitUntil: 'load' });
   await page.waitForTimeout(400);
 
+  /* Gancio opzionale: un'espressione JS eseguita nella pagina prima del giro
+     delle schede. Serve a portare l'app in uno stato in cui le viste hanno
+     qualcosa da mostrare — per esempio spostare la data su un giorno di
+     allenamento, perche' di mercoledi' la scheda prevista non ne ha e la
+     verifica fallirebbe per il calendario, non per un bug. */
+  if (cfg.prepara) { await page.evaluate(cfg.prepara); await page.waitForTimeout(300); }
+
   // Applicazione a schede: si passa da tutte, cosi' ogni vista viene davvero
   // eseguita e un errore in una sola di esse non sfugge.
   for (const sel of (cfg.giroTab ?? [])) {
@@ -144,6 +151,7 @@ for (const v of VIEWS) {
 // PDF di stampa
 const page = await browser.newPage();
 await page.goto(url, { waitUntil: 'load' });
+if (cfg.prepara) { await page.evaluate(cfg.prepara); await page.waitForTimeout(300); }
 if (cfg.tabFinale) { await page.click(cfg.tabFinale); await page.waitForTimeout(220); }
 // Si scatena l'evento vero del browser, così si verifica la preparazione
 // alla stampa della pagina e non una scorciatoia dello script.

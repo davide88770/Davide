@@ -23,5 +23,6 @@
     "serie",
     "card",
     "blocchi"
-  ]
+  ],
+  "prepara": "(()=>{const oggi=new Date().toISOString().slice(0,10);for(let k=0;k<8;k++){const d=piuGiorni(oggi,k);if(sessioneDi(d,faseDi(d))){S.ui.data=d;break;}}render();})()"
 }
