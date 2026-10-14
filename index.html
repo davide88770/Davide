@@ -15,7 +15,7 @@
 <link rel="apple-touch-icon" href="icone/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="192x192" href="icone/icona-192.png">
 <style>:root{color-scheme:light dark}*{box-sizing:border-box}body{margin:0}img{max-width:100%}</style>
-<script>window.__GG_BUILD='db5a69aaa7';</script>
+<script>window.__GG_BUILD='a9416f357d';</script>
 </head>
 <body>
 <style>
@@ -1812,7 +1812,7 @@ const CONS_FONTI = [
 /* Versione dell'app. Serve a sapere, dal telefono, se quello che hai davanti e'
    l'ultima versione: la PWA installata puo' restare indietro se iOS non rifa'
    la navigazione. Il numero si alza a ogni pubblicazione. */
-const VERSIONE = { n:'v52', data:'14 ottobre 2026', nota:'Quarta programmazione: 3 PPL, con le alternative toccabili su ogni esercizio' };
+const VERSIONE = { n:'v53', data:'14 ottobre 2026', nota:'I giorni di allenamento si scelgono: le sedute non sono più su giorni fissi' };
 
 const ATTREZZI = [
   ['Rack, bilanciere, panca regolabile', 1, 'Panca piana, stacco romeno, curl bilanciere, military press, panca inclinata per croci, curl e rematore col petto appoggiato'],
@@ -2124,7 +2124,7 @@ const settimanaDi = s => { const d = dalISO(s); const g = (d.getDay()+6)%7; d.se
 
 const nuovoStato = () => ({ v:1,
   testi:{},
-  ui:{ tema:null, tab:'oggi', sett:'base', faseManuale:null, esercizio:null, periodo:56, prog:'top', nutri:'rivista', oraAll:'mattina' },
+  ui:{ tema:null, tab:'oggi', sett:'base', faseManuale:null, esercizio:null, periodo:56, prog:'top', nutri:'rivista', oraAll:'mattina', giorni:{} },
   sess:{}, pasti:{}, corpo:[], check:{}, meta:{ backup:null, mod:Date.now() } });
 
 let S = nuovoStato();
@@ -2149,6 +2149,7 @@ function carica(){
            registrate restano leggibili: quelle sedute sono nell'archivio. */
         if(!['top','rivista4','ppl','full'].includes(S.ui.prog)) S.ui.prog = 'top';
         if(!S.testi || typeof S.testi !== 'object' || Array.isArray(S.testi)) S.testi = {};
+        if(!S.ui.giorni || typeof S.ui.giorni !== 'object' || Array.isArray(S.ui.giorni)) S.ui.giorni = {};
         /* Rimette il nome giusto su cio' che era gia' registrato prima che le
            serie iniziassero a portarselo dietro. Gira una volta: alla seconda
            apertura i nomi ci sono gia' e il ciclo non fa niente. */
@@ -2175,18 +2176,68 @@ function faseDi(d){
 }
 /* La programmazione rivista sostituisce i giorni delle fasi con split
    le fasi dalla 3 in poi. Cut e transizione restano come sono. */
+/* ── I GIORNI NON SONO FISSI ─────────────────────────────────────────────────
+   Ogni programmazione ha un ORDINE di sedute — quello conta, perche' le
+   giornate di forza vanno in testa alla settimana — e dei giorni di default.
+   Da v53 i giorni si scelgono: S.ui.giorni[prog] e' l'elenco dei giorni della
+   settimana in cui ti alleni, e le sedute ci cadono IN QUELL'ORDINE.
+
+   Se scegli meno giorni di quante sono le sedute, le ultime della sequenza
+   restano fuori — ed e' voluto che siano le ULTIME: nella Top l'ordine mette
+   per prime le due giornate di forza e per ultima la Lower B, che e' appunto
+   quella che conviene saltare se la settimana ne permette solo tre (la parte
+   alta resta completa e le gambe tengono hack squat, stacco romeno e leg curl
+   seduto). Se ne scegli di piu', quelli in eccesso sono giorni di riposo. */
+const ORDINE_SEDUTE = {
+  top:      ['t_upperA','t_lowerA','t_upperB','t_lowerB'],
+  rivista4: ['q_upperA','q_lowerA','q_upperB','q_lowerB'],
+  ppl:      ['p_push','p_pull','p_legs'],
+  full:     ['fb_a','fb_b','fb_c']
+};
+const GIORNI_DEF = { top:GIORNI_TOP, rivista4:GIORNI_RIVISTI_4, ppl:GIORNI_PPL, full:GIORNI_FULL };
+/* La settimana comincia di lunedi': domenica (0) va in fondo, non in testa. */
+const inSett = g => (g + 6) % 7;
+const NOMI_GG = ['Domenica','Lunedì','Martedì','Mercoledì','Giovedì','Venerdì','Sabato'];
+/* I giorni scelti per una programmazione, ripuliti: numeri validi, senza
+   doppioni, in ordine di settimana. Vuoto significa "usa quelli del piano". */
+function giorniScelti(prog){
+  const v = ((S.ui || {}).giorni || {})[prog];
+  if(!Array.isArray(v)) return [];
+  return [...new Set(v.filter(x => Number.isInteger(x) && x >= 0 && x <= 6))]
+    .sort((a,b) => inSett(a) - inSett(b));
+}
+function mappaGiorni(prog){
+  const scelti = giorniScelti(prog), ord = ORDINE_SEDUTE[prog];
+  if(!scelti.length || !ord) return GIORNI_DEF[prog] || GIORNI_TOP;
+  const m = {};
+  scelti.forEach((g,i) => { if(ord[i]) m[g] = ord[i]; });
+  return m;
+}
 const giorniDi = f => {
   if(f.ppl3) return GIORNI_RIVISTI_PPL3;   /* cut e transizione, fasi 1-2 */
-  return S.ui.prog === 'full' ? GIORNI_FULL
-       : S.ui.prog === 'ppl'  ? GIORNI_PPL
-       : S.ui.prog === 'rivista4' ? GIORNI_RIVISTI_4 : GIORNI_TOP;
+  return mappaGiorni(S.ui.prog);
 };
+/* Il giorno in cui cade una seduta ADESSO, non quello scritto nella sua
+   definizione: con i giorni scelti a mano il campo gg sarebbe sbagliato. */
+function ggDi(sess){
+  if(!sess) return '';
+  for(const [g,id] of Object.entries(mappaGiorni(S.ui.prog))) if(id === sess.id) return NOMI_GG[+g];
+  return sess.gg || '';
+}
 function sessioneDi(d,f){
   const L = S.sess[d];
   /* Giornata spostata: qui non si allena piu' niente, la seduta e' finita
      altrove. Si controlla prima di tutto il resto. */
   if(L && L.spostata) return null;
   if(L && L.manuale && SESS[L.sid]) return SESS[L.sid];   // seduta scelta o accolta a mano
+  /* Una giornata in cui hai GIA' REGISTRATO delle serie tiene la seduta che hai
+     fatto davvero, anche se nel frattempo hai cambiato i giorni o la
+     programmazione. Senza questo, spostando i giorni una Lower A di marzo
+     sarebbe diventata una Upper B e i carichi registrati per indice si
+     sarebbero ritrovati sotto esercizi che non hai mai fatto — la stessa classe
+     di errore che la v46 ha corretto sui grafici. */
+  if(L && L.sid && SESS[L.sid] && Object.values(L.set || {}).some(r => (r||[]).some(serieValida)))
+    return SESS[L.sid];
   const id = giorniDi(f)[dalISO(d).getDay()];
   return id ? SESS[id] : null;
 }
@@ -3023,7 +3074,7 @@ function renderWorkout(){
       <span class="d">${esc(dataLunga(d))}</span>
       <button class="iconbtn" data-giorno="1" aria-label="Giorno successivo">${ICO.next}</button>
     </div>
-    <h1 class="big">${esc(s.nome)} · ${esc(s.gg)}</h1>
+    <h1 class="big">${esc(s.nome)}${ggDi(s) ? ' · ' + esc(ggDi(s)) : ''}</h1>
     <p class="small muted" style="margin:6px 0 0;max-width:62ch">${esc(s.focus)}</p>
   </div>
   <div class="printonly"><h1 class="big">${esc(s.nome)} — ${esc(dataLunga(d))}</h1></div>
@@ -3660,13 +3711,59 @@ function renderPiano(){
           <button data-prog="full" aria-pressed="${S.ui.prog==='full'}">3 full body</button>
         </div>
         <p class="small muted" style="margin:0">Due schede da quattro sedute e due da tre.
-          La <b>4 sedute Top</b> è Lun · Mar · Gio · Ven, ${A.tot} serie dirette, con le due giornate di
+          La <b>4 sedute Top</b> è ${Object.keys(mappaGiorni('top')).map(g => NOMI_GG[+g].slice(0,3)).join(' · ')},
+          ${A.tot} serie dirette, con le due giornate di
           <b>forza</b> in testa alla settimana e le due di <b>volume</b> in coda. La <b>4 sedute</b> gli stessi
           giorni, ${B.tot} serie: <b>due serie per esercizio, quasi tutte a cedimento</b>, con la terza solo dove
-          serve davvero. La <b>3 PPL</b> è Lun · Mer · Ven, ${P.tot} serie in ${somma(durP)} minuti: è il
+          serve davvero. La <b>3 PPL</b> è ${Object.keys(mappaGiorni('ppl')).map(g => NOMI_GG[+g].slice(0,3)).join(' · ')},
+          ${P.tot} serie in ${somma(durP)} minuti: è il
           <b>massimo che tre giorni permettono</b> — spinta, tirata e gambe, con le alternative toccabili su ogni
           esercizio. Il <b>3 full body</b> sono gli stessi giorni, ${C.tot} serie in ${somma(durC)} minuti: è la
           scheda <b>jolly</b>, per le settimane storte e per i viaggi, e punta a tenere invece che a costruire.</p>
+        ${(() => {
+          const prog = S.ui.prog, ord = ORDINE_SEDUTE[prog] || [];
+          const mappa = mappaGiorni(prog), scelti = giorniScelti(prog);
+          const attivi = Object.keys(mappa).map(Number);
+          const fuori = ord.filter(id => !Object.values(mappa).includes(id));
+          const riposo = scelti.filter(g => !mappa[g]);
+          const suPiano = !scelti.length;
+          const ordSett = [1,2,3,4,5,6,0];
+          return `<div class="card flat" style="border-color:var(--line-2)">
+            <div class="hd"><h3>I giorni in cui ti alleni</h3>
+              <span class="chip line sp">${attivi.length} su ${ord.length}</span></div>
+            <div class="bd stack-s">
+              <p class="tiny muted" style="margin:0">Tocca i giorni in cui ti alleni davvero: le
+                ${ord.length} sedute ci cadono <b>nell’ordine della scheda</b>, non su giorni fissi. Vale per la
+                <b>${esc(({top:'4 sedute Top', rivista4:'4 sedute', ppl:'3 PPL', full:'3 full body'})[prog])}</b>;
+                ogni programmazione ha i suoi.</p>
+              <div class="row wrapf" style="gap:5px">
+                ${ordSett.map(g => {
+                  const sid = mappa[g], on = sid !== undefined, sc = scelti.includes(g);
+                  return `<button class="chip ${on ? 'acc' : (sc ? 'warn' : 'line')}" data-gg="${g}"
+                    style="cursor:pointer;flex-direction:column;align-items:flex-start;gap:0;padding:5px 9px"
+                    aria-pressed="${sc}" title="${on ? esc(SESS[sid].nome) : (sc ? 'riposo' : 'non ti alleni')}">
+                    ${NOMI_GG[g].slice(0,3)}
+                    <span style="font-size:9px;letter-spacing:.06em;opacity:.8;text-transform:none">${on ? esc(SESS[sid].nome) : (sc ? 'riposo' : '—')}</span>
+                  </button>`;
+                }).join('')}
+              </div>
+              ${suPiano
+                ? `<p class="tiny muted" style="margin:0">Adesso valgono i giorni del piano. Toccane uno e passi ai tuoi.</p>`
+                : `<div class="row wrapf" style="gap:8px"><button class="btn sm ghost" data-ggreset="1">Torna ai giorni del piano</button></div>`}
+              ${fuori.length ? `<div class="backup" style="background:var(--warn-soft);color:var(--warn-text)">${ICO.alert}
+                <span>Con ${attivi.length} giorni ${fuori.length === 1 ? 'resta fuori' : 'restano fuori'}
+                <b>${fuori.map(id => esc(SESS[id].nome)).join(', ')}</b>. È l’ultima della sequenza, ed è quella che
+                conviene saltare: la parte alta resta completa e le gambe tengono le alzate che contano. Una
+                settimana così non si vede; se diventa la norma, passa a una scheda da tre.</span></div>` : ''}
+              ${riposo.length ? `<p class="tiny muted" style="margin:0">${riposo.map(g => NOMI_GG[g]).join(' e ')}
+                ${riposo.length === 1 ? 'è' : 'sono'} in più rispetto alle sedute: ${riposo.length === 1 ? 'resta' : 'restano'} di riposo.</p>` : ''}
+              ${!attivi.length ? `<div class="backup" style="background:var(--crit-soft);color:var(--crit-text)">${ICO.alert}
+                <span>Nessun giorno scelto: non è previsto nessun allenamento. Toccane almeno uno.</span></div>` : ''}
+              <p class="tiny muted" style="margin:0">Le giornate che hai <b>già registrato</b> non si spostano e non
+                cambiano seduta: tengono quella che hai fatto davvero. Per spostare una singola seduta senza toccare
+                i giorni fissi, c’è <b>Sposta a un altro giorno</b> dentro la scheda Allenamento.</p>
+            </div></div>`;
+        })()}
         <div class="cmp5 head"><span class="g">Gruppo</span><span>Top</span><span>4 sed.</span><span>PPL</span><span>full</span><span class="w">obiett.</span></div>
         ${['petto','dorso','trapezi','spalle','bicipiti','tricipiti','quad','femorali','gluteo','polpacci','core'].map(riga).join('')}
         <p class="tiny muted" style="margin:0">Serie <b>dirette</b> a settimana, contro il volume di riferimento.
@@ -4251,12 +4348,34 @@ document.addEventListener('click', ev => {
   if(nu){ S.ui.nutri = nu.dataset.nutri; salva(); render();
     toast(nu.dataset.nutri === 'rivista' ? 'Nutrizione rivista: proteine 190 g' : 'Tornato ai macro originali'); return; }
 
+  /* I giorni in cui ti alleni: si accende e si spegne un giorno per volta, e
+     le sedute della programmazione corrente ci ricadono nell'ordine. */
+  const gg = el('[data-gg]');
+  if(gg){
+    const g = +gg.dataset.gg, prog = S.ui.prog;
+    if(!S.ui.giorni) S.ui.giorni = {};
+    const ora = giorniScelti(prog);
+    const base = ora.length ? ora : Object.keys(GIORNI_DEF[prog] || {}).map(Number);
+    const dopo = base.includes(g) ? base.filter(x => x !== g) : [...base, g];
+    S.ui.giorni[prog] = dopo.sort((a,b) => inSett(a) - inSett(b));
+    APERTI.clear(); salva(); render();
+    const m = mappaGiorni(prog), sid = m[g];
+    toast(sid ? `${NOMI_GG[g]}: ${SESS[sid].nome}` : `${NOMI_GG[g]} non è più un giorno di allenamento`);
+    return;
+  }
+  const ggr = el('[data-ggreset]');
+  if(ggr){
+    if(S.ui.giorni) delete S.ui.giorni[S.ui.prog];
+    APERTI.clear(); salva(); render(); toast('Tornato ai giorni del piano'); return;
+  }
+
   const pg = el('[data-prog]');
   if(pg){ S.ui.prog = pg.dataset.prog; APERTI.clear(); salva(); render();
-    toast({ top:'4 sedute Top · Lun Mar Gio Ven · forza poi volume',
+    const gTo = Object.keys(mappaGiorni(pg.dataset.prog)).map(x => NOMI_GG[+x].slice(0,3)).join(' ');
+    toast({ top:'4 sedute Top · forza poi volume',
             rivista4:'4 sedute · Upper e Lower alternati',
-            ppl:'3 PPL · Lun Mer Ven · il massimo in tre giorni',
-            full:'3 full body · Lun Mer Ven · la scheda jolly' }[pg.dataset.prog]); return; }
+            ppl:'3 PPL · il massimo in tre giorni',
+            full:'3 full body · la scheda jolly' }[pg.dataset.prog] + ' · ' + gTo); return; }
 
   const tk = el('[data-tick]');
   if(tk){
@@ -4539,7 +4658,7 @@ document.addEventListener('click', ev => {
     apriSheet('Quale seduta?', `<div class="ed">
       ${sedutePossibili(f).map(x => `<button class="edrow" data-sed="${x.id}" style="width:100%;text-align:left;cursor:pointer">
         <div class="tx"><b>${esc(x.nome)}${x.id===prevista?' · prevista oggi':''}</b>
-          <span>${x.gg} · ${x.ex.length} esercizi · ~${x.durata} min</span></div></button>`).join('')}
+          <span>${esc(ggDi(x) || x.gg)} · ${x.ex.length} esercizi · ~${x.durata} min</span></div></button>`).join('')}
       ${prevista ? `<button class="btn ghost wide" data-sed="">Torna alla seduta prevista</button>` : ''}
     </div>`, sh => {
       sh.querySelectorAll('[data-sed]').forEach(b => b.onclick = () => {
