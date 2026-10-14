@@ -35,9 +35,10 @@ sissy squat porta con sé la sua progressione del range per l'ernia. La
 da sola la regola 3 su 7 con l'indicazione di anticipare il deload.
 
 La sessione e il tipo di giornata alimentare si ricavano dalla data. Dalla fase 3
-in poi ci sono **tre programmazioni** — «4 sedute Top», «4 sedute» e «3 full
-body» — con un interruttore in Piano; nel cut e nella transizione (fasi 1-2)
-vale lo split a tre giorni. La fase si può forzare a mano dalla sezione Piano.
+in poi ci sono **quattro programmazioni** — «4 sedute Top», «4 sedute»,
+«3 PPL» e «3 full body» — con un interruttore in Piano; nel cut e nella
+transizione (fasi 1-2) vale lo split a tre giorni. La fase si può forzare a
+mano dalla sezione Piano.
 
 ## La volta prima, serie per serie
 
@@ -107,23 +108,140 @@ scritta anche dentro l'app, in fondo alla sezione Piano):
   ("riduci il riso a 130 g", "togli il riso serale"). L'app usa quel menù e
   mostra i TIP.
 
-## Le tre programmazioni
+## Le quattro programmazioni
 
-Due da quattro sedute e una da tre, con l'interruttore in Piano. Lo storico dei
+Due da quattro sedute e due da tre, con l'interruttore in Piano. Lo storico dei
 carichi vale su tutte e tre, perché è legato al **nome dell'esercizio**, non
 alla scheda: passando da una all'altra tutto quello che hai registrato continua
 a valere. Dalla **v46** vale anche al contrario — una scheda riscritta non
 riscrive il passato, perché ogni serie registrata si porta dietro il nome che
 l'esercizio aveva quel giorno.
 
-| | 4 sedute Top | 4 sedute | 3 full body |
+| | 4 sedute Top | 4 sedute | 3 PPL | 3 full body |
+|---|---|---|---|---|
+| Giorni | Lun · Mar · Gio · Ven | Lun · Mar · Gio · Ven | Lun · Mer · Ven | Lun · Mer · Ven |
+| Serie dirette | 77 | 61 | **64** | 50 |
+| Minuti a settimana | 251 | 227 | **216** | 160 |
+| Seduta più lunga | 72 min | 65 min | **76 min** | 54 min |
+| Frequenza per gruppo | 2× | 2× | **1×** | 3× |
+| Serie per esercizio | 2-3 | 2, salvo eccezioni | 2-3 | 2-3 |
+| A cosa serve | spingere | tirare ogni serie a fondo | **il massimo in tre giorni** | tenere |
+
+### La "3 PPL" — il massimo che tre giorni permettono
+
+Chiesta da Davide il 14 ottobre 2026: la 4 Top come modello, meno una giornata
+di gambe. Push il lunedì, Pull il mercoledì, Legs il venerdì.
+
+**La cosa da sapere prima di tutte le altre.** Tre sedute e sei gruppi grandi
+vogliono dire **frequenza 1×**. Il problema non è la frequenza in sé — a parità
+di volume settimanale non cambia il risultato in modo rilevabile — è che **il
+volume di quattro giorni non ci sta in tre sedute**. Oltre le 11 serie
+frazionali sullo stesso muscolo nella stessa sessione le serie in più non
+mostrano un vantaggio, e molto prima di quella soglia finisce il tempo. Quindi
+64 serie dirette contro le 77 della Top: è il tetto reale di tre giorni.
+
+| Gruppo | 3 PPL | Riferimento | |
 |---|---|---|---|
-| Giorni | Lun · Mar · Gio · Ven | Lun · Mar · Gio · Ven | Lun · Mer · Ven |
-| Serie dirette | 77 | 61 | **50** |
-| Minuti a settimana | 251 | 227 | **160** |
-| Seduta più lunga | 69 min | 65 min | **54 min** |
-| Serie per esercizio | 2-3 | **2, salvo eccezioni** | 2-3 |
-| A cosa serve | spingere | tirare ogni serie a fondo | **tenere** |
+| Petto | **8** | 8 | in bersaglio |
+| Dorso | **8** | 8 | in bersaglio |
+| Trapezi | **3** | 3 | in bersaglio |
+| Spalle | 9 | 7 | ant. 3 · lat. 3 · post. 3 |
+| Addome | **6** | 6 | in bersaglio, 2× |
+| Bicipiti | 5 | 8 | taglio **intelligente** |
+| Tricipiti | 6 | 8 | taglio **intelligente** |
+| Accosciata | 7 | 8 | si **paga** |
+| Femorali | 7 | 9 | si **paga** |
+| Polpacci | 3 | 3 | in bersaglio |
+| Gluteo | 2 | — | lavoro diretto |
+| **Totale** | **64** | 68 | |
+
+**Dove il taglio è intelligente.** Bicipiti 5 e tricipiti 6 sembrano pochi, ma
+in una giornata di sole tirate il bicipite prende **5,5 serie frazionali dalle
+tirate stesse**: 5 + 5,5 = **10,5**, cioè esattamente il limite utile per quella
+seduta. Aggiungerne tre sarebbe volume buttato, non volume in più. Identico sul
+tricipite nella giornata di spinta: 6 + 4,5 = 10,5. Qui il numero basso **non è
+un compromesso, è il numero giusto**.
+
+**Dove si paga.** Accosciata 7 contro 8 e femorali 7 contro 9: la giornata di
+gambe è una sola, e per arrivare ai numeri della Top servirebbero 28 serie di
+gambe in una seduta da cento minuti. Il venerdì sta già a **76 minuti** ed è la
+seduta più lunga delle quattro programmazioni. Questo è il prezzo vero di
+togliere una giornata di gambe, e non si aggira.
+
+**Due vincoli saltano, ed è inevitabile.** Nel Pull ci sono **due rematori** —
+il pulley basso per il dorsale e il rematore coi gomiti alti per il trapezio —
+perché in una sola giornata di tirate non c'è altro modo di avere verticale,
+orizzontale e trapezio. Nelle gambe ci sono **due leg curl**, ma non è lo stesso
+esercizio due volte: seduto su panca l'anca è flessa e il capo lungo lavora
+allungato, in piedi l'anca è estesa. Con una giornata sola è l'unico modo di
+coprire i due angoli, che nella Top stanno su due giornate diverse.
+
+In compenso un vincolo torna: **nelle gambe solo gambe**. Le braccia stanno
+tutte nelle due giornate alte.
+
+**Push — Lunedì · 7 esercizi · 20 serie · 68 min**
+
+| Esercizio | Serie × rip | Tecnica | Rec. |
+|---|---|---|---|
+| Panca piana bilanciere | 3 × 4-6 | RIR 1 · forza | 240 s |
+| Panca inclinata manubri 30° | 3 × 8-12 | cedimento + Drop set | 150 s |
+| Military press — seduto | 3 × 5-7 | RIR 1 · forza | 210 s |
+| Croci manubri su panca inclinata | 2 × 10-12 | cedimento + Allungamento | 120 s |
+| Alzate laterali ai cavi | 3 × 12-15 | cedimento + Drop set | 90 s |
+| Push-down alla corda | 3 × 10-12 | cedimento + Drop set | 120 s |
+| Tricipite overhead — corda | 3 × 10-12 | cedimento + Rest-pause | 90 s |
+
+**Pull — Mercoledì · 8 esercizi · 22 serie · 71 min**
+
+| Esercizio | Serie × rip | Tecnica | Rec. |
+|---|---|---|---|
+| Trazioni zavorate / Lat machine singola | 3 × 6-8 | RIR 1 · forza | 180 s |
+| Pulley basso — presa neutra | 3 × 8-12 | cedimento + Rest-pause | 150 s |
+| Rematore manubri gomiti alti (trapezi) | 3 × 10-15 | cedimento + Rest-pause | 150 s |
+| Lat machine unilaterale — maniglia | 2 × 10-12 | cedimento + Rest-pause | 120 s |
+| Alzate posteriori al cavo alto | 3 × 15-20 | cedimento + Rest-pause | 90 s |
+| Curl bilanciere — focus allungamento | 2 × 8-10 | cedimento + Drop set | 150 s |
+| Curl ai cavi dietro il corpo — Bayesian | 3 × 10-12 | cedimento + Rest-pause | 120 s |
+| Crunch al cavo alto | 3 × 10-15 | cedimento + Rest-pause | 90 s |
+
+**Legs — Venerdì · 9 esercizi · 22 serie · 76 min**
+
+| Esercizio | Serie × rip | Tecnica | Rec. |
+|---|---|---|---|
+| Hack squat — piede basso | 3 × 5-8 | RIR 1 · forza | 240 s |
+| Pressa — piede alto e largo | 2 × 10-12 | cedimento + Drop set | 180 s |
+| Romanian deadlift — manubri | 2 × 8-10 | cedimento + Allungamento | 180 s |
+| Leg curl su panca — cavo basso | 3 × 12-15 | cedimento + Drop set | 90 s |
+| Leg curl in piedi — cavo basso | 2 × 12-15 | cedimento + Rest-pause | 90 s |
+| Hack squat reverse | 2 × 10-12 | cedimento + Rest-pause | 180 s |
+| Sissy squat | 2 × 10-15 | cedimento + Rest-pause | 150 s |
+| Calf raise in piedi | 3 × 8-12 | cedimento + Rest-pause | 120 s |
+| D'Annunzio crunch | 3 × 10-15 | cedimento + Rest-pause | 90 s |
+
+I primi tre esercizi delle gambe e il reverse stanno sulla **stessa macchina**:
+hack, pressa e reverse di fila, una riconfigurazione sola.
+
+Il **sissy squat** torna in scheda: è l'unico esercizio che carica il retto
+femorale ad anca estesa, e con una sola giornata di gambe non si può lasciare
+fuori.
+
+### Le alternative, toccabili
+
+Ogni esercizio della 3 PPL tranne uno porta **una o due alternative** come chip
+nella sua card: un tocco la sostituisce per quel giorno, con gruppo, serie e
+ripetizioni del piano. Si torna indietro da «Sostituisci».
+
+Sono **33 alternative**, e tutte usano un nome che **esiste già** in un'altra
+scheda o nell'archivio: così lo storico dei carichi si porta dietro tutto invece
+di ripartire da zero. `tools/prova-dati.mjs` lo verifica a ogni esecuzione e
+fallisce se un'alternativa punta a un nome nuovo.
+
+L'unico esercizio senza alternativa è l'**hack squat reverse**: in questa
+palestra non ce n'è una: l'hip thrust caricherebbe il gluteo dove è più corto,
+che è il contrario di quello che serve.
+
+Il meccanismo è generico (campo `alt` sull'esercizio): si può estendere alle
+altre tre programmazioni, dove per ora le alternative stanno scritte nelle note.
 
 ### La "3 full body" — la scheda jolly
 
@@ -655,9 +773,11 @@ La meta-regressione sul volume **per singola seduta** (2025) colloca intorno a
 **11 serie frazionali** il punto oltre il quale, nella stessa sessione, le serie
 in più sullo stesso muscolo non mostrano un vantaggio rilevabile. L'app lo
 controlla a ogni apertura e lo dice in chiaro nella scheda Programmazione.
-Tutte e tre le programmazioni sono sotto soglia su tutti i gruppi. Il massimo
-è **8,5 serie frazionali** — le spalle nell'Upper A della Top — contro le 11
-della soglia; nella 4 sedute il massimo è 5,5.
+Tutte e quattro le programmazioni sono sotto soglia su tutti i gruppi. Il
+massimo è **10,5 serie frazionali** — bicipiti nel Pull e tricipiti nel Push
+della 3 PPL — contro le 11 della soglia, e in quel caso il numero non è un caso:
+il volume diretto delle braccia è stato scelto *per* arrivare lì e non oltre.
+Nella Top il massimo è 8,5 (spalle nell'Upper A), nella 4 sedute 5,5.
 
 ### Le sedute archiviate
 
@@ -1150,6 +1270,26 @@ npm run prova:pwa                                # giro di aggiornamento dell'ap
 
 ## Storico
 
+- **v52** — **quarta programmazione: «3 PPL»**, Push · Pull · Legs su Lun · Mer
+  · Ven, costruita sulla 4 Top meno una giornata di gambe. **64 serie dirette in
+  216 minuti**, che è il tetto reale di tre giorni: con frequenza 1× il volume
+  di quattro giornate non ci sta in tre sedute, e oltre le 11 serie frazionali
+  per muscolo per sessione le serie in più non rendono. Il taglio su braccia è
+  **intelligente** — 5 bicipiti e 6 tricipiti diretti diventano 10,5 frazionali
+  con le tirate e le spinte davanti, cioè esattamente il limite utile; quello su
+  gambe **si paga**: accosciata 7 e femorali 7, e il venerdì è già a 76 minuti.
+  Saltano due vincoli, dichiarati: due rematori nel Pull e due leg curl nelle
+  gambe (seduto e in piedi, i due angoli d'anca). Torna invece *nelle gambe solo
+  gambe*, e torna il **sissy squat**, unico esercizio che carica il retto
+  femorale ad anca estesa. **Alternative toccabili:** nuovo campo `alt`
+  sull'esercizio, reso come chip nella card — un tocco sostituisce per quel
+  giorno. 33 alternative, **tutte con un nome che esiste già** in un'altra
+  scheda, così lo storico dei carichi non riparte da zero; la prova fallisce se
+  una punta a un nome nuovo. *Corretta anche una fragilità delle prove:*
+  `verify` e `prova` partivano da oggi e, se oggi è un giorno di riposo, la
+  scheda Allenamento era legittimamente vuota e la verifica falliva per il
+  calendario invece che per un bug — ora si spostano sul primo giorno con una
+  seduta (nuovo gancio `prepara` in `verify.json`).
 - **v51** — **stacco romeno coi manubri**, e tre funzioni per cambiare la
   giornata mentre la fai. *La scheda:* il Romanian deadlift passa dal bilanciere
   ai **manubri**, 2×8-10 a **cedimento tecnico** con parziali in allungamento

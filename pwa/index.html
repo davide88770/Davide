@@ -15,7 +15,7 @@
 <link rel="apple-touch-icon" href="icone/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="192x192" href="icone/icona-192.png">
 <style>:root{color-scheme:light dark}*{box-sizing:border-box}body{margin:0}img{max-width:100%}</style>
-<script>window.__GG_BUILD='6d804922dc';</script>
+<script>window.__GG_BUILD='db5a69aaa7';</script>
 </head>
 <body>
 <style>
@@ -443,6 +443,16 @@ label.fld>span{font-family:var(--display);font-size:11px;letter-spacing:.14em;te
 .cmp4.head span{font-family:var(--display);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);text-align:right}
 .cmp4.head span.g{text-align:left}
 .cmp4.head span.w{text-align:center}
+.cmp5{display:grid;grid-template-columns:1fr 34px 34px 34px 34px 30px;gap:4px;align-items:center;
+  padding:7px 0;border-bottom:1px solid var(--line);font-size:14px}
+.cmp5:last-of-type{border-bottom:0}
+.cmp5 .g{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:13.5px}
+.cmp5 b,.cmp5 .w{font-family:var(--display);font-variant-numeric:tabular-nums;text-align:right;font-size:14.5px;font-weight:500}
+.cmp5 .w{font-size:12px;color:var(--ink-3);text-align:center}
+.cmp5.head{border-bottom:1px solid var(--line-2);padding-bottom:5px}
+.cmp5.head span{font-family:var(--display);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);text-align:right}
+.cmp5.head span.g{text-align:left}
+.cmp5.head span.w{text-align:center}
 .vbar{display:grid;grid-template-columns:76px 1fr 76px;gap:10px;align-items:center;padding:5px 0}
 .vbar .g{font-family:var(--display);font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .vbar .tr{height:12px;border-radius:3px;background:var(--sunk);overflow:hidden;position:relative}
@@ -1137,6 +1147,164 @@ const GIORNI_FULL = {1:'fb_a',3:'fb_b',5:'fb_c'};
 /* Lun Upper A · Mar Lower A · Gio Upper B · Ven Lower B.
    Mercoledi\', sabato e domenica liberi. Forza all\'inizio, volume alla fine. */
 const GIORNI_TOP = {1:'t_upperA',2:'t_lowerA',4:'t_upperB',5:'t_lowerB'};
+/* ---------- SCHEDA "3 PPL" ----------
+   Push / Pull / Legs su tre giorni, Lun · Mer · Ven. Chiesta da Davide il 14
+   ottobre 2026: la 4 Top come modello, meno una giornata di gambe.
+
+   LA COSA DA SAPERE PRIMA DI TUTTE LE ALTRE
+   Tre sedute e sei gruppi grandi vogliono dire FREQUENZA 1x per ogni muscolo.
+   A parita' di volume settimanale la frequenza, da sola, non cambia il
+   risultato in modo rilevabile — quello e' assodato. Il problema e' un altro:
+   il volume settimanale NON ci sta in una seduta sola. Oltre le 11 serie
+   frazionali sullo stesso muscolo nella stessa sessione le serie in piu' non
+   mostrano piu' un vantaggio (meta-regressione sul volume per seduta, 2025), e
+   molto prima di quella soglia il tempo finisce. Quindi questa scheda fa 64
+   serie dirette contro le 77 della Top: e' il tetto reale di tre giorni, non
+   una scelta di comodo.
+
+   DOVE IL TAGLIO E' INTELLIGENTE, E NON SOLO UN TAGLIO
+   Bicipiti 5 serie dirette invece di 8, tricipiti 6 invece di 8. Sembra poco,
+   ma in una giornata di tirate il bicipite prende 5,5 serie frazionali dalle
+   tirate stesse: 5 dirette + 5,5 indirette = 10,5, cioe' esattamente al
+   limite utile per quella seduta. Aggiungerne altre tre sarebbe volume
+   buttato, non volume in piu'. Lo stesso sul tricipite nella giornata di
+   spinta: 6 + 4,5 = 10,5. Qui il numero basso NON e' un compromesso, e' il
+   numero giusto.
+
+   DOVE IL TAGLIO SI PAGA DAVVERO
+   Accosciata 7 contro 8 e femorali 7 contro 9: la giornata di gambe e' una
+   sola, e per arrivare ai numeri della Top servirebbero 28 serie di gambe in
+   una seduta da 100 minuti. Il venerdi sta a 76 minuti e 22 serie, ed e' la
+   seduta piu' lunga delle tre. Questo e' il prezzo vero di togliere una
+   giornata di gambe, e non si aggira.
+
+   VOLUME SETTIMANALE IN SERIE DIRETTE
+     petto 8 · dorso 8 · trapezi 3 · spalle 9 (ant. 3 · lat. 3 · post. 3)
+     bicipiti 5 · tricipiti 6 · accosciata 7 · femorali 7 · gluteo 2
+     polpacci 3 · addome 6   = 64
+
+   DUE VINCOLI SALTANO, ED E' INEVITABILE
+   1. Un solo rematore per giornata. Nel Pull ce ne sono due — il pulley basso
+      per il dorsale e il rematore coi gomiti alti per il trapezio — perche' in
+      una sola giornata di tirate non c'e' altro modo di avere la verticale,
+      l'orizzontale e il trapezio.
+   2. Un solo leg curl per giornata. Nelle gambe ce ne sono due, ma non e' lo
+      stesso esercizio due volte: SEDUTO su panca l'anca sta flessa e il capo
+      lungo lavora allungato, IN PIEDI l'anca e' estesa. Con una giornata sola
+      e' l'unico modo di coprire i due angoli, ed e' il motivo per cui erano
+      divisi su due giornate nella Top.
+
+   In compenso un vincolo torna: nelle gambe SOLO gambe. Le braccia stanno
+   tutte nelle due giornate alte, dove sono gia' calde dai compound.
+
+   ALTERNATIVE: ogni esercizio tranne uno ne ha una o due, toccabili dalla
+   card. Sono scelte fra i nomi che esistono gia' nelle altre schede, cosi' lo
+   storico dei carichi si porta dietro tutto invece di ripartire da zero. */
+
+SESS.p_push = { id:'p_push', nome:'Push', gg:'Lunedì', durata:68, rivista:1, ppl:1,
+  focus:'Petto su tre angoli · Spinta verticale · Deltoide laterale · Tricipiti ai due estremi', ex:[
+  e('Panca piana bilanciere','petto',3,'4–6','RIR 1 · FORZA',240,{
+    alt:['Panca inclinata bilanciere','Dip alle parallele — zavorra'],
+    cue:'Presa 1,5× spalle · gomiti 45° · scapole retratte · fermi rack SEMPRE · fermo 1 sec in basso · eccentrica 2 sec',
+    note:'L’alzata di forza della settimana e l’unico vettore di spinta piana. Qui NON si va a cedimento: sulla forza la vicinanza al cedimento non aggiunge niente e costa articolazioni. Si sale di carico appena chiudi 6 su tutte e tre.'}),
+  e('Panca inclinata manubri 30°','petto',3,'8–12','Ced. tecnico + Drop set',150,{
+    alt:['Dip alle parallele — zavorra'],
+    cue:'Angolo 30° · gomiti 60–70° · scendi fino allo stretch completo · pausa 1 sec · sull’ultima serie drop set',
+    note:'Il secondo angolo, a ripetizioni più alte e a cedimento. Coi manubri perché la clavicolare prende più range di quanto il bilanciere permetta.'}),
+  e('Military press — seduto','spalle',3,'5–7','RIR 1 · FORZA',210,{p:1,
+    alt:['Lento avanti manubri','Military press bilanciere'],
+    cue:'Schienale a 80-85° · manubri o bilanciere all’altezza delle orecchie in basso · ESPIRA salendo · mai Valsalva',
+    note:'Tre serie di deltoide anteriore diretto e basta: il resto lo prende dalle due panche. Il volume di spalla che serve davvero sta sul laterale e sul posteriore — il laterale è qui sotto, il posteriore nel Pull.'}),
+  e('Croci manubri su panca inclinata','petto',2,'10–12','Ced. tecnico + Allungamento',120,{p:1,
+    alt:['Croci manubri'],
+    cue:'Panca a 30° · gomiti morbidi e fermi · scendi fino allo stretto sul petto · FERMATI prima di chiudere in alto, lì il carico si azzera'}),
+  e('Alzate laterali ai cavi','spalle',3,'12–15','Ced. tecnico + Drop set',90,{p:1,uni:1,
+    alt:['Alzate laterali sdraiato — panca inclinata','Alzate laterali manubri'],
+    cue:'Cavo basso dal lato opposto, un braccio per volta · gomito guida · stop a 90° · sull’ultima serie drop set',
+    note:'Col manubrio, in basso, il carico sul deltoide è zero proprio dove il muscolo è allungato: ai cavi tira per l’intero arco. Tre serie perché il laterale tollera volume come nessun altro isolamento.'}),
+  e('Push-down alla corda','tricipiti',3,'10–12','Ced. tecnico + Drop set',120,{p:1,
+    alt:['Push-down — triangolo largo','Push-down a un braccio'],
+    cue:'Corda alla carrucola alta · gomiti fermi ai fianchi · separa le mani in fondo, negli ultimi gradi di estensione · sull’ultima serie drop set',
+    note:'La dose in accorciamento. Sei serie dirette di tricipite in questa seduta sembrano poche, ma con le tre panche e il military diventano 10,5 frazionali: è esattamente il limite utile per una sessione. Aggiungerne non servirebbe.'}),
+  e('Tricipite overhead — corda','tricipiti',3,'10–12','Ced. tecnico + Rest-pause',90,{p:1,
+    alt:['Overhead a un braccio — cavo basso','French press ai cavi — overhead'],
+    cue:'Corda alla carrucola bassa, di spalle · gomiti fermi sopra la testa · stretch massimo dietro la nuca',
+    note:'Il capo lungo in allungamento, l’altro estremo della curva rispetto al push-down. I due insieme coprono il tricipite per intero.'})
+]};
+SESS.p_pull = { id:'p_pull', nome:'Pull', gg:'Mercoledì', durata:71, rivista:1, ppl:1,
+  focus:'Tirata verticale e orizzontale · Trapezi · Deltoide posteriore · Bicipiti · Addome', ex:[
+  e('Trazioni zavorate / Lat machine singola','dorso',3,'6–8','RIR 1 · FORZA',180,{
+    alt:['Lat machine presa larga','Lat machine presa stretta'],
+    cue:'Zavorra alla cintura · presa poco più larga delle spalle · scendi fino a braccia distese · niente slancio',
+    note:'La tirata verticale pesante, e il punto su cui i coach non sono d’accordo: Nippard tiene le trazioni zavorate perché il carico si misura e sale, Rabasco preferisce la lat a un braccio perché appesi alla sbarra devi stabilizzare tutto il corpo e il dorsale non arriva al suo limite. Se ti senti frenato più dalla presa e dal core che dal dorso, passa alla lat.'}),
+  e('Pulley basso — presa neutra','dorso',3,'8–12','Ced. tecnico + Rest-pause',150,{
+    alt:['Rematore manubri — busto appoggiato'],
+    cue:'Seduto, ginocchia morbide, busto fermo · lascia allungare le scapole in avanti · tira alla pancia coi gomiti lungo i fianchi · schiena mai in flessione',
+    note:'La tirata orizzontale. Prima del resto, da fresco.'}),
+  e('Rematore manubri gomiti alti — trapezi','trapezi',3,'10–15','Ced. tecnico + Rest-pause',150,{
+    alt:['Pulley basso su panca inclinata — trapezi'],
+    cue:'Panca inclinata a 30-40°, petto appoggiato · presa larga · tira coi gomiti ALTI · squeeze delle scapole 1 sec',
+    note:'L’unica dose diretta di trapezio della settimana. È il secondo rematore della giornata, e in una sola seduta di tirate non si può evitare: verticale, orizzontale e trapezio non stanno in due esercizi. Col petto appoggiato il limite non lo mette la schiena bassa.'}),
+  e('Lat machine unilaterale — maniglia','dorso',2,'10–12','Ced. tecnico + Rest-pause',120,{uni:1,
+    alt:['Lat machine presa stretta','Pullover ai cavi — carrucola alta'],
+    cue:'Una maniglia sola, un braccio per volta · siediti di lato e lascia salire la scapola in cima · tira il gomito verso il fianco · eccentrica 3 sec',
+    note:'Il pulldown a un braccio: la scapola sale davvero e il range in allungamento è più ampio di quanto la barra a due mani permetta.'}),
+  e('Alzate posteriori al cavo alto','spalle',3,'15–20','Ced. tecnico + Rest-pause',90,{p:1,uni:1,
+    alt:['Face pull'],
+    cue:'Maniglia alla carrucola alta, un braccio per volta · braccio teso che attraversa il corpo · tira indietro all’altezza della spalla · niente trapezio, il gomito non scende',
+    note:'Il deltoide posteriore, nella giornata in cui ha senso: è un muscolo di tirata. Ripetizioni alte perché è piccolo e con una leva sfavorevole — sotto le 15 finisci a tirare col trapezio.'}),
+  e('Curl bilanciere — focus allungamento','bicipiti',2,'8–10','Ced. tecnico + Drop set',150,{p:1,
+    alt:['Curl manubri su panca inclinata'],
+    cue:'Schiena al muro o busto fermo · scendi fino a braccia distese, senza rimbalzare · eccentrica 3 sec · sull’ultima serie drop set',
+    note:'Il curl pesante.'}),
+  e('Curl ai cavi dietro il corpo — Bayesian','bicipiti',3,'10–12','Ced. tecnico + Rest-pause',120,{p:1,
+    alt:['Curl martello su panca inclinata','Curl hammer — cavo basso'],
+    cue:'Carrucola bassa, un passo avanti, braccio dietro la linea del corpo · gomito fermo · eccentrica 3 sec',
+    note:'Col bilanciere, a braccia distese, il carico sul bicipite è quasi zero proprio dove è più allungato: il cavo lì tira ancora. Cinque serie dirette di bicipite in questa seduta sono poche solo sulla carta — con quattro esercizi di tirata davanti diventano 10,5 frazionali, cioè il limite utile per una sessione.'}),
+  e('Crunch al cavo alto','core',3,'10–15','Ced. tecnico + Rest-pause',90,{ernia:1,
+    alt:['D’Annunzio crunch'],
+    cue:'In ginocchio sotto la carrucola alta, corda dietro la nuca · arrotola il busto portando i gomiti al bacino · ESPIRA chiudendo · eccentrica 3 sec',
+    note:'Metà dell’addome della settimana sta qui e metà nelle gambe: è l’unico gruppo che in questa scheda tiene la frequenza 2×, perché costa poco e non interferisce con niente.'})
+]};
+SESS.p_legs = { id:'p_legs', nome:'Legs', gg:'Venerdì', durata:76, rivista:1, ppl:1,
+  focus:'Ginocchio e anca · Catena posteriore ai due angoli · Gluteo · Polpacci · Addome', ex:[
+  e('Hack squat — piede basso','quad',3,'5–8','RIR 1 · FORZA',240,{ernia:1,
+    alt:['Pressa — piede alto e basso alternati'],
+    cue:'Discesa 2–3 sec · fermo 1 sec in basso · ginocchia in linea con le punte · ESPIRA nella salita · mai Valsalva · dopo non smontare: pressa e reverse sono la stessa macchina',
+    note:'L’alzata di forza delle gambe, e il vettore di GINOCCHIO: piede basso, il ginocchio viaggia avanti. L’unica giornata di gambe della settimana apre da qui.'}),
+  e('Pressa — piede alto e largo','quad',2,'10–12','Ced. tecnico + Drop set',180,{
+    alt:['Hack squat reverse'],
+    cue:'Piedi molto in alto e larghi · scendi profondo, è lì che il gluteo si allunga · spingi sui talloni · a CEDIMENTO · sull’ultima serie drop set',
+    note:'Col piede alto la pressa è un vettore d’ANCA, non una ripetizione dell’hack squat: gluteo e adduttori caricati dove sono lunghi. Due articolazioni diverse sulla stessa macchina.'}),
+  e('Romanian deadlift — manubri','femorali',2,'8–10','Ced. tecnico + Allungamento',180,{ernia:1,p:1,
+    alt:['Romanian deadlift bilanciere'],
+    cue:'Manubri ai lati delle cosce, non davanti · ginocchia morbide e ferme · anca indietro, schiena neutra · scendi finché il femorale TIRA e fermati un secondo · ESPIRA risalendo · fine serie quando la schiena inizia a cedere, NON quando il peso non sale più',
+    note:'L’estensione dell’anca col femorale allungato: nessun leg curl la sostituisce. Coi manubri ai lati scendi più in basso e il carico per mano è metà, quindi il cedimento tecnico è raggiungibile in sicurezza — col bilanciere a 6-8 il limite lo mettono schiena bassa e presa.'}),
+  e('Leg curl su panca — cavo basso','femorali',3,'12–15','Ced. tecnico + Drop set',90,{p:1,uni:1,
+    alt:['Leg curl nordico','Leg curl sdraiato — manubri'],
+    cue:'SEDUTO sulla panca rivolto alla carrucola bassa, scivolato fino al bordo: coscia appoggiata, ginocchio che sporge appena · fettuccia alla caviglia, una gamba per volta · parti a gamba quasi distesa e porta il tallone indietro SOTTO la panca · eccentrica 3 sec',
+    note:'Anca FLESSA: il capo lungo lavora allungato, ed è la differenza più grande misurata in quest’area — circa una volta e mezza l’ipertrofia del leg curl sdraiato (Maeo e colleghi, 2021). Serve la fettuccia da caviglia.'}),
+  e('Leg curl in piedi — cavo basso','femorali',2,'12–15','Ced. tecnico + Rest-pause',90,{p:1,uni:1,
+    alt:['Leg curl nordico'],
+    cue:'In piedi di fronte alla carrucola bassa, una mano al montante · fettuccia alla caviglia, una gamba per volta · coscia ferma e anca NEUTRA, non portarla indietro · tallone al gluteo · eccentrica 3 sec',
+    note:'Anca ESTESA, l’altro angolo. Due leg curl nella stessa giornata rompono un vincolo del piano, ma non è lo stesso esercizio due volte: con una sola giornata di gambe è l’unico modo di coprire i due angoli d’anca, che nella Top stavano su due giornate diverse.'}),
+  e('Hack squat reverse','gluteo',2,'10–12','Ced. tecnico + Rest-pause',180,{ernia:1,
+    cue:'Stessa configurazione dell’hack squat, girato di 180°: petto e fianchi contro il pad, piedi sotto le anche · scendi profondo e lascia che l’anca vada indietro · spingi coi glutei · ESPIRA risalendo, mai Valsalva',
+    note:'Il lavoro diretto di gluteo. È l’unico esercizio della scheda senza alternativa, perché in questa palestra non c’è: l’hip thrust caricherebbe il gluteo dove è più corto, che è il contrario di quello che serve. Si fa subito dopo la pressa e l’hack, stessa macchina girata. Precisazione che vale la pena ripetere: è un esercizio di GLUTEO, non di femorali — in uno schema di accosciata il femorale resta quasi isometrico, ed è il motivo per cui gli squat non costruiscono femorali.'}),
+  e('Sissy squat','quad',2,'10–15','Ced. tecnico + Rest-pause',150,{ernia:1,p:1,
+    alt:['Sissy squat — eccentrica lenta','Sissy squat zavorrato'],
+    cue:'Disco al petto quando ci arrivi · mano al montante per stabilizzarti · talloni alzati · eccentrica 3 sec',
+    note:'L’unico esercizio che carica il RETTO FEMORALE ad anca estesa. Hack squat e pressa hanno tutti e due l’anca flessa, e lì il retto femorale è accorciato da quel lato e contribuisce poco: senza questo resterebbe senza lavoro diretto. Con una sola giornata di gambe non si può lasciare fuori.'}),
+  e('Calf raise in piedi','polpacci',3,'8–12','Ced. tecnico + Rest-pause',120,{
+    alt:['Calf pressa'],
+    cue:'Ginocchio dritto · su un rialzo o un disco · pausa 2" in basso · no rimbalzo',
+    note:'Tre serie in una volta invece di 2+2 su due giornate: sotto le 4-5 serie settimanali la frequenza doppia non aggiunge niente, e qui non c’è una seconda giornata su cui dividerle.'}),
+  e('D’Annunzio crunch','core',3,'10–15','Ced. tecnico + Rest-pause',90,{ernia:1,
+    alt:['Crunch al cavo alto'],
+    cue:'Gambe bloccate sotto il pad della lat machine, busto che scende oltre l’appoggio · eccentrica 3 sec · ESPIRA salendo, mai in apnea'})
+]};
+const GIORNI_PPL = {1:'p_push',3:'p_pull',5:'p_legs'};
+
 
 /* ── FASI ───────────────────────────────────────────────────────────────── */
 const FASI = [
@@ -1498,6 +1666,7 @@ const MOB_DI = { cut_push:'push', tr_push:'push', pu_push:'push', rv_push:'push'
   pu_upper:'upper', rv_upper:'upper', cut_sab:'upper', tr_sab:'upper',
   rv_lower:'lower', q_lowerA:'legs', q_lowerB:'lower', q_upperA:'upperfz', q_upperB:'upper',
   t_upperA:'upperfz', t_lowerA:'legs', t_upperB:'upper', t_lowerB:'lower',
+  p_push:'push', p_pull:'pull', p_legs:'legs',
   fb_a:'legs', fb_b:'upperfz', fb_c:'lower' };
 /* Stretching post-sessione, 8 minuti obbligatori (pag. 36-37) */
 const STRETCHING = [
@@ -1643,7 +1812,7 @@ const CONS_FONTI = [
 /* Versione dell'app. Serve a sapere, dal telefono, se quello che hai davanti e'
    l'ultima versione: la PWA installata puo' restare indietro se iOS non rifa'
    la navigazione. Il numero si alza a ogni pubblicazione. */
-const VERSIONE = { n:'v51', data:'8 ottobre 2026', nota:'Stacco romeno coi manubri · togli esercizi e serie · copia il carico' };
+const VERSIONE = { n:'v52', data:'14 ottobre 2026', nota:'Quarta programmazione: 3 PPL, con le alternative toccabili su ogni esercizio' };
 
 const ATTREZZI = [
   ['Rack, bilanciere, panca regolabile', 1, 'Panca piana, stacco romeno, curl bilanciere, military press, panca inclinata per croci, curl e rematore col petto appoggiato'],
@@ -1978,7 +2147,7 @@ function carica(){
         /* Le programmazioni tolte (piano originale, PPL + full body e la vecchia
            scheda da 5 sedute) tornano sulla "4 sedute Top". Le giornate gia'
            registrate restano leggibili: quelle sedute sono nell'archivio. */
-        if(!['top','rivista4','full'].includes(S.ui.prog)) S.ui.prog = 'top';
+        if(!['top','rivista4','ppl','full'].includes(S.ui.prog)) S.ui.prog = 'top';
         if(!S.testi || typeof S.testi !== 'object' || Array.isArray(S.testi)) S.testi = {};
         /* Rimette il nome giusto su cio' che era gia' registrato prima che le
            serie iniziassero a portarselo dietro. Gira una volta: alla seconda
@@ -2008,7 +2177,9 @@ function faseDi(d){
    le fasi dalla 3 in poi. Cut e transizione restano come sono. */
 const giorniDi = f => {
   if(f.ppl3) return GIORNI_RIVISTI_PPL3;   /* cut e transizione, fasi 1-2 */
-  return S.ui.prog === 'full' ? GIORNI_FULL : S.ui.prog === 'rivista4' ? GIORNI_RIVISTI_4 : GIORNI_TOP;
+  return S.ui.prog === 'full' ? GIORNI_FULL
+       : S.ui.prog === 'ppl'  ? GIORNI_PPL
+       : S.ui.prog === 'rivista4' ? GIORNI_RIVISTI_4 : GIORNI_TOP;
 };
 function sessioneDi(d,f){
   const L = S.sess[d];
@@ -2982,6 +3153,10 @@ function cardEsercizio(ex, i, d, f, tipo){
         ${tecnicheDi(ex.i).map(k => `<button class="chip line" data-tec="${esc(k)}" style="cursor:pointer">${ICO.info} ${esc(TECNICHE[k][0])}</button>`).join('')}
       </div>` : ''}
       ${/sissy/i.test(ex.n) ? `<button class="chip line" data-sissy="1" style="cursor:pointer;margin-top:6px">${ICO.info} Progressione del range</button>` : ''}
+      ${(ex.alt||[]).length ? `<div class="row wrapf" style="padding:9px 0 2px;gap:6px">
+        <span class="tiny muted" style="flex:none">In alternativa oggi:</span>
+        ${ex.alt.map((a,k) => `<button class="chip line" data-alt="${i}:${k}" style="cursor:pointer">${esc(a)}</button>`).join('')}
+      </div>` : ''}
       <div class="sethead"><span>Serie</span><span>Carico</span><span>${ex.tempo?'Secondi':'Rep'}</span><span>RIR</span><span></span></div>
       ${setRighe}
       ${dp ? striscia(dp, kgAttuale) : ''}
@@ -3452,40 +3627,47 @@ function renderPiano(){
     const upper = !f.ppl3;
     if(!upper) return `<div class="card"><div class="hd"><h2>Programmazione</h2><span class="chip line sp">cut · ppl 3×</span></div>
       <div class="bd"><p class="small muted" style="margin:0">In questa fase vale lo split a tre giorni del cut, non le
-        tre programmazioni: quelle partono dalla fase 3 in poi.</p></div></div>`;
-    const A = volumePrevisto(GIORNI_TOP), B = volumePrevisto(GIORNI_RIVISTI_4), C = volumePrevisto(GIORNI_FULL);
+        quattro programmazioni: quelle partono dalla fase 3 in poi.</p></div></div>`;
+    const A = volumePrevisto(GIORNI_TOP), B = volumePrevisto(GIORNI_RIVISTI_4),
+          P = volumePrevisto(GIORNI_PPL),  C = volumePrevisto(GIORNI_FULL);
     const fuori = sopraSoglia(giorniDi(f));
     const durA = Object.values(GIORNI_TOP).map(id => SESS[id].durata);
     const durB = Object.values(GIORNI_RIVISTI_4).map(id => SESS[id].durata);
+    const durP = Object.values(GIORNI_PPL).map(id => SESS[id].durata);
     const durC = Object.values(GIORNI_FULL).map(id => SESS[id].durata);
     const somma = d => d.reduce((x,y) => x+y, 0);
     /* La colonna del full body non si colora sul riferimento: quella scheda
        punta a tenere, non ad arrivarci, e segnarla in rosso direbbe una cosa
        falsa. Si colorano solo le due schede da quattro sedute. */
+    /* La colonna del full body non si colora: quella scheda punta a tenere, non
+       ad arrivarci. La 3 PPL invece si colora, perche' e' una programmazione
+       vera e il confronto col riferimento dice qualcosa. */
     const riga = g => {
-      const a = A.per[g]||0, b = B.per[g]||0, c = C.per[g]||0, o = VOL_OBIETTIVO[g];
+      const a = A.per[g]||0, b = B.per[g]||0, pp = P.per[g]||0, c = C.per[g]||0, o = VOL_OBIETTIVO[g];
       const col = x => o === undefined ? 'var(--ink-2)' : (x === o ? 'var(--good-text)' : (x < o ? 'var(--crit-text)' : 'var(--accent-text)'));
-      return `<div class="cmp4"><span class="g">${GRUPPI[g]}</span>
-        <b style="color:${col(a)}">${a}</b><b style="color:${col(b)}">${b}</b>
+      return `<div class="cmp5"><span class="g">${GRUPPI[g]}</span>
+        <b style="color:${col(a)}">${a}</b><b style="color:${col(b)}">${b}</b><b style="color:${col(pp)}">${pp}</b>
         <b style="color:var(--ink-3)">${c}</b>
         <span class="w">${o === undefined ? '—' : o}</span></div>`;
     };
     return `<div class="card">
-      <div class="hd"><h2>Programmazione</h2><span class="chip good sp">${({top:'4 sedute Top', rivista4:'4 sedute', full:'3 full body'})[S.ui.prog]}</span></div>
+      <div class="hd"><h2>Programmazione</h2><span class="chip good sp">${({top:'4 sedute Top', rivista4:'4 sedute', ppl:'3 PPL', full:'3 full body'})[S.ui.prog]}</span></div>
       <div class="bd stack">
         <div class="seg" role="group" aria-label="Programmazione">
           <button data-prog="top" aria-pressed="${S.ui.prog==='top'}">4 Top</button>
           <button data-prog="rivista4" aria-pressed="${S.ui.prog==='rivista4'}">4 sedute</button>
+          <button data-prog="ppl" aria-pressed="${S.ui.prog==='ppl'}">3 PPL</button>
           <button data-prog="full" aria-pressed="${S.ui.prog==='full'}">3 full body</button>
         </div>
-        <p class="small muted" style="margin:0">Due schede da quattro sedute e una da tre.
+        <p class="small muted" style="margin:0">Due schede da quattro sedute e due da tre.
           La <b>4 sedute Top</b> è Lun · Mar · Gio · Ven, ${A.tot} serie dirette, con le due giornate di
           <b>forza</b> in testa alla settimana e le due di <b>volume</b> in coda. La <b>4 sedute</b> gli stessi
           giorni, ${B.tot} serie: <b>due serie per esercizio, quasi tutte a cedimento</b>, con la terza solo dove
-          serve davvero. Il <b>3 full body</b> è
-          Lun · Mer · Ven, ${C.tot} serie in ${somma(durC)} minuti contro i ${somma(durA)} della Top: è la scheda
-          <b>jolly</b>, per le settimane storte e per i viaggi.</p>
-        <div class="cmp4 head"><span class="g">Gruppo</span><span>Top</span><span>4 sed.</span><span>full</span><span class="w">obiett.</span></div>
+          serve davvero. La <b>3 PPL</b> è Lun · Mer · Ven, ${P.tot} serie in ${somma(durP)} minuti: è il
+          <b>massimo che tre giorni permettono</b> — spinta, tirata e gambe, con le alternative toccabili su ogni
+          esercizio. Il <b>3 full body</b> sono gli stessi giorni, ${C.tot} serie in ${somma(durC)} minuti: è la
+          scheda <b>jolly</b>, per le settimane storte e per i viaggi, e punta a tenere invece che a costruire.</p>
+        <div class="cmp5 head"><span class="g">Gruppo</span><span>Top</span><span>4 sed.</span><span>PPL</span><span>full</span><span class="w">obiett.</span></div>
         ${['petto','dorso','trapezi','spalle','bicipiti','tricipiti','quad','femorali','gluteo','polpacci','core'].map(riga).join('')}
         <p class="tiny muted" style="margin:0">Serie <b>dirette</b> a settimana, contro il volume di riferimento.
           Verde quando il numero è quello, rosso sotto, azzurro sopra. La <b>4 sedute Top</b> ha ${A.tot} serie
@@ -3499,9 +3681,31 @@ function renderPiano(){
           pareggiare due serie in meno su più gruppi — in frazionali le braccia stanno comunque a
           ${nf(B.fr.bicipiti,1)} e ${nf(B.fr.tricipiti,1)}. Non è la stessa scheda con meno roba: è un altro modo
           di comprare lo stimolo, poche serie portate fino in fondo invece di più serie tenute a margine.
+          La <b>3 PPL</b> sta sotto su braccia, gambe e femorali: tre giorni non
+          portano il volume di quattro, e sotto è spiegato dove quel taglio è intelligente e dove si paga davvero.
           Il <b>3 full body</b> sta sotto quasi ovunque, e la sua
           colonna non è colorata apposta: quella scheda non punta ad arrivare al riferimento, punta a
           <b>tenere</b> — segnarla in rosso direbbe una cosa falsa.</p>
+        <div class="backup" style="background:var(--accent-soft);color:var(--accent-text)">${ICO.info}
+          <span>La <b>3 PPL</b> è il <b>massimo che tre giorni permettono</b>: ${P.tot} serie dirette in
+          ${somma(durP)} minuti, spinta il lunedì, tirata il mercoledì, gambe il venerdì. Tre sedute e sei gruppi
+          grandi vogliono dire <b>frequenza 1×</b>, e il problema non è la frequenza in sé — a parità di volume
+          settimanale non cambia il risultato in modo rilevabile — è che <b>il volume di quattro giorni non ci sta
+          in tre sedute</b>. Oltre le ${SERIE_SEDUTA_MAX} serie frazionali sullo stesso muscolo nella stessa
+          sessione le serie in più non mostrano un vantaggio, e molto prima di quella soglia finisce il tempo.</span></div>
+        <div class="backup" style="background:var(--good-soft);color:var(--good-text)">${ICO.check}
+          <span><b>Dove il taglio della 3 PPL è intelligente.</b> Bicipiti ${P.per.bicipiti} serie dirette invece di
+          ${VOL_OBIETTIVO.bicipiti}, tricipiti ${P.per.tricipiti} invece di ${VOL_OBIETTIVO.tricipiti}: sembra poco,
+          ma in una giornata di sole tirate il bicipite prende <b>5,5 serie frazionali dalle tirate stesse</b>, e
+          ${P.per.bicipiti} + 5,5 fa ${nf(P.per.bicipiti+5.5,1)} — esattamente il limite utile per quella seduta.
+          Aggiungerne tre sarebbe volume buttato, non volume in più. Identico sul tricipite nella giornata di
+          spinta. Qui il numero basso <b>non è un compromesso, è il numero giusto</b>.</span></div>
+        <div class="backup" style="background:var(--warn-soft);color:var(--warn-text)">${ICO.alert}
+          <span><b>Dove il taglio della 3 PPL si paga.</b> Accosciata ${P.per.quad} contro
+          ${VOL_OBIETTIVO.quad} e femorali ${P.per.femorali} contro ${VOL_OBIETTIVO.femorali}: la giornata di gambe
+          è una sola, e per arrivare ai numeri della Top servirebbero 28 serie di gambe in una seduta da cento
+          minuti. Il venerdì sta già a ${Math.max(...durP)} minuti ed è la seduta più lunga delle quattro
+          programmazioni. Questo è il prezzo vero di togliere una giornata di gambe, e non si aggira.</span></div>
         <div class="backup" style="background:var(--accent-soft);color:var(--accent-text)">${ICO.info}
           <span>Il <b>3 full body</b> è la scheda <b>jolly</b>: settimane storte, periodi di lavoro pesante,
           viaggi. ${C.tot} serie in ${somma(durC)} minuti — il ${Math.round(C.tot/A.tot*100)}% del volume della Top
@@ -3530,7 +3734,7 @@ function renderPiano(){
             ? 'Sopra le '+SERIE_SEDUTA_MAX+' serie frazionali in una sola seduta: '+fuori.map(x => SESS[x.sid].nome+' — '+GRUPPI[x.g]+' '+nf(x.v,1)).join(', ')+'.'
             : 'Nessun gruppo supera le '+SERIE_SEDUTA_MAX+' serie frazionali in una singola seduta, che è il punto oltre il quale le serie aggiunte nella stessa sessione non mostrano più un vantaggio rilevabile. Il controllo è rifatto a ogni apertura.'}</span></div>
         <p class="tiny muted" style="margin:0">Durate: Top ${durA.join(', ')} min · 4 sedute ${durB.join(', ')} min ·
-          3 full body ${durC.join(', ')} min.
+          3 PPL ${durP.join(', ')} min · 3 full body ${durC.join(', ')} min.
           Serie × (45 secondi di lavoro + recupero previsto), 75 secondi per gli esercizi a un arto per volta,
           più mezzo minuto per la serie finale intensificata. Riscaldamento e mobilità fuori dal conto.</p>
       </div>
@@ -3592,7 +3796,7 @@ function renderPiano(){
       <p class="small" style="margin:0"><b>2. RIR 1 sulle alzate di forza, cedimento tecnico su tutto il resto.</b>
         Non è una sfumatura: sulla forza avvicinarsi al cedimento non aggiunge niente e costa articolazioni e sistema
         nervoso (Robinson e colleghi, 2024), mentre sull’isolamento è proprio la vicinanza al cedimento a fare il
-        lavoro. Dalla <b>v46</b> la regola è scritta così in tutte e tre le programmazioni, invece del generico
+        lavoro. Dalla <b>v46</b> la regola è scritta così in tutte le programmazioni, invece del generico
         «RIR 0-2» che lasciava decidere a te ogni volta. Le serie lontane dal cedimento non sono allenamento
         leggero: sono fatica senza stimolo.</p>
       <p class="small" style="margin:0"><b>3. Un’alzata di forza in testa a ogni seduta.</b> Panca piana 4-6, military
@@ -3750,7 +3954,7 @@ function renderPiano(){
   <div class="card"><div class="hd"><h2>La tua attrezzatura</h2>
     <span class="chip line sp">${ATTREZZI.filter(x => x[1]).length} su ${ATTREZZI.length}</span></div>
     <div class="bd stack-s">
-      <p class="small muted" style="margin:0">Le tre programmazioni sono costruite su questa lista e su niente altro. Se
+      <p class="small muted" style="margin:0">Le quattro programmazioni sono costruite su questa lista e su niente altro. Se
         aggiungi o togli qualcosa in palestra, dimmelo: cambia la scelta degli esercizi, non il metodo.</p>
       ${ATTREZZI.map(([nome, ce, uso]) => `<div class="row" style="gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px solid var(--line)">
         <span style="color:${ce?'var(--good-text)':'var(--ink-4)'};flex:none;line-height:1.2">${ce ? ICO.check : '—'}</span>
@@ -4051,6 +4255,7 @@ document.addEventListener('click', ev => {
   if(pg){ S.ui.prog = pg.dataset.prog; APERTI.clear(); salva(); render();
     toast({ top:'4 sedute Top · Lun Mar Gio Ven · forza poi volume',
             rivista4:'4 sedute · Upper e Lower alternati',
+            ppl:'3 PPL · Lun Mer Ven · il massimo in tre giorni',
             full:'3 full body · Lun Mer Ven · la scheda jolly' }[pg.dataset.prog]); return; }
 
   const tk = el('[data-tick]');
@@ -4072,6 +4277,23 @@ document.addEventListener('click', ev => {
       r.ts = Date.now();
     }
     L.mod = Date.now(); salva(); renderWorkout(); return;
+  }
+
+  /* Un tocco su un'alternativa la mette al posto dell'esercizio PER OGGI, con
+     lo stesso meccanismo di "Sostituisci": gruppo, serie e ripetizioni restano
+     quelli del piano, cambia il nome. Si torna indietro da Sostituisci. */
+  const al = el('[data-alt]');
+  if(al){
+    const [i,k] = al.dataset.alt.split(':').map(Number);
+    const d = S.ui.data, f = faseDi(d), sess = sessioneDi(d,f);
+    const base = sess && sess.ex[i];
+    const nome = base && (base.alt||[])[k];
+    if(!nome) return;
+    const L = log(d); if(!L.sost) L.sost = {};
+    L.sost[i] = { n: nome, g: base.g, s: serieDi(base, tipoSettDi(d)), r: base.r };
+    L.mod = Date.now(); salva(); renderWorkout();
+    toast(`Oggi ${nome}. Da “Sostituisci” torni a “${base.n}”.`);
+    return;
   }
 
   const so = el('[data-sost]');
