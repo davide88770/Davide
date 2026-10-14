@@ -436,7 +436,7 @@ era rovesciato, 7 contro 11).
 | | 4 sedute Top | 4 sedute |
 |---|---|---|
 | Giorni | Lun Upper A · Mar Lower A · Gio Upper B · Ven Lower B | Lun Upper A · Mar Lower A · Gio Upper B · Ven Lower B |
-| Liberi | Mercoledì, sabato, domenica | Mercoledì, sabato, domenica |
+| Liberi | gli altri tre | gli altri tre |
 | Esercizi per seduta | 8 | 6-7 |
 | Serie per seduta | 19-20 | 14-17 |
 | Serie a settimana | 77 | 61 |
@@ -851,6 +851,38 @@ Resta un limite minore: la versione seduta dipende da quanto spazio c'è sotto
 la panca. Se il montaggio non viene, il ripiego è la versione in piedi in tutte
 e due le giornate — comunque molto meglio del manubrio fra i piedi.
 
+### I giorni non sono fissi (v53)
+
+Nella scheda **Piano** c'è una riga di sette pulsanti: tocchi i giorni in cui ti
+alleni davvero, e le sedute della programmazione corrente ci cadono
+**nell'ordine della scheda**. I giorni del piano restano come default — finché
+non tocchi niente, vale quello.
+
+L'ordine conta, e non è decorativo: nella Top è `Upper A → Lower A → Upper B →
+Lower B`, cioè le due giornate di forza per prime. Quindi:
+
+- **Quattro giorni scelti** → tutte e quattro le sedute, nei giorni che vuoi.
+- **Tre giorni** → resta fuori l'**ultima della sequenza**, che nella Top è la
+  **Lower B**. È esattamente quella che conviene saltare: la parte alta resta
+  completa (petto 8, dorso 8, spalle 12, tricipiti 8) e le gambe tengono hack
+  squat, stacco romeno e leg curl seduto. L'app lo scrive in chiaro, con il nome
+  della seduta che esce.
+- **Cinque o più** → i giorni in eccesso restano di riposo, e lo dice.
+
+Ogni programmazione ha i **suoi** giorni: puoi tenere la Top su Lun-Mar-Gio-Ven
+e la 3 PPL su Lun-Mer-Sab senza che si pestino.
+
+**Le giornate già registrate non si spostano e non cambiano seduta.** Questo era
+un bug latente anche prima di questa versione: `sessioneDi` ricalcolava la seduta
+dal giorno della settimana, quindi cambiando programmazione una Lower A di marzo
+diventava una Upper B e i carichi — salvati per *indice* — finivano sotto
+esercizi mai fatti. Dalla v53 una giornata con serie registrate tiene l'id della
+seduta che hai fatto davvero. È la stessa classe di errore che la v46 ha corretto
+sui grafici, qui corretta sulla scheda Allenamento.
+
+Per spostare **una singola** seduta senza toccare i giorni fissi resta
+**Sposta a un altro giorno**, qui sotto.
+
 ### Se un giorno salti, la seduta si sposta
 
 Sopra ogni seduta c'è **Sposta a un altro giorno**. Scegli un giorno e la seduta
@@ -1253,6 +1285,10 @@ npm run prova:pwa                                # giro di aggiornamento dell'ap
   JS. È la prova che mancava: `verify` gira su un profilo vuoto, e con il
   profilo vuoto metà dell'app non viene mai eseguita — è così che due bug sono
   passati per due versioni.
+- **I giorni scelti a mano** (`npm run prova`): le sedute cadono nell'ordine
+  della scheda sui giorni scelti; con tre giorni resta fuori la Lower B e non
+  un'altra; una giornata già registrata **non** cambia seduta quando sposti i
+  giorni. L'ultima è verificata togliendo la protezione: la prova fallisce.
 - **Le tre funzioni della v51** (`npm run prova`): un esercizio togliato e
   rimesso senza perdere le serie registrate, una serie togliata sotto il piano
   ma non sotto una, «Copia la 1ª» che riempie solo le serie vuote, e la spunta
@@ -1270,6 +1306,21 @@ npm run prova:pwa                                # giro di aggiornamento dell'ap
 
 ## Storico
 
+- **v53** — **i giorni non sono più fissi.** Un selettore in Piano: tocchi i
+  giorni in cui ti alleni e le sedute ci cadono nell'ordine della scheda, con i
+  giorni del piano come default e una scelta indipendente per ogni
+  programmazione. Con meno giorni che sedute resta fuori l'**ultima della
+  sequenza** — nella Top la Lower B, cioè quella che conviene saltare — e l'app
+  lo scrive, con il nome della seduta che esce; con più giorni, quelli in
+  eccesso sono riposo e lo dice. Il nome del giorno nel titolo della seduta e nel
+  selettore ora si ricava dalla mappa viva invece dal campo fisso.
+  **Corretto un bug latente che questa funzione avrebbe reso frequente:**
+  `sessioneDi` ricalcolava la seduta dal giorno della settimana anche per le
+  giornate già registrate, quindi cambiando i giorni (o la programmazione) una
+  Lower A di marzo diventava una Upper B e i carichi salvati per indice
+  finivano sotto esercizi mai fatti. Ora una giornata con serie registrate
+  tiene la seduta che hai fatto davvero. Tre prove nuove, la terza verificata
+  togliendo la protezione: fallisce con il messaggio giusto.
 - **v52** — **quarta programmazione: «3 PPL»**, Push · Pull · Legs su Lun · Mer
   · Ven, costruita sulla 4 Top meno una giornata di gambe. **64 serie dirette in
   216 minuti**, che è il tetto reale di tre giorni: con frequenza 1× il volume
