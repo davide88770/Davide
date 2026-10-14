@@ -353,6 +353,67 @@ if (dopoAlt.mostrato !== altTest.atteso) {
   console.error(`  ERRORE  la card mostra ancora "${dopoAlt.mostrato}"`); process.exit(1); }
 await page.evaluate(() => { S.ui.prog = 'top'; salva(); });
 
+/* I GIORNI NON SONO FISSI.
+   Tre cose da verificare, e la terza e' quella che puo' fare danno:
+     1. scegliendo i giorni, le sedute ci cadono nell'ordine della scheda;
+     2. con meno giorni che sedute, resta fuori l'ULTIMA della sequenza;
+     3. una giornata GIA' REGISTRATA non cambia seduta quando sposti i giorni —
+        altrimenti i carichi salvati per indice finirebbero sotto esercizi mai
+        fatti, che e' la stessa classe di errore della v46 sui grafici. */
+const ggTest = await page.evaluate(() => {
+  const iso = t => new Date(t).toISOString().slice(0, 10);
+  // una giornata registrata sotto i giorni del PIANO: martedi' = Lower A
+  const d = new Date(Date.now() + 70 * 864e5); while (d.getDay() !== 2) d.setDate(d.getDate() + 1);
+  const g = iso(d);
+  S.ui.prog = 'top';
+  delete S.ui.giorni.top;
+  const sid = x => { const v = sessioneDi(x, faseDi(x)); return v ? v.id : null; };
+  const prima = sid(g);
+  S.sess[g] = { sid: prima, tipo: 'base', set: { 0: [{ kg: '120', rep: '6', ok: 1 }] },
+    piu: {}, sost: {}, via: {}, nomi: {}, nota: '', mod: Date.now() };
+  // ora si sposta la settimana su lun/mer/gio/sab: il martedi' non e' piu' un giorno
+  S.ui.giorni.top = [1, 3, 4, 6];
+  const mappa = mappaGiorni('top');
+  const dopo = sid(g);           // null se la protezione non c'e': il martedi' non e' piu' un giorno
+  // con tre giorni soli deve restare fuori l'ultima della sequenza
+  S.ui.giorni.top = [1, 3, 5];
+  const tre = mappaGiorni('top');
+  const fuori = ORDINE_SEDUTE.top.filter(id => !Object.values(tre).includes(id));
+  // e un giorno NON registrato segue i giorni scelti
+  const lun = iso(new Date(Date.now() + 70 * 864e5 + (1 - new Date(Date.now() + 70 * 864e5).getDay() + 7) % 7 * 864e5));
+  delete S.ui.giorni.top;
+  salva();
+  return { g, prima, dopo, mappa, tre, fuori, lun, sessLun: sid(lun) };
+});
+const attesaMappa = { 1: 't_upperA', 3: 't_lowerA', 4: 't_upperB', 6: 't_lowerB' };
+if (JSON.stringify(ggTest.mappa) !== JSON.stringify(attesaMappa)) {
+  console.error('  ERRORE  le sedute non cadono nell\'ordine della scheda sui giorni scelti: '
+    + JSON.stringify(ggTest.mappa)); process.exit(1); }
+if (ggTest.fuori.length !== 1 || ggTest.fuori[0] !== 't_lowerB') {
+  console.error('  ERRORE  con tre giorni dovrebbe restare fuori la Lower B, resta fuori: '
+    + JSON.stringify(ggTest.fuori)); process.exit(1); }
+if (ggTest.dopo !== ggTest.prima) {
+  console.error(`  ERRORE  spostando i giorni una giornata già registrata non tiene più la sua seduta `
+    + `(${ggTest.prima} → ${ggTest.dopo === null ? 'nessuna seduta' : ggTest.dopo}): i carichi salvati per `
+    + `indice finirebbero sotto esercizi mai fatti, o la giornata sparirebbe`);
+  process.exit(1); }
+if (ggTest.sessLun !== 't_upperA') {
+  console.error(`  ERRORE  tornando ai giorni del piano il lunedì non è Upper A (${ggTest.sessLun})`);
+  process.exit(1); }
+
+/* Il selettore dei giorni nella scheda Piano: un tocco cambia la mappa. */
+await page.click('#tab-piano'); await page.waitForTimeout(300);
+const ggUI = await page.$('[data-gg="3"]');
+if (!ggUI) { console.error('  ERRORE  manca il selettore dei giorni in Piano'); process.exit(1); }
+await ggUI.click(); await page.waitForTimeout(350);
+const dopoClick = await page.evaluate(() => ({ scelti: giorniScelti('top'), mappa: mappaGiorni('top') }));
+if (!dopoClick.scelti.includes(3)) {
+  console.error('  ERRORE  il tocco sul mercoledì non lo aggiunge: ' + JSON.stringify(dopoClick)); process.exit(1); }
+await page.click('[data-ggreset="1"]'); await page.waitForTimeout(350);
+const dopoReset = await page.evaluate(() => giorniScelti('top'));
+if (dopoReset.length) {
+  console.error('  ERRORE  il ritorno ai giorni del piano non pulisce la scelta'); process.exit(1); }
+
 /* Cambia programmazione e tipo di settimana: sono i due interruttori che
    ricalcolano tutto. */
 await page.click('#tab-piano'); await page.waitForTimeout(200);
@@ -377,6 +438,7 @@ console.log(`  storico   ${ATTESI.length} giornate vecchie etichettate com'erano
 console.log('  togli     esercizio via e rimesso senza perdere le serie · serie sotto il piano, mai sotto una');
 console.log('  copia     la 1ª riempie solo le serie vuote · la spunta riporta il carico, non le ripetizioni');
 console.log(`  altern.   ${altTest.quante} alternative nella 3 PPL, tutte con un nome che esiste già · un tocco le applica`);
+console.log('  giorni    le sedute seguono i giorni scelti · con tre resta fuori l\'ultima · una giornata registrata non cambia seduta');
 if (errori.length) {
   console.error(`\n${errori.length} errori:`);
   for (const e of errori) console.error('  ✗ ' + e);
