@@ -272,6 +272,8 @@ const vecchio = (() => {
   const S = { v: 2, budget: { 'Vita quotidiana': 900, Viaggi: 1000 }, start: { trad: 1000, rev: 500, amex: -200 },
     goals: { inv: 1500, emerg: 12000, amex: 2000, amexStart: '', pens: 5164 },
     recurring: [{ id: 'r1', type: 'in', amt: 2500, acc: 'trad', cat: 'Stipendio', note: 'Stipendio', day: 1 },
+      { id: 'r2', type: 'in', amt: 2500, acc: 'rev', cat: 'Stipendio', note: 'Stipendio 2', day: 1 },
+      { id: 'r4', type: 'out', amt: 16, acc: 'rev', cat: 'Spese fisse', note: 'Canone', day: 1 },
       { id: 'r9', type: 'out', amt: 20, acc: 'amex', cat: 'Spese fisse', note: 'vecchio', day: 2 }],
     quote: [{ y: 2027, a: 1000, ok: false }], cats: [{ n: 'Animali', i: '🐶' }], snaps: {}, values: {} };
   return { S, TX };
@@ -289,7 +291,19 @@ ok(![...DB.transactions.values()].some(r => r.data.acc === 'amex' || r.data.to =
 ok([...DB.transactions.values()].filter(r => r.data.pay === 'amex').length === 8 + 2, 'le spese Amex sono sul Tradizionale, segnate Amex');
 const sSrv = DB.settings.get(UTENTE.id).data;
 ok(sSrv.start.trad === 800 && !('amex' in sSrv.start), `saldo di partenza Amex confluito nel Tradizionale (${sSrv.start.trad})`);
-ok(sSrv.recurring.length === 1 && sSrv.cats[0].n === 'Animali' && sSrv.quote[0].a === 1000, 'ricorrenti, categorie e quote ripristinati');
+ok(sSrv.recurring.length === 3 && sSrv.cats[0].n === 'Animali' && sSrv.quote[0].a === 1000, 'ricorrenti, categorie e quote ripristinati');
+ok(sSrv.recurring.filter(r => r.cat === 'Stipendio').every(r => r.acc === 'trad') && sSrv.fatto?.stipendiTrad, 'tutti e due gli stipendi ricorrenti sul Tradizionale (segnato una volta sola)');
+ok(sSrv.recurring.find(r => r.id === 'r4').acc === 'rev', 'il canone Revolut resta su Revolut');
+ok([...DB.transactions.values()].filter(r => r.data.acc === 'rev').length === 20, 'i movimenti già registrati su Revolut non si spostano');
+// il conto di un ricorrente si cambia dalle impostazioni
+await A.selectOption('select[data-recacc="r4"]', 'trad');
+ok(await A.evaluate(() => S.recurring.find(r => r.id === 'r4').acc === 'trad'), 'conto del ricorrente cambiato dalle impostazioni');
+await A.selectOption('select[data-recacc="r4"]', 'rev');
+// rimesso a mano uno stipendio su Revolut: la migrazione non lo risposta
+await A.selectOption('select[data-recacc="r2"]', 'rev'); await A.waitForTimeout(500);
+await A.evaluate(() => migrateAmex());
+ok(await A.evaluate(() => S.recurring.find(r => r.id === 'r2').acc === 'rev'), 'scelta fatta a mano dopo il cambio: rispettata');
+await A.selectOption('select[data-recacc="r2"]', 'trad');
 
 // ── 2. due dispositivi ──
 sezione('2. Aggiungi, modifica, elimina — e il secondo dispositivo');

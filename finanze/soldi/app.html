@@ -22,7 +22,7 @@
 <script src="vendor/chart.umd.js"></script>
 <script src="vendor/supabase.js"></script>
 <script src="config.js"></script>
-<script>window.__SOLDI_BUILD='sviluppo';window.__SOLDI_V=2;</script>
+<script>window.__SOLDI_BUILD='sviluppo';window.__SOLDI_V=3;</script>
 <style>
 @font-face{font-family:Manrope;font-style:normal;font-display:swap;font-weight:200 800;src:url(vendor/manrope-latin-wght-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 @font-face{font-family:Manrope;font-style:normal;font-display:swap;font-weight:200 800;src:url(vendor/manrope-latin-ext-wght-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
@@ -147,6 +147,7 @@ table.t td.r,table.t th.r{text-align:right}
 .imp tr.skip td{opacity:.45}
 .imp td{font-size:13px}
 .lrow{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:9px 0;border-bottom:1px solid var(--line);font-size:14px}
+.lrow select{padding:3px 6px;border-radius:8px;border:1px solid var(--line);background:var(--card);font-size:12px;max-width:170px}
 .lrow button{border:0;background:none;color:var(--bad);cursor:pointer;font-weight:700}
 .check{display:flex;align-items:center;gap:8px;margin-top:12px;font-weight:600;font-size:14px}
 .check input{width:20px;height:20px}
@@ -666,8 +667,25 @@ $('uOut').onclick=async()=>{const n=pendingN();
 
 /* ---------- migrazione: Amex non è più un conto ---------- */
 let migrating=false;
+/* ---------- ottobre 2026: tutti e due gli stipendi sul Tradizionale ----------
+   Il Tradizionale paga Amex e investimento: con un solo stipendio non ci
+   stava dentro. Da qui in poi il ricorrente "Stipendio" su Revolut si registra
+   sul Tradizionale. Una volta sola: il segno resta in S.fatto. Se non c'è
+   niente da spostare non si segna e non si salva niente, così su un dispositivo
+   nuovo le impostazioni vuote non finiscono sopra quelle vere del server.
+   I movimenti già registrati restano dove sono: quegli stipendi sono
+   arrivati davvero su Revolut. */
+const stipRev=r=>r.type==='in'&&r.cat==='Stipendio'&&r.acc==='rev';
+async function stipendiSulTradizionale(){
+  if((S.fatto||{}).stipendiTrad||!S.recurring.some(stipRev))return;
+  const n=S.recurring.filter(stipRev).length;
+  S.recurring=S.recurring.map(r=>stipRev(r)?{...r,acc:'trad'}:r);
+  S.fatto={...(S.fatto||{}),stipendiTrad:today()};
+  await saveS();fillSettings();
+  toast(n===1?'Lo stipendio di Revolut ora arriva sul Tradizionale':`${n} stipendi spostati sul Tradizionale`)}
 async function migrateAmex(){
   if(migrating)return;
+  await stipendiSulTradizionale();
   const olds=TX.filter(t=>t.acc==='amex'||t.to==='amex');
   const sDirty=(S.start&&'amex' in S.start)||S.recurring.some(r=>r.acc==='amex'||r.to==='amex');
   if(!olds.length&&!sDirty)return;
@@ -1025,7 +1043,7 @@ $('iGo').onclick=async()=>{const go=IMP.rows.filter(r=>r.type==='in'||r.type==='
 function fillSettings(){
   $('sBud').innerHTML=OUT().map(c=>`<div class="set"><span>${c.i} ${esc(c.n)}${c.n==='Viaggi'?' <span class="hint">(al mese, valutato sull\'anno)</span>':''}</span><input type="number" data-b="${esc(c.n)}" value="${S.budget[c.n]||0}"></div>`).join('');
   $('sStart').innerHTML=ACC.map(a=>`<div class="set"><span>${a.n}</span><input type="number" data-s="${a.id}" value="${S.start[a.id]||0}"></div>`).join('');
-  $('sRec').innerHTML=S.recurring.length?S.recurring.map(r=>`<div class="lrow"><span><b>${esc(r.note||r.cat||'')}</b><br><span class="hint">${r.type==='move'?`${accN(r.acc)} → ${accN(r.to)}`:`${r.type==='in'?'Entrata':'Spesa'} · ${accN(r.acc)}`} · giorno ${r.day} · ${eur(r.amt)}</span></span><button data-delrec="${r.id}">Togli</button></div>`).join(''):'<div class="hint">Nessun ricorrente.</div>';
+  $('sRec').innerHTML=S.recurring.length?S.recurring.map(r=>`<div class="lrow"><span><b>${esc(r.note||r.cat||'')}</b><br><span class="hint">${r.type==='move'?`${accN(r.acc)} → ${accN(r.to)}`:`${r.type==='in'?'Entrata':'Spesa'} · <select data-recacc="${esc(r.id)}" aria-label="Conto">${ACC.filter(a=>a.kind!=='save').map(a=>`<option value="${a.id}" ${a.id===r.acc?'selected':''}>${esc(a.n)}</option>`).join('')}</select>`} · giorno ${r.day} · ${eur(r.amt)}</span></span><button data-delrec="${r.id}">Togli</button></div>`).join(''):'<div class="hint">Nessun ricorrente.</div>';
   $('sCats').innerHTML=S.cats.length?S.cats.map(c=>`<div class="lrow"><span>${esc(c.i||'•')} ${esc(c.n)}</span><button data-delcat="${esc(c.n)}">Togli</button></div>`).join(''):'<div class="hint">Nessuna categoria personale.</div>';
   $('gInv').value=S.goals.inv;$('gEm').value=S.goals.emerg;$('gAmex').value=S.goals.amex;$('gAmexStart').value=S.goals.amexStart;$('gPens').value=S.goals.pens;
   $('pVal').value=S.values.port;$('pPens').value=S.values.pens;$('pQuota').value=S.values.quota;$('pOther').value=S.values.other;$('pDebt').value=S.values.debt;
@@ -1046,7 +1064,9 @@ document.addEventListener('input',e=>{const t=e.target,v=t.value;
   else if(GK[t.id]){S.goals[GK[t.id]]=GK[t.id]==='amexStart'?v:(+v||0);later()}
   else if(PK[t.id]){const f=PK[t.id];S.values[f]=v;const nk=today().slice(0,7);S.snaps[nk]={...(S.snaps[nk]||{}),[f]:v};later()}
   else if(t.id==='fQ')renderTx()});
-document.addEventListener('change',e=>{const t=e.target;if(t.dataset.qo){S.quote[+t.dataset.qo].ok=t.checked;saveS();render()}if(['fAcc','fCat','fPer'].includes(t.id))renderTx()});
+document.addEventListener('change',e=>{const t=e.target;
+  if(t.dataset.recacc){const r=S.recurring.find(x=>x.id===t.dataset.recacc);if(r){r.acc=t.value;saveS();fillSettings();render();toast(`${r.note||r.cat}: ora su ${accN(r.acc)}`)}return}
+  if(t.dataset.qo){S.quote[+t.dataset.qo].ok=t.checked;saveS();render()}if(['fAcc','fCat','fPer'].includes(t.id))renderTx()});
 
 /* ---------- backup ---------- */
 /* Su telefono si apre il foglio di condivisione (iPhone: "Salva su File");

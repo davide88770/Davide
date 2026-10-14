@@ -201,6 +201,13 @@ schermata Home.
 
 ## Storico
 
+- **v3** (ottobre 2026) — tutti e due gli stipendi sul Tradizionale, che
+  paga Amex e investimento. Al primo avvio l'app sposta da sola il ricorrente
+  «Stipendio» da Revolut al Tradizionale, una volta sola (segno in
+  `S.fatto.stipendiTrad`); i movimenti già registrati restano dove sono. Nessun
+  bonifico fisso verso Revolut: si fa solo se serve, e l'avviso «Revolut
+  risulta in negativo» dice quando. In Impostazioni ogni ricorrente ha ora il
+  menu del conto, così si cambia senza toglierlo e rifarlo.
 - **v2** (ottobre 2026) — ritmo mensile al posto di quello giornaliero.
   L'avviso «Non registri movimenti da N giorni» lascia il posto a quello
   sull'import del mese: dal 4 (l'estratto Amex arriva il 3) ricorda di
