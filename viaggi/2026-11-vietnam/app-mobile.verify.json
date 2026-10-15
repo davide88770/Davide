@@ -26,7 +26,8 @@
     "riscontri": ".ri",
     "luce": "svg.luce",
     "profilo": "#prof path",
-    "passi": ".sp"
+    "passi": ".sp",
+    "schede": "details.sch"
   },
   "richiesti": [
     "tab",
@@ -36,6 +37,7 @@
     "fermate",
     "tratte",
     "sezioni",
+    "schede",
     "frasi",
     "spunte",
     "biglietti",

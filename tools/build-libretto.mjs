@@ -51,6 +51,12 @@ b,strong{font-weight:700}
 i,em{font-style:italic}
 a{color:inherit;text-decoration:none}
 .pagina{break-after:page}
+.sch{break-inside:avoid;margin-bottom:5mm;padding-bottom:4mm;border-bottom:.4pt solid #ccd6d3}
+.sch:last-child{border-bottom:0}
+.sch h3{font-size:10.6pt;margin:0 0 1.8mm}
+.sch h3 .gg{float:right;font-size:7.4pt;font-weight:400;color:#7b8a87;letter-spacing:.06em}
+.sch p{margin:0 0 2mm;font-size:9pt;line-height:1.5}
+.intro{font-size:9pt;color:#5a6a68;margin:0 0 5mm}
 .pagina:last-child{break-after:auto}
 h2{font-size:13pt;letter-spacing:.09em;text-transform:uppercase;margin:0 0 3mm;
   padding-bottom:1.6mm;border-bottom:1.6pt solid #1A1510}
@@ -296,6 +302,21 @@ if(typeof SPOSTAMENTI!=='undefined' && SPOSTAMENTI.length){
       +'<ol class="tl">'+tl+'</ol><div class="lato">'+lato+'</div></article>';
   }
   pag('<h2>Giorno per giorno</h2>'+g);
+}
+
+/* ---- 5b. per saperne di piu' ----
+   Le schede stanno dopo il giorno per giorno e non dentro: sono testo da
+   leggere la sera o sull'aereo, non roba da cercare mentre si cammina. */
+if(typeof SCHEDE!=='undefined' && SCHEDE.length){
+  const gg={}; DAYS.forEach(d=>gg[d.n]=d.date);
+  let sc='';
+  SCHEDE.forEach(x=>{
+    const q=x.g.map(n=>'G'+n).join(' · ');
+    sc+='<div class="sch"><h3>'+E(x.t)+' <span class="gg">'+q+'</span></h3>'+x.b+'</div>';
+  });
+  pag('<h2>Per saperne di più</h2>'
+    +'<p class="intro">Il contesto di quello che si vede: storia, perché è lì, cosa guardare. '
+    +'La sigla dice in quale giornata serve.</p>'+sc);
 }
 
 /* ---- 6. pratico: le sezioni scritte a mano del viaggio ---- */
