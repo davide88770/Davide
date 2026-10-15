@@ -62,6 +62,27 @@ h2{font-size:12pt;margin:0 0 3mm;padding-bottom:1.5mm;border-bottom:1.6pt solid 
    background:#eceeed;padding:.3mm 1.4mm;border-radius:1.5mm;letter-spacing:-.02em}
 .tel{display:inline-block;font-family:"DejaVu Sans Mono",monospace;font-size:8pt;font-weight:700}
 .n-alert{border-left-color:#8c2d20}
+
+/* una voce dell'elenco in fila */
+.v{display:grid;grid-template-columns:11mm 1fr;gap:3.5mm;break-inside:avoid;
+   border:.5pt solid #b9c6c3;border-left:3pt solid #15201f;margin-bottom:3.2mm;padding:2.4mm 3mm}
+.v.aperta{border-left-color:#8c2d20;background:#fdf9f8}
+.v.fare{border-left-color:#7b8a87;border-style:dashed;background:#fafbfa}
+.v.fare .num i{font-size:10pt;opacity:.6}
+.v.fare .tt{font-size:9.8pt}
+.v .num{font-size:15pt;font-weight:700;line-height:1;color:#15201f;text-align:center;
+        font-variant-numeric:tabular-nums}
+.v .num i{display:block;font-style:normal;font-size:12pt;margin-top:1mm}
+.v .q{font-size:8.2pt;color:#5a6a68;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.6mm}
+.v .q b{color:#15201f;font-size:9.6pt;letter-spacing:0;text-transform:none}
+.v .tt{font-weight:700;font-size:10.4pt;line-height:1.25;margin-bottom:1.2mm}
+.v dl{display:grid;grid-template-columns:17mm 1fr;gap:.6mm 2.5mm;margin:0;font-size:8.7pt;line-height:1.38}
+.v dt{font-size:7.4pt;text-transform:uppercase;letter-spacing:.05em;color:#5a6a68;padding-top:.5mm}
+.v dd{margin:0}
+.v .note{margin-top:1.4mm;font-size:8.5pt;line-height:1.38;color:#3d4c4a;
+         border-top:.4pt dotted #b9c6c3;padding-top:1.2mm}
+.v .note.ammonisce{color:#15201f;background:#f6ecea;border-top:0;border-left:2pt solid #8c2d20;
+                   padding:1.2mm 2mm;margin-top:1.4mm}
 .av{margin-top:1.2mm;font-size:8.5pt;line-height:1.38;background:#f6ecea;
     border-left:2pt solid #8c2d20;padding:1.2mm 2mm}
 .ok{background:#eaf1ec;border-left-color:#2f6b44}
@@ -141,66 +162,81 @@ if(prima.length){
 }
 pag('<h2>Prima di partire</h2>'+pre);
 
-/* ── 3 · giorno per giorno ────────────────────────────────────────── */
-let corpo='';
-DAYS.forEach(d=>{
-  const sp=(typeof SPOSTAMENTI!=='undefined'?SPOSTAMENTI:[]).filter(x=>x.iso===d.iso);
-  /* Un mezzo che parte la sera e arriva la mattina dopo non comparirebbe
-     nella giornata dell'arrivo: chi legge il 20 non saprebbe di scendere a
-     Hue alle 06:30. Si riconosce dall'ora scritta nell'arrivo, piu' piccola
-     di quella di partenza. */
-  const ieri=new Date(dt(d.iso).getTime()-864e5).toISOString().slice(0,10);
-  const notturni=(typeof SPOSTAMENTI!=='undefined'?SPOSTAMENTI:[]).filter(x=>{
-    if(x.iso!==ieri) return false;
-    const m=String(x.a).match(/(\d\d):(\d\d)/); if(!m) return false;
-    return m[0] < x.ora;
-  }).map(x=>({ora:String(x.a).match(/(\d\d):(\d\d)/)[0],tipo:'a',x:{...x,ora0:x.ora}}));
-  const sc=(typeof SCADENZE!=='undefined'?SCADENZE:[]).filter(x=>x.iso===d.iso);
-  if(!sp.length && !sc.length && !notte[d.iso] && !notturni.length) return;
+/* ── 3 · tutto in fila ────────────────────────────────────────────────
+   Un elenco solo, numerato, in ordine di data e ora: ogni trasporto, ogni
+   alloggio, ogni esperienza. Il telefono sta dentro la voce, non in fondo
+   al documento: chi deve chiamare lo fa da qui. Un trasporto entra da
+   SPOSTAMENTI, un alloggio o un'esperienza da BOOK — ma solo se dichiara
+   quando entra in scena, cosi' niente compare due volte. */
+const fila=[];
+(typeof SPOSTAMENTI!=='undefined'?SPOSTAMENTI:[]).forEach(x=>{
+  const b=x.cod && x.cod!=='—' && x.cod!=='da prenotare' ? perCod(x.cod) : null;
+  fila.push({q:x.iso+' '+x.ora, i:x.i, t:x.t, da:x.da, a:x.a,
+             cod:(x.cod&&x.cod!=='—')?x.cod:'', tel:x.tel||'',
+             pr:b?b[4]:'', st:b?b[1]:'', n:x.n||''});
+});
+BOOK.forEach(r=>{
+  if(!r[6] || r[6]==='—') return;         // senza data, o gia' in fila, non entra
+  fila.push({q:r[6], i:'🛏', t:r[2], dove:r[7]||'', cod:r[3], tel:r[8]||'',
+             pr:r[4], st:r[1], n:r[5]});
+});
+/* Le scadenze del periodo di viaggio entrano nella stessa fila: sono ore
+   in cui bisogna fare qualcosa, e tenerle altrove vuol dire perderle.
+   Quelle di casa stanno gia' nella pagina «Prima di partire». */
+(typeof SCADENZE!=='undefined'?SCADENZE:[]).filter(x=>x.iso>=DAYS[0].iso).forEach(x=>{
+  fila.push({q:x.iso+' '+x.ora, i:'⏳', t:x.t, fare:true, k:x.k, n:x.c});
+});
+fila.sort((x,y)=>x.q.localeCompare(y.q));
 
-  /* Spostamenti e cose da fare vanno mescolati e messi in ordine di ora:
-     e' il senso del documento, leggere la giornata dall'alto in basso. */
-  const voci=[...notturni,...sp.map(x=>({ora:x.ora,tipo:'s',x})),
-              ...sc.map(x=>({ora:x.ora,tipo:'c',x}))]
-    .sort((a,b)=>a.ora.localeCompare(b.ora));
-  let righe='';
-  voci.forEach(v=>{
-    const x=v.x;
-    if(v.tipo==='a'){
-      righe+='<div class="r"><div class="o">'+E(v.ora)+'<i>arrivo</i></div><div>'
-        +'<div class="t">'+E(x.t)+' — si scende</div>'
-        +'<div class="v"><b>A:</b> '+E(x.a)+'<br>'
-        +'<span style="color:#5a6a68">partito ieri alle '+E(x.ora0)+' da '+E(x.da)+'</span></div>'
-        +'</div></div>';
-      return;
-    }
-    if(v.tipo==='c'){
-      righe+='<div class="r"><div class="o">'+E(x.ora)+'<i>da fare</i></div><div>'
-        +'<div class="t">'+E(x.t)+'</div>'
-        +'<div class="'+(x.k==='alert'?'av':'nt')+'">'+x.c+'</div></div></div>';
-      return;
-    }
-    const b=x.cod && x.cod!=='—' && x.cod!=='da prenotare' ? perCod(x.cod) : null;
-    righe+='<div class="r"><div class="o">'+E(x.ora)+'<i>'+E(x.i)+'</i></div><div>'
-      +'<div class="t">'+E(x.t)+'</div>'
-      +'<div class="v"><b>Da:</b> '+E(x.da)+'<br><b>A:</b> '+E(x.a)+'</div>'
-      +'<div class="v">'
-        +(x.cod&&x.cod!=='—'?'<span class="k">'+E(x.cod)+'</span> ':'')
-        +(x.tel?' <span class="tel">'+E(x.tel)+'</span>':'')
-        +(b?' · '+E(b[4]):'')
-      +'</div>'
-      +(x.n?'<div class="'+(/⚠/.test(x.n)?'av':'nt')+'">'+x.n+'</div>':'')
-      +'</div></div>';
-  });
-  corpo+='<div class="g'+(sp.some(x=>/⚠/.test(x.n||''))?' n-alert':'')+'">'
-    +'<div class="gh"><span class="n">'+d.n+'</span>'
-    +'<span class="d">'+lungo(d.iso)+'</span>'
-    +'<span class="s">'+E(d.title)+'</span></div>'
-    +'<div class="gb">'+(righe||'<div class="nt">Nessuno spostamento: giornata sul posto.</div>')
-    +(notte[d.iso]?'<div class="dorme"><b>Si dorme:</b> '+notte[d.iso]+'</div>':'')
+const tel=t=>String(t).replace(/[^0-9+]/g,'');
+let el='', k=0;
+fila.forEach(v=>{
+  k++;
+  const [iso,ora]=v.q.split(' ');
+  const apr = v.st && v.st!=='Fatto';
+  if(v.fare){
+    el+='<div class="v fare'+(v.k==='alert'?' aperta':'')+'">'
+      +'<div class="num"><i>⏳</i></div><div>'
+      +'<div class="q">'+lungo(iso)+' · <b>'+E(ora)+'</b> · da fare</div>'
+      +'<div class="tt">'+E(v.t)+'</div>'
+      +'<div class="note'+(v.k==='alert'?' ammonisce':'')+'" style="border-top:0;margin-top:0">'
+      +v.n+'</div></div></div>';
+    k--; return;
+  }
+  el+='<div class="v'+(apr?' aperta':'')+'">'
+    +'<div class="num">'+k+'<i>'+E(v.i)+'</i></div><div>'
+    +'<div class="q">'+lungo(iso)+' · <b>'+E(ora)+'</b></div>'
+    +'<div class="tt">'+E(v.t)+'</div><dl>'
+    +(v.da?'<dt>Da</dt><dd>'+E(v.da)+'</dd>':'')
+    +(v.a?'<dt>A</dt><dd>'+E(v.a)+'</dd>':'')
+    +(v.dove?'<dt>Dove</dt><dd>'+E(v.dove)+'</dd>':'')
+    +(v.cod?'<dt>Codice</dt><dd><span class="k">'+E(v.cod)+'</span></dd>':'')
+    +(v.tel?'<dt>Telefono</dt><dd><span class="tel">'+E(v.tel)+'</span></dd>':'')
+    +(v.pr&&v.pr!=='—'?'<dt>Quanto</dt><dd>'+E(v.pr)+(apr?' — <b>'+E(v.st)+'</b>':'')+'</dd>':'')
+    +'</dl>'
+    +(v.n?'<div class="note'+(/⚠/.test(v.n)?' ammonisce':'')+'">'+v.n+'</div>':'')
     +'</div></div>';
 });
-pag('<h2>Giorno per giorno</h2>'+corpo);
+pag('<h2>Tutto in fila</h2>'
+ +'<p class="sub">Trasporti, alloggi ed esperienze in ordine di data e ora, dal primo all\'ultimo. '
+ +'Il numero da chiamare è dentro ogni voce. Le voci con il bordo rosso non sono ancora chiuse.</p>'
+ +el);
+
+/* ── 4 · quello che non ha un orario ──────────────────────────────── */
+/* Una riga del registro e' gia' in fila se un trasporto la richiama: i
+   codici non sono scritti uguali ("AATZ2552" contro "Conferma AATZ2552"),
+   quindi si confrontano per contenimento, non per uguaglianza. */
+const giaInFila=c=>fila.some(v=>v.cod && (v.cod===c || c.includes(v.cod) || v.cod.includes(c)));
+const senza=BOOK.filter(r=>!r[6] && !giaInFila(r[3]));
+if(senza.length){
+  let sz='';
+  senza.forEach(r=>{ sz+='<div class="box'+(r[1]!=='Fatto'?' rosso':'')+'">'
+    +'<h3>'+E(r[2])+' — <span style="font-weight:400">'+E(r[1])+'</span></h3>'
+    +'<div style="font-size:8.8pt">'+r[5]+'</div>'
+    +'<div style="font-size:8.4pt;color:#45544f;margin-top:1.2mm"><b>'+E(r[3])+'</b>'
+    +(r[4]&&r[4]!=='—'?' · '+E(r[4]):'')+'</div></div>'; });
+  pag('<h2>Senza un orario, ma da non dimenticare</h2>'+sz);
+}
 
 /* ── 3 · il registro per esteso ───────────────────────────────────── */
 let reg='';
@@ -279,8 +315,8 @@ if (errori.length) {
 /* Controlli di sostanza: ogni spostamento deve comparire, e ogni riga del
    registro con un codice vero deve essere stampata. */
 const conta = await page.evaluate(() => ({
-  giornate: document.querySelectorAll('.g').length,
-  righe: document.querySelectorAll('.r').length,
+  voci: document.querySelectorAll('.v').length,
+  aperte: document.querySelectorAll('.v.aperta').length,
   numeri: document.querySelectorAll('.pagina:first-child tbody tr:not(.grp)').length,
   prenot: BOOK.length, pagine: document.querySelectorAll('.pagina').length,
 }));
@@ -300,7 +336,7 @@ const kb = f => Math.round(fs.statSync(f).size / 1024);
 const pdf = fs.readFileSync(filePdf, 'latin1');
 const pagine = (pdf.match(/\/Type\s*\/Page[^s]/g) || []).length;
 console.log(`\n  Quadro di marcia · ${VIAGGIONOME(DATI)}`);
-console.log(`  ${conta.giornate} giornate · ${conta.righe} righe · ${conta.numeri} numeri · ${conta.prenot} prenotazioni · ${conta.pagine} sezioni`);
+console.log(`  ${conta.voci} voci in fila (${conta.aperte} non chiuse) · ${conta.numeri} numeri · ${conta.prenot} prenotazioni · ${conta.pagine} sezioni`);
 console.log(`  quadro.pdf  ${kb(filePdf)} KB · ${pagine} pagine A4`);
 console.log(`  in out/${cart}/\n`);
 
