@@ -458,6 +458,17 @@ ol.tl li.next{background:var(--sunk);border-radius:8px;margin:0 -8px;padding:9px
 /* Dentro il programma la tendina dev'essere un invito, non un riquadro:
    una riga sola con l'accento del tema, che si apre solo se la tocchi. */
 .schw{margin:5px 0 2px}
+p.mapr{margin:9px 0 0}
+.bgm{margin:0;padding:0 13px 12px 49px}
+@media print{.bgm{display:none}}
+a.mapl{display:inline-flex;align-items:center;gap:4px;min-height:30px;padding:0 9px 0 7px;
+  border-radius:15px;background:var(--accent-soft);color:var(--accent);text-decoration:none;
+  font-family:var(--display);font-size:11.5px;letter-spacing:.07em;text-transform:uppercase;
+  white-space:nowrap;border:0}
+a.mapl svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:1.9;
+  stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto}
+a.mapl:active{background:var(--accent);color:var(--surface)}
+@media print{a.mapl{display:none}}
 ol.tl .schw details.sch{background:none;border:0;border-left:2px solid var(--accent-soft);
   border-radius:0;margin:0 0 2px;padding-left:9px}
 ol.tl .schw details.sch > summary{padding:6px 0;min-height:38px;font-size:13.5px;
@@ -1227,55 +1238,55 @@ const LISTS=[
 
 /* ── Biglietti: quali esistono, quanto valgono, cosa si vede gratis ───── */
 const BIGLIETTI=[
- {id:'mausoleo',g:3,n:'Mausoleo di Ho Chi Minh',p:0,v:'si',on:true,conta:true,
+ {id:'mausoleo',g:3,m:'Ho Chi Minh Mausoleum, Hanoi',n:'Mausoleo di Ho Chi Minh',p:0,v:'si',on:true,conta:true,
   quali:'Gratis. Apre 7:30 e <b>chiude alle 10:30</b>. Chiuso il lunedì e il venerdì, più una chiusura annuale per manutenzione che cade spesso in autunno.',
   gratis:"Tutto. Si paga solo con la fila e con il contegno: braccia lungo i fianchi, niente foto, niente cappello. Il museo accanto invece si paga, e si può saltare."},
- {id:'motcot',g:3,n:'Pagoda Chua Mot Cot',p:0,v:'si',on:true,conta:true,
+ {id:'motcot',g:3,m:'One Pillar Pagoda, Hanoi',n:'Pagoda Chua Mot Cot',p:0,v:'si',on:true,conta:true,
   quali:'Gratis, 7–18. È a due passi dal Mausoleo: si fanno insieme.',
   gratis:"Tutto. È piccola — una pagoda su un pilastro solo in mezzo a una vasca — e si vede in dieci minuti."},
- {id:'presidenziale',g:3,n:'Palazzo Presidenziale e casa su palafitte',p:1.5,v:'forse',on:true,conta:true,
+ {id:'presidenziale',g:3,m:'Presidential Palace Historical Site, Hanoi',n:'Palazzo Presidenziale e casa su palafitte',p:1.5,v:'forse',on:true,conta:true,
   quali:'~1,50 € a testa. Orari spezzati: 7:30–11:00 e 13:30–16:00.',
   gratis:"Il palazzo giallo coloniale si vede benissimo dal viale, e il giardino è attraversabile. Il biglietto serve per entrare nella casa su palafitte dietro, che è la parte che racconta qualcosa."},
- {id:'letteratura',g:3,n:'Tempio della Letteratura',p:1.2,v:'si',on:true,conta:true,
+ {id:'letteratura',g:3,m:'Temple of Literature, Hanoi',n:'Tempio della Letteratura',p:1.2,v:'si',on:true,conta:true,
   quali:'~1,20 € a testa, 8–17. Un biglietto solo per i cinque cortili.',
   gratis:"Niente: è recintato. Ma a un euro e venti per la prima università del Vietnam, fondata nel 1070, non c'è discussione."},
- {id:'cittadella-hn',g:3,n:'Cittadella imperiale di Thang Long',p:4,v:'si',on:true,conta:true,
+ {id:'cittadella-hn',g:3,m:'Imperial Citadel of Thang Long, Hanoi',n:'Cittadella imperiale di Thang Long',p:4,v:'si',on:true,conta:true,
   quali:'~4 € a testa, 8–17. UNESCO. Il bunker della guerra è compreso.',
   gratis:"La porta monumentale si vede dalla strada. Dentro però c'è il bunker da cui si comandò la difesa di Hanoi nel '72, e quello vale il biglietto da solo."},
- {id:'tranquoc',g:3,n:'Pagoda di Tran Quoc',p:0,v:'si',on:true,conta:true,
+ {id:'tranquoc',g:3,m:'Tran Quoc Pagoda, Hanoi',n:'Pagoda di Tran Quoc',p:0,v:'si',on:true,conta:true,
   quali:'Gratis, 8–16: <b>è la prima che chiude</b>, mettetela prima del tramonto e non dopo.',
   gratis:"Tutto. È la pagoda più antica di Hanoi, su una lingua di terra nel lago dell'Ovest."},
- {id:'trangan',g:10,n:'Trang An, giro in barca',p:10.5,v:'si',on:true,conta:true,
+ {id:'trangan',g:10,m:'Trang An Boat Tour, Ninh Binh',n:'Trang An, giro in barca',p:10.5,v:'si',on:true,conta:true,
   quali:'Alla biglietteria si sceglie fra tre percorsi, ~9–12 € a testa, circa 3 ore. Il prezzo è per posto in barca, remata da una persona del posto.',
   gratis:"Niente di paragonabile — e qui non si discute: è la cosa più bella del viaggio in terraferma. Se volete solo il paesaggio senza barca, la strada fra Tam Coc e Bai Dinh attraversa lo stesso scenario gratis."},
- {id:'mua',g:10,n:'Mua Caves',p:4,v:'si',on:true,conta:true,
+ {id:'mua',g:10,m:'Hang Mua, Ninh Binh',n:'Mua Caves',p:4,v:'si',on:true,conta:true,
   quali:'~4 € a testa. 500 gradini fino in cima, sempre aperto in orario diurno.',
   gratis:"Il giardino con la passerella e i loti alla base, sulla destra prima della salita, è dentro il biglietto ma quasi tutti lo saltano. Dall'esterno non si vede nulla: il punto è la cima."},
- {id:'baidinh',g:10,n:'Pagoda di Bai Dinh',p:0,v:'si',on:true,conta:true,
+ {id:'baidinh',g:10,m:'Bai Dinh Pagoda, Ninh Binh',n:'Pagoda di Bai Dinh',p:0,v:'si',on:true,conta:true,
   quali:"Ingresso gratis. Si paga solo la navetta elettrica interna, ~2 € — il complesso è enorme e a piedi sono chilometri.",
   gratis:"Tutto, se avete gambe. La navetta fa risparmiare un'ora di asfalto, non si perde niente a farne a meno."},
- {id:'bichdong',g:9,n:'Bich Dong Pagoda',p:0,v:'si',on:true,conta:true,
+ {id:'bichdong',g:9,m:'Bich Dong Pagoda, Ninh Binh',n:'Bich Dong Pagoda',p:0,v:'si',on:true,conta:true,
   quali:'Gratis. <b>Chiude alle 17:00.</b> Il parcheggio dello scooter si paga pochi centesimi.',
   gratis:"Tutto. Tre pagode una sopra l'altra, scavate nella montagna, a tre chilometri da Halise."},
- {id:'cittadella-hue',g:11,n:'Cittadella imperiale di Hue',p:7,v:'si',on:true,conta:true,
+ {id:'cittadella-hue',g:11,m:'Imperial City, Hue',n:'Cittadella imperiale di Hue',p:7,v:'si',on:true,conta:true,
   quali:'~7 € a testa per la Cittadella e la Città Proibita. Le <b>tombe imperiali</b> fuori città sono biglietti a parte, ~4 € ciascuna.',
   gratis:"Il giro esterno delle mura e del fossato, dieci chilometri, non si paga ed è bellissimo in scooter. Ma la Città Proibita dentro è il motivo per cui si viene a Hue."},
- {id:'thienmu',g:11,n:'Pagoda Thien Mu',p:0,v:'si',on:true,conta:true,
+ {id:'thienmu',g:11,m:'Thien Mu Pagoda, Hue',n:'Pagoda Thien Mu',p:0,v:'si',on:true,conta:true,
   quali:'Gratis. Sul Fiume dei Profumi, 4 km dal centro.',
   gratis:"Tutto, compresa l'automobile di Thich Quang Duc nel cortile sul retro — che è la cosa che si ricorda."},
- {id:'tuhieu',g:12,n:'Tu Hieu Pagoda',p:0,v:'si',on:true,conta:true,
+ {id:'tuhieu',g:12,m:'Tu Hieu Pagoda, Hue',n:'Tu Hieu Pagoda',p:0,v:'si',on:true,conta:true,
   quali:"Gratis, offerta libera. È un convento attivo: si entra in silenzio e non si fotografano i monaci.",
   gratis:"Tutto. Lasciate qualcosa nella cassetta: è un monastero vero, non un sito."},
- {id:'hoian-carnet',g:13,n:'Città vecchia di Hoi An, carnet',p:4.5,v:'forse',on:true,conta:true,
+ {id:'hoian-carnet',g:13,m:'Hoi An Ancient Town ticket office',n:'Città vecchia di Hoi An, carnet',p:4.5,v:'forse',on:true,conta:true,
   quali:'~4,50 € a testa per un carnet che dà diritto a entrare in <b>cinque</b> monumenti su una ventina.',
   gratis:"<b>Camminare per la città vecchia, attraversare il Ponte Giapponese e mangiare non costa niente.</b> Il carnet serve solo per entrare nelle case dei mercanti e nelle sale delle congregazioni — che sono quattro o cinque, e valgono."},
- {id:'fansipan',g:5,n:'Funivia del Fansipan',p:35,v:'forse',on:false,conta:false,
+ {id:'fansipan',g:5,m:'Fansipan Legend cable car, Sa Pa',n:'Funivia del Fansipan',p:35,v:'forse',on:false,conta:false,
   quali:'~35 € a testa andata e ritorno, più la cremagliera per gli ultimi metri.',
   gratis:"Il passo di Tram Ton, a 1.900 m, si raggiunge in scooter gratis e dà la stessa vista sulla valle. <i>Già dentro il costo dell'opzione «Fansipan» del giorno 5.</i>"},
- {id:'myson',g:14,n:'My Son',p:7,v:'si',on:false,conta:false,
+ {id:'myson',g:14,m:'My Son Sanctuary',n:'My Son',p:7,v:'si',on:false,conta:false,
   quali:'~7 € a testa, compreso lo spettacolo di danza Cham del mattino.',
   gratis:"Niente: è un sito recintato. <i>Già dentro il costo dell'opzione «My Son e Marble Mountain» del giorno 14.</i>"},
- {id:'marble',g:14,n:'Marble Mountain',p:3,v:'forse',on:false,conta:false,
+ {id:'marble',g:14,m:'Marble Mountains, Da Nang',n:'Marble Mountain',p:3,v:'forse',on:false,conta:false,
   quali:"~3 € a testa, più ~0,60 € per l'ascensore che salta la scalinata.",
   gratis:"I laboratori di scultura ai piedi delle colline si attraversano liberamente. <i>Già dentro il costo dell'opzione del giorno 14.</i>"}
 ];
@@ -1285,37 +1296,37 @@ const BIGLIETTI=[
    Indirizzi raccolti dal programma di Samira e dalle guide: nessuno è stato
    chiamato. In Vietnam non serve prenotare quasi mai. */
 const TAVOLA=[
- {n:'Bia Phố Cổ Tạ Hiện',dove:'Ta Hien, Hanoi',g:[2,3],z:'Hanoi',f:1,coperto:false,pren:false,
+ {n:'Bia Phố Cổ Tạ Hiện',dove:'Ta Hien, Hanoi',m:'Ta Hien Street, Hoan Kiem, Hanoi',g:[2,3],z:'Hanoi',f:1,coperto:false,pren:false,
   c:'Sgabelli di plastica sul marciapiede e <i>bia hoi</i> alla spina, spillata ogni mattina. Si mangia spiedini e si guarda passare la strada.'},
- {n:'Bun cha, qualunque bottega',dove:'Quartiere Vecchio, Hanoi',g:[2,3],z:'Hanoi',f:1,coperto:true,pren:false,
+ {n:'Bun cha, qualunque bottega',dove:'Quartiere Vecchio, Hanoi',m:'Bun cha, Old Quarter, Hanoi',g:[2,3],z:'Hanoi',f:1,coperto:true,pren:false,
   c:'Maiale alla brace in un brodo agrodolce con le erbe. <b>È il piatto di Hanoi</b>, si mangia a pranzo e costa due euro.'},
- {n:'Cha Ca, via Cha Ca',dove:'Hanoi',g:[3],z:'Hanoi',f:2,coperto:true,pren:false,
+ {n:'Cha Ca, via Cha Ca',dove:'Hanoi',m:'Cha Ca Street, Hoan Kiem, Hanoi',g:[3],z:'Hanoi',f:2,coperto:true,pren:false,
   c:'Pesce alla curcuma e aneto che si finisce di cuocere al tavolo, su un fornelletto. Lo fanno in quella via da un secolo.'},
- {n:'Cai Man Bistro',dove:'Hanoi',g:[3],z:'Hanoi',f:2,coperto:true,pren:false,
+ {n:'Cai Man Bistro',dove:'Hanoi',m:'Cai Man Bistro, Hanoi',g:[3],z:'Hanoi',f:2,coperto:true,pren:false,
   c:'Indicato dal programma per pranzo o cena: cucina vietnamita in versione ordinata, buona per la sera in cui si è stanchi.'},
- {n:'Note Cafe',dove:'Hanoi',g:[2,3],z:'Hanoi',f:1,coperto:true,pren:false,
+ {n:'Note Cafe',dove:'Hanoi',m:'Note Coffee, 64 Luong Van Can, Hanoi',g:[2,3],z:'Hanoi',f:1,coperto:true,pren:false,
   c:'Il <b>caffè all\'uovo</b>: tuorlo montato con latte condensato sopra il caffè caldo. Nato come ripiego quando il latte non si trovava.'},
- {n:'Homestay Maison de Lao Chai',dove:'Lao Chai, Sa Pa',g:[4,5],z:'Sa Pa',f:1,coperto:true,pren:false,
+ {n:'Homestay Maison de Lao Chai',dove:'Lao Chai, Sa Pa',m:'Maison de Lao Chai, Lao Chai, Sa Pa',g:[4,5],z:'Sa Pa',f:1,coperto:true,pren:false,
   c:'Si mangia dove si dorme, perché nella valle non c\'è altro: maiale affumicato, germogli di bambù, riso dei terrazzamenti.'},
- {n:'Grigliate del mercato',dove:'Sa Pa town',g:[5],z:'Sa Pa',f:1,coperto:false,pren:false,
+ {n:'Grigliate del mercato',dove:'Sa Pa town',m:'Sa Pa Market, Lao Cai',g:[5],z:'Sa Pa',f:1,coperto:false,pren:false,
   c:'Spiedini sulla brace all\'aperto e <i>thang co</i>, la zuppa H\'Mong. Da strada, con il freddo di montagna.'},
- {n:'A bordo, Peony Cruises',dove:'Baia di Ha Long',g:[7,8,9],z:'Ha Long',f:2,coperto:true,pren:false,
+ {n:'A bordo, Peony Cruises',dove:'Baia di Ha Long',m:'Tuan Chau International Marina, Ha Long',g:[7,8,9],z:'Ha Long',f:2,coperto:true,pren:false,
   c:'Pensione completa inclusa per tre giorni: pesce, frutti di mare, e spesso un corso di involtini il pomeriggio. <b>Le bevande si pagano a parte.</b>'},
- {n:'Capra di montagna',dove:'Tam Coc, Ninh Binh',g:[9,10],z:'Ninh Binh',f:1,coperto:true,pren:false,
+ {n:'Capra di montagna',dove:'Tam Coc, Ninh Binh',m:'De nui Tam Coc, Ninh Binh',g:[9,10],z:'Ninh Binh',f:1,coperto:true,pren:false,
   c:'<i>Dê núi</i> con il riso croccante: le capre stanno sulle pareti verticali e si mangiano. Le botteghe lungo la via di Tam Coc la fanno tutte.'},
- {n:'Bun bo Hue',dove:'Hue, ovunque',g:[11],z:'Hue',f:1,coperto:true,pren:false,
+ {n:'Bun bo Hue',dove:'Hue, ovunque',m:'Bun Bo Hue, Hue',g:[11],z:'Hue',f:1,coperto:true,pren:false,
   c:'La zuppa piccante di manzo e maiale, con i noodle spessi. <b>Si mangia a colazione</b> ed è la cosa migliore della città.'},
- {n:'Banh beo e banh khoai',dove:'Hue',g:[11,12],z:'Hue',f:1,coperto:true,pren:false,
+ {n:'Banh beo e banh khoai',dove:'Hue',m:'Banh khoai, Hue',g:[11,12],z:'Hue',f:1,coperto:true,pren:false,
   c:'Cucina di corte in porzioni da assaggio: tortini di riso al vapore serviti dieci alla volta in ciotoline.'},
- {n:'Banh mi Phuong',dove:'Hoi An',g:[12,13,14,15],z:'Hoi An',f:1,coperto:false,pren:false,
+ {n:'Banh mi Phuong',dove:'Hoi An',m:'2B Phan Chau Trinh, Hoi An',g:[12,13,14,15],z:'Hoi An',f:1,coperto:false,pren:false,
   c:'Il panino più famoso del Vietnam. C\'è coda e vale la coda. In alternativa <b>Madam Khanh</b>, a due strade.'},
- {n:'Cao lau, botteghe della città vecchia',dove:'Hoi An',g:[12,13,14],z:'Hoi An',f:1,coperto:true,pren:false,
+ {n:'Cao lau, botteghe della città vecchia',dove:'Hoi An',m:'Cao lau, Hoi An Ancient Town',g:[12,13,14],z:'Hoi An',f:1,coperto:true,pren:false,
   c:'Noodle spessi che <b>si fanno solo qui</b>, con l\'acqua di un pozzo preciso. Nei ristoranti con la vetrina è peggio che nelle botteghe.'},
- {n:'Mercato notturno sul fiume',dove:'Hoi An, riva sud',g:[13,14],z:'Hoi An',f:1,coperto:false,pren:false,
+ {n:'Mercato notturno sul fiume',dove:'Hoi An, riva sud',m:'Hoi An Night Market, Nguyen Hoang',g:[13,14],z:'Hoi An',f:1,coperto:false,pren:false,
   c:'White rose, spiedini, dolci di riso, e le lanterne. Si cena camminando.'},
- {n:'An Bang Beach',dove:'4 km da Hoi An',g:[14],z:'Hoi An',f:2,coperto:false,pren:false,
+ {n:'An Bang Beach',dove:'4 km da Hoi An',m:'An Bang Beach, Hoi An',g:[14],z:'Hoi An',f:2,coperto:false,pren:false,
   c:'Pesce alla griglia sulla sabbia, lettino incluso se consumate. Ci si va in bici in venti minuti.'},
- {n:'Ristorante dell\'hotel',dove:'Airport Classic, Noi Bai',g:[15],z:'Noi Bai',f:2,coperto:true,pren:false,
+ {n:'Ristorante dell\'hotel',dove:'Airport Classic, Noi Bai',m:'Airport Classic Hotel 2, Noi Bai',g:[15],z:'Noi Bai',f:2,coperto:true,pren:false,
   c:'In zona aeroporto non c\'è altro. Per l\'ultima cena va benissimo, e si cena presto perché domani la sveglia è alle 5.'}
 ];
 
@@ -1473,145 +1484,145 @@ const PIATTI=[
 
 /* I posti: `k` dice che tipo è. famoso · locale · strada */
 const POSTI=[
- {n:'Bún chả Hương Liên',z:'Hanoi',k:'famoso',p:1,g:[3],
+ {n:'Bún chả Hương Liên',z:'Hanoi',m:'24 Le Van Huu, Hai Ba Trung, Hanoi',k:'famoso',p:1,g:[3],
   c:"Il <b>«Bún chả Obama»</b>: il tavolo dove mangiarono lui e Bourdain nel 2016 è conservato sotto una teca di vetro. Il bún chả è buono, il posto è pieno di stranieri e si fa la fila. <b>Ci si va sapendo cos'è</b>: non è una scoperta, è un pellegrinaggio. 24 Lê Văn Hưu."},
- {n:'Bún chả Đắc Kim',z:'Hanoi',k:'locale',p:1,g:[3],
+ {n:'Bún chả Đắc Kim',z:'Hanoi',m:'1 Hang Manh, Hoan Kiem, Hanoi',k:'locale',p:1,g:[3],
   c:"A 1 Hàng Mành dal 1966, porzioni enormi, pieno di hanoiani a pranzo. <b>Qui il bún chả lo mangiano quelli che ci vivono.</b> Rumoroso, si siede stretti, arriva tutto in due minuti."},
- {n:'Cafe Giảng',z:'Hanoi',k:'famoso',p:1,g:[2,3],
+ {n:'Cafe Giảng',z:'Hanoi',m:'39 Nguyen Huu Huan, Hoan Kiem, Hanoi',k:'famoso',p:1,g:[2,3],
   c:"Dove è <b>nato il caffè all'uovo nel 1946</b>, tenuto dal figlio dell'inventore. Si entra da un corridoio stretto in un vicolo di 39 Nguyễn Hữu Huân e si sale al primo piano. È famosissimo e lo merita: <b>è l'originale, non una copia</b>."},
- {n:'Note Coffee',z:'Hanoi',k:'famoso',p:2,g:[3],
+ {n:'Note Coffee',z:'Hanoi',m:'Note Coffee, 64 Luong Van Can, Hanoi',k:'famoso',p:2,g:[3],
   c:"Il bar tappezzato da migliaia di <b>bigliettini lasciati dai clienti</b>, in tutte le lingue. Molto fotografato, caffè nella media, prezzi da turista. <b>Il caffè all'uovo da Giảng è migliore</b>: qui ci si viene per il posto."},
- {n:'Chả Cá Thăng Long',z:'Hanoi',k:'locale',p:2,g:[3],
+ {n:'Chả Cá Thăng Long',z:'Hanoi',m:'19-21 Duong Thanh, Hoan Kiem, Hanoi',k:'locale',p:2,g:[3],
   c:"Alternativa meno turistica al celeberrimo Chả Cá Lã Vọng, che è il più antico e il più caro. <b>Stesso piatto, metà prezzo, più vietnamiti ai tavoli.</b> 19–21–31 Đường Thành."},
- {n:'Bia hơi Tạ Hiện',z:'Hanoi',k:'strada',p:1,g:[2,3],
+ {n:'Bia hơi Tạ Hiện',z:'Hanoi',m:'Ta Hien Street, Hoan Kiem, Hanoi',k:'strada',p:1,g:[2,3],
   c:"L'<b>incrocio delle sedioline di plastica</b>: dalle sei di sera la strada diventa un unico tavolo. Birra a venti centesimi, <i>nem chua rán</i>, arachidi, lumache di mare. Turistico, rumoroso e bellissimo lo stesso. <b>Tenete lo zaino davanti</b>: è l'unico posto di Hanoi dove conviene stare attenti."},
- {n:'Bánh mì 25',z:'Hanoi',k:'famoso',p:1,g:[2,3],
+ {n:'Bánh mì 25',z:'Hanoi',m:'25 Hang Ca, Hoan Kiem, Hanoi',k:'famoso',p:1,g:[2,3],
   c:"25 Hàng Cá, il bánh mì più noto del Quartiere Vecchio. Coda, ma scorre. <b>Buono davvero</b>, anche se i vietnamiti preferiscono il chiosco senza nome all'angolo di fronte."},
- {n:'Il mercato di Sa Pa, la sera',z:'Sa Pa',k:'strada',p:1,g:[4,5,6],
+ {n:'Il mercato di Sa Pa, la sera',z:'Sa Pa',m:'Sa Pa Market, Lao Cai',k:'strada',p:1,g:[4,5,6],
   c:"Bancone di spiedini, brace, birra calda e <b>đồ nướng</b> a scelta. Si indica, si paga a pezzo, si mangia in piedi al freddo. <b>Questa è la cena di Sa Pa</b>, non i ristoranti del centro con il menù in quattro lingue."},
- {n:'Pranzo a casa, durante il trek',z:'Sa Pa',k:'locale',p:1,g:[5],
+ {n:'Pranzo a casa, durante il trek',z:'Sa Pa',m:'Sapa O\'Chau, 689B Dien Bien Phu, Sa Pa',k:'locale',p:1,g:[5],
   c:"È compreso nel trekking: si mangia nella casa di una famiglia del villaggio, quello che c'è — riso, verdure dell'orto, uova, a volte carne — attorno al focolare per terra. <b>Non è un ristorante ed è il pasto migliore della settimana.</b> Se offrono il vino di riso, si accetta un bicchiere: rifiutarlo è scortese, e sono due dita."},
- {n:'A bordo, Peony Cruises',z:'Baia di Ha Long',k:'famoso',p:3,g:[7,8],
+ {n:'A bordo, Peony Cruises',z:'Baia di Ha Long',m:'Tuan Chau International Marina, Ha Long',k:'famoso',p:3,g:[7,8],
   c:"<b>Pensione completa inclusa</b>, e il pesce è di giornata: lo comprano dai villaggi galleggianti. Il pranzo del secondo giorno è spesso un corso di <b>involtini primavera</b>. Le bevande si pagano a parte ed è l'unica voce che può pesare: una birra a bordo costa come una cena a terra."},
- {n:'Tam Coc Night Market',z:'Ninh Binh',k:'strada',p:1,g:[9],
+ {n:'Tam Coc Night Market',z:'Ninh Binh',m:'Tam Coc Night Market, Ninh Binh',k:'strada',p:1,g:[9],
   c:"Piccolo, un paio di vie, e <b>quasi solo vietnamiti</b> in bassa stagione. Spiedini, mais alla brace, birra. La specialità locale è la <b>capra di montagna</b> — <i>dê núi</i> — servita al vapore con sesamo o grigliata: Ninh Binh ne è famosa in tutto il paese."},
- {n:'Cơm cháy, il riso croccante',z:'Ninh Binh',k:'locale',p:1,g:[9,10],
+ {n:'Cơm cháy, il riso croccante',z:'Ninh Binh',m:'Tam Coc, Ninh Binh',k:'locale',p:1,g:[9,10],
   c:"La crosta di riso che resta sul fondo della pentola, staccata, essiccata e fritta fino a gonfiarsi, servita con uno stufato di capra o di maiale. <b>È il piatto che Ninh Binh regala ai parenti</b>: nei negozi si vende in sacchetti."},
- {n:'Bún bò Huế, i chioschi del mattino',z:'Hue',k:'strada',p:1,g:[11,12],
+ {n:'Bún bò Huế, i chioschi del mattino',z:'Hue',m:'Bun Bo Hue, Hue',k:'strada',p:1,g:[11,12],
   c:"Si mangia <b>dalle sei alle nove</b> nei chioschi di quartiere: una pentola enorme, quattro tavolini, e alle dieci è finita. Chiedete alla reception del Chum il più vicino. <b>Il ristorante che lo serve a cena non è quello giusto.</b>"},
- {n:'Quán Hạnh',z:'Hue',k:'famoso',p:2,g:[11],
+ {n:'Quán Hạnh',z:'Hue',m:'11 Pho Duc Chinh, Hue',k:'famoso',p:2,g:[11],
   c:"L'indirizzo che tutte le guide danno per lo <b>spuntino di Hue</b>: bánh bèo, bánh nậm, nem lụi, tutto in sequenza su vassoi. Turistico ma onesto, e per assaggiare sei cose in mezz'ora senza cercarle una per una è la scorciatoia buona. 11 Phó Đức Chính."},
- {n:'Bánh khoái e cơm hến, lungo il fiume',z:'Hue',k:'locale',p:1,g:[11],
+ {n:'Bánh khoái e cơm hến, lungo il fiume',z:'Hue',m:'Truong Tien Bridge, Hue',k:'locale',p:1,g:[11],
   c:"Sulla riva nord, dalle parti del ponte Trường Tiền, ci sono le bancarelle di <b>cơm hến</b> e di <b>bánh khoái</b>, la frittella croccante ripiena di gambero e germogli che si mangia avvolta nella lattuga. <b>Due euro, in piedi.</b>"},
- {n:'Bánh mì Phượng',z:'Hoi An',k:'famoso',p:1,g:[13,14,15],
+ {n:'Bánh mì Phượng',z:'Hoi An',m:'2B Phan Chau Trinh, Hoi An',k:'famoso',p:1,g:[13,14,15],
   c:"<b>Il bánh mì che Bourdain definì «un panino sinfonico».</b> Coda lunga che però scorre in dieci minuti, e vale davvero: il patè è fatto in casa e le salse sono il segreto. 2B Phan Châu Trinh. <b>È mainstream e merita lo stesso</b> — raro."},
- {n:'Bánh mì Madam Khánh',z:'Hoi An',k:'locale',p:1,g:[13,14,15],
+ {n:'Bánh mì Madam Khánh',z:'Hoi An',m:'115 Tran Cao Van, Hoi An',k:'locale',p:1,g:[13,14,15],
   c:"«<b>La regina del bánh mì</b>», a 115 Trần Cao Vân. Meno coda di Phượng, molti dicono migliore. La signora lo fa da trent'anni. <b>Se davanti a Phượng c'è la fila, venite qui senza rimpianti.</b>"},
- {n:'Cao lầu Thanh',z:'Hoi An',k:'locale',p:1,g:[13],
+ {n:'Cao lầu Thanh',z:'Hoi An',m:'Ba Le Well, Hoi An',k:'locale',p:1,g:[13],
   c:"Vicolo dietro il mercato, quattro tavoli, cao lầu e basta. <b>Lo fanno con l'acqua del pozzo Bá Lễ</b>, come vuole la regola. Nessuna insegna in inglese: è quello il segno giusto."},
- {n:'Il mercato centrale di Hoi An',z:'Hoi An',k:'strada',p:1,g:[13],
+ {n:'Il mercato centrale di Hoi An',z:'Hoi An',m:'Hoi An Central Market',k:'strada',p:1,g:[13],
   c:"Nella parte coperta, in fondo, c'è la <b>corte dei banchi di cibo</b>: ogni banco fa una cosa sola. Si gira, si guarda cosa mangiano i vietnamiti e ci si siede lì. <b>A mezzogiorno è il posto più onesto della città vecchia</b>, ed è a venti metri dai ristoranti con il menù plastificato."},
- {n:'Morning Glory',z:'Hoi An',k:'famoso',p:3,g:[13,14],
+ {n:'Morning Glory',z:'Hoi An',m:'Morning Glory Restaurant, 106 Nguyen Thai Hoc, Hoi An',k:'famoso',p:3,g:[13,14],
   c:"Il ristorante più conosciuto di Hoi An, della chef Trịnh Diễm Vy: cucina di strada rifatta bene, in una casa antica. <b>Caro per gli standard locali</b> e pieno di stranieri. Si prenota. Ci si va se si vuole una cena seduta e curata, non per scoprire qualcosa."},
- {n:'Lezione di cucina a Tra Que',z:'Hoi An',k:'locale',p:3,g:[13],
+ {n:'Lezione di cucina a Tra Que',z:'Hoi An',m:'Tra Que Vegetable Village, Hoi An',k:'locale',p:3,g:[13],
   c:"<b>Mezza giornata</b>: mercato, raccolta delle erbe nell'orto, e poi si cucina quello che si è raccolto — di solito bánh xèo, involtini e un piatto a scelta. <b>Si prenota il giorno prima.</b> È la cosa che resta più di qualunque ristorante, e si torna a casa sapendo rifare due piatti."}
 ];
 
 const SCHEDE=[
- {id:'hoankiem',g:[2],t:'Hoan Kiem: il lago della spada restituita',
+ {id:'hoankiem',g:[2],m:'Hoan Kiem Lake, Hanoi',t:'Hoan Kiem: il lago della spada restituita',
   b:"Hanoi è cresciuta attorno a questo specchio d'acqua, e il suo nome significa <b>«spada restituita»</b>. La leggenda dice che a metà del Quattrocento il pescatore Lê Lợi ricevette da una tartaruga d'oro una spada magica con cui cacciò i cinesi dei Ming; a guerra finita, mentre navigava sul lago da re, la tartaruga riemerse e si riprese l'arma. Il tempietto in mezzo all'acqua, la <b>Torre della Tartaruga</b>, ricorda il punto.<br><br>Non è solo folklore: fino al 2016 nel lago viveva davvero una tartaruga gigante del Fiume Rosso, <i>Rafetus swinhoei</i>, lunga quasi due metri, che gli hanoiani consideravano l'ultima testimone. Quando morì fu imbalsamata, ed è esposta nel <b>tempio Ngoc Son</b>, sull'isolotto a nord che si raggiunge dal ponte rosso <b>The Huc</b>, «dove si posa il sole del mattino».<br><br>Il lago è il salotto della città: alle cinque del mattino ci si fa tai chi, la sera ci si siede e basta. <b>Nel fine settimana le strade attorno chiudono al traffico</b> — ed è l'unico momento in cui Hanoi si attraversa senza negoziare con i motorini."},
 
- {id:'quartiere',g:[2,3],t:'Le 36 strade del Quartiere Vecchio',
+ {id:'quartiere',g:[2,3],m:'Old Quarter, Hanoi',t:'Le 36 strade del Quartiere Vecchio',
   b:"Il <b>Phố Cổ</b> non è un centro storico come lo intendiamo noi: è una zona commerciale medievale ancora in funzione. Dal XV secolo ogni strada ospitava una corporazione, e il nome lo dice ancora: <b>Hàng Bạc</b> è la via dell'argento, <b>Hàng Gai</b> quella della seta, <b>Hàng Mã</b> quella della carta — dove si vendono le banconote finte e le case di cartone da bruciare per gli antenati. «Hàng» vuol dire merce.<br><br>Le case si chiamano <b>case-tubo</b>: strettissime sul fronte e profonde fino a sessanta metri, perché le tasse si pagavano sulla larghezza della facciata. Dentro si alternano cortili e stanze, e in fondo spesso c'è ancora un laboratorio.<br><br>Si visita camminando senza meta, ma una regola serve: <b>per attraversare non si aspetta il varco</b>, che non arriva mai. Si cammina piano e costante, senza scatti e senza fermarsi, e i motorini calcolano la traiettoria attorno a te. Fermarsi di colpo è l'unica cosa pericolosa."},
 
- {id:'biahoi',g:[2],t:'Il bia hoi, e perché costa venti centesimi',
+ {id:'biahoi',g:[2],m:'Ta Hien Street, Hanoi',t:'Il bia hoi, e perché costa venti centesimi',
   b:"La <b>bia hơi</b> è birra chiara non pastorizzata, prodotta la notte, consegnata in fusti d'alluminio la mattina e finita entro sera: senza conservanti non dura. È un'eredità dei consiglieri cecoslovacchi degli anni Sessanta, che portarono a Hanoi la tecnica della lager e lasciarono una tradizione che il Vietnam ha tenuto.<br><br>Costa fra i 5.000 e gli 8.000 dong — <b>venti centesimi</b> — ed è probabilmente la birra più economica del mondo. Si beve seduti su sedioline di plastica sul marciapiede, all'incrocio di <b>Tạ Hiện</b>, che dalle sei di sera diventa un unico tavolo lungo una strada.<br><br>Gradazione bassa, attorno al 3%: è una bevanda sociale, non da sbronza. Si accompagna con <b>nem chua rán</b> (involtini fermentati fritti), arachidi e lumache di mare. Si ordina indicando: «một bia» e un dito alzato."},
 
- {id:'letteratura',g:[3],t:'Il Tempio della Letteratura: mille anni di esami',
+ {id:'letteratura',g:[3],m:'Temple of Literature, Hanoi',t:'Il Tempio della Letteratura: mille anni di esami',
   b:"Fondato nel <b>1070</b> dall'imperatore Lý Thánh Tông come tempio a Confucio, sei anni dopo si allargò con il <b>Quốc Tử Giám</b>, l'Accademia Imperiale: la prima università del Vietnam, riservata ai figli dei nobili e poi aperta ai meritevoli. Funzionò per oltre settecento anni.<br><br>La cosa da vedere sono le <b>stele sulle tartarughe</b>: ottantadue lastre di pietra, delle centosedici originali, ordinate a partire dal 1484, con incisi i nomi di oltre milletrecento dottori che superarono l'esame imperiale fra il 1442 e il 1779. Ogni stele poggia su una tartaruga, simbolo di longevità. Nel <b>2011 l'UNESCO le ha iscritte nel registro «Memoria del mondo»</b>.<br><br>Il complesso è su cinque cortili in fila, pensati come una progressione: dal rumore della strada al silenzio del santuario. <b>Il quinto è una ricostruzione</b>: l'originale fu distrutto nel 1947 dai bombardamenti francesi.<br><br>Gli studenti vietnamiti ci vengono ancora prima degli esami, e toccano la testa delle tartarughe per fortuna — motivo per cui oggi sono recintate."},
 
- {id:'hochiminh',g:[3],t:'Il Mausoleo, e l\'uomo che non lo voleva',
+ {id:'hochiminh',g:[3],m:'Ho Chi Minh Mausoleum, Hanoi',t:'Il Mausoleo, e l\'uomo che non lo voleva',
   b:"<b>Hồ Chí Minh</b> — «colui che illumina», uno dei suoi circa centosettanta pseudonimi; all'anagrafe Nguyễn Sinh Cung — passò trent'anni all'estero facendo il cuoco a Londra, il fotoritoccatore a Parigi, il cospiratore a Mosca e a Canton, prima di tornare nel 1941 a guidare il Việt Minh. Dichiarò l'indipendenza il <b>2 settembre 1945</b> in piazza Ba Đình, a duecento metri da qui, aprendo con le parole della Dichiarazione d'indipendenza americana.<br><br>Morì il 2 settembre 1969, a guerra ancora in corso. <b>Nel testamento chiedeva di essere cremato</b> e che le ceneri fossero divise fra nord, centro e sud. Il Partito decise altrimenti: il corpo fu imbalsamato con l'aiuto dei sovietici e nel 1975 fu inaugurato questo blocco di granito ispirato al mausoleo di Lenin.<br><br>Si entra in silenzio, in fila, <b>braccia lungo i fianchi, niente foto, niente cappello</b>, e si sfila in meno di un minuto. Chiude alle 10:30, è chiuso lunedì e venerdì, e <b>ogni autunno chiude per settimane</b> perché la salma va in manutenzione in Russia. Accanto, la <b>casa su palafitte</b> dove visse davvero dal 1958 — due stanze spartane — racconta più del mausoleo."},
 
- {id:'trainstreet',g:[3],t:'Train Street: perché esiste e perché chiude',
+ {id:'trainstreet',g:[3],m:'Hanoi Train Street',t:'Train Street: perché esiste e perché chiude',
   b:"La ferrovia Hanoi–Lào Cai fu costruita dai francesi fra il 1898 e il 1910. Allora correva ai margini della città; poi Hanoi è cresciuta e la gente ha costruito fino al limite dei binari, lasciando <b>meno di un metro per lato</b>. Le famiglie che ci vivono hanno imparato a ritirare dentro le sedie, i panni e i bambini un minuto prima del passaggio.<br><br>Negli anni Dieci è diventata virale, e nel 2019 un treno ha dovuto frenare per i turisti sui binari: da allora le autorità la <b>chiudono periodicamente</b>, con barriere e guardie agli imbocchi. La chiusura però vale per chi passeggia, non per i clienti dei bar: se un proprietario ti invita a entrare e consumi, ci si può sedere.<br><br>In pratica: <b>chiedete l'orario di passaggio in un bar la mattina</b> e tornate poco prima. Gli orari cambiano spesso e nessun sito li ha affidabili. Quando il treno arriva <b>si sta schiena al muro</b> e si lascia perdere il telefono: passa a venti all'ora ma a trenta centimetri."},
 
- {id:'sapa',g:[4],t:'Sa Pa: un sanatorio francese in mezzo agli H\'Mong',
+ {id:'sapa',g:[4],m:'Sa Pa, Lao Cai',t:'Sa Pa: un sanatorio francese in mezzo agli H\'Mong',
   b:"Sa Pa nasce nel <b>1922</b> come stazione climatica francese: a 1.500 metri l'aria era fresca e i funzionari coloniali di Hanoi ci salivano d'estate per sfuggire al caldo del delta. Ne restano la chiesa di pietra in piazza e qualche villa in rovina. Tutto il resto è degli ultimi vent'anni, e non sempre in meglio: il centro è un cantiere di hotel.<br><br>Ma il paese è solo la porta. Quello che conta sta nella <b>valle del Mường Hoa</b>, dove vivono cinque gruppi etnici con lingue proprie, diverse dal vietnamita: <b>H'Mong Neri</b> (la maggioranza, indaco e gambali), <b>Dao Rossi</b> (turbante scarlatto, sopracciglia rasate), <b>Giáy</b>, <b>Tày</b> e <b>Xa Pho</b>.<br><br>Le <b>terrazze</b> non sono paesaggio, sono ingegneria: scavate a mano nei secoli seguendo le curve di livello, irrigate per gravità da un canale all'altro. Si fa un raccolto l'anno. A <b>novembre</b> il riso è tagliato e le terrazze sono color paglia e acqua: meno fotogeniche di settembre, ma è la stagione asciutta e le nuvole si alzano tardi."},
 
- {id:'taphin',g:[5],t:'Ta Phin, i Dao Rossi e il bagno alle erbe',
+ {id:'taphin',g:[5],m:'Ta Phin Village, Sa Pa',t:'Ta Phin, i Dao Rossi e il bagno alle erbe',
   b:"I <b>Dao Rossi</b> — si pronuncia «zao» — arrivarono dalla Cina meridionale fra Sette e Ottocento. Le donne si riconoscono dal turbante rosso e dall'usanza di radersi sopracciglia e attaccatura dei capelli, segno di bellezza e di età adulta. Scrivono ancora con caratteri cinesi adattati, e conservano libri rituali manoscritti tramandati di padre in figlio.<br><br>La loro cosa più famosa è il <b>bagno alle erbe</b>, <i>thuốc tắm</i>: una decina — nelle versioni ricche fino a una trentina — di piante di montagna raccolte in giornata, bollite per ore e versate in una tinozza di legno. Serviva alle donne dopo il parto e agli uomini dopo giorni nei campi d'inverno; l'acqua arriva a quaranta gradi e ci si resta venti minuti, non di più, perché fa girare la testa. Non è una spa: <b>è medicina di famiglia diventata un mestiere</b>.<br><br>A Ta Phin c'è anche un <b>convento in rovina</b>, costruito dalle carmelitane francesi nel 1942 e abbandonato pochi anni dopo. E c'è una grotta calcarea, modesta: non è per quella che si viene.<br><br>Una cosa da sapere: le donne Dao e H'Mong vi accompagneranno lungo il cammino chiacchierando, e alla fine tireranno fuori i ricami. <b>Non è un agguato, è il loro mestiere</b> — e comprare qualcosa è il modo in cui quella giornata diventa reddito per il villaggio."},
 
- {id:'fansipan',g:[5],t:'Il Fansipan, «il tetto dell\'Indocina»',
+ {id:'fansipan',g:[5],m:'Fansipan Legend cable car, Sa Pa',t:'Il Fansipan, «il tetto dell\'Indocina»',
   b:"<b>3.147 metri</b>: la cima più alta della penisola indocinese, nella catena dell'Hoàng Liên Sơn, un'estremità meridionale dell'Himalaya. Il nome locale H'Mong è <i>Hủa Xi Pan</i>, «la grande roccia traballante».<br><br>Fino al 2016 ci si arrivava solo a piedi, due o tre giorni di salita. Poi Sun Group ha costruito una <b>funivia da record</b>: 6,3 km di campata e 1.410 metri di dislivello, venti minuti dalla valle alla cima. In vetta hanno edificato un complesso di templi nuovi, statue colossali e seicento gradini — opera recente, non antica, e lo si vede.<br><br>Il punto è il meteo: <b>da novembre la cima è nella nuvola più spesso che fuori</b>, e sopra i tremila metri a quest'altitudine fa freddo vero. Salire con il cielo chiuso vuol dire pagare molto per vedere bianco. <b>Si decide la mattina presto guardando in alto</b>: se la cresta è libera vale la corsa, altrimenti no."},
 
- {id:'halong',g:[7,8],t:'Ha Long: duecento milioni di anni e un drago',
+ {id:'halong',g:[7,8],m:'Ha Long Bay',t:'Ha Long: duecento milioni di anni e un drago',
   b:"Quasi <b>duemila isole</b> di calcare su 1.500 km². La geologia è lunga: un mare poco profondo del Carbonifero e del Permiano, trecento milioni di anni fa, ha accumulato centinaia di metri di calcare; poi il sollevamento, poi venti milioni di anni di pioggia tropicale che ha sciolto la roccia lungo le fratture, scavando torri e grotte. L'innalzamento del mare dopo l'ultima glaciazione ha allagato tutto, lasciando fuori solo le cime. È il <b>carso a torri</b> allo stadio più avanzato che esista.<br><br>Il nome vuol dire <b>«drago che discende»</b>: la leggenda racconta che gli dèi mandarono una famiglia di draghi a difendere il paese dagli invasori, e che le gemme sputate dalle loro bocche si trasformarono nelle isole, formando una barriera.<br><br><b>UNESCO dal 1994</b>, allargata nel 2023 all'arcipelago di <b>Cat Ba</b>. Ed è questa la ragione per cui vale fare tre giorni invece di uno: la rotta breve resta nel settore centrale, dove le barche sono centinaia. Chi spinge fino a <b>Lan Ha e Cat Ba</b> trova la parte vuota, con spiagge vere e acqua in cui si nuota."},
 
- {id:'galleggianti',g:[7,8],t:'I villaggi galleggianti, e dove sono finiti',
+ {id:'galleggianti',g:[7,8],m:'Cua Van Floating Village, Ha Long Bay',t:'I villaggi galleggianti, e dove sono finiti',
   b:"Per generazioni nella baia sono vissute comunità intere senza mai mettere piede a terra: case su zattere di bambù e bidoni, ancorate al riparo delle isole, con vivai di pesce sotto il pavimento, una scuola galleggiante e cani che imparavano a non cadere. <b>Cửa Vạn</b> era il più grande, con circa settecento abitanti, e veniva regolarmente eletto fra i villaggi più belli del mondo.<br><br>Nel <b>2014 le autorità hanno trasferito a terra quasi tutti</b>, a Hà Phong, per ragioni di inquinamento, sicurezza e scolarizzazione. Molti ci sono tornati a lavorare di giorno. Quello che si visita oggi è in parte vivo e in parte vetrina — <b>chiedetelo alla guida, e aspettatevi una risposta onesta</b>: è una comunità che ha perso il suo posto.<br><br>Resta la cosa migliore della baia: girare in <b>kayak</b> fra le torri, entrando nelle lagune chiuse a cui si accede solo da un arco basso, dove la marea decide se si passa. Lì dentro c'è un silenzio che dalla barca non si sente."},
 
- {id:'hoalu',g:[9,10],t:'Hoa Lu: la capitale che venne prima di Hanoi',
+ {id:'hoalu',g:[9,10],m:'Hoa Lu Ancient Capital, Ninh Binh',t:'Hoa Lu: la capitale che venne prima di Hanoi',
   b:"Prima di Hanoi ci fu <b>Hoa Lư</b>. Nel 968 Đinh Bộ Lĩnh, un ragazzo cresciuto a guardare i bufali che aveva vinto dodici signori della guerra, unificò il paese e si proclamò imperatore, fondando qui la capitale del <b>Đại Cồ Việt</b> — il primo stato vietnamita indipendente dopo mille anni di dominio cinese.<br><br>Scelse questa valle per una ragione militare evidente appena la si vede: <b>le torri calcaree sono le mura</b>, e bastava sbarrare i varchi. Hoa Lư restò capitale per quarantadue anni, finché nel 1010 Lý Thái Tổ non spostò tutto a Thăng Long — l'odierna Hanoi — perché una fortezza nella roccia non è un buon posto per un porto fluviale.<br><br>Oggi dell'antica cittadella resta poco: due templi dell'XI–XVII secolo dedicati a Đinh Tiên Hoàng e a Lê Đại Hành. <b>Si visita in un'ora</b>, ed è l'unico pezzo di storia in una giornata altrimenti tutta di paesaggio."},
 
- {id:'trangan',g:[10],t:'Trang An: perché si va in barca e non a piedi',
+ {id:'trangan',g:[10],m:'Trang An Boat Tour, Ninh Binh',t:'Trang An: perché si va in barca e non a piedi',
   b:"<b>UNESCO dal 2014</b>, e l'unico sito <b>misto</b> del Vietnam — riconosciuto insieme per il paesaggio e per la cultura. Le tracce di presenza umana nelle grotte risalgono a oltre trentamila anni fa: una delle sequenze archeologiche più lunghe del sud-est asiatico, con gente che ha attraversato qui la fine dell'era glaciale e la risalita del mare.<br><br>Lo stesso carso di Ha Long, ma <b>in acqua dolce</b>: per questo lo chiamano «la baia di Ha Long in terraferma». Si gira su barche a remi di legno, portate quasi sempre da donne che <b>remano con i piedi</b> — sedute, gambe avanti, gesto che qui si impara da bambine. Due o tre ore, attraversando una dozzina di gallerie allagate dove bisogna abbassare la testa: alcune sono lunghe centinaia di metri e buie del tutto.<br><br>Alla biglietteria si sceglie fra tre itinerari diversi, 9–12 € a testa. <b>La mancia alla rematrice non è compresa</b> ed è attesa: 50–100.000 dong.<br><br>Un avvertimento onesto: nel 2017 qui hanno girato <i>Kong: Skull Island</i>, e un pezzo del set è stato lasciato come attrazione. È finto e si vede."},
 
- {id:'muacaves',g:[10],t:'Mua Caves: cinquecento gradini e il miglior panorama',
+ {id:'muacaves',g:[10],m:'Hang Mua, Ninh Binh',t:'Mua Caves: cinquecento gradini e il miglior panorama',
   b:"<b>Hang Múa</b> vuol dire «grotta della danza»: il nome viene da una leggenda secondo cui un re Trần si ritirò qui e veniva intrattenuto da danzatrici di corte. La grotta in sé è poca cosa. <b>La ragione per salire sono i gradini</b>: circa cinquecento scalini di pietra irregolari che risalgono la cresta fino a due cime, una con una pagoda, l'altra con un drago di pietra lungo tutta la dorsale.<br><br>Da lassù si vede l'intero bacino di <b>Tam Cốc</b>, il fiume Ngô Đồng che serpeggia fra le torri e le risaie quadrate. È il panorama che finisce su tutte le copertine del Vietnam del nord, e per una volta è davvero quello.<br><br>Pratica: si sale in venti-trenta minuti, <b>i gradini sono alti, stretti e scivolosi se piove</b>, e non c'è ombra. Il biglietto è attorno ai 4 €. Alla base c'è un giardino con passerelle fra i fiori di loto, <b>sulla destra prima di salire</b>: quasi tutti lo saltano e vale dieci minuti. Meglio a fine pomeriggio: luce radente e meno gente."},
 
- {id:'bichdong',g:[9,10],t:'Bich Dong: tre pagode dentro la montagna',
+ {id:'bichdong',g:[9,10],m:'Bich Dong Pagoda, Ninh Binh',t:'Bich Dong: tre pagode dentro la montagna',
   b:"«<b>Grotta di giada</b>»: tre pagode sovrapposte costruite nel 1428 e incastrate nel fianco di una torre calcarea. La prima sta ai piedi, la seconda a metà salita dentro una grotta, la terza in cima — e per arrivarci si attraversa la montagna al buio, con le scale scavate nella roccia.<br><br>Nel Settecento un mandarino-poeta le visitò e le definì «la seconda grotta più bella del Vietnam», un titolo che qui ricordano ancora. L'ingresso è <b>gratuito</b> e si attraversa un ponte di pietra su uno stagno di loto.<br><br><b>Chiude alle 17:00</b> ed è a pochi minuti da Tam Coc: se si arriva in tempo il primo pomeriggio si fa subito, altrimenti si rimanda. Portate una <b>torcia</b> — il telefono basta — perché il passaggio interno è buio sul serio."},
 
- {id:'hue',g:[11,12],t:'Hue: la Cittadella, i Nguyen e il 1968',
+ {id:'hue',g:[11,12],m:'Imperial City, Hue',t:'Hue: la Cittadella, i Nguyen e il 1968',
   b:"<b>Huế</b> fu capitale imperiale dal 1802 al 1945, sotto i tredici imperatori della dinastia <b>Nguyễn</b>, l'ultima del Vietnam. Gia Long fece costruire una cittadella su modello di Pechino ma secondo i principi geomantici vietnamiti: un quadrato di dieci chilometri di mura con fossato, dentro la <b>Città Imperiale</b>, e dentro ancora la <b>Città Proibita Purpurea</b> dove potevano entrare solo l'imperatore, le sue mogli e gli eunuchi.<br><br>Nel 1945 l'ultimo imperatore, <b>Bảo Đại</b>, abdicò. Ma la ferita vera è del 1968: durante l'<b>offensiva del Tết</b> i nordvietnamiti tennero Hue per venticinque giorni, e la riconquista americana e sudvietnamita fu casa per casa. <b>Della Città Proibita, su centosessanta edifici, ne restarono in piedi una decina.</b> Furono anche settimane di massacri contro i civili: una delle pagine più nere della guerra.<br><br>Quello che si visita oggi è in parte originale e in parte <b>ricostruito dagli anni Novanta</b> con il sostegno dell'UNESCO, che l'ha iscritta nel 1993. I cantieri sono ancora aperti, e i pannelli dicono onestamente cosa è nuovo.<br><br>Serve <b>mezza giornata</b> e scarpe comode: l'area è enorme e si cammina molto al sole."},
 
- {id:'thienmu',g:[11],t:'Thien Mu, e l\'automobile del monaco',
+ {id:'thienmu',g:[11],m:'Thien Mu Pagoda, Hue',t:'Thien Mu, e l\'automobile del monaco',
   b:"La <b>pagoda della Signora Celeste</b> è del <b>1601</b> e sta su una collina sopra il Fiume dei Profumi. Il nome viene da una profezia: una vecchia apparve dicendo che un signore sarebbe venuto a costruire una pagoda lì, per la prosperità del paese. Nguyễn Hoàng la fece costruire. La torre ottagonale di <b>sette piani</b>, alta ventun metri, è del 1844 ed è diventata il simbolo di Hue.<br><br>Ma la cosa che resta impressa sta sul retro, in un garage aperto: una <b>Austin berlina azzurra</b>. È l'auto su cui il monaco <b>Thích Quảng Đức</b> viaggiò da Hue a Saigon l'11 giugno 1963, per sedersi a un incrocio, farsi versare addosso la benzina e <b>darsi fuoco</b> in protesta contro le persecuzioni anti-buddhiste del governo di Ngô Đình Diệm. La fotografia di Malcolm Browne fece il giro del mondo e contribuì alla caduta di Diệm pochi mesi dopo.<br><br>Accanto all'auto c'è la foto. È esposta senza enfasi, ed è forse l'oggetto più potente di tutto il viaggio."},
 
- {id:'tuhieu',g:[12],t:'Tu Hieu: dove è tornato Thich Nhat Hanh',
+ {id:'tuhieu',g:[12],m:'Tu Hieu Pagoda, Hue',t:'Tu Hieu: dove è tornato Thich Nhat Hanh',
   b:"Fondata nel <b>1843</b>, Từ Hiếu è un monastero attivo in una pineta fuori Hue, con un laghetto di loto e un cimitero particolare: <b>vi sono sepolti gli eunuchi della corte Nguyễn</b>, che finanziarono l'ampliamento del 1848 perché, non avendo figli, non avrebbero avuto nessuno a curarne la memoria. I monaci lo fanno ancora.<br><br>Qui entrò a sedici anni, nel <b>1942</b>, un ragazzo di Hue che si sarebbe chiamato <b>Thích Nhất Hạnh</b>. Oppositore della guerra, nel 1966 fu esiliato e non poté rientrare per trentanove anni; in Francia fondò Plum Village e portò in Occidente la pratica della <b>mindfulness</b> e il «buddhismo impegnato». Martin Luther King lo candidò al Nobel per la pace nel 1967.<br><br>Nel <b>2018</b>, dopo un ictus, chiese di tornare a Từ Hiếu per passarvi gli ultimi anni, nel posto dove era cominciato tutto. Ci morì il <b>22 gennaio 2022</b>, a novantacinque anni.<br><br>È un convento vivo, non un museo: ci sono monaci giovani, orari di pratica, campane. <b>Si entra in silenzio</b>, si tolgono le scarpe dove indicato, e se capita l'ora della meditazione ci si può sedere in fondo."},
 
- {id:'haivan',g:[12],t:'Il passo di Hai Van, il confine del clima',
+ {id:'haivan',g:[12],m:'Hai Van Pass',t:'Il passo di Hai Van, il confine del clima',
   b:"<b>Hải Vân</b> vuol dire «mare e nuvole», e il nome è una descrizione meteorologica. Il passo, a 500 metri, taglia uno sperone della cordigliera Annamita che scende fino all'oceano, ed è il <b>vero confine climatico del Vietnam</b>: a nord il monsone invernale porta grigio e umidità fino a febbraio, a sud comincia il clima tropicale. Capita spesso di partire da Hue sotto la pioggia e scendere a Da Nang con il sole.<br><br>Fu per secoli il limite fra il regno vietnamita e quello <b>Champa</b>, e in cima restano i bastioni dei Nguyễn e i bunker francesi e americani: controllare quel valico voleva dire controllare il paese in due.<br><br>Dal <b>2005 c'è un tunnel</b> di 6,3 km che taglia il passo e risparmia quaranta minuti: quasi tutti i mezzi lo prendono. <b>Chiedete all'autista se passa sopra o sotto.</b> Se passa sopra, il panorama sulla baia di Lăng Cô è fra i più belli della costa asiatica — Jeremy Clarkson lo definì «una delle più belle strade del mondo» in un episodio di <i>Top Gear</i> girato qui, ed è il motivo per cui ci passano tutti i motociclisti."},
 
- {id:'hoian',g:[13,14,15],t:'Hoi An: il porto che si è salvato insabbiandosi',
+ {id:'hoian',g:[13,14,15],m:'Hoi An Ancient Town',t:'Hoi An: il porto che si è salvato insabbiandosi',
   b:"Fra il XV e il XIX secolo <b>Hội An</b> fu uno dei porti più attivi dell'Asia: ci si incontravano mercanti giapponesi, cinesi, portoghesi, olandesi e francesi per la seta, la ceramica e le spezie. I giapponesi avevano un quartiere proprio fino al 1635, quando lo shogunato chiuse il paese e li richiamò in patria.<br><br>Poi il fiume <b>Thu Bồn si insabbiò</b>, le navi grandi non entrarono più e il commercio si spostò a Da Nang. Hoi An si addormentò per un secolo e mezzo — ed è esattamente per questo che è sopravvissuta: <b>non essendo più importante, nessuno la ricostruì</b>, e le bombe della guerra andarono altrove. <b>UNESCO dal 1999.</b><br><br>Il biglietto cumulativo — attorno ai 120.000 dong — dà diritto a entrare in <b>cinque</b> delle una ventina di case-museo, sale delle congregazioni e templi. Passeggiare per le strade non richiede biglietto, anche se ai varchi chiedono di comprarlo.<br><br>Due cose da sapere. La prima: <b>a novembre il fiume può uscire</b> e allagare la città vecchia per un giorno o due — succede quasi ogni anno, e quando capita si gira in barca. La seconda: <b>le sartorie</b> sono una vera industria, cuciono su misura in ventiquattro ore, e la qualità varia enormemente. Guardate i tessuti, non le vetrine."},
 
- {id:'pontegiap',g:[13],t:'Il ponte giapponese, e le scimmie sul calendario',
+ {id:'pontegiap',g:[13],m:'Chua Cau Japanese Covered Bridge, Hoi An',t:'Il ponte giapponese, e le scimmie sul calendario',
   b:"<b>Chùa Cầu</b>, il ponte coperto, è del tardo Cinquecento e fu costruito dalla comunità giapponese per collegare il proprio quartiere a quello cinese, oltre il canale. È l'unico ponte coperto conosciuto ad avere <b>un tempio incorporato</b>, al centro del lato nord.<br><br>Alle due estremità stanno due coppie di statue: <b>cani</b> da un lato, <b>scimmie</b> dall'altro. La spiegazione più accreditata è che i lavori cominciarono nell'anno della scimmia e finirono in quello del cane. Una seconda, più suggestiva, lega il ponte al <b>Namazu</b>, il pesce gatto gigante della mitologia giapponese che provocava i terremoti: la testa in India, la coda in Giappone e il dorso qui sotto — il ponte sarebbe la spada che lo tiene fermo.<br><br>È sul biglietto da 20.000 dong e appare sulla <b>banconota da 20.000</b>. Nel 2022–24 è stato interamente restaurato, con qualche polemica per il colore troppo nuovo. <b>Si attraversa in un minuto e si fotografa da fuori</b>, preferibilmente all'alba: dalle otto in poi è una fila."},
 
- {id:'myson',g:[14],t:'My Son: i Cham, e cosa resta dopo i B-52',
+ {id:'myson',g:[14],m:'My Son Sanctuary',t:'My Son: i Cham, e cosa resta dopo i B-52',
   b:"Il regno <b>Champa</b> dominò il centro e il sud del Vietnam dal II al XVII secolo: popolo di lingua austronesiana, imparentato con i malesi, marinai e mercanti, induisti di culto shivaita. <b>Mỹ Sơn</b> fu il loro centro religioso per oltre mille anni, dal IV al XIV secolo: una conca fra le montagne con più di settanta templi in mattoni, dedicati soprattutto a Shiva.<br><br>La tecnica costruttiva resta un rebus: i mattoni sono uniti <b>senza malta visibile</b>, con giunti sottilissimi, e nessuno ha replicato con certezza il metodo — forse una resina vegetale, forse la cottura dell'intera struttura dopo il montaggio.<br><br>Il sito fu riscoperto dai francesi nel 1898 e studiato per decenni. Poi, nel <b>1969, una settimana di bombardamenti americani</b> ne distrusse gran parte: dei settanta edifici ne restano in piedi una ventina, e il gruppo A, il più importante, fu raso al suolo. Ci sono ancora crateri fra le rovine, e aree non sminate. <b>UNESCO dal 1999.</b><br><br>Si va <b>presto</b>: il sito apre alle 6, è in una conca senza vento e verso mezzogiorno è un forno. C'è uno spettacolo di danza <i>apsara</i> due volte al mattino, breve e dignitoso."},
 
- {id:'lanterne',g:[13,14],t:'Le lanterne, e perché la città spegne le luci',
+ {id:'lanterne',g:[13,14],m:'Hoi An Night Market',t:'Le lanterne, e perché la città spegne le luci',
   b:"Le lanterne di seta sono un'eredità dei mercanti cinesi e giapponesi, che le appendevano davanti casa per fortuna e prosperità. La tradizione si era quasi persa; <b>è stata riportata in vita negli anni Novanta</b>, quando la città ha capito che era la sua immagine.<br><br>Ogni mese, il <b>quattordicesimo giorno del calendario lunare</b> — la notte prima della luna piena — Hoi An celebra la <b>Festa della Luna Piena</b>: la città vecchia spegne l'illuminazione elettrica e resta accesa solo di lanterne, niente motorini, musica tradizionale per strada e lanternine di carta messe a galleggiare sul fiume con un desiderio dentro.<br><br>Nelle altre sere l'effetto è minore ma c'è lo stesso, perché le lanterne restano accese tutte le notti e i <b>barcaioli vendono il giro sul Thu Bồn al tramonto</b>: 150–200.000 dong per barca, da contrattare, venti minuti. <b>Si paga a barca, non a persona</b>: fatevelo dire prima di salire.<br><br>Le lanternine si comprano dai bambini sulla riva, 10.000 dong. Le pescano a valle e le rivendono: fa parte del gioco."},
 
- {id:'motcot',g:[3],t:'Chua Mot Cot: il loto su un pilastro',
+ {id:'motcot',g:[3],m:'One Pillar Pagoda, Hanoi',t:'Chua Mot Cot: il loto su un pilastro',
   b:"La <b>pagoda del pilastro unico</b> è del <b>1049</b> e nasce da un sogno: l'imperatore Lý Thái Tông, senza eredi, sognò la dea della misericordia Quan Âm che gli porgeva un bambino seduto su un fiore di loto. Poco dopo nacque il figlio, e lui fece costruire un tempietto di legno a forma di loto, su un unico pilastro in mezzo a una vasca.<br><br>Quella che si vede <b>non è l'originale</b>: nel 1954, ritirandosi, i francesi la fecero saltare. I vietnamiti la ricostruirono l'anno dopo com'era, su pilastro di cemento invece che di legno.<br><br>È piccola — <b>dieci minuti bastano</b> — e sta a due passi dal Mausoleo: si fanno insieme. Vale per cosa rappresenta, non per quanto è grande."},
 
- {id:'thanglong',g:[3],t:'Thang Long: mille anni di potere su un cortile',
+ {id:'thanglong',g:[3],m:'Imperial Citadel of Thang Long, Hanoi',t:'Thang Long: mille anni di potere su un cortile',
   b:"Qui c'è stato il centro del potere vietnamita <b>per tredici secoli di fila</b>, il che è raro ovunque nel mondo. I cinesi ci costruirono una fortezza nel VII secolo; nel 1010 Lý Thái Tổ ci spostò la capitale da Hoa Lư e la chiamò <b>Thăng Long</b>, «il drago che si leva». Ci restò fino a quando i Nguyễn portarono tutto a Hue nel 1802.<br><br>Gli scavi del 2002 hanno trovato strati sovrapposti di undici secoli — fondamenta, ceramiche, pozzi — ed è per questo che l'<b>UNESCO l'ha iscritta nel 2010</b>, nell'anno del millenario di Hanoi.<br><br>Ma la cosa più impressionante è del Novecento: sotto il cortile c'è il <b>bunker D67</b>, la sala da cui il generale <b>Võ Nguyên Giáp</b> e lo stato maggiore nordvietnamita condussero la guerra contro gli americani. Si scende per una scala stretta e si trovano le porte d'acciaio, i telefoni da campo e le mappe ancora appese. Dalle fondamenta di un palazzo imperiale alla guerra del Vietnam in cinquanta metri.<br><br>UNESCO, circa 4 €, 8–17. <b>Servono un paio d'ore</b> e il bunker va chiesto: non tutti lo trovano."},
 
- {id:'tranquoc',g:[3],t:'Tran Quoc: la più antica di Hanoi',
+ {id:'tranquoc',g:[3],m:'Tran Quoc Pagoda, Hanoi',t:'Tran Quoc: la più antica di Hanoi',
   b:"Fondata nel <b>VI secolo</b> sotto l'imperatore Lý Nam Đế, è la pagoda più antica della città: quasi millecinquecento anni. Stava sulla riva del Fiume Rosso, ma l'erosione minacciava di portarsela via e nel 1615 fu <b>smontata e ricostruita</b> su un isolotto del lago dell'Ovest, collegato da una lingua di terra.<br><br>Lo <b>stupa rosso a undici piani</b>, alto quindici metri, è recente — 1998 — e ogni piano ha sei nicchie con un Buddha di pietra preziosa. Nel cortile c'è un <b>albero della Bodhi</b> cresciuto da una talea di quello di Bodh Gaya sotto cui il Buddha ebbe l'illuminazione: lo regalò il presidente indiano nel 1959.<br><br>Gratis, <b>8–16: è la prima cosa che chiude</b> nel pomeriggio, quindi va messa prima del caffè e non dopo. Il momento giusto è il tardo pomeriggio, quando il sole cala sul lago dietro lo stupa."},
 
- {id:'baidinh',g:[10],t:'Bai Dinh: il più grande, e il più nuovo',
+ {id:'baidinh',g:[10],m:'Bai Dinh Pagoda, Ninh Binh',t:'Bai Dinh: il più grande, e il più nuovo',
   b:"È il <b>complesso buddhista più esteso del sud-est asiatico</b>: 539 ettari, un Buddha di bronzo da cento tonnellate, una campana da 36 tonnellate, e un corridoio coperto lungo tre chilometri con <b>cinquecento statue di arhat</b> in pietra, tutte con facce diverse.<br><br>Va detto subito, perché cambia come lo si guarda: <b>è quasi tutto nuovo</b>. Costruito fra il 2003 e il 2010 dal gruppo Xuan Truong, in tempo per il millenario di Hanoi. L'antica Bai Dinh, quella vera, è una grotta-tempio del XII secolo sul fianco della montagna, a un chilometro: molto più piccola e molto più bella.<br><br>Il complesso nuovo impressiona per scala e lascia freddi per anima. <b>Si entra gratis</b>, ma le navette elettriche interne si pagano (circa 60.000 dong andata e ritorno) e a piedi sono quasi due chilometri dal parcheggio.<br><br>Se la giornata è corta e dovete scegliere, <b>Trang An vale più di Bai Dinh</b>. Se ci andate, puntate alla grotta antica."},
 
- {id:'tamcoc',g:[9,10],t:'Tam Coc: le tre grotte, e la stagione giusta',
+ {id:'tamcoc',g:[9,10],m:'Tam Coc Boat Tour, Ninh Binh',t:'Tam Coc: le tre grotte, e la stagione giusta',
   b:"<b>Tam Cốc</b> vuol dire «tre grotte»: il fiume <b>Ngô Đồng</b> attraversa tre gallerie naturali scavate nel calcare — Hang Cả, Hang Hai, Hang Ba — e il giro in barca a remi le percorre tutte e tre, andata e ritorno, in circa due ore.<br><br>È la versione piccola e più intima di Trang An: meno spettacolare, più agricola. Le risaie arrivano fino all'acqua e in alcuni punti la barca passa fra gli steli. <b>A fine maggio il riso è giallo</b> ed è il momento da cartolina; a novembre i campi sono tagliati e l'acqua riflette le torri.<br><br>Due avvertenze oneste. La prima: a metà percorso le barche si fermano in un punto dove altre barche vendono bibite e ricami, e <b>l'insistenza è forte</b>. La seconda: la rematrice si aspetta una mancia, 50–100.000 dong, e non è compresa nel biglietto.<br><br>Il <b>mercato notturno</b> di Tam Coc, la sera, è piccolo e tranquillo: spiedini, birra e qualche banchetto. Non è Hanoi, ed è il bello."},
 
- {id:'phuockien',g:[13],t:'Hoi Quan Phuoc Kien: la casa dei cinesi del Fujian',
+ {id:'phuockien',g:[13],m:'Phuc Kien Assembly Hall, Hoi An',t:'Hoi Quan Phuoc Kien: la casa dei cinesi del Fujian',
   b:"Le <b>sale delle congregazioni</b> erano i circoli dei mercanti cinesi: ogni provincia d'origine aveva la sua, che funzionava da tempio, tribunale, banca e ostello per i connazionali di passaggio. A Hoi An ce ne sono cinque, e <b>quella del Fujian</b>, del 1690, è la più grande e la più scenografica.<br><br>È dedicata a <b>Thiên Hậu</b>, la dea protettrice dei naviganti: una ragazza del Fujian del X secolo che, secondo la leggenda, salvava i pescatori durante le tempeste e dopo la morte divenne la divinità più venerata dalle genti di mare cinesi. Accanto a lei ci sono due assistenti: uno che vede per mille miglia, l'altro che sente il vento a mille miglia.<br><br>Dentro, appese al soffitto, ci sono le <b>spirali di incenso</b> che bruciano per settimane: sotto ognuna c'è il biglietto con il desiderio di chi l'ha accesa. E c'è un modellino di giunca che ricorda i sei mercanti naufragati e salvati dalla dea.<br><br>È sul <b>biglietto cumulativo</b> della città vecchia."},
 
- {id:'casemerc',g:[13],t:'Tan Ky e Phung Hung: dentro una casa di mercanti',
+ {id:'casemerc',g:[13],m:'Tan Ky Old House, Hoi An',t:'Tan Ky e Phung Hung: dentro una casa di mercanti',
   b:"<b>Tấn Ký</b> è del 1741 e sette generazioni della stessa famiglia ci vivono ancora: è stata la prima casa di Hoi An dichiarata monumento nazionale, nel 1985. La struttura dice tutto del porto: travi giapponesi, tetto cinese, legno di ferro, e <b>due piani perché il fiume esce</b>. Quando l'acqua sale, la famiglia issa i mobili al piano di sopra attraverso una botola nel soffitto — e sul muro ci sono i segni delle piene, con gli anni scritti a mano. Il più alto è del 1964.<br><br>Il retro dà sul fiume, perché le merci arrivavano da lì e il fronte sulla strada era il negozio.<br><br><b>Phùng Hưng</b>, del 1780, è la più grande: ottanta colonne di legno su pilastri di pietra, e un balcone dove le donne di casa guardavano la strada senza essere viste. Si visitano in venti minuti ciascuna e <b>sono sul biglietto cumulativo</b>. Se ne scegliete una, Tấn Ký."},
 
- {id:'traque',g:[13],t:'Tra Que: il villaggio delle erbe, concimato con l\'alga',
+ {id:'traque',g:[13],m:'Tra Que Vegetable Village, Hoi An',t:'Tra Que: il villaggio delle erbe, concimato con l\'alga',
   b:"Tre chilometri da Hoi An, fra il fiume e la laguna, <b>Trà Quế</b> coltiva erbe aromatiche da oltre tre secoli: menta, basilico vietnamita, coriandolo, perilla, shiso — <b>una quarantina di varietà</b> su una quarantina di ettari. Sono le erbe che finiscono in ogni piatto della zona.<br><br>La particolarità sta nel concime: <b>un'alga d'acqua dolce</b> chiamata <i>rong</i>, raccolta nella laguna di Trà Quế con i cesti, lasciata a drenare e sparsa sui letti di semina. Niente chimica, e un sapore che i cuochi di Hoi An riconoscono.<br><br>Il villaggio si gira <b>a piedi o in bici in un'ora</b>. Vale solo a <b>un'ora precisa</b>: presto la mattina, quando i contadini annaffiano a mano con due innaffiatoi appesi a un bilanciere di bambù. Più tardi è un campo di erbe e basta.<br><br>Si può fare anche una lezione di cucina qui, ma <b>si prenota il giorno prima</b>. L'ingresso al villaggio è di 35.000 dong."},
 
- {id:'thubon',g:[12,13],t:'Il Thu Bon: il fiume che ha fatto e disfatto Hoi An',
+ {id:'thubon',g:[12,13],m:'Thu Bon River, Hoi An',t:'Il Thu Bon: il fiume che ha fatto e disfatto Hoi An',
   b:"È il fiume che ha reso Hoi An ricca e poi l'ha abbandonata: navigabile per le giunche fino al Seicento, si è progressivamente insabbiato finché le navi non sono più entrate. Nasce sui monti del Ngọc Linh, attraversa <b>My Son</b> e sfocia a <b>Cửa Đại</b>, dieci chilometri a valle.<br><br>Il giro serale in barca costa <b>150–200.000 dong a barca</b>, non a persona — fatevelo dire prima di salire — e dura una ventina di minuti. Si parte dal lungofiume davanti al mercato. Il momento è quello fra il tramonto e il buio pieno, quando le lanterne si accendono e l'acqua le raddoppia.<br><br>All'alba è un'altra cosa: le barche dei pescatori rientrano a <b>Cửa Đại</b> e scaricano, e le donne contrattano il pescato sulla sabbia. Nessun turista, e finisce entro le sette.<br><br>Attenzione a novembre: <b>è questo fiume che allaga la città vecchia</b>, quasi ogni anno. Quando succede, i barcaioli portano la gente per le strade — ed è la versione di Hoi An che quasi nessuno vede."}
 ];
 
@@ -2176,6 +2187,18 @@ function renderOggi(){
   /* Le schede della giornata. Il motore non sa cosa raccontino: legge
      SCHEDE dal blocco dati e le apre dove servono. Se il viaggio non le
      dichiara, la sezione non esiste. */
+  /* Il link alla mappa si costruisce con una RICERCA, non con un pin
+     copiato: una ricerca al massimo non trova, un pin sbagliato ti manda
+     dall'altra parte della citta'. Dove il dato c'e' — un indirizzo, delle
+     coordinate — la voce lo dichiara in `m` e vince su tutto. */
+  const mappaHref = q => 'https://www.google.com/maps/search/?api=1&query='
+    + encodeURIComponent(String(q).replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim());
+  const mappaLink = (q, testo) => q
+    ? '<a class="mapl" href="'+mappaHref(q)+'" target="_blank" rel="noopener">'
+      +'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.3 7-11.3A7 7 0 0 0 5 9.7C5 14.7 12 21 12 21z"/>'
+      +'<circle cx="12" cy="9.6" r="2.6"/></svg>'+(testo||'Mappa')+'</a>'
+    : '';
+
   /* Si calcola dentro la funzione e non in una costante di modulo: schedeDi
      viene chiamata anche dalla vista «Oggi», che nel sorgente sta prima, e
      una const letta prima della sua riga e' un errore di esecuzione. */
@@ -2189,12 +2212,14 @@ function renderOggi(){
     if(!v.length) return '';
     return '<div class="schw">'+v.map(x=>'<details class="sch">'
       +'<summary><span class="st">'+x.t+'</span></summary>'
-      +'<div class="sb">'+x.b+'</div></details>').join('')+'</div>';
+      +'<div class="sb">'+x.b
+      +(x.m?'<p class="mapr">'+mappaLink(x.m)+'</p>':'')+'</div></details>').join('')+'</div>';
   }
   const bloccoSchede=()=>'<p class="sub">Tutte le schede del viaggio, in ordine di giornata. '
     +'Le trovi anche nel programma del giorno, sotto il posto a cui servono.</p>'
     +SCHEDE.map(x=>'<details class="sch"><summary><span class="st">'+x.t+'</span></summary>'
-      +'<div class="sb">'+x.b+'</div></details>').join('');
+      +'<div class="sb">'+x.b
+      +(x.m?'<p class="mapr">'+mappaLink(x.m)+'</p>':'')+'</div></details>').join('');
 
 function renderGiorni(){
   const maxKm=Math.max.apply(null,DAYS.map(dayKm));
@@ -2586,7 +2611,8 @@ function bloccoBiglietti(){
           +' · <span class="chip">già nel finale</span></span></span>'
           +'<span class="bgp">'+eu(b.p)+' €</span></div>')
       +'<p class="bgq">'+b.quali+'</p>'
-      +'<p class="bgg"><b>Senza pagare:</b> '+b.gratis+'</p></div>';
+      +'<p class="bgg"><b>Senza pagare:</b> '+b.gratis+'</p>'
+      +'<p class="bgm">'+mappaLink(b.m||(b.n+', '+(g?g.luogo:'')))+'</p></div>';
   };
   return '<p class="sub">Ogni cosa a pagamento dichiara <b>quali biglietti esistono</b> — spesso sono due — '
     +'quanto vale davvero, e <b>cosa si vede gratis</b>. Spegni una voce e il budget si riallinea: il totale '
@@ -2615,9 +2641,10 @@ function bloccoTavola(){
     +(lista.length?'<div class="tav">'+lista.map(t=>'<div class="tv">'
       +'<div class="tvh"><b>'+t.n+'</b><span class="tvf">'+fascia(t.f)+'</span></div>'
       +'<div class="tvd">'+t.dove+' · giorni '+t.g.join(', ')+'</div>'
-      +((t.coperto||t.pren)?'<div class="tvk">'
+      +'<div class="tvk">'
         +(t.coperto?'<span class="chip good">al coperto</span>':'')
-        +(t.pren?'<span class="chip sig">prenotare</span>':'')+'</div>':'')
+        +(t.pren?'<span class="chip sig">prenotare</span>':'')
+        +mappaLink(t.m||(t.n+', '+t.dove))+'</div>'
       +'<p class="tvc">'+t.c+'</p></div>').join('')+'</div>'
       :'<p class="sub"><b>Nessun indirizzo con questi filtri.</b> Tocca «Tutte le zone».</p>');
 }
@@ -2653,7 +2680,8 @@ function bloccoCibo(){
     +(lista.length?'<div class="tav">'+lista.map(x=>'<div class="tv">'
       +'<div class="tvh"><b>'+x.n+'</b><span class="tvf">'+eur(x.p)+'</span></div>'
       +'<div class="tvd">'+x.z+' · giorni '+x.g.join(', ')+'</div>'
-      +'<div class="tvk"><span class="chip '+ETI[x.k][0]+'">'+ETI[x.k][1]+'</span></div>'
+      +'<div class="tvk"><span class="chip '+ETI[x.k][0]+'">'+ETI[x.k][1]+'</span>'
+      +mappaLink(x.m||(x.n+', '+x.z))+'</div>'
       +'<p class="tvc">'+x.c+'</p></div>').join('')+'</div>'
       :'<p class="sub"><b>Nessun indirizzo con questi filtri.</b> Tocca «Tutte le zone».</p>');
 }
@@ -3027,7 +3055,7 @@ window.__BIGLIETTO=id=>{pref.big[id]=!pref.big[id];savePref();ridisegna();};
     if (!f) return;
     var s = document.createElement('span');
     s.style.cssText = 'display:block;margin-top:6px;opacity:.65;font-variant-numeric:tabular-nums';
-    s.textContent = 'versione 79b4d22af4';
+    s.textContent = 'versione 88c89b54d7';
     f.appendChild(s);
   });
   // ── suggerimento d'installazione, solo su iPhone e solo se non installata ──
