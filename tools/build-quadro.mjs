@@ -120,7 +120,28 @@ pag('<h1>'+E(VIAGGIO.nome)+' — quadro di marcia</h1>'
  +'<table><thead><tr><th>Chi</th><th>Numero</th><th>Quando serve</th></tr></thead><tbody>'
  +rub+'</tbody></table>');
 
-/* ── 2 · giorno per giorno ────────────────────────────────────────── */
+/* ── 2 · prima di partire ─────────────────────────────────────────────
+   Le scadenze che cadono prima del primo giorno non hanno una giornata in
+   cui finire: senza questa pagina sparirebbero dal documento. */
+const primo=DAYS[0].iso;
+const prima=(typeof SCADENZE!=='undefined'?SCADENZE:[]).filter(x=>x.iso<primo);
+const aperte=BOOK.filter(r=>r[1]!=='Fatto');
+let pre='';
+if(aperte.length){
+  pre+='<div class="box rosso"><h3>Non è ancora chiuso</h3><table><tbody>';
+  aperte.forEach(r=>{ pre+='<tr><td style="width:34mm"><b>'+E(r[1])+'</b></td>'
+    +'<td><b>'+E(r[2])+'</b> — '+r[5]+'</td></tr>'; });
+  pre+='</tbody></table></div>';
+}
+if(prima.length){
+  pre+='<table><thead><tr><th style="width:26mm">Entro</th><th>Cosa</th></tr></thead><tbody>';
+  prima.forEach(x=>{ pre+='<tr><td class="m">'+lungo(x.iso)+'<br>'+E(x.ora)+'</td>'
+    +'<td><b>'+E(x.t)+'</b><br>'+x.c+'</td></tr>'; });
+  pre+='</tbody></table>';
+}
+pag('<h2>Prima di partire</h2>'+pre);
+
+/* ── 3 · giorno per giorno ────────────────────────────────────────── */
 let corpo='';
 DAYS.forEach(d=>{
   const sp=(typeof SPOSTAMENTI!=='undefined'?SPOSTAMENTI:[]).filter(x=>x.iso===d.iso);
@@ -198,6 +219,37 @@ let ind='';
 });
 pag('<h2>Indispensabili</h2>'+ind);
 
+/* ── 6 · budget ───────────────────────────────────────────────────── */
+let bud='',bmin=0,bmax=0;
+BUDGET.forEach(r=>{
+  const m=r[2]*(r[4]==='pp'?VIAGGIO.persone:1), M=r[3]*(r[4]==='pp'?VIAGGIO.persone:1);
+  bmin+=m; bmax+=M;
+  bud+='<tr><td><b>'+E(r[0])+'</b><br><span style="font-size:8pt;color:#45544f">'+r[1]+'</span></td>'
+    +'<td class="m" style="text-align:right">'+(m===M?m+' €':m+'–'+M+' €')+'</td></tr>';
+});
+pag('<h2>Budget</h2>'
+ +'<p class="sub">'+E(VIAGGIO.budgetNota)+'Le cifre dei biglietti sono quelle pagate; il resto è una forchetta.</p>'
+ +'<table><thead><tr><th>Voce</th><th style="text-align:right">In due</th></tr></thead><tbody>'
+ +bud+'<tr><td><b>TOTALE</b></td><td class="m" style="text-align:right"><b>'+bmin+'–'+bmax+' €</b></td></tr>'
+ +'</tbody></table>');
+
+/* ── 7 · frasario e liste ─────────────────────────────────────────── */
+let fr='';
+PHRASES.forEach(f=>{ fr+='<tr><td>'+E(f[0])+'</td><td><b>'+E(f[1])+'</b></td>'
+  +'<td style="color:#45544f">'+E(f[2])+'</td></tr>'; });
+let li='';
+(typeof LISTS!=='undefined'?LISTS:[]).forEach(l=>{
+  li+='<div class="box"><h3>'+E(l.t)+'</h3><ul>';
+  l.i.forEach(v=>{ li+='<li>'+v+'</li>'; });
+  li+='</ul></div>';
+});
+pag('<h2>Frasario</h2>'
+ +'<p class="sub">Il vietnamita è tonale: la terza colonna serve a farsi capire, non a parlare bene. '
+ +'<b>Mostrare la riga</b> funziona meglio che pronunciarla.</p>'
+ +'<table><thead><tr><th>Italiano</th><th>Vietnamita</th><th>Come si dice</th></tr></thead><tbody>'
+ +fr+'</tbody></table>');
+pag('<h2>Da mettere nello zaino</h2>'+li);
+
 document.body.innerHTML=O.join('');
 `;
 
@@ -230,7 +282,7 @@ const conta = await page.evaluate(() => ({
   giornate: document.querySelectorAll('.g').length,
   righe: document.querySelectorAll('.r').length,
   numeri: document.querySelectorAll('.pagina:first-child tbody tr:not(.grp)').length,
-  prenot: document.querySelectorAll('.pagina:nth-child(3) tbody tr').length,
+  prenot: BOOK.length, pagine: document.querySelectorAll('.pagina').length,
 }));
 
 const filePdf = path.join(outDir, 'quadro.pdf');
@@ -248,7 +300,7 @@ const kb = f => Math.round(fs.statSync(f).size / 1024);
 const pdf = fs.readFileSync(filePdf, 'latin1');
 const pagine = (pdf.match(/\/Type\s*\/Page[^s]/g) || []).length;
 console.log(`\n  Quadro di marcia · ${VIAGGIONOME(DATI)}`);
-console.log(`  ${conta.giornate} giornate · ${conta.righe} righe · ${conta.numeri} numeri · ${conta.prenot} prenotazioni`);
+console.log(`  ${conta.giornate} giornate · ${conta.righe} righe · ${conta.numeri} numeri · ${conta.prenot} prenotazioni · ${conta.pagine} sezioni`);
 console.log(`  quadro.pdf  ${kb(filePdf)} KB · ${pagine} pagine A4`);
 console.log(`  in out/${cart}/\n`);
 
