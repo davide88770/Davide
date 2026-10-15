@@ -57,6 +57,9 @@ a{color:inherit;text-decoration:none}
 .sch h3 .gg{float:right;font-size:7.4pt;font-weight:400;color:#7b8a87;letter-spacing:.06em}
 .sch p{margin:0 0 2mm;font-size:9pt;line-height:1.5}
 .intro{font-size:9pt;color:#5a6a68;margin:0 0 5mm}
+h3.zona{font-size:9.6pt;margin:5mm 0 2mm;padding-bottom:1mm;border-bottom:1pt solid #15201f;
+  text-transform:uppercase;letter-spacing:.06em}
+h3.zona:first-of-type{margin-top:0}
 .pagina:last-child{break-after:auto}
 h2{font-size:13pt;letter-spacing:.09em;text-transform:uppercase;margin:0 0 3mm;
   padding-bottom:1.6mm;border-bottom:1.6pt solid #1A1510}
@@ -317,6 +320,30 @@ if(typeof SCHEDE!=='undefined' && SCHEDE.length){
   pag('<h2>Per saperne di più</h2>'
     +'<p class="intro">Il contesto di quello che si vede: storia, perché è lì, cosa guardare. '
     +'La sigla dice in quale giornata serve.</p>'+sc);
+}
+
+/* ---- 5c. mangiare ---- */
+if(typeof POSTI!=='undefined' && POSTI.length){
+  const ETI={famoso:'Famoso',locale:'Locale',strada:'Di strada'};
+  let pi=PIATTI.map(x=>'<div class="sch"><h3>'+E(x.n)+' <span class="gg">'+E(x.z)+'</span></h3>'
+    +'<p><i>'+E(x.dove)+'</i> — '+x.c+'</p></div>').join('');
+  let po='';
+  const zone=POSTI.map(x=>x.z).filter((z,i,a)=>a.indexOf(z)===i);
+  zone.forEach(z=>{
+    po+='<h3 class="zona">'+E(z)+'</h3><table><tbody>';
+    POSTI.filter(x=>x.z===z).forEach(x=>{
+      po+='<tr><td style="width:40mm"><b>'+E(x.n)+'</b><br>'
+        +'<span style="font-size:7.6pt;color:#45544f">'+ETI[x.k]+' · '+'€'.repeat(x.p)
+        +' · giorni '+x.g.join(', ')+'</span></td><td>'+x.c+'</td></tr>';
+    });
+    po+='</tbody></table>';
+  });
+  pag('<h2>Mangiare</h2>'
+    +'<p class="intro"><b>Famoso</b>: ci va tutto il mondo e si fa la fila — a volte lo merita, '
+    +'ed è scritto. <b>Locale</b>: ci vanno i vietnamiti. <b>Di strada</b>: in piedi o su una '
+    +'sedia di plastica, e costa un terzo. Nessuno è stato chiamato: gli orari si controllano '
+    +'la mattina stessa.</p>'
+    +'<h3 class="zona">I piatti da cercare</h3>'+pi+po);
 }
 
 /* ---- 6. pratico: le sezioni scritte a mano del viaggio ---- */
