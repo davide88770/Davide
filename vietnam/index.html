@@ -454,7 +454,17 @@ svg.luce{display:block;width:100%;height:auto;max-height:46px;overflow:visible;m
 ol.tl li.next{background:var(--sunk);border-radius:8px;margin:0 -8px;padding:9px 8px}
 .card.libera{background:var(--good-soft);border-color:transparent;box-shadow:none}
 
-/* ── le schede: il contesto, dentro la giornata ─────────────────────── */
+/* ── le schede: il contesto, sotto il posto a cui serve ─────────────── */
+/* Dentro il programma la tendina dev'essere un invito, non un riquadro:
+   una riga sola con l'accento del tema, che si apre solo se la tocchi. */
+.schw{margin:5px 0 2px}
+ol.tl .schw details.sch{background:none;border:0;border-left:2px solid var(--accent-soft);
+  border-radius:0;margin:0 0 2px;padding-left:9px}
+ol.tl .schw details.sch > summary{padding:6px 0;min-height:38px;font-size:13.5px;
+  color:var(--accent);font-weight:600}
+ol.tl .schw details.sch > summary::after{border-color:var(--accent)}
+ol.tl .schw details.sch[open]{border-left-color:var(--accent)}
+ol.tl .schw details.sch .sb{padding:0 0 9px;font-size:14px}
 details.sch{background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r-s);
   margin-bottom:7px;overflow:hidden}
 details.sch > summary{list-style:none;cursor:pointer;padding:11px 12px;display:flex;
@@ -782,9 +792,9 @@ const DAYS=[
      ["07:15","SIM e contanti","SIM o eSIM al banco in arrivi, e il primo cambio o prelievo. Da qui in avanti servono contanti quasi ovunque."],
      ["12:00","Taxi privato per il centro","Prenotazione <b>860124030</b>, 35 km, ~45 minuti, 9,13 € già pagati. Targhetta con il tuo nome nella hall arrivi."],
      ["13:00","Serene Central Hotel","106 Hàng Bông, Hoàn Kiếm. <b>Check-in dalle 14:00</b>: se siete in anticipo si lasciano gli zaini in reception e si esce."],
-     ["14:30","Il Quartiere Vecchio","Trentasei strade, ognuna storicamente di un mestiere: la seta, lo stagno, il bambù, la carta votiva. Ci si perde apposta."],
-     ["16:30","Lago Hoan Kiem","Il <b>tempio Ngoc Son</b> sull'isolotto, il <b>ponte Cau The Huc</b> rosso lacca. Al tramonto si riempie di gente che fa ginnastica."],
-     ["19:00","Ta Hien Corner","La strada della birra: sgabelli di plastica sul marciapiede, <i>bia hoi</i> alla spina a pochi centesimi. Si mangia e si guarda passare la città."],
+     ["14:30","Il Quartiere Vecchio","Trentasei strade, ognuna storicamente di un mestiere: la seta, lo stagno, il bambù, la carta votiva. Ci si perde apposta.",["quartiere"]],
+     ["16:30","Lago Hoan Kiem","Il <b>tempio Ngoc Son</b> sull'isolotto, il <b>ponte Cau The Huc</b> rosso lacca. Al tramonto si riempie di gente che fa ginnastica.",["hoankiem"]],
+     ["19:00","Ta Hien Corner","La strada della birra: sgabelli di plastica sul marciapiede, <i>bia hoi</i> alla spina a pochi centesimi. Si mangia e si guarda passare la città.",["biahoi"]],
      ["21:30","A letto presto","Sono trentotto ore che siete svegli, meno il poco dormito in volo."]],
  see:["Il traffico di Hanoi visto dal marciapiede: non si attraversa aspettando un varco, si cammina piano e costante e i motorini ti girano attorno","Il lago Hoan Kiem all'imbrunire, quando le luci si accendono sul ponte rosso","Il bia hoi di Ta Hien: la birra più economica del mondo, spillata ogni mattina e finita ogni sera"],
  sleep:"<b>Serene Central Hotel, 2 notti.</b> 106 Hàng Bông, Hoàn Kiếm — dentro il Quartiere Vecchio, si va ovunque a piedi. Tel +84 24 3203 0128. Colazione inclusa.",
@@ -799,11 +809,11 @@ const DAYS=[
  key:{t:"07:30",w:"Il Mausoleo di Ho Chi Minh apre alle 7:30 e <b>chiude alle 10:30</b>, punto. È l'unica cosa della giornata con una finestra vera: tutto il resto apre fino al pomeriggio."},
  route:"Quartiere Vecchio › Mausoleo › Chua Mot Cot › Palazzo Presidenziale › Tempio della Letteratura › Cittadella imperiale › Train Street › Ta Hien",
  gm:"https://www.google.com/maps/dir/Hoan+Kiem+Lake/Ho+Chi+Minh+Mausoleum/Temple+of+Literature/Imperial+Citadel+of+Thang+Long/Hanoi+Train+Street",
- tl:[["07:00","Colazione e Train Street, primo passaggio","Si passa a chiedere nei bar <b>a che ora passa il treno oggi</b>. Gli orari cambiano e li sanno solo lì."],
-     ["07:45","Mausoleo di Ho Chi Minh","Gratis, ma <b>chiude alle 10:30</b>. Fila, silenzio, braccia lungo i fianchi, niente foto. Chiuso il lunedì e il venerdì."],
+ tl:[["07:00","Colazione e Train Street, primo passaggio","Si passa a chiedere nei bar <b>a che ora passa il treno oggi</b>. Gli orari cambiano e li sanno solo lì.",["trainstreet"]],
+     ["07:45","Mausoleo di Ho Chi Minh","Gratis, ma <b>chiude alle 10:30</b>. Fila, silenzio, braccia lungo i fianchi, niente foto. Chiuso il lunedì e il venerdì.",["hochiminh"]],
      ["09:00","Pagoda Chua Mot Cot","La pagoda su un pilastro solo, in mezzo a una vasca: un loto di pietra. Gratis, 7–18."],
      ["09:30","Palazzo Presidenziale","Il giallo coloniale francese e, dietro, la casa su palafitte dove Ho Chi Minh preferiva vivere. ~1,50 €, 7:30–11:00 e 13:30–16:00."],
-     ["10:30","Tempio della Letteratura","La prima università del Vietnam, 1070. Cinque cortili in fila e le stele dei dottori sulle tartarughe di pietra. ~1 €, 8–17."],
+     ["10:30","Tempio della Letteratura","La prima università del Vietnam, 1070. Cinque cortili in fila e le stele dei dottori sulle tartarughe di pietra. ~1 €, 8–17.",["letteratura"]],
      ["12:30","Pranzo","<b>Cai Man Bistro</b>, o <i>bun cha</i> in una qualunque bottega: maiale alla brace nel brodo agrodolce. È il piatto di Hanoi."],
      ["14:00","Cittadella imperiale di Thang Long","UNESCO, ~4 €, 8–17. Mille anni di potere vietnamita su un unico pezzo di terra, e sotto il bunker della guerra."],
      ["16:00","Pagoda di Tran Quoc","La più antica della città, sul lago dell'Ovest, su una lingua di terra. Gratis, 8–16: <b>è la prima che chiude</b>."],
@@ -826,7 +836,7 @@ const DAYS=[
  tl:[["06:00","Check-out e colazione","Lo zaino grande si può <b>lasciare al Serene</b>: si torna a Hanoi domenica sera e si dorme di nuovo in centro. A Sa Pa basta uno zaino piccolo."],
      ["06:30","Alla Hanoi Opera House","Punto d'imbarco: Nhà hát Lớn, 1 Tràng Tiền. <b>Essere lì 30 minuti prima.</b> Prenotazione 12GO33251058."],
      ["07:00","Limousine van per Sa Pa","Golink Sao Vang, 6 ore con una sosta. Massimo 10 kg a testa. Autostrada fino a Lao Cai, poi la salita."],
-     ["13:00","Arrivo a Sa Pa, 03 Nguyen Chi Thanh","Si scende in centro a Sa Pa. <b>Qui Grab non prende</b>: si prende un taxi alla fermata — chiedere il prezzo prima — oppure si concorda il pick-up con la homestay via chat Booking."],
+     ["13:00","Arrivo a Sa Pa, 03 Nguyen Chi Thanh","Si scende in centro a Sa Pa. <b>Qui Grab non prende</b>: si prende un taxi alla fermata — chiedere il prezzo prima — oppure si concorda il pick-up con la homestay via chat Booking.",["sapa"]],
      ["13:40","Maison de Lao Chai","Lao Chải 06, nella valle sotto Sa Pa. Check-in 13:00–21:00. Tel +84 91 220 5154."],
      ["15:00","La valle, a piedi","Si esce e si cammina. Terrazze, bufali, i villaggi H'Mong. Non serve una guida per questo: serve per domani."],
      ["18:00","Si organizza il trekking di domani","Si chiede alla struttura o si scrive <b>su WhatsApp</b> alle guide del villaggio: hanno poco internet e le email non le leggono."],
@@ -852,7 +862,7 @@ const DAYS=[
      {id:"fansipan",tag:"Aggiunta mia",k:"sig",t:"Fansipan, il tetto dell'Indocina",km:20,min:90,cost:[70,90],
       d:"<i>Non è nel programma di Samira: è una proposta mia.</i> La funivia da Sa Pa sale a <b>3.143 m</b> in venti minuti — è una delle più lunghe al mondo. In cima c'è un complesso di templi nuovi, parecchio costruito, e con la nuvola non si vede niente. <b>Prendetela solo se il cielo è aperto la mattina presto</b>, e sappiate che costa quanto tutto il resto della giornata messo insieme."}]},
  tl:[["07:30","Colazione guardando la valle",""],
-     ["08:30","Si parte","Con la guida, con lo scooter o verso la funivia: l'ora è la stessa."],
+     ["08:30","Si parte","Con la guida, con lo scooter o verso la funivia: l'ora è la stessa.",["taphin","fansipan"]],
      ["12:30","Pranzo","In cammino si mangia a casa di qualcuno o in una bottega di Ta Van; in scooter, a Ban Ho."],
      ["15:00","Rientro con calma","Il pomeriggio la nuvola sale e la vista si chiude: è il momento giusto per tornare."],
      ["17:00","Sa Pa town, se ne avete voglia","Mercato, caffè con vista, e la chiesa di pietra francese in piazza."],
@@ -895,7 +905,7 @@ const DAYS=[
  gm:"https://www.google.com/maps/dir/Hanoi/Tuan+Chau+Marina,+Ha+Long",
  tl:[["07:30","Colazione e check-out",""],
      ["08:00","Pick-up al Silk Crown","Van di Peony, 20 USD a testa, da 20 Phố Hàng Cân. Indirizzo già comunicato a Danny il 3 ottobre. È diretto: niente cambio di mezzo per strada."],
-     ["11:15","Lotto 34, Tuan Chau","Check-in della crociera. Peony Cruises, conferma 9800672634863520599."],
+     ["11:15","Lotto 34, Tuan Chau","Check-in della crociera. Peony Cruises, conferma 9800672634863520599.",["halong"]],
      ["12:30","A bordo, pranzo","Si salpa mangiando. Da qui in poi tre giorni di pensione completa."],
      ["15:00","Kayak e grotte","Nel pomeriggio si entra fra i faraglioni: kayak o barchino a remi, e una grotta carsica."],
      ["17:30","Tramonto dal ponte","Il momento per cui si fanno due notti invece di una: le barche da un giorno a quest'ora sono già tornate."],
@@ -918,7 +928,7 @@ const DAYS=[
      ["08:00","Verso Lan Ha","La baia a sud, dentro il parco di Cat Ba: meno barche, più silenzio. È la ragione della seconda notte."],
      ["10:00","Kayak fra i faraglioni","Dentro le grotte-tunnel che si aprono solo con la marea giusta."],
      ["12:30","Pranzo a bordo",""],
-     ["14:00","Cat Ba o il villaggio galleggiante","A seconda del programma: l'isola a piedi o in bici, oppure le case di pescatori ancorate in mezzo all'acqua, con i cani sui pontili."],
+     ["14:00","Cat Ba o il villaggio galleggiante","A seconda del programma: l'isola a piedi o in bici, oppure le case di pescatori ancorate in mezzo all'acqua, con i cani sui pontili.",["galleggianti"]],
      ["17:30","Secondo tramonto","Da un'ancora diversa da ieri sera."],
      ["19:00","Cena e serata a bordo","Qualche barca fa pesca ai calamari dopo cena: vale la mezz'ora."]],
  see:["Lan Ha senza barche attorno: la differenza vera fra una crociera di un giorno e una di due notti","I villaggi galleggianti, che si sono svuotati ma non del tutto: qualche famiglia è rimasta","La pesca ai calamari con la lampada, dalla poppa, dopo cena"],
@@ -940,7 +950,7 @@ const DAYS=[
      ["11:45","Minivan per Tam Coc","175 km, circa tre ore. Organizzato con Halise: molo e orario già comunicati."],
      ["15:00","Halise Sanctuary, Ninh Binh","Camera <b>Deluxe</b> con balcone, dal 18 al 19. Check-in dalle 14:00. Al banco restano <b>850.000 VND</b> di saldo: l'acconto di 700.000 è già pagato. È un posto nella giungla: semplice, autentico, e qualche insetto ci sta."],
      ["15:00","Scooter","Si chiede a Halise. Da qui in poi tutto si fa su due ruote: Ninh Binh è piatta e le distanze sono corte."],
-     ["15:30","Bich Dong Pagoda","Tre livelli scavati nella roccia, uno sopra l'altro. <b>Chiude alle 17:00.</b>"],
+     ["15:30","Bich Dong Pagoda","Tre livelli scavati nella roccia, uno sopra l'altro. <b>Chiude alle 17:00.</b>",["bichdong"]],
      ["18:00","Tam Coc Night Market","Il mercato serale e la via pedonale: spiedini, birra, souvenir."],
      ["20:00","Cena","In paese o da Halise."]],
  see:["Il passaggio dal mare alla pianura: gli stessi faraglioni di Ha Long, ma in mezzo alle risaie — per questo la chiamano «la baia di Ha Long a terra»","La Bich Dong, che è dentro la montagna e non davanti","Le capre di Ninh Binh, che stanno sulle pareti verticali e si mangiano"],
@@ -959,9 +969,9 @@ const DAYS=[
  gm:"https://www.google.com/maps/dir/Tam+Coc/Bai+Dinh+Pagoda/Trang+An+Scenic+Landscape+Complex/Hang+Mua",
  tl:[["07:00","Colazione e check-out","<b>Gli zaini restano in reception</b>: si riparte solo stasera alle 21:30."],
      ["07:45","Bai Dinh Pagoda","Il complesso buddhista più grande del Sud-est asiatico. Gratis, due o tre ore se lo si fa tutto — oppure un'ora e via, che basta."],
-     ["10:30","Trang An","<b>La cosa più bella del viaggio in terraferma.</b> UNESCO. Alla biglietteria si sceglie il percorso: tre ore in barca a remi, ~9–12 € a testa, dentro nove grotte allagate e fra i templi."],
+     ["10:30","Trang An","<b>La cosa più bella del viaggio in terraferma.</b> UNESCO. Alla biglietteria si sceglie il percorso: tre ore in barca a remi, ~9–12 € a testa, dentro nove grotte allagate e fra i templi.",["trangan","hoalu"]],
      ["14:00","Pranzo","Capra e riso croccante in una delle botteghe sulla strada."],
-     ["15:30","Mua Caves","~4 €. <b>Prima di salire, il giardino con la passerella e i loti sulla destra</b> — il programma insiste, e ha ragione. Poi i 500 gradini."],
+     ["15:30","Mua Caves","~4 €. <b>Prima di salire, il giardino con la passerella e i loti sulla destra</b> — il programma insiste, e ha ragione. Poi i 500 gradini.",["muacaves"]],
      ["17:00","Il tramonto dalla cima","Il punto panoramico più bello della zona. Si scende con la luce che se ne va."],
      ["19:00","Rientro a Halise, zaini e doccia","Chiedete se potete usare un bagno dopo il check-out: lo concedono quasi sempre."],
      ["21:00","Alla Tam Coc Agency","<b>Essere lì 30–45 minuti prima.</b> HK Buslines offre il transfer dall'hotel: va chiesto almeno 24 ore prima su WhatsApp (+84 798 149 095)."],
@@ -982,10 +992,10 @@ const DAYS=[
  gm:"https://www.google.com/maps/dir/Hue/Imperial+City,+Hue/Thien+Mu+Pagoda",
  tl:[["06:30","Arrivo a Hue","Il bus lascia a 35 Nguyen Cong Tru. Il Chum Boutique è in centro, 07 Trương Định."],
      ["07:00","Zaini in reception e colazione","Check-in solo dalle 14:00: si lascia tutto e si va. Una <i>bun bo Hue</i> a colazione è il modo locale di cominciare."],
-     ["08:30","Cittadella imperiale","Dieci chilometri di mura, un fossato, e dentro la <b>Città Proibita Purpurea</b>: quella dei Nguyen, bombardata nel 1968 e in parte ricostruita. Tre ore buone."],
+     ["08:30","Cittadella imperiale","Dieci chilometri di mura, un fossato, e dentro la <b>Città Proibita Purpurea</b>: quella dei Nguyen, bombardata nel 1968 e in parte ricostruita. Tre ore buone.",["hue"]],
      ["12:30","Pranzo in centro",""],
      ["14:00","Check-in al Chum","07 Trương Định, Phường Vĩnh Ninh. Tel +84 70 537 1111. Conferma 6039302548."],
-     ["15:30","Pagoda Thien Mu","Sulla riva del Fiume dei Profumi, la torre ottagonale a sette piani che è il simbolo di Hue. Dentro c'è l'automobile del monaco Thich Quang Duc."],
+     ["15:30","Pagoda Thien Mu","Sulla riva del Fiume dei Profumi, la torre ottagonale a sette piani che è il simbolo di Hue. Dentro c'è l'automobile del monaco Thich Quang Duc.",["thienmu"]],
      ["17:30","Il fiume al tramonto","A piedi lungo la riva, o in barca-drago se vi va la cosa turistica — che qui però è piacevole."],
      ["19:30","Cena","Hue è considerata la capitale gastronomica del Vietnam: era cucina di corte, e si vede dalle porzioni piccole e dai piatti tanti."]],
  see:["La Città Proibita: metà rovina e metà ricostruzione, e la differenza si vede — è la storia del Novecento vietnamita in un cortile","L'automobile alla Thien Mu: è quella con cui Thich Quang Duc andò a Saigon nel 1963 per darsi fuoco","La cucina di Hue, che è un'altra cosa rispetto al nord: più piccante, più elaborata, porzioni da assaggio"],
@@ -1003,11 +1013,11 @@ const DAYS=[
  route:"Hue › Tu Hieu Pagoda › Hue Railway Station (punto d'imbarco) › limousine diretta › 70 Nguyen Thi Minh Khai, Hoi An",
  gm:"https://www.google.com/maps/dir/Tu+Hieu+Pagoda/Hue+Railway+Station/Hoi+An",
  tl:[["07:30","Colazione e zaini in reception","Check-out entro le 12:00, ma gli zaini si lasciano."],
-     ["08:30","Tu Hieu Pagoda","<b>La visita speciale della giornata.</b> Convento buddhista attivo, con i monaci che ci vivono davvero. È il monastero di <b>Thich Nhat Hanh</b>, dove è tornato a morire. Pochi turisti, pini, silenzio."],
+     ["08:30","Tu Hieu Pagoda","<b>La visita speciale della giornata.</b> Convento buddhista attivo, con i monaci che ci vivono davvero. È il monastero di <b>Thich Nhat Hanh</b>, dove è tornato a morire. Pochi turisti, pini, silenzio.",["tuhieu"]],
      ["11:00","Thanh Toan, se avanza tempo","Il ponte coperto a sette chilometri, in scooter o taxi."],
      ["12:30","Pranzo e recupero zaini",""],
      ["14:15","Davanti alla stazione di Hue","Mezz'ora di margine, come chiede l'operatore. Biglietto <b>AATZ5888</b>, due persone. G8 Sapa Open Tour, +84 35 848 2611."],
-     ["14:45","Limousine per Hoi An","VIP a 28 posti, <b>diretta</b>: nessun cambio a Da Nang. Tre ore e dieci. <b>Chiedete all'autista se passa dal valico o dal tunnel</b> — il biglietto non lo dice."],
+     ["14:45","Limousine per Hoi An","VIP a 28 posti, <b>diretta</b>: nessun cambio a Da Nang. Tre ore e dieci. <b>Chiedete all'autista se passa dal valico o dal tunnel</b> — il biglietto non lo dice.",["haivan"]],
      ["17:55","70 Nguyen Thi Minh Khai, Hoi An","Arrivo. The Signature è a dieci minuti."],
      ["18:30","Check-in e lanterne","21 La Hối, Minh An, dentro la città vecchia. Tel +84 70 359 9969. <b>Le lanterne si accendono adesso.</b>"],
      ["20:00","Giro in barca sul Thu Bon","Al buio, con le lanterne di carta sull'acqua. È kitsch e funziona lo stesso."]],
@@ -1026,12 +1036,12 @@ const DAYS=[
  route:"Tra Que › mercato › città vecchia: Ponte Giapponese, Hoi Quan Phuoc Kien, Tan Ky, Phung Hung › mercato notturno",
  gm:"https://www.google.com/maps/dir/Tra+Que+Vegetable+Village/Hoi+An+Ancient+Town/Japanese+Covered+Bridge",
  tl:[["06:30","Tra Que e il mercato","In bici, che quasi tutti gli alloggi prestano. Poi il mercato quando è ancora dei locali."],
-     ["09:00","Biglietto della città vecchia","Un biglietto unico dà diritto a entrare in <b>cinque</b> dei monumenti. Si compra ai chioschi all'ingresso della zona pedonale."],
+     ["09:00","Biglietto della città vecchia","Un biglietto unico dà diritto a entrare in <b>cinque</b> dei monumenti. Si compra ai chioschi all'ingresso della zona pedonale.",["hoian","pontegiap"]],
      ["09:30","Hoi Quan Phuoc Kien","La sala della congregazione cinese del Fujian: un cortile dopo l'altro, draghi di ceramica, bastoncini d'incenso a spirale appesi al soffitto che bruciano per settimane."],
      ["11:00","Tan Ky e Phung Hung","Due case di mercanti di due secoli fa, ancora abitate dalle stesse famiglie. Si vede il segno delle alluvioni sui muri, anno per anno."],
      ["12:30","Cao lau","Il piatto che esiste solo qui. Si mangia nelle botteghe, non nei ristoranti con la vetrina."],
      ["15:00","La città vecchia senza programma","Il <b>Ponte Giapponese</b> del Cinquecento, le sartorie, i banchi di lanterne. Si cammina e basta."],
-     ["18:30","Mercato notturno sul fiume","Lanterne, street food, souvenir. Sulla riva opposta rispetto alla città vecchia."],
+     ["18:30","Mercato notturno sul fiume","Lanterne, street food, souvenir. Sulla riva opposta rispetto alla città vecchia.",["lanterne"]],
      ["20:30","Cena","Qui si cena tardi e all'aperto."]],
  see:["Le spirali d'incenso appese nella sala del Fujian, che bruciano per settimane","I segni delle alluvioni dentro le case dei mercanti, con l'anno scritto accanto: a Hoi An il fiume entra in casa regolarmente","Il Ponte Giapponese, che è sulla banconota da 20.000 dong"],
  pioggia:"È la città che meglio sopporta la pioggia di tutto il viaggio: le case dei mercanti sono al coperto, le sale delle congregazioni hanno i cortili con le tettoie, le sartorie sono il passatempo locale per i giorni d'acqua. Se il fiume si alza, la città vecchia si visita in barca e fa parte dell'esperienza.",
@@ -1056,7 +1066,7 @@ const DAYS=[
      {id:"zero",tag:"Riposo",k:"",t:"Giorno zero a Hoi An",km:0,min:0,cost:[0,0],
       d:"Niente. La spiaggia di <b>An Bang</b> in bici (quattro chilometri), un lettino, il pesce alla griglia sulla sabbia e il ritorno al tramonto. Oppure una giornata di sartoria: a Hoi An un abito su misura si fa in ventiquattro ore, e questo è l'ultimo giorno utile per ritirarlo. <b>Dopo tredici giorni di spostamenti, è la scelta che si difende da sola.</b>"}]},
  tl:[["07:30","Colazione al Signature",""],
-     ["08:00","Si parte","Con il tour, con la bici o per niente."],
+     ["08:00","Si parte","Con il tour, con la bici o per niente.",["myson"]],
      ["12:30","Pranzo","Dove vi trovate: a My Son c'è poco, portatevi qualcosa."],
      ["16:00","Rientro a Hoi An","Il pomeriggio in città o in spiaggia."],
      ["18:00","L'ultima sera di lanterne","Domani si parte: questa è l'ultima sera vera del viaggio."],
@@ -2006,7 +2016,7 @@ function renderOggi(){
     return '<li class="'+cls+(pr&&pr.i===i?' next':'')+'"><time>'+t[0]+'</time><div><b>'+t[1]
       +(cls==='now'?'<span class="adesso">adesso</span>':'')
       +(pr&&pr.i===i?'<span class="adesso">fra '+(pr.fra<60?pr.fra+' min':hm(pr.fra))+'</span>':'')+'</b>'
-      +(t[2]?'<small>'+t[2]+'</small>':'')+'</div></li>';
+      +(t[2]?'<small>'+t[2]+'</small>':'')+schedeDi(t[3])+'</div></li>';
   }).join('');
 
   const o=scelta(d);
@@ -2064,17 +2074,23 @@ function renderOggi(){
   /* Le schede della giornata. Il motore non sa cosa raccontino: legge
      SCHEDE dal blocco dati e le apre dove servono. Se il viaggio non le
      dichiara, la sezione non esiste. */
-  const HASSCH = typeof SCHEDE!=='undefined' && SCHEDE.length>0;
-  function schedeDi(n){
-    if(!HASSCH) return '';
-    const v=SCHEDE.filter(x=>x.g.indexOf(n)>=0);
+  /* Si calcola dentro la funzione e non in una costante di modulo: schedeDi
+     viene chiamata anche dalla vista «Oggi», che nel sorgente sta prima, e
+     una const letta prima della sua riga e' un errore di esecuzione. */
+  const HASSCH = () => typeof SCHEDE!=='undefined' && SCHEDE.length>0;
+  /* Le schede stanno sotto la riga del programma che nomina quel posto: si
+     aprono lì, dove serve, invece che in fondo alla giornata. La riga del
+     programma dichiara quali, con il suo quarto elemento. */
+  function schedeDi(ids){
+    if(!HASSCH() || !ids || !ids.length) return '';
+    const v=ids.map(k=>SCHEDE.find(x=>x.id===k)).filter(Boolean);
     if(!v.length) return '';
-    return '<div class="blk"><h4>Per saperne di più</h4>'
-      +v.map(x=>'<details class="sch"><summary><span class="st">'+x.t+'</span></summary>'
-        +'<div class="sb">'+x.b+'</div></details>').join('')+'</div>';
+    return '<div class="schw">'+v.map(x=>'<details class="sch">'
+      +'<summary><span class="st">'+x.t+'</span></summary>'
+      +'<div class="sb">'+x.b+'</div></details>').join('')+'</div>';
   }
   const bloccoSchede=()=>'<p class="sub">Tutte le schede del viaggio, in ordine di giornata. '
-    +'Le trovi anche dentro il giorno in cui servono.</p>'
+    +'Le trovi anche nel programma del giorno, sotto il posto a cui servono.</p>'
     +SCHEDE.map(x=>'<details class="sch"><summary><span class="st">'+x.t+'</span></summary>'
       +'<div class="sb">'+x.b+'</div></details>').join('');
 
@@ -2109,11 +2125,10 @@ function renderGiorni(){
           +'<p class="lucetxt">'+L.posto.n+': alba '+hhmm(L.alba)+' · ora d\'oro '+hhmm(L.oroT)
           +' · tramonto '+hhmm(L.tram)+' · buio '+hhmm(L.civT)+'. Quota: '+d.quota+'.</p></div>'
         +'<h4>Programma</h4><ol class="tl">'
-        +d.tl.map(t=>'<li><time>'+t[0]+'</time><div><b>'+t[1]+'</b>'+(t[2]?'<small>'+t[2]+'</small>':'')+'</div></li>').join('')
+        +d.tl.map(t=>'<li><time>'+t[0]+'</time><div><b>'+t[1]+'</b>'+(t[2]?'<small>'+t[2]+'</small>':'')+schedeDi(t[3])+'</div></li>').join('')
         +'</ol>'
         +'<div class="blk"><h4>Se avanza un\'ora</h4><p class="sub">'+d.libera+'</p></div>'
         +'<div class="blk"><h4>Da non perdere</h4><ul class="tick">'+d.see.map(s=>'<li>'+s+'</li>').join('')+'</ul></div>'
-        +schedeDi(d.n)
         +'<div class="blk"><h4>Dove dormire</h4><p class="sub">'+d.sleep+'</p></div>'
         +'<div class="blk"><h4>A tavola</h4><p class="sub">'+d.eat+'</p>'
           +(TAVOLA.some(x=>x.g.indexOf(d.n)>=0)?'<p class="sub" style="margin-top:6px">Indirizzi di oggi: '
@@ -2600,7 +2615,7 @@ function renderPratico(){
       +' con un orario',bloccoSpostamenti(),true):'',
     budget:()=>sec('budget','Budget · '+nkm(b.tot[0])+'–'+nkm(b.tot[1])+' €',notaBudget+stepbar+bud,!HASPOST),
     biglietti:()=>sec('biglietti','Biglietti · cosa si paga, cosa si vede gratis',bloccoBiglietti()),
-    schede:()=>HASSCH?sec('schede','Per saperne di più · '+SCHEDE.length+' schede',bloccoSchede()):'',
+    schede:()=>HASSCH()?sec('schede','Per saperne di più · '+SCHEDE.length+' schede',bloccoSchede()):'',
     tavola:()=>sec('tavola','A tavola · '+TAVOLA.length+' indirizzi',bloccoTavola()),
     luce:()=>sec('luce','La luce, giorno per giorno',bloccoAlmanacco()),
     prenot:()=>sec('prenot',VIAGGIO.prenotTit||'Da prenotare, in quest\'ordine',prenot),
@@ -2868,7 +2883,7 @@ window.__BIGLIETTO=id=>{pref.big[id]=!pref.big[id];savePref();ridisegna();};
     if (!f) return;
     var s = document.createElement('span');
     s.style.cssText = 'display:block;margin-top:6px;opacity:.65;font-variant-numeric:tabular-nums';
-    s.textContent = 'versione 46d49717ea';
+    s.textContent = 'versione 942bfa87ac';
     f.appendChild(s);
   });
   // ── suggerimento d'installazione, solo su iPhone e solo se non installata ──
