@@ -12,7 +12,8 @@
     "prova:adesso": "node tools/prova-adesso.mjs",
     "libretto": "node tools/build-libretto.mjs",
     "stato": "node tools/build-stato.mjs",
-    "itinerario": "node tools/build-itinerario.mjs"
+    "itinerario": "node tools/build-itinerario.mjs",
+    "quadro": "node tools/build-quadro.mjs"
   },
   "devDependencies": {
     "playwright-core": "^1.49.0"
