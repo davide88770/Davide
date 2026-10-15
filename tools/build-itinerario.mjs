@@ -411,7 +411,7 @@ pagF(cap('Daily schedule')+'<h1 class="giorno">GIORNO 8</h1><div class="data">18
    +'<b>11:30</b>. 175 km, circa tre ore, arrivo verso le 14:30. Resta da farsi confermare per '
    +'iscritto prezzo e punto di presa, e da riconfermare la sera prima dalla barca.')
  +pren('Diretto','Camera con vista lago, dal 18 al 19.')
- +'<div class="nb"><b>NB.</b> Halise Home è un posto meraviglioso nella giungla, ma molto '
+ +'<div class="nb"><b>NB.</b> Halise Sanctuary è un posto meraviglioso nella giungla, ma molto '
  +'semplice con pulizia standard asiatici. Può capitare che qualche insetto entri in camera, '
  +'come scarafaggio, o vedere fuori topini di campagna o animali: sei nella giungla. Il luogo è '
  +'autentico e le persone quindi non parlano bene inglese.</div>'
@@ -419,7 +419,7 @@ pagF(cap('Daily schedule')+'<h1 class="giorno">GIORNO 8</h1><div class="data">18
  +'<p>Visitate la <b>BICH DONG PAGODA</b> il pomeriggio con scooter se arrivate in tempo '
  +'(chiude alle 17.00, altrimenti la fate il giorno dopo).</p>'
  +'<p>Per la sera potete andare al centro presso <b>Tam Coc Night Market</b> / Walking Street.</p>'
- +'</div>'+foto('g8','stretta'));
+ +'</div>'+foto('g8','stretta'),'fitta');
 
 /* ── 10 · giorno 9 ─────────────────────────────────────────────────── */
 pagF(cap('Daily schedule')+'<h1 class="giorno">GIORNO 9</h1><div class="data">19 NOVEMBRE</div>'
@@ -439,7 +439,7 @@ pagF(cap('Daily schedule')+'<h1 class="giorno">GIORNO 9</h1><div class="data">19
  +'con fiori di loto situato sulla destra. Non perderlo. Ideale per pomeriggio / tramonto.</div>'
  +'<p>Rientrate, prendete gli zaini e parti dopo le 21.00 con il bus da TAM COC per HUE.</p>'
  +pren('AATZ2552','Il <b>transfer dall\'hotel è gratuito</b> per i clienti 12Go, ma va chiesto '
-   +'almeno <b>24 ore prima</b> su WhatsApp al +84 798 149 095, dicendo che siete a Halise Home — '
+   +'almeno <b>24 ore prima</b> su WhatsApp al +84 798 149 095, dicendo che siete a Halise Sanctuary — '
    +'meglio il 16 da Hanoi, perché il 17 e il 18 siete in barca. Se non rispondono, fatevi '
    +'portare da Halise: di sera, in campagna, Grab lì è inaffidabile. Esserci 30–45 minuti prima.')
  +'</div>'+foto('g9c','stretta'));
