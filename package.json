@@ -13,7 +13,8 @@
     "libretto": "node tools/build-libretto.mjs",
     "stato": "node tools/build-stato.mjs",
     "itinerario": "node tools/build-itinerario.mjs",
-    "quadro": "node tools/build-quadro.mjs"
+    "quadro": "node tools/build-quadro.mjs",
+    "mappa": "node tools/build-mappa.mjs"
   },
   "devDependencies": {
     "playwright-core": "^1.49.0"

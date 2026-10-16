@@ -27,6 +27,8 @@ tools/prova-pwa.mjs                     prova del giro di aggiornamento della PW
 tools/build-libretto.mjs                il libretto di carta, dai dati dell'app
 tools/build-stato.mjs                   cosa manca e entro quando, da appendere
 tools/build-itinerario.mjs              l'itinerario di partenza, completato
+tools/build-quadro.mjs                  tutto in fila per data e ora, da stampare
+tools/build-mappa.mjs                   i segnaposti per Google My Maps, in CSV
 out/                                    screenshot e PDF generati (non versionato)
 ```
 
@@ -265,6 +267,43 @@ Due regole, nel farlo: **il testo originale resta dell'autore** e la firma
 anche — si completa, non si riscrive; e dove le prenotazioni hanno **smentito**
 il piano (un orario, un hotel non disponibile) si scrive apertamente che è una
 correzione, invece di far sparire la riga.
+
+### Il quadro di marcia
+
+Il libretto si legge per giornate; questo mette **tutto in fila per data e
+ora** — voli, transfer, check-in, esperienze e scadenze nello stesso elenco
+numerato, ognuno con il luogo esatto dove presentarsi, il codice di conferma,
+il prezzo e il numero da chiamare se qualcosa non torna:
+
+```sh
+npm run quadro viaggi/<cartella>/app-mobile.html
+```
+
+Serve a non sbagliare né posto né ora: in viaggio si guarda la riga successiva,
+non il programma della giornata. Esce dai soliti dati — `SPOSTAMENTI`, `BOOK`,
+`SCADENZE`, `CONTATTI` — e una voce che sta già nella fila come spostamento non
+viene ripetuta fra le prenotazioni.
+
+### I segnaposti su Google My Maps
+
+```sh
+npm run mappa viaggi/<cartella>/app-mobile.html
+```
+
+Un CSV per categoria — dormire, spostamenti, mangiare, da vedere — perché in My
+Maps **un file importato è un livello**, e un livello ha una sua icona: così i
+letti, le fermate, le forchette e le cose da vedere si accendono e si spengono
+separatamente.
+
+Lo script **non piazza i pin e non inventa coordinate**: scrive l'indirizzo e
+lascia che sia Google a geocodificare, perché inventare la latitudine di ottanta
+indirizzi vuol dire piantare pin sbagliati, e un pin sbagliato lo scopri quando
+sei lì. Dove le coordinate vere ci sono — un molo, una stazione, l'ufficio di
+una guida — le mette al posto dell'indirizzo: My Maps accetta «lat, lon» nella
+stessa colonna e in quel caso non geocodifica niente.
+
+Lo stesso punto scritto in due modi («Lotto 34, Tuan Chau» e «Molo di Peony,
+Lotto 34, Tuan Chau») diventa un segnaposto solo, che tiene tutte le date.
 
 ## Consegna
 

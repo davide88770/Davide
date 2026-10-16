@@ -291,3 +291,22 @@ riscrivono quelli, non il codice.
   Riallineati la giornata 9, il registro delle prenotazioni, la lista delle
   cose da fare, i riscontri e due voci del calendario. Restano aperte due cose:
   la notte del 15 a Hanoi e il trasferimento del 24.
+- **v4** — 16 ottobre 2026. L'app diventa anche la guida. **64 schede** in
+  tendina (`SCHEDE`) appese alla riga della tappa a cui servono, nei giorni e
+  in «Oggi»: cosa si sta guardando, perché è lì, cosa cercare — senza aprire
+  altro e senza rete. Una **sezione sul cibo** (`PIATTI` e `POSTI`) che dice
+  apertamente cosa è turistico e cosa no: dieci piatti e ventuno indirizzi fra
+  insegne famose, botteghe di quartiere e banchi di strada, filtrabili per
+  città e per tipo. E un **link a Google Maps su tutti i posti** — tappe,
+  tavole, biglietti, schede.
+- **Fuori dall'app**, due documenti e una mappa nuovi:
+  - `npm run quadro` — venti pagine A4 con **tutto in fila per data e ora**:
+    trentasette voci numerate fra spostamenti, check-in, esperienze e
+    scadenze, ognuna con luogo esatto, codice, prezzo e numero da chiamare.
+    Nato dalla richiesta di non potersi sbagliare né di posto né di orario.
+  - `npm run mappa` — i CSV da importare in Google My Maps, un file per
+    livello (dormire, spostamenti, mangiare, da vedere), così ogni categoria
+    ha la sua icona.
+  - Il quadro ha fatto emergere due errori veri: il van dal molo contato due
+    volte nel budget, e quattordici scadenze perse nel passaggio all'elenco
+    unico. Entrambi corretti.
