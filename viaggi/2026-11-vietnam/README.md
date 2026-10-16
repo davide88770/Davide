@@ -306,7 +306,11 @@ riscrivono quelli, non il codice.
     Nato dalla richiesta di non potersi sbagliare né di posto né di orario.
   - `npm run mappa` — i CSV da importare in Google My Maps, un file per
     livello (dormire, spostamenti, mangiare, da vedere), così ogni categoria
-    ha la sua icona.
+    ha la sua icona, più `rotta.kml` con la linea del viaggio già colorata.
+    Costruendo il KML è saltato fuori che la **legenda della mappa chiamava
+    «bus notturno» anche la limousine Hue → Hoi An**: le due tratte sono
+    disegnate con lo stesso tratteggio. La legenda ora dice «Bus e
+    limousine», e ogni tratta porta il proprio nome vero in `t`.
   - Il quadro ha fatto emergere due errori veri: il van dal molo contato due
     volte nel budget, e quattordici scadenze perse nel passaggio all'elenco
     unico. Entrambi corretti.

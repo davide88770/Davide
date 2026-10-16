@@ -189,9 +189,126 @@ fs.writeFileSync(path.join(outDir, 'tutto.csv'),
       x = String(x ?? ''); return /[",\n]/.test(x) ? '"' + x.replace(/"/g, '""') + '"' : x;
     }).join(','))).join('\r\n') + '\r\n');
 
+/* ── la rotta, in KML ────────────────────────────────────────────────────
+   Qui le coordinate ci sono davvero: la mappa dell'app e' disegnata su
+   latitudine e longitudine vere, tratta per tratta. Quindi questo file non
+   lo deve geocodificare nessuno — e, a differenza del CSV, il KML si porta
+   dentro il proprio stile: My Maps lo importa gia' colorato, senza un clic.
+   Resta la linea dell'app: il filo del viaggio, non la traccia GPS della
+   strada vera. */
+const LEGS = leggi('LEGS'), STOPS = leggi('STOPS');
+let rotta = '';
+
+/* Colori e tratteggi non si riscrivono a mano: si prendono dai token del
+   foglio di stile e dalla tabella con cui l'app disegna le tratte, cosi' la
+   mappa importata e' colorata come quella a schermo. */
+const radice = sorgente.slice(sorgente.indexOf(':root{'),
+                              sorgente.indexOf('\n}', sorgente.indexOf(':root{')));
+const token = Object.fromEntries([...radice.matchAll(/--([a-z0-9-]+)\s*:\s*(#[0-9A-Fa-f]{6})/g)]
+  .map(m => ['var(--' + m[1] + ')', m[2]]));
+
+const stileTratte = (() => {
+  const a = sorgente.indexOf('const style={out:');
+  if (a < 0) return {};
+  const SC = 1, w = v => v, dash = (x, y) => x + ' ' + y;      // i due aiuti dell'app
+  return eval('(' + sorgente.slice(a + 'const style='.length,
+                                   sorgente.indexOf('};', a) + 1) + ')');
+})();
+
+/* Il nome della tratta e' quello della legenda, trovato per colore e
+   tratteggio: cosi' se la legenda cambia parole, cambiano anche qui. */
+const punti = s => !s['stroke-dasharray'] ? ''
+  : (parseFloat(s['stroke-dasharray']) <= 3 ? 'dotted' : 'dashed');
+const etichetta = k => {
+  const st = stileTratte[k] || {};
+  const l = (VIAGGIO.legenda || []).find(r => r[1] === st.stroke && (r[2] || '') === punti(st));
+  return l ? l[0] : k;
+};
+
+/* KML vuole il colore alla rovescia: aabbggrr. */
+const kcol = (v, op) => {
+  const h = (token[v] || '#777777').slice(1);
+  const a = Math.round(Math.max(0, Math.min(1, op ?? 1)) * 255).toString(16).padStart(2, '0');
+  return a + h.slice(4, 6) + h.slice(2, 4) + h.slice(0, 2);
+};
+const esc = t => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+/* Il capo di una tratta prende il nome della tappa piu' vicina, se c'e': un
+   terzo di grado, trenta chilometri scarsi. Il volo che arriva da fuori
+   inquadratura non ne ha una, e resta senza. */
+const vicino = ([lon, lat]) => {
+  let n = null, d = Infinity;
+  for (const s of STOPS) {
+    const q = (s.lon - lon) ** 2 + (s.lat - lat) ** 2;
+    if (q < d) { d = q; n = s.n; }
+  }
+  return d <= 0.09 ? n : null;
+};
+const nomeTratta = l => {
+  const a = vicino(l.p[0]), b = vicino(l.p[l.p.length - 1]), e = l.t || etichetta(l.k);
+  return !a || !b ? e : a === b ? e + ' · ' + a : a + ' → ' + b + ' · ' + e;
+};
+
+/* Sulla mappa dell'app il volo intercontinentale e' un moncone che esce
+   dall'inquadratura, con scritto «← Milano, 9.400 km»: li' si capisce. Su
+   Google Maps, che il mondo ce l'ha tutto, diventa una linea che finisce
+   nello Yunnan per nessun motivo. Le tratte con un capo fuori dal riquadro
+   del viaggio non si disegnano. */
+const z = (VIAGGIO.zoom && VIAGGIO.zoom.viaggio) || VIAGGIO.bbox || null;
+const dentroIlRiquadro = l => !z || l.p.every(([lon, lat]) =>
+  lon >= z.lon[0] && lon <= z.lon[1] && lat >= z.lat[0] && lat <= z.lat[1]);
+
+if (LEGS.length && STOPS.length) {
+  const tratte = LEGS.filter(dentroIlRiquadro);
+  const kinds = [...new Set(tratte.map(l => l.k))];
+  const kml = ['<?xml version="1.0" encoding="UTF-8"?>',
+    '<kml xmlns="http://www.opengis.net/kml/2.2"><Document>',
+    '<name>' + esc(VIAGGIO.nome + ' · la rotta') + '</name>',
+    '<description>' + esc(VIAGGIO.sub + ' — la linea del viaggio come la disegna l\'app: '
+      + 'indicativa, non la traccia GPS della strada. I voli internazionali non '
+      + 'sono disegnati.') + '</description>'];
+
+  for (const k of kinds) {
+    const st = stileTratte[k] || {};
+    kml.push('<Style id="t-' + k + '"><LineStyle><color>' + kcol(st.stroke, st.opacity)
+      + '</color><width>' + Math.max(3, Math.round(parseFloat(st['stroke-width'] || 3) + 1))
+      + '</width></LineStyle></Style>');
+  }
+  kml.push('<Style id="tappa"><IconStyle><color>' + kcol('var(--accent)', 1) + '</color>'
+    + '<scale>1.1</scale><Icon><href>https://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>'
+    + '</IconStyle></Style>',
+    '<Style id="passo"><IconStyle><color>' + kcol('var(--ink-3)', 1) + '</color>'
+    + '<scale>0.8</scale><Icon><href>https://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon>'
+    + '</IconStyle></Style>');
+
+  kml.push('<Folder><name>La rotta</name>');
+  for (const l of tratte)
+    kml.push('<Placemark><name>' + esc(nomeTratta(l)) + '</name>'
+      + '<styleUrl>#t-' + l.k + '</styleUrl><LineString><tessellate>1</tessellate>'
+      + '<coordinates>' + l.p.map(c => c[0] + ',' + c[1] + ',0').join(' ')
+      + '</coordinates></LineString></Placemark>');
+  kml.push('</Folder>');
+
+  kml.push('<Folder><name>Le tappe</name>');
+  for (const st of STOPS) {
+    const g = DAYS.find(d => d.n === st.d);
+    kml.push('<Placemark><name>' + esc(st.n) + '</name>'
+      + (g ? '<description>' + esc('Giorno ' + g.n + ' · ' + g.date + ' — ' + g.title) + '</description>' : '')
+      + '<styleUrl>' + (st.s ? '#passo' : '#tappa') + '</styleUrl>'
+      + '<Point><coordinates>' + st.lon + ',' + st.lat + ',0</coordinates></Point></Placemark>');
+  }
+  kml.push('</Folder>', '</Document></kml>');
+
+  fs.writeFileSync(path.join(outDir, 'rotta.kml'), kml.join('\n') + '\n');
+  rotta = `  ${tratte.length} tratte e ${STOPS.length} tappe, già colorate → rotta.kml`
+    + (LEGS.length > tratte.length
+       ? `\n  ${LEGS.length - tratte.length} tratte fuori dal riquadro non disegnate (i voli da e per l'Italia)` : '');
+}
+
 const conGps = voci.filter(v => coord(v.dove)).length;
 console.log(`\n  ${tot} segnaposti in ${cats.length} file, più tutto.csv`);
 if (doppi) console.log(`  ${doppi} tolti perché lo stesso punto compariva in due livelli`);
 if (uniti) console.log(`  ${uniti} fusi perché erano lo stesso punto scritto in due modi`);
 console.log(`  ${conGps} con coordinate esatte, ${tot - conGps} da geocodificare a Google`);
+if (rotta) console.log(rotta);
 console.log(`  in out/${cart}/mappa/\n`);

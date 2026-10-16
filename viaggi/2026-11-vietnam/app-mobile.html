@@ -712,7 +712,7 @@ const VIAGGIO={
   profiloNota:'Solo gli spostamenti via terra: i voli non hanno un profilo. Dal delta del Fiume '
     +'Rosso ai 1.550 m di Sa Pa e ritorno, poi giù lungo la costa fino a Hoi An. Il punto '
     +'tratteggiato è la funivia del Fansipan, che non si percorre.',
-  legenda:[['Via terra','var(--accent)'],['Bus notturno','var(--signal)','dashed'],
+  legenda:[['Via terra','var(--accent)'],['Bus e limousine','var(--signal)','dashed'],
            ['In barca','var(--good)','dotted'],['Volo','var(--ink-3)','dashed','.75'],
            ['Escursioni','var(--ink-3)','dotted']],
   /* Chiusura del poligono di terraferma: COAST finisce sulla costa cinese, da
@@ -1828,7 +1828,11 @@ const COAST=[
 
 /* Le tratte. Il Vietnam si percorre quasi tutto sulla stessa dorsale: la
    strada di andata verso Sa Pa e quella di ritorno sono la stessa, quindi si
-   disegna una volta sola. */
+   disegna una volta sola.
+   `t` e' il nome vero della tratta, quando lo stesso tratteggio serve a due
+   mezzi diversi: la discesa a sud e' bus notturno fino a Hue e limousine da
+   Hue in giu', ma sulla mappa sono la stessa linea. Lo usa il KML dei
+   segnaposti; a schermo la legenda resta una sola riga. */
 const LEGS=[
  {k:'aria',p:[[105.80,23.60],[105.8042,21.2187]]},
  {k:'out', p:[[105.8042,21.2187],[105.8542,21.0285]]},
@@ -1838,9 +1842,9 @@ const LEGS=[
  {k:'sea', p:[[106.98,20.92],[107.12,20.86],[107.10,20.74],[106.96,20.78],[106.98,20.92]]},
  {k:'out', p:[[106.98,20.92],[106.60,20.72],[106.25,20.50],[105.98,20.30],[105.9385,20.2166]]},
  {k:'exc', p:[[105.9385,20.2166],[105.88,20.28],[105.92,20.24],[105.9385,20.2166]]},
- {k:'back',p:[[105.9385,20.2166],[105.80,19.80],[105.78,19.35],[105.90,18.80],[106.10,18.30],
+ {k:'back',t:'Bus notturno',p:[[105.9385,20.2166],[105.80,19.80],[105.78,19.35],[105.90,18.80],[106.10,18.30],
               [106.45,17.75],[106.85,17.25],[107.25,16.80],[107.5909,16.4637]]},
- {k:'back',p:[[107.5909,16.4637],[107.85,16.30],[108.10,16.15],[108.22,16.05],[108.3380,15.8801]]},
+ {k:'back',t:'Limousine',p:[[107.5909,16.4637],[107.85,16.30],[108.10,16.15],[108.22,16.05],[108.3380,15.8801]]},
  {k:'exc', p:[[108.3380,15.8801],[108.20,15.82],[108.12,15.77]]},
  {k:'aria',p:[[108.22,16.05],[107.60,17.60],[106.70,19.40],[105.8042,21.2187]]},
  {k:'aria',p:[[105.8042,21.2187],[105.80,23.60]]}

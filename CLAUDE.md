@@ -305,6 +305,25 @@ stessa colonna e in quel caso non geocodifica niente.
 Lo stesso punto scritto in due modi («Lotto 34, Tuan Chau» e «Molo di Peony,
 Lotto 34, Tuan Chau») diventa un segnaposto solo, che tiene tutte le date.
 
+Insieme ai CSV esce **`rotta.kml`**: la linea del viaggio, tratta per tratta.
+Lì le coordinate ci sono davvero — la mappa dell'app è disegnata su `LEGS` e
+`STOPS`, che sono latitudine e longitudine vere — e il KML, a differenza del
+CSV, **si porta dentro il proprio stile**: colori, spessori e icone arrivano
+già impostati, senza un clic. Colori e nomi si leggono dai token CSS e da
+`VIAGGIO.legenda`, non si riscrivono nel generatore.
+
+Due cose restano fuori per scelta: le tratte con un capo **fuori dal riquadro**
+del viaggio (sulla mappa dell'app il volo intercontinentale è un moncone con
+scritto «← Milano, 9.400 km»; su Google Maps diventerebbe una linea che muore
+nello Yunnan), e la pretesa che la linea sia una traccia GPS — è il filo del
+viaggio, disegnato a mano sulle coordinate delle tappe.
+
+Quando **lo stesso tratteggio serve a due mezzi diversi**, la tratta lo dice in
+`t`: la legenda a schermo resta una riga sola, ma il KML scrive il nome vero.
+È nato da un errore trovato così: il generatore chiamava «bus notturno» la
+limousine fra Hue e Hoi An, perché le due tratte condividono lo stile — e la
+legenda dell'app lo sbagliava allo stesso modo.
+
 ## Consegna
 
 - Pubblica come Artifact. Per aggiornarne uno esistente passa il suo `url`,
