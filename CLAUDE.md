@@ -263,6 +263,13 @@ l'alloggio o il mezzo prenotato: nome, indirizzo, date, codice di conferma,
 costo, telefono. I riquadri si costruiscono cercando il codice nel registro
 `BOOK` dell'app, quindi non possono divergere.
 
+**I codici stanno scritti nel generatore**, ed è l'unico punto del giro in cui
+un dato del viaggio non viene dai dati. Quando una prenotazione viene
+cancellata e rifatta, quel codice sparisce dal registro: il documento stampava
+«Da sistemare» e il comando continuava a dire che era andato tutto bene, perché
+era solo un avviso. Ora un codice che non trova la sua riga **fa fallire la
+stampa**. Se succede, aggiorna i codici in `tools/build-itinerario.mjs`.
+
 Due regole, nel farlo: **il testo originale resta dell'autore** e la firma
 anche — si completa, non si riscrive; e dove le prenotazioni hanno **smentito**
 il piano (un orario, un hotel non disponibile) si scrive apertamente che è una

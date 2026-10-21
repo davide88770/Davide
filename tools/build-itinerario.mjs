@@ -342,9 +342,9 @@ pagF(cap('Daily schedule')+'<h1 class="giorno">GIORNO 3 - 5</h1>'
  +'<div class="data">13 - 15 NOVEMBRE</div>'
  +'<div class="banda"><span class="et">Attività</span>'
  +'<p>Il 13 check out, prendi il bus da HANOI a SAPA.</p>'
- +pren('12GO33251058')
+ +pren('12GO33683239')
  +'<p>Check in dal 13 al 15 a SaPa.</p>'
- +pren('6309631840','Si arriva a 03 Nguyen Chi Thanh: lì <b>Grab non prende</b>. Prendere alla '
+ +pren('6309631840','Si arriva a 39 Le Van Tam, in centro a Sa Pa: lì <b>Grab non prende</b>. Prendere alla '
    +'fermata del bus un taxi per l\'alloggio chiedendo prima il prezzo, oppure concordare il '
    +'pick up con l\'alloggio via chat Booking.')
  +'<p>Il pomeriggio goditi il posto con passeggiate nei pressi della homestay (o giri in scooter).</p>'
@@ -364,14 +364,16 @@ pagF(segue('GIORNO 3 - 5')
  +'<div class="nb"><b>NB.</b> All\'andata lasciate lo zaino grande in Hotel ad Hanoi, se vuoi, e '
  +'porta solo un piccolo zaino a SaPa, poi dormite nello stesso hotel ad Hanoi al ritorno da '
  +'SaPa. <b>Correzione:</b> la notte del 15 <b>non</b> è nello stesso hotel dell\'andata — '
- +'vedi qui sotto.</div>'
+ +'vedi qui sotto — quindi lasciare lo zaino all\'andata vorrebbe dire tornare a riprenderlo '
+ +'la domenica sera. E non serve più: il van prenotato ammette <b>20 kg a testa</b> più una '
+ +'borsa a mano, quindi i bagagli salgono con voi.</div>'
  +'<p>Bus di ritorno per Hanoi il 15 il pomeriggio, e fate una notte dal 15 al 16 di nuovo ad '
  +'Hanoi.</p>'
- +pren('12GO33251059','Check out dalla Maison entro le 11:00–11:30, taxi concordato per salire '
-   +'in centro.')
+ +pren('12GO33683240','Check out dalla Maison entro le 11:00–11:30, taxi concordato per salire '
+   +'in centro. Il van parte alle <b>14:30</b> da 39 Le Van Tam.')
  +pren('5210368751','<b>Non è lo stesso hotel dell\'andata</b>: deve stare dentro l\'Old Quarter, '
-   +'perché è da lì che la crociera passa a prendervi la mattina dopo. 1,5 km dalla Hanoi Opera '
-   +'House, dove vi lascia il van.')
+   +'perché è da lì che la crociera passa a prendervi la mattina dopo. Poco più di un '
+   +'chilometro da 06 Tong Dan, dove vi lascia il van.')
  +'</div>'+fotoRiga('g9a','g9b'));
 
 /* ── 8 · giorno 6-7 ────────────────────────────────────────────────── */
@@ -569,11 +571,22 @@ if (errori.length) {
   await browser.close();
   process.exit(1);
 }
-/* se un codice non trova la sua riga nel registro, il blocco esce vuoto:
-   meglio accorgersene qui che sfogliando il PDF */
-const orfani = await page.evaluate(() =>
-  [...document.querySelectorAll('.pren')].filter(d => !d.querySelector('.riga')).length);
-if (orfani) console.warn(`  ⚠ ${orfani} blocchi senza riscontro nel registro`);
+/* Se un codice non trova la sua riga nel registro, il riquadro esce vuoto.
+   Prima era un avviso, e un avviso non ferma niente: quando i van per Sa Pa
+   sono stati cancellati e ricomprati, il 20 ottobre 2026, il documento ha
+   continuato a uscire con due riquadri «Da sistemare» e il comando a dire
+   che era andato tutto bene. Adesso fallisce. */
+const persi = await page.evaluate(() =>
+  [...document.querySelectorAll('.pren')]
+    .filter(d => !d.querySelector('.riga'))
+    .map(d => (d.querySelector('.nome') || {}).textContent || '?'));
+if (persi.length) {
+  await browser.close();
+  console.error('\n  Codici che non stanno più nel registro BOOK dell\'app:');
+  for (const c of persi) console.error('    ' + c);
+  console.error('  Il riquadro uscirebbe vuoto: aggiorna i codici in tools/build-itinerario.mjs\n');
+  process.exit(1);
+}
 
 /* ogni .pg deve stare in una A4 esatta: se sfora anche di poco, il PDF
    raddoppia le pagine e l'impaginazione dell'originale si perde */
