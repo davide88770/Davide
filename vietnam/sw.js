@@ -1,5 +1,5 @@
-/* Vietnam 2026 — service worker, versione b9884fc977 */
-const CACHE = 'vietnam-b9884fc977';
+/* Vietnam 2026 — service worker, versione af80e17c61 */
+const CACHE = 'vietnam-af80e17c61';
 const GUSCIO = ['./', './index.html', './manifest.webmanifest',
   './icone/icona-192.png', './icone/icona-512.png',
   './icone/icona-maskable-512.png', './icone/apple-touch-icon.png'];
