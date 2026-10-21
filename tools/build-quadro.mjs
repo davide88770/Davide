@@ -177,7 +177,10 @@ const fila=[];
 });
 BOOK.forEach(r=>{
   if(!r[6] || r[6]==='—') return;         // senza data, o gia' in fila, non entra
-  fila.push({q:r[6], i:'🛏', t:r[2], dove:r[7]||'', cod:r[3], tel:r[8]||'',
+  /* Il registro non tiene solo letti: un trek, un corso, un parcheggio. */
+  const i = /parcheggi|parking/i.test(r[2]) ? '🅿'
+          : /trek|tour|corso|lezione|crocier/i.test(r[2]) ? '🥾' : '🛏';
+  fila.push({q:r[6], i, t:r[2], dove:r[7]||'', cod:r[3], tel:r[8]||'',
              pr:r[4], st:r[1], n:r[5]});
 });
 /* Le scadenze del periodo di viaggio entrano nella stessa fila: sono ore
