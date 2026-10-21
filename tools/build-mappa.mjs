@@ -42,6 +42,8 @@ const taglia = (s, n) => { s = pulito(s); return s.length > n ? s.slice(0, n - 1
 /* Le coordinate che abbiamo davvero, prese dalle conferme: qui non si
    geocodifica, si va al punto esatto. */
 const GPS = {
+  '06 Tong Dan': '21.028467, 105.857066',
+  '39 Le Van Tam': '22.336597, 103.845940',
   'Tam Coc Agency': '20.216561, 105.938483',
   'Hue Railway Station': '16.456529, 107.578357',
   "Sapa O'Chau, 689B Dien Bien Phu, Sa Pa": '22.3399711, 103.8408636',

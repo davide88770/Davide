@@ -314,3 +314,20 @@ riscrivono quelli, non il codice.
   - Il quadro ha fatto emergere due errori veri: il van dal molo contato due
     volte nel budget, e quattordici scadenze perse nel passaggio all'elenco
     unico. Entrambi corretti.
+- **v5** — 21 ottobre 2026. **I van per Sa Pa cancellati e rifatti.** Il 20
+  ottobre Golink Sao Vang ha annullato andata e ritorno; 12Go ha rimborsato
+  66,80 € e le corse sono state ricomprate da **Cuong Phat Limousine**
+  (12GO33683239 e 12GO33683240, 56,84 € in due), confermate il 21.
+  Cambia il punto d'imbarco a Hanoi (**06 Tong Dan**, non l'Opera House) e
+  quello di Sa Pa (**39 Le Van Tam**, duecento metri più in là), la durata
+  (**5h30** invece di 6h: il 13 si arriva alle 12:30), l'orario di ritorno
+  (**14:30**, stesso arrivo alle 20:00) e il bagaglio ammesso, che passa da
+  **10 a 20 kg** a testa — e questo manda in soffitta tutta la faccenda dello
+  zaino lasciato in deposito al Serene e recuperato la domenica sera.
+  I voucher danno anche le **coordinate esatte dei due punti d'imbarco**, che
+  sono finite nei dati e nei segnaposti della mappa.
+  Rifatti i conti è emerso che il budget **sottostimava questa voce**: i van
+  di Golink erano segnati a 51 € e ne erano costati 66,80 — le cifre venivano
+  dal valore in baht stampato sul voucher, non dall'addebito sulla carta. La
+  riga «Trasferimenti già pagati» passa da 155 a **161 €**, e il totale degli
+  spostamenti da 67h15 a **66h15**.
