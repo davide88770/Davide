@@ -34,7 +34,7 @@ if (/sb_secret_/.test(config)) {
 
 const FILE = [
   'config.js',
-  'vendor/chart.umd.js', 'vendor/supabase.js',
+  'vendor/chart.umd.js', 'vendor/supabase.js', 'vendor/pdf.min.js', 'vendor/pdf.worker.min.js',
   'vendor/manrope-latin-wght-normal.woff2', 'vendor/manrope-latin-ext-wght-normal.woff2',
   'icone/icona-32.png', 'icone/icona-192.png', 'icone/icona-512.png', 'icone/apple-touch-icon.png',
 ];

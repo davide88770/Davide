@@ -202,33 +202,33 @@ sezione('A. Senza Supabase configurato (solo questo dispositivo)');
   ok(await p.evaluate(() => TX.length === 1 && TX[0].amt === 12.5), 'il movimento resta dopo il ricaricamento');
   ok(!(await p.isVisible('#uOut')), 'niente "Esci" senza account');
 
-  // avviso dell'import mensile, con la data simulata
-  const avviso = async (giorno, tx) => {
-    await p.clock.setFixedTime(new Date(`2026-11-${String(giorno).padStart(2, '0')}T21:00:00`));
-    return p.evaluate(tx => { TX = clean(tx); const a = getAlerts().find(x => x.b && x.b[1] === 'imp'); return a ? `${a.c || 'giallo'}|${a.t}|${a.d}` : ''; }, tx);
+  // avviso degli estratti conto (dal 24), con la data simulata
+  const avviso = async (data, tx, imports) => {
+    await p.clock.setFixedTime(new Date(`${data}T21:00:00`));
+    return p.evaluate(([tx, imports]) => { TX = clean(tx); S.imports = imports; const a = getAlerts().find(x => x.b && x.b[1] === 'imp'); return a ? `${a.c || 'giallo'}|${a.t}|${a.d}` : ''; }, [tx, imports]);
   };
-  const man = { id: 't1790000000000aaaa', type: 'out', amt: 5, acc: 'trad', date: '2026-10-10', cat: 'Altro', det: 'x' };
-  const rev = { id: 'iabc', type: 'out', amt: 9, acc: 'rev', date: '2026-10-12', cat: 'Ristoranti' };
-  const amex = { id: 'idef', type: 'out', amt: 9, acc: 'trad', pay: 'amex', date: '2026-10-20', cat: 'Viaggi' };
-  const amexMano = { ...man, id: 't1790000000001aaaa', pay: 'amex' };
-  ok(await avviso(3, [man]) === '', 'il 3 del mese: nessun avviso di import');
-  let r = await avviso(4, [man]);
-  ok(r.startsWith('blue|È il momento di importare ottobre') && r.includes('Manca: Revolut.'), `il 4: «${r.split('|').slice(1).join(' — ')}»`);
-  r = await avviso(5, [man, amexMano]);
-  ok(r.includes('Manca: Revolut e Amex'), 'con la carta Amex usata: chiede entrambi');
-  r = await avviso(8, [man, amexMano, rev]);
-  ok(r.startsWith('giallo|Import di ottobre non ancora fatto') && r.includes('Manca: Amex.'), `l'8, solo Revolut importato: «${r.split('|')[1]}», manca Amex`);
-  r = await avviso(12, [man, amexMano, rev]);
-  ok(r.startsWith('red|'), 'dopo il 10: avviso rosso');
-  ok(await avviso(12, [man, amexMano, rev, amex]) === '', 'importati entrambi: nessun avviso');
-  ok(await p.evaluate(() => !getAlerts().some(a => /Non registri movimenti/.test(a.t))), 'sparito il vecchio "Non registri movimenti da N giorni"');
+  const man = { id: 't1790000000000aaaa', type: 'out', amt: 5, acc: 'rev', date: '2026-11-10', cat: 'Altro', det: 'x' };
+  const amexMano = { ...man, id: 't1790000000001aaaa', acc: 'trad', pay: 'amex' };
+  const ottobre = { rev: '2026-10-25', amex: '2026-10-25' };
+  ok(await avviso('2026-11-23', [man, amexMano], ottobre) === '', 'il 23, con gli estratti di ottobre importati: nessun avviso');
+  let r = await avviso('2026-11-24', [man, amexMano], ottobre);
+  ok(r.startsWith('blue|È il momento di importare gli estratti conto') && r.includes('Manca: Revolut e Amex'), `il 24: «${r.split('|').slice(1).join(' — ')}»`);
+  r = await avviso('2026-11-24', [man], ottobre);
+  ok(r.includes('Manca: Revolut.'), 'Amex non usata negli ultimi tre mesi: chiede solo Revolut');
+  r = await avviso('2026-11-28', [man, amexMano], { ...ottobre, rev: '2026-11-25' });
+  ok(r.startsWith('giallo|Estratti conto del 24 non ancora importati') && r.includes('Manca: Amex.'), `il 28, solo Revolut importato: «${r.split('|')[1]}», manca Amex`);
+  r = await avviso('2026-12-02', [man, amexMano], { ...ottobre, rev: '2026-11-25' });
+  ok(r.startsWith('red|'), 'dal 1° del mese dopo (7 giorni): avviso rosso');
+  ok(await avviso('2026-12-02', [man, amexMano], { rev: '2026-11-25', amex: '2026-11-26' }) === '', 'importati entrambi dopo il 24: nessun avviso');
+  ok(await avviso('2026-12-23', [man, amexMano], { rev: '2026-11-25', amex: '2026-11-26' }) === '', 'e fino al 23 del mese dopo resta zitto');
+  ok(await p.evaluate(() => !getAlerts().some(a => /Non registri movimenti/.test(a.t))), 'niente "Non registri movimenti da N giorni"');
   await p.evaluate(() => { S.goals.amexStart = '2026-11'; TX = clean([]); });
   await p.clock.setFixedTime(new Date('2026-11-12T21:00:00'));
   ok(await p.evaluate(() => !getAlerts().some(a => /Bonus Amex/.test(a.t))), 'bonus Amex a metà mese senza spese importate: nessun falso allarme');
   await p.clock.setFixedTime(new Date('2026-11-26T21:00:00'));
   ok(await p.evaluate(() => getAlerts().some(a => a.c === 'blue' && /controlla la spesa del mese/.test(a.t))), 'a fine mese: richiamo a guardare l\'app Amex');
-  await p.clock.setFixedTime(new Date('2026-11-05T21:00:00'));
-  await p.evaluate(() => { S.goals.amexStart = ''; TX = clean([{ id: 't1790000000000aaaa', type: 'out', amt: 5, acc: 'trad', date: '2026-10-10', cat: 'Altro', det: 'x' }]); cur = new Date(2026, 10, 1); render(); });
+  await p.clock.setFixedTime(new Date('2026-11-25T21:00:00'));
+  await p.evaluate(() => { S.goals.amexStart = ''; S.imports = {}; TX = clean([{ id: 't1790000000000aaaa', type: 'out', amt: 5, acc: 'rev', date: '2026-11-10', cat: 'Altro', det: 'x' }]); cur = new Date(2026, 10, 1); render(); });
   await p.click('#alerts button[data-al="imp"]');
   ok(await p.isVisible('#impModal') && await p.evaluate(() => view === 'tx'), 'il pulsante "Importa" apre l\'import dell\'estratto conto');
   await ctx.close();
@@ -365,6 +365,65 @@ await A.click('#iGo');
 ok(await attendi(() => A.evaluate(n => TX.length === n + 2, prima)), 'import: 2 movimenti in più');
 ok(await A.evaluate(() => TX.some(t => t.cat === 'Vita quotidiana' && t.amt === 54.3) && TX.some(t => t.cat === 'Ristoranti' && t.amt === 38)), 'import: categorie riconosciute');
 ok(await attendi(() => B.evaluate(n => TX.length === n + 2, prima)), 'import: arrivato anche su B');
+ok(await A.evaluate(() => S.imports?.rev === today()), 'la data dell\'import Revolut viene registrata (per l\'avviso del 24)');
+
+// ── estratti conto in PDF ──
+// Due PDF costruiti qui con le impaginazioni tipiche: Revolut (colonne In
+// uscita / In entrata / Saldo, riquadro di riepilogo in cima) e Amex (data
+// operazione + data contabile, importi in euro positivi, un accredito "CR",
+// una spesa in dollari con il controvalore). NON sono gli estratti veri:
+// controllano la lettura, non il formato esatto delle due banche.
+const faiPdf = async (nome, html) => {
+  const pg = await browser.newPage();
+  await pg.setContent(`<style>body{font:11px Arial;margin:30px}table{border-collapse:collapse;width:100%}td,th{padding:4px 6px;text-align:left}.r{text-align:right}</style>${html}`);
+  const f = path.join(OUT, nome); await pg.pdf({ path: f, format: 'A4' }); await pg.close(); return f;
+};
+const pdfRev = await faiPdf('revolut.pdf', `<h2>Estratto conto in EUR</h2>
+  <table><tr><th>Saldo iniziale</th><th>Uscite</th><th>Entrate</th><th>Saldo finale</th></tr><tr><td>100,00 €</td><td>154,30 €</td><td>2.500,00 €</td><td>2.445,70 €</td></tr></table><br>
+  <table><tr><th>Data</th><th>Descrizione</th><th class="r">In uscita</th><th class="r">In entrata</th><th class="r">Saldo</th></tr>
+  <tr><td>20 set 2026</td><td>ESSELUNGA MILANO</td><td class="r">54,30 €</td><td></td><td class="r">45,70 €</td></tr>
+  <tr><td>25 set 2026</td><td>Farmacia Centrale</td><td class="r">100,00 €</td><td></td><td class="r">1.054,30 €</td></tr>
+  <tr><td>27 set 2026</td><td>Bonifico stipendio da SRL</td><td></td><td class="r">2.500,00 €</td><td class="r">2.445,70 €</td></tr>
+  <tr><td>30 set 2026</td><td>Saldo finale</td><td></td><td></td><td class="r">2.445,70 €</td></tr></table>`);
+const pdfAmex = await faiPdf('amex.pdf', `<h2>Estratto conto Carta American Express</h2>
+  <table><tr><th>Data operazione</th><th>Data contabile</th><th>Descrizione</th><th class="r">Importo €</th></tr>
+  <tr><td>02/10/26</td><td>03/10/26</td><td>RYANAIR DUBLIN</td><td class="r">189,98</td></tr>
+  <tr><td>05/10/26</td><td>06/10/26</td><td>AMAZON.COM USD 20,00</td><td class="r">18,45</td></tr>
+  <tr><td>08/10/26</td><td>09/10/26</td><td>RIMBORSO RYANAIR</td><td class="r">40,00 CR</td></tr>
+  <tr><td>11/10/26</td><td>12/10/26</td><td>RISTORANTE DA GINO</td><td class="r">1.234,50</td></tr>
+  <tr><td></td><td></td><td>Totale nuove operazioni</td><td class="r">1.402,93</td></tr></table>`);
+await A.click('#tabs button[data-v="tx"]'); await A.click('#openImp');
+await A.setInputFiles('#iFile', pdfRev);
+ok(await attendi(() => A.evaluate(() => IMP.rows.length > 0), 15000), 'PDF Revolut letto (pdf.js caricato al bisogno)');
+const righeRev = await A.evaluate(() => IMP.rows.map(r => `${r.date}|${r.desc}|${r.amt}|${r.type}`).sort());
+ok(righeRev.length === 3, `PDF Revolut: 3 movimenti, saldi e riepilogo esclusi (${righeRev.length}: ${righeRev.join(' ; ')})`);
+ok(righeRev.some(x => x === '2026-09-27|Bonifico stipendio da SRL|2500|in'), 'colonna "In entrata": lo stipendio è un\'entrata, importo dalla colonna giusta e non dal saldo');
+ok(righeRev.some(x => x === '2026-09-25|Farmacia Centrale|100|out'), 'colonna "In uscita": la farmacia è una spesa');
+ok(righeRev.some(x => /^2026-09-20\|ESSELUNGA MILANO\|54\.3\|dup$/.test(x)), 'Esselunga già importata dal CSV (descrizione diversa): riconosciuta come doppione');
+ok((await A.textContent('#iPdf')).includes('colonne'), `messaggio: «${(await A.textContent('#iPdf')).trim()}»`);
+// conto scelto DOPO il file: il PDF si rilegge con il segno giusto
+await A.setInputFiles('#iFile', pdfAmex);
+await attendi(() => A.evaluate(() => IMP.rows.some(r => /RYANAIR DUBLIN/.test(r.desc))), 15000);
+await A.click('#iAcc .chip[data-v="amex"]');
+ok(await attendi(() => A.evaluate(() => IMP.acc === 'amex' && IMP.rows.some(r => /RYANAIR DUBLIN/.test(r.desc) && r.type === 'out') && IMP.rows.some(r => /RIMBORSO/.test(r.desc) && r.type === 'in')), 15000), 'PDF Amex letto (conto scelto dopo il file: riletto)');
+const righeAmex = await A.evaluate(() => IMP.rows.map(r => `${r.date}|${r.desc}|${r.amt}|${r.type}`).sort());
+ok(righeAmex.length === 4, `PDF Amex: 4 movimenti, il totale escluso (${righeAmex.join(' ; ')})`);
+ok(righeAmex.includes('2026-10-02|RYANAIR DUBLIN|189.98|out') && righeAmex.includes('2026-10-11|RISTORANTE DA GINO|1234.5|out'), 'Amex: date doppie e migliaia lette, addebiti come spese');
+ok(righeAmex.some(x => /^2026-10-05\|AMAZON\.COM USD 20,00\|18\.45\|out$/.test(x)), 'Amex: spesa in dollari, preso il controvalore in euro');
+ok(righeAmex.includes('2026-10-08|RIMBORSO RYANAIR|40|in'), 'Amex: accredito "CR" come entrata');
+const primaPdf = await A.evaluate(() => TX.length);
+await A.click('#iGo');
+ok(await attendi(() => A.evaluate(n => TX.length === n + 4 && TX.filter(t => t.pay === 'amex' && /RYANAIR|AMAZON|GINO/.test(t.note)).length === 4, primaPdf)), 'PDF Amex importato: sul Tradizionale, segnato Amex');
+ok(await A.evaluate(() => S.imports?.amex === today()), 'data dell\'import Amex registrata');
+await A.click('#openImp'); await A.click('#iAcc .chip[data-v="amex"]');
+await A.setInputFiles('#iFile', pdfAmex);
+await attendi(() => A.evaluate(() => IMP.rows.length > 0), 15000);
+ok(await attendi(async () => (await A.textContent('#iGo')).includes('segna come fatto')), 'stesso PDF di nuovo: tutto già presente, "segna come fatto"');
+await A.click('#iClose');
+const nonPdf = path.join(OUT, 'rotto.pdf'); fs.writeFileSync(nonPdf, 'non sono un pdf');
+await A.click('#openImp'); await A.setInputFiles('#iFile', nonPdf);
+ok(await attendi(async () => /non si apre/.test(await A.textContent('#iPdf')), 8000), 'PDF rovinato: messaggio chiaro, niente errori');
+await A.click('#iClose');
 // ricorrenti del mese corrente
 await A.click('#tabs button[data-v="home"]');
 await A.evaluate(() => { cur = new Date(new Date().getFullYear(), new Date().getMonth(), 1); render(); });
@@ -412,6 +471,7 @@ await A.reload(); await A.waitForLoadState('domcontentloaded'); await A.waitForT
 ok(await A.evaluate(() => typeof render === 'function' && !document.getElementById('login').classList.contains('on')), 'senza rete l\'app si riapre dalla cache, senza chiedere l\'accesso');
 ok(await A.evaluate(() => TX.some(t => t.note === 'caffè offline') && pendingN() >= 1), 'il movimento fatto offline è lì, in coda');
 ok(await A.evaluate(() => typeof Chart !== 'undefined' && document.fonts.check('16px Manrope')), 'Chart.js e font serviti dalla cache');
+ok(await A.evaluate(async () => !!(await caches.match('vendor/pdf.worker.min.js')) && !!(await caches.match('vendor/pdf.min.js'))), 'lettore PDF in cache: si importa un PDF anche offline');
 ok(!(await B.evaluate(() => TX.some(t => t.note === 'caffè offline'))), 'B non lo ha ancora');
 await A.screenshot({ path: path.join(OUT, 'offline.png') });
 OFFLINE = false; await ctxA.setOffline(false);

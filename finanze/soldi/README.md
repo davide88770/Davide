@@ -135,7 +135,8 @@ resta tutto. Se ci sono modifiche non ancora inviate, prima te lo dice.
 - **`start_url` è `./` e non `/`**: su GitHub Pages l'app sta in
   `/Davide/soldi/`, e `/` aprirebbe Ghisa & Grammi. `./` funziona anche su
   Vercel.
-- **Niente CDN.** Chart.js 4.4.1 (la stessa versione), supabase-js 2.117.2 e
+- **Niente CDN.** Chart.js 4.4.1 (la stessa versione), supabase-js 2.117.2,
+  pdf.js 3.11.174 (build legacy, caricato solo quando scegli un PDF) e
   il font Manrope sono in `vendor/`: l'app si apre offline anche la prima volta
   dopo l'installazione, e nessuna richiesta parte verso Google o cdnjs.
 - **Service worker:** «stale-while-revalidate» per script, font, icone e
@@ -189,7 +190,8 @@ Supabase** intercettato nel browser (login con codice, tabelle con la stessa
 regola della RLS, canale in tempo reale WebSocket), poi fa il giro con due
 dispositivi: accesso, ripristino di un backup dell'app vecchia con movimenti
 Amex da migrare, aggiunta/modifica/eliminazione viste dall'altro dispositivo
-in tempo reale, impostazioni condivise, import CSV Revolut, ricorrenti,
+in tempo reale, impostazioni condivise, import CSV Revolut, import PDF
+(Revolut e Amex di prova), ricorrenti,
 avvisi, «Aggiorna saldo», sei grafici, download di backup e CSV, offline con
 coda e riapertura dalla cache, sessione che resta, aggiornamento dell'app
 installata, installabilità, tema chiaro e scuro, 390 px, PDF, «Esci», console
@@ -201,6 +203,24 @@ schermata Home.
 
 ## Storico
 
+- **v4** (24 ottobre 2026) — estratti conto il 24 di ogni mese, e import
+  anche da **PDF**.
+  - L'avviso parte dal 24 (blu), è giallo dopo 3 giorni e rosso dopo 7, e si
+    basa sulla **data in cui hai importato** (`S.imports`), non sulle date dei
+    movimenti. Se un file non ha niente di nuovo si può «segnare come fatto».
+  - PDF: pdf.js estrae il testo con le posizioni, le righe che cominciano con
+    una data e contengono un importo diventano movimenti; saldi, totali e
+    riepiloghi esclusi. Il segno viene da «-»/«CR», poi dalle colonne
+    entrate/uscite, poi si assume una spesa. Date in tutti i formati comuni
+    (`20/09/2026`, `02/10/26`, `20 set 2026`, `20.09`), due date per riga
+    (Amex), migliaia, importo prima del saldo, controvalore in euro.
+  - CSV e PDF dello stesso periodo non creano doppioni: stesso conto, stesso
+    importo, stesso giorno → «già importata da un altro file».
+  - **Limite onesto:** la lettura è provata su PDF costruiti con le
+    impaginazioni tipiche, non sugli estratti veri di Revolut e Amex, che non
+    ho. I PDF scansionati (immagini) non si leggono. Il CSV resta più preciso.
+  - pdf.js 3.x: `isEvalSupported:false`, che chiude la vulnerabilità nota
+    (CVE-2024-4367) di quella serie.
 - **v3** (ottobre 2026) — tutti e due gli stipendi sul Tradizionale, che
   paga Amex e investimento. Al primo avvio l'app sposta da sola il ricorrente
   «Stipendio» da Revolut al Tradizionale, una volta sola (segno in
