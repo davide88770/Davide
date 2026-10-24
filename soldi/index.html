@@ -22,7 +22,7 @@
 <script src="vendor/chart.umd.js"></script>
 <script src="vendor/supabase.js"></script>
 <script src="config.js"></script>
-<script>window.__SOLDI_BUILD='2d28ee5047';window.__SOLDI_V=3;</script>
+<script>window.__SOLDI_BUILD='b8def6a32d';window.__SOLDI_V=4;</script>
 <style>
 @font-face{font-family:Manrope;font-style:normal;font-display:swap;font-weight:200 800;src:url(vendor/manrope-latin-wght-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 @font-face{font-family:Manrope;font-style:normal;font-display:swap;font-weight:200 800;src:url(vendor/manrope-latin-ext-wght-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
@@ -371,9 +371,10 @@ nav.tabs button{position:relative}
 
 <div class="modal" id="impModal"><div class="sheet" style="max-width:860px">
   <h3>Importa estratto conto</h3>
-  <p class="hint" style="margin-top:0">Scarica i movimenti in CSV dall'app della banca (Revolut: Estratto conto → Excel/CSV; Amex: Estratto conto → Scarica → CSV) e caricali qui. Per l'Amex scegli "💳 Amex": le spese vanno sul Tradizionale già segnate come Amex. Controlla le categorie proposte, poi importa. I movimenti già importati vengono saltati.</p>
+  <p class="hint" style="margin-top:0">Scarica l'estratto conto in CSV o in PDF dall'app della banca (Revolut: Estratto conto → Excel/CSV o PDF; Amex: Estratto conto → Scarica) e caricalo qui. Il CSV è più preciso; il PDF va bene, ma controlla tipo e importo delle righe. Per l'Amex scegli "💳 Amex": le spese vanno sul Tradizionale già segnate come Amex. Controlla le categorie proposte, poi importa. I movimenti già importati vengono saltati.</p>
   <label class="f">Conto</label><div class="chips" id="iAcc"></div>
-  <label class="btn ghost" style="display:block;text-align:center">Scegli il file CSV<input type="file" id="iFile" accept=".csv,text/csv" hidden></label>
+  <label class="btn ghost" style="display:block;text-align:center">Scegli il file (CSV o PDF)<input type="file" id="iFile" accept=".csv,text/csv,.pdf,application/pdf" hidden></label>
+  <div class="hint" id="iPdf"></div>
   <label class="check"><input type="checkbox" id="iInv"> Inverti i segni (spese positive nel file)</label>
   <div class="hint" id="iInfo"></div>
   <div class="tablewrap" style="max-height:48vh;overflow:auto;margin-top:10px"><table class="t imp" id="iTab"></table></div>
@@ -753,23 +754,26 @@ async function applyRec(){
 /* L'import del mese scorso è fatto se ci sono movimenti IMPORTATI (id "i…",
    quelli inseriti a mano sono "t…") con data nel mese scorso: su Revolut, e
    tra le spese Amex se la carta è stata usata negli ultimi tre mesi. */
+const GIORNO_ESTRATTI=24;
 function importStatus(now){
-  const p=new Date(now.getFullYear(),now.getMonth()-1,1),pk=key(p.getFullYear(),p.getMonth());
-  const da=new Date(now.getFullYear(),now.getMonth()-3,1),dk=key(da.getFullYear(),da.getMonth())+'-01';
-  const imp=t=>/^i/.test(t.id)&&ym(t.date)===pk;
-  const usaAmex=TX.some(t=>t.pay==='amex'&&t.date>=dk);
-  const mancano=[!TX.some(t=>imp(t)&&t.acc==='rev')&&'Revolut',usaAmex&&!TX.some(t=>imp(t)&&t.pay==='amex')&&'Amex'].filter(Boolean);
-  return{pk,mese:p.toLocaleDateString('it-IT',{month:'long'}),mancano}}
+  // l'ultima scadenza: il 24 di questo mese se è già passato, se no quello del mese prima
+  const y=now.getFullYear(),m=now.getMonth(),sc=now.getDate()>=GIORNO_ESTRATTI?new Date(y,m,GIORNO_ESTRATTI):new Date(y,m-1,GIORNO_ESTRATTI);
+  const scIso=`${key(sc.getFullYear(),sc.getMonth())}-${GIORNO_ESTRATTI}`;
+  const da=new Date(y,m-3,now.getDate()),dk=`${key(da.getFullYear(),da.getMonth())}-${String(da.getDate()).padStart(2,'0')}`;
+  const fatti=S.imports||{},usa=f=>TX.some(t=>t.date>=dk&&f(t));
+  const mancano=[usa(t=>t.acc==='rev')&&!(fatti.rev>=scIso)&&'Revolut',usa(t=>t.pay==='amex')&&!(fatti.amex>=scIso)&&'Amex'].filter(Boolean);
+  return{giorni:daysBetween(sc.getTime(),now.getTime()),mancano}}
 function created(t){const m=String(t.id).match(/^t(\d{13})/);return m?+m[1]:new Date(t.date+'T12:00').getTime()}
 function daysBetween(a,b){return Math.floor((b-a)/864e5)}
 function getAlerts(){
   const A=[],now=new Date(),tk=today(),k=tk.slice(0,7),r=monthStats(k),dnow=now.getDate(),last=new Date(now.getFullYear(),now.getMonth()+1,0).getDate();
-  // 1. import mensile degli estratti conto (dal 4: l'estratto Amex arriva il 3)
-  if(!TX.length)A.push({c:'blue',t:'Inizia registrando i ricorrenti del mese',d:'Poi, ogni mese, importa gli estratti conto di Revolut e Amex.'});
+  // 1. estratti conto da importare: ogni mese dal 24. Conta la data in cui hai
+  //    importato (S.imports), non le date dei movimenti
+  if(!TX.length)A.push({c:'blue',t:'Inizia registrando i ricorrenti del mese',d:'Poi, ogni mese il 24, importa gli estratti conto di Revolut e Amex.'});
   else{const im=importStatus(now);
-    if(im.mancano.length&&dnow>=4){const tardi=dnow>6;
-      A.push({c:tardi?(dnow>10?'red':''):'blue',t:tardi?`Import di ${im.mese} non ancora fatto`:`È il momento di importare ${im.mese}`,
-        d:`Manca: ${im.mancano.join(' e ')}. Scarica i CSV del mese e importali (Movimenti → Importa estratto conto).`,b:['Importa','imp']})}}
+    if(im.mancano.length){const g=im.giorni;
+      A.push({c:g>=7?'red':g>=3?'':'blue',t:g>=3?`Estratti conto del ${GIORNO_ESTRATTI} non ancora importati`:'È il momento di importare gli estratti conto',
+        d:`Manca: ${im.mancano.join(' e ')}. Scarica il CSV o il PDF e importalo (Movimenti → Importa estratto conto).`,b:['Importa','imp']})}}
   // 2. ricorrenti scaduti
   const pr=pendingRec(k).filter(x=>(x.day||1)<=dnow);
   if(pr.length)A.push({c:'',t:`${pr.length} ricorrenti di questo mese non registrati`,d:pr.map(x=>x.note||x.cat).join(', '),b:['Registra','rec']});
@@ -784,7 +788,7 @@ function getAlerts(){
   const g=S.goals;if(g.amexStart){const [sy,sm]=g.amexStart.split('-').map(Number),st=new Date(sy,sm-1,1),en=new Date(sy,sm+5,1);
     // con l'import mensile, a metà mese le spese Amex di solito non ci sono
     // ancora: niente allarme sul ritmo, solo un richiamo a guardare l'app Amex
-    if(now>=st&&now<en&&!r.amex){if(dnow>last-7)A.push({c:'blue',t:'Bonus Amex: controlla la spesa del mese',d:`Le spese Amex arrivano con l'import del mese prossimo: guarda nell'app Amex se sei a ${eur(g.amex)} entro il ${last}.`})}
+    if(now>=st&&now<en&&!r.amex){if(dnow>last-7)A.push({c:'blue',t:'Bonus Amex: controlla la spesa del mese',d:`Le spese Amex arrivano con il prossimo import del ${GIORNO_ESTRATTI}: guarda nell'app Amex se sei a ${eur(g.amex)} entro il ${last}.`})}
     else if(now>=st&&now<en&&r.amex<g.amex){const need=g.amex-r.amex;const pace=r.amex/dnow*last;
       if(pace<g.amex||dnow>last-7)A.push({c:dnow>last-7?'red':'',t:`Bonus Amex: mancano ${eur(need)} questo mese`,d:`Passa più spese sull'Amex entro il ${last}. Obiettivo ${eur(g.amex)} al mese.`})}}
   // 5. saldi da verificare
@@ -1020,6 +1024,12 @@ function buildImport(txt){
   for(const r of IMP.rows){if(r.type!=='in'&&r.type!=='out')continue;
     const m=pool.filter(t=>!used.has(t.id)&&t.type===r.type&&Math.abs(t.amt-r.amt)<0.01&&dd(t.date,r.date)<=3).sort((x,y)=>dd(x.date,r.date)-dd(y.date,r.date))[0];
     if(m){used.add(m.id);r.type='skip';r.why=`già inserita a mano il ${m.date.slice(8)}/${m.date.slice(5,7)} (${m.cat})`;r.match=true}}
+  // e già importati da un altro file (CSV e PDF dello stesso periodo hanno
+  // descrizioni diverse, quindi codici diversi): stesso importo, stesso giorno
+  const pool2=TX.filter(t=>t.id.startsWith('i')&&t.acc===acc&&(IMP.acc==='amex'?t.pay==='amex':IMP.acc==='trad'?t.pay!=='amex':true));
+  for(const r of IMP.rows){if(r.type!=='in'&&r.type!=='out')continue;
+    const m=pool2.find(t=>!used.has(t.id)&&t.type===r.type&&Math.abs(t.amt-r.amt)<0.01&&dd(t.date,r.date)<=1);
+    if(m){used.add(m.id);r.type='dup';r.why=`già importata da un altro file: ${m.note||m.cat}`}}
   drawImport()}
 function drawImport(){
   const outs=OUT().map(c=>c.n),ins=IN.map(c=>c.n);
@@ -1028,16 +1038,97 @@ function drawImport(){
   $('iTab').innerHTML=IMP.rows.length?'<tr><th>Data</th><th>Descrizione</th><th class="r">Importo</th><th>Tipo</th><th>Categoria</th></tr>'+IMP.rows.map((r,i)=>`<tr class="${r.type==='skip'||r.type==='dup'?'skip':''}"><td>${r.date.slice(8)}/${r.date.slice(5,7)}</td><td>${esc(r.desc)}${r.why?`<div class="hint" style="margin:2px 0 0">${r.match?'✓ ':''}${esc(r.why)}</div>`:''}</td><td class="r">${eur(r.amt,2)}</td>
     <td>${r.type==='dup'?'già presente':`<select data-it="${i}"><option value="out" ${r.type==='out'?'selected':''}>Spesa</option><option value="in" ${r.type==='in'?'selected':''}>Entrata</option><option value="skip" ${r.type==='skip'?'selected':''}>Salta</option></select>`}</td>
     <td>${r.type==='out'||r.type==='in'?`<select data-ic="${i}">${(r.type==='out'?outs:ins).map(c=>`<option ${c===r.cat?'selected':''}>${esc(c)}</option>`).join('')}</select>`:''}</td></tr>`).join(''):'';
-  $('iGo').style.display=n?'':'none';$('iGo').textContent=`Importa ${n} movimenti`;
-  chips('iAcc',[...ACC.filter(a=>a.kind!=='save').map(a=>({v:a.id,l:a.n})),{v:'amex',l:'💳 Amex (spese sul Tradizionale)'}],IMP.acc,v=>{IMP.acc=v;$('iInv').checked=v==='amex';if(IMP.txt)buildImport(IMP.txt);else drawImport()})}
+  // se è tutto già presente si può comunque segnare l'estratto come fatto
+  $('iGo').style.display=IMP.rows.length?'':'none';$('iGo').textContent=n?`Importa ${n} movimenti`:'Niente di nuovo: segna come fatto';
+  chips('iAcc',[...ACC.filter(a=>a.kind!=='save').map(a=>({v:a.id,l:a.n})),{v:'amex',l:'💳 Amex (spese sul Tradizionale)'}],IMP.acc,v=>{IMP.acc=v;$('iInv').checked=v==='amex';if(IMP.pdf)leggiPdf();else if(IMP.txt)buildImport(IMP.txt);else drawImport()})}
 $('openImp').onclick=()=>{IMP={acc:'rev',rows:[]};$('iInv').checked=false;$('iFile').value='';drawImport();$('impModal').classList.add('on')};
 $('iClose').onclick=()=>$('impModal').classList.remove('on');
-$('iFile').onchange=async e=>{const f=e.target.files[0];if(!f)return;IMP.txt=await f.text();buildImport(IMP.txt)};
+$('iFile').onchange=async e=>{const f=e.target.files[0];if(!f)return;$('iPdf').textContent='';IMP.pdf=null;
+  if(!/\.pdf$/i.test(f.name)&&f.type!=='application/pdf'){IMP.txt=await f.text();buildImport(IMP.txt);return}
+  IMP.pdf=await f.arrayBuffer();leggiPdf()};
+// il segno dipende dal conto (per Amex gli addebiti sono positivi): se cambi
+// conto dopo aver scelto il PDF, si rilegge
+async function leggiPdf(){
+  const acc=IMP.acc;$('iPdf').textContent='Leggo il PDF…';IMP.rows=[];IMP.txt='';drawImport();
+  try{const r=await pdfToCsv(IMP.pdf.slice(0),acc);if(acc!==IMP.acc)return;IMP.txt=r.csv;
+    $('iPdf').textContent=r.n?`PDF letto: ${r.n} movimenti su ${r.pagine} ${r.pagine===1?'pagina':'pagine'}${r.colonne?', entrate e uscite riconosciute dalle colonne':''}. Nei PDF il segno non è sempre chiaro: controlla le righe prima di importare.`
+      :'Non trovo movimenti in questo PDF. Se è una scansione (un\'immagine) non si può leggere: scarica il CSV.';
+    if(r.n)buildImport(IMP.txt);else{IMP.rows=[];drawImport()}}
+  catch(x){console.warn(x);$('iPdf').textContent='Questo PDF non si apre (protetto o rovinato?). Prova con il CSV.'}}
 $('iInv').onchange=()=>{if(IMP.txt)buildImport(IMP.txt)};
 $('iTab').onchange=e=>{const t=e.target;if(t.dataset.it){const r=IMP.rows[+t.dataset.it];r.type=t.value;if(r.type==='in'&&!IN.some(c=>c.n===r.cat))r.cat='Altro';if(r.type==='out'&&!OUT().some(c=>c.n===r.cat))r.cat='Altro';drawImport()}if(t.dataset.ic)IMP.rows[+t.dataset.ic].cat=t.value};
 $('iGo').onclick=async()=>{const go=IMP.rows.filter(r=>r.type==='in'||r.type==='out');$('iGo').disabled=true;
   for(const r of go){const t={id:r.id,type:r.type,amt:r.amt,acc:IMP.acc==='amex'?'trad':IMP.acc,date:r.date,note:r.desc,cat:r.cat};if(IMP.acc==='amex')t.pay='amex';if(r.cat==='Altro')t.det=r.desc;await putTx(t)}
+  // la data dell'import, per l'avviso del 24 (un file senza righe nuove conta lo stesso: l'hai controllato)
+  S.imports={...(S.imports||{}),[IMP.acc]:today()};saveS();
   $('iGo').disabled=false;$('impModal').classList.remove('on');toast(`${go.length} movimenti importati`);render()};
+
+/* ---------- estratti conto in PDF ----------
+   pdf.js (in vendor/, caricato solo quando serve) estrae i pezzi di testo con
+   la loro posizione. Si ricompongono le righe per altezza, e una riga è un
+   movimento se comincia con una data e contiene un importo. Il risultato
+   diventa un CSV "data;descrizione;importo" e passa dallo stesso import dei
+   CSV: stesse categorie, stessi doppioni, stesso "Inverti i segni".
+   Il segno: "-" o "CR" esplicito; altrimenti, se in testa alla tabella ci
+   sono le colonne entrate/uscite, decide la colonna in cui sta l'importo;
+   altrimenti è una spesa (per Amex: un addebito). */
+let pdfjsP=null;
+function loadPdfjs(){
+  if(window.pdfjsLib)return Promise.resolve(window.pdfjsLib);
+  return pdfjsP||(pdfjsP=new Promise((ok,ko)=>{const sc=document.createElement('script');sc.src='vendor/pdf.min.js';
+    sc.onload=()=>{window.pdfjsLib.GlobalWorkerOptions.workerSrc='vendor/pdf.worker.min.js';ok(window.pdfjsLib)};
+    sc.onerror=()=>{pdfjsP=null;ko(new Error('pdf.js non disponibile'))};document.head.appendChild(sc)}))}
+const MESI={gen:1,jan:1,feb:2,mar:3,apr:4,mag:5,may:5,giu:6,jun:6,lug:7,jul:7,ago:8,aug:8,set:9,sep:9,ott:10,oct:10,nov:11,dic:12,dec:12};
+const AMT=/^([-+−]\s?)?€?\s?(\d{1,3}(?:[.,'\u00a0 ]\d{3})+|\d+)[.,]\d{2}\s?€?(\s?(CR|DR|-))?$/i;
+function pdfDate(txt,anno){let m;const z=n=>String(n).padStart(2,'0');
+  if(m=txt.match(/^(\d{1,2})[\/.\-](\d{1,2})[\/.\-](\d{4}|\d{2})(?!\d)/))return{d:`${m[3].length===2?'20'+m[3]:m[3]}-${z(m[2])}-${z(m[1])}`,l:m[0].length};
+  if(m=txt.match(/^(\d{4})-(\d{2})-(\d{2})/))return{d:m[0],l:m[0].length};
+  if((m=txt.match(/^(\d{1,2})\s+([a-zA-Zà]{3,10})\.?(?:\s+(\d{4}))?(?![\w])/))&&MESI[m[2].slice(0,3).toLowerCase()])return{d:`${m[3]||anno}-${z(MESI[m[2].slice(0,3).toLowerCase()])}-${z(m[1])}`,l:m[0].length};
+  if(m=txt.match(/^(\d{1,2})[\/.](\d{1,2})(?![\/.\d])/))return{d:`${anno}-${z(m[2])}-${z(m[1])}`,l:m[0].length};
+  return null}
+async function pdfToCsv(buf,acc){
+  const lib=await loadPdfjs();
+  const doc=await lib.getDocument({data:new Uint8Array(buf),isEvalSupported:false}).promise;
+  const righe=[];let tutto='';
+  for(let p=1;p<=doc.numPages;p++){
+    const tc=await(await doc.getPage(p)).getTextContent();
+    const it=tc.items.filter(i=>i.str&&i.str.trim()).map(i=>({s:i.str.trim(),x:i.transform[4],y:i.transform[5],w:i.width||0}))
+      .sort((a,b)=>b.y-a.y||a.x-b.x);
+    let r=null;
+    for(const i of it){if(r&&Math.abs(r.y-i.y)<=3)r.it.push(i);else{r={y:i.y,it:[i]};righe.push(r)}}
+    tutto+=it.map(i=>i.s).join(' ')+' '}
+  for(const r of righe){r.it.sort((a,b)=>a.x-b.x);r.txt=r.it.map(i=>i.s).join(' ')}
+  // l'anno, per le date che non ce l'hanno: il più frequente nel documento
+  const anni={};for(const m of tutto.matchAll(/\b(20[2-4]\d)\b/g))anni[m[1]]=(anni[m[1]]||0)+1;
+  const anno=Object.entries(anni).sort((a,b)=>b[1]-a[1])[0]?.[0]||String(new Date().getFullYear());
+  // colonne entrate/uscite, se il PDF le ha in testa alla tabella
+  // (si preferisce la riga d'intestazione della tabella, quella con "Data":
+  // il riquadro di riepilogo in cima ha anche lui "uscite" ed "entrate")
+  let colOut=null,colIn=null,saldo=false,conData=false;
+  for(const r of righe){
+    const o=r.it.find(i=>/uscit|addebit|money out|^dare$|pagamenti|debit/i.test(i.s)),n=r.it.find(i=>/entrat|accredit|money in|^avere$|credit/i.test(i.s));
+    const d=r.it.some(i=>/^(data|date)\b/i.test(i.s));
+    if(o&&n&&(colOut==null||d&&!conData)){colOut=o.x+o.w;colIn=n.x+n.w;conData=d}
+    if(r.it.some(i=>/^saldo$|^balance$/i.test(i.s)))saldo=true}
+  const fuori=/saldo (iniziale|finale|precedente|disponibile|contabile|al\b)|^saldo$|totale|riepilogo|opening balance|closing balance|estratto conto|^pagina|^page/i;
+  const out=[];
+  for(const r of righe){
+    let txt=r.txt,dt=pdfDate(txt,anno);if(!dt)continue;
+    txt=txt.slice(dt.l).trim();
+    const dt2=pdfDate(txt,anno);if(dt2)txt=txt.slice(dt2.l).trim(); // Amex: data operazione + data contabile
+    const imp=r.it.filter(i=>AMT.test(i.s));if(!imp.length)continue;
+    const a=saldo&&imp.length>=2?imp[imp.length-2]:imp[imp.length-1];
+    let desc=txt;for(const i of imp)desc=desc.replace(i.s,'');desc=desc.replace(/\s+(€|EUR)(\s|$)/g,' ').replace(/\s{2,}/g,' ').trim();
+    if(!desc||fuori.test(desc))continue;
+    let v=pNum(a.s.replace(/(CR|DR)$/i,'').replace('−','-'));if(isNaN(v)||v===0)continue;
+    const segno=/^[-−]|-$/.test(a.s)||/CR$/i.test(a.s)?-1:/^\+/.test(a.s)||/DR$/i.test(a.s)?1:0;
+    v=Math.abs(v);
+    if(acc==='amex')v=segno<0?-v:v; // Amex: addebiti positivi, poi l'import li inverte
+    else if(segno)v=segno*v;
+    else if(colOut!=null){const x=a.x+a.w;v=Math.abs(x-colIn)<Math.abs(x-colOut)?v:-v}
+    else v=-v;
+    out.push(`${dt.d};"${desc.replace(/"/g,'""')}";${v.toFixed(2)}`)}
+  return{csv:'data;descrizione;importo\n'+out.join('\n'),n:out.length,pagine:doc.numPages,colonne:colOut!=null}}
 
 /* ---------- impostazioni ---------- */
 function fillSettings(){

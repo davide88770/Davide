@@ -1,7 +1,7 @@
-/* Soldi di Davide — service worker, v3 · 2d28ee5047 */
-const CACHE = 'soldi-2d28ee5047';
+/* Soldi di Davide — service worker, v4 · b8def6a32d */
+const CACHE = 'soldi-b8def6a32d';
 const PREFISSO = 'soldi-';
-const GUSCIO = ['./', './config.js', './vendor/chart.umd.js', './vendor/supabase.js', './vendor/manrope-latin-wght-normal.woff2', './vendor/manrope-latin-ext-wght-normal.woff2', './icone/icona-32.png', './icone/icona-192.png', './icone/icona-512.png', './icone/apple-touch-icon.png', './manifest.webmanifest'];
+const GUSCIO = ['./', './config.js', './vendor/chart.umd.js', './vendor/supabase.js', './vendor/pdf.min.js', './vendor/pdf.worker.min.js', './vendor/manrope-latin-wght-normal.woff2', './vendor/manrope-latin-ext-wght-normal.woff2', './icone/icona-32.png', './icone/icona-192.png', './icone/icona-512.png', './icone/apple-touch-icon.png', './manifest.webmanifest'];
 
 /* Lo stesso dominio ospita altre app (Ghisa & Grammi alla radice, i road book
    nelle sottocartelle). Questo service worker risponde solo dentro /soldi/:
