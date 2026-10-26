@@ -120,9 +120,9 @@ l'esercizio aveva quel giorno.
 | | 4 sedute Top | 4 sedute | 3 PPL | 3 full body |
 |---|---|---|---|---|
 | Giorni | Lun · Mar · Gio · Ven | Lun · Mar · Gio · Ven | Lun · Mer · Ven | Lun · Mer · Ven |
-| Serie dirette | 77 | 61 | 64 | 53 |
-| Minuti a settimana | 251 | 227 | 216 | **155** |
-| Seduta più lunga | 72 min | 65 min | 76 min | **53 min** |
+| Serie dirette | 77 | 61 | 64 | 56 |
+| Minuti a settimana | 251 | 227 | 216 | **164** |
+| Seduta più lunga | 72 min | 65 min | 76 min | **57 min** |
 | Frequenza per gruppo | 2× | 2× | 1× | **2-3×** |
 | Serie per esercizio | 2-3 | 2, salvo eccezioni | 2-3 | 2-3 |
 | A cosa serve | spingere | tirare ogni serie a fondo | il massimo in tre giorni | **metodo Rabasco: poche serie, tutte vicine al cedimento** |
@@ -281,20 +281,50 @@ la definizione toccabile.
 
 | | Lunedì · Full A | Mercoledì · Full B | Venerdì · Full C |
 |---|---|---|---|
-| | 7 es · 18 serie · 53 min | 7 es · 18 serie · 53 min | 7 es · 17 serie · 49 min |
+| | 7 es · 19 serie · 55 min | 7 es · 19 serie · 57 min | 7 es · 18 serie · 52 min |
 | Pesante | Hack squat 3×5-8 RIR 1 | Romanian deadlift manubri 3×8-10 | Pressa piede alto 3×8-12 RIR 1 |
 | Spinta | Panca inclinata manubri 3×8-12 | Panca piana bilanciere 3×5-8 RIR 1 | Lento avanti manubri 3×6-10 RIR 1 |
 | Tirata | Trazioni zavorate 3×6-10 RIR 1 | Rematore busto appoggiato 3×8-12 | Lat unilaterale 3×10-12 |
-| Gambe | Leg curl su panca 2×10-12 | Sissy squat 2×10-15 | Leg curl in piedi 2×12-15 |
-| **Jump set** | Laterali cavi 2 → Curl Bayesian 2 → Push-down 3 | Overhead 3 → Curl inclinata 2 → D'Annunzio 2 | Laterali sdraiato 2 → Curl martello 2 → Calf 2 |
+| Quarto | Leg curl su panca 3×10-12 | **Pulley basso panca inclinata 3×10-15** | **Croci manubri inclinata 2×10-12** |
+| **Jump set** | Laterali cavi 2 → Curl Bayesian 2 → Push-down 3 | Overhead 3 → Curl inclinata 2 → D'Annunzio 2 | Laterali sdraiato 2 → Curl martello 2 → Calf 3 |
 
-Volume: petto 6 · dorso 9 · trapezi 0 · spalle 7 · bicipiti 6 · tricipiti 6 ·
-accosciata 8 · femorali 7 · polpacci 2 · addome 2 = **53**.
+Volume: petto 8 · dorso 9 · trapezi 3 · spalle 7 · bicipiti 6 · tricipiti 6 ·
+accosciata 6 · femorali 6 · polpacci 3 · addome 2 = **56**.
 
-Sotto il riferimento su petto, braccia, femorali, polpacci e addome: è **la
-scelta di Rabasco** — meno serie, ognuna vicina al cedimento — non una svista.
-Il **trapezio a zero dirette** lo prende il rematore a 45°, e nella tabella dei
-volumi compare come tale: il numero dice la verità, la riga di testo dice perché.
+#### I due scambi della v55
+
+**1. Sissy squat → pulley basso su panca inclinata a gomiti alti** (mercoledì).
+Una seconda tirata orizzontale, per lo **spessore**: col gomito alto si chiudono
+le scapole e lavorano trapezio medio e romboidi, che è quello che si vede di
+schiena. Il rematore a 45° che lo precede tira invece il gran dorsale col gomito
+lungo il fianco — due movimenti diversi, non lo stesso due volte. Il **trapezio
+passa da 0 a 3** serie dirette: era l'unico gruppo a zero. Il mercoledì diventa
+l'unico giorno con **due rematori**, deroga voluta: in una scheda da tre giorni
+la schiena non ha un'altra occasione.
+
+**2. Leg curl in piedi → croci manubri su panca inclinata** (venerdì). Il
+**petto passa a 8** serie e a **frequenza 3×**, che è esattamente il punto 1 di
+Rabasco — le prime serie su un muscolo sono quelle che rendono, meglio tre volte
+due che una volta sei. Ed è l'unica dose di petto che non sia una spinta: niente
+tricipiti, niente deltoide anteriore, solo il petto caricato dove è allungato.
+
+**Recuperato dove si poteva** senza toccare gli scambi: leg curl seduto da 2 a 3
+serie — è il miglior esercizio di femorali disponibile, ad anca flessa (Maeo
+2021) — e calf da 2 a 3, che porta i polpacci sul riferimento. Serie per seduta
+19 · 19 · 18, dentro la regola di Rabasco («tutte quelle che riesci a fare
+bene», mai oltre 20).
+
+**Il prezzo, detto chiaro:** accosciata da 8 a **6** e femorali da 7 a **6**. Il
+sissy era l'unico esercizio che caricasse il **retto femorale ad anca estesa**, e
+il leg curl in piedi l'unico ad **anca estesa** sul femorale. Tolti quelli, con
+hack squat e pressa già al tetto di 3 serie per esercizio, 6 è il massimo
+raggiungibile senza aggiungere un ottavo esercizio. Se si rivuole l'accosciata a
+8, il posto più economico è rimettere il **sissy nel venerdì** come ottavo
+esercizio: sei minuti.
+
+**Quattro gruppi esattamente sul riferimento** — petto, trapezi, spalle,
+polpacci — contro i due della v54, e il dorso sopra. Braccia, gambe e addome
+restano sotto per scelta.
 
 Dalla v54 la colonna del full body **si colora** come le altre nel confronto dei
 volumi. Prima era grigia di proposito, perché una scheda di mantenimento non
@@ -1328,6 +1358,22 @@ npm run prova:pwa                                # giro di aggiornamento dell'ap
 
 ## Storico
 
+- **v55** — **due scambi nella «3 full body», chiesti da Davide.** Al posto del
+  **sissy squat** il mercoledì entra il **pulley basso su panca inclinata a
+  gomiti alti**: una seconda tirata orizzontale per lo *spessore*, che porta il
+  **trapezio da 0 a 3** serie dirette — era l'unico gruppo a zero — e fa del
+  mercoledì l'unico giorno con due rematori, deroga voluta perché in tre giorni
+  la schiena non ha un'altra occasione. Al posto del **leg curl in piedi** il
+  venerdì entrano le **croci manubri su panca inclinata**: il **petto va a 8** e
+  a **frequenza 3×**, ed è l'unica dose che non sia una spinta. Rivisti serie e
+  recuperi su tutta la scheda secondo Rabasco: leg curl seduto 2 → 3 (il miglior
+  esercizio di femorali disponibile, ad anca flessa) e calf 2 → 3, che porta i
+  polpacci sul riferimento. 53 → **56 serie**, sedute 55/57/52, 19 · 19 · 18
+  serie — dentro il «mai oltre 20». **Prezzo dichiarato:** accosciata 8 → 6 e
+  femorali 7 → 6, perché i due esercizi usciti erano gli unici ad anca estesa
+  sui rispettivi muscoli e hack squat e pressa sono già al tetto di 3 serie. Il
+  conteggio delle serie per seduta nel testo dell'app ora è **calcolato** e non
+  scritto a mano, così non deriva dalla scheda.
 - **v54** — **la «3 full body» riscritta sul metodo Rabasco**, dai cinque punti
   del suo video sui tre allenamenti a settimana. Non è più la scheda jolly da
   mantenimento ma una programmazione vera: multifrequenza (ogni muscolo 2-3×),
