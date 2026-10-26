@@ -120,12 +120,12 @@ l'esercizio aveva quel giorno.
 | | 4 sedute Top | 4 sedute | 3 PPL | 3 full body |
 |---|---|---|---|---|
 | Giorni | Lun · Mar · Gio · Ven | Lun · Mar · Gio · Ven | Lun · Mer · Ven | Lun · Mer · Ven |
-| Serie dirette | 77 | 61 | **64** | 50 |
-| Minuti a settimana | 251 | 227 | **216** | 160 |
-| Seduta più lunga | 72 min | 65 min | **76 min** | 54 min |
-| Frequenza per gruppo | 2× | 2× | **1×** | 3× |
+| Serie dirette | 77 | 61 | 64 | 53 |
+| Minuti a settimana | 251 | 227 | 216 | **155** |
+| Seduta più lunga | 72 min | 65 min | 76 min | **53 min** |
+| Frequenza per gruppo | 2× | 2× | 1× | **2-3×** |
 | Serie per esercizio | 2-3 | 2, salvo eccezioni | 2-3 | 2-3 |
-| A cosa serve | spingere | tirare ogni serie a fondo | **il massimo in tre giorni** | tenere |
+| A cosa serve | spingere | tirare ogni serie a fondo | il massimo in tre giorni | **metodo Rabasco: poche serie, tutte vicine al cedimento** |
 
 ### La "3 PPL" — il massimo che tre giorni permettono
 
@@ -243,47 +243,69 @@ che è il contrario di quello che serve.
 Il meccanismo è generico (campo `alt` sull'esercizio): si può estendere alle
 altre tre programmazioni, dove per ora le alternative stanno scritte nelle note.
 
-### La "3 full body" — la scheda jolly
+### La "3 full body" — metodo Rabasco (dalla v54)
 
-Non è una versione ridotta delle altre: ha **un obiettivo diverso**. Serve a
-tenere quello che hai costruito quando i quattro giorni non ci sono — settimane
-storte, periodi di lavoro pesante, viaggi. 50 serie, il 68% del volume della Top
-nel 70% del tempo, e nessuna seduta sopra i 54 minuti.
+Riscritta il 26 ottobre 2026 sui cinque punti del video di **Noha Rabasco**
+*«Scolpire il tuo fisico con solo 3 allenamenti»*. **Non è più la scheda jolly da
+mantenimento**: è una programmazione vera da tre giorni, con tutto il corpo in
+ogni seduta.
 
-È **sopra la soglia di mantenimento con margine**: la letteratura sul dosaggio
-minimo mostra che circa un terzo del volume abituale conserva la massa per
-settimane, purché carico e vicinanza al cedimento non scendano. Per questo qui
-si taglia il volume e mai l'intensità — i compound restano pesanti e i range non
-si allargano.
+1. **Split** — ogni muscolo almeno **due volte a settimana**, tutto il corpo in
+   ogni seduta. Le prime serie su un muscolo sono quelle che rendono: invece di
+   nove in un giorno, tre in tre giorni.
+2. **Serie** — da **0 a 3 dirette** per muscolo per seduta, mai una sola (dopo
+   riscaldamento e set-up se ne fanno almeno due). Zero dirette solo dove il
+   muscolo lavora già di riflesso: deltoide anteriore nelle spinte, trapezio e
+   posteriore nei rematori. Per seduta **17-18 serie**.
+3. **Intensità** — ogni serie a **1-2 ripetizioni dal cedimento**. Compound a
+   RIR 1, il resto a cedimento tecnico, recuperi pieni sulle serie allenanti.
+4. **Esercizi** — niente estremi: né stacco da terra pesante che svuota la seduta
+   (al suo posto lo **stacco a gambe semitese coi manubri**), né solo isolamento.
+   Il **rematore col petto appoggiato a gomiti 45°** prende dorsale, trapezio e
+   deltoide posteriore in un esercizio — ed è il motivo per cui qui non ci sono
+   scrollate né alzate posteriori. Coperte le parti che i multiarticolari non
+   prendono: **retto femorale** (sissy squat) e **capo lungo del tricipite**
+   (overhead). Stimolo gratis dove c'è: **leg curl col piede a martello** sui
+   polpacci, **pressa a piede alto** sul gluteo.
+5. **Tempo** — manubri dove si può, **avvicinamento rapido** (2-3 serie a carico
+   crescente senza recupero), un **sostitutivo fisso** per ogni esercizio nella
+   riga «In alternativa oggi», e un **jump set a tre** in coda a ogni seduta.
 
-**Struttura**, presa dal full body 3× pubblicato di Nippard: ogni seduta apre con
-un compound pesante e il **pattern ruota** — cerniera lunedì, accosciata
-mercoledì, pressa venerdì — poi una spinta, poi una tirata, poi isolamento, coi
-range che salgono dentro la seduta.
-
-**Gambe a 3×, parte alta a 2×.** Non è una svista: a 6 serie settimanali di
-petto, spalmarle su tre giorni vuol dire 2 serie a seduta, cioè pagare tre
-riscaldamenti e tre set-up per lo stesso volume. A questo dosaggio il 2× costa
-meno tempo a parità di stimolo.
-
-**Ogni esercizio che dipende da una macchina ha l'alternativa da viaggio scritta
-nella nota**: in vacanza hack squat, pressa, lat machine e cavi non ci sono, e la
-scheda deve restare eseguibile lo stesso.
+**Il jump set** è la novità tecnica: tre esercizi di muscoli diversi alternati
+con circa **1 minuto** fra uno e l'altro — A, 1 min, B, 1 min, C, 1 min, poi da
+capo. Mentre un muscolo lavora gli altri recuperano, quindi l'intensità resta
+alta e il tempo si dimezza: sei serie in circa 8 minuti invece di 15. Solo su
+**muscoli piccoli** — braccia, laterali, polpacci, addome — mai con stacchi,
+pressa o hip thrust. L'app lo rende come un blocco a sé, con la sua etichetta e
+la definizione toccabile.
 
 | | Lunedì · Full A | Mercoledì · Full B | Venerdì · Full C |
 |---|---|---|---|
-| | 17 serie · 54 min | 15 serie · 54 min | 18 serie · 52 min |
-| Pesante | Stacco romeno 3×5-7 | Hack squat 3×6-8 | Pressa 3×8-12 |
-| Spinta | Military manubri 3×6-8 | Panca piana 3×6-8 | Panca inclinata 3×8-12 |
-| Tirata | Lat unilaterale 3×8-12 | Rematore busto app. 3×8-12 | Rematore gomiti alti 3×10-15 |
-| Gambe | Sissy squat 2×10-15 | Leg curl manubri 2×12-15 | Nordico 2×5-8 |
-| Resto | Curl + push-down (superset) 2+2 · Crunch cavo 2 | Alzate laterali 2 · D'Annunzio 2 | Curl hammer + overhead (superset) 2+2 · Calf 3 |
+| | 7 es · 18 serie · 53 min | 7 es · 18 serie · 53 min | 7 es · 17 serie · 49 min |
+| Pesante | Hack squat 3×5-8 RIR 1 | Romanian deadlift manubri 3×8-10 | Pressa piede alto 3×8-12 RIR 1 |
+| Spinta | Panca inclinata manubri 3×8-12 | Panca piana bilanciere 3×5-8 RIR 1 | Lento avanti manubri 3×6-10 RIR 1 |
+| Tirata | Trazioni zavorate 3×6-10 RIR 1 | Rematore busto appoggiato 3×8-12 | Lat unilaterale 3×10-12 |
+| Gambe | Leg curl su panca 2×10-12 | Sissy squat 2×10-15 | Leg curl in piedi 2×12-15 |
+| **Jump set** | Laterali cavi 2 → Curl Bayesian 2 → Push-down 3 | Overhead 3 → Curl inclinata 2 → D'Annunzio 2 | Laterali sdraiato 2 → Curl martello 2 → Calf 2 |
 
-Volume: petto 6 · dorso 6 · trapezi 3 · spalle 5 · bicipiti 4 · tricipiti 4 ·
-accosciata 8 · femorali 7 · polpacci 3 · addome 4 = **50**. Le braccia sono a 4
-dirette ma **8,5 frazionali**, e sono comunque il doppio delle 3 serie che dà
-l'originale di Nippard: il superset di antagonisti è quello che le tiene su
-senza allungare la seduta.
+Volume: petto 6 · dorso 9 · trapezi 0 · spalle 7 · bicipiti 6 · tricipiti 6 ·
+accosciata 8 · femorali 7 · polpacci 2 · addome 2 = **53**.
+
+Sotto il riferimento su petto, braccia, femorali, polpacci e addome: è **la
+scelta di Rabasco** — meno serie, ognuna vicina al cedimento — non una svista.
+Il **trapezio a zero dirette** lo prende il rematore a 45°, e nella tabella dei
+volumi compare come tale: il numero dice la verità, la riga di testo dice perché.
+
+Dalla v54 la colonna del full body **si colora** come le altre nel confronto dei
+volumi. Prima era grigia di proposito, perché una scheda di mantenimento non
+punta al riferimento e segnarla in rosso avrebbe detto una cosa falsa. Adesso è
+una programmazione vera, e il confronto col riferimento dice qualcosa.
+
+**Un'alternativa nuova, dichiarata:** `Panca piana manubri` è l'unico sostitutivo
+dell'app che non esiste già in un'altra scheda, quindi il suo storico dei carichi
+parte da zero. È corretto — il carico per mano è un altro numero — ed è l'unica
+eccezione alla regola, scritta nell'elenco `ALT_NUOVE` di `prova-dati.mjs` così
+che ogni altra orfana involontaria faccia fallire la prova.
 
 ## Le due schede da quattro sedute
 
@@ -1306,6 +1328,25 @@ npm run prova:pwa                                # giro di aggiornamento dell'ap
 
 ## Storico
 
+- **v54** — **la «3 full body» riscritta sul metodo Rabasco**, dai cinque punti
+  del suo video sui tre allenamenti a settimana. Non è più la scheda jolly da
+  mantenimento ma una programmazione vera: multifrequenza (ogni muscolo 2-3×),
+  da **0 a 3 serie dirette** per muscolo per seduta — zero solo dove il muscolo
+  lavora già di riflesso, come il trapezio nel rematore a gomiti 45° — ogni
+  serie a 1-2 ripetizioni dal cedimento, stacco a gambe semitese coi manubri al
+  posto dello stacco da terra, e un **jump set a tre** in coda a ogni seduta
+  (nuova tecnica `js`, con blocco e definizione propri). 50 → **53 serie**,
+  160 → 155 minuti, sedute 53/53/49. La colonna del full body nel confronto dei
+  volumi ora **si colora** come le altre, perché non è più una scheda di
+  mantenimento. Aggiunta la fotografia `NOMI_STORICI.v53` per le tre sedute
+  `fb_*`, così i log del vecchio full body tengono i loro nomi.
+  *Due correzioni mie sopra il file ricevuto:* la **striscia dei dischi per
+  lato** si mostrava anche su «Rematore manubri», «Military press manubri» e
+  sulla nuova «Panca piana manubri» — i nomi contengono le parole chiave del
+  bilanciere ma si caricano un manubrio per mano, e il disegno diceva una cosa
+  senza senso; e il controllo sulle **alternative orfane** in `prova-dati.mjs`
+  guardava solo la 3 PPL, quindi non avrebbe visto `Panca piana manubri`: ora
+  gira su tutte le sedute, con le eccezioni volute dichiarate in `ALT_NUOVE`.
 - **v53** — **i giorni non sono più fissi.** Un selettore in Piano: tocchi i
   giorni in cui ti alleni e le sedute ci cadono nell'ordine della scheda, con i
   giorni del piano come default e una scelta indipendente per ogni
