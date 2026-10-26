@@ -316,14 +316,25 @@ if (riporta.repDopo) {
    storico dei carichi si porta dietro tutto invece di ripartire da zero. */
 const altTest = await page.evaluate(() => {
   const iso = t => new Date(t).toISOString().slice(0, 10);
-  const esistenti = new Set();
+  /* Un'alternativa deve puntare a un nome che esiste GIA' in un'altra scheda:
+     e' il punto della funzione, lo storico dei carichi si porta dietro tutto.
+     Il controllo gira su TUTTE le sedute, non solo sulla PPL. Le eccezioni
+     volute si dichiarano qui sotto, una riga per una, col motivo: cosi' una
+     nuova orfana involontaria fa comunque fallire la prova. */
+  const ALT_NUOVE = [
+    // v54: la panca piana coi manubri non esiste in nessun'altra scheda, ed e'
+    // il sostitutivo giusto del bilanciere. Lo storico parte da zero: corretto,
+    // perche' il carico per mano e' un altro numero.
+    'Panca piana manubri'
+  ];
+  const esistenti = new Set(ALT_NUOVE);
   for (const s of Object.values(SESS)) for (const x of s.ex) esistenti.add(x.n);
   const orfane = [];
-  for (const id of ['p_push', 'p_pull', 'p_legs'])
-    for (const x of SESS[id].ex)
+  for (const [id, s] of Object.entries(SESS))
+    for (const x of s.ex)
       for (const a of (x.alt || [])) if (!esistenti.has(a)) orfane.push(id + ' · ' + x.n + ' → ' + a);
-  const quante = ['p_push', 'p_pull', 'p_legs']
-    .reduce((n, id) => n + SESS[id].ex.reduce((m, x) => m + (x.alt || []).length, 0), 0);
+  const quante = Object.values(SESS)
+    .reduce((n, s) => n + s.ex.reduce((m, x) => m + (x.alt || []).length, 0), 0);
   /* Si passa alla PPL e si va su un lunedi' LONTANO: i lunedi' vicini li usa
      gia' la prova dello spostamento, e un giorno con "spostata" non mostra
      nessuna seduta — la prova fallirebbe per il motivo sbagliato. */
@@ -437,7 +448,7 @@ console.log('  sposta    giorno di partenza e di arrivo coerenti dopo lo spostam
 console.log(`  storico   ${ATTESI.length} giornate vecchie etichettate com'erano allora, non come sono adesso`);
 console.log('  togli     esercizio via e rimesso senza perdere le serie · serie sotto il piano, mai sotto una');
 console.log('  copia     la 1ª riempie solo le serie vuote · la spunta riporta il carico, non le ripetizioni');
-console.log(`  altern.   ${altTest.quante} alternative nella 3 PPL, tutte con un nome che esiste già · un tocco le applica`);
+console.log(`  altern.   ${altTest.quante} alternative in tutte le schede, nessuna orfana · un tocco le applica`);
 console.log('  giorni    le sedute seguono i giorni scelti · con tre resta fuori l\'ultima · una giornata registrata non cambia seduta');
 if (errori.length) {
   console.error(`\n${errori.length} errori:`);
