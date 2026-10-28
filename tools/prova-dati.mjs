@@ -364,6 +364,37 @@ if (dopoAlt.mostrato !== altTest.atteso) {
   console.error(`  ERRORE  la card mostra ancora "${dopoAlt.mostrato}"`); process.exit(1); }
 await page.evaluate(() => { S.ui.prog = 'top'; salva(); });
 
+/* MOBILITA' E STRETCHING: NESSUNA SEDUTA PUO' AVERLI VUOTI.
+   E' il bug che e' passato due volte. La prima: cinque sedute su nove non
+   comparivano in MOB_DI e il pannello della mobilita' restava vuoto. La
+   seconda, nella v55: le tre sedute full body avevano una chiave sola fra
+   "legs" e "upper", quindi mezza preparazione — e introducendo la chiave
+   "full" lo STRETCHING sarebbe rimasto vuoto, perche' nessuna voce della
+   tabella porta quella chiave. Qui si controllano tutte le sedute di tutte le
+   programmazioni, mobilita' e stretching, senza renderizzare niente. */
+const mobTest = await page.evaluate(() => {
+  /* Le mappe sono indicizzate per GIORNO DELLA SETTIMANA, quindi uno spread
+     unico le sovrascriveva a vicenda e il controllo girava su sei sedute invece
+     di diciotto: si raccolgono i valori di ogni mappa separatamente. */
+  const ids = new Set([GIORNI_TOP, GIORNI_RIVISTI_4, GIORNI_PPL, GIORNI_FULL, GIORNI_RIVISTI_PPL3]
+    .flatMap(m => Object.values(m)));
+  const senzaMob = [], senzaStretch = [];
+  for (const id of ids) {
+    const mk = MOB_DI[id];
+    if (!mk || !(MOBILITA[mk] || []).length) { senzaMob.push(id + (mk ? ' (' + mk + ')' : ' (nessuna chiave)')); continue; }
+    /* Si chiama LA funzione dell'app, non una copia della condizione: la prima
+       versione di questo controllo riscriveva il filtro qui dentro e rompendo
+       l'app passava comunque. */
+    const n = stretchingDi(mk).length;
+    if (!n) senzaStretch.push(id + ' (' + mk + ')');
+  }
+  return { quante: ids.size, senzaMob, senzaStretch };
+});
+if (mobTest.senzaMob.length) {
+  console.error('  ERRORE  sedute senza mobilità: ' + mobTest.senzaMob.join(', ')); process.exit(1); }
+if (mobTest.senzaStretch.length) {
+  console.error('  ERRORE  sedute col pannello stretching vuoto: ' + mobTest.senzaStretch.join(', ')); process.exit(1); }
+
 /* I GIORNI NON SONO FISSI.
    Tre cose da verificare, e la terza e' quella che puo' fare danno:
      1. scegliendo i giorni, le sedute ci cadono nell'ordine della scheda;
@@ -449,6 +480,7 @@ console.log(`  storico   ${ATTESI.length} giornate vecchie etichettate com'erano
 console.log('  togli     esercizio via e rimesso senza perdere le serie · serie sotto il piano, mai sotto una');
 console.log('  copia     la 1ª riempie solo le serie vuote · la spunta riporta il carico, non le ripetizioni');
 console.log(`  altern.   ${altTest.quante} alternative in tutte le schede, nessuna orfana · un tocco le applica`);
+console.log(`  mobilità  ${mobTest.quante} sedute, tutte con mobilità e stretching non vuoti`);
 console.log('  giorni    le sedute seguono i giorni scelti · con tre resta fuori l\'ultima · una giornata registrata non cambia seduta');
 if (errori.length) {
   console.error(`\n${errori.length} errori:`);
