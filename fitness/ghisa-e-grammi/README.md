@@ -120,8 +120,8 @@ l'esercizio aveva quel giorno.
 | | 4 sedute Top | 4 sedute | 3 PPL | 3 full body |
 |---|---|---|---|---|
 | Giorni | Lun · Mar · Gio · Ven | Lun · Mar · Gio · Ven | Lun · Mer · Ven | Lun · Mer · Ven |
-| Serie dirette | 77 | 61 | 64 | 56 |
-| Minuti a settimana | 251 | 227 | 216 | **164** |
+| Serie dirette | 77 | 61 | 64 | 58 |
+| Minuti a settimana | 251 | 227 | 216 | **169** |
 | Seduta più lunga | 72 min | 65 min | 76 min | **57 min** |
 | Frequenza per gruppo | 2× | 2× | 1× | **2-3×** |
 | Serie per esercizio | 2-3 | 2, salvo eccezioni | 2-3 | 2-3 |
@@ -281,15 +281,16 @@ la definizione toccabile.
 
 | | Lunedì · Full A | Mercoledì · Full B | Venerdì · Full C |
 |---|---|---|---|
-| | 7 es · 19 serie · 55 min | 7 es · 19 serie · 57 min | 7 es · 18 serie · 52 min |
+| | 7 es · 19 serie · 55 min | 7 es · 19 serie · 57 min | 8 es · 20 serie · 57 min |
 | Pesante | Hack squat 3×5-8 RIR 1 | Romanian deadlift manubri 3×8-10 | Pressa piede alto 3×8-12 RIR 1 |
 | Spinta | Panca inclinata manubri 3×8-12 | Panca piana bilanciere 3×5-8 RIR 1 | Lento avanti manubri 3×6-10 RIR 1 |
 | Tirata | Trazioni zavorate 3×6-10 RIR 1 | Rematore busto appoggiato 3×8-12 | Lat unilaterale 3×10-12 |
 | Quarto | Leg curl su panca 3×10-12 | **Pulley basso panca inclinata 3×10-15** | **Croci manubri inclinata 2×10-12** |
-| **Jump set** | Laterali cavi 2 → Curl Bayesian 2 → Push-down 3 | Overhead 3 → Curl inclinata 2 → D'Annunzio 2 | Laterali sdraiato 2 → Curl martello 2 → Calf 3 |
+| **Jump set** | Laterali cavi 2 → Curl Bayesian 2 → Push-down 3 | Overhead 3 → Curl inclinata 2 → D'Annunzio 2 | Laterali sdraiato 2 → Curl martello 2 → **Overhead corda 2** |
+| In chiusura | — | — | **Calf 3×8-12, da solo, 90 s** |
 
-Volume: petto 8 · dorso 9 · trapezi 3 · spalle 7 · bicipiti 6 · tricipiti 6 ·
-accosciata 6 · femorali 6 · polpacci 3 · addome 2 = **56**.
+Volume: petto 8 · dorso 9 · trapezi 3 · spalle 7 · bicipiti 6 · tricipiti 8 ·
+accosciata 6 · femorali 6 · polpacci 3 · addome 2 = **58**.
 
 #### I due scambi della v55
 
@@ -322,9 +323,30 @@ raggiungibile senza aggiungere un ottavo esercizio. Se si rivuole l'accosciata a
 8, il posto più economico è rimettere il **sissy nel venerdì** come ottavo
 esercizio: sei minuti.
 
-**Quattro gruppi esattamente sul riferimento** — petto, trapezi, spalle,
-polpacci — contro i due della v54, e il dorso sopra. Braccia, gambe e addome
-restano sotto per scelta.
+**Cinque gruppi esattamente sul riferimento** — petto, trapezi, spalle,
+tricipiti, polpacci — contro i due della v54, e il dorso sopra. Bicipiti, gambe
+e addome restano sotto per scelta.
+
+#### Le tre correzioni della v56 (venerdì)
+
+**1. Mancava il tricipite.** Fino alla v55 il venerdì non aveva nessun tricipite
+diretto e il muscolo stava a 6 serie su due giornate. Ora c'è l'**overhead alla
+corda** nel jump set, 2 serie: il tricipite arriva a **8** — il riferimento — e a
+frequenza 3×. È la seconda dose in allungamento della settimana, e il lento
+avanti della stessa seduta lo ha già scaldato.
+
+**2. Il calf esce dal jump set** e va in fondo da solo, 3×8-12 con 90 secondi.
+Dentro il jump set le sue serie arrivavano sempre terze e stanche, e il polpaccio
+è l'unico muscolo della seduta senza un antagonista con cui alternarsi. Il jump
+set resta a tre — laterali → curl martello → overhead — con tre muscoli diversi
+che non si aspettano a vicenda.
+
+**3. Mobilità e stretching delle full body.** Le tre sedute avevano una chiave
+sola fra `legs` e `upper`, quindi mezza preparazione: il venerdì apriva con la
+pressa e poi faceva un **lento avanti senza nessuna mobilità di spalla**. Ora c'è
+la chiave `full`, con le due regioni insieme, e lo stretching mostra tutte le
+voci. L'avvicinamento progressivo al primo esercizio non è nella lista perché sta
+nel *cue* dell'esercizio stesso — «avvicinamento rapido», punto 5 di Rabasco.
 
 Dalla v54 la colonna del full body **si colora** come le altre nel confronto dei
 volumi. Prima era grigia di proposito, perché una scheda di mantenimento non
@@ -1337,6 +1359,12 @@ npm run prova:pwa                                # giro di aggiornamento dell'ap
   JS. È la prova che mancava: `verify` gira su un profilo vuoto, e con il
   profilo vuoto metà dell'app non viene mai eseguita — è così che due bug sono
   passati per due versioni.
+- **Mobilità e stretching non vuoti su tutte le 18 sedute** (`npm run prova`).
+  È il bug passato tre volte: prima cinque sedute su nove mancavano da `MOB_DI`,
+  poi le tre full body avevano mezza preparazione, poi la prova stessa ha trovato
+  le quattro sedute del cut senza nessuna chiave. Il controllo chiama
+  `stretchingDi()` dell'app e non una copia della condizione — la prima versione
+  riscriveva il filtro al suo interno e, rompendo l'app, passava comunque.
 - **I giorni scelti a mano** (`npm run prova`): le sedute cadono nell'ordine
   della scheda sui giorni scelti; con tre giorni resta fuori la Lower B e non
   un'altra; una giornata già registrata **non** cambia seduta quando sposti i
@@ -1358,6 +1386,25 @@ npm run prova:pwa                                # giro di aggiornamento dell'ap
 
 ## Storico
 
+- **v56** — **tre correzioni al venerdì della full body.** Davide ha notato che
+  **mancava il tricipite**: ora c'è l'overhead alla corda nel jump set, 2 serie,
+  e il muscolo passa da 6 a **8** — il riferimento — con frequenza 3×. Il
+  **calf** esce dal jump set e va **in fondo da solo** con 90 secondi: dentro il
+  jump set le sue serie arrivavano sempre terze e stanche, e il polpaccio è
+  l'unico muscolo della seduta senza un antagonista con cui alternarsi. 56 →
+  **58 serie**, Full C da 7 a 8 esercizi e da 52 a 57 minuti.
+  *Controllando il resto della seduta ne sono usciti altri due.* Le tre sedute
+  full body avevano **mezza mobilità**: una chiave sola fra `legs` e `upper`,
+  quindi il venerdì apriva con la pressa e poi faceva un lento avanti senza
+  nessuna preparazione di spalla. Nuova chiave `full` con le due regioni
+  insieme. E la prova aggiunta per questo ha trovato il terzo: le **quattro
+  sedute del cut** (`rc_*`, fasi 1-2) non erano in `MOB_DI` affatto — erano
+  mappate solo le `cut_*` archiviate — quindi forzando la fase 1 o 2 mobilità e
+  stretching uscivano vuoti. *Due difetti del test stesso, corretti:* raccoglieva
+  le sedute con un unico spread di mappe indicizzate per giorno della settimana,
+  quindi ne controllava sei invece di diciotto; e riscriveva al suo interno il
+  filtro dello stretching, così rompendo l'app passava comunque. Il filtro è
+  stato estratto in `stretchingDi()` e ora la prova chiama quella.
 - **v55** — **due scambi nella «3 full body», chiesti da Davide.** Al posto del
   **sissy squat** il mercoledì entra il **pulley basso su panca inclinata a
   gomiti alti**: una seconda tirata orizzontale per lo *spessore*, che porta il
