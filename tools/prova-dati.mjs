@@ -364,6 +364,48 @@ if (dopoAlt.mostrato !== altTest.atteso) {
   console.error(`  ERRORE  la card mostra ancora "${dopoAlt.mostrato}"`); process.exit(1); }
 await page.evaluate(() => { S.ui.prog = 'top'; salva(); });
 
+/* LE REGOLE SCRITTE NELL'APP DEVONO VALERE DAVVERO.
+   Due regole stanno scritte nel testo dell'app ma nessuno le controllava, e
+   sono proprio quelle che si rompono aggiungendo un esercizio: il jump set e'
+   definito come "due o tre esercizi di muscoli diversi alternati", e la soglia
+   per seduta del full body e' "mai oltre 20 serie". Un quarto membro nel jump
+   set o una ventunesima serie passerebbero inosservati. */
+const regoleTest = await page.evaluate(() => {
+  const ids = new Set([GIORNI_TOP, GIORNI_RIVISTI_4, GIORNI_PPL, GIORNI_FULL, GIORNI_RIVISTI_PPL3]
+    .flatMap(m => Object.values(m)));
+  const jumpRotti = [], nonAdiacenti = [], oltre20 = [];
+  for (const id of ids) {
+    const ex = SESS[id].ex, gr = {};
+    ex.forEach((x, i) => { if (x.ss) (gr[x.ss] = gr[x.ss] || []).push(i); });
+    for (const [k, a] of Object.entries(gr)) {
+      if (a.length < 2 || a.length > 3) jumpRotti.push(`${id} · ${k}: ${a.length} membri`);
+      if (a.some((n, j) => j && n !== a[j - 1] + 1)) nonAdiacenti.push(`${id} · ${k}`);
+      /* Muscoli diversi: e' il senso del jump set e del superset — se il
+         secondo esercizio e' lo stesso muscolo, senza recupero diventa un drop
+         set travestito e quelle serie non allenano. Eccezione dichiarata: le
+         SPALLE sono un gruppo solo nel codice ma tre capi distinti, e laterale
+         + posteriore nella stessa coppia e' voluto (non competono). */
+      const g = a.map(i => ex[i].g).filter(x => x !== 'spalle');
+      if (new Set(g).size !== g.length)
+        jumpRotti.push(`${id} · ${k}: due esercizi dello stesso muscolo`);
+    }
+  }
+  for (const id of Object.values(GIORNI_FULL)) {
+    const n = SESS[id].ex.reduce((a, x) => a + x.s, 0);
+    if (n > 20) oltre20.push(`${id}: ${n} serie`);
+  }
+  return { quante: ids.size, jumpRotti, nonAdiacenti, oltre20 };
+});
+if (regoleTest.jumpRotti.length) {
+  console.error('  ERRORE  jump set o superset fuori regola (2-3 esercizi, gruppi diversi): '
+    + regoleTest.jumpRotti.join(', ')); process.exit(1); }
+if (regoleTest.nonAdiacenti.length) {
+  console.error('  ERRORE  membri di un jump set non adiacenti nella lista, il blocco non si forma: '
+    + regoleTest.nonAdiacenti.join(', ')); process.exit(1); }
+if (regoleTest.oltre20.length) {
+  console.error('  ERRORE  full body oltre le 20 serie per seduta: ' + regoleTest.oltre20.join(', '));
+  process.exit(1); }
+
 /* MOBILITA' E STRETCHING: NESSUNA SEDUTA PUO' AVERLI VUOTI.
    E' il bug che e' passato due volte. La prima: cinque sedute su nove non
    comparivano in MOB_DI e il pannello della mobilita' restava vuoto. La
@@ -480,6 +522,7 @@ console.log(`  storico   ${ATTESI.length} giornate vecchie etichettate com'erano
 console.log('  togli     esercizio via e rimesso senza perdere le serie · serie sotto il piano, mai sotto una');
 console.log('  copia     la 1ª riempie solo le serie vuote · la spunta riporta il carico, non le ripetizioni');
 console.log(`  altern.   ${altTest.quante} alternative in tutte le schede, nessuna orfana · un tocco le applica`);
+console.log(`  regole    jump set 2-3 esercizi di gruppi diversi e adiacenti · full body mai oltre 20 serie`);
 console.log(`  mobilità  ${mobTest.quante} sedute, tutte con mobilità e stretching non vuoti`);
 console.log('  giorni    le sedute seguono i giorni scelti · con tre resta fuori l\'ultima · una giornata registrata non cambia seduta');
 if (errori.length) {

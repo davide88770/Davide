@@ -1054,9 +1054,27 @@ const GIORNI_RIVISTI_4 = {1:'q_upperA',2:'q_lowerA',4:'q_upperB',5:'q_lowerB'};
       solo su muscoli piccoli: 1 minuto fra uno e l'altro, poi si riparte.
 
    Volume settimanale in serie dirette:
-     petto 8 · dorso 9 · trapezi 3 · spalle 7 · bicipiti 6 · tricipiti 8
-     accosciata 6 · femorali 6 · polpacci 3 · addome 2   = 58
-   Serie per seduta 19 · 19 · 20, durate 55 · 57 · 57.
+     petto 8 · dorso 8 · trapezi 3 · spalle 9 · bicipiti 6 · tricipiti 8
+     accosciata 6 · femorali 6 · polpacci 3 · addome 2   = 59
+   Serie per seduta 19 · 20 · 20, durate 55 · 60 · 57.
+   Spalle 9 va letto per capo: anteriore 3 · laterale 4 · POSTERIORE 2.
+
+   DALLA v57, il mercoledi'.
+     Non aveva NESSUNA spalla diretta — l'unica delle dieci sedute delle
+     quattro programmazioni in quella condizione — ma il buco vero era piu'
+     grande: il DELTOIDE POSTERIORE stava a zero serie dirette in tutta la full
+     body, l'unica delle quattro schede senza. Le altre tre ne hanno 4, 2 e 3.
+     I rematori lo prendono di riflesso, ma e' il capo che senza lavoro diretto
+     non cresce, e il mercoledi' e' la giornata delle tirate: e' li' che ha
+     senso. Entrano le ALZATE POSTERIORI AL CAVO ALTO, 2x15-20, nel jump set.
+     Per restare dentro le 20 serie di seduta il rematore col petto appoggiato
+     scende da 3 serie a 2: e' un buon affare, perche' il posteriore lo prendeva
+     di riflesso proprio da li' e ora ce l'ha diretto, e il dorso va da 9 a 8,
+     cioe' esattamente sul riferimento. Il D'ANNUNZIO CRUNCH esce dal jump set e
+     va ultimo da solo, come il calf del venerdi': il jump set resta a tre, e
+     il crunch e' l'unico esercizio della seduta che con l'ernia chiede
+     attenzione al respiro — farlo di corsa fra due serie altrui e' il modo di
+     sbagliarlo.
 
    DALLA v56, tre correzioni al venerdi'.
      1. Mancava il TRICIPITE. Fino alla v55 il venerdi' non ne aveva nessuno
@@ -1109,10 +1127,11 @@ const GIORNI_RIVISTI_4 = {1:'q_upperA',2:'q_lowerA',4:'q_upperB',5:'q_lowerB'};
    l'accosciata a 8, il posto piu' economico e' rimettere il sissy nel venerdi'
    come ottavo esercizio: sei minuti.
 
-   Cinque gruppi esattamente sul riferimento — petto, trapezi, spalle,
-   tricipiti, polpacci — contro i due della v54, e il dorso sopra. Bicipiti,
-   gambe e addome restano sotto per scelta: meno serie, ognuna vicina al
-   cedimento. */
+   Cinque gruppi esattamente sul riferimento — petto, dorso, trapezi,
+   tricipiti, polpacci — contro i due della v54. Le spalle stanno sopra (9
+   contro 7) ed e' voluto: il riferimento tratta come un muscolo solo tre capi
+   che vanno dosati separatamente, e qui sono 3 · 4 · 2. Bicipiti, gambe e
+   addome restano sotto per scelta: meno serie, ognuna vicina al cedimento. */
 SESS.fb_a = { id:'fb_a', nome:'Full A', gg:'Lunedì', durata:55, rivista:1, full:1,
   focus:'Accosciata pesante · Spinta inclinata · Tirata verticale · Femorale ad anca flessa · Jump set spalle e braccia', ex:[
   e('Hack squat — piede basso','quad',3,'5–8','RIR 1 · FORZA',210,{ernia:1,
@@ -1143,8 +1162,8 @@ SESS.fb_a = { id:'fb_a', nome:'Full A', gg:'Lunedì', durata:55, rivista:1, full
     cue:'Gomiti fermi ai fianchi · separa le mani in fondo · terza serie da solo, poi fine seduta',
     note:'Tre serie e non due: i tricipiti sono un punto debole, e nelle spinte ne prendono solo una parte.'})
 ]};
-SESS.fb_b = { id:'fb_b', nome:'Full B', gg:'Mercoledì', durata:57, rivista:1, full:1,
-  focus:'Cerniera d’anca · Spinta piana · Due tirate orizzontali per lo spessore · Jump set braccia e addome', ex:[
+SESS.fb_b = { id:'fb_b', nome:'Full B', gg:'Mercoledì', durata:60, rivista:1, full:1,
+  focus:'Cerniera d’anca · Spinta piana · Due tirate orizzontali per lo spessore · Jump set posteriori e braccia · Addome in chiusura', ex:[
   e('Romanian deadlift — manubri','femorali',3,'8–10','RIR 1–2',180,{ernia:1,
     alt:['Romanian deadlift bilanciere'],
     cue:'Manubri ai lati delle cosce · ginocchia morbide e ferme · anca indietro, schiena neutra · scendi finché il femorale TIRA, fermo 1 sec · ESPIRA risalendo, mai Valsalva',
@@ -1153,24 +1172,29 @@ SESS.fb_b = { id:'fb_b', nome:'Full B', gg:'Mercoledì', durata:57, rivista:1, f
     alt:['Panca piana manubri'],
     cue:'Avvicinamento rapido · presa 1,5× spalle · gomiti 45° · scapole retratte · fermi rack · fermo 1 sec in basso',
     note:'L’unico bilanciere della settimana, perché è l’alzata su cui misuri la forza. Se un giorno hai fretta, i manubri sono il sostitutivo fisso.'}),
-  e('Rematore manubri — busto appoggiato','dorso',3,'8–12','Ced. tecnico',150,{
+  e('Rematore manubri — busto appoggiato','dorso',2,'8–12','Ced. tecnico',150,{
     alt:['Pulley basso — presa neutra'],
     cue:'Panca inclinata a 30-40°, petto appoggiato · GOMITI A 45° dal busto · tira verso il basso ventre · squeeze delle scapole 1 sec',
-    note:'Con i gomiti a 45° lavorano insieme gran dorsale, trapezio e deltoide posteriore: tre muscoli in un esercizio, ed è per questo che in questa scheda non ci sono scrollate né alzate posteriori. Petto appoggiato: la schiena bassa non entra.'}),
+    note:'Con i gomiti a 45° lavorano insieme gran dorsale, trapezio e deltoide posteriore. Da 3 serie a 2 nella v57: quella serie serviva per far entrare le alzate posteriori senza sforare le 20 serie di seduta, ed è un buon affare — il posteriore qui lo prendeva di riflesso, ora ce l’ha diretto. Il dorso scende da 9 a 8, cioè esattamente sul riferimento. Petto appoggiato: la schiena bassa non entra.'}),
   e('Pulley basso su panca inclinata — trapezi','trapezi',3,'10–15','Ced. tecnico',150,{
     alt:['Rematore manubri gomiti alti — trapezi'],
     cue:'Panca inclinata a 30-40° davanti alla carrucola bassa, petto appoggiato · tira coi GOMITI ALTI, non lungo i fianchi · squeeze delle scapole 1 sec in contrazione · eccentrica 3 sec',
     note:'La seconda tirata orizzontale della giornata, ed è qui per lo SPESSORE: col gomito alto si chiudono le scapole e lavorano trapezio medio e romboidi, che sono quello che si vede di schiena. Il rematore a 45° qui sopra tira il gran dorsale e porta il gomito lungo il fianco — sono due movimenti diversi, non lo stesso due volte. È l’unico giorno con due rematori, ed è una deroga voluta: in una scheda da tre giorni la schiena non ha un’altra occasione. Porta anche il trapezio da 0 a 3 serie dirette, che era l’unico gruppo a zero.'}),
+  e('Alzate posteriori al cavo alto','spalle',2,'15–20','Jump set · Ced. tecnico',60,{p:1,uni:1,ss:'J',js:1,
+    alt:['Face pull'],
+    cue:'Maniglia alla carrucola alta, un braccio per volta · braccio teso che attraversa il corpo · tira indietro all’altezza della spalla · niente trapezio, il gomito non scende · poi 1 minuto e l’overhead',
+    note:'Mancava, e mancava due volte. Fino alla v56 questa seduta non aveva NESSUNA spalla diretta, ed era l’unica delle dieci sedute delle quattro programmazioni in quella condizione. Ma il buco vero era più grande: il DELTOIDE POSTERIORE stava a zero serie dirette in tutta la full body — l’unica delle quattro schede senza. Le altre tre ne hanno 4, 2 e 3. I rematori lo prendono di riflesso, ma è il capo che senza lavoro diretto non cresce, e questa è la giornata delle tirate: è qui che ha senso. Ripetizioni alte perché è piccolo e con una leva sfavorevole — sotto le 15 finisci a tirare col trapezio. Jump set a tre: posteriori → overhead → curl.'}),
   e('Overhead a un braccio — cavo basso','tricipiti',3,'10–12','Jump set · Ced. tecnico',60,{p:1,uni:1,ss:'J',js:1,
     alt:['Tricipite overhead — corda'],
-    cue:'Un braccio per volta, di spalle alla carrucola bassa · gomito fermo sopra la testa · stretch massimo dietro la nuca',
-    note:'Il capo lungo del tricipite, che le spinte per il petto non coinvolgono ed è la parte più voluminosa del braccio. Jump set: overhead → curl → crunch, 1 minuto fra uno e l’altro.'}),
+    cue:'Un braccio per volta, di spalle alla carrucola bassa · gomito fermo sopra la testa · stretch massimo dietro la nuca · poi 1 minuto e il curl',
+    note:'Il capo lungo del tricipite, che le spinte per il petto non coinvolgono ed è la parte più voluminosa del braccio.'}),
   e('Curl manubri su panca inclinata','bicipiti',2,'8–10','Jump set · Ced. tecnico',60,{p:1,ss:'J',js:1,
     alt:['Curl ai cavi dietro il corpo — Bayesian'],
-    cue:'Stessa panca inclinata del rematore, a 45-60° · braccia dietro la linea del busto · supinazione completa · eccentrica 3 sec'}),
-  e('D’Annunzio crunch','core',2,'10–15','Jump set · Ced. tecnico',60,{ernia:1,ss:'J',js:1,
+    cue:'Stessa panca inclinata del rematore, a 45-60° · braccia dietro la linea del busto · supinazione completa · eccentrica 3 sec · poi 1 minuto e si riparte dalle posteriori'}),
+  e('D’Annunzio crunch','core',2,'10–15','Ced. tecnico + Rest-pause',90,{ernia:1,
     alt:['Crunch al cavo alto'],
-    cue:'Gambe bloccate sotto il pad della lat machine, busto che scende oltre l’appoggio · eccentrica 3 sec · ESPIRA salendo, mai in apnea'})
+    cue:'Gambe bloccate sotto il pad della lat machine, busto che scende oltre l’appoggio · eccentrica 3 sec · ESPIRA salendo, mai in apnea · due serie con 90 secondi, poi la seduta è finita',
+    note:'Fuori dal jump set e ultimo da solo, come il calf del venerdì: il jump set resta a tre, e questo è l’unico esercizio della seduta che con l’ernia chiede attenzione al respiro — farlo di corsa fra due serie altrui è il modo di sbagliarlo.'})
 ]};
 SESS.fb_c = { id:'fb_c', nome:'Full C', gg:'Venerdì', durata:57, rivista:1, full:1,
   focus:'Pressa · Lento avanti · Tirata verticale a un braccio · Croci · Jump set spalle e braccia · Calf da solo in chiusura', ex:[
@@ -1910,7 +1934,7 @@ const CONS_FONTI = [
 /* Versione dell'app. Serve a sapere, dal telefono, se quello che hai davanti e'
    l'ultima versione: la PWA installata puo' restare indietro se iOS non rifa'
    la navigazione. Il numero si alza a ogni pubblicazione. */
-const VERSIONE = { n:'v56', data:'28 ottobre 2026', nota:'Full C: tricipite nel jump set, calf da solo in chiusura, mobilità e stretching del full body' };
+const VERSIONE = { n:'v57', data:'28 ottobre 2026', nota:'Full B: alzate posteriori nel jump set — il deltoide posteriore era a zero in tutta la full body' };
 
 const ATTREZZI = [
   ['Rack, bilanciere, panca regolabile', 1, 'Panca piana, stacco romeno, curl bilanciere, military press, panca inclinata per croci, curl e rematore col petto appoggiato'],
@@ -2063,9 +2087,9 @@ SESS.rc_sab = { id:'rc_sab', nome:'Accessorio', gg:'Sabato', durata:35, opz:1, r
   e('Curl manubri alternati','bicipiti',3,'10–12','+ Drop set',105,{p:1,
     cue:'Supinazione totale in cima · gomiti fermi'}),
   e('Curl hammer manubri','bicipiti',2,'12','RIR 2',90,{cue:'Presa neutra · alternato'}),
-  e('Tricipite overhead — cavo o manubrio','tricipiti',3,'12–15','+ Rest-pause',0,{p:1,ss:'A',
+  e('Tricipite overhead — cavo o manubrio','tricipiti',3,'12–15','+ Rest-pause',90,{p:1,
     cue:'Gomiti fermi sopra la testa · stretch massimo'}),
-  e('Tricipite push-down','tricipiti',2,'12–15','Superset',90,{ss:'A',
+  e('Tricipite push-down','tricipiti',2,'12–15','+ Rest-pause',90,{
     cue:'Gomiti fermi ai fianchi · contrazione massima in basso'})
 ]};
 /* ---------- ARCHIVIO ----------
