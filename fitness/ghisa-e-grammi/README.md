@@ -120,8 +120,8 @@ l'esercizio aveva quel giorno.
 | | 4 sedute Top | 4 sedute | 3 PPL | 3 full body |
 |---|---|---|---|---|
 | Giorni | Lun · Mar · Gio · Ven | Lun · Mar · Gio · Ven | Lun · Mer · Ven | Lun · Mer · Ven |
-| Serie dirette | 77 | 61 | 64 | 58 |
-| Minuti a settimana | 251 | 227 | 216 | **169** |
+| Serie dirette | 77 | 61 | 64 | 59 |
+| Minuti a settimana | 251 | 227 | 216 | **172** |
 | Seduta più lunga | 72 min | 65 min | 76 min | **57 min** |
 | Frequenza per gruppo | 2× | 2× | 1× | **2-3×** |
 | Serie per esercizio | 2-3 | 2, salvo eccezioni | 2-3 | 2-3 |
@@ -281,16 +281,18 @@ la definizione toccabile.
 
 | | Lunedì · Full A | Mercoledì · Full B | Venerdì · Full C |
 |---|---|---|---|
-| | 7 es · 19 serie · 55 min | 7 es · 19 serie · 57 min | 8 es · 20 serie · 57 min |
+| | 7 es · 19 serie · 55 min | 8 es · 20 serie · 60 min | 8 es · 20 serie · 57 min |
 | Pesante | Hack squat 3×5-8 RIR 1 | Romanian deadlift manubri 3×8-10 | Pressa piede alto 3×8-12 RIR 1 |
 | Spinta | Panca inclinata manubri 3×8-12 | Panca piana bilanciere 3×5-8 RIR 1 | Lento avanti manubri 3×6-10 RIR 1 |
 | Tirata | Trazioni zavorate 3×6-10 RIR 1 | Rematore busto appoggiato 3×8-12 | Lat unilaterale 3×10-12 |
 | Quarto | Leg curl su panca 3×10-12 | **Pulley basso panca inclinata 3×10-15** | **Croci manubri inclinata 2×10-12** |
-| **Jump set** | Laterali cavi 2 → Curl Bayesian 2 → Push-down 3 | Overhead 3 → Curl inclinata 2 → D'Annunzio 2 | Laterali sdraiato 2 → Curl martello 2 → **Overhead corda 2** |
-| In chiusura | — | — | **Calf 3×8-12, da solo, 90 s** |
+| **Jump set** | Laterali cavi 2 → Curl Bayesian 2 → Push-down 3 | **Posteriori cavo alto 2** → Overhead 3 → Curl inclinata 2 | Laterali sdraiato 2 → Curl martello 2 → Overhead corda 2 |
+| In chiusura | — | **D'Annunzio 2×10-15, da solo, 90 s** | **Calf 3×8-12, da solo, 90 s** |
 
-Volume: petto 8 · dorso 9 · trapezi 3 · spalle 7 · bicipiti 6 · tricipiti 8 ·
-accosciata 6 · femorali 6 · polpacci 3 · addome 2 = **58**.
+Volume: petto 8 · dorso 8 · trapezi 3 · spalle 9 · bicipiti 6 · tricipiti 8 ·
+accosciata 6 · femorali 6 · polpacci 3 · addome 2 = **59**.
+
+**Spalle 9 va letto per capo: anteriore 3 · laterale 4 · posteriore 2.**
 
 #### I due scambi della v55
 
@@ -323,9 +325,39 @@ raggiungibile senza aggiungere un ottavo esercizio. Se si rivuole l'accosciata a
 8, il posto più economico è rimettere il **sissy nel venerdì** come ottavo
 esercizio: sei minuti.
 
-**Cinque gruppi esattamente sul riferimento** — petto, trapezi, spalle,
-tricipiti, polpacci — contro i due della v54, e il dorso sopra. Bicipiti, gambe
-e addome restano sotto per scelta.
+**Cinque gruppi esattamente sul riferimento** — petto, dorso, trapezi,
+tricipiti, polpacci — contro i due della v54. Le spalle stanno sopra (9 contro
+7) ed è voluto: il riferimento tratta come un muscolo solo tre capi che vanno
+dosati separatamente. Bicipiti, gambe e addome restano sotto per scelta.
+
+#### La correzione della v57 (mercoledì)
+
+Full B non aveva **nessuna spalla diretta** — l'unica delle dieci sedute delle
+quattro programmazioni in quella condizione. Ma il buco vero era più grande: il
+**deltoide posteriore stava a zero serie dirette in tutta la full body**, l'unica
+delle quattro schede senza. Le altre tre ne hanno 4, 2 e 3.
+
+| Scheda | Anteriore | Laterale | Posteriore |
+|---|---|---|---|
+| 4 sedute Top | 3 | 5 | 4 |
+| 4 sedute | 2 | 3 | 2 |
+| 3 PPL | 3 | 3 | 3 |
+| 3 full body, prima | 3 | 4 | **0** |
+| 3 full body, ora | 3 | 4 | **2** |
+
+I rematori lo prendono di riflesso, ma è il capo che senza lavoro diretto non
+cresce, e il mercoledì è la giornata delle tirate: è lì che ha senso. Entrano le
+**alzate posteriori al cavo alto**, 2×15-20, nel jump set — ripetizioni alte
+perché è piccolo e con una leva sfavorevole, e sotto le 15 si finisce a tirare
+col trapezio.
+
+**Due conseguenze.** Per restare dentro le 20 serie per seduta il **rematore col
+petto appoggiato scende da 3 serie a 2**: è un buon affare, perché il posteriore
+lo prendeva di riflesso proprio da lì e ora ce l'ha diretto, e il dorso va da 9 a
+8, cioè esattamente sul riferimento. E il **D'Annunzio crunch esce dal jump set**
+e va ultimo da solo, come il calf del venerdì: il jump set resta a tre, e il
+crunch è l'unico esercizio della seduta che con l'ernia chiede attenzione al
+respiro — farlo di corsa fra due serie altrui è il modo di sbagliarlo.
 
 #### Le tre correzioni della v56 (venerdì)
 
@@ -1359,6 +1391,14 @@ npm run prova:pwa                                # giro di aggiornamento dell'ap
   JS. È la prova che mancava: `verify` gira su un profilo vuoto, e con il
   profilo vuoto metà dell'app non viene mai eseguita — è così che due bug sono
   passati per due versioni.
+- **Le regole scritte nell'app valgono davvero** (`npm run prova`): ogni jump
+  set e superset ha 2-3 esercizi, di **muscoli diversi** e **adiacenti** nella
+  lista (se non sono adiacenti il blocco non si forma), e nessuna seduta full
+  body supera le **20 serie**. Verificate rompendo l'app in due modi: un jump
+  set a quattro membri e una ventunesima serie, entrambi intercettati. L'unica
+  eccezione dichiarata al «muscoli diversi» sono le **spalle**, che nel codice
+  sono un gruppo solo ma tre capi distinti: laterale + posteriore nella stessa
+  coppia è voluto.
 - **Mobilità e stretching non vuoti su tutte le 18 sedute** (`npm run prova`).
   È il bug passato tre volte: prima cinque sedute su nove mancavano da `MOB_DI`,
   poi le tre full body avevano mezza preparazione, poi la prova stessa ha trovato
@@ -1386,6 +1426,24 @@ npm run prova:pwa                                # giro di aggiornamento dell'ap
 
 ## Storico
 
+- **v57** — **Full B non aveva nessuna spalla diretta**, l'ha notato Davide. Ma
+  il buco vero era più grande: il **deltoide posteriore stava a zero serie
+  dirette in tutta la full body**, l'unica delle quattro schede senza — le altre
+  hanno 4, 2 e 3. Entrano le **alzate posteriori al cavo alto** 2×15-20 nel jump
+  set del mercoledì, nella giornata delle tirate che è dove hanno senso. Per
+  restare dentro le 20 serie per seduta il **rematore scende da 3 a 2**: buon
+  affare, perché il posteriore lo prendeva di riflesso proprio da lì e il dorso
+  va da 9 a 8, esattamente sul riferimento. Il **D'Annunzio crunch esce dal jump
+  set** e va ultimo da solo come il calf del venerdì. 58 → **59 serie**, Full B
+  da 7 a 8 esercizi e da 57 a 60 minuti. Spalle 9, da leggere come anteriore 3 ·
+  laterale 4 · posteriore 2.
+  *Due prove nuove sulle regole che l'app dichiara ma nessuno controllava* — jump
+  set di 2-3 esercizi di muscoli diversi e adiacenti, full body mai oltre 20
+  serie — **e hanno trovato subito un errore vero**: nella seduta accessoria del
+  cut (`rc_sab`, fasi 1-2) il tricipite overhead e il push-down erano in
+  superset fra loro, cioè **lo stesso muscolo due volte a recupero zero** — un
+  drop set travestito, in cui il secondo esercizio non allena. Separati, 90
+  secondi ciascuno.
 - **v56** — **tre correzioni al venerdì della full body.** Davide ha notato che
   **mancava il tricipite**: ora c'è l'overhead alla corda nel jump set, 2 serie,
   e il muscolo passa da 6 a **8** — il riferimento — con frequenza 3×. Il
