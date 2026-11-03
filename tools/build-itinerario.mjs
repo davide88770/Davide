@@ -290,8 +290,9 @@ pagF(cap('Informazioni')
 /* ── 5 · giorno 1 ──────────────────────────────────────────────────── */
 pagF(cap('Daily schedule')+'<h1 class="giorno">GIORNO 1</h1><div class="data">11 NOVEMBRE</div>'
  +'<div class="banda"><span class="et">Trasporto</span>'
- +pren('9T6U9F','Il 10 novembre si parte: <b>EY82 Malpensa 10:30 → Abu Dhabi 19:30</b>, poi '
-   +'<b>EY432 Abu Dhabi 20:50 → Hanoi 06:10</b> dell\'11. Scalo di 1h20 in transito, bagaglio '
+ +pren('9T6U9F','Il 10 novembre si parte: <b>EY82 Malpensa 10:00 → Abu Dhabi 19:40</b> — '
+   +'orario spostato da Etihad il 2 novembre, era 10:30 — poi '
+   +'<b>EY432 Abu Dhabi 20:50 → Hanoi 06:10</b> dell\'11. Scalo di 1h10 in transito, bagaglio '
    +'registrato fino a Hanoi.')
  +pren('860124030','L\'autista aspetta nella hall arrivi con la targhetta <b>Davide Mammi</b> e '
    +'ha il numero del volo. Si atterra alle 06:10 e il taxi è alle 12:00: cinque ore di margine.')
