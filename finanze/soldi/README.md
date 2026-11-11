@@ -203,6 +203,13 @@ schermata Home.
 
 ## Storico
 
+- **v6** (novembre 2026) — corretto il calcolo delle rate quote. Il 21% non
+  si toglie da ogni rata: è un'imposta sostitutiva unica (21% del valore
+  affrancato) pagata in **tre rate al 30/11 del 2026, 2027 e 2028**. Ogni rata
+  ha ora **lordo** e **imposta** dell'anno; netto = lordo − imposta (dal 2029
+  imposta zero). Righe ridisegnate per il telefono (rata e netto in alto,
+  lordo e imposta sotto) con il totale netto. L'avviso del mese ricorda anche
+  la scadenza dell'imposta.
 - **v5** (novembre 2026) — rate delle quote azienda: una all'anno, **a
   novembre, dal 2026 al 2032**. Si scrive il **lordo** e l'app usa il **netto**,
   tolta l'imposta sulla rivalutazione (21%, modificabile in Patrimonio).

@@ -227,30 +227,33 @@ sezione('A. Senza Supabase configurato (solo questo dispositivo)');
   ok(await p.evaluate(() => !getAlerts().some(a => /Bonus Amex/.test(a.t))), 'bonus Amex a metà mese senza spese importate: nessun falso allarme');
   await p.clock.setFixedTime(new Date('2026-11-26T21:00:00'));
   ok(await p.evaluate(() => getAlerts().some(a => a.c === 'blue' && /controlla la spesa del mese/.test(a.t))), 'a fine mese: richiamo a guardare l\'app Amex');
-  // rate delle quote: novembre 2026 → novembre 2032, lordo meno 21%
+  // rate delle quote: novembre 2026 → novembre 2032, netto = lordo - rata d'imposta
+  // (numeri finti: il repo è pubblico)
   await p.clock.setFixedTime(new Date('2026-11-15T10:00:00'));
   await p.evaluate(() => { S.goals.amexStart = ''; S.quote = []; S.imports = { rev: '2026-11-01' }; TX = clean([]); cur = new Date(2026, 10, 1); });
   await p.click('#tabs button[data-v="nw"]');
-  const rate = await p.$$eval('#qTab tr', tr => tr.slice(1).map(r => r.cells[0].textContent));
+  const rate = await p.$$eval('#qTab .qrow:not(.qtot) .qm', r => r.map(x => x.textContent.trim()));
   ok(rate.length === 7 && rate[0] === 'nov 2026' && rate[6] === 'nov 2032', `sette rate, da ${rate[0]} a ${rate[6]}`);
   ok(await p.evaluate(() => S.quote.length === 0), 'finché non scrivi niente le righe non si salvano');
   await p.fill('#qTab input[data-ql="0"]', '100000');
-  ok((await p.textContent('#qTab [data-qn="0"]')).includes('79.000'), `lordo 100.000 → netto «${(await p.textContent('#qTab [data-qn="0"]')).trim()}»`);
+  await p.fill('#qTab input[data-qi="0"]', '30000.5');
+  ok((await p.textContent('#qTab [data-qn="0"]')).includes('69.999,50'), `lordo 100.000 − imposta 30.000,50 → netto «${(await p.textContent('#qTab [data-qn="0"]')).trim()}»`);
+  await p.fill('#qTab input[data-ql="3"]', '50000');
   await p.waitForTimeout(900);
-  ok(await p.evaluate(() => S.quote.length === 7 && S.quote[0].lordo === 100000 && S.quote[0].y === 2026 && S.quote[0].m === 11), 'scritto il lordo: le sette rate salvate, la prima con lordo 100.000');
-  ok(await p.evaluate(() => netWorth().pending === 79000), 'patrimonio: 79.000 € netti ancora da incassare');
-  await p.fill('#qTaxPct', '26'); await p.waitForTimeout(900);
-  ok(await p.evaluate(() => netWorth().pending === 74000), 'imposta al 26%: il netto si ricalcola (74.000)');
-  await p.fill('#qTaxPct', '21'); await p.waitForTimeout(900);
+  ok(await p.evaluate(() => S.quote.length === 7 && S.quote[0].lordo === 100000 && S.quote[0].imp === 30000.5 && S.quote[0].y === 2026 && S.quote[0].m === 11), 'scritti lordo e imposta: le sette rate salvate');
+  ok(await p.evaluate(() => netWorth().pending === 119999.5), 'patrimonio: 69.999,50 + 50.000 (senza imposta) = 119.999,50 da incassare');
+  await p.click('#tabs button[data-v="home"]'); await p.click('#tabs button[data-v="nw"]');
+  const totale = await p.textContent('#qTab .qtot');
+  ok(/Totale netto/.test(totale) && totale.includes('150.000') && totale.includes('30.001') && totale.includes('119.999,50'), `riga del totale: «${totale.replace(/\s+/g, ' ').trim()}»`);
   let al = await p.evaluate(() => getAlerts().find(a => /Rata quote/.test(a.t)));
-  ok(al && al.t === 'Rata quote di nov 2026 in arrivo' && al.d.includes('79.000') && al.d.includes('100.000'), `avviso di novembre: «${al?.t} — ${al?.d}»`);
+  ok(al && al.t === 'Rata quote di nov 2026 in arrivo' && al.d.includes('69.999,50') && al.d.includes('30.000,50') && al.d.includes('30/11'), `avviso di novembre: «${al?.t} — ${al?.d}»`);
   await p.check('#qTab input[data-qo="0"]');
-  ok(await attendi(() => p.isVisible('#askYes')) && (await p.textContent('#askMsg')).includes('79.000,00'), `spuntata: «${(await p.textContent('#askMsg')).trim()}»`);
+  ok(await attendi(() => p.isVisible('#askYes')) && (await p.textContent('#askMsg')).includes('69.999,50'), `spuntata: «${(await p.textContent('#askMsg')).trim()}»`);
   await p.click('#askYes');
-  ok(await attendi(() => p.evaluate(() => document.getElementById('modal').classList.contains('on') && F.type === 'in' && F.cat === 'Quote azienda' && document.getElementById('tAmt').value === '79000.00')), 'si apre l\'entrata "Quote azienda" già compilata con il netto');
+  ok(await attendi(() => p.evaluate(() => document.getElementById('modal').classList.contains('on') && F.type === 'in' && F.cat === 'Quote azienda' && document.getElementById('tAmt').value === '69999.50')), 'si apre l\'entrata "Quote azienda" già compilata con il netto');
   await p.click('#tSave');
-  ok(await attendi(() => p.evaluate(() => TX.some(t => t.cat === 'Quote azienda' && t.amt === 79000))), 'entrata registrata');
-  ok(await p.evaluate(() => !getAlerts().some(a => /Rata quote/.test(a.t)) && netWorth().pending === 0), 'rata segnata: avviso sparito, niente più da incassare con lordo noto');
+  ok(await attendi(() => p.evaluate(() => TX.some(t => t.cat === 'Quote azienda' && t.amt === 69999.5))), 'entrata registrata');
+  ok(await p.evaluate(() => !getAlerts().some(a => /Rata quote/.test(a.t)) && netWorth().pending === 50000), 'rata segnata: avviso sparito, restano le altre');
   await p.clock.setFixedTime(new Date('2027-12-02T10:00:00'));
   ok(await p.evaluate(() => getAlerts().some(a => a.c === 'red' && a.t === 'Rata quote di nov 2027 non segnata')), 'rata di novembre 2027 non spuntata a dicembre: avviso rosso');
   // il piano vecchio 2027-2033 si sposta di un anno, una volta sola
