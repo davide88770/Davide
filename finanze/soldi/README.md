@@ -203,6 +203,17 @@ schermata Home.
 
 ## Storico
 
+- **v5** (novembre 2026) — rate delle quote azienda: una all'anno, **a
+  novembre, dal 2026 al 2032**. Si scrive il **lordo** e l'app usa il **netto**,
+  tolta l'imposta sulla rivalutazione (21%, modificabile in Patrimonio).
+  - Il piano vecchio 2027–2033 si sposta da solo di un anno, una volta sola
+    (`S.fatto.quote2026`), importi e spunte intatti.
+  - Avviso nel mese della rata («in arrivo», giallo) e, se a fine mese non è
+    spuntata, rosso fino a un anno dopo. Spuntando la rata l'app propone
+    l'entrata «Quote azienda» già compilata con il netto.
+  - Gli importi non stanno nel codice (il repo è pubblico): si scrivono
+    nell'app. Le sette righe vuote si mostrano ma non si salvano finché non
+    scrivi qualcosa, per non coprire i dati veri di un altro dispositivo.
 - **v4** (24 ottobre 2026) — estratti conto il 24 di ogni mese, e import
   anche da **PDF**.
   - L'avviso parte dal 24 (blu), è giallo dopo 3 giorni e rosso dopo 7, e si
