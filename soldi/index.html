@@ -22,7 +22,7 @@
 <script src="vendor/chart.umd.js"></script>
 <script src="vendor/supabase.js"></script>
 <script src="config.js"></script>
-<script>window.__SOLDI_BUILD='b8def6a32d';window.__SOLDI_V=4;</script>
+<script>window.__SOLDI_BUILD='09a810d1ec';window.__SOLDI_V=5;</script>
 <style>
 @font-face{font-family:Manrope;font-style:normal;font-display:swap;font-weight:200 800;src:url(vendor/manrope-latin-wght-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 @font-face{font-family:Manrope;font-style:normal;font-display:swap;font-weight:200 800;src:url(vendor/manrope-latin-ext-wght-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
@@ -307,7 +307,8 @@ nav.tabs button{position:relative}
     <div class="card" style="margin-top:14px">
       <h2>Rate quote azienda<small id="qSum"></small></h2>
       <div class="tablewrap"><table class="t" id="qTab"></table></div>
-      <div class="hint">Quando incassi una rata, spunta la riga e registra anche l'entrata "Quote azienda" sul conto dove arriva.</div>
+      <div class="set" style="margin-top:12px"><span>Imposta sulla rivalutazione (%)</span><input type="number" id="qTaxPct" inputmode="decimal" step="0.5"></div>
+      <div class="hint">Scrivi il <b>lordo</b> di ogni rata: l'app toglie l'imposta e usa il netto per il patrimonio. Quando la rata arriva, spuntala: ti propone di registrare l'entrata "Quote azienda".</div>
     </div>
   </section>
 
@@ -442,7 +443,7 @@ const DEF={v:2,budget:{'Vita quotidiana':1000,'Spese fisse':500,'Viaggi':1200,'R
  // su GitHub Pages), quindi niente stipendi né importi personali qui dentro.
  // I valori veri arrivano dall'account o dal backup ripristinato.
  recurring:[],
- quote:[]};
+ quote:[], quoteTaxPct:21};
 
 let S=structuredClone(DEF), TX=[], store=null, cur=new Date(), charts={}, view='home', selAcc='trad';
 cur=new Date(cur.getFullYear(),cur.getMonth(),1);
@@ -684,9 +685,17 @@ async function stipendiSulTradizionale(){
   S.fatto={...(S.fatto||{}),stipendiTrad:today()};
   await saveS();fillSettings();
   toast(n===1?'Lo stipendio di Revolut ora arriva sul Tradizionale':`${n} stipendi spostati sul Tradizionale`)}
+/* novembre 2026: le rate partono da novembre 2026 e finiscono nel 2032, non
+   2027-2033 come nel piano vecchio. Si spostano indietro di un anno, una volta
+   sola, solo se le righe sono proprio quelle del piano vecchio. */
+async function quoteDaNovembre2026(){
+  if((S.fatto||{}).quote2026||S.quote.map(q=>q.y).join()!=='2027,2028,2029,2030,2031,2032,2033')return;
+  S.quote=S.quote.map(q=>({...q,y:q.y-1,m:QUOTE_MESE}));
+  S.fatto={...(S.fatto||{}),quote2026:today()};
+  await saveS();toast('Rate quote: da novembre 2026 a novembre 2032')}
 async function migrateAmex(){
   if(migrating)return;
-  await stipendiSulTradizionale();
+  await stipendiSulTradizionale();await quoteDaNovembre2026();
   const olds=TX.filter(t=>t.acc==='amex'||t.to==='amex');
   const sDirty=(S.start&&'amex' in S.start)||S.recurring.some(r=>r.acc==='amex'||r.to==='amex');
   if(!olds.length&&!sDirty)return;
@@ -727,8 +736,20 @@ function netWorth(){
   const parts={'Liquidità':b.trad+b.rev+b.extra,'Fondo emergenza':b.emerg,'Conto deposito Revolut':b.dep||0,'Investimenti':num(v.port)??b.inv,'Fondo pensione':num(v.pens)??b.pens,'Quota azienda residua':num(v.quota)||0,'Altri beni':num(v.other)||0};
   const debt=num(v.debt)||0;
   const tot=Object.values(parts).reduce((a,c)=>a+c,0)-debt;
-  const pending=S.quote.filter(q=>!q.ok).reduce((a,q)=>a+(+q.a||0),0);
+  const pending=quoteRows().filter(q=>!q.ok).reduce((a,q)=>a+qNet(q),0);
   return{parts,debt,tot,pending,b}}
+/* ---------- rate delle quote azienda ----------
+   Una rata all'anno, a novembre, dal 2026 al 2032. Si scrive il lordo; il
+   netto toglie l'imposta sulla rivalutazione (21%, modificabile). Le righe
+   vecchie senza lordo usano il "netto previsto" che avevano. Finché non scrivi
+   niente le sette righe si mostrano ma non si salvano: su un dispositivo nuovo
+   non devono finire sopra quelle vere del server. */
+const QUOTE_DA=2026,QUOTE_A=2032,QUOTE_MESE=11;
+const quoteRows=()=>S.quote.length?S.quote:Array.from({length:QUOTE_A-QUOTE_DA+1},(_,i)=>({y:QUOTE_DA+i,m:QUOTE_MESE,lordo:'',a:0,ok:false}));
+const quoteTax=()=>{const t=num(S.quoteTaxPct);return t==null?0.21:t/100};
+const qNet=q=>num(q.lordo)!=null?Math.round(num(q.lordo)*(1-quoteTax())*100)/100:(+q.a||0);
+const qMese=q=>new Date(q.y,(q.m||QUOTE_MESE)-1,1).toLocaleDateString('it-IT',{month:'short',year:'numeric'});
+function quoteVere(){if(!S.quote.length)S.quote=quoteRows().map(q=>({...q}));return S.quote}
 function history(){
   if(!TX.length)return[];
   const first=TX.reduce((m,t)=>t.date<m?t.date:m,'9999');
@@ -791,6 +812,12 @@ function getAlerts(){
     if(now>=st&&now<en&&!r.amex){if(dnow>last-7)A.push({c:'blue',t:'Bonus Amex: controlla la spesa del mese',d:`Le spese Amex arrivano con il prossimo import del ${GIORNO_ESTRATTI}: guarda nell'app Amex se sei a ${eur(g.amex)} entro il ${last}.`})}
     else if(now>=st&&now<en&&r.amex<g.amex){const need=g.amex-r.amex;const pace=r.amex/dnow*last;
       if(pace<g.amex||dnow>last-7)A.push({c:dnow>last-7?'red':'',t:`Bonus Amex: mancano ${eur(need)} questo mese`,d:`Passa più spese sull'Amex entro il ${last}. Obiettivo ${eur(g.amex)} al mese.`})}}
+  // 4b. rata delle quote del mese (o arretrata e non segnata)
+  {const ny=now.getFullYear(),nm=now.getMonth()+1;
+    for(const q of quoteRows()){const qm=q.m||QUOTE_MESE;if(q.ok||q.y>ny||q.y===ny&&qm>nm||ny*12+nm-(q.y*12+qm)>12)continue;
+      const net=qNet(q),quanto=net?`${eur(net)} netti${num(q.lordo)!=null?` (lordo ${eur(num(q.lordo))})`:''}`:'Scrivi il lordo in Patrimonio';
+      A.push(q.y===ny&&qm===nm?{c:'',t:`Rata quote di ${qMese(q)} in arrivo`,d:`${quanto}. Quando arriva, spuntala in Patrimonio: ti propongo l'entrata.`,b:['Vai','nw']}
+        :{c:'red',t:`Rata quote di ${qMese(q)} non segnata`,d:`${quanto}. È arrivata? Spuntala in Patrimonio.`,b:['Vai','nw']})}}
   // 5. saldi da verificare
   const stale=['trad','rev'].filter(a=>{const f=(S.fixed||{})[a];return !f||daysBetween(new Date(f+'T12:00').getTime(),now.getTime())>30});
   if(TX.length&&stale.length&&(dnow>=last-3||stale.length===3&&!Object.keys(S.fixed||{}).length))A.push({c:'blue',t:'Controlla i saldi con la banca',d:`${stale.map(accN).join(', ')}: scrivi il saldo reale in Conti → Aggiorna saldo.`,b:['Vai','acc']});
@@ -807,6 +834,7 @@ function renderAlerts(){
   const red=A.filter(a=>a.c==='red').length+A.filter(a=>a.c==='').length;if(red)tb.insertAdjacentHTML('beforeend',`<span class="nbadge">${red}</span>`)}
 document.addEventListener('click',e=>{const b=e.target.closest('[data-al]');if(!b)return;const a=b.dataset.al;
   if(a==='add')openForm();else if(a==='imp'){go('tx');$('openImp').click()}else if(a==='bak')doBackup();else if(a==='rec'){cur=new Date(new Date().getFullYear(),new Date().getMonth(),1);applyRec()}
+  else if(a==='nw')go('nw');
   else if(a.startsWith('acc')){if(a.includes(':'))selAcc=a.split(':')[1];go('acc')}});
 /* ---------- render ---------- */
 function render(){try{renderInner()}catch(e){console.error(e);const el=$('sync');if(el)el.textContent='Un dato non si è caricato bene: ricarica la pagina. I tuoi dati sono al sicuro.'}}
@@ -913,12 +941,14 @@ function renderNw(){
   mk('cNw',{type:'doughnut',data:{labels:p.length?p.map(x=>x[0]):['Ancora vuoto'],datasets:[{data:p.length?p.map(x=>x[1]):[1],backgroundColor:p.length?cols:[css('--soft')],borderWidth:0}]},options:o});
   const h=history(),oh=opts();oh.plugins.legend.display=false;
   mk('cHist',{type:'line',data:{labels:h.length?h.map(x=>x.l):['—'],datasets:[{label:'Patrimonio',data:h.length?h.map(x=>x.v):[0],borderColor:'#1F9D6B',backgroundColor:'#1F9D6B22',fill:true,tension:.3,pointRadius:3}]},options:oh});
-  const got=S.quote.filter(q=>q.ok).reduce((a,q)=>a+(+q.a||0),0),tot=S.quote.reduce((a,q)=>a+(+q.a||0),0);
-  $('qSum').textContent=`${eur(got)} incassati di ${eur(tot)}`;
-  $('qTab').innerHTML='<tr><th>Anno</th><th class="r">Netto previsto</th><th class="r">Incassata</th></tr>'+S.quote.map((q,i)=>`<tr><td>${q.y}</td><td class="r"><input type="number" data-qa="${i}" value="${q.a}" style="width:110px;text-align:right;padding:6px;border-radius:8px;border:1px solid var(--line);background:var(--card)"></td><td class="r"><input type="checkbox" data-qo="${i}" ${q.ok?'checked':''} style="width:20px;height:20px"></td></tr>`).join('');
+  const Q=quoteRows(),got=Q.filter(q=>q.ok).reduce((a,q)=>a+qNet(q),0),tot=Q.reduce((a,q)=>a+qNet(q),0),pct=Math.round(quoteTax()*1000)/10;
+  $('qSum').textContent=`${eur(got)} netti incassati di ${eur(tot)}`;
+  if(document.activeElement!==$('qTaxPct'))$('qTaxPct').value=S.quoteTaxPct??21;
+  $('qTab').innerHTML=`<tr><th>Rata</th><th class="r">Lordo</th><th class="r">Netto (−${String(pct).replace('.',',')}%)</th><th class="r">Incassata</th></tr>`+Q.map((q,i)=>{const l=num(q.lordo);
+    return `<tr><td>${qMese(q)}</td><td class="r"><input type="number" inputmode="decimal" data-ql="${i}" value="${l??''}" placeholder="lordo" style="width:112px;text-align:right;padding:6px;border-radius:8px;border:1px solid var(--line);background:var(--card)"></td><td class="r" data-qn="${i}">${l!=null?eur(qNet(q)):q.a?`${eur(q.a)}<div class="hint" style="margin:0">vecchio netto</div>`:'–'}</td><td class="r"><input type="checkbox" data-qo="${i}" ${q.ok?'checked':''} style="width:20px;height:20px" aria-label="Rata ${qMese(q)} incassata"></td></tr>`}).join('');
 }
 
-function ask(msg,yes='Elimina'){return new Promise(res=>{const m=$('askModal');$('askMsg').textContent=msg;$('askYes').textContent=yes;m.classList.add('on');
+function ask(msg,yes='Elimina'){return new Promise(res=>{const m=$('askModal');$('askMsg').textContent=msg;$('askYes').textContent=yes;$('askYes').style.background=/^(Elimina|Esci|Togli)$/.test(yes)?'var(--bad)':'var(--accent)';m.classList.add('on');
   const done=v=>{m.classList.remove('on');$('askYes').onclick=$('askNo').onclick=null;res(v)};$('askYes').onclick=()=>done(true);$('askNo').onclick=()=>done(false)})}
 /* ---------- form movimento ---------- */
 let F={};
@@ -1151,13 +1181,19 @@ const GK={gInv:'inv',gEm:'emerg',gAmex:'amex',gAmexStart:'amexStart',gPens:'pens
 document.addEventListener('input',e=>{const t=e.target,v=t.value;
   if(t.dataset.b){S.budget[t.dataset.b]=+v||0;later()}
   else if(t.dataset.s){S.start[t.dataset.s]=+v||0;later()}
-  else if(t.dataset.qa){S.quote[+t.dataset.qa].a=+v||0;later()}
+  else if(t.dataset.ql){const Q=quoteVere(),q=Q[+t.dataset.ql];q.lordo=v===''?'':+v;const c=document.querySelector(`[data-qn="${t.dataset.ql}"]`);if(c)c.textContent=v===''?'–':eur(qNet(q));later()}
+  else if(t.id==='qTaxPct'){S.quoteTaxPct=v===''?21:+v;later()}
   else if(GK[t.id]){S.goals[GK[t.id]]=GK[t.id]==='amexStart'?v:(+v||0);later()}
   else if(PK[t.id]){const f=PK[t.id];S.values[f]=v;const nk=today().slice(0,7);S.snaps[nk]={...(S.snaps[nk]||{}),[f]:v};later()}
   else if(t.id==='fQ')renderTx()});
 document.addEventListener('change',e=>{const t=e.target;
   if(t.dataset.recacc){const r=S.recurring.find(x=>x.id===t.dataset.recacc);if(r){r.acc=t.value;saveS();fillSettings();render();toast(`${r.note||r.cat}: ora su ${accN(r.acc)}`)}return}
-  if(t.dataset.qo){S.quote[+t.dataset.qo].ok=t.checked;saveS();render()}if(['fAcc','fCat','fPer'].includes(t.id))renderTx()});
+  if(t.dataset.qo){const q=quoteVere()[+t.dataset.qo];q.ok=t.checked;saveS();render();
+    // rata incassata: si propone subito l'entrata, già compilata
+    const net=qNet(q),k=key(new Date().getFullYear(),new Date().getMonth());
+    if(t.checked&&net>0&&!TX.some(x=>x.type==='in'&&x.cat==='Quote azienda'&&ym(x.date)===k))
+      ask(`Registro l'entrata di ${eur(net,2)} (rata ${qMese(q)})?`,'Registra').then(ok=>{if(!ok)return;
+        openForm(null,{type:'in',cat:'Quote azienda',acc:'trad',pay:'',note:`Rata quote ${qMese(q)}`});$('tAmt').value=net.toFixed(2);$('tNote').value=`Rata quote ${qMese(q)}`})}if(['fAcc','fCat','fPer'].includes(t.id))renderTx()});
 
 /* ---------- backup ---------- */
 /* Su telefono si apre il foglio di condivisione (iPhone: "Salva su File");
